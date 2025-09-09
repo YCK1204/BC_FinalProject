@@ -40,4 +40,6 @@ public class Manager : MonoBehaviour
     public static SceneManagerEx Scene { get { return Instance._scene; } set { Instance._scene = value; value.transform.parent = _instance.transform; } }
     AudioManager _audio;
     public static AudioManager Audio { get { return Instance._audio; } set { Instance._audio = value; value.transform.parent = _instance.transform; } }
+    PoolManager _pool;
+    public static PoolManager Pool { get { return Instance._pool; } set { Instance._pool = value; value.transform.parent = _instance.transform; } }
 }
