@@ -8,25 +8,35 @@ public class MonsterStateMachine : Game.Monster.IStateMachine<Monster>
 
     // 몬스터의 현재 상태
     protected MonsterBaseState curState;
+    protected MonsterBaseState prevState;
     // 몬스터의 상태를 담은 딕셔너리
     protected Dictionary<Common.StateType, MonsterBaseState> stateDic;
 
-    protected MonsterStateMachine(Monster owner)
+    public MonsterStateMachine(Monster owner)
     {
         Owner = owner;
         Init();
     }
 
-    protected virtual void Init()
+    public virtual void Init()
     {
         stateDic = new Dictionary<Common.StateType, MonsterBaseState>();
         stateDic.Add(Common.StateType.Idle, new MonsterIdleState(this));
         stateDic.Add(Common.StateType.Patrol, new MonsterPatrolState(this));
         stateDic.Add(Common.StateType.Attack, new MonsterAttackState(this));
+
+        prevState = null;
+        curState = stateDic[Common.StateType.Idle];
+        curState.Enter();
     }
 
     public void ChangeState(Common.StateType type)
     {
+        // 현재 상태와 같은 상태로 변경 시도하면 종료
+        if (curState.StateType == type)
+            return;
+
+        // 변경하려는 스테이트가 딕셔너리에 존재해야만 변경
         if (stateDic.ContainsKey(type))
         {
             curState?.Exit();
@@ -37,6 +47,19 @@ public class MonsterStateMachine : Game.Monster.IStateMachine<Monster>
         {
             Debug.LogError("딕셔너리에 존재하지 않는 상태입니다.");
         }
+    }
+
+    public void ChangePrevState()
+    {
+        // 이전 상태가 null이거나 현재 상태와 동일하다면 종료
+        if (prevState == null || prevState.StateType == curState.StateType)
+            return;
+
+        // 음 이러면 이전 상태는 한개 밖에 저장이 안되네? 큐로 가지고 있어야 하나?
+        curState?.Exit();
+        curState = prevState;
+        prevState = null;
+        curState?.Enter();
     }
 
     public void Update()

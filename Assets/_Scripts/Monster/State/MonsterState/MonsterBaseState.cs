@@ -1,12 +1,15 @@
+using Common;
 using UnityEngine;
 
 public abstract class MonsterBaseState : Game.Monster.IState
 {
-    protected MonsterStateMachine stateMachine;
+    protected MonsterStateMachine _stateMachine;
+
+    public StateType StateType { get; protected set; }
 
     public MonsterBaseState(MonsterStateMachine stateMachine)
     {
-        this.stateMachine = stateMachine;
+        _stateMachine = stateMachine;
     }
 
     public virtual void Enter() { }
