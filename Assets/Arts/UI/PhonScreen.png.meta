@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: cdc9a900670c3d2438297e94eb078bc4
+guid: 6bf644b8c3af2434fb399b1a0570c405
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5404345742166128520
-    second: Phon_0
+      213: 4816508080042017570
+    second: PhonScreen_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -46,7 +46,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -100,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Phon_0
+      name: PhonScreen_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 288
-        height: 574
+        x: 18
+        y: 27
+        width: 252
+        height: 531
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 887f43da1d7100b40800000000000000
-      internalID: 5404345742166128520
+      spriteID: 22304b0749ca7d240800000000000000
+      internalID: 4816508080042017570
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 5e97eb03825dee720800000000000000
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Phon_0: 5404345742166128520
+      PhonScreen_0: 4816508080042017570
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
