@@ -130,7 +130,7 @@ GameObject:
   - component: {fileID: 346173198}
   - component: {fileID: 346173197}
   - component: {fileID: 346173196}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MonsterA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 876968443}
   - component: {fileID: 876968445}
   - component: {fileID: 876968444}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MainSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
