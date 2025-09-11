@@ -30,7 +30,7 @@ public class MonsterIdleState : MonsterBaseState
         _stateMachine.Owner.Anim.SetFloat(Common.AnimatorParams.Speed, 0);
 
         _moveDelay = 1.0f;
-        _curMoveDelay = 1.0f;
+        _curMoveDelay = 0.0f;
 
         _detectDelay = 0.2f;
         _curDetectDelay = 0.0f;

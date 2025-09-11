@@ -1,7 +1,7 @@
 using Game.Monster;
 using UnityEngine;
 
-public class Orc : Monster, IAttackable, IDamageable, IMovable
+public class Orc : PatrolMonster, IAttackable, IDamageable
 {
     public void Attack(IDamageable target)
     {
@@ -9,16 +9,6 @@ public class Orc : Monster, IAttackable, IDamageable, IMovable
             return;
 
         target.TakeDamage((int)_attackPower);
-    }
-
-    public void Move()
-    {
-
-    }
-
-    public void StopMove()
-    {
-        
     }
 
     public void TakeDamage(int damage)

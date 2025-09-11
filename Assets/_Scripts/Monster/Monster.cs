@@ -38,7 +38,9 @@ public abstract class Monster : MonoBehaviour
     public Transform _target;
 
     protected Rigidbody2D _rb;
+    public Rigidbody2D Rb { get { return _rb; } }
     protected Collider2D _col;
+    public Collider2D Col { get { return _col; } }
     protected Animator _anim;
     public Animator Anim {  get { return _anim; } }
 
@@ -46,7 +48,7 @@ public abstract class Monster : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _col = GetComponent<Collider2D>();
-        _anim = GetComponent<Animator>();
+        _anim = GetComponentInChildren<Animator>();
 
         Init();
     }
