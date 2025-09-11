@@ -15,6 +15,7 @@ namespace GameSystem
         public float JumpForce = 3f;
     }
 
+
     [System.Serializable]
     public class PlayerData
     {
