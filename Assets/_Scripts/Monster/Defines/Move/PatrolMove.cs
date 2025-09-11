@@ -6,16 +6,14 @@ public class PatrolMove : Game.Monster.IMovable
     Transform _tr;
     Rigidbody2D _rb;
     Collider2D _col;
-    Transform _target;
 
     // 레이어 마스크 그라운드
 
-    public PatrolMove(float speed, Transform tr, Rigidbody2D rb, Collider2D col, Transform target = null)
+    public PatrolMove(float speed, Transform tr, Rigidbody2D rb, Collider2D col)
     {
         _speed = speed;
         _tr = tr;
         _rb = rb;
-        _target = target;
         _col = col;
     }
 

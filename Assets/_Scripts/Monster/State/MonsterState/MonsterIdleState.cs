@@ -8,7 +8,8 @@ public class MonsterIdleState : MonsterBaseState
     private float _detectDelay = 0.2f;
     private float _curDetectDelay = 0.0f;
 
-    private LayerMask _playerLayer = LayerMask.GetMask(Common.Layers.Player);
+    private LayerMask _playerLayer;
+    private LayerMask _obstacleLayer;
 
     Collider2D _player;
 
@@ -34,6 +35,9 @@ public class MonsterIdleState : MonsterBaseState
 
         _detectDelay = 0.2f;
         _curDetectDelay = 0.0f;
+
+        _playerLayer = LayerMask.GetMask(Common.Layers.Player);
+        _obstacleLayer = ~LayerMask.GetMask(Common.Layers.Monster);
     }
 
     public override void Update()
@@ -79,11 +83,12 @@ public class MonsterIdleState : MonsterBaseState
         _player = Physics2D.OverlapCircle(_stateMachine.Owner.transform.position,
                                                         _stateMachine.Owner.DetectRange, _playerLayer);
 
-        // 플레이어가 감지되는데 눈에 보이는 지도 확인
-        if (_player != null)
+        // 플레이어가 감지되고 거리 내라면, 눈에 보이는 지도 확인
+        if (_player != null && Vector3.Distance(_stateMachine.Owner.transform.position, _player.transform.position) <= _stateMachine.Owner.DetectRange)
         {
             Vector2 dir = (_player.transform.position - _stateMachine.Owner.transform.position).normalized;
-            RaycastHit2D hit = Physics2D.Raycast(_stateMachine.Owner.transform.position, dir, _stateMachine.Owner.DetectRange);
+            RaycastHit2D hit = Physics2D.Raycast(_stateMachine.Owner.transform.position, dir, _stateMachine.Owner.DetectRange, _obstacleLayer);
+            Debug.DrawRay(_stateMachine.Owner.transform.position, dir * _stateMachine.Owner.DetectRange, Color.blue);
 
             // 발견한 대상 사이에 장애물이 없다면 true
             if (hit.transform == _player.transform)
@@ -101,8 +106,8 @@ public class MonsterIdleState : MonsterBaseState
         // 공격 가능 여부 확인
         _player = Physics2D.OverlapCircle(_stateMachine.Owner.transform.position,
                                                     _stateMachine.Owner.AttackRange, _playerLayer);
-        // 공격 가능한 상태라면
-        if (_player != null)
+        // 공격 가능한 상태고 공격 범위 내라면
+        if (_player != null && Vector3.Distance(_stateMachine.Owner.transform.position, _player.transform.position) <= _stateMachine.Owner.AttackRange)
             return true;
 
         return false;

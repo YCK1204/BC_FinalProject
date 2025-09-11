@@ -6,4 +6,11 @@ public class MonsterDieState : MonsterBaseState
     {
         StateType = Common.StateType.Die;
     }
+
+    public override void Enter()
+    {
+        base.Enter();
+
+        _stateMachine.Owner.Anim.SetTrigger(Common.AnimatorParams.Die);
+    }
 }

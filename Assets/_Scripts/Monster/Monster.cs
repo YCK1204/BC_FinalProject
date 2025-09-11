@@ -35,7 +35,8 @@ public abstract class Monster : MonoBehaviour
     protected MonsterStateMachine _stateMachine;
     public MonsterStateMachine StateMachine { get { return _stateMachine; } }
 
-    public Transform _target;
+    private Transform _target;
+    public Transform Target { get { return _target; } }
 
     protected Rigidbody2D _rb;
     public Rigidbody2D Rb { get { return _rb; } }
@@ -85,7 +86,7 @@ public abstract class Monster : MonoBehaviour
 
     public void LookTarget()
     {
-        float d = _target.position.x < transform.position.x ? Mathf.Abs(transform.localScale.x) : -Mathf.Abs(transform.localScale.x);
+        float d = _target.position.x < transform.position.x ? -Mathf.Abs(transform.localScale.x) : Mathf.Abs(transform.localScale.x);
         transform.localScale = new Vector3(d, transform.localScale.y, transform.localScale.z);
     }
 
