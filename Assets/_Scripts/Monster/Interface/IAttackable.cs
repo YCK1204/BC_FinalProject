@@ -1,16 +1,10 @@
 using UnityEngine;
 
-public class IAttackable : MonoBehaviour
+namespace Game.Monster
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public interface IAttackable
     {
-        
+        public void Attack(IDamageable target);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
