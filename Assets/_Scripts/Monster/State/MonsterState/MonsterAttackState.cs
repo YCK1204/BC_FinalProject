@@ -6,4 +6,6 @@ public class MonsterAttackState : MonsterBaseState
     {
         StateType = Common.StateType.Attack;
     }
+
+
 }
