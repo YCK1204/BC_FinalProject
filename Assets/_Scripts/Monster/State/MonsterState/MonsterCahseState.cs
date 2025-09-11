@@ -34,6 +34,9 @@ public class MonsterCahseState : MonsterBaseState
     {
         base.Update();
 
+        if (_target != null)
+            _stateMachine.Owner.LookTarget();
+
         if (Vector3.Distance(_stateMachine.Owner.transform.position, _target.position) >= _stateMachine.Owner.DetectRange)
             _stateMachine.ChangeState(Common.StateType.Idle);
 

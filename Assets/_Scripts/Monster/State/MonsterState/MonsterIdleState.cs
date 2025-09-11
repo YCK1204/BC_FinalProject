@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class MonsterIdleState : MonsterBaseState
 {
@@ -83,7 +84,14 @@ public class MonsterIdleState : MonsterBaseState
         _player = Physics2D.OverlapCircle(_stateMachine.Owner.transform.position,
                                                         _stateMachine.Owner.DetectRange, _playerLayer);
 
-        // 플레이어가 감지되고 거리 내라면, 눈에 보이는 지도 확인
+        // 플레이어가 감지 되었을 때, 시야각 내에 있지 않으면 false
+        if (_player != null)
+        {
+            if (!CheckFov(_stateMachine.Owner.transform, _player.transform, 90))
+                return false;
+        }
+
+        // 플레이어가 감지되고 거리 내라면, 눈에 보이는 지 확인
         if (_player != null && Vector3.Distance(_stateMachine.Owner.transform.position, _player.transform.position) <= _stateMachine.Owner.DetectRange)
         {
             Vector2 dir = (_player.transform.position - _stateMachine.Owner.transform.position).normalized;
@@ -106,10 +114,28 @@ public class MonsterIdleState : MonsterBaseState
         // 공격 가능 여부 확인
         _player = Physics2D.OverlapCircle(_stateMachine.Owner.transform.position,
                                                     _stateMachine.Owner.AttackRange, _playerLayer);
+
+        // 플레이어가 감지 되었을 때, 시야각 내에 있지 않으면 false
+        if (_player != null)
+        {
+            if (!CheckFov(_stateMachine.Owner.transform, _player.transform, 90))
+                return false;
+        }
+
         // 공격 가능한 상태고 공격 범위 내라면
         if (_player != null && Vector3.Distance(_stateMachine.Owner.transform.position, _player.transform.position) <= _stateMachine.Owner.AttackRange)
             return true;
 
         return false;
+    }
+
+    private bool CheckFov(Transform observer, Transform target, float fov)
+    {
+        float dot = Vector2.Dot(observer.right * observer.localScale.x,
+                        (target.position - observer.position).normalized);
+
+        float angle = Mathf.Acos(dot) * Mathf.Rad2Deg;
+
+        return angle < fov * 0.5f ? true : false;
     }
 }

@@ -29,7 +29,7 @@ public class ChaseMove : Game.Monster.IMovable
         }
 
         int dir = _target.position.x - _tr.position.x > 0 ? 1 : -1;
-        _tr.localScale = new Vector3(dir, _tr.localScale.y, _tr.localScale.z);
+
         _rb.linearVelocityX = _speed * dir;
 
         RaycastHit2D floor = Physics2D.Raycast(_tr.position + new Vector3(_col.bounds.size.x / 2f + 0.1f, 0, 0) * _tr.localScale.x, Vector2.down, (_col.bounds.size.y / 2f + 0.1f));
