@@ -6,7 +6,8 @@ public class NormalViewState : UiStateBase
 
     public override void Enter()
     {
-        ui.Animator.SetTrigger("ShowNormal");
+        Debug.Log("ui:normal");
+        ui.Animator.SetInteger("State", 1);
     }
 
     public override void Exit() { }

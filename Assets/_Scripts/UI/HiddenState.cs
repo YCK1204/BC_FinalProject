@@ -6,7 +6,8 @@ public class HiddenState : UiStateBase
 
     public override void Enter()
     {
-        ui.Animator.SetTrigger("Hide");
+        Debug.Log("ui:out");
+        ui.Animator.SetInteger("State", 0);
     }
 
     public override void Exit() { }

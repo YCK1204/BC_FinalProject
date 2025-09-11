@@ -22,5 +22,4 @@ public abstract class UiStateBase
 
     public abstract void Enter();
     public abstract void Exit();
-    public virtual bool CanTransitionTo(UiState nextState) => true;
 }

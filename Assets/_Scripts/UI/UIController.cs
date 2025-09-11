@@ -12,12 +12,14 @@ public class UIController : MonoBehaviour
 
     private Dictionary<string, UIScreen> screenMap;
     private UIScreen currentScreen;
-    private UIScreen nextScreen;
 
     private Dictionary<UiState, UiStateBase> stateMap;
     private UiStateBase activeState;
     public UiState CurrentState { get; private set; }
+    public UiState PreviousState { get; private set; }
     private UiState nextState;
+
+    private bool isState = false;
 
     private void Awake()
     {
@@ -32,7 +34,7 @@ public class UIController : MonoBehaviour
 
         // 화면 등록
         screenMap = new Dictionary<string, UIScreen>();
-        foreach (var s in screens)
+        foreach (UIScreen s in screens)
         {
             s.panel.SetActive(false);
             screenMap[s.name] = s;
@@ -41,64 +43,82 @@ public class UIController : MonoBehaviour
         ChangeState(UiState.Hidden);
     }
 
-    public void ChangeState(UiState newState)
+    private void Update()
     {
-        if (CurrentState == newState || CurrentState == UiState.Updating)
-            return;
+        if (isState) return;
 
-        nextState = newState;
-        CurrentState = UiState.Updating;
-
-        activeState?.Exit();
-        activeState = stateMap[newState];
-        activeState.Enter();
+        // Test
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Debug.Log($"esc - {CurrentState}");
+            if (CurrentState == UiState.NormalView)
+            {
+                HideUI();
+            }
+            else
+            {
+                ShowNormalView();
+            }
+                
+        }
     }
 
-    public void OnStateTransitionComplete()
+    public void ChangeState(UiState state)
     {
-        CurrentState = nextState;
+        if (CurrentState == state || isState)
+            return;
+
+        StartCoroutine(ChangeStateRoutine(state));
+    }
+
+    private IEnumerator ChangeStateRoutine(UiState newState)
+    {
+        isState = true;
+
+        activeState?.Exit();
+
+        PreviousState = CurrentState;
+        CurrentState = newState;
+        activeState = stateMap[newState];
+        activeState.Enter();
+
+        yield return new WaitForSeconds(0.3f);
+
+        isState = false;
     }
 
     public void ShowScreen(string screenName)
     {
-        if (screenMap.TryGetValue(screenName, out var screen))
+        if (string.IsNullOrEmpty(screenName))
         {
-            if (currentScreen == screen) return;
-
-            nextScreen = screen;
-            StartCoroutine(SwitchScreenCoroutine());
+            Debug.LogError("!빈값");
+            return;
         }
-    }
 
-    private IEnumerator SwitchScreenCoroutine()
-    {
-        if (currentScreen != null)
+        if (!screenMap.TryGetValue(screenName, out UIScreen screen))
         {
-            if (currentScreen.animator != null)
-            {
-                currentScreen.animator.SetTrigger("Hide");
-                yield return new WaitForSeconds(GetClipLength(currentScreen.animator, "Hide"));
-            }
+            Debug.LogError($"!없는 스크린");
+            return;
+        }
+
+        if (currentScreen == screen)
+        {
+            Debug.Log($"!같은 스크린");
+            return;
+        }
+
+        // 스크린 끄기
+        if (currentScreen != null && currentScreen.panel != null)
+        {
             currentScreen.panel.SetActive(false);
         }
 
-        nextScreen.panel.SetActive(true);
-        if (nextScreen.animator != null)
-            nextScreen.animator.SetTrigger("Show");
-
-        currentScreen = nextScreen;
-        nextScreen = null;
-    }
-
-    private float GetClipLength(Animator animator, string clipName)
-    {
-        AnimationClip[] clips = animator.runtimeAnimatorController.animationClips;
-        foreach (AnimationClip clip in clips)
+        // 스크린 켜기
+        currentScreen = screen;
+        if (currentScreen.panel != null)
         {
-            if (clip.name == clipName)
-                return clip.length;
+            currentScreen.panel.SetActive(true);
         }
-        return 0f;
     }
 
     public void ShowNormalView() => ChangeState(UiState.NormalView);
