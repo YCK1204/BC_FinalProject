@@ -7,6 +7,7 @@ public class HiddenState : UiStateBase
     public override void Enter()
     {
         Debug.Log("ui:out");
+        ui.ShowScreen("off");
         ui.Animator.SetInteger("State", 0);
     }
 
