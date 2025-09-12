@@ -29,10 +29,19 @@ namespace GameSystem
 
 #if ENABLE_INPUT_SYSTEM
             var kb = UnityEngine.InputSystem.Keyboard.current;
+            var mouse = UnityEngine.InputSystem.Mouse.current;
+            bool attackPressed = mouse != null && mouse.leftButton.wasPressedThisFrame;
             bool jumpPressed = kb != null && kb.spaceKey.wasPressedThisFrame;
 #else
-            bool jumpPressed = Input.GetKeyDown(KeyCode.Space);
+            bool attackPressed = Input.GetMouseButtonDown(0);
+            bool jumpPressed  = Input.GetKeyDown(KeyCode.Space);
 #endif
+            if (attackPressed)
+            {
+                _stateMachine.ChangeState(_stateMachine.AttackState);
+                return;
+            }
+
             if (jumpPressed && _stateMachine.Player.IsGrounded())
             {
                 _stateMachine.ChangeState(_stateMachine.JumpState);

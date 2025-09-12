@@ -256,9 +256,10 @@ MonoBehaviour:
     FallParameterHash: 1533177906
     AirParameterHash: -2077360613
     GroundParameterHash: -1605138850
+    AttackParameterHash: 1080829965
   DataSerialized:
     GroundData:
-      BaseSpeed: 6
+      BaseSpeed: 5
       WalkSpeedModifier: 1
     AirData:
       JumpForce: 6
