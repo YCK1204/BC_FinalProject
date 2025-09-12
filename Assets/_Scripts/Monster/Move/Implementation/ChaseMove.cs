@@ -52,4 +52,9 @@ public class ChaseMove : Game.Monster.IMovable
     {
         _rb.linearVelocityX = 0;
     }
+
+    public void SetTarget(Transform target)
+    {
+        _target = target;
+    }
 }

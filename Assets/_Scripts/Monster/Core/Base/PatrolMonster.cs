@@ -1,13 +1,26 @@
+using Game.Monster;
 using UnityEngine;
 
 public abstract class PatrolMonster : Monster
 {
-    private Game.Monster.IMovable curMovement;
+    protected PatrolMove curPatrolMovement;
+    protected ChaseMove curChaseMovement;
 
-    public void SetMovement(Game.Monster.IMovable movable)
+    protected override void Init()
     {
-        if (curMovement != movable)
-            curMovement = movable;
+        base.Init();
+
+        curPatrolMovement = new PatrolMove(_speed, transform, _rb, _col); ;
+        curChaseMovement = new ChaseMove(_speed, transform, _rb, _col, Target);
     }
 
+    public IMovable GetChaseMovement()
+    {
+        return curChaseMovement;
+    }
+
+    public IMovable GetPatrolMovement()
+    {
+        return curPatrolMovement;
+    }
 }
