@@ -20,8 +20,9 @@ public class MeleeAttack : Game.Monster.IAttackable
 
     public void Attack()
     {
-        Collider2D target = Physics2D.OverlapBox(_tr.position + new Vector3(_attackRange * 0.5f, 0, 0), new Vector2(_attackRange, _attackRange), 0, _mask);
-        Debug.Log(target);
+        float dir = _tr.localScale.x < 0 ? -1 : 1;
+        Collider2D target = Physics2D.OverlapBox(_tr.position + new Vector3(_attackRange * 0.5f * dir, 0, 0), new Vector2(_attackRange, _attackRange), 0, _mask);
+        Debug.Log(_tr.position + new Vector3(_attackRange * 0.5f * dir, 0, 0));
         if(target != null)
         {
             target.GetComponent<IDamageable>()?.TakeDamage((int)_damage);
