@@ -45,11 +45,16 @@ public abstract class Monster : MonoBehaviour
     protected Animator _anim;
     public Animator Anim {  get { return _anim; } }
 
+    protected MonsterAttack _attack;
+    public MonsterAttack Attack { get { return _attack; } }
+
     protected virtual void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _col = GetComponent<Collider2D>();
         _anim = GetComponentInChildren<Animator>();
+
+        _attack = GetComponentInChildren<MonsterAttack>();
 
         Init();
     }
@@ -57,6 +62,7 @@ public abstract class Monster : MonoBehaviour
     protected virtual void Init()
     {
         _stateMachine = new MonsterStateMachine(this);
+
     }
 
     protected virtual void OnEnable()
