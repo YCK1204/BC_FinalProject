@@ -9,7 +9,8 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     public UnityEvent OnClicked;
 
     private Vector3 btuScale;
-    private Tween currentTween;
+    private Tween currentTweenA;
+    private Tween currentTweenB;
 
     private bool on = false;
 
@@ -24,7 +25,7 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         Debug.Log("호버");
         //transform.localScale = btuScale * 1.05f;
-        currentTween = transform.DOScale(0.8f, 0.2f);
+        currentTweenA = transform.DOScale(0.8f, 0.2f);
     }
 
     public void OnPointerExit(PointerEventData eventData)
@@ -33,19 +34,21 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
         Debug.Log("나감");
         //transform.localScale = btuScale;
-        currentTween = transform.DOScale(0.7f, 0.2f);
+        currentTweenA = transform.DOScale(0.7f, 0.2f);
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        Debug.Log($"누름 {on}");
         if (on) return;
         on = true;
 
-        KillTween();
+        if (currentTweenB != null && currentTweenB.IsActive())
+        {
+            currentTweenB.Kill();
+        }
 
-        Debug.Log("누름");
-
-        currentTween = transform.DOPunchScale(new Vector3(-0.1f, -0.1f, -0.1f), 0.3f, 10, 1)
+        currentTweenB = transform.DOPunchScale(new Vector3(-0.1f, -0.1f, -0.1f), 0.3f, 10, 1)
             .OnComplete(() => {
                  on = false;
                 OnClicked?.Invoke();
@@ -68,9 +71,9 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     private void KillTween()
     {
-        if (currentTween != null && currentTween.IsActive())
+        if (currentTweenA != null && currentTweenA.IsActive())
         {
-            currentTween.Kill();
+            currentTweenA.Kill();
         }
     }
 }
