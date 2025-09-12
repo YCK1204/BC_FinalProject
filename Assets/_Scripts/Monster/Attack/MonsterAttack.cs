@@ -1,6 +1,10 @@
 using Game.Monster;
 using UnityEngine;
 
+/// <summary>
+/// 실제 공격을 실행하는 컴포넌트
+/// _attack에 설정된 공격 방식에 따라 공격 방법이 달라짐
+/// </summary>
 public class MonsterAttack : MonoBehaviour
 {
     float _attackPower;

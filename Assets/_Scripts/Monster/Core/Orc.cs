@@ -3,7 +3,6 @@ using UnityEngine;
 
 public class Orc : PatrolMonster, IDamageable
 {
-
     IAttackable _curAttack;
 
     protected override void Awake()

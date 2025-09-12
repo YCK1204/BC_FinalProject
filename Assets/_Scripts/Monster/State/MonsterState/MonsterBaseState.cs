@@ -10,6 +10,7 @@ public abstract class MonsterBaseState : Game.Monster.IState
     private LayerMask _playerLayer;
     private LayerMask _obstacleLayer;
 
+    // 이부분 몬스터 종류에 따라 설정해야 할 듯? ex) 근접(90/60), 원거리(360,360)
     protected float _detectFov = 90f;
     protected float _attackFov = 60f;
 

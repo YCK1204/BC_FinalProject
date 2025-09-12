@@ -1,12 +1,14 @@
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
+/// <summary>
+/// 몬스터 최상위 클래스
+/// </summary>
 public abstract class Monster : MonoBehaviour
 {
     /// <summary>
     /// 만약 단일책임원칙에 따라 스크립트를 분리하면 어떻게 하지?
     /// 몬스터의 데이터 분리
-    /// 
+    /// 공격쪽은 이미 분리함
     /// </summary>
 
     // 데이터(추후 분리 예정)

@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// 대상을 추적하는 이동방법
+/// 대상을 추적하는데 사용하는 이동 방식
 /// </summary>
 public class ChaseMove : Game.Monster.IMovable
 {

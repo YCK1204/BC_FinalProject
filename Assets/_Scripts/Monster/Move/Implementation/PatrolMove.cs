@@ -1,7 +1,7 @@
 using UnityEngine;
 
 /// <summary>
-/// 순찰하는 이동 방법
+/// 몬스터가 순찰하는데 사용하는 이동 방법
 /// </summary>
 public class PatrolMove : Game.Monster.IMovable
 {
