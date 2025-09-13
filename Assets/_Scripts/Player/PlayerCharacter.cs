@@ -20,6 +20,17 @@ namespace GameSystem
 
         private PlayerStateMachine _machine;
 
+        public bool Invincible { get; private set; }
+        public void SetInvincible(bool on) { Invincible = on; }
+
+        // ===== Runtime Debug (Inspector에서 확인용) =====
+        [Header("Runtime (Read Only)")]
+        [SerializeField] private bool showRuntime = true;
+        [SerializeField] private bool runtimeIsDashing;
+        [SerializeField] private float runtimeSpeedModifier;
+        [SerializeField] private float runtimeMoveSpeed;   // Base * Modifier
+        [SerializeField] private Vector2 runtimeVelocity;
+
         public bool IsGrounded()
         {
             if (!GroundCheck) return false;
@@ -39,11 +50,27 @@ namespace GameSystem
         private void Update()
         {
             _machine?.Tick();
+            UpdateRuntimeDebug();
         }
 
         private void FixedUpdate()
         {
             _machine?.FixedTick();
+            UpdateRuntimeDebug();
+        }
+
+        void UpdateRuntimeDebug()
+        {
+            if (!showRuntime || _machine == null) return;
+
+            runtimeIsDashing = _machine.IsDashing;
+            runtimeSpeedModifier = _machine.MovementSpeedModifier;
+            runtimeMoveSpeed = _machine.MovementSpeed * _machine.MovementSpeedModifier;
+#if UNITY_2022_3_OR_NEWER
+            runtimeVelocity = Rb.linearVelocity;
+#else
+            runtimeVelocity      = Rb.velocity;
+#endif
         }
     }
 }

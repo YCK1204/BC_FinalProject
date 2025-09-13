@@ -26,11 +26,13 @@ namespace GameSystem
             float x = 0f;
             if (kb != null)
             {
-                if (kb.aKey.isPressed || kb.leftArrowKey.isPressed) x -= 1f;
-                if (kb.dKey.isPressed || kb.rightArrowKey.isPressed) x += 1f;
+                if (kb.leftArrowKey.isPressed) x -= 1f;
+                if (kb.rightArrowKey.isPressed) x += 1f;
             }
 #else
-            float x = Input.GetAxisRaw("Horizontal");
+            float x = 0f;
+            if (Input.GetKey(KeyCode.LeftArrow))  x -= 1f;
+            if (Input.GetKey(KeyCode.RightArrow)) x += 1f;
 #endif
             _stateMachine.MovementInput = new Vector2(Mathf.Clamp(x, -1f, 1f), 0f);
         }
@@ -39,13 +41,19 @@ namespace GameSystem
         {
             float x = _stateMachine.MovementInput.x;
             float speed = _stateMachine.MovementSpeed * _stateMachine.MovementSpeedModifier;
+#if UNITY_2022_3_OR_NEWER
             var v = _stateMachine.Player.Rb.linearVelocity;
             _stateMachine.Player.Rb.linearVelocity = new Vector2(x * speed, v.y);
+#else
+            var v = _stateMachine.Player.Rb.velocity;
+            _stateMachine.Player.Rb.velocity = new Vector2(x * speed, v.y);
+#endif
             if (x != 0f)
             {
                 var s = _stateMachine.Player.transform.localScale;
                 s.x = Mathf.Abs(s.x) * (x > 0f ? 1f : -1f);
                 _stateMachine.Player.transform.localScale = s;
+                _stateMachine.FacingSign = x > 0f ? 1 : -1;
             }
         }
     }

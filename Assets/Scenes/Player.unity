@@ -257,18 +257,34 @@ MonoBehaviour:
     AirParameterHash: -2077360613
     GroundParameterHash: -1605138850
     AttackParameterHash: 1080829965
+    DashParameterHash: 995914302
   DataSerialized:
     GroundData:
       BaseSpeed: 5
       WalkSpeedModifier: 1
     AirData:
-      JumpForce: 6
+      JumpForce: 5
+      DoubleJumpForce: 3
+    DashData:
+      Duration: 0.25
+      SpeedMultiplier: 7
+      Cooldown: 3
+      InvincibleDuringDash: 0
+    CombatData:
+      AttackPower: 1
+      AttackRange: 1.5
+      AttackDuration: 0.2
   GroundCheck: {fileID: 1474087523}
   GroundRadius: 0.15
   GroundLayer:
     serializedVersion: 2
     m_Bits: 256
   Force: {fileID: 0}
+  showRuntime: 1
+  runtimeIsDashing: 0
+  runtimeSpeedModifier: 0
+  runtimeMoveSpeed: 0
+  runtimeVelocity: {x: 0, y: 0}
 --- !u!114 &67476534
 MonoBehaviour:
   m_ObjectHideFlags: 0

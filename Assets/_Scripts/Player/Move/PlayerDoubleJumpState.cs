@@ -2,13 +2,13 @@ using UnityEngine;
 
 namespace GameSystem
 {
-    public class PlayerJumpState : PlayerAirState
+    public class PlayerDoubleJumpState : PlayerAirState
     {
-        public PlayerJumpState(PlayerStateMachine stateMachine) : base(stateMachine) { }
+        public PlayerDoubleJumpState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
         public override void Enter()
         {
-            _stateMachine.Player.ForceReceiver.Jump(_stateMachine.Player.Data.AirData.JumpForce);
+            _stateMachine.Player.ForceReceiver.Jump(_stateMachine.Player.Data.AirData.DoubleJumpForce);
             _stateMachine.JumpsRemaining = Mathf.Max(0, _stateMachine.JumpsRemaining - 1);
             base.Enter();
             StopAnimation(_stateMachine.Player.AnimationData.FallParameterHash);
