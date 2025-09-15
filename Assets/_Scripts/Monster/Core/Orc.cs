@@ -11,7 +11,7 @@ public class Orc : PatrolMonster, IDamageable
 
         _attackRange = 1f;
 
-        _curAttack = new MeleeAttack(_attackPower, _attackRange, transform);
+        _curAttack = new SwingAttack(_attackPower, _attackRange, transform);
         _attack.Init(AttackPower, AttackRange, AttackDelay, _curAttack, this);
     }
 
