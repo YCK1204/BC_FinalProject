@@ -24,6 +24,9 @@ public class MonsterStateMachine : Game.Monster.IStateMachine<Monster>
         stateDic.Add(Common.StateType.Idle, new MonsterIdleState(this));
         stateDic.Add(Common.StateType.Patrol, new MonsterPatrolState(this));
         stateDic.Add(Common.StateType.Attack, new MonsterAttackState(this));
+        stateDic.Add(Common.StateType.Chase, new MonsterCahseState(this));
+        stateDic.Add(Common.StateType.Hit, new MonsterHitState(this));
+        stateDic.Add(Common.StateType.Die, new MonsterDieState(this));
 
         prevState = null;
         curState = stateDic[Common.StateType.Idle];

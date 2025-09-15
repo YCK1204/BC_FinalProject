@@ -1,21 +1,23 @@
 using UnityEngine;
 
+/// <summary>
+/// 몬스터가 순찰하는데 사용하는 이동 방법
+/// </summary>
 public class PatrolMove : Game.Monster.IMovable
 {
     private float _speed;
     Transform _tr;
     Rigidbody2D _rb;
     Collider2D _col;
-    Transform _target;
 
     // 레이어 마스크 그라운드
+    // 레이어 마스크 벽
 
-    public PatrolMove(float speed, Transform tr, Rigidbody2D rb, Collider2D col, Transform target = null)
+    public PatrolMove(float speed, Transform tr, Rigidbody2D rb, Collider2D col)
     {
         _speed = speed;
         _tr = tr;
         _rb = rb;
-        _target = target;
         _col = col;
     }
 
