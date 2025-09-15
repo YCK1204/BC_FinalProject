@@ -17,13 +17,8 @@ public class MonsterCahseState : MonsterBaseState
 
         _target = _stateMachine.Owner.Target;
 
-        _chaseMove = new ChaseMove(_stateMachine.Owner.Speed,
-                                    _stateMachine.Owner.transform,
-                                    _stateMachine.Owner.Rb,
-                                    _stateMachine.Owner.Col,
-                                    _target);
-
-        (_stateMachine.Owner as PatrolMonster)?.SetMovement(_chaseMove);
+        _chaseMove = (_stateMachine.Owner as PatrolMonster)?.GetChaseMovement();
+        (_chaseMove as ChaseMove)?.SetTarget(_target);
 
         _stateMachine.Owner.LookTarget();
         _stateMachine.Owner.Anim.SetFloat(Common.AnimatorParams.Speed, _stateMachine.Owner.Speed);
@@ -37,10 +32,10 @@ public class MonsterCahseState : MonsterBaseState
         if (_target != null)
             _stateMachine.Owner.LookTarget();
 
-        if (Vector3.Distance(_stateMachine.Owner.transform.position, _target.position) >= _stateMachine.Owner.DetectRange)
+        if (!CheckDetectRange())
             _stateMachine.ChangeState(Common.StateType.Idle);
 
-        if(Vector3.Distance(_stateMachine.Owner.transform.position, _target.position) <= _stateMachine.Owner.AttackRange)
+        if(CheckAttackRange())
             _stateMachine.ChangeState(Common.StateType.Attack);
     }
 

@@ -1,12 +1,14 @@
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
+/// <summary>
+/// 몬스터 최상위 클래스
+/// </summary>
 public abstract class Monster : MonoBehaviour
 {
     /// <summary>
     /// 만약 단일책임원칙에 따라 스크립트를 분리하면 어떻게 하지?
     /// 몬스터의 데이터 분리
-    /// 
+    /// 공격쪽은 이미 분리함
     /// </summary>
 
     // 데이터(추후 분리 예정)
@@ -45,11 +47,16 @@ public abstract class Monster : MonoBehaviour
     protected Animator _anim;
     public Animator Anim {  get { return _anim; } }
 
+    protected MonsterAttack _attack;
+    public MonsterAttack Attack { get { return _attack; } }
+
     protected virtual void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _col = GetComponent<Collider2D>();
         _anim = GetComponentInChildren<Animator>();
+
+        _attack = GetComponentInChildren<MonsterAttack>();
 
         Init();
     }
@@ -57,6 +64,7 @@ public abstract class Monster : MonoBehaviour
     protected virtual void Init()
     {
         _stateMachine = new MonsterStateMachine(this);
+
     }
 
     protected virtual void OnEnable()
@@ -88,6 +96,12 @@ public abstract class Monster : MonoBehaviour
     {
         float d = _target.position.x < transform.position.x ? -Mathf.Abs(transform.localScale.x) : Mathf.Abs(transform.localScale.x);
         transform.localScale = new Vector3(d, transform.localScale.y, transform.localScale.z);
+    }
+
+    public void Die()
+    {
+        // Todo: 오브젝트 풀로 리턴
+        Destroy(gameObject);
     }
 
     // 에디터에서 탐지 범위와 공격 가능 범위를 표시하는 메서드

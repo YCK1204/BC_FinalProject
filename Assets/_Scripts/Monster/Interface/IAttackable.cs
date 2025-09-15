@@ -4,7 +4,7 @@ namespace Game.Monster
 {
     public interface IAttackable
     {
-        public void Attack(IDamageable target);
+        public void Attack();
     }
 
 }
