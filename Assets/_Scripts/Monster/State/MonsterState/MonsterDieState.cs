@@ -1,0 +1,36 @@
+using UnityEngine;
+
+public class MonsterDieState : MonsterBaseState
+{
+    private float _curRetrunTime;
+    private float _maxReturnTime;
+
+    public MonsterDieState(MonsterStateMachine stateMachine) : base(stateMachine)
+    {
+        StateType = Common.StateType.Die;
+    }
+
+    public override void Enter()
+    {
+        base.Enter();
+
+        _curRetrunTime = 0f;
+        _maxReturnTime = 2f;
+
+        _stateMachine.Owner.Anim.SetTrigger(Common.AnimatorParams.Die);
+    }
+
+    public override void Update()
+    {
+        base.Update();
+
+        if(_curRetrunTime >= _maxReturnTime)
+        {
+            // Todo: 오브젝트 풀로 리턴
+            _stateMachine.Owner.Die();
+            return;
+        }
+
+        _curRetrunTime += Time.deltaTime;
+    }
+}
