@@ -6,6 +6,7 @@ namespace GameSystem
     {
         float _timer;
         Vector2 _dashDir;
+        float _prevGravity;
 
         public PlayerDashState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
@@ -16,6 +17,16 @@ namespace GameSystem
             _timer = _stateMachine.DashDuration;
 
             _dashDir = new Vector2(_stateMachine.FacingSign, 0f);
+
+            _prevGravity = _stateMachine.Player.Rb.gravityScale;
+            _stateMachine.Player.Rb.gravityScale = 0f;
+#if UNITY_2022_3_OR_NEWER
+            var v = _stateMachine.Player.Rb.linearVelocity;
+            _stateMachine.Player.Rb.linearVelocity = new Vector2(v.x, 0f);
+#else
+            var v = _stateMachine.Player.Rb.velocity;
+            _stateMachine.Player.Rb.velocity = new Vector2(v.x, 0f);
+#endif
 
             _stateMachine.MovementSpeedModifier = _stateMachine.DashSpeedMult;
             StartAnimation(_stateMachine.Player.AnimationData.DashParameterHash);
@@ -29,6 +40,7 @@ namespace GameSystem
         {
             _stateMachine.IsDashing = false;
             _stateMachine.MovementSpeedModifier = 1f;
+            _stateMachine.Player.Rb.gravityScale = _prevGravity;
             StopAnimation(_stateMachine.Player.AnimationData.DashParameterHash);
 
             if (_stateMachine.InvincibleDuringDash)
