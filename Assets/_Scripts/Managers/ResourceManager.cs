@@ -46,4 +46,12 @@ public class ResourceManager
             callback(list);
         };
     }
+    public T Instantiate<T>(T prefab) where T : Object
+    {
+        return Object.Instantiate<T>(prefab);
+    }
+    public void Destroy(Object obj)
+    {
+        Object.Destroy(obj);
+    }
 }
