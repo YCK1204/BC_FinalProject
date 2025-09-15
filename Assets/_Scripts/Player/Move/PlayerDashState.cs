@@ -1,3 +1,4 @@
+// PlayerDashState.cs
 using UnityEngine;
 
 namespace GameSystem
@@ -34,6 +35,8 @@ namespace GameSystem
 
             if (_stateMachine.InvincibleDuringDash)
                 _stateMachine.Player.SetInvincible(true);
+
+            _stateMachine.Player.SetLayerCollisionIgnore(_stateMachine.Player.Data.DashData.PassThroughLayers, true);
         }
 
         public override void Exit()
@@ -46,6 +49,7 @@ namespace GameSystem
             if (_stateMachine.InvincibleDuringDash)
                 _stateMachine.Player.SetInvincible(false);
 
+            _stateMachine.Player.SetLayerCollisionIgnore(_stateMachine.Player.Data.DashData.PassThroughLayers, false);
             _stateMachine.MarkDashedNow();
         }
 

@@ -52,6 +52,17 @@ namespace GameSystem
             currentHP = Mathf.Min(Data.Stats.MaxHP, currentHP + Mathf.Max(0f, amount));
         }
 
+        public void SetLayerCollisionIgnore(LayerMask mask, bool ignore)
+        {
+            int playerLayer = gameObject.layer;
+            int m = mask.value;
+            for (int i = 0; i < 32; i++)
+            {
+                if ((m & (1 << i)) != 0)
+                    Physics2D.IgnoreLayerCollision(playerLayer, i, ignore);
+            }
+        }
+
         private void Awake()
         {
             Rb = GetComponent<Rigidbody2D>();

@@ -269,11 +269,19 @@ MonoBehaviour:
       Duration: 0.25
       SpeedMultiplier: 7
       Cooldown: 3
-      InvincibleDuringDash: 0
+      InvincibleDuringDash: 1
+      PassThroughLayers:
+        serializedVersion: 2
+        m_Bits: 256
     CombatData:
       AttackPower: 10
       AttackRange: 1.5
       AttackDuration: 0.2
+    HurtData:
+      Duration: 0.25
+      KnockbackX: 6
+      KnockbackY: 3
+      InvincibleDuringHurt: 1
     Stats:
       MaxHP: 100
   GroundCheck: {fileID: 1474087523}
@@ -648,6 +656,63 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!1001 &1148170266
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1780033385854710924, guid: c32581401db24a54e8447ef73e324103, type: 3}
+      propertyPath: m_Name
+      value: MonsterA (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337681472751027875, guid: c32581401db24a54e8447ef73e324103, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 2.82796
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337681472751027875, guid: c32581401db24a54e8447ef73e324103, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.31906
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337681472751027875, guid: c32581401db24a54e8447ef73e324103, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337681472751027875, guid: c32581401db24a54e8447ef73e324103, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337681472751027875, guid: c32581401db24a54e8447ef73e324103, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337681472751027875, guid: c32581401db24a54e8447ef73e324103, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337681472751027875, guid: c32581401db24a54e8447ef73e324103, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337681472751027875, guid: c32581401db24a54e8447ef73e324103, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337681472751027875, guid: c32581401db24a54e8447ef73e324103, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2337681472751027875, guid: c32581401db24a54e8447ef73e324103, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c32581401db24a54e8447ef73e324103, type: 3}
 --- !u!1 &1474087522
 GameObject:
   m_ObjectHideFlags: 0
@@ -686,3 +751,4 @@ SceneRoots:
   - {fileID: 1108700885}
   - {fileID: 67476532}
   - {fileID: 1044326577}
+  - {fileID: 1148170266}

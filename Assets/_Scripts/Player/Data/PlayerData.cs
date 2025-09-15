@@ -23,6 +23,7 @@ namespace GameSystem
         public float SpeedMultiplier = 7f;
         public float Cooldown = 3f;
         public bool InvincibleDuringDash = true;
+        public LayerMask PassThroughLayers;
     }
 
     [System.Serializable]
@@ -31,6 +32,15 @@ namespace GameSystem
         public float AttackPower = 10f;
         public float AttackRange = 1.5f;
         public float AttackDuration = 0.2f;
+    }
+
+    [System.Serializable]
+    public class PlayerHurtData
+    {
+        public float Duration = 0.25f;
+        public float KnockbackX = 6f;
+        public float KnockbackY = 3f;
+        public bool InvincibleDuringHurt = true;
     }
 
     [System.Serializable]
@@ -46,6 +56,7 @@ namespace GameSystem
         public PlayerAirData AirData = new PlayerAirData();
         public PlayerDashData DashData = new PlayerDashData();
         public PlayerCombatData CombatData = new PlayerCombatData();
+        public PlayerHurtData HurtData = new PlayerHurtData();
         public PlayerStatsData Stats = new PlayerStatsData();
     }
 }
