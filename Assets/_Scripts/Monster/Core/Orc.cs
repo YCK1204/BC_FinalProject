@@ -23,5 +23,9 @@ public class Orc : PatrolMonster, IDamageable
         {
             _stateMachine.ChangeState(Common.StateType.Die);
         }
+        else
+        {
+            _stateMachine.ChangeState(Common.StateType.Hit);
+        }
     }
 }
