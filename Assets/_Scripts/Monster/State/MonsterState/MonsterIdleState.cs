@@ -42,7 +42,9 @@ public class MonsterIdleState : MonsterBaseState
             if(CheckDetectRange())
             {
                 // 감지가 되고 공격 범위 내라면 공격
-                if (CheckAttackRange())
+                // 이거 차라리 원뿔 모양 감지보다는 각 공격 방식에 맞는 방식으로 변경하기? -> 그래서 일단 바꿔 봄
+                //if (CheckAttackRange())
+                if (_stateMachine.Owner.Attack.Attackable.GetCheckAttackable())
                 {
                     _stateMachine.ChangeState(Common.StateType.Attack);
                 }
