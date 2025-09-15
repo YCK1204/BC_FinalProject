@@ -23,13 +23,16 @@ namespace GameSystem
         public bool Invincible { get; private set; }
         public void SetInvincible(bool on) { Invincible = on; }
 
-        // ===== Runtime Debug (Inspector에서 확인용) =====
         [Header("Runtime (Read Only)")]
         [SerializeField] private bool showRuntime = true;
         [SerializeField] private bool runtimeIsDashing;
         [SerializeField] private float runtimeSpeedModifier;
-        [SerializeField] private float runtimeMoveSpeed;   // Base * Modifier
+        [SerializeField] private float runtimeMoveSpeed;
         [SerializeField] private Vector2 runtimeVelocity;
+        [SerializeField] private float currentHP;
+
+        public float CurrentHP => currentHP;
+        public bool IsDead => currentHP <= 0f;
 
         public bool IsGrounded()
         {
@@ -37,11 +40,24 @@ namespace GameSystem
             return Physics2D.OverlapCircle(GroundCheck.position, GroundRadius, GroundLayer);
         }
 
+        public void TakeDamage(float amount)
+        {
+            if (Invincible || IsDead) return;
+            currentHP = Mathf.Max(0f, currentHP - Mathf.Max(0f, amount));
+        }
+
+        public void Heal(float amount)
+        {
+            if (IsDead) return;
+            currentHP = Mathf.Min(Data.Stats.MaxHP, currentHP + Mathf.Max(0f, amount));
+        }
+
         private void Awake()
         {
             Rb = GetComponent<Rigidbody2D>();
             Animator = GetComponent<Animator>();
             if (!Force) Force = GetComponent<ForceReceiver>();
+            currentHP = Data.Stats.MaxHP;
 
             _machine = new PlayerStateMachine(this);
             _machine.ChangeState(_machine.IdleState);
@@ -62,7 +78,6 @@ namespace GameSystem
         void UpdateRuntimeDebug()
         {
             if (!showRuntime || _machine == null) return;
-
             runtimeIsDashing = _machine.IsDashing;
             runtimeSpeedModifier = _machine.MovementSpeedModifier;
             runtimeMoveSpeed = _machine.MovementSpeed * _machine.MovementSpeedModifier;

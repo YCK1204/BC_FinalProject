@@ -28,9 +28,15 @@ namespace GameSystem
     [System.Serializable]
     public class PlayerCombatData
     {
-        public float AttackPower = 1f;
+        public float AttackPower = 10f;
         public float AttackRange = 1.5f;
         public float AttackDuration = 0.2f;
+    }
+
+    [System.Serializable]
+    public class PlayerStatsData
+    {
+        public float MaxHP = 100f;
     }
 
     [System.Serializable]
@@ -40,5 +46,6 @@ namespace GameSystem
         public PlayerAirData AirData = new PlayerAirData();
         public PlayerDashData DashData = new PlayerDashData();
         public PlayerCombatData CombatData = new PlayerCombatData();
+        public PlayerStatsData Stats = new PlayerStatsData();
     }
 }

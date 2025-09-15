@@ -271,9 +271,11 @@ MonoBehaviour:
       Cooldown: 3
       InvincibleDuringDash: 0
     CombatData:
-      AttackPower: 1
+      AttackPower: 10
       AttackRange: 1.5
       AttackDuration: 0.2
+    Stats:
+      MaxHP: 100
   GroundCheck: {fileID: 1474087523}
   GroundRadius: 0.15
   GroundLayer:
@@ -285,6 +287,7 @@ MonoBehaviour:
   runtimeSpeedModifier: 0
   runtimeMoveSpeed: 0
   runtimeVelocity: {x: 0, y: 0}
+  currentHP: 0
 --- !u!114 &67476534
 MonoBehaviour:
   m_ObjectHideFlags: 0
