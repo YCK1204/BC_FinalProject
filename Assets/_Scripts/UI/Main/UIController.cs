@@ -125,4 +125,24 @@ public class UIController : MonoBehaviour
     public void ShowWideView() => ChangeState(UiState.WideView);
     public void ShowFullScreen() => ChangeState(UiState.FullScreen);
     public void HideUI() => ChangeState(UiState.Hidden);
+    public void BackUI()
+    {
+        switch (CurrentState)
+        {
+            case UiState.WideView:
+                ChangeState(UiState.NormalView);
+                break;
+
+            case UiState.NormalView:
+                ChangeState(UiState.Hidden);
+                break;
+
+            case UiState.FullScreen:
+                ChangeState(UiState.NormalView);
+                break;
+
+            case UiState.Hidden:
+                break;
+        }
+    }
 }
