@@ -32,8 +32,8 @@ public class Manager : MonoBehaviour
         }
     }
 
-    GameManager _game = new GameManager();
-    public static GameManager Game { get { return Instance._game; } }
+    GameManager _game;
+    public static GameManager Game { get { return Instance._game; } set { Instance._game = value; value.transform.parent = _instance.transform; } }
     ResourceManager _resource = new ResourceManager();
     public static ResourceManager Resource { get { return Instance._resource; } }
     SceneManagerEx _scene;
