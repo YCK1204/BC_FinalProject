@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
+using System;
 
 public class UIButtonOut : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler
 {
@@ -18,11 +19,15 @@ public class UIButtonOut : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     private void Awake()
     {
-        if (buttonImage) 
+        if (buttonImage)
+        {
             buttonMat = Instantiate(buttonImage.material);
-
-        if (buttonImage) 
             buttonImage.material = buttonMat;
+        }
+        else
+        {
+            Debug.Log($"buttonImage is null {gameObject.name}");
+        }
     }
 
     private void Start()
@@ -55,6 +60,9 @@ public class UIButtonOut : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     private void SetMaterialColor(Color color)
     {
-        if (buttonMat) buttonMat.SetColor("_Color", color);
+        if (buttonMat)
+            buttonMat.SetColor("_Color", color);
+        else
+            Debug.Log($"buttonMat is null {gameObject.name}");
     }
 }
