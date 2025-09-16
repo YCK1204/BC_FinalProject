@@ -7,6 +7,7 @@ public class WideViewState : UiStateBase
     public override void Enter()
     {
         Debug.Log("ui:wide");
+        ui.ShowScreen("inven");
         ui.Animator.SetInteger("State", 2);
     }
 

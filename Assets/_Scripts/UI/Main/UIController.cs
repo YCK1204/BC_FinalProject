@@ -7,7 +7,7 @@ public class UIController : MonoBehaviour
     [Header("UI")]
     public Animator Animator;
 
-    [Header("»≠∏È µÓ∑œ")]
+    [Header("ÌôîÎ©¥ Îì±Î°ù")]
     public UIScreen[] screens;
 
     private Dictionary<string, UIScreen> screenMap;
@@ -23,7 +23,7 @@ public class UIController : MonoBehaviour
 
     private void Awake()
     {
-        // √ ±‚»≠
+        // Ï¥àÍ∏∞Ìôî
         stateMap = new Dictionary<UiState, UiStateBase>
         {
             { UiState.Hidden, new HiddenState(this) },
@@ -32,7 +32,7 @@ public class UIController : MonoBehaviour
             { UiState.FullScreen, new FullScreenState(this) },
         };
 
-        // »≠∏È µÓ∑œ
+        // ÌôîÎ©¥ Îì±Î°ù
         screenMap = new Dictionary<string, UIScreen>();
         foreach (UIScreen s in screens)
         {
@@ -91,29 +91,29 @@ public class UIController : MonoBehaviour
     {
         if (string.IsNullOrEmpty(screenName))
         {
-            Debug.LogError("!∫Û∞™");
+            Debug.LogError("!ÎπàÍ∞í");
             return;
         }
 
         if (!screenMap.TryGetValue(screenName, out UIScreen screen))
         {
-            Debug.LogError($"!æ¯¥¬ Ω∫≈©∏∞");
+            Debug.LogError($"!ÏóÜÎäî Ïä§ÌÅ¨Î¶∞");
             return;
         }
 
         if (currentScreen == screen)
         {
-            Debug.Log($"!∞∞¿∫ Ω∫≈©∏∞");
+            Debug.Log($"!Í∞ôÏùÄ Ïä§ÌÅ¨Î¶∞");
             return;
         }
 
-        // Ω∫≈©∏∞ ≤Ù±‚
+        // Ïä§ÌÅ¨Î¶∞ ÎÅÑÍ∏∞
         if (currentScreen != null && currentScreen.panel != null)
         {
             currentScreen.panel.SetActive(false);
         }
 
-        // Ω∫≈©∏∞ ƒ—±‚
+        // Ïä§ÌÅ¨Î¶∞ ÏºúÍ∏∞
         currentScreen = screen;
         if (currentScreen.panel != null)
         {
@@ -125,24 +125,36 @@ public class UIController : MonoBehaviour
     public void ShowWideView() => ChangeState(UiState.WideView);
     public void ShowFullScreen() => ChangeState(UiState.FullScreen);
     public void HideUI() => ChangeState(UiState.Hidden);
+
+    public void ShowSettingUI()
+    {
+        Animator.SetBool("Setting", true);
+    }
     public void BackUI()
     {
-        switch (CurrentState)
+        if (Animator.GetBool("Setting"))
         {
-            case UiState.WideView:
-                ChangeState(UiState.NormalView);
-                break;
+            Animator.SetBool("Setting", false);
+        }
+        else
+        {
+            switch (CurrentState)
+            {
+                case UiState.WideView:
+                    ChangeState(UiState.NormalView);
+                    break;
 
-            case UiState.NormalView:
-                ChangeState(UiState.Hidden);
-                break;
+                case UiState.NormalView:
+                    ChangeState(UiState.Hidden);
+                    break;
 
-            case UiState.FullScreen:
-                ChangeState(UiState.NormalView);
-                break;
+                case UiState.FullScreen:
+                    ChangeState(UiState.NormalView);
+                    break;
 
-            case UiState.Hidden:
-                break;
+                case UiState.Hidden:
+                    break;
+            }
         }
     }
 }
