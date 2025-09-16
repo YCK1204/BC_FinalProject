@@ -6,15 +6,16 @@ using UnityEngine;
 /// </summary>
 public abstract class PatrolMonster : Monster
 {
-    protected PatrolMove curPatrolMovement;
-    protected ChaseMove curChaseMovement;
+    protected IMovable curPatrolMovement;
+    protected IMovable curChaseMovement;
 
     protected override void Init()
     {
         base.Init();
 
         curPatrolMovement = new PatrolMove(_speed, transform, _rb, _col); ;
-        curChaseMovement = new ChaseMove(_speed, transform, _rb, _col, Target);
+        //curChaseMovement = new ChaseMove(_speed, transform, _rb, _col, Target);
+        curChaseMovement = new ShadowStepMove(transform, Target);
     }
 
     public IMovable GetChaseMovement()
