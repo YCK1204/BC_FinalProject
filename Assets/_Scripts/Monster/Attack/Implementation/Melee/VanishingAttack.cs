@@ -1,16 +1,25 @@
 using UnityEngine;
 
-public class VanishingAttack : MonoBehaviour
+public class VanishingAttack : MeleeAttack
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public VanishingAttack(float damage, float attackRange, Transform tr, MonsterAttack monsterAttack) : base(damage, attackRange, tr, monsterAttack)
     {
-        
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void Attack()
     {
-        
+        throw new System.NotImplementedException();
+    }
+
+    public override bool GetCheckAttackable(float margin = 0)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    protected override void AttackMove()
+    {
+        base.AttackMove();
+
+        // Todo: 순간이동
     }
 }

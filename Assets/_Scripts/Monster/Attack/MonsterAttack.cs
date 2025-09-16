@@ -15,6 +15,7 @@ public class MonsterAttack : MonoBehaviour
     public IAttackable Attackable { get { return _attack; } }
 
     Monster _owner;
+    public Monster Owner { get { return _owner; } }
 
     public System.Action OnAttackEnd;
 

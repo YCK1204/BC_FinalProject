@@ -47,7 +47,8 @@ public class MonsterPatrolState : MonsterBaseState
             if (CheckDetectRange())
             {
                 // 감지가 되고 공격 범위 내라면 공격
-                if (CheckAttackRange())
+                //if (CheckAttackRange())
+                if (_stateMachine.Owner.Attack.Attackable.GetCheckAttackable(_xMargin))
                 {
                     _stateMachine.ChangeState(Common.StateType.Attack);
                 }

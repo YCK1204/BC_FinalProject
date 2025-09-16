@@ -11,8 +11,11 @@ public class Orc : PatrolMonster, IDamageable
 
         _attackRange = 1f;
 
-        _curAttack = new SwingAttack(_attackPower, _attackRange, transform);
+        //_curAttack = new SwingAttack(_attackPower, _attackRange, transform, _attack);
+        _curAttack = new RushAttack(_attackPower, _attackRange, transform, _attack);
         _attack.Init(AttackPower, AttackRange, AttackDelay, _curAttack, this);
+
+        (_curAttack as RushAttack)?.Init();
     }
 
     public void TakeDamage(int damage)
@@ -27,5 +30,10 @@ public class Orc : PatrolMonster, IDamageable
         {
             _stateMachine.ChangeState(Common.StateType.Hit);
         }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log(collision.name);
     }
 }

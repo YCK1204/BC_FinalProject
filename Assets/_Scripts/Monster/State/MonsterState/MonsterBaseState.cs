@@ -14,6 +14,9 @@ public abstract class MonsterBaseState : Game.Monster.IState
     protected float _detectFov = 90f;
     protected float _attackFov = 60f;
 
+    // 공격 범위 탐색에서 보정하는 값
+    protected float _xMargin = 0.3f;
+
     public MonsterBaseState(MonsterStateMachine stateMachine)
     {
         _stateMachine = stateMachine;

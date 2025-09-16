@@ -36,7 +36,7 @@ public class MonsterCahseState : MonsterBaseState
             _stateMachine.ChangeState(Common.StateType.Idle);
 
         //if(CheckAttackRange())
-        if (_stateMachine.Owner.Attack.Attackable.GetCheckAttackable())
+        if (_stateMachine.Owner.Attack.Attackable.GetCheckAttackable(_xMargin))
             _stateMachine.ChangeState(Common.StateType.Attack);
     }
 
