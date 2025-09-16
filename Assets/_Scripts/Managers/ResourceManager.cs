@@ -57,6 +57,21 @@ public class ResourceManager
             Addressables.Release(handle);
         };
     }
+    /// <summary>
+    /// 단일 에셋 비동기 로드
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="name"></param>
+    /// <param name="callback"></param>
+    public void LoadAssetAsync<T>(string name, Action<T> callback) where T : Object
+    {
+        var oper = Addressables.LoadAssetAsync<T>(name);
+        oper.Completed += handle =>
+        {
+            callback?.Invoke(handle.Result);
+            Addressables.Release(handle);
+        };
+    }
 
     /// <summary>
     /// 라벨에 해당하는 모든 에셋 비동기 로드
@@ -138,6 +153,19 @@ public class ResourceManager
         var result = Addressables.LoadAssetAsync<ScriptableObject>(name).WaitForCompletion();
         if (result != null)
             return result as T;
+        return null;
+    }
+    /// <summary>
+    /// 단일 에셋 동기 로드
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="name"></param>
+    /// <returns></returns>
+    public T Load<T>(string name) where T : Object
+    {
+        var result = Addressables.LoadAssetAsync<T>(name).WaitForCompletion();
+        if (result != null)
+            return result;
         return null;
     }
     /// <summary>
