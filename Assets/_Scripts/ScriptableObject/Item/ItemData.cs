@@ -1,3 +1,4 @@
+using GameSystem;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ public enum ItemTier
 
 public enum ItemStatType
 {
+    None,
     AttackPower,
     AttackSpeed,
     MaxHp,
@@ -29,7 +31,8 @@ public enum ItemTriggerType
     OnAttacked,
     OnHeal,
     OnKill,
-    OnStageClear
+    OnStageClear,
+    Always
 }
 
 public enum ItemModifierType
@@ -57,16 +60,6 @@ public class ItemStat
     public float Value { get { return value; } }
 }
 
-public enum ItemSetEffectType
-{
-    CthughaFlame,      // 크투가의 살아있는 불꽃
-    CthulhuWrath,      // 크툴루의 분노  
-    YigCurse,          // 이그의 저주
-    HasturWind,        // 하스터의 살을 에는 바람
-    MentalBreakdown,   // 정신 붕괴
-    IronWill           // 불굴의 의지
-}
-
 [CreateAssetMenu(fileName = "New Item", menuName = "ScriptableObject/Item/ItemData")]
 public class ItemData : ScriptableObject
 {
@@ -85,6 +78,16 @@ public class ItemData : ScriptableObject
         Color.purple,
         Color.yellow
     };
+    public static Dictionary<ItemStatType, string> ItemStatTypes = new Dictionary<ItemStatType, string>()
+    {
+        { ItemStatType.AttackPower, "공격력" },
+        { ItemStatType.AttackSpeed, "공격속도" },
+        { ItemStatType.MaxHp, "최대체력" },
+        { ItemStatType.MoveSpeed, "이동속도" },
+        { ItemStatType.Corruption, "생성 타락 게이지" },
+        { ItemStatType.ExtraDamage, "추가 피해" },
+        { ItemStatType.None, "" },
+    };
     public Color TierColor { get { return TierColors[(int)itemTier]; } }
     [SerializeField]
     string itemName;
@@ -98,10 +101,18 @@ public class ItemData : ScriptableObject
     [SerializeField]
     Sprite itemIcon;
     public Sprite ItemIcon { get { return itemIcon; } }
-    [SerializeField, TextArea]
-    string itemDescription;
-    public string ItemDescription { get { return itemDescription; } }
     [SerializeField]
-    ItemSetEffectType itemSetEffectType;
-    public ItemSetEffectType ItemSetEffectType { get { return itemSetEffectType; } }
+    int itemSetSynergyId;
+    public int ItemSetSynergyId { get { return itemSetSynergyId; } }
+
+    public void Set(PlayerCharacter player)
+    {
+        if (stat1 != null)
+        {
+
+        }
+    }
+    public void Unset(PlayerCharacter player)
+    {
+    }
 }
