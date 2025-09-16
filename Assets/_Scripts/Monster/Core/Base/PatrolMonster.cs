@@ -15,7 +15,7 @@ public abstract class PatrolMonster : Monster
 
         curPatrolMovement = new PatrolMove(_speed, transform, _rb, _col); ;
         //curChaseMovement = new ChaseMove(_speed, transform, _rb, _col, Target);
-        curChaseMovement = new ShadowStepMove(transform, Target);
+        curChaseMovement = new VanishMove(transform, Target);
     }
 
     public IMovable GetChaseMovement()

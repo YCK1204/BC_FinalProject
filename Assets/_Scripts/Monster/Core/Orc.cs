@@ -1,7 +1,7 @@
 using Game.Monster;
 using UnityEngine;
 
-public class Orc : PatrolMonster, IDamageable
+public class Orc : PatrolMonster
 {
     IAttackable _curAttack;
 
@@ -16,20 +16,6 @@ public class Orc : PatrolMonster, IDamageable
         _attack.Init(AttackPower, AttackRange, AttackDelay, _curAttack, this);
 
         (_curAttack as RushAttack)?.Init();
-    }
-
-    public void TakeDamage(int damage)
-    {
-        _curHp -= Mathf.Max(0, damage);
-
-        if(_curHp <= 0)
-        {
-            _stateMachine.ChangeState(Common.StateType.Die);
-        }
-        else
-        {
-            _stateMachine.ChangeState(Common.StateType.Hit);
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

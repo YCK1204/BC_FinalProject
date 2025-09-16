@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ShadowStepMove : Game.Monster.IMovable
+public class VanishMove : Game.Monster.IMovable
 {
     float _curMoveCoolTime;
     float _maxMoveCoolTime;
@@ -10,12 +10,12 @@ public class ShadowStepMove : Game.Monster.IMovable
     Transform _tr;
     Transform _target;
 
-    public ShadowStepMove(Transform tr, Transform target)
+    public VanishMove(Transform tr, Transform target)
     {
         _curMoveCoolTime = 1f;
         _maxMoveCoolTime = 2f;
         _blinkOffsetX = 0.7f;
-        _blinkOffsetY = 1.2f;
+        _blinkOffsetY = 1f;
 
         _tr = tr;
         _target = target;
@@ -37,7 +37,7 @@ public class ShadowStepMove : Game.Monster.IMovable
 
     public void StopMove()
     {
-        
+        // 순간이동에서는 굳이 사용 안함
     }
 
     public void SetTarget(Transform target)

@@ -26,9 +26,9 @@ public class MonsterCahseState : MonsterBaseState
             (_chaseMove as ChaseMove)?.SetTarget(_target);
             _stateMachine.Owner.Anim.SetFloat(Common.AnimatorParams.Speed, _stateMachine.Owner.Speed);
         }
-        else if( _chaseMove is ShadowStepMove)
+        else if( _chaseMove is VanishMove)
         {
-            (_chaseMove as ShadowStepMove)?.SetTarget(_target);
+            (_chaseMove as VanishMove)?.SetTarget(_target);
             _stateMachine.Owner.Anim.SetFloat(Common.AnimatorParams.Speed, 0);
         }
 

@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// 몬스터 최상위 클래스
 /// </summary>
-public abstract class Monster : MonoBehaviour
+public abstract class Monster : MonoBehaviour, Game.Monster.IDamageable
 {
     /// <summary>
     /// 만약 단일책임원칙에 따라 스크립트를 분리하면 어떻게 하지?
@@ -99,6 +99,20 @@ public abstract class Monster : MonoBehaviour
         transform.localScale = new Vector3(d, transform.localScale.y, transform.localScale.z);
     }
 
+    public virtual void TakeDamage(int damage)
+    {
+        _curHp -= Mathf.Max(0, damage);
+
+        if (_curHp <= 0)
+        {
+            _stateMachine.ChangeState(Common.StateType.Die);
+        }
+        else
+        {
+            _stateMachine.ChangeState(Common.StateType.Hit);
+        }
+    }
+
     public Action OnDied;
     public void Die()
     {
@@ -109,6 +123,7 @@ public abstract class Monster : MonoBehaviour
     {
         OnDied?.Invoke();
     }
+
     // 에디터에서 탐지 범위와 공격 가능 범위를 표시하는 메서드
     private void OnDrawGizmos()
     {
