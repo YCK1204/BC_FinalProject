@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -98,12 +99,16 @@ public abstract class Monster : MonoBehaviour
         transform.localScale = new Vector3(d, transform.localScale.y, transform.localScale.z);
     }
 
+    public Action OnDied;
     public void Die()
     {
         // Todo: 오브젝트 풀로 리턴
         Destroy(gameObject);
     }
-
+    public void OnDestroy()
+    {
+        OnDied?.Invoke();
+    }
     // 에디터에서 탐지 범위와 공격 가능 범위를 표시하는 메서드
     private void OnDrawGizmos()
     {
