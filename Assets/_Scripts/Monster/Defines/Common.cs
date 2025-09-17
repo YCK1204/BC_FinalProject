@@ -1,7 +1,7 @@
 using UnityEngine;
 
 // 공용으로 사용하는 enum이나 string 등을 모아두는 스크립트
-namespace Common
+namespace Game.Monster
 {
     // 몬스터 스테이트 머신의 상태를 구분하는 열거자
     public enum StateType
@@ -12,6 +12,11 @@ namespace Common
         Attack,
         Hit,
         Die
+    }
+
+    public enum SpecilaAbillityType
+    {
+
     }
 
     // 레이어 이름 문자열
@@ -29,4 +34,5 @@ namespace Common
         public const string Hit = "Hit";
         public const string Die = "Die";
     }
+
 }

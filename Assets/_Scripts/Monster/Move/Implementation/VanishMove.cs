@@ -10,7 +10,7 @@ public class VanishMove : Game.Monster.IMovable
     Transform _tr;
     Transform _target;
 
-    public VanishMove(Transform tr, Monster owner)
+    public VanishMove(Transform tr, BaseMonster owner)
     {
         _curMoveCoolTime = 1f;
         _maxMoveCoolTime = 2f;

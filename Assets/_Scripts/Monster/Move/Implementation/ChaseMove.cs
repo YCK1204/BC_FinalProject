@@ -14,9 +14,9 @@ public class ChaseMove : Game.Monster.IMovable
 
     // 임시 레이어
     // Todo: 벽과 땅에 대한 레이어가 생기면 이를 변경할 필요가 있음
-    LayerMask _mask = ~(LayerMask.GetMask(Common.Layers.Player) | LayerMask.GetMask(Common.Layers.Monster));
+    LayerMask _mask = ~(LayerMask.GetMask(Game.Monster.Layers.Player) | LayerMask.GetMask(Game.Monster.Layers.Monster));
 
-    public ChaseMove(float speed, Monster owner)
+    public ChaseMove(float speed, BaseMonster owner)
     {
         _speed = speed;
         _tr = owner.transform;
@@ -50,13 +50,13 @@ public class ChaseMove : Game.Monster.IMovable
             StopMove();
 
         if(_rb.linearVelocityX != 0)
-            _anim.SetFloat(Common.AnimatorParams.Speed, _speed);
+            _anim.SetFloat(Game.Monster.AnimatorParams.Speed, _speed);
     }
 
     public void StopMove()
     {
         _rb.linearVelocityX = 0;
-        _anim.SetFloat(Common.AnimatorParams.Speed, 0);
+        _anim.SetFloat(Game.Monster.AnimatorParams.Speed, 0);
     }
 
     public void SetTarget(Transform target)
