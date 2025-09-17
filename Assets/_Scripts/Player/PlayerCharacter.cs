@@ -32,6 +32,17 @@ namespace GameSystem
         [SerializeField] private Vector2 runtimeVelocity;
         [SerializeField] private float currentHP;
 
+        [Header("Corruption")]
+        [SerializeField] private int corruptionGauge;
+        [SerializeField] private int maxCorruptionGauge = 200;
+        [SerializeField] private int corruptionGainPerHit = 5;
+        public int CorruptionGauge => corruptionGauge;
+
+        [Header("Combat Debug")]
+        [SerializeField] private bool lastHitCritical;
+        public bool LastHitCritical => lastHitCritical;
+        public void MarkLastHitCritical(bool on) { lastHitCritical = on; }
+
         public float CurrentHP => currentHP;
         public bool IsDead => currentHP <= 0f;
 
@@ -39,6 +50,17 @@ namespace GameSystem
         {
             if (!GroundCheck) return false;
             return Physics2D.OverlapCircle(GroundCheck.position, GroundRadius, GroundLayer);
+        }
+
+        public void ReportNormalAttackHit()
+        {
+            if (corruptionGauge >= maxCorruptionGauge) return;
+            corruptionGauge = Mathf.Min(maxCorruptionGauge, corruptionGauge + Mathf.Max(0, corruptionGainPerHit));
+        }
+
+        public void ResetCorruptionGauge()
+        {
+            corruptionGauge = 0;
         }
 
         public void TakeDamage(float amount)
@@ -73,6 +95,7 @@ namespace GameSystem
         public void Die()
         {
             currentHP = 0f;
+            ResetCorruptionGauge();
             if (_machine != null) _machine.ChangeState(_machine.DieState);
         }
 
@@ -115,11 +138,11 @@ namespace GameSystem
             if (!showRuntime || _machine == null) return;
             runtimeIsDashing = _machine.IsDashing;
             runtimeSpeedModifier = _machine.MovementSpeedModifier;
-            runtimeMoveSpeed = _machine.MovementSpeed * _machine?.MovementSpeedModifier ?? 1f;
+            runtimeMoveSpeed = _machine.MovementSpeed * _machine.MovementSpeedModifier;
 #if UNITY_2022_3_OR_NEWER
             runtimeVelocity = Rb.linearVelocity;
 #else
-            runtimeVelocity      = Rb.velocity;
+            runtimeVelocity = Rb.velocity;
 #endif
         }
     }

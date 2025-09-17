@@ -31,7 +31,12 @@ namespace GameSystem
     {
         public float AttackPower = 10f;
         public float AttackRange = 1.5f;
-        public float AttackDuration = 0.2f;
+        public float BaseAttackSpeedAPS = 2f;
+        public float AttackSpeedPercent = 0f;
+        public float ExtraDamage = 0f;
+        public float CriticalChancePercent = 5f;
+        public float CriticalDamagePercent = 200f;
+        public float AttackDuration = 0.5f;
     }
 
     [System.Serializable]
