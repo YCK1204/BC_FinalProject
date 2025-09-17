@@ -235,7 +235,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1474087523}
-  - {fileID: 1108700885}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &67476533
@@ -296,7 +295,7 @@ MonoBehaviour:
   GroundRadius: 0.15
   GroundLayer:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 16384
   Force: {fileID: 0}
   showRuntime: 1
   runtimeIsDashing: 0
@@ -394,7 +393,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.6875, y: 0.96875}
   m_EdgeRadius: 0
---- !u!1001 &392900781
+--- !u!1001 &917465238
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -408,11 +407,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6289063781408946054, guid: 060fe552f904cef45bcfaaa0839b9478, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.82796
+      value: -0.84429
       objectReference: {fileID: 0}
     - target: {fileID: 6289063781408946054, guid: 060fe552f904cef45bcfaaa0839b9478, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.31906
+      value: -0.27255
       objectReference: {fileID: 0}
     - target: {fileID: 6289063781408946054, guid: 060fe552f904cef45bcfaaa0839b9478, type: 3}
       propertyPath: m_LocalPosition.z
@@ -462,7 +461,7 @@ GameObject:
   - component: {fileID: 1044326577}
   - component: {fileID: 1044326576}
   - component: {fileID: 1044326575}
-  m_Layer: 8
+  m_Layer: 14
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -675,11 +674,11 @@ Transform:
   m_GameObject: {fileID: 1108700882}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.0501193, y: -0.16706444, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 67476532}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1108700886
 MonoBehaviour:
@@ -750,7 +749,7 @@ Transform:
   m_GameObject: {fileID: 1474087522}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.11011928, y: -0.41706443, z: 0}
+  m_LocalPosition: {x: 0.11011928, y: -0.485, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -760,6 +759,7 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1108700885}
   - {fileID: 67476532}
   - {fileID: 1044326577}
-  - {fileID: 392900781}
+  - {fileID: 917465238}

@@ -58,23 +58,20 @@ namespace GameSystem
             corruptionGauge = Mathf.Min(maxCorruptionGauge, corruptionGauge + Mathf.Max(0, corruptionGainPerHit));
         }
 
-        public void ResetCorruptionGauge()
-        {
-            corruptionGauge = 0;
-        }
+        public void ResetCorruptionGauge() { corruptionGauge = 0; }
 
         public void TakeDamage(float amount)
         {
             if (Invincible || IsDead) return;
             currentHP = Mathf.Max(0f, currentHP - Mathf.Max(0f, amount));
-            if (currentHP <= 0f) { Die(); } else { EnterHurtByFacing(); }
+            if (currentHP <= 0f) Die(); else EnterHurtByFacing();
         }
 
         public void TakeDamage(int damage)
         {
             if (Invincible || IsDead) return;
             currentHP = Mathf.Max(0f, currentHP - Mathf.Max(0, damage));
-            if (currentHP <= 0f) { Die(); } else { EnterHurtByFacing(); }
+            if (currentHP <= 0f) Die(); else EnterHurtByFacing();
         }
 
         void EnterHurtByFacing()
@@ -83,7 +80,7 @@ namespace GameSystem
             var hd = Data.HurtData;
             var kb = new Vector2(dir * hd.KnockbackX, hd.KnockbackY);
             ForceReceiver.Knockback(kb);
-            if (_machine != null) _machine.ChangeState(_machine.HurtState);
+            _machine.ChangeState(_machine.HurtState);
         }
 
         public void Heal(float amount)
@@ -96,7 +93,7 @@ namespace GameSystem
         {
             currentHP = 0f;
             ResetCorruptionGauge();
-            if (_machine != null) _machine.ChangeState(_machine.DieState);
+            _machine.ChangeState(_machine.DieState);
         }
 
         public void SetLayerCollisionIgnore(LayerMask mask, bool ignore)
@@ -123,19 +120,19 @@ namespace GameSystem
 
         private void Update()
         {
-            _machine?.Tick();
+            _machine.Tick();
             UpdateRuntimeDebug();
         }
 
         private void FixedUpdate()
         {
-            _machine?.FixedTick();
+            _machine.FixedTick();
             UpdateRuntimeDebug();
         }
 
         void UpdateRuntimeDebug()
         {
-            if (!showRuntime || _machine == null) return;
+            if (!showRuntime) return;
             runtimeIsDashing = _machine.IsDashing;
             runtimeSpeedModifier = _machine.MovementSpeedModifier;
             runtimeMoveSpeed = _machine.MovementSpeed * _machine.MovementSpeedModifier;
