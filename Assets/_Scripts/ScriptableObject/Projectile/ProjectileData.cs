@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Projectile Data", menuName = "Data/Projectile Data")]
+[CreateAssetMenu(fileName = "New Projectile Data", menuName = "ScriptableObject/Projectile/Projectile Data")]
 public class ProjectileData : ScriptableObject
 {
     [Header("기본 정보")]

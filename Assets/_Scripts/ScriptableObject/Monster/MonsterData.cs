@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New Monster Data", menuName = "Data/Monster Data")]
+[CreateAssetMenu(fileName = "New Monster Data", menuName = "ScriptableObject/Monster/Monster Data")]
 public class MonsterData : ScriptableObject
 {
     public int _maxHp = 25;
