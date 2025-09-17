@@ -11,6 +11,8 @@ public class MonsterAttack : MonoBehaviour
     float _attackRange;
     float _attackSpeed;
 
+    [SerializeField] BaseProjectile _projectile;
+
     IAttackable _attack;
     public IAttackable Attackable { get { return _attack; } }
 
@@ -41,5 +43,14 @@ public class MonsterAttack : MonoBehaviour
     private void ExcuteAttackEnd()
     {
         OnAttackEnd?.Invoke();
+    }
+
+    public void CreateProjectile(Transform target = null)
+    {
+        if (_projectile == null)
+            return;
+
+        BaseProjectile proj = Instantiate(_projectile, transform.position, Quaternion.identity);
+        proj.Init(Owner.transform.localScale, target);
     }
 }

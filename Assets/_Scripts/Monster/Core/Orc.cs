@@ -13,6 +13,7 @@ public class Orc : PatrolMonster
 
         _curAttack = new SwingAttack(_attackPower, _attackRange, transform, _attack);
         //_curAttack = new RushAttack(_attackPower, _attackRange, transform, _attack);
+        //_curAttack = new RangedAttack(_attackPower, _attackRange, transform, _attack);
         _attack.Init(AttackPower, AttackRange, AttackDelay, _curAttack, this);
 
         (_curAttack as RushAttack)?.Init();
