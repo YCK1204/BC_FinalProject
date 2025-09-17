@@ -9,12 +9,12 @@ public class Orc : PatrolMonster
     {
         base.Awake();
 
+        _attack.Init(_dataHandler.AttackPower, _dataHandler.AttackRange, _dataHandler.AttackDelay, this);
         _curAttack = new SwingAttack(_dataHandler.AttackPower, _dataHandler.AttackRange, transform, _attack);
         //_curAttack = new RushAttack(_dataHandler.AttackPower, _attackRange, transform, _attack);
         //_curAttack = new RangedAttack(_attackPower, _attackRange, transform, _attack);
-        _attack.Init(_dataHandler.AttackPower, _dataHandler.AttackRange, _dataHandler.AttackDelay, _curAttack, this);
 
-        (_curAttack as RushAttack)?.Init();
+        _attack.Attackable = _curAttack;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

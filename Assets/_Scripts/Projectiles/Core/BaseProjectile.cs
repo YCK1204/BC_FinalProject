@@ -4,24 +4,19 @@ using UnityEngine;
 
 public abstract class BaseProjectile : MonoBehaviour
 {
-    private ProjectileDataHandler _data;
-    public ProjectileDataHandler Data {  get { return _data; } }
+    private ProjectileDataHandler _dataHandler;
+    public ProjectileDataHandler DataHandler {  get { return _dataHandler; } }
 
     protected Rigidbody2D _rb;
 
     protected Transform _target;
     protected Vector3 _dir;
-    
-    public void SetData(ProjectileDataHandler data)
-    {
-        _data = data;
-    }
 
     private void Awake()
     {
-        _data = Extension.GetOrAddComponent<ProjectileDataHandler>(this.gameObject);
+        _dataHandler = Extension.GetOrAddComponent<ProjectileDataHandler>(this.gameObject);
         _rb = GetComponent<Rigidbody2D>();
-        StartCoroutine(ProjectileLife(Data.LifeTime));
+        StartCoroutine(ProjectileLife(DataHandler.Data.LifeTime));
     }
 
     public virtual void Init(Vector3 dir, Transform target = null)
@@ -45,7 +40,7 @@ public abstract class BaseProjectile : MonoBehaviour
         // 플레이어면 데미지
         if(damageable != null && (1 << other.gameObject.layer) != LayerMask.GetMask(Common.Layers.Monster))
         {
-            damageable.TakeDamage(_data.Damage);
+            damageable.TakeDamage(DataHandler.Data.Damage);
             DestroyProjectile();
         }
         // 벽이나 땅이면 소멸

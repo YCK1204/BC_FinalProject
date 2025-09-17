@@ -22,7 +22,7 @@ public class HomingProjectile : BaseProjectile
 
     protected override void Move()
     {
-        _rb.linearVelocity = transform.right * _dir.x * Data.Speed;
+        _rb.linearVelocity = transform.right * _dir.x * DataHandler.Data.Speed;
     }
 
     private IEnumerator Rotate()
@@ -39,7 +39,7 @@ public class HomingProjectile : BaseProjectile
             transform.rotation = Quaternion.RotateTowards(
                 transform.rotation,
                 targetRotation,
-                Data.RotateSpeed * Time.deltaTime
+                DataHandler.Data.RotateSpeed * Time.deltaTime
             );
 
             yield return null;

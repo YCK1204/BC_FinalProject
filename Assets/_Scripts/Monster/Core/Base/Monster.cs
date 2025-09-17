@@ -8,7 +8,7 @@ public abstract class Monster : MonoBehaviour, Game.Monster.IDamageable
 {
     /// <summary>
     /// 만약 단일책임원칙에 따라 스크립트를 분리하면 어떻게 하지?
-    /// 몬스터의 데이터 분리
+    /// 몬스터의 데이터 분리 -> 했음
     /// 공격쪽은 이미 분리함
     /// </summary>
 
@@ -74,6 +74,7 @@ public abstract class Monster : MonoBehaviour, Game.Monster.IDamageable
         _target = null;
     }
 
+    // 타겟을 바라보는 메서드
     public void LookTarget()
     {
         float d = _target.position.x < transform.position.x ? -Mathf.Abs(transform.localScale.x) : Mathf.Abs(transform.localScale.x);
@@ -95,6 +96,7 @@ public abstract class Monster : MonoBehaviour, Game.Monster.IDamageable
     }
 
     public Action OnDied;
+
     public void Die()
     {
         // Todo: 오브젝트 풀로 리턴
@@ -105,12 +107,18 @@ public abstract class Monster : MonoBehaviour, Game.Monster.IDamageable
         OnDied?.Invoke();
     }
 
+#if UNITY_EDITOR
     // 에디터에서 탐지 범위와 공격 가능 범위를 표시하는 메서드
     private void OnDrawGizmos()
     {
+        if (!Application.isPlaying)
+            return;
+
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, _dataHandler.DetectRange);
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _dataHandler.AttackRange);
     }
+#endif
+
 }

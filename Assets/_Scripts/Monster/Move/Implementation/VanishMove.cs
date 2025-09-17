@@ -10,7 +10,7 @@ public class VanishMove : Game.Monster.IMovable
     Transform _tr;
     Transform _target;
 
-    public VanishMove(Transform tr, Transform target)
+    public VanishMove(Transform tr, Monster owner)
     {
         _curMoveCoolTime = 1f;
         _maxMoveCoolTime = 2f;
@@ -18,7 +18,7 @@ public class VanishMove : Game.Monster.IMovable
         _blinkOffsetY = 1f;
 
         _tr = tr;
-        _target = target;
+        _target = owner.Target;
     }
 
     public void Move()

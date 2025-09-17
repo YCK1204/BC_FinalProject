@@ -2,35 +2,27 @@ using UnityEngine;
 
 public class MonsterDataHandler : MonoBehaviour
 {
-    [SerializeField] protected int _curHp = 25;
+    [SerializeField] MonsterData _data;
+    public MonsterData Data {  get { return _data; } set { _data = value; } }
+
+    [SerializeField] protected int _curHp;
     public int CurHp { get { return _curHp; } }
 
-    [SerializeField] protected float _speed = 3f;
-    public float Speed { get { return _speed; } }
+    public float Speed { get { return Data._speed; } }
+    public float AttackPower { get { return Data._attackPower; } }
+    public float AttackDelay { get { return Data._attackDelay; } }
+    public float AttackRange { get { return Data._attackRange; } }
+    public float DetectRange { get { return Data._detectRange; } }
+    public bool CanMove { get { return Data._canMove; } }
 
-    [SerializeField] protected float _attackPower = 5f;
-    public float AttackPower { get { return _attackPower; } }
-
-    [SerializeField] protected float _attackDelay = 1f;
-    public float AttackDelay { get { return _attackDelay; } }
-
-    [SerializeField] protected float _attackRange = 3f;
-    public float AttackRange { get { return _attackRange; } }
-
-    [SerializeField] protected float _detectRange = 5f;
-    public float DetectRange { get { return _detectRange; } }
-
-    [SerializeField] protected bool _canMove = true;
-    public bool CanMove { get { return _canMove; } }
+    private void Awake()
+    {
+        _curHp = Data._maxHp;
+    }
 
     public void TakeDamage(int damage)
     {
         _curHp -= Mathf.Max(0, damage);
     }
 
-    // Todo: 나중에 구현 될 데이터 관련 설정 처리
-    public void SetData()
-    {
-        
-    }
 }

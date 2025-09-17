@@ -16,14 +16,14 @@ public class ChaseMove : Game.Monster.IMovable
     // Todo: 벽과 땅에 대한 레이어가 생기면 이를 변경할 필요가 있음
     LayerMask _mask = ~(LayerMask.GetMask(Common.Layers.Player) | LayerMask.GetMask(Common.Layers.Monster));
 
-    public ChaseMove(float speed, Transform tr, Rigidbody2D rb, Collider2D col, Transform target, Animator anim)
+    public ChaseMove(float speed, Monster owner)
     {
         _speed = speed;
-        _tr = tr;
-        _rb = rb;
-        _col = col;
-        _target = target;
-        _anim = anim;
+        _tr = owner.transform;
+        _rb = owner.Rb;
+        _col = owner.Col;
+        _target = owner.Target;
+        _anim = owner.Anim;
     }
 
     public void Move()

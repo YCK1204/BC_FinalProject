@@ -253,13 +253,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bdd63bab680f574caedea7e4e59cdda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MonsterDataHandler
+  _data: {fileID: 11400000, guid: e2f353c4c70d3b349aabced08ab23e43, type: 2}
   _curHp: 25
-  _speed: 3
-  _attackPower: 5
-  _attackDelay: 1
-  _attackRange: 1
-  _detectRange: 5
-  _canMove: 1
 --- !u!1 &739826784
 GameObject:
   m_ObjectHideFlags: 0

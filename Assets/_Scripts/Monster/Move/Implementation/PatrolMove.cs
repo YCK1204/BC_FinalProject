@@ -13,12 +13,12 @@ public class PatrolMove : Game.Monster.IMovable
     // 레이어 마스크 그라운드
     // 레이어 마스크 벽
 
-    public PatrolMove(float speed, Transform tr, Rigidbody2D rb, Collider2D col)
+    public PatrolMove(float speed, Monster owner)
     {
         _speed = speed;
-        _tr = tr;
-        _rb = rb;
-        _col = col;
+        _tr = owner.transform;
+        _rb = owner.Rb;
+        _col = owner.Col;
     }
 
     public void Move()
