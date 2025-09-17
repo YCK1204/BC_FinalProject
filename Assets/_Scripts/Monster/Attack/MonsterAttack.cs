@@ -12,6 +12,7 @@ public class MonsterAttack : MonoBehaviour
     float _attackSpeed;
 
     IAttackable _attack;
+    public IAttackable Attackable { get { return _attack; } }
 
     Monster _owner;
 

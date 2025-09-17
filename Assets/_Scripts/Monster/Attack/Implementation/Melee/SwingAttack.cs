@@ -1,5 +1,6 @@
 using Game.Monster;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class SwingAttack : MeleeAttack
 {
@@ -9,18 +10,26 @@ public class SwingAttack : MeleeAttack
     }
 
     /// <summary>
-    /// 현재는 일단 반원 모양 탐지로 구현 해봄
+    /// 현재는 일단 사각형으로 공격 범위 구현
     /// </summary>
     public override void Attack()
     {
-        float dir = _tr.localScale.x < 0 ? -1 : 1;
-        //Collider2D target = Physics2D.OverlapBox(_tr.position + new Vector3(_attackRange * 0.5f * dir, 0, 0), new Vector2(_attackRange, _attackRange), 0, _mask);
-        Collider2D target = Physics2D.OverlapCircle(_tr.position, _attackRange, _mask);
-
-        if (target != null)
+        if(GetCheckAttackable())
         {
-            if (CheckFov(_tr, target.transform, 180))
-                target.GetComponent<IDamageable>()?.TakeDamage((int)_damage);
+            if(_target != null)
+                _target.GetComponent<IDamageable>()?.TakeDamage((int)_damage);
         }
+    }
+
+    public override bool GetCheckAttackable()
+    {
+        //_target = Physics2D.OverlapCircle(_tr.position, _attackRange, _mask);
+        float dir = _tr.localScale.x < 0 ? -1 : 1; 
+        _target = Physics2D.OverlapBox(_tr.position + new Vector3(_attackRange * 0.5f * dir, 0, 0), new Vector2(_attackRange, _attackRange), 0, _mask);
+        if (_target != null)
+        {
+            return CheckFov(_tr, _target.transform, 180);
+        }
+        return false;
     }
 }

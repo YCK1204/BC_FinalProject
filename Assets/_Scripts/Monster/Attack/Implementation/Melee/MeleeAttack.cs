@@ -12,6 +12,7 @@ public abstract class MeleeAttack : Game.Monster.IAttackable
     protected float _attackRange;
     protected Transform _tr;
     protected LayerMask _mask;
+    protected Collider2D _target;
 
     public MeleeAttack(float damage, float attackRange, Transform tr)
     {
@@ -37,4 +38,10 @@ public abstract class MeleeAttack : Game.Monster.IAttackable
 
         return angle < fov * 0.5f ? true : false;
     }
+
+    /// <summary>
+    /// 타겟이 공격 범위에 있는지 확인하는 메서드
+    /// </summary>
+    /// <returns></returns>
+    public abstract bool GetCheckAttackable();
 }

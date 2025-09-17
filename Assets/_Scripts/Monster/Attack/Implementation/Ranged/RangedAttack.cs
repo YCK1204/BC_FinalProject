@@ -5,7 +5,7 @@ using UnityEngine;
 /// 원거리 공격
 /// 기본적으로 투사체를 발사하는 방식? 추후에 다른 방식도 고려해서 만들 듯
 /// </summary>
-public class RangedAttack : IAttackable
+public abstract class RangedAttack : IAttackable
 {
     float _damage;
     float _attackRange;
@@ -24,4 +24,6 @@ public class RangedAttack : IAttackable
     {
         // Todo: 뭔가 투사체 발사
     }
+
+    public abstract bool GetCheckAttackable();
 }
