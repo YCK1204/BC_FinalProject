@@ -10,33 +10,35 @@ public class ItemContainer : MonoBehaviour
     TextMeshProUGUI Description;
     TextMeshProUGUI Stat1;
     TextMeshProUGUI Stat2;
-    TextMeshProUGUI SynergeCount;
-    TextMeshProUGUI SynergeName;
+    TextMeshProUGUI SynergyCount;
+    TextMeshProUGUI SynergyName;
 
-    private void Start()
-    {
-        Init();
-        SetUI(ItemData);
-    }
+    bool _isInit = false;
 
     void Init()
     {
+        if (_isInit)
+            return;
+        _isInit = true;
         Name = transform.FindChild<TextMeshProUGUI>(false, "Name");
         Description = transform.FindChild<TextMeshProUGUI>(false, "Description");
         Stat1 = transform.FindChild<TextMeshProUGUI>(false, "Stat1");
         Stat2 = transform.FindChild<TextMeshProUGUI>(false, "Stat2");
-        SynergeCount = transform.FindChild<TextMeshProUGUI>(false, "SynergeCount");
-        SynergeName = transform.FindChild<TextMeshProUGUI>(false, "SynergeName");
+        SynergyCount = transform.FindChild<TextMeshProUGUI>(false, "SynergyCount");
+        SynergyName = transform.FindChild<TextMeshProUGUI>(false, "SynergyName");
     }
     public void SetUI(ItemData itemData)
     {
+        Init();
         ItemData = itemData;
 
         Name.color = itemData.TierColor;
         Name.text = itemData.ItemName;
 
-        //Description.text = itemData.ItemDescription;
-        // 시너지 텍스트 관리
+        Manager.Data.SynergyDict.TryGetValue(itemData.ItemSetSynergyId, out SynergyData synergyData);
+        SynergyCount.text = $"시너지 1/{synergyData.RequiredItemCount}";
+        SynergyName.text = synergyData.SynergyName;
+        Description.text = synergyData.Description;
         Stat1.text = "";
         Stat2.text = "";
         if (itemData.Stat1.ItemStatType != ItemStatType.None)

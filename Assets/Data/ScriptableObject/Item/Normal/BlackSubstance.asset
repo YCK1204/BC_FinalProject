@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d4759f942876a4a85e838025e04562, type: 3}
   m_Name: BlackSubstance
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemID: 0
-  itemTier: 5
-  itemName: "\uC751\uAC00"
+  itemID: 101002
+  itemTier: 0
+  itemName: "\uAC80\uC740 \uBB3C\uC9C8"
   stat1:
     itemStatType: 0
     itemModifierType: 0
@@ -25,6 +25,5 @@ MonoBehaviour:
     itemModifierType: 0
     itemTriggerType: 0
     value: 0
-  itemIcon: {fileID: 0}
-  itemDescription: "\uC653\uB354\uD37D "
-  itemSetEffectType: 0
+  itemIcon: {fileID: 4241727045068834795, guid: 5b94cc8056d2f724fa355e4cf2803155, type: 3}
+  itemSetSynergyId: 301002
