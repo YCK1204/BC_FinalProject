@@ -1,8 +1,9 @@
+using Game.Monster;
 using UnityEngine;
 
 namespace GameSystem
 {
-    public class PlayerCharacter : MonoBehaviour
+    public class PlayerCharacter : MonoBehaviour, IDamageable
     {
         public Rigidbody2D Rb { get; private set; }
         public Animator Animator { get; private set; }
@@ -31,6 +32,17 @@ namespace GameSystem
         [SerializeField] private Vector2 runtimeVelocity;
         [SerializeField] private float currentHP;
 
+        [Header("Corruption")]
+        [SerializeField] private int corruptionGauge;
+        [SerializeField] private int maxCorruptionGauge = 200;
+        [SerializeField] private int corruptionGainPerHit = 5;
+        public int CorruptionGauge => corruptionGauge;
+
+        [Header("Combat Debug")]
+        [SerializeField] private bool lastHitCritical;
+        public bool LastHitCritical => lastHitCritical;
+        public void MarkLastHitCritical(bool on) { lastHitCritical = on; }
+
         public float CurrentHP => currentHP;
         public bool IsDead => currentHP <= 0f;
 
@@ -40,16 +52,48 @@ namespace GameSystem
             return Physics2D.OverlapCircle(GroundCheck.position, GroundRadius, GroundLayer);
         }
 
+        public void ReportNormalAttackHit()
+        {
+            if (corruptionGauge >= maxCorruptionGauge) return;
+            corruptionGauge = Mathf.Min(maxCorruptionGauge, corruptionGauge + Mathf.Max(0, corruptionGainPerHit));
+        }
+
+        public void ResetCorruptionGauge() { corruptionGauge = 0; }
+
         public void TakeDamage(float amount)
         {
             if (Invincible || IsDead) return;
             currentHP = Mathf.Max(0f, currentHP - Mathf.Max(0f, amount));
+            if (currentHP <= 0f) Die(); else EnterHurtByFacing();
+        }
+
+        public void TakeDamage(int damage)
+        {
+            if (Invincible || IsDead) return;
+            currentHP = Mathf.Max(0f, currentHP - Mathf.Max(0, damage));
+            if (currentHP <= 0f) Die(); else EnterHurtByFacing();
+        }
+
+        void EnterHurtByFacing()
+        {
+            float dir = -Mathf.Sign(transform.localScale.x);
+            var hd = Data.HurtData;
+            var kb = new Vector2(dir * hd.KnockbackX, hd.KnockbackY);
+            ForceReceiver.Knockback(kb);
+            _machine.ChangeState(_machine.HurtState);
         }
 
         public void Heal(float amount)
         {
             if (IsDead) return;
             currentHP = Mathf.Min(Data.Stats.MaxHP, currentHP + Mathf.Max(0f, amount));
+        }
+
+        public void Die()
+        {
+            currentHP = 0f;
+            ResetCorruptionGauge();
+            _machine.ChangeState(_machine.DieState);
         }
 
         public void SetLayerCollisionIgnore(LayerMask mask, bool ignore)
@@ -76,26 +120,26 @@ namespace GameSystem
 
         private void Update()
         {
-            _machine?.Tick();
+            _machine.Tick();
             UpdateRuntimeDebug();
         }
 
         private void FixedUpdate()
         {
-            _machine?.FixedTick();
+            _machine.FixedTick();
             UpdateRuntimeDebug();
         }
 
         void UpdateRuntimeDebug()
         {
-            if (!showRuntime || _machine == null) return;
+            if (!showRuntime) return;
             runtimeIsDashing = _machine.IsDashing;
             runtimeSpeedModifier = _machine.MovementSpeedModifier;
             runtimeMoveSpeed = _machine.MovementSpeed * _machine.MovementSpeedModifier;
 #if UNITY_2022_3_OR_NEWER
             runtimeVelocity = Rb.linearVelocity;
 #else
-            runtimeVelocity      = Rb.velocity;
+            runtimeVelocity = Rb.velocity;
 #endif
         }
     }

@@ -1,13 +1,12 @@
-// PlayerAttackState.cs
-using System.Collections.Generic;
 using UnityEngine;
+using Game.Monster;
 
 namespace GameSystem
 {
-    public class PlayerAttackState : PlayerGroundedState
+    public class PlayerAttackState : PlayerBaseState
     {
         float _timer;
-        HashSet<Collider2D> _hit = new HashSet<Collider2D>();
+        bool _hasHit;
 
         public PlayerAttackState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
@@ -16,63 +15,79 @@ namespace GameSystem
             _stateMachine.IsAttacking = true;
             _stateMachine.MovementSpeedModifier = 0f;
             _timer = _stateMachine.Player.Data.CombatData.AttackDuration;
-            _hit.Clear();
             StartAnimation(_stateMachine.Player.AnimationData.AttackParameterHash);
-            StopAnimation(_stateMachine.Player.AnimationData.IdleParameterHash);
+
+            _hasHit = false;
+            DoHit();
         }
 
         public override void Exit()
         {
             _stateMachine.IsAttacking = false;
-            StopAnimation(_stateMachine.Player.AnimationData.AttackParameterHash);
             _stateMachine.MovementSpeedModifier = 1f;
+            StopAnimation(_stateMachine.Player.AnimationData.AttackParameterHash);
         }
 
         public override void Update()
         {
-#if ENABLE_INPUT_SYSTEM
-            var kb = UnityEngine.InputSystem.Keyboard.current;
-            bool dash = kb != null && kb.sKey.wasPressedThisFrame;
-#else
-            bool dash = Input.GetKeyDown(KeyCode.S);
-#endif
-            if (dash && _stateMachine.CanDash())
-            {
-                _stateMachine.ChangeState(_stateMachine.DashState);
-                return;
-            }
-
             _timer -= Time.deltaTime;
             if (_timer <= 0f)
             {
-                _stateMachine.ChangeState(_stateMachine.IdleState);
-                return;
-            }
-        }
-
-        public override void PhysicsUpdate()
-        {
-            Vector2 origin = _stateMachine.Player.transform.position;
-            float r = _stateMachine.Player.Data.CombatData.AttackRange;
-            Vector2 facing = _stateMachine.FacingSign > 0 ? Vector2.right : Vector2.left;
-
-            var cols = Physics2D.OverlapCircleAll(origin, r);
-            float damage = _stateMachine.Player.Data.CombatData.AttackPower;
-
-            for (int i = 0; i < cols.Length; i++)
-            {
-                var c = cols[i];
-                if (c.attachedRigidbody == _stateMachine.Player.Rb) continue;
-
-                Vector2 to = (Vector2)c.bounds.center - origin;
-                if (to.sqrMagnitude <= 0.0001f) continue;
-                if (Vector2.Dot(to.normalized, facing) <= 0f) continue;
-
-                if (_hit.Add(c))
+                if (_stateMachine.Player.IsGrounded())
                 {
-                    c.gameObject.SendMessage("TakeDamage", damage, SendMessageOptions.DontRequireReceiver);
+                    if (_stateMachine.MovementInput == Vector2.zero)
+                        _stateMachine.ChangeState(_stateMachine.IdleState);
+                    else
+                        _stateMachine.ChangeState(_stateMachine.WalkState);
+                }
+                else
+                {
+                    _stateMachine.ChangeState(_stateMachine.AirState);
                 }
             }
         }
+
+        void DoHit()
+        {
+            if (_hasHit) return;
+            _hasHit = true;
+
+            var d = _stateMachine.Player.Data.CombatData;
+            float r = d.AttackRange;
+            var pos = (Vector2)_stateMachine.Player.transform.position
+                      + new Vector2(_stateMachine.FacingSign * r * 0.5f, 0f);
+
+            var cols = Physics2D.OverlapCircleAll(pos, r);
+
+            int hitCount = 0;
+            var visited = new System.Collections.Generic.HashSet<object>();
+
+            float baseDmg = d.AttackPower + d.ExtraDamage;
+            float chance = Mathf.Max(0f, d.CriticalChancePercent) * 0.01f;
+            bool isCrit = Random.value < chance;
+            float mult = isCrit ? (1f + Mathf.Max(0f, d.CriticalDamagePercent) * 0.01f) : 1f;
+            int damage = Mathf.RoundToInt(baseDmg * mult);
+
+            for (int i = 0; i < cols.Length; i++)
+            {
+                if (cols[i].transform.IsChildOf(_stateMachine.Player.transform)) continue;
+
+                var target = cols[i].GetComponentInParent<IDamageable>();
+                if (target != null && visited.Add(target))
+                {
+                    target.TakeDamage(damage);
+                    hitCount++;
+                }
+            }
+
+            _stateMachine.Player.MarkLastHitCritical(isCrit);
+            if (hitCount > 0)
+            {
+                if (isCrit) Debug.Log("Critical");
+                _stateMachine.Player.ReportNormalAttackHit();
+            }
+        }
+
+        public override void PhysicsUpdate() { }
     }
 }
