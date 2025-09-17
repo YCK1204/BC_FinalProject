@@ -131,6 +131,7 @@ GameObject:
   - component: {fileID: 346173197}
   - component: {fileID: 346173196}
   - component: {fileID: 346173199}
+  - component: {fileID: 346173200}
   m_Layer: 8
   m_Name: MonsterA
   m_TagString: Untagged
@@ -210,7 +211,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!4 &346173198
 Transform:
   m_ObjectHideFlags: 0
@@ -239,6 +240,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25fab9610ede1bd42ab9935deaaae208, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Orc
+  _dataHandler: {fileID: 346173200}
+--- !u!114 &346173200
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346173194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1bdd63bab680f574caedea7e4e59cdda, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterDataHandler
+  _data: {fileID: 11400000, guid: e2f353c4c70d3b349aabced08ab23e43, type: 2}
+  _curHp: 25
 --- !u!1 &739826784
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,6 +472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10b579d9be5b58d42bd67423d8a2dc6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MonsterAttack
+  _projectile: {fileID: 1194238103056431186, guid: 149f6e33120e34444ba6bc2ce1947466, type: 3}
 --- !u!1 &953801115
 GameObject:
   m_ObjectHideFlags: 0
@@ -723,7 +740,7 @@ Transform:
   m_GameObject: {fileID: 1352687980}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.53, y: -0.8, z: 0}
+  m_LocalPosition: {x: -6.04, y: 0.5, z: 0}
   m_LocalScale: {x: 0.5, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

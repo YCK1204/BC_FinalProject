@@ -24,6 +24,7 @@ public class Manager : MonoBehaviour
         if (_instance == null)
         {
             _instance = this;
+            Data.Load();
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -42,4 +43,6 @@ public class Manager : MonoBehaviour
     public static AudioManager Audio { get { return Instance._audio; } set { Instance._audio = value; value.transform.parent = _instance.transform; } }
     PoolManager _pool;
     public static PoolManager Pool { get { return Instance._pool; } set { Instance._pool = value; value.transform.parent = _instance.transform; } }
+    DataManager _data = new DataManager();
+    public static DataManager Data { get { return Instance._data; } }
 }

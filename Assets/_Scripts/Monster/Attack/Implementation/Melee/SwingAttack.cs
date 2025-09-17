@@ -5,7 +5,7 @@ using static UnityEngine.GraphicsBuffer;
 public class SwingAttack : MeleeAttack
 {
     // Swing 공격은 박스형 탐지 / 반원형 탐지 둘 중 하나 골라야 할 듯
-    public SwingAttack(float damage, float attackRange, Transform tr) : base(damage, attackRange, tr)
+    public SwingAttack(float damage, float attackRange, Transform tr, MonsterAttack monsterAttack) : base(damage, attackRange, tr, monsterAttack)
     {
     }
 
@@ -21,11 +21,11 @@ public class SwingAttack : MeleeAttack
         }
     }
 
-    public override bool GetCheckAttackable()
+    public override bool GetCheckAttackable(float margin = 0)
     {
         //_target = Physics2D.OverlapCircle(_tr.position, _attackRange, _mask);
         float dir = _tr.localScale.x < 0 ? -1 : 1; 
-        _target = Physics2D.OverlapBox(_tr.position + new Vector3(_attackRange * 0.5f * dir, 0, 0), new Vector2(_attackRange, _attackRange), 0, _mask);
+        _target = Physics2D.OverlapBox(_tr.position + new Vector3((_attackRange * 0.5f - margin) * dir, 0, 0), new Vector2(_attackRange, _attackRange), 0, _mask);
         if (_target != null)
         {
             return CheckFov(_tr, _target.transform, 180);
