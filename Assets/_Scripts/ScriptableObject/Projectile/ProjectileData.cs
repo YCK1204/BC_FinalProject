@@ -4,17 +4,17 @@ using UnityEngine;
 public class ProjectileData : ScriptableObject
 {
     [Header("기본 정보")]
-    [SerializeField] private string projectileName;
+    [SerializeField] private string _projectileName;
 
     [Header("전투 관련")]
-    [SerializeField] private int damage;
-    [SerializeField] private float speed;
-    [SerializeField] private float rotateSpeed;
+    [SerializeField] private int _damage;
+    [SerializeField] private float _speed;
+    [SerializeField] private float _rotateSpeed;
     [SerializeField] private float _lifeTime;
 
-    public string Name { get { return projectileName; } }
-    public int Damage { get { return damage; } }
-    public float Speed { get { return speed; } }
-    public float RotateSpeed { get { return rotateSpeed; } }
+    public string Name { get { return _projectileName; } }
+    public int Damage { get { return _damage; } }
+    public float Speed { get { return _speed; } }
+    public float RotateSpeed { get { return _rotateSpeed; } }
     public float LifeTime { get { return _lifeTime; } }
 }
