@@ -16,12 +16,22 @@ public class MonsterCahseState : MonsterBaseState
         base.Enter();
 
         _target = _stateMachine.Owner.Target;
+        _stateMachine.Owner.LookTarget();
 
         _chaseMove = (_stateMachine.Owner as PatrolMonster)?.GetChaseMovement();
-        (_chaseMove as ChaseMove)?.SetTarget(_target);
 
-        _stateMachine.Owner.LookTarget();
-        _stateMachine.Owner.Anim.SetFloat(Common.AnimatorParams.Speed, _stateMachine.Owner.Speed);
+        // 아 이거 마음에 안드는데
+        if(_chaseMove is ChaseMove)
+        {
+            (_chaseMove as ChaseMove)?.SetTarget(_target);
+            _stateMachine.Owner.Anim.SetFloat(Common.AnimatorParams.Speed, _stateMachine.Owner.MonsterData.Speed);
+        }
+        else if( _chaseMove is VanishMove)
+        {
+            (_chaseMove as VanishMove)?.SetTarget(_target);
+            _stateMachine.Owner.Anim.SetFloat(Common.AnimatorParams.Speed, 0);
+        }
+
 
     }
 
@@ -36,7 +46,7 @@ public class MonsterCahseState : MonsterBaseState
             _stateMachine.ChangeState(Common.StateType.Idle);
 
         //if(CheckAttackRange())
-        if (_stateMachine.Owner.Attack.Attackable.GetCheckAttackable())
+        if (_stateMachine.Owner.Attack.Attackable.GetCheckAttackable(_xMargin))
             _stateMachine.ChangeState(Common.StateType.Attack);
     }
 

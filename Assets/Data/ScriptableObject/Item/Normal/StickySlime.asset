@@ -12,19 +12,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7d4759f942876a4a85e838025e04562, type: 3}
   m_Name: StickySlime
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemID: 0
-  itemTier: 5
-  itemName: "\uC751\uAC00"
+  itemID: 101003
+  itemTier: 0
+  itemName: "\uB048\uC801\uB048\uC801\uD55C \uC810\uC561"
   stat1:
     itemStatType: 0
     itemModifierType: 0
     itemTriggerType: 0
-    value: 0
+    value: 1
   stat2:
     itemStatType: 0
     itemModifierType: 0
     itemTriggerType: 0
     value: 0
-  itemIcon: {fileID: 0}
-  itemDescription: "\uC653\uB354\uD37D "
-  itemSetEffectType: 0
+  itemIcon: {fileID: 4088144695865659119, guid: fbaee673545390c4eb62ce9ecb812acc, type: 3}
+  itemSetSynergyId: 301003
