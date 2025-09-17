@@ -14,7 +14,7 @@ public abstract class PatrolMonster : Monster
         base.Init();
 
         curPatrolMovement = new PatrolMove(_speed, transform, _rb, _col); ;
-        curChaseMovement = new ChaseMove(_speed, transform, _rb, _col, Target);
+        curChaseMovement = new ChaseMove(_speed, transform, _rb, _col, Target, _anim);
         //curChaseMovement = new VanishMove(transform, Target);
     }
 
