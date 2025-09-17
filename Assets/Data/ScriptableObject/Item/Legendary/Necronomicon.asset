@@ -25,6 +25,5 @@ MonoBehaviour:
     itemModifierType: 0
     itemTriggerType: 0
     value: 0
-  itemIcon: {fileID: 0}
-  itemDescription: "\uC653\uB354\uD37D "
-  itemSetEffectType: 0
+  itemIcon: {fileID: 4088144695865659119, guid: fbaee673545390c4eb62ce9ecb812acc, type: 3}
+  itemSetSynergyId: 0
