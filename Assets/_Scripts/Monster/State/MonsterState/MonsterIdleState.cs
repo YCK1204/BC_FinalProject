@@ -58,7 +58,7 @@ public class MonsterIdleState : MonsterBaseState
         _curDetectDelay += Time.deltaTime;
 
         // 순찰 상태 전환이 불가능한 적이라면 종료
-        if (!_stateMachine.Owner.CanMove)
+        if (!_stateMachine.Owner.MonsterData.CanMove)
             return;
 
         // 대기 시간이 지나면 순찰상태로 변경

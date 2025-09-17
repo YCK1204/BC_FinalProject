@@ -35,7 +35,7 @@ public abstract class MonsterBaseState : Game.Monster.IState
     protected bool CheckDetectRange()
     {
         Collider2D player = Physics2D.OverlapCircle(_stateMachine.Owner.transform.position,
-                                                        _stateMachine.Owner.DetectRange, _playerLayer);
+                                                        _stateMachine.Owner.MonsterData.DetectRange, _playerLayer);
 
         // 플레이어가 감지 되었을 때, 시야각 내에 있지 않으면 false
         if (player != null)
@@ -45,11 +45,11 @@ public abstract class MonsterBaseState : Game.Monster.IState
         }
 
         // 플레이어가 감지되고 거리 내라면, 눈에 보이는 지 확인
-        if (player != null && Vector3.Distance(_stateMachine.Owner.transform.position, player.transform.position) <= _stateMachine.Owner.DetectRange)
+        if (player != null && Vector3.Distance(_stateMachine.Owner.transform.position, player.transform.position) <= _stateMachine.Owner.MonsterData.DetectRange)
         {
             Vector2 dir = (player.transform.position - _stateMachine.Owner.transform.position).normalized;
-            RaycastHit2D hit = Physics2D.Raycast(_stateMachine.Owner.transform.position, dir, _stateMachine.Owner.DetectRange, _obstacleLayer);
-            Debug.DrawRay(_stateMachine.Owner.transform.position, dir * _stateMachine.Owner.DetectRange, Color.blue);
+            RaycastHit2D hit = Physics2D.Raycast(_stateMachine.Owner.transform.position, dir, _stateMachine.Owner.MonsterData.DetectRange, _obstacleLayer);
+            Debug.DrawRay(_stateMachine.Owner.transform.position, dir * _stateMachine.Owner.MonsterData.DetectRange, Color.blue);
 
             // 발견한 대상 사이에 장애물이 없다면 true
             if (hit.transform == player.transform)
@@ -67,7 +67,7 @@ public abstract class MonsterBaseState : Game.Monster.IState
     {
         // 공격 가능 여부 확인
         Collider2D player = Physics2D.OverlapCircle(_stateMachine.Owner.transform.position,
-                                                    _stateMachine.Owner.AttackRange, _playerLayer);
+                                                    _stateMachine.Owner.MonsterData.AttackRange, _playerLayer);
 
         // 플레이어가 감지 되었을 때, 시야각 내에 있지 않으면 false
         if (player != null)
@@ -77,7 +77,7 @@ public abstract class MonsterBaseState : Game.Monster.IState
         }
 
         // 공격 가능한 상태고 공격 범위 내라면
-        if (player != null && Vector3.Distance(_stateMachine.Owner.transform.position, player.transform.position) <= _stateMachine.Owner.AttackRange)
+        if (player != null && Vector3.Distance(_stateMachine.Owner.transform.position, player.transform.position) <= _stateMachine.Owner.MonsterData.AttackRange)
             return true;
 
         return false;
