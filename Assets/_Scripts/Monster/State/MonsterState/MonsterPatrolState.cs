@@ -27,7 +27,7 @@ public class MonsterPatrolState : MonsterBaseState
         int dir = Random.Range(0, 2) % 2 == 0 ? 1 : -1;
         _stateMachine.Owner.transform.localScale = new Vector3(dir * scale.x, scale.y, scale.z);
         
-        _stateMachine.Owner.Anim.SetFloat(Common.AnimatorParams.Speed, _stateMachine.Owner.Speed);
+        _stateMachine.Owner.Anim.SetFloat(Common.AnimatorParams.Speed, _stateMachine.Owner.MonsterData.Speed);
 
         _maxPatrolTime = Random.Range(2f, 5f);
         _curPatrolTime = 0f;
@@ -47,7 +47,8 @@ public class MonsterPatrolState : MonsterBaseState
             if (CheckDetectRange())
             {
                 // 감지가 되고 공격 범위 내라면 공격
-                if (CheckAttackRange())
+                //if (CheckAttackRange())
+                if (_stateMachine.Owner.Attack.Attackable.GetCheckAttackable(_xMargin))
                 {
                     _stateMachine.ChangeState(Common.StateType.Attack);
                 }

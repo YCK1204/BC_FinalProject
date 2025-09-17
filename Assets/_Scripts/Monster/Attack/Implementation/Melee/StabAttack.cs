@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class StabAttack : MeleeAttack
 {
-    public StabAttack(float damage, float attackRange, Transform tr) : base(damage, attackRange, tr)
+    public StabAttack(float damage, float attackRange, Transform tr, MonsterAttack monsterAttack) : base(damage, attackRange, tr, monsterAttack)
     {
     }
 
@@ -15,11 +15,11 @@ public class StabAttack : MeleeAttack
         }
     }
 
-    public override bool GetCheckAttackable()
+    public override bool GetCheckAttackable(float margin = 0)
     {
         float dir = _tr.localScale.x < 0 ? -1 : 1;
-        _target = Physics2D.OverlapBox(_tr.position + new Vector3(_attackRange * 0.5f * dir, 0, 0), new Vector2(_attackRange, 0.5f), 0, _mask);
+        _target = Physics2D.OverlapBox(_tr.position + new Vector3((_attackRange * 0.5f - margin) * dir, 0, 0), new Vector2(_attackRange, 0.5f), 0, _mask);
 
-        return false;
+        return _target != null;
     }
 }

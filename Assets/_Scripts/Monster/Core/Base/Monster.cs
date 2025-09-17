@@ -4,36 +4,16 @@ using UnityEngine;
 /// <summary>
 /// 몬스터 최상위 클래스
 /// </summary>
-public abstract class Monster : MonoBehaviour
+public abstract class Monster : MonoBehaviour, Game.Monster.IDamageable
 {
     /// <summary>
     /// 만약 단일책임원칙에 따라 스크립트를 분리하면 어떻게 하지?
-    /// 몬스터의 데이터 분리
+    /// 몬스터의 데이터 분리 -> 했음
     /// 공격쪽은 이미 분리함
     /// </summary>
 
-    // 데이터(추후 분리 예정)
-    protected int _curHp = 25;
-    public int CurHp { get { return _curHp; } }
-
-    protected float _speed = 3f;
-    public float Speed { get { return _speed; } }
-
-    protected float _attackPower = 5f;
-    public float AttackPower { get { return _attackPower; } }
-
-    protected float _attackDelay = 1f;
-    public float AttackDelay { get { return _attackDelay; } }
-
-    protected float _attackRange = 3f;
-    public float AttackRange { get { return _attackRange; } }
-
-    protected float _detectRange = 5f;
-    public float DetectRange { get { return _detectRange; } }
-
-    protected bool _canMove = true;
-    public bool CanMove { get { return _canMove; } }
-    //
+    [SerializeField] protected MonsterDataHandler _dataHandler;
+    public MonsterDataHandler MonsterData {  get { return _dataHandler; } }
 
     protected MonsterStateMachine _stateMachine;
     public MonsterStateMachine StateMachine { get { return _stateMachine; } }
@@ -58,6 +38,7 @@ public abstract class Monster : MonoBehaviour
         _anim = GetComponentInChildren<Animator>();
 
         _attack = GetComponentInChildren<MonsterAttack>();
+        _dataHandler = Extension.GetOrAddComponent<MonsterDataHandler>(this.gameObject);
 
         Init();
     }
@@ -93,13 +74,29 @@ public abstract class Monster : MonoBehaviour
         _target = null;
     }
 
+    // 타겟을 바라보는 메서드
     public void LookTarget()
     {
         float d = _target.position.x < transform.position.x ? -Mathf.Abs(transform.localScale.x) : Mathf.Abs(transform.localScale.x);
         transform.localScale = new Vector3(d, transform.localScale.y, transform.localScale.z);
     }
 
+    public virtual void TakeDamage(int damage)
+    {
+        _dataHandler.TakeDamage(damage);
+
+        if (_dataHandler.CurHp <= 0)
+        {
+            _stateMachine.ChangeState(Common.StateType.Die);
+        }
+        else
+        {
+            _stateMachine.ChangeState(Common.StateType.Hit);
+        }
+    }
+
     public Action OnDied;
+
     public void Die()
     {
         // Todo: 오브젝트 풀로 리턴
@@ -109,12 +106,19 @@ public abstract class Monster : MonoBehaviour
     {
         OnDied?.Invoke();
     }
+
+#if UNITY_EDITOR
     // 에디터에서 탐지 범위와 공격 가능 범위를 표시하는 메서드
     private void OnDrawGizmos()
     {
+        if (!Application.isPlaying)
+            return;
+
         Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, DetectRange);
+        Gizmos.DrawWireSphere(transform.position, _dataHandler.DetectRange);
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, AttackRange);
+        Gizmos.DrawWireSphere(transform.position, _dataHandler.AttackRange);
     }
+#endif
+
 }
