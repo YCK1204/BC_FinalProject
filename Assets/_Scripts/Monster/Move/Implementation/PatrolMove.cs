@@ -13,7 +13,7 @@ public class PatrolMove : Game.Monster.IMovable
     // 레이어 마스크 그라운드
     // 레이어 마스크 벽
 
-    public PatrolMove(float speed, Monster owner)
+    public PatrolMove(float speed, BaseMonster owner)
     {
         _speed = speed;
         _tr = owner.transform;

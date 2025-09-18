@@ -1,11 +1,10 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 public abstract class MonsterBaseState : Game.Monster.IState
 {
     protected MonsterStateMachine _stateMachine;
 
-    public Common.StateType StateType { get; protected set; }
+    public Game.Monster.StateType StateType { get; protected set; }
 
     private LayerMask _playerLayer;
     private LayerMask _obstacleLayer;
@@ -21,8 +20,8 @@ public abstract class MonsterBaseState : Game.Monster.IState
     {
         _stateMachine = stateMachine;
 
-        _playerLayer = LayerMask.GetMask(Common.Layers.Player);
-        _obstacleLayer = ~LayerMask.GetMask(Common.Layers.Monster);
+        _playerLayer = LayerMask.GetMask(Game.Monster.Layers.Player);
+        _obstacleLayer = ~LayerMask.GetMask(Game.Monster.Layers.Monster);
     }
 
     public virtual void Enter() { Debug.Log(StateType); }

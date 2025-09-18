@@ -38,13 +38,13 @@ public abstract class BaseProjectile : MonoBehaviour
     {
         IDamageable damageable = other.GetComponent<IDamageable>();
         // 플레이어면 데미지
-        if(damageable != null && (1 << other.gameObject.layer) != LayerMask.GetMask(Common.Layers.Monster))
+        if(damageable != null && (1 << other.gameObject.layer) != LayerMask.GetMask(Game.Monster.Layers.Monster))
         {
             damageable.TakeDamage(DataHandler.Data.Damage);
             DestroyProjectile();
         }
         // 벽이나 땅이면 소멸
-        else if((1 << other.gameObject.layer) != LayerMask.GetMask(Common.Layers.Monster))
+        else if((1 << other.gameObject.layer) != LayerMask.GetMask(Game.Monster.Layers.Monster))
         {
             DestroyProjectile();
         }

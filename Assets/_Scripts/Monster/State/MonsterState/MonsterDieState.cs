@@ -7,7 +7,7 @@ public class MonsterDieState : MonsterBaseState
 
     public MonsterDieState(MonsterStateMachine stateMachine) : base(stateMachine)
     {
-        StateType = Common.StateType.Die;
+        StateType = Game.Monster.StateType.Die;
     }
 
     public override void Enter()
@@ -17,7 +17,7 @@ public class MonsterDieState : MonsterBaseState
         _curRetrunTime = 0f;
         _maxReturnTime = 2f;
 
-        _stateMachine.Owner.Anim.SetTrigger(Common.AnimatorParams.Die);
+        _stateMachine.Owner.Anim.SetTrigger(Game.Monster.AnimatorParams.Die);
     }
 
     public override void Update()

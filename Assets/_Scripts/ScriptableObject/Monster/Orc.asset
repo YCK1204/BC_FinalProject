@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97e65d2e36f92104e90d76fa5f85823d, type: 3}
   m_Name: Orc
   m_EditorClassIdentifier: Assembly-CSharp::MonsterData
-  _maxHp: 25
-  _speed: 3
-  _attackPower: 5
-  _attackDelay: 1
-  _attackRange: 1
-  _detectRange: 5
-  _canMove: 1
+  MaxHp: 25
+  Speed: 3
+  AttackPower: 5
+  AttackDelay: 1
+  AttackRange: 1
+  DetectRange: 5
+  CanMove: 1
