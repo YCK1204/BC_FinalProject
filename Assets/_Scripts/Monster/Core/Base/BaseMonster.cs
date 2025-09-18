@@ -1,10 +1,11 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
 /// 몬스터 최상위 클래스
 /// </summary>
-public abstract class Monster : MonoBehaviour, Game.Monster.IDamageable
+public abstract class BaseMonster : MonoBehaviour, Game.Monster.IDamageable
 {
     /// <summary>
     /// 만약 단일책임원칙에 따라 스크립트를 분리하면 어떻게 하지?
@@ -12,9 +13,15 @@ public abstract class Monster : MonoBehaviour, Game.Monster.IDamageable
     /// 공격쪽은 이미 분리함
     /// </summary>
 
+    // 몬스터 데이터 관리 컴포넌트
     [SerializeField] protected MonsterDataHandler _dataHandler;
     public MonsterDataHandler MonsterData {  get { return _dataHandler; } }
 
+    // 몬스터 공격 컴포넌트
+    protected MonsterAttack _attack;
+    public MonsterAttack Attack { get { return _attack; } }
+
+    // 몬스터 상태 머신
     protected MonsterStateMachine _stateMachine;
     public MonsterStateMachine StateMachine { get { return _stateMachine; } }
 
@@ -27,18 +34,37 @@ public abstract class Monster : MonoBehaviour, Game.Monster.IDamageable
     public Collider2D Col { get { return _col; } }
     protected Animator _anim;
     public Animator Anim {  get { return _anim; } }
+    protected SpriteRenderer _sr;
+    public SpriteRenderer Sr { get { return _sr; } }
 
-    protected MonsterAttack _attack;
-    public MonsterAttack Attack { get { return _attack; } }
+    protected List<Game.Monster.ISpecialAbillity> _abillityList;
+
+    // OnDestroy에서 호출
+    public Action OnDied;
+    // Die에서 호출 
+    public Action OnDeath;
+    public Action OnUpdate;
 
     protected virtual void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _col = GetComponent<Collider2D>();
         _anim = GetComponentInChildren<Animator>();
+        _sr = GetComponentInChildren<SpriteRenderer>();
 
         _attack = GetComponentInChildren<MonsterAttack>();
         _dataHandler = Extension.GetOrAddComponent<MonsterDataHandler>(this.gameObject);
+        _dataHandler.Owner = this;
+        _dataHandler.SetStatModifier(new StatModifier(1,1,1,1));
+        _dataHandler.Init();
+
+        _abillityList = new List<Game.Monster.ISpecialAbillity>();
+        Game.Monster.ISpecialAbillity[] abillities = GetComponents<Game.Monster.ISpecialAbillity>();
+        foreach(Game.Monster.ISpecialAbillity abillity in abillities)
+        {
+            _abillityList.Add(abillity);
+            abillity.Init(this);
+        }
 
         Init();
     }
@@ -56,6 +82,7 @@ public abstract class Monster : MonoBehaviour, Game.Monster.IDamageable
 
     protected virtual void Update()
     {
+        OnUpdate?.Invoke();
         _stateMachine?.Update();
     }
 
@@ -87,20 +114,19 @@ public abstract class Monster : MonoBehaviour, Game.Monster.IDamageable
 
         if (_dataHandler.CurHp <= 0)
         {
-            _stateMachine.ChangeState(Common.StateType.Die);
+            _stateMachine.ChangeState(Game.Monster.StateType.Die);
         }
         else
         {
-            _stateMachine.ChangeState(Common.StateType.Hit);
+            _stateMachine.ChangeState(Game.Monster.StateType.Hit);
         }
     }
 
-    public Action OnDied;
-
     public void Die()
     {
+        OnDeath?.Invoke();
         // Todo: 오브젝트 풀로 리턴
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
     public void OnDestroy()
     {

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EnemyTest : MonoBehaviour
 {
-    public Monster monster;
+    public BaseMonster monster;
 
     private void Update()
     {

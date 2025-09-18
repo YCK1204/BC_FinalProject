@@ -8,7 +8,7 @@ public class MonsterCahseState : MonsterBaseState
 
     public MonsterCahseState(MonsterStateMachine stateMachine) : base(stateMachine)
     {
-        StateType = Common.StateType.Chase;
+        StateType = Game.Monster.StateType.Chase;
     }
 
     public override void Enter()
@@ -24,12 +24,12 @@ public class MonsterCahseState : MonsterBaseState
         if(_chaseMove is ChaseMove)
         {
             (_chaseMove as ChaseMove)?.SetTarget(_target);
-            _stateMachine.Owner.Anim.SetFloat(Common.AnimatorParams.Speed, _stateMachine.Owner.MonsterData.Speed);
+            _stateMachine.Owner.Anim.SetFloat(Game.Monster.AnimatorParams.Speed, _stateMachine.Owner.MonsterData.Speed);
         }
         else if( _chaseMove is VanishMove)
         {
             (_chaseMove as VanishMove)?.SetTarget(_target);
-            _stateMachine.Owner.Anim.SetFloat(Common.AnimatorParams.Speed, 0);
+            _stateMachine.Owner.Anim.SetFloat(Game.Monster.AnimatorParams.Speed, 0);
         }
 
 
@@ -43,11 +43,11 @@ public class MonsterCahseState : MonsterBaseState
             _stateMachine.Owner.LookTarget();
 
         if (!CheckDetectRange())
-            _stateMachine.ChangeState(Common.StateType.Idle);
+            _stateMachine.ChangeState(Game.Monster.StateType.Idle);
 
         //if(CheckAttackRange())
         if (_stateMachine.Owner.Attack.Attackable.GetCheckAttackable(_xMargin))
-            _stateMachine.ChangeState(Common.StateType.Attack);
+            _stateMachine.ChangeState(Game.Monster.StateType.Attack);
     }
 
     public override void FixedUpdate()

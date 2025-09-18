@@ -11,7 +11,7 @@ using System.Collections;
 [Serializable]
 public class MonsterSpawnInfo
 {
-    public Monster Prefab;
+    public BaseMonster Prefab;
     public Vector2 Position;
 }
 public abstract class MonsterSpawner : MonoBehaviour
@@ -43,7 +43,7 @@ public abstract class MonsterSpawner : MonoBehaviour
             }
         }
     }
-    List<Monster> _spawnedMonsters = new List<Monster>();
+    List<BaseMonster> _spawnedMonsters = new List<BaseMonster>();
     private void Start()
     {
         StartCoroutine(LateStart(() =>
@@ -62,7 +62,7 @@ public abstract class MonsterSpawner : MonoBehaviour
 
         foreach (var info in SpawnInfos)
         {
-            var monster = Manager.Resource.Instantiate<Monster>(info.Prefab);
+            var monster = Manager.Resource.Instantiate<BaseMonster>(info.Prefab);
             monster.OnDied += () =>
             {
                 SpawnedCount--;

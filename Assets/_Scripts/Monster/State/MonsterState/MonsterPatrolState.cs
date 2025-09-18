@@ -13,7 +13,7 @@ public class MonsterPatrolState : MonsterBaseState
 
     public MonsterPatrolState(MonsterStateMachine stateMachine) : base(stateMachine)
     {
-        StateType = Common.StateType.Patrol;
+        StateType = Game.Monster.StateType.Patrol;
     }
 
     public override void Enter()
@@ -27,7 +27,7 @@ public class MonsterPatrolState : MonsterBaseState
         int dir = Random.Range(0, 2) % 2 == 0 ? 1 : -1;
         _stateMachine.Owner.transform.localScale = new Vector3(dir * scale.x, scale.y, scale.z);
         
-        _stateMachine.Owner.Anim.SetFloat(Common.AnimatorParams.Speed, _stateMachine.Owner.MonsterData.Speed);
+        _stateMachine.Owner.Anim.SetFloat(Game.Monster.AnimatorParams.Speed, _stateMachine.Owner.MonsterData.Speed);
 
         _maxPatrolTime = Random.Range(2f, 5f);
         _curPatrolTime = 0f;
@@ -50,12 +50,12 @@ public class MonsterPatrolState : MonsterBaseState
                 //if (CheckAttackRange())
                 if (_stateMachine.Owner.Attack.Attackable.GetCheckAttackable(_xMargin))
                 {
-                    _stateMachine.ChangeState(Common.StateType.Attack);
+                    _stateMachine.ChangeState(Game.Monster.StateType.Attack);
                 }
                 // 감지는 됬는데 공격 사정거리 밖이라면 추격
                 else
                 {
-                    _stateMachine.ChangeState(Common.StateType.Chase);
+                    _stateMachine.ChangeState(Game.Monster.StateType.Chase);
                 }
             }
         }
@@ -63,7 +63,7 @@ public class MonsterPatrolState : MonsterBaseState
 
         // 일정 시간동안 순찰을 하고 대기 상태로 전환
         if (_curPatrolTime >= _maxPatrolTime)
-            _stateMachine.ChangeState(Common.StateType.Idle);
+            _stateMachine.ChangeState(Game.Monster.StateType.Idle);
         _curPatrolTime += Time.deltaTime;
     }
 

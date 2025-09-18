@@ -10,7 +10,7 @@ public class MonsterIdleState : MonsterBaseState
 
     public MonsterIdleState(MonsterStateMachine stateMachine) : base(stateMachine)
     {
-        StateType = Common.StateType.Idle;
+        StateType = Game.Monster.StateType.Idle;
     }
 
     /*
@@ -23,7 +23,7 @@ public class MonsterIdleState : MonsterBaseState
         base.Enter();
 
         _stateMachine.Owner.ResetTarget();
-        _stateMachine.Owner.Anim.SetFloat(Common.AnimatorParams.Speed, 0);
+        _stateMachine.Owner.Anim.SetFloat(Game.Monster.AnimatorParams.Speed, 0);
 
         _moveDelay = 1.0f;
         _curMoveDelay = 0.0f;
@@ -41,17 +41,14 @@ public class MonsterIdleState : MonsterBaseState
         {
             if(CheckDetectRange())
             {
-                // 감지가 되고 공격 범위 내라면 공격
-                // 이거 차라리 원뿔 모양 감지보다는 각 공격 방식에 맞는 방식으로 변경하기? -> 그래서 일단 바꿔 봄
-                //if (CheckAttackRange())
                 if (_stateMachine.Owner.Attack.Attackable.GetCheckAttackable(_xMargin))
                 {
-                    _stateMachine.ChangeState(Common.StateType.Attack);
+                    _stateMachine.ChangeState(Game.Monster.StateType.Attack);
                 }
                 // 감지는 됬는데 공격 사정거리 밖이라면 추격
                 else
                 {
-                    _stateMachine.ChangeState(Common.StateType.Chase);
+                    _stateMachine.ChangeState(Game.Monster.StateType.Chase);
                 }
             }
         }
@@ -64,7 +61,7 @@ public class MonsterIdleState : MonsterBaseState
         // 대기 시간이 지나면 순찰상태로 변경
         if(_curMoveDelay >= _moveDelay)
         {
-            _stateMachine.ChangeState(Common.StateType.Patrol);
+            _stateMachine.ChangeState(Game.Monster.StateType.Patrol);
         }
         _curMoveDelay += Time.deltaTime;
     }

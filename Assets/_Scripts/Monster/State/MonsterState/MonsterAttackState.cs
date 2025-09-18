@@ -9,11 +9,11 @@ public class MonsterAttackState : MonsterBaseState
     float _maxCheckRayInterval = 0.2f;
     float _curCheckRayInterval = 0f;
 
-    LayerMask _mask = ~(LayerMask.GetMask(Common.Layers.Player) | LayerMask.GetMask(Common.Layers.Monster));
+    LayerMask _mask = ~(LayerMask.GetMask(Game.Monster.Layers.Player) | LayerMask.GetMask(Game.Monster.Layers.Monster));
 
     public MonsterAttackState(MonsterStateMachine stateMachine) : base(stateMachine)
     {
-        StateType = Common.StateType.Attack;
+        StateType = Game.Monster.StateType.Attack;
 
         _maxCheckRayInterval = 0.1f;
         _curCheckRayInterval = 0f;
@@ -23,7 +23,7 @@ public class MonsterAttackState : MonsterBaseState
     {
         base.Enter();
 
-        _stateMachine.Owner.Anim.SetFloat(Common.AnimatorParams.Speed, 0);
+        _stateMachine.Owner.Anim.SetFloat(Game.Monster.AnimatorParams.Speed, 0);
         _stateMachine.Owner.Attack.OnAttackEnd += AttackEnd;
 
         _tr = _stateMachine.Owner.transform;
@@ -61,7 +61,7 @@ public class MonsterAttackState : MonsterBaseState
 
     private void Attack()
     {
-        _stateMachine.Owner.Anim.SetTrigger(Common.AnimatorParams.Attack);
+        _stateMachine.Owner.Anim.SetTrigger(Game.Monster.AnimatorParams.Attack);
     }
 
     private void AttackEnd()
@@ -77,12 +77,12 @@ public class MonsterAttackState : MonsterBaseState
             // 감지는 됬는데 공격 사정거리 밖이라면 추격
             else
             {
-                _stateMachine.ChangeState(Common.StateType.Chase);
+                _stateMachine.ChangeState(Game.Monster.StateType.Chase);
             }
         }
         else
         {
-            _stateMachine.ChangeState(Common.StateType.Idle);
+            _stateMachine.ChangeState(Game.Monster.StateType.Idle);
         }
     }
 }

@@ -16,7 +16,7 @@ public abstract class BaseAttack : Game.Monster.IAttackable
         _attackRange = attackRange;
         _tr = tr;
 
-        _mask = LayerMask.GetMask(Common.Layers.Player);
+        _mask = LayerMask.GetMask(Game.Monster.Layers.Player);
         _monsterAttack = monsterAttack;
     }
 

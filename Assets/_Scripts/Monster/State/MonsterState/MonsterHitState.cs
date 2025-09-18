@@ -7,7 +7,7 @@ public class MonsterHitState : MonsterBaseState
 
     public MonsterHitState(MonsterStateMachine stateMachine) : base(stateMachine)
     {
-        StateType = Common.StateType.Hit;
+        StateType = Game.Monster.StateType.Hit;
     }
 
     public override void Enter()
@@ -16,8 +16,8 @@ public class MonsterHitState : MonsterBaseState
 
         _maxHitTime = 0.5f;
         _curHitTime = 0f;
-        //_stateMachine.Owner.Anim.SetFloat(Common.AnimatorParams.Speed, 0);
-        _stateMachine.Owner.Anim.SetTrigger(Common.AnimatorParams.Hit);
+        //_stateMachine.Owner.Anim.SetFloat(Game.Monster.AnimatorParams.Speed, 0);
+        _stateMachine.Owner.Anim.SetTrigger(Game.Monster.AnimatorParams.Hit);
     }
 
     // Todo: 피격 시, 몬스터 행동 불가 / 일정 시간 이후 대기 상태로 복귀
@@ -27,7 +27,7 @@ public class MonsterHitState : MonsterBaseState
         base.Update();
         if(_curHitTime >= _maxHitTime)
         {
-            _stateMachine.ChangeState(Common.StateType.Idle);
+            _stateMachine.ChangeState(Game.Monster.StateType.Idle);
             return;
         }
         _curHitTime += Time.deltaTime;
