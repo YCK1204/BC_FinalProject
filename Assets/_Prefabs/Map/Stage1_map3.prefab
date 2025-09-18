@@ -154,8 +154,7 @@ MonoBehaviour:
   - Prefab: {fileID: 5500332636063280834, guid: b683c352ac0ada640ae7df0a54239d8f, type: 3}
     Position: {x: 25, y: 1}
   Root: {fileID: 0}
-  NextSpawners:
-  - {fileID: 0}
+  NextSpawners: []
   GizmoColor: {r: 1, g: 0, b: 0, a: 1}
   GizmoSize: 1
 --- !u!1 &141661518497150794

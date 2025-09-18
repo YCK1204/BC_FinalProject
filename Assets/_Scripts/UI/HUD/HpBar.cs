@@ -1,38 +1,23 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using GameSystem;
 
 public class HpBar : MonoBehaviour
 {
     public Slider slider;
     public float lerpSpeed = 2f;
 
-    //임시
-    private float hp = 1;
+    public PlayerCharacter player;
 
-    //테스트 함수
+
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (player != null && slider.value != player.CurrentHP)
         {
-            hp -= 0.1f;
-            SetHp(hp);
-        }
-
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            hp -= 0.2f;
-            SetHp(hp);
-        }
-
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            slider.value = 1f;
-            hp = 1f;
-            SetHp(hp);
+            SetHp(player.CurrentHP);
         }
     }
-
 
     public void SetMaxHp(float maxHp)
     {
@@ -44,23 +29,20 @@ public class HpBar : MonoBehaviour
     {
         StopAllCoroutines();
         StartCoroutine(UpdateHpBar(hp));
-        Debug.Log(hp);
     }
 
-    private IEnumerator UpdateHpBar(float hp)
+    private IEnumerator UpdateHpBar(float targetHp)
     {
         float elapsedTime = 0f;
         float startingValue = slider.value;
 
-        //반복
-        while (!Mathf.Approximately(slider.value, hp))
+        while (!Mathf.Approximately(slider.value, targetHp))
         {
-            //선형보간함수
-            slider.value = Mathf.Lerp(startingValue, hp, elapsedTime * lerpSpeed);
+            slider.value = Mathf.Lerp(startingValue, targetHp, elapsedTime * lerpSpeed);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        slider.value = hp;
+        slider.value = targetHp;
     }
 }
