@@ -1,0 +1,73 @@
+using Game.Monster;
+using System.Collections;
+using UnityEngine;
+
+public abstract class BaseProjectile : MonoBehaviour
+{
+    private ProjectileDataHandler _dataHandler;
+    public ProjectileDataHandler DataHandler {  get { return _dataHandler; } }
+
+    protected Rigidbody2D _rb;
+
+    protected Transform _target;
+    protected Vector3 _dir;
+
+    private void Awake()
+    {
+        _dataHandler = Extension.GetOrAddComponent<ProjectileDataHandler>(this.gameObject);
+        _rb = GetComponent<Rigidbody2D>();
+        StartCoroutine(ProjectileLife(DataHandler.Data.LifeTime));
+    }
+
+    public virtual void Init(Vector3 dir, Transform target = null)
+    {
+        _target = target;
+        _dir = dir;
+    }
+
+    private void FixedUpdate()
+    {
+        Move();
+    }
+
+    protected abstract void Move();
+
+    // 일단 레이어 정보가 정확하지 않아 임시로 설정 추후 수정 필요
+    // Todo: 레이어 정보 변경하기
+    protected virtual void OnTriggerEnter2D(Collider2D other)
+    {
+        IDamageable damageable = other.GetComponent<IDamageable>();
+        // 플레이어면 데미지
+        if(damageable != null && (1 << other.gameObject.layer) != LayerMask.GetMask(Game.Monster.Layers.Monster))
+        {
+            damageable.TakeDamage(DataHandler.Data.Damage);
+            DestroyProjectile();
+        }
+        // 벽이나 땅이면 소멸
+        else if((1 << other.gameObject.layer) != LayerMask.GetMask(Game.Monster.Layers.Monster))
+        {
+            DestroyProjectile();
+        }
+    }
+
+    // Todo: 풀로 반환하기
+    protected virtual void DestroyProjectile()
+    {
+        StopAllCoroutines();
+        // 일단 디스트로이로 제거
+        // 추후 풀로 반환
+        Destroy(gameObject);
+    }
+
+    // 일정 시간이 지나면 자동으로 제거
+    protected IEnumerator ProjectileLife(float lifetime)
+    {
+        float curTime = 0;
+        while(curTime <= lifetime)
+        {
+            curTime += Time.deltaTime;
+            yield return null;
+        }
+        DestroyProjectile() ;
+    }
+}

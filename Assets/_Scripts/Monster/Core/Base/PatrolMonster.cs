@@ -4,17 +4,18 @@ using UnityEngine;
 /// <summary>
 /// 순찰 기능(사실상 이동 기능)이 있는 몬스터 클래스
 /// </summary>
-public abstract class PatrolMonster : Monster
+public abstract class PatrolMonster : BaseMonster
 {
-    protected PatrolMove curPatrolMovement;
-    protected ChaseMove curChaseMovement;
+    protected IMovable curPatrolMovement;
+    protected IMovable curChaseMovement;
 
     protected override void Init()
     {
         base.Init();
 
-        curPatrolMovement = new PatrolMove(_speed, transform, _rb, _col); ;
-        curChaseMovement = new ChaseMove(_speed, transform, _rb, _col, Target);
+        curPatrolMovement = new PatrolMove(_dataHandler.Speed, this); ;
+        curChaseMovement = new ChaseMove(_dataHandler.Speed, this);
+        //curChaseMovement = new VanishMove(transform, this);
     }
 
     public IMovable GetChaseMovement()

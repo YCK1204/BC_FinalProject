@@ -1,18 +1,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterStateMachine : Game.Monster.IStateMachine<Monster>
+public class MonsterStateMachine : Game.Monster.IStateMachine<BaseMonster>
 {
     // 해당 스테이트 머신의 소유자
-    public Monster Owner { get; private set; }
+    public BaseMonster Owner { get; private set; }
 
     // 몬스터의 현재 상태
     protected MonsterBaseState curState;
     protected MonsterBaseState prevState;
     // 몬스터의 상태를 담은 딕셔너리
-    protected Dictionary<Common.StateType, MonsterBaseState> stateDic;
+    protected Dictionary<Game.Monster.StateType, MonsterBaseState> stateDic;
 
-    public MonsterStateMachine(Monster owner)
+    public MonsterStateMachine(BaseMonster owner)
     {
         Owner = owner;
         Init();
@@ -20,20 +20,20 @@ public class MonsterStateMachine : Game.Monster.IStateMachine<Monster>
 
     public virtual void Init()
     {
-        stateDic = new Dictionary<Common.StateType, MonsterBaseState>();
-        stateDic.Add(Common.StateType.Idle, new MonsterIdleState(this));
-        stateDic.Add(Common.StateType.Patrol, new MonsterPatrolState(this));
-        stateDic.Add(Common.StateType.Attack, new MonsterAttackState(this));
-        stateDic.Add(Common.StateType.Chase, new MonsterCahseState(this));
-        stateDic.Add(Common.StateType.Hit, new MonsterHitState(this));
-        stateDic.Add(Common.StateType.Die, new MonsterDieState(this));
+        stateDic = new Dictionary<Game.Monster.StateType, MonsterBaseState>();
+        stateDic.Add(Game.Monster.StateType.Idle, new MonsterIdleState(this));
+        stateDic.Add(Game.Monster.StateType.Patrol, new MonsterPatrolState(this));
+        stateDic.Add(Game.Monster.StateType.Attack, new MonsterAttackState(this));
+        stateDic.Add(Game.Monster.StateType.Chase, new MonsterCahseState(this));
+        stateDic.Add(Game.Monster.StateType.Hit, new MonsterHitState(this));
+        stateDic.Add(Game.Monster.StateType.Die, new MonsterDieState(this));
 
         prevState = null;
-        curState = stateDic[Common.StateType.Idle];
+        curState = stateDic[Game.Monster.StateType.Idle];
         curState.Enter();
     }
 
-    public void ChangeState(Common.StateType type)
+    public void ChangeState(Game.Monster.StateType type)
     {
         // 현재 상태와 같은 상태로 변경 시도하면 종료
         if (curState.StateType == type)

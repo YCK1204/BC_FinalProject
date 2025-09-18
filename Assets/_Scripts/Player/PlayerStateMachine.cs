@@ -33,6 +33,8 @@ namespace GameSystem
         public IState JumpState { get; private set; }
         public IState AirDashState { get; private set; }
         public IState DoubleJumpState { get; private set; }
+        public IState HurtState { get; private set; }
+        public IState DieState { get; private set; }
 
         IState _currentState;
 
@@ -54,6 +56,9 @@ namespace GameSystem
             JumpState = new PlayerJumpState(this);
             AirDashState = new PlayerAirDashState(this);
             DoubleJumpState = new PlayerDoubleJumpState(this);
+            HurtState = new PlayerHurtState(this);
+            DieState = new PlayerDieState(this);
+
             JumpsRemaining = MaxJumps;
         }
 

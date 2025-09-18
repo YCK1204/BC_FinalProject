@@ -3,19 +3,23 @@ using UnityEngine;
 
 public class StabAttack : MeleeAttack
 {
-    public StabAttack(float damage, float attackRange, Transform tr) : base(damage, attackRange, tr)
+    public StabAttack(float damage, float attackRange, Transform tr, MonsterAttack monsterAttack) : base(damage, attackRange, tr, monsterAttack)
     {
     }
 
     public override void Attack()
     {
-        float dir = _tr.localScale.x < 0 ? -1 : 1;
-        Collider2D target = Physics2D.OverlapBox(_tr.position + new Vector3(_attackRange * 0.5f * dir, 0, 0), new Vector2(_attackRange, _attackRange), 0, _mask);
-
-
-        if (target != null)
+        if (GetCheckAttackable())
         {
-            target.GetComponent<IDamageable>()?.TakeDamage((int)_damage);
+            _target.GetComponent<IDamageable>()?.TakeDamage((int)_damage);
         }
+    }
+
+    public override bool GetCheckAttackable(float margin = 0)
+    {
+        float dir = _tr.localScale.x < 0 ? -1 : 1;
+        _target = Physics2D.OverlapBox(_tr.position + new Vector3((_attackRange * 0.5f - margin) * dir, 0, 0), new Vector2(_attackRange, 0.5f), 0, _mask);
+
+        return _target != null;
     }
 }

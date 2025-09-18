@@ -10,7 +10,7 @@ public class MonsterIdleState : MonsterBaseState
 
     public MonsterIdleState(MonsterStateMachine stateMachine) : base(stateMachine)
     {
-        StateType = Common.StateType.Idle;
+        StateType = Game.Monster.StateType.Idle;
     }
 
     /*
@@ -23,7 +23,7 @@ public class MonsterIdleState : MonsterBaseState
         base.Enter();
 
         _stateMachine.Owner.ResetTarget();
-        _stateMachine.Owner.Anim.SetFloat(Common.AnimatorParams.Speed, 0);
+        _stateMachine.Owner.Anim.SetFloat(Game.Monster.AnimatorParams.Speed, 0);
 
         _moveDelay = 1.0f;
         _curMoveDelay = 0.0f;
@@ -41,28 +41,27 @@ public class MonsterIdleState : MonsterBaseState
         {
             if(CheckDetectRange())
             {
-                // 감지가 되고 공격 범위 내라면 공격
-                if (CheckAttackRange())
+                if (_stateMachine.Owner.Attack.Attackable.GetCheckAttackable(_xMargin))
                 {
-                    _stateMachine.ChangeState(Common.StateType.Attack);
+                    _stateMachine.ChangeState(Game.Monster.StateType.Attack);
                 }
                 // 감지는 됬는데 공격 사정거리 밖이라면 추격
                 else
                 {
-                    _stateMachine.ChangeState(Common.StateType.Chase);
+                    _stateMachine.ChangeState(Game.Monster.StateType.Chase);
                 }
             }
         }
         _curDetectDelay += Time.deltaTime;
 
         // 순찰 상태 전환이 불가능한 적이라면 종료
-        if (!_stateMachine.Owner.CanMove)
+        if (!_stateMachine.Owner.MonsterData.CanMove)
             return;
 
         // 대기 시간이 지나면 순찰상태로 변경
         if(_curMoveDelay >= _moveDelay)
         {
-            _stateMachine.ChangeState(Common.StateType.Patrol);
+            _stateMachine.ChangeState(Game.Monster.StateType.Patrol);
         }
         _curMoveDelay += Time.deltaTime;
     }
