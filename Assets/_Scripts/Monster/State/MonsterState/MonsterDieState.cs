@@ -18,6 +18,8 @@ public class MonsterDieState : MonsterBaseState
         _maxReturnTime = 2f;
 
         _stateMachine.Owner.Anim.SetTrigger(Game.Monster.AnimatorParams.Die);
+        _stateMachine.Owner.Rb.bodyType = RigidbodyType2D.Kinematic;
+        _stateMachine.Owner.Col.isTrigger = true;
     }
 
     public override void Update()

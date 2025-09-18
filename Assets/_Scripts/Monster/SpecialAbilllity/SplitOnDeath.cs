@@ -4,7 +4,7 @@ public class SplitOnDeath : MonoBehaviour, Game.Monster.ISpecialAbillity
 {
     public void Init(BaseMonster monster)
     {
-        monster.OnDeath += () =>
+        monster.OnDied += () =>
         {
             // 하위 몬스터 2마리 생성
             StatModifier stat = new StatModifier(0.5f, 0.5f, 0.5f, 0.5f);
