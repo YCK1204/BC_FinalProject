@@ -65,12 +65,16 @@ public abstract class MonsterSpawner : MonoBehaviour
         }
     }
 #endif
-    private void Start()
+    protected virtual void Init()
     {
         StartCoroutine(LateStart(() =>
         {
             Manager.Game.MonsterCount += SpawnInfos.Count;
         }));
+    }
+    private void Start()
+    {
+        Init();
     }
     IEnumerator LateStart(Action action)
     {
