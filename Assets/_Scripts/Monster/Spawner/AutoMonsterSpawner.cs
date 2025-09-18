@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class AutoMonsterSpawner : MonsterSpawner
 {
-    void Start()
+    protected override void Init()
     {
+        base.Init();
         SpawnAll();
     }
 }
