@@ -28,6 +28,8 @@ public abstract class BaseAttack : Game.Monster.IAttackable
     /// <returns></returns>
     public abstract bool GetCheckAttackable(float margin = 0);
 
+    public virtual void Init() { }
+
     // 타겟이 특정 시야각 안에 있는지 확인하는 메서드
     protected bool CheckFov(Transform observer, Transform target, float fov)
     {

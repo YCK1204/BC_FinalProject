@@ -8,6 +8,10 @@ public abstract class MonsterBaseState : Game.Monster.IState
 
     private LayerMask _playerLayer;
     private LayerMask _obstacleLayer;
+    private LayerMask _monsterLayer;
+
+    protected float _curCheckTime;
+    protected float _maxCheckTime;
 
     // 이부분 몬스터 종류에 따라 설정해야 할 듯? ex) 근접(90/60), 원거리(360,360)
     protected float _detectFov = 90f;
@@ -22,11 +26,23 @@ public abstract class MonsterBaseState : Game.Monster.IState
 
         _playerLayer = LayerMask.GetMask(Game.Monster.Layers.Player);
         _obstacleLayer = ~LayerMask.GetMask(Game.Monster.Layers.Monster);
+        _monsterLayer = LayerMask.GetMask(Game.Monster.Layers.Monster);
+
+        _curCheckTime = 0;
+        _maxCheckTime = 0.2f;
     }
 
-    public virtual void Enter() { Debug.Log(StateType); }
+    public virtual void Enter() { /*Debug.Log(StateType);*/ }
     public virtual void Exit() { }
-    public virtual void Update() { }
+    public virtual void Update()
+    {
+        if(_curCheckTime >=  _maxCheckTime)
+        {
+            _curCheckTime = 0;
+            CheckColliders();
+        }
+        _curCheckTime += Time.deltaTime;
+    }
     public virtual void FixedUpdate() { }
 
 
@@ -62,24 +78,16 @@ public abstract class MonsterBaseState : Game.Monster.IState
     }
 
     // 공격 범위내에 대상이 있는 지 확인하는 메서드
-    protected bool CheckAttackRange()
+    protected void CheckColliders()
     {
         // 공격 가능 여부 확인
-        Collider2D player = Physics2D.OverlapCircle(_stateMachine.Owner.transform.position,
-                                                    _stateMachine.Owner.MonsterData.AttackRange, _playerLayer);
+        Collider2D[] ignoreCollider = Physics2D.OverlapCircleAll(_stateMachine.Owner.transform.position,
+                                                    _stateMachine.Owner.MonsterData.DetectRange, _playerLayer | _monsterLayer);
 
-        // 플레이어가 감지 되었을 때, 시야각 내에 있지 않으면 false
-        if (player != null)
+        foreach (Collider2D collider in ignoreCollider)
         {
-            if (!CheckFov(_stateMachine.Owner.transform, player.transform, _attackFov))
-                return false;
+            _stateMachine.Owner.RegisterIgnoreCollider(collider);
         }
-
-        // 공격 가능한 상태고 공격 범위 내라면
-        if (player != null && Vector3.Distance(_stateMachine.Owner.transform.position, player.transform.position) <= _stateMachine.Owner.MonsterData.AttackRange)
-            return true;
-
-        return false;
     }
 
     /// <summary>

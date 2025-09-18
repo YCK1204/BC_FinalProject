@@ -41,6 +41,7 @@ public class MonsterIdleState : MonsterBaseState
         {
             if(CheckDetectRange())
             {
+                // 공격 범위 안이라면 공격 상태로 전환
                 if (_stateMachine.Owner.Attack.Attackable.GetCheckAttackable(_xMargin))
                 {
                     _stateMachine.ChangeState(Game.Monster.StateType.Attack);

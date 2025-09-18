@@ -6,6 +6,7 @@ namespace Game.Monster
     {
         public void Attack();
         public bool GetCheckAttackable(float margin = 0);
+        public void Init();
     }
 
 }

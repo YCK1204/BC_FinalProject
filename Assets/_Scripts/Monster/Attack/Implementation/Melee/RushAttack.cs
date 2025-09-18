@@ -14,7 +14,7 @@ public class RushAttack : MeleeAttack
     }
 
     // 사용할 콜라이더와 리지드 바디 설정, 원래는 생성자에서 하려고 했으나 호출 순서 문제로 함수로 빼서 나중에 호출
-    public void Init()
+    public override void Init()
     {
         _hitBox = _monsterAttack.Owner.Col;
         _rb = _monsterAttack.Owner.Rb;
@@ -24,6 +24,8 @@ public class RushAttack : MeleeAttack
 
     public override void Attack()
     {
+        _monsterAttack.Owner.DeleteIgnoreCollider(_target);
+
         _rb.bodyType = RigidbodyType2D.Kinematic;
         _hitBox.isTrigger = true;
 
@@ -33,6 +35,8 @@ public class RushAttack : MeleeAttack
 
     private void OnAttackEnd()
     {
+        _monsterAttack.Owner.RegisterIgnoreCollider(_target);
+
         _rb.linearVelocityX = 0;
         _rb.bodyType = RigidbodyType2D.Dynamic;
         _hitBox.isTrigger = false;
