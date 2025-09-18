@@ -9,6 +9,7 @@ public class NormalViewState : UiStateBase
         Debug.Log("ui:normal");
         ui.ShowScreen("main");
         ui.Animator.SetInteger("State", 1);
+        Time.timeScale = 0;
     }
 
     public override void Exit() { }
