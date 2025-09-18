@@ -11,7 +11,7 @@ public class Orc : PatrolMonster
 
         _attack.Init(_dataHandler.AttackPower, _dataHandler.AttackRange, _dataHandler.AttackDelay, this);
         _curAttack = new SwingAttack(_dataHandler.AttackPower, _dataHandler.AttackRange, transform, _attack);
-        //_curAttack = new RushAttack(_dataHandler.AttackPower, _attackRange, transform, _attack);
+        //_curAttack = new RushAttack(_dataHandler.AttackPower, _dataHandler.AttackRange, transform, _attack);
         //_curAttack = new RangedAttack(_attackPower, _attackRange, transform, _attack);
 
         _attack.Attackable = _curAttack;
@@ -19,6 +19,10 @@ public class Orc : PatrolMonster
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.name);
+        if(collision.gameObject.layer == (int)LayerMask.GetMask(Game.Monster.Layers.Player))
+        {
+            IDamageable damageable = collision.GetComponent<IDamageable>();
+            damageable?.TakeDamage((int)_dataHandler.AttackPower);
+        }
     }
 }

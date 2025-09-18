@@ -24,8 +24,6 @@ public class MonsterDieState : MonsterBaseState
 
     public override void Update()
     {
-        base.Update();
-
         if(_curRetrunTime >= _maxReturnTime)
         {
             // Todo: 오브젝트 풀로 리턴

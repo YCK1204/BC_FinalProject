@@ -14,7 +14,7 @@ public class MonsterAttack : MonoBehaviour
     [SerializeField] BaseProjectile _projectile;
 
     IAttackable _attack;
-    public IAttackable Attackable { get { return _attack; } set { _attack = value; } }
+    public IAttackable Attackable { get { return _attack; } set { _attack = value; _attack?.Init(); } }
 
     BaseMonster _owner;
     public BaseMonster Owner { get { return _owner; } }
