@@ -39,6 +39,8 @@ public abstract class BaseMonster : MonoBehaviour, Game.Monster.IDamageable
 
     protected List<Game.Monster.ISpecialAbillity> _abillityList;
 
+    protected List<Collider2D> _ignoredColliderList;
+
     public Action OnDied;
     public Action OnUpdate;
 
@@ -55,19 +57,24 @@ public abstract class BaseMonster : MonoBehaviour, Game.Monster.IDamageable
         _dataHandler.SetStatModifier(new StatModifier(1,1,1,1));
         _dataHandler.Init();
 
-        _abillityList = new List<Game.Monster.ISpecialAbillity>();
-        Game.Monster.ISpecialAbillity[] abillities = GetComponents<Game.Monster.ISpecialAbillity>();
-        foreach(Game.Monster.ISpecialAbillity abillity in abillities)
-        {
-            _abillityList.Add(abillity);
-            abillity.Init(this);
-        }
-
         Init();
     }
 
     protected virtual void Init()
     {
+        _abillityList = new List<Game.Monster.ISpecialAbillity>();
+        Game.Monster.ISpecialAbillity[] abillities = GetComponents<Game.Monster.ISpecialAbillity>();
+        foreach (Game.Monster.ISpecialAbillity abillity in abillities)
+        {
+            _abillityList.Add(abillity);
+            abillity.Init(this);
+        }
+
+        if(_ignoredColliderList != null)
+            _ignoredColliderList.Clear();
+        else
+            _ignoredColliderList = new List<Collider2D>();
+
         _stateMachine = new MonsterStateMachine(this);
 
     }
@@ -107,6 +114,7 @@ public abstract class BaseMonster : MonoBehaviour, Game.Monster.IDamageable
         transform.localScale = new Vector3(d, transform.localScale.y, transform.localScale.z);
     }
 
+    // 데미지 적용 메서드
     public virtual void TakeDamage(int damage)
     {
         _dataHandler.TakeDamage(damage);
@@ -121,6 +129,7 @@ public abstract class BaseMonster : MonoBehaviour, Game.Monster.IDamageable
         }
     }
 
+    // 몬스터가 사망할 때 호출하는 메서드
     public void Die()
     {
         OnDied?.Invoke();
@@ -128,6 +137,31 @@ public abstract class BaseMonster : MonoBehaviour, Game.Monster.IDamageable
         Destroy(gameObject);
     }
 
+    /// <summary>
+    /// 해당 콜라이더를 충돌 무시로 지정하고 리스트에 넣음
+    /// </summary>
+    /// <param name="collider">충돌을 무시할 콜라이더</param>
+    public void RegisterIgnoreCollider(Collider2D collider)
+    {
+        if(!_ignoredColliderList.Contains(collider))
+        {
+            Physics2D.IgnoreCollision(Col, collider, true);
+            _ignoredColliderList.Add(collider);
+        }
+    }
+
+    /// <summary>
+    /// 해당 콜라이더를 충돌 가능하게 만들고 리스트에서 제거함
+    /// </summary>
+    /// <param name="collider">충돌 가능하게 만들 콜라이더</param>
+    public void DeleteIgnoreCollider(Collider2D collider)
+    {
+        if(_ignoredColliderList.Contains(collider))
+        {
+            Physics2D.IgnoreCollision(Col, collider, false);
+            _ignoredColliderList.Remove(collider);
+        }
+    }
 
 #if UNITY_EDITOR
     // 에디터에서 탐지 범위와 공격 가능 범위를 표시하는 메서드
