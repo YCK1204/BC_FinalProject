@@ -39,10 +39,7 @@ public abstract class BaseMonster : MonoBehaviour, Game.Monster.IDamageable
 
     protected List<Game.Monster.ISpecialAbillity> _abillityList;
 
-    // OnDestroy에서 호출
     public Action OnDied;
-    // Die에서 호출 
-    public Action OnDeath;
     public Action OnUpdate;
 
     protected virtual void Awake()
@@ -78,6 +75,8 @@ public abstract class BaseMonster : MonoBehaviour, Game.Monster.IDamageable
     protected virtual void OnEnable()
     {
         _stateMachine.Init();
+        _stateMachine.Owner.Rb.bodyType = RigidbodyType2D.Dynamic;
+        _stateMachine.Owner.Col.isTrigger = false;
     }
 
     protected virtual void Update()
@@ -124,14 +123,11 @@ public abstract class BaseMonster : MonoBehaviour, Game.Monster.IDamageable
 
     public void Die()
     {
-        OnDeath?.Invoke();
-        // Todo: 오브젝트 풀로 리턴
-        gameObject.SetActive(false);
-    }
-    public void OnDestroy()
-    {
         OnDied?.Invoke();
+        // Todo: 오브젝트 풀로 리턴
+        Destroy(gameObject);
     }
+
 
 #if UNITY_EDITOR
     // 에디터에서 탐지 범위와 공격 가능 범위를 표시하는 메서드
