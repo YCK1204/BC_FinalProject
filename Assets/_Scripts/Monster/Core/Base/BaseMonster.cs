@@ -43,6 +43,10 @@ public abstract class BaseMonster : MonoBehaviour, Game.Monster.IDamageable
 
     public Action OnDied;
     public Action OnUpdate;
+    public Action OnHit;
+
+    // 슈퍼아머 상태 확인 변수
+    public bool IsSuperArmor = false;
 
     protected virtual void Awake()
     {
@@ -118,12 +122,13 @@ public abstract class BaseMonster : MonoBehaviour, Game.Monster.IDamageable
     public virtual void TakeDamage(int damage)
     {
         _dataHandler.TakeDamage(damage);
+        OnHit?.Invoke();
 
         if (_dataHandler.CurHp <= 0)
         {
             _stateMachine.ChangeState(Game.Monster.StateType.Die);
         }
-        else
+        else if(!IsSuperArmor)
         {
             _stateMachine.ChangeState(Game.Monster.StateType.Hit);
         }
