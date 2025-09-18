@@ -13,5 +13,7 @@ namespace GameSystem
         public int GroundParameterHash = Animator.StringToHash("Ground");
         public int AttackParameterHash = Animator.StringToHash("Attack");
         public int DashParameterHash = Animator.StringToHash("Dash");
+        public int HurtParameterHash = Animator.StringToHash("Hurt");
+        public int DieParameterHash = Animator.StringToHash("Die");
     }
 }
