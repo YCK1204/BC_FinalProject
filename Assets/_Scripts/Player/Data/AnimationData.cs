@@ -1,4 +1,3 @@
-// AnimationData.cs
 using UnityEngine;
 
 namespace GameSystem
