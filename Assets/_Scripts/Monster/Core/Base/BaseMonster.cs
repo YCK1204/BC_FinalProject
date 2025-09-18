@@ -34,10 +34,15 @@ public abstract class BaseMonster : MonoBehaviour, Game.Monster.IDamageable
     public Collider2D Col { get { return _col; } }
     protected Animator _anim;
     public Animator Anim {  get { return _anim; } }
+    protected SpriteRenderer _sr;
+    public SpriteRenderer Sr { get { return _sr; } }
 
     protected List<Game.Monster.ISpecialAbillity> _abillityList;
 
+    // OnDestroy에서 호출
     public Action OnDied;
+    // Die에서 호출 
+    public Action OnDeath;
     public Action OnUpdate;
 
     protected virtual void Awake()
@@ -45,9 +50,13 @@ public abstract class BaseMonster : MonoBehaviour, Game.Monster.IDamageable
         _rb = GetComponent<Rigidbody2D>();
         _col = GetComponent<Collider2D>();
         _anim = GetComponentInChildren<Animator>();
+        _sr = GetComponentInChildren<SpriteRenderer>();
 
         _attack = GetComponentInChildren<MonsterAttack>();
         _dataHandler = Extension.GetOrAddComponent<MonsterDataHandler>(this.gameObject);
+        _dataHandler.Owner = this;
+        _dataHandler.SetStatModifier(new StatModifier(1,1,1,1));
+        _dataHandler.Init();
 
         _abillityList = new List<Game.Monster.ISpecialAbillity>();
         Game.Monster.ISpecialAbillity[] abillities = GetComponents<Game.Monster.ISpecialAbillity>();
@@ -73,7 +82,7 @@ public abstract class BaseMonster : MonoBehaviour, Game.Monster.IDamageable
 
     protected virtual void Update()
     {
-        OnUpdate.Invoke();
+        OnUpdate?.Invoke();
         _stateMachine?.Update();
     }
 
@@ -115,8 +124,9 @@ public abstract class BaseMonster : MonoBehaviour, Game.Monster.IDamageable
 
     public void Die()
     {
+        OnDeath?.Invoke();
         // Todo: 오브젝트 풀로 리턴
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
     public void OnDestroy()
     {

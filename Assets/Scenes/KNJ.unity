@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 346173196}
   - component: {fileID: 346173199}
   - component: {fileID: 346173200}
+  - component: {fileID: 346173201}
   m_Layer: 8
   m_Name: MonsterA
   m_TagString: Untagged
@@ -255,6 +256,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MonsterDataHandler
   _data: {fileID: 11400000, guid: e2f353c4c70d3b349aabced08ab23e43, type: 2}
   _curHp: 25
+--- !u!114 &346173201
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346173194}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4311480168f564447811610819aadcbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SplitOnDeath
 --- !u!1 &739826784
 GameObject:
   m_ObjectHideFlags: 0
