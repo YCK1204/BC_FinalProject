@@ -8,7 +8,6 @@ namespace GameSystem
 
         public override void Enter()
         {
-            _stateMachine.MovementSpeedModifier = 1f;
             StartAnimation(_stateMachine.Player.AnimationData.AirParameterHash);
             StopAnimation(_stateMachine.Player.AnimationData.IdleParameterHash);
 #if UNITY_2022_3_OR_NEWER
@@ -56,17 +55,18 @@ namespace GameSystem
             }
 
 #if UNITY_2022_3_OR_NEWER
-            if (_stateMachine.Player.Rb.linearVelocity.y <= 0f)
-            {
-                StopAnimation(_stateMachine.Player.AnimationData.JumpParameterHash);
-                StartAnimation(_stateMachine.Player.AnimationData.FallParameterHash);
-            }
-            if (_stateMachine.Player.Rb.linearVelocity.y <= 0f && _stateMachine.Player.IsGrounded())
+            
+            if (_stateMachine.Player.IsGrounded())
             {
                 if (_stateMachine.MovementInput == Vector2.zero)
                     _stateMachine.ChangeState(_stateMachine.IdleState);
                 else
                     _stateMachine.ChangeState(_stateMachine.WalkState);
+            }
+            else if(_stateMachine.Player.Rb.linearVelocity.y <= 0f)
+            {
+                StopAnimation(_stateMachine.Player.AnimationData.JumpParameterHash);
+                StartAnimation(_stateMachine.Player.AnimationData.FallParameterHash);
             }
 #else
             if (_stateMachine.Player.Rb.velocity.y <= 0f)
