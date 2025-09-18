@@ -9,7 +9,14 @@ namespace GameSystem
         public override void Enter()
         {
             _stateMachine.JumpsRemaining = _stateMachine.MaxJumps;
+            //StartAnimation(_stateMachine.Player.AnimationData.GroundParameterHash);
         }
+
+        //public override void Exit()
+        //{
+        //    StopAnimation(_stateMachine.Player.AnimationData.GroundParameterHash);
+        //}
+
 
         public override void Update()
         {
