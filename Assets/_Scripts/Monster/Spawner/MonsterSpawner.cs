@@ -1,8 +1,9 @@
-using UnityEngine;
 using System;
-using System.Collections.Generic;
-using Object = UnityEngine.Object;
 using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using Object = UnityEngine.Object;
 
 // 몬스터 스폰 (프리팹, 위치)
 // 스폰 조건 (게임 시작 즉시, 다른 스폰 리스트를 다잡고, 플레이어가 특정 범위 내에 접근 시)
@@ -44,6 +45,26 @@ public abstract class MonsterSpawner : MonoBehaviour
         }
     }
     List<BaseMonster> _spawnedMonsters = new List<BaseMonster>();
+
+#if UNITY_EDITOR
+    [SerializeField]
+    Color GizmoColor = Color.white;
+    [SerializeField, Range(1f, 3f)]
+    float GizmoSize = 1f;
+    void OnValidate()
+    {
+        UnityEditor.SceneView.RepaintAll();
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = GizmoColor;
+        foreach (var info in SpawnInfos)
+        {
+            Gizmos.DrawWireSphere(info.Position, GizmoSize);
+        }
+    }
+#endif
     private void Start()
     {
         StartCoroutine(LateStart(() =>
@@ -75,18 +96,5 @@ public abstract class MonsterSpawner : MonoBehaviour
         }
         SpawnedCount = SpawnInfos.Count;
         _isSpawned = true;
-    }
-    [SerializeField]
-    string key;
-    private void Update()
-    {
-        if (Input.GetKey(key))
-        {
-            foreach (var m in _spawnedMonsters)
-            {
-                if (m != null)
-                    m.Die();
-            }
-        }
     }
 }
