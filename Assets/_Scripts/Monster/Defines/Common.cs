@@ -14,9 +14,18 @@ namespace Game.Monster
         Die
     }
 
-    public enum SpecilaAbillityType
+    public enum StatType
     {
+        Hp,
+        Attack,
+        Speed,
+        Scale
+    }
 
+    public enum ModifierType
+    {
+        Add,
+        Multiply
     }
 
     // 레이어 이름 문자열

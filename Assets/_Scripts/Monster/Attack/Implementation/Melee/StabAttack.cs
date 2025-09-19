@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class StabAttack : MeleeAttack
 {
-    public StabAttack(float damage, float attackRange, Transform tr, MonsterAttack monsterAttack) : base(damage, attackRange, tr, monsterAttack)
+    public StabAttack(Transform tr, MonsterAttack monsterAttack) : base(tr, monsterAttack)
     {
     }
 

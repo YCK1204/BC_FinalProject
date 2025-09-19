@@ -5,7 +5,7 @@ using UnityEngine;
 /// </summary>
 public abstract class MeleeAttack : BaseAttack
 {
-    protected MeleeAttack(float damage, float attackRange, Transform tr, MonsterAttack monsterAttack) : base(damage, attackRange, tr, monsterAttack)
+    protected MeleeAttack(Transform tr, MonsterAttack monsterAttack) : base(tr, monsterAttack)
     {
     }
 }
