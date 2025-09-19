@@ -8,7 +8,7 @@ public class RushAttack : MeleeAttack
 
     private float _rushSpeed = 5f;
 
-    public RushAttack(float damage, float attackRange, Transform tr, MonsterAttack monsterAttack) : base(damage, attackRange, tr, monsterAttack)
+    public RushAttack(Transform tr, MonsterAttack monsterAttack) : base(tr, monsterAttack)
     {
 
     }

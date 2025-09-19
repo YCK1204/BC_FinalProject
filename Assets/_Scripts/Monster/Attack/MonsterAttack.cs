@@ -7,9 +7,9 @@ using UnityEngine;
 /// </summary>
 public class MonsterAttack : MonoBehaviour
 {
-    float _attackPower;
-    float _attackRange;
-    float _attackSpeed;
+    public float AttackPower { get { return _owner.MonsterData.AttackPower; } }
+    public float AttackRange { get { return _owner.MonsterData.AttackRange; } }
+    public float AttackSpeed { get { return _owner.MonsterData.AttackDelay; } }
 
     [SerializeField] BaseProjectile _projectile;
 
@@ -21,13 +21,10 @@ public class MonsterAttack : MonoBehaviour
 
     public System.Action OnAttackEnd;
 
-    public void Init(float attackPower, float attackRange, float attackSpeed, BaseMonster owner, IAttackable attack = null)
+    public void Init(BaseMonster owner, IAttackable attack = null)
     {
-        _attackPower = attackPower;
-        _attackRange = attackRange;
-        _attackSpeed = attackSpeed;
-        _attack = attack;
         _owner = owner;
+        _attack = attack;
     }
 
     public void Attack()
@@ -37,7 +34,7 @@ public class MonsterAttack : MonoBehaviour
 
     public void StopAttack()
     {
-        Invoke("ExcuteAttackEnd", _attackSpeed);
+        Invoke("ExcuteAttackEnd", AttackSpeed);
     }
 
     private void ExcuteAttackEnd()

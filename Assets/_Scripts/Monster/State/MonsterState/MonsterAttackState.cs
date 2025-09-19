@@ -23,6 +23,8 @@ public class MonsterAttackState : MonsterBaseState
     {
         base.Enter();
 
+        _stateMachine.Owner.Ondetect?.Invoke();
+
         _stateMachine.Owner.Anim.SetFloat(Game.Monster.AnimatorParams.Speed, 0);
         _stateMachine.Owner.Attack.OnAttackEnd += AttackEnd;
 
