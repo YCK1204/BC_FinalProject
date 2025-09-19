@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GameSystem
+namespace Game.Player
 {
     public class StateMachine
     {

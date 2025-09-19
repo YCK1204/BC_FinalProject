@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using GameSystem;
+using Game.Player;
 
 public class HpBar : MonoBehaviour
 {

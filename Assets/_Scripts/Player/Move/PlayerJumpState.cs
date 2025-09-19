@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GameSystem
+namespace Game.Player
 {
     public class PlayerJumpState : PlayerAirState
     {
@@ -27,25 +27,14 @@ namespace GameSystem
 
         public override void Update()
         {
-            ReadMoveInput();
-#if ENABLE_INPUT_SYSTEM
-            var kb = UnityEngine.InputSystem.Keyboard.current;
-            bool jump = kb != null && kb.spaceKey.wasPressedThisFrame;
-            bool dash = kb != null && kb.sKey.wasPressedThisFrame;
-#else
-            bool jump = Input.GetKeyDown(KeyCode.Space);
-            bool dash = Input.GetKeyDown(KeyCode.S);
-#endif
-            if (dash && _stateMachine.CanDash())
+            base.Update();
+
+            if (_stateMachine.IsAttacking)
             {
-                _stateMachine.ChangeState(_stateMachine.AirDashState);
                 return;
             }
-            if (jump && _stateMachine.JumpsRemaining > 0)
-            {
-                _stateMachine.ChangeState(_stateMachine.DoubleJumpState);
-                return;
-            }
+
+
 #if UNITY_2022_3_OR_NEWER
             if (_stateMachine.Player.Rb.linearVelocity.y <= 0f)
             {

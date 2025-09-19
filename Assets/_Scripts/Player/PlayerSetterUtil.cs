@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GameSystem
+namespace Game.Player
 {
     public static class ItemSetterUtil
     {
@@ -29,40 +29,26 @@ namespace GameSystem
             player.Data.CombatData.AttackRange = Mathf.Max(0f, value);
         }
 
-        public static void SetAttackDuration(PlayerCharacter player, float seconds)
-        {
-            player.Data.CombatData.AttackDuration = Mathf.Max(0.05f, seconds);
-        }
-
         public static void SetCriticalChancePercent(PlayerCharacter player, float percent)
         {
-            player.Data.CombatData.CriticalChancePercent = Mathf.Max(0f, percent);
+            player.Data.CombatData.CriticalChance = Mathf.Max(0f, percent);
         }
 
         public static void AddCriticalChancePercent(PlayerCharacter player, float addPercent)
         {
-            player.Data.CombatData.CriticalChancePercent = Mathf.Max(0f, player.Data.CombatData.CriticalChancePercent + addPercent);
+            player.Data.CombatData.CriticalChance = Mathf.Max(0f, player.Data.CombatData.CriticalChance + addPercent);
         }
 
         public static void SetCriticalDamagePercent(PlayerCharacter player, float percent)
         {
-            player.Data.CombatData.CriticalDamagePercent = Mathf.Max(0f, percent);
+            player.Data.CombatData.CriticalDamage = Mathf.Max(0f, percent);
         }
 
         public static void AddCriticalDamagePercent(PlayerCharacter player, float addPercent)
         {
-            player.Data.CombatData.CriticalDamagePercent = Mathf.Max(0f, player.Data.CombatData.CriticalDamagePercent + addPercent);
+            player.Data.CombatData.CriticalDamage = Mathf.Max(0f, player.Data.CombatData.CriticalDamage + addPercent);
         }
 
-        public static void SetAttackSpeedPercent(PlayerCharacter player, float percent)
-        {
-            player.Data.CombatData.AttackSpeedPercent = percent;
-        }
-
-        public static void AddAttackSpeedPercent(PlayerCharacter player, float addPercent)
-        {
-            player.Data.CombatData.AttackSpeedPercent += addPercent;
-        }
 
         public static void SetWalkSpeedModifier(PlayerCharacter player, float value)
         {

@@ -1,9 +1,9 @@
 // PlayerDashState.cs
 using UnityEngine;
 
-namespace GameSystem
+namespace Game.Player
 {
-    public class PlayerDashState : PlayerGroundedState
+    public class PlayerDashState : PlayerBaseState
     {
         float _timer;
         Vector2 _dashDir;
@@ -13,7 +13,7 @@ namespace GameSystem
 
         public override void Enter()
         {
-            base.Enter();
+            //base.Enter();
             _stateMachine.IsDashing = true;
             _timer = _stateMachine.DashDuration;
 
@@ -31,6 +31,7 @@ namespace GameSystem
 
             _stateMachine.MovementSpeedModifier = _stateMachine.DashSpeedMult;
             StartAnimation(_stateMachine.Player.AnimationData.DashParameterHash);
+
             StopAnimation(_stateMachine.Player.AnimationData.IdleParameterHash);
 
             if (_stateMachine.InvincibleDuringDash)

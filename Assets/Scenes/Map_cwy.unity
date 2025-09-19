@@ -289,7 +289,7 @@ Transform:
   m_GameObject: {fileID: 266890070}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.0501193, y: 1.1670644, z: -10}
+  m_LocalPosition: {x: 0, y: 1.1670644, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4017,6 +4017,7 @@ MonoBehaviour:
     DashParameterHash: 995914302
     HurtParameterHash: 1740614436
     DieParameterHash: 20298039
+    ComboParameterHash: 1895636814
   DataSerialized:
     GroundData:
       BaseSpeed: 5
@@ -4027,7 +4028,7 @@ MonoBehaviour:
     DashData:
       Duration: 0.2
       SpeedMultiplier: 4
-      Cooldown: 3
+      Cooldown: 1
       InvincibleDuringDash: 1
       PassThroughLayers:
         serializedVersion: 2
@@ -4035,12 +4036,13 @@ MonoBehaviour:
     CombatData:
       AttackPower: 10
       AttackRange: 1.5
-      BaseAttackSpeedAPS: 2
-      AttackSpeedPercent: 0
+      AttackSpeed: 0
       ExtraDamage: 0
-      CriticalChancePercent: 5
-      CriticalDamagePercent: 200
-      AttackDuration: 0.2
+      CriticalChance: 5
+      CriticalDamage: 200
+      SkillAttck: 10
+      SkillHaste: 1
+      CorruptionDuration: 10
     HurtData:
       Duration: 0.25
       KnockbackX: 6
@@ -4048,18 +4050,41 @@ MonoBehaviour:
       InvincibleDuringHurt: 1
     Stats:
       MaxHP: 100
+    ComboAttackData:
+      AttackInfos:
+      - ComboStateIndex: 1
+        AttackDuration: 0.4
+        HitTiming: 0.1
+        Force: 6
+        ForceTime: 0.1
+        DamageSet: 1
+        ComboTime: 0.5
+      - ComboStateIndex: 2
+        AttackDuration: 0.4
+        HitTiming: 0.1
+        Force: 12
+        ForceTime: 0.1
+        DamageSet: 1
+        ComboTime: 0.5
+      - ComboStateIndex: 0
+        AttackDuration: 0.8
+        HitTiming: 0.2
+        Force: 3
+        ForceTime: 0.2
+        DamageSet: 1.5
+        ComboTime: 1
   GroundCheck: {fileID: 1410422797}
   GroundRadius: 0.15
   GroundLayer:
     serializedVersion: 2
     m_Bits: 16384
-  Force: {fileID: 0}
+  Force: {fileID: 1333591361}
   showRuntime: 1
   runtimeIsDashing: 0
-  runtimeSpeedModifier: 0
-  runtimeMoveSpeed: 0
+  runtimeSpeedModifier: 1
+  runtimeMoveSpeed: 5
   runtimeVelocity: {x: 0, y: 0}
-  currentHP: 0
+  currentHP: 100
   corruptionGauge: 0
   maxCorruptionGauge: 200
   corruptionGainPerHit: 5
@@ -4166,7 +4191,7 @@ Transform:
   m_GameObject: {fileID: 1333591356}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.0501193, y: 0.16706444, z: 0}
+  m_LocalPosition: {x: 0, y: 0.16706444, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

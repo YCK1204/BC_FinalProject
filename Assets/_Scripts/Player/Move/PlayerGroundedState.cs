@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GameSystem
+namespace Game.Player
 {
     public abstract class PlayerGroundedState : PlayerBaseState
     {
@@ -34,7 +34,7 @@ namespace GameSystem
 
             if (attack && !_stateMachine.IsAttacking && _stateMachine.Player.IsGrounded())
             {
-                _stateMachine.ChangeState(_stateMachine.AttackState);
+                _stateMachine.ChangeState(_stateMachine.ComboAttackState);
                 return;
             }
             if (jump && _stateMachine.Player.IsGrounded() && _stateMachine.JumpsRemaining > 0)

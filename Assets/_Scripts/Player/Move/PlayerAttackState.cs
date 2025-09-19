@@ -1,93 +1,96 @@
-using UnityEngine;
-using Game.Monster;
+//using UnityEngine;
+//using Game.Monster;
 
-namespace GameSystem
-{
-    public class PlayerAttackState : PlayerBaseState
-    {
-        float _timer;
-        bool _hasHit;
+//namespace Game.Player
+//{
+//    public class PlayerAttackState : PlayerBaseState
+//    {
+//        float _timer;
+//        bool _hasHit;
 
-        public PlayerAttackState(PlayerStateMachine stateMachine) : base(stateMachine) { }
+//        public PlayerAttackState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
-        public override void Enter()
-        {
-            _stateMachine.IsAttacking = true;
-            _stateMachine.MovementSpeedModifier = 0f;
-            _timer = _stateMachine.Player.Data.CombatData.AttackDuration;
-            StartAnimation(_stateMachine.Player.AnimationData.AttackParameterHash);
+//        public override void Enter()
+//        {
+//            _stateMachine.IsAttacking = true;
+//            _stateMachine.MovementSpeedModifier = 0f;
+//            _timer = _stateMachine.Player.Data.CombatData.AttackDuration;
+//            StartAnimation(_stateMachine.Player.AnimationData.AttackParameterHash);
 
-            _hasHit = false;
-            DoHit();
-        }
+//            var v = _stateMachine.Player.Rb.linearVelocity;
+//            _stateMachine.Player.Rb.linearVelocity = new Vector2(0f, v.y);
 
-        public override void Exit()
-        {
-            _stateMachine.IsAttacking = false;
-            _stateMachine.MovementSpeedModifier = 1f;
-            StopAnimation(_stateMachine.Player.AnimationData.AttackParameterHash);
-        }
+//            _hasHit = false;
+//            DoHit();
+//        }
 
-        public override void Update()
-        {
-            _timer -= Time.deltaTime;
-            if (_timer <= 0f)
-            {
-                if (_stateMachine.Player.IsGrounded())
-                {
-                    if (_stateMachine.MovementInput == Vector2.zero)
-                        _stateMachine.ChangeState(_stateMachine.IdleState);
-                    else
-                        _stateMachine.ChangeState(_stateMachine.WalkState);
-                }
-                else
-                {
-                    _stateMachine.ChangeState(_stateMachine.AirState);
-                }
-            }
-        }
+//        public override void Exit()
+//        {
+//            _stateMachine.IsAttacking = false;
+//            _stateMachine.MovementSpeedModifier = 1f;
+//            StopAnimation(_stateMachine.Player.AnimationData.AttackParameterHash);
+//        }
 
-        void DoHit()
-        {
-            if (_hasHit) return;
-            _hasHit = true;
+//        public override void Update()
+//        {
+//            _timer -= Time.deltaTime;
+//            if (_timer <= 0f)
+//            {
+//                if (_stateMachine.Player.IsGrounded())
+//                {
+//                    if (_stateMachine.MovementInput == Vector2.zero)
+//                        _stateMachine.ChangeState(_stateMachine.IdleState);
+//                    else
+//                        _stateMachine.ChangeState(_stateMachine.WalkState);
+//                }
+//                else
+//                {
+//                    _stateMachine.ChangeState(_stateMachine.AirState);
+//                }
+//            }
+//        }
 
-            var d = _stateMachine.Player.Data.CombatData;
-            float r = d.AttackRange;
-            var pos = (Vector2)_stateMachine.Player.transform.position
-                      + new Vector2(_stateMachine.FacingSign * r * 0.5f, 0f);
+//        void DoHit()
+//        {
+//            if (_hasHit) return;
+//            _hasHit = true;
 
-            var cols = Physics2D.OverlapCircleAll(pos, r);
+//            var d = _stateMachine.Player.Data.CombatData;
+//            float r = d.AttackRange;
+//            var pos = (Vector2)_stateMachine.Player.transform.position
+//                      + new Vector2(_stateMachine.FacingSign * r * 0.5f, 0f);
 
-            int hitCount = 0;
-            var visited = new System.Collections.Generic.HashSet<object>();
+//            var cols = Physics2D.OverlapCircleAll(pos, r);
 
-            float baseDmg = d.AttackPower + d.ExtraDamage;
-            float chance = Mathf.Max(0f, d.CriticalChancePercent) * 0.01f;
-            bool isCrit = Random.value < chance;
-            float mult = isCrit ? (1f + Mathf.Max(0f, d.CriticalDamagePercent) * 0.01f) : 1f;
-            int damage = Mathf.RoundToInt(baseDmg * mult);
+//            int hitCount = 0;
+//            var visited = new System.Collections.Generic.HashSet<object>();
 
-            for (int i = 0; i < cols.Length; i++)
-            {
-                if (cols[i].transform.IsChildOf(_stateMachine.Player.transform)) continue;
+//            float baseDmg = d.AttackPower + d.ExtraDamage;
+//            float chance = Mathf.Max(0f, d.CriticalChancePercent) * 0.01f;
+//            bool isCrit = Random.value < chance;
+//            float mult = isCrit ? (1f + Mathf.Max(0f, d.CriticalDamagePercent) * 0.01f) : 1f;
+//            int damage = Mathf.RoundToInt(baseDmg * mult);
 
-                var target = cols[i].GetComponentInParent<IDamageable>();
-                if (target != null && visited.Add(target))
-                {
-                    target.TakeDamage(damage);
-                    hitCount++;
-                }
-            }
+//            for (int i = 0; i < cols.Length; i++)
+//            {
+//                if (cols[i].transform.IsChildOf(_stateMachine.Player.transform)) continue;
 
-            _stateMachine.Player.MarkLastHitCritical(isCrit);
-            if (hitCount > 0)
-            {
-                if (isCrit) Debug.Log("Critical");
-                _stateMachine.Player.ReportNormalAttackHit();
-            }
-        }
+//                var target = cols[i].GetComponentInParent<IDamageable>();
+//                if (target != null && visited.Add(target))
+//                {
+//                    target.TakeDamage(damage);
+//                    hitCount++;
+//                }
+//            }
 
-        public override void PhysicsUpdate() { }
-    }
-}
+//            _stateMachine.Player.MarkLastHitCritical(isCrit);
+//            if (hitCount > 0)
+//            {
+//                if (isCrit) Debug.Log("Critical");
+//                _stateMachine.Player.ReportNormalAttackHit();
+//            }
+//        }
+
+//        public override void PhysicsUpdate() { }
+//    }
+//}

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GameSystem
+namespace Game.Player
 {
     public class PlayerDoubleJumpState : PlayerAirState
     {
@@ -18,6 +18,7 @@ namespace GameSystem
         public override void Update()
         {
             base.Update();
+
 #if UNITY_2022_3_OR_NEWER
             if (_stateMachine.Player.Rb.linearVelocity.y <= 0f)
                 _stateMachine.ChangeState(_stateMachine.AirState);

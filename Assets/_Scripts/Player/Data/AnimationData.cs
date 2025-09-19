@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GameSystem
+namespace Game.Player
 {
     [System.Serializable]
     public class AnimationData
@@ -15,5 +15,6 @@ namespace GameSystem
         public int DashParameterHash = Animator.StringToHash("Dash");
         public int HurtParameterHash = Animator.StringToHash("Hurt");
         public int DieParameterHash = Animator.StringToHash("Die");
+        public int ComboParameterHash = Animator.StringToHash("Combo");
     }
 }
