@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -23,12 +24,15 @@ public class ResourceManager
         {
             if (handle.Status == AsyncOperationStatus.Succeeded)
             {
-                callback?.Invoke(handle.Result.GetComponent<T>());
+                var obj = handle.Result.GetComponent<T>();
+                if (obj == null)
+                    Debug.LogError($"Failed to load asset: {prefabName}");
+                else
+                    callback?.Invoke(obj);
             }
             else
             {
                 Debug.LogError($"Failed to load asset: {prefabName}");
-                callback?.Invoke(null);
             }
             Addressables.Release(handle);
         };
@@ -65,10 +69,14 @@ public class ResourceManager
     /// <param name="callback"></param>
     public void LoadAssetAsync<T>(string name, Action<T> callback) where T : Object
     {
-        var oper = Addressables.LoadAssetAsync<T>(name);
+        var oper = Addressables.LoadAssetAsync<Object>(name);
         oper.Completed += handle =>
         {
-            callback?.Invoke(handle.Result);
+            T obj = handle.Result.GetComponent<T>();
+            if (obj == null)
+                Debug.LogError($"Failed to load asset: {name}");
+            else
+                callback?.Invoke(obj);
             Addressables.Release(handle);
         };
     }
@@ -84,6 +92,12 @@ public class ResourceManager
 
         oper.Completed += (handle) =>
         {
+            if (handle.Status != AsyncOperationStatus.Succeeded)
+            {
+                Debug.LogError($"Failed to load assets with label: {labelName}");
+                Addressables.Release(handle);
+                return;
+            }
             List<Object> list = new List<Object>(handle.Result);
             callback(list);
             Addressables.Release(handle);
@@ -100,6 +114,12 @@ public class ResourceManager
         var oper = Addressables.LoadAssetsAsync<GameObject>(labelName);
         oper.Completed += (handle) =>
         {
+            if (handle.Status != AsyncOperationStatus.Succeeded)
+            {
+                Debug.LogError($"Failed to load assets with label: {labelName}");
+                Addressables.Release(handle);
+                return;
+            }
             List<Component> list = new List<Component>();
             foreach (var obj in handle.Result)
             {
@@ -124,6 +144,12 @@ public class ResourceManager
         var oper = Addressables.LoadAssetsAsync<ScriptableObject>(labelName);
         oper.Completed += (handle) =>
         {
+            if (handle.Status != AsyncOperationStatus.Succeeded)
+            {
+                Debug.LogError($"Failed to load assets with label: {labelName}");
+                Addressables.Release(handle);
+                return;
+            }
             List<ScriptableObject> list = new List<ScriptableObject>(handle.Result);
             callback(list);
             Addressables.Release(handle);
@@ -140,6 +166,7 @@ public class ResourceManager
         var result = Addressables.LoadAssetAsync<GameObject>(prefabName).WaitForCompletion();
         if (result != null)
             return result.GetComponent<T>();
+        Debug.LogError($"Failed to load asset: {prefabName}");
         return null;
     }
     /// <summary>
@@ -153,6 +180,7 @@ public class ResourceManager
         var result = Addressables.LoadAssetAsync<ScriptableObject>(name).WaitForCompletion();
         if (result != null)
             return result as T;
+        Debug.LogError($"Failed to load asset: {name}");
         return null;
     }
     /// <summary>
@@ -163,9 +191,10 @@ public class ResourceManager
     /// <returns></returns>
     public T Load<T>(string name) where T : Object
     {
-        var result = Addressables.LoadAssetAsync<T>(name).WaitForCompletion();
+        var result = Addressables.LoadAssetAsync<Object>(name).WaitForCompletion();
         if (result != null)
-            return result;
+            return result.GetComponent<T>();
+        Debug.LogError($"Failed to load asset: {name}");
         return null;
     }
     /// <summary>

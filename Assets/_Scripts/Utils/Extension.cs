@@ -1,18 +1,21 @@
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 public static class Extension
 {
     #region FindChild
     /// <summary>
-    /// Æ¯Á¤ TransformÀÇ ÀÚ½Äµé Áß¿¡¼­ Æ¯Á¤ Å¸ÀÔÀÇ ÄÄÆ÷³ÍÆ®¸¦ °¡Áø Ã¹ ¹øÂ° ÀÚ½ÄÀ» Ã£½À´Ï´Ù.
-    /// recursive°¡ trueÀÌ¸é ¸ğµç ÀÚ½ÄµéÀ» Àç±ÍÀûÀ¸·Î Å½»öÇÕ´Ï´Ù.
-    /// nameÀÌ nullÀÌ ¾Æ´Ï¸é ÇØ´ç ÀÌ¸§°ú ÀÏÄ¡ÇÏ´Â ÀÚ½Ä¸¸ Ã£½À´Ï´Ù.
+    /// íŠ¹ì • Transformì˜ ìì‹ë“¤ ì¤‘ì—ì„œ íŠ¹ì • íƒ€ì…ì˜ ì»´í¬ë„ŒíŠ¸ë¥¼ ê°€ì§„ ì²« ë²ˆì§¸ ìì‹ì„ ì°¾ìŠµë‹ˆë‹¤.
+    /// recursiveê°€ trueì´ë©´ ëª¨ë“  ìì‹ë“¤ì„ ì¬ê·€ì ìœ¼ë¡œ íƒìƒ‰í•©ë‹ˆë‹¤.
+    /// nameì´ nullì´ ì•„ë‹ˆë©´ í•´ë‹¹ ì´ë¦„ê³¼ ì¼ì¹˜í•˜ëŠ” ìì‹ë§Œ ì°¾ìŠµë‹ˆë‹¤.
     /// </summary>
-    /// <typeparam name="T">Å¸°Ù ÄÄÆ÷³ÍÆ®</typeparam>
-    /// <param name="transform">ºÎ¸ğ Transform</param>
-    /// <param name="recursive">Àç±Í Å½»ö ¿©ºÎ</param>
-    /// <param name="name">Å¸°Ù ¿ÀºêÁ§Æ® ÀÌ¸§(±âº»°ª null)</param>
+    /// <typeparam name="T">íƒ€ê²Ÿ ì»´í¬ë„ŒíŠ¸</typeparam>
+    /// <param name="transform">ë¶€ëª¨ Transform</param>
+    /// <param name="recursive">ì¬ê·€ íƒìƒ‰ ì—¬ë¶€</param>
+    /// <param name="name">íƒ€ê²Ÿ ì˜¤ë¸Œì íŠ¸ ì´ë¦„(ê¸°ë³¸ê°’ null)</param>
     /// <returns></returns>
     public static T FindChild<T>(this Transform transform, bool recursive = false, string name = null) where T : Component
     {
@@ -45,12 +48,12 @@ public static class Extension
         return null;
     }
     /// <summary>
-    /// Æ¯Á¤ TransformÀÇ ÀÚ½Äµé Áß¿¡¼­ Æ¯Á¤ Å¸ÀÔÀÇ ÄÄÆ÷³ÍÆ®¸¦ °¡Áø ¸ğµç ÀÚ½ÄÀ» Ã£½À´Ï´Ù.
-    /// recursive°¡ trueÀÌ¸é ¸ğµç ÀÚ½ÄµéÀ» Àç±ÍÀûÀ¸·Î Å½»öÇÕ´Ï´Ù.
+    /// íŠ¹ì • Transformì˜ ìì‹ë“¤ ì¤‘ì—ì„œ íŠ¹ì • íƒ€ì…ì˜ ì»´í¬ë„ŒíŠ¸ë¥¼ ê°€ì§„ ëª¨ë“  ìì‹ì„ ì°¾ìŠµë‹ˆë‹¤.
+    /// recursiveê°€ trueì´ë©´ ëª¨ë“  ìì‹ë“¤ì„ ì¬ê·€ì ìœ¼ë¡œ íƒìƒ‰í•©ë‹ˆë‹¤.
     /// </summary>
-    /// <typeparam name="T">Å¸°Ù ÄÄÆ÷³ÍÆ®</typeparam>
-    /// <param name="transform">ºÎ¸ğ Transform</param>
-    /// <param name="recursive">Àç±Í Å½»ö ¿©ºÎ</param>
+    /// <typeparam name="T">íƒ€ê²Ÿ ì»´í¬ë„ŒíŠ¸</typeparam>
+    /// <param name="transform">ë¶€ëª¨ Transform</param>
+    /// <param name="recursive">ì¬ê·€ íƒìƒ‰ ì—¬ë¶€</param>
     /// <returns></returns>
     public static T[] FindChilds<T>(this Transform transform, bool recursive = false) where T : Component
     {
@@ -72,8 +75,8 @@ public static class Extension
     }
     #endregion
     /// <summary>
-    /// gameObject¿¡ Æ¯Á¤ Å¸ÀÔÀÇ ÄÄÆ÷³ÍÆ®°¡ Á¸ÀçÇÏ¸é ÇØ´ç ÄÄÆ÷³ÍÆ®¸¦ ¹İÈ¯ÇÏ°í, 
-    /// Á¸ÀçÇÏÁö ¾ÊÀ¸¸é »õ·Î Ãß°¡ÇÑ ÈÄ ¹İÈ¯ÇÕ´Ï´Ù.
+    /// gameObjectì— íŠ¹ì • íƒ€ì…ì˜ ì»´í¬ë„ŒíŠ¸ê°€ ì¡´ì¬í•˜ë©´ í•´ë‹¹ ì»´í¬ë„ŒíŠ¸ë¥¼ ë°˜í™˜í•˜ê³ , 
+    /// ì¡´ì¬í•˜ì§€ ì•Šìœ¼ë©´ ìƒˆë¡œ ì¶”ê°€í•œ í›„ ë°˜í™˜í•©ë‹ˆë‹¤.
     /// </summary>
     public static T GetOrAddComponent<T>(this GameObject gameObject) where T : Component
     {
@@ -83,14 +86,14 @@ public static class Extension
         return component;
     }
     /// <summary>
-    /// gameObject¿¡ Æ¯Á¤ Å¸ÀÔÀÇ ÄÄÆ÷³ÍÆ®°¡ Á¸ÀçÇÏ´ÂÁö È®ÀÎÇÕ´Ï´Ù.
+    /// gameObjectì— íŠ¹ì • íƒ€ì…ì˜ ì»´í¬ë„ŒíŠ¸ê°€ ì¡´ì¬í•˜ëŠ”ì§€ í™•ì¸í•©ë‹ˆë‹¤.
     /// </summary>
     public static bool HasComponent<T>(this GameObject gameObject) where T : Component
     {
         return gameObject.GetComponent<T>() != null;
     }
     /// <summary>
-    /// gameObject¿¡¼­ Æ¯Á¤ Å¸ÀÔÀÇ ÄÄÆ÷³ÍÆ®¸¦ Ã£¾Æ Á¦°ÅÇÕ´Ï´Ù.
+    /// gameObjectì—ì„œ íŠ¹ì • íƒ€ì…ì˜ ì»´í¬ë„ŒíŠ¸ë¥¼ ì°¾ì•„ ì œê±°í•©ë‹ˆë‹¤.
     /// </summary>
     public static void RemoveComponent<T>(this GameObject gameObject) where T : Component
     {
@@ -100,37 +103,37 @@ public static class Extension
     }
 
     /// <summary>
-    /// µÎ Transform °£ÀÇ °Å¸®¸¦ °è»êÇÕ´Ï´Ù.
+    /// ë‘ Transform ê°„ì˜ ê±°ë¦¬ë¥¼ ê³„ì‚°í•©ë‹ˆë‹¤.
     /// </summary>
     public static float DistanceTo(this Transform from, Transform to)
     {
         return Vector3.Distance(from.position, to.position);
     }
     /// <summary>
-    /// µÎ GameObject °£ÀÇ °Å¸®¸¦ °è»êÇÕ´Ï´Ù.
+    /// ë‘ GameObject ê°„ì˜ ê±°ë¦¬ë¥¼ ê³„ì‚°í•©ë‹ˆë‹¤.
     /// </summary>
     public static float DistanceTo(this GameObject from, GameObject to)
     {
         return Vector3.Distance(from.transform.position, to.transform.position);
     }
     /// <summary>
-    /// µÎ Transform °£ÀÇ ¹æÇâ º¤ÅÍ¸¦ °è»êÇÕ´Ï´Ù.
+    /// ë‘ Transform ê°„ì˜ ë°©í–¥ ë²¡í„°ë¥¼ ê³„ì‚°í•©ë‹ˆë‹¤.
     /// </summary>
     public static Vector3 DirectionTo(this Transform from, Transform to)
     {
         return (to.position - from.position).normalized;
     }
     /// <summary>
-    /// µÎ GameObject °£ÀÇ ¹æÇâ º¤ÅÍ¸¦ °è»êÇÕ´Ï´Ù.
+    /// ë‘ GameObject ê°„ì˜ ë°©í–¥ ë²¡í„°ë¥¼ ê³„ì‚°í•©ë‹ˆë‹¤.
     /// </summary>
     public static Vector3 DirectionTo(this GameObject from, GameObject to)
     {
         return (to.transform.position - from.transform.position).normalized;
     }
 
-    // À§Ä¡ °ü·Ã
+    // ìœ„ì¹˜ ê´€ë ¨
     /// <summary>
-    /// ¿ùµå ÁÂÇ¥°è¿¡¼­ TransformÀÇ x À§Ä¡¸¦ ¼³Á¤ÇÕ´Ï´Ù.
+    /// ì›”ë“œ ì¢Œí‘œê³„ì—ì„œ Transformì˜ x ìœ„ì¹˜ë¥¼ ì„¤ì •í•©ë‹ˆë‹¤.
     /// </summary>
     public static void SetX(this Transform transform, float x)
     {
@@ -139,7 +142,7 @@ public static class Extension
         transform.position = pos;
     }
     /// <summary>
-    /// ¿ùµå ÁÂÇ¥°è¿¡¼­ TransformÀÇ y À§Ä¡¸¦ ¼³Á¤ÇÕ´Ï´Ù.
+    /// ì›”ë“œ ì¢Œí‘œê³„ì—ì„œ Transformì˜ y ìœ„ì¹˜ë¥¼ ì„¤ì •í•©ë‹ˆë‹¤.
     /// </summary>
     public static void SetY(this Transform transform, float y)
     {
@@ -148,7 +151,7 @@ public static class Extension
         transform.position = pos;
     }
     /// <summary>
-    /// ¿ùµå ÁÂÇ¥°è¿¡¼­ TransformÀÇ z À§Ä¡¸¦ ¼³Á¤ÇÕ´Ï´Ù.
+    /// ì›”ë“œ ì¢Œí‘œê³„ì—ì„œ Transformì˜ z ìœ„ì¹˜ë¥¼ ì„¤ì •í•©ë‹ˆë‹¤.
     /// </summary>
     public static void SetZ(this Transform transform, float z)
     {
@@ -157,7 +160,7 @@ public static class Extension
         transform.position = pos;
     }
     /// <summary>
-    /// ·ÎÄÃ ÁÂÇ¥°è¿¡¼­ TransformÀÇ x À§Ä¡¸¦ ¼³Á¤ÇÕ´Ï´Ù.
+    /// ë¡œì»¬ ì¢Œí‘œê³„ì—ì„œ Transformì˜ x ìœ„ì¹˜ë¥¼ ì„¤ì •í•©ë‹ˆë‹¤.
     /// </summary>
     public static void SetLocalX(this Transform transform, float x)
     {
@@ -166,7 +169,7 @@ public static class Extension
         transform.localPosition = pos;
     }
     /// <summary>
-    /// ·ÎÄÃ ÁÂÇ¥°è¿¡¼­ TransformÀÇ y À§Ä¡¸¦ ¼³Á¤ÇÕ´Ï´Ù.
+    /// ë¡œì»¬ ì¢Œí‘œê³„ì—ì„œ Transformì˜ y ìœ„ì¹˜ë¥¼ ì„¤ì •í•©ë‹ˆë‹¤.
     /// </summary>
     public static void SetLocalY(this Transform transform, float y)
     {
@@ -175,12 +178,17 @@ public static class Extension
         transform.localPosition = pos;
     }
     /// <summary>
-    /// ·ÎÄÃ ÁÂÇ¥°è¿¡¼­ TransformÀÇ z À§Ä¡¸¦ ¼³Á¤ÇÕ´Ï´Ù.
+    /// ë¡œì»¬ ì¢Œí‘œê³„ì—ì„œ Transformì˜ z ìœ„ì¹˜ë¥¼ ì„¤ì •í•©ë‹ˆë‹¤.
     /// </summary>
     public static void SetLocalZ(this Transform transform, float z)
     {
         var pos = transform.localPosition;
         pos.z = z;
         transform.localPosition = pos;
+    }
+    public static IEnumerator LateStart(Action callback)
+    {
+        yield return null;
+        callback?.Invoke();
     }
 }
