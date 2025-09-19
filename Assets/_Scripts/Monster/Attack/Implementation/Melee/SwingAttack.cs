@@ -5,7 +5,7 @@ using static UnityEngine.GraphicsBuffer;
 public class SwingAttack : MeleeAttack
 {
     // Swing 공격은 박스형 탐지 / 반원형 탐지 둘 중 하나 골라야 할 듯
-    public SwingAttack(float damage, float attackRange, Transform tr, MonsterAttack monsterAttack) : base(damage, attackRange, tr, monsterAttack)
+    public SwingAttack(Transform tr, MonsterAttack monsterAttack) : base(tr, monsterAttack)
     {
     }
 
@@ -16,6 +16,7 @@ public class SwingAttack : MeleeAttack
     {
         if(GetCheckAttackable())
         {
+            Debug.Log($"{_tr.name}의 공격력: {_damage}");
             if(_target != null)
                 _target.GetComponent<IDamageable>()?.TakeDamage((int)_damage);
         }

@@ -9,8 +9,8 @@ public class Orc : PatrolMonster
     {
         base.Awake();
 
-        _attack.Init(_dataHandler.AttackPower, _dataHandler.AttackRange, _dataHandler.AttackDelay, this);
-        _curAttack = new SwingAttack(_dataHandler.AttackPower, _dataHandler.AttackRange, transform, _attack);
+        _attack.Init(this);
+        _curAttack = new SwingAttack(transform, _attack);
         //_curAttack = new RushAttack(_dataHandler.AttackPower, _dataHandler.AttackRange, transform, _attack);
         //_curAttack = new RangedAttack(_attackPower, _attackRange, transform, _attack);
 

@@ -42,6 +42,7 @@ public abstract class BaseMonster : MonoBehaviour, Game.Monster.IDamageable
     protected List<Collider2D> _ignoredColliderList;
 
     public Action OnDied;
+    public Action Ondetect;
     public Action OnUpdate;
     public Action OnHit;
 
@@ -58,7 +59,6 @@ public abstract class BaseMonster : MonoBehaviour, Game.Monster.IDamageable
         _attack = GetComponentInChildren<MonsterAttack>();
         _dataHandler = Extension.GetOrAddComponent<MonsterDataHandler>(this.gameObject);
         _dataHandler.Owner = this;
-        _dataHandler.SetStatModifier(new StatModifier(1,1,1,1));
         _dataHandler.Init();
 
         Init();

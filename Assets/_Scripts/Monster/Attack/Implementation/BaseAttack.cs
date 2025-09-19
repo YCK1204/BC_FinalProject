@@ -2,22 +2,20 @@ using UnityEngine;
 
 public abstract class BaseAttack : Game.Monster.IAttackable
 {
-    protected float _damage;
-    protected float _attackRange;
+    protected float _damage { get { return _monsterAttack.AttackPower; } }
+    protected float _attackRange { get { return _monsterAttack.AttackRange; } }
     protected Transform _tr;
     protected LayerMask _mask;
     protected Collider2D _target;
 
     protected MonsterAttack _monsterAttack;
 
-    public BaseAttack(float damage, float attackRange, Transform tr, MonsterAttack monsterAttack)
+    public BaseAttack(Transform tr, MonsterAttack monsterAttack)
     {
-        _damage = damage;
-        _attackRange = attackRange;
+        _monsterAttack = monsterAttack;
         _tr = tr;
 
         _mask = LayerMask.GetMask(Game.Monster.Layers.Player);
-        _monsterAttack = monsterAttack;
     }
 
     public abstract void Attack();

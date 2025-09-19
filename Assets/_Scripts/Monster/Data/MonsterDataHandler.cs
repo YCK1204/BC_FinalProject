@@ -1,20 +1,27 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
+using static Unity.Cinemachine.CinemachineFreeLookModifier;
 
 [Serializable]
-public struct StatModifier
+public class StatModifier
 {
-    public float hpModifier;
-    public float attackPowerModifier;
-    public float scaleModifier;
-    public float rangeModifer;
+    Game.Monster.StatType _targetStat;
+    Game.Monster.ModifierType _modifierType;
+    float _value;
+    BaseMonster _caster;
 
-    public StatModifier(float hp = 1f, float attack = 1f, float scale = 1f, float range = 1f)
+    public Game.Monster.StatType TargetStat { get { return _targetStat; } }
+    public Game.Monster.ModifierType ModifierType { get { return _modifierType; } }
+    public float Value { get { return _value; } }
+    public BaseMonster Caster { get { return _caster; } }
+
+    public StatModifier(Game.Monster.StatType stat, Game.Monster.ModifierType modifier, float value, BaseMonster caster)
     {
-        hpModifier = hp;
-        attackPowerModifier = attack;
-        scaleModifier = scale;
-        rangeModifer = range;
+        _targetStat = stat;
+        _modifierType = modifier;
+        _value = value;
+        _caster = caster;
     }
 }
 
@@ -29,34 +36,124 @@ public class MonsterDataHandler : MonoBehaviour
     private BaseMonster _owner;
     public BaseMonster Owner { set { _owner = value; } }
 
-    private StatModifier _modifier;
+    private List<StatModifier> _modifierList;
 
-    public float Speed { get { return Data.Speed; } }
-    public float AttackPower { get { return Data.AttackPower * _modifier.attackPowerModifier; } }
+    private void Awake()
+    {
+        _modifierList = new List<StatModifier>();
+    }
+
+    public float Speed
+    {
+        get
+        {
+            float add, mul;
+            GetStat(Game.Monster.StatType.Speed, out add, out mul);
+            return (Data.Speed + add) * mul;
+        }
+    }
+    public float AttackPower
+    {
+        get
+        {
+            float add, mul;
+            GetStat(Game.Monster.StatType.Attack, out add, out mul);
+            return (Data.AttackPower + add) * mul;
+        }
+    }
     public float AttackDelay { get { return Data.AttackDelay; } }
-    public float AttackRange { get { return Data.AttackRange * _modifier.rangeModifer; } }
-    public float DetectRange { get { return Data.DetectRange * _modifier.rangeModifer; } }
+    public float AttackRange
+    {
+        get
+        {
+            float add, mul;
+            GetStat(Game.Monster.StatType.Scale, out add, out mul);
+            return (Data.AttackRange + add) * mul;
+        }
+    }
+    public float DetectRange
+    {
+        get
+        {
+            float add, mul;
+            GetStat(Game.Monster.StatType.Scale, out add, out mul);
+            return (Data.DetectRange + add) * mul;
+        }
+    }
+    public int MaxHp
+    {
+        get
+        {
+            float add, mul;
+            GetStat(Game.Monster.StatType.Hp, out add, out mul);
+            return (int)((Data.MaxHp + add) * mul);
+        }
+    }
     public bool CanMove { get { return Data.CanMove; } }
 
     public void Init()
     {
-        _curHp = (int)(Data.MaxHp * _modifier.hpModifier);
+        if(_modifierList == null)
+        {
+            _modifierList = new List<StatModifier>();
+        }
+        _curHp = MaxHp;
 
         if(_owner != null)
         {
-            _owner.Sr.transform.localScale = new Vector3(_owner.Sr.transform.localScale.x * _modifier.scaleModifier,
-                                                      _owner.Sr.transform.localScale.y * _modifier.scaleModifier,
-                                                      _owner.Sr.transform.localScale.z * _modifier.scaleModifier);
+            float add, mul;
+            GetStat(Game.Monster.StatType.Scale, out add, out mul);
+
+            _owner.Sr.transform.localScale = new Vector3(_owner.Sr.transform.localScale.x * mul,
+                                                      _owner.Sr.transform.localScale.y * mul,
+                                                      _owner.Sr.transform.localScale.z * mul);
             BoxCollider2D col = _owner.Col as BoxCollider2D;
             if(col != null)
-                col.size = new Vector2(col.size.x * _modifier.scaleModifier, col.size.y * _modifier.scaleModifier);
+                col.size = new Vector2(col.size.x * mul, col.size.y * mul);
         }
     }
 
-    public void SetStatModifier(StatModifier modifier)
+    public void AddModifier(StatModifier modifier)
     {
-        _modifier = modifier;
-        Init();
+        _modifierList.Add(modifier);
+    }
+
+    public void RemoveModifier(StatModifier modifier)
+    {
+        _modifierList.Remove(modifier);
+    }
+
+    public void RemoveModifierByCaster(BaseMonster caster)
+    {
+        for(int i=0; i<_modifierList.Count;i++)
+        {
+            if (_modifierList[i].Caster == caster)
+            {
+                RemoveModifier(_modifierList[i]);
+                i--;
+            }
+        }
+    }
+
+    public void GetStat(Game.Monster.StatType stat, out float add, out float mul)
+    {
+        add = 0f;
+        mul = 1f;
+        foreach(StatModifier modifier in _modifierList)
+        {
+            if(modifier.TargetStat == stat)
+            {
+                switch(modifier.ModifierType)
+                {
+                    case Game.Monster.ModifierType.Add:
+                        add += modifier.Value;
+                        break;
+                    case Game.Monster.ModifierType.Multiply:
+                        mul *= modifier.Value;
+                        break;
+                }
+            }
+        }
     }
 
     public void TakeDamage(int damage)

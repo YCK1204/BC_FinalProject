@@ -5,7 +5,8 @@ using UnityEngine;
 /// </summary>
 public class PatrolMove : Game.Monster.IMovable
 {
-    private float _speed;
+    BaseMonster _owner;
+    private float _speed { get { return _owner.MonsterData.Speed; } }
     Transform _tr;
     Rigidbody2D _rb;
     Collider2D _col;
@@ -16,9 +17,9 @@ public class PatrolMove : Game.Monster.IMovable
     // Todo: 벽과 땅에 대한 레이어가 생기면 이를 변경할 필요가 있음
     LayerMask _mask = ~(LayerMask.GetMask(Game.Monster.Layers.Player) | LayerMask.GetMask(Game.Monster.Layers.Monster));
 
-    public PatrolMove(float speed, BaseMonster owner)
+    public PatrolMove(BaseMonster owner)
     {
-        _speed = speed;
+        _owner = owner;
         _tr = owner.transform;
         _rb = owner.Rb;
         _col = owner.Col;
