@@ -16,7 +16,6 @@ public class SwingAttack : MeleeAttack
     {
         if(GetCheckAttackable())
         {
-            Debug.Log($"{_tr.name}의 공격력: {_damage}");
             if(_target != null)
                 _target.GetComponent<IDamageable>()?.TakeDamage((int)_damage);
         }

@@ -93,12 +93,15 @@ public class MonsterDataHandler : MonoBehaviour
 
     public void Init()
     {
+        // 능력치 버프 리스트가 비어있으면 새로 생성
         if(_modifierList == null)
         {
             _modifierList = new List<StatModifier>();
         }
+
         _curHp = MaxHp;
 
+        // 몬스터 실제 크기 변환
         if(_owner != null)
         {
             float add, mul;
