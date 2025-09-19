@@ -19,6 +19,11 @@ namespace Game.Player
         {
             base.Update();
 
+            if (_stateMachine.IsAttacking || _stateMachine.IsDashing)
+            {
+                return;
+            }
+
 #if UNITY_2022_3_OR_NEWER
             if (_stateMachine.Player.Rb.linearVelocity.y <= 0f)
                 _stateMachine.ChangeState(_stateMachine.AirState);
