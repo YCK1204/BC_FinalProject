@@ -27,14 +27,35 @@ namespace Game.Player
 
         public override void Update()
         {
-            base.Update();
+            ReadMoveInput();
 
-            if (_stateMachine.IsAttacking)
+#if ENABLE_INPUT_SYSTEM
+            var kb = UnityEngine.InputSystem.Keyboard.current;
+            bool jump = kb != null && kb.spaceKey.wasPressedThisFrame;
+            bool dash = kb != null && kb.sKey.wasPressedThisFrame;
+            bool attack = kb != null && kb.aKey.wasPressedThisFrame;
+#else
+            bool jump = Input.GetKeyDown(KeyCode.Space);
+            bool dash = Input.GetKeyDown(KeyCode.S);
+            bool attack = Input.GetKeyDown(KeyCode.A);
+#endif
+            if (attack && !_stateMachine.IsAttacking)
             {
+                _stateMachine.ComboIndex = 2;
+                _stateMachine.ChangeState(_stateMachine.AirAttackState);
                 return;
             }
-
-
+            if (dash && _stateMachine.CanDash())
+            {
+                _stateMachine.ChangeState(_stateMachine.DashState);
+                return;
+            }
+            if (jump && _stateMachine.JumpsRemaining > 0)
+            {
+                _stateMachine.ChangeState(_stateMachine.DoubleJumpState);
+                return;
+            }
+            
 #if UNITY_2022_3_OR_NEWER
             if (_stateMachine.Player.Rb.linearVelocity.y <= 0f)
             {
