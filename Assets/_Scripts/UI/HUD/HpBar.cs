@@ -11,12 +11,28 @@ public class HpBar : MonoBehaviour
     public PlayerCharacter player;
 
 
-    void Update()
+    void Start()
     {
-        if (player != null && slider.value != player.CurrentHP)
+        if (player != null)
         {
-            SetHp(player.CurrentHP);
+            slider.minValue = 0f;
+            slider.maxValue = 1f;
+            slider.value = 1f;
+
+            player.HpEvent += UpdateHp;
         }
+    }
+    void OnDestroy()
+    {
+        if (player != null)
+            player.HpEvent -= UpdateHp;
+    }
+
+    void UpdateHp(float currentHp, float maxHp)
+    {
+        float hp = currentHp / maxHp;
+        StopAllCoroutines();
+        StartCoroutine(UpdateHpBar(hp));
     }
 
     public void SetMaxHp(float maxHp)
