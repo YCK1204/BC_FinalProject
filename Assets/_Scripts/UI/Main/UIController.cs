@@ -82,7 +82,7 @@ public class UIController : MonoBehaviour
         activeState = stateMap[newState];
         activeState.Enter();
 
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSecondsRealtime(0.5f);
 
         isState = false;
     }
