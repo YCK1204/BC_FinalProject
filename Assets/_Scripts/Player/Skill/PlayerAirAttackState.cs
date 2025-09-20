@@ -22,7 +22,7 @@ namespace Game.Player
 
             var rb = _stateMachine.Player.Rb;
             rb.linearVelocity = Vector2.zero;
-            rb.AddForce(Vector2.down * 10f, ForceMode2D.Impulse);
+            rb.AddForce(Vector2.down * 30f, ForceMode2D.Impulse);
 
             _timer = _attackInfoData.AttackDuration;
             _stateMachine.Player.Animator.SetInteger(_stateMachine.Player.AnimationData.ComboParameterHash, 2);
