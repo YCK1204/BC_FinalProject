@@ -39,6 +39,7 @@ public class MonsterAttack : MonoBehaviour
 
     public void EndAttack()
     {
+        StopAttack();
         Invoke("ExcuteAttackEnd", AttackDelay);
     }
 
