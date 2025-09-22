@@ -142,6 +142,10 @@ public class MonsterDataHandler : MonoBehaviour
     {
         add = 0f;
         mul = 1f;
+
+        if(_modifierList == null)
+            _modifierList = new List<StatModifier>();
+
         foreach(StatModifier modifier in _modifierList)
         {
             if(modifier.TargetStat == stat)

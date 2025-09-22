@@ -9,7 +9,7 @@ public class MonsterAttack : MonoBehaviour
 {
     public float AttackPower { get { return _owner.MonsterData.AttackPower; } }
     public float AttackRange { get { return _owner.MonsterData.AttackRange; } }
-    public float AttackSpeed { get { return _owner.MonsterData.AttackDelay; } }
+    public float AttackDelay { get { return _owner.MonsterData.AttackDelay; } }
 
     [SerializeField] BaseProjectile _projectile;
 
@@ -34,7 +34,13 @@ public class MonsterAttack : MonoBehaviour
 
     public void StopAttack()
     {
-        Invoke("ExcuteAttackEnd", AttackSpeed);
+        (_attack as BaseAttack)?.StopAttack();
+    }
+
+    public void EndAttack()
+    {
+        StopAttack();
+        Invoke("ExcuteAttackEnd", AttackDelay);
     }
 
     private void ExcuteAttackEnd()

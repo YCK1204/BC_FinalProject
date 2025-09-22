@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EnemyTest : MonoBehaviour
 {
-    public BaseMonster monster;
+    public StateMachineMonster monster;
 
     [SerializeField] int Damage = 10;
 

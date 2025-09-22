@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97e65d2e36f92104e90d76fa5f85823d, type: 3}
-  m_Name: Orc
+  m_Name: SandGolem
   m_EditorClassIdentifier: Assembly-CSharp::MonsterData
-  MaxHp: 25
+  MaxHp: 60
   Speed: 3
-  AttackPower: 5
-  AttackDelay: 1
-  AttackRange: 4
-  DetectRange: 5
+  AttackPower: 10
+  AttackDelay: 2
+  AttackRange: 5
+  DetectRange: 7
   CanMove: 1

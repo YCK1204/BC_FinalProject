@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class VanishMove : Game.Monster.IMovable
 {
-    BaseMonster _owner;
+    StateMachineMonster _owner;
 
     float _curMoveCoolTime;
     float _maxMoveCoolTime;
@@ -12,7 +12,7 @@ public class VanishMove : Game.Monster.IMovable
     Transform _tr;
     Transform _target;
 
-    public VanishMove(BaseMonster owner)
+    public VanishMove(StateMachineMonster owner)
     {
         _owner = owner;
 

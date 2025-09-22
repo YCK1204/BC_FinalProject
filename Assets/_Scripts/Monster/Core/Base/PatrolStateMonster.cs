@@ -4,7 +4,7 @@ using UnityEngine;
 /// <summary>
 /// 순찰 기능(사실상 이동 기능)이 있는 몬스터 클래스
 /// </summary>
-public abstract class PatrolMonster : BaseMonster
+public abstract class PatrolStateMonster : StateMachineMonster
 {
     protected IMovable curPatrolMovement;
     protected IMovable curChaseMovement;

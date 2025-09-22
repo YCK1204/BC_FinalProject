@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -15,17 +16,13 @@ public abstract class BaseMonster : MonoBehaviour, Game.Monster.IDamageable
 
     // 몬스터 데이터 관리 컴포넌트
     [SerializeField] protected MonsterDataHandler _dataHandler;
-    public MonsterDataHandler MonsterData {  get { return _dataHandler; } }
+    public MonsterDataHandler MonsterData { get { return _dataHandler; } }
 
     // 몬스터 공격 컴포넌트
     protected MonsterAttack _attack;
     public MonsterAttack Attack { get { return _attack; } }
 
-    // 몬스터 상태 머신
-    protected MonsterStateMachine _stateMachine;
-    public MonsterStateMachine StateMachine { get { return _stateMachine; } }
-
-    private Transform _target;
+    protected Transform _target;
     public Transform Target { get { return _target; } }
 
     protected Rigidbody2D _rb;
@@ -33,7 +30,7 @@ public abstract class BaseMonster : MonoBehaviour, Game.Monster.IDamageable
     protected Collider2D _col;
     public Collider2D Col { get { return _col; } }
     protected Animator _anim;
-    public Animator Anim {  get { return _anim; } }
+    public Animator Anim { get { return _anim; } }
     protected SpriteRenderer _sr;
     public SpriteRenderer Sr { get { return _sr; } }
 
@@ -49,6 +46,7 @@ public abstract class BaseMonster : MonoBehaviour, Game.Monster.IDamageable
     // 슈퍼아머 상태 확인 변수
     public bool IsSuperArmor = false;
 
+
     protected virtual void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -59,46 +57,38 @@ public abstract class BaseMonster : MonoBehaviour, Game.Monster.IDamageable
         _attack = GetComponentInChildren<MonsterAttack>();
         _dataHandler = Extension.GetOrAddComponent<MonsterDataHandler>(this.gameObject);
         _dataHandler.Owner = this;
-        _dataHandler.Init();
 
-        Init();
+        _abillityList = new List<Game.Monster.ISpecialAbillity>();
+
+        if (_ignoredColliderList != null)
+            _ignoredColliderList.Clear();
+        else
+            _ignoredColliderList = new List<Collider2D>();
     }
 
     protected virtual void Init()
     {
-        _abillityList = new List<Game.Monster.ISpecialAbillity>();
         Game.Monster.ISpecialAbillity[] abillities = GetComponents<Game.Monster.ISpecialAbillity>();
         foreach (Game.Monster.ISpecialAbillity abillity in abillities)
         {
             _abillityList.Add(abillity);
             abillity.Init(this);
         }
-
-        if(_ignoredColliderList != null)
-            _ignoredColliderList.Clear();
-        else
-            _ignoredColliderList = new List<Collider2D>();
-
-        _stateMachine = new MonsterStateMachine(this);
-
     }
 
     protected virtual void OnEnable()
     {
-        _stateMachine.Init();
-        _stateMachine.Owner.Rb.bodyType = RigidbodyType2D.Dynamic;
-        _stateMachine.Owner.Col.isTrigger = false;
-    }
+        _dataHandler.Init();
+        ResetTarget();
+        OnDied = null;
+        Ondetect = null;
+        OnUpdate = null;
+        OnHit = null;
 
-    protected virtual void Update()
-    {
-        OnUpdate?.Invoke();
-        _stateMachine?.Update();
-    }
+        _abillityList.Clear();
+        _ignoredColliderList.Clear();
 
-    protected virtual void FixedUpdate()
-    {
-        _stateMachine?.FixedUpdate();
+        Init();
     }
 
     public void SetTarget(Transform target)
@@ -118,21 +108,8 @@ public abstract class BaseMonster : MonoBehaviour, Game.Monster.IDamageable
         transform.localScale = new Vector3(d, transform.localScale.y, transform.localScale.z);
     }
 
-    // 데미지 적용 메서드
-    public virtual void TakeDamage(int damage)
-    {
-        _dataHandler.TakeDamage(damage);
-        OnHit?.Invoke();
+    public abstract void TakeDamage(int damage);
 
-        if (_dataHandler.CurHp <= 0)
-        {
-            _stateMachine.ChangeState(Game.Monster.StateType.Die);
-        }
-        else if(!IsSuperArmor)
-        {
-            _stateMachine.ChangeState(Game.Monster.StateType.Hit);
-        }
-    }
 
     // 몬스터가 사망할 때 호출하는 메서드
     public void Die()
@@ -148,7 +125,7 @@ public abstract class BaseMonster : MonoBehaviour, Game.Monster.IDamageable
     /// <param name="collider">충돌을 무시할 콜라이더</param>
     public void RegisterIgnoreCollider(Collider2D collider)
     {
-        if(!_ignoredColliderList.Contains(collider))
+        if (!_ignoredColliderList.Contains(collider))
         {
             Physics2D.IgnoreCollision(Col, collider, true);
             _ignoredColliderList.Add(collider);
@@ -161,7 +138,7 @@ public abstract class BaseMonster : MonoBehaviour, Game.Monster.IDamageable
     /// <param name="collider">충돌 가능하게 만들 콜라이더</param>
     public void DeleteIgnoreCollider(Collider2D collider)
     {
-        if(_ignoredColliderList.Contains(collider))
+        if (_ignoredColliderList.Contains(collider))
         {
             Physics2D.IgnoreCollision(Col, collider, false);
             _ignoredColliderList.Remove(collider);
@@ -181,5 +158,4 @@ public abstract class BaseMonster : MonoBehaviour, Game.Monster.IDamageable
         Gizmos.DrawWireSphere(transform.position, _dataHandler.AttackRange);
     }
 #endif
-
 }
