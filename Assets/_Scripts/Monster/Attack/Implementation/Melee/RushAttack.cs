@@ -34,6 +34,11 @@ public class RushAttack : MeleeAttack
         _rb.linearVelocityX = dir * _rushSpeed;
     }
 
+    public override void StopAttack()
+    {
+        OnAttackEnd();
+    }
+
     private void OnAttackEnd()
     {
         _monsterAttack.Owner.RegisterIgnoreCollider(_target);

@@ -34,6 +34,11 @@ public class MonsterAttack : MonoBehaviour
 
     public void StopAttack()
     {
+        (_attack as BaseAttack)?.StopAttack();
+    }
+
+    public void EndAttack()
+    {
         Invoke("ExcuteAttackEnd", AttackDelay);
     }
 
