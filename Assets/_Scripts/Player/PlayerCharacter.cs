@@ -1,7 +1,8 @@
 using Game.Monster;
+using System;
 using UnityEngine;
 
-namespace GameSystem
+namespace Game.Player
 {
     public class PlayerCharacter : MonoBehaviour, IDamageable
     {
@@ -46,6 +47,18 @@ namespace GameSystem
         public float CurrentHP => currentHP;
         public bool IsDead => currentHP <= 0f;
 
+        public event Action<float, float> HpEvent;
+
+        private void Awake()
+        {
+            Rb = GetComponent<Rigidbody2D>();
+            Animator = GetComponent<Animator>();
+            if (!Force) Force = GetComponent<ForceReceiver>();
+            currentHP = Data.Stats.MaxHP;
+
+            _machine = new PlayerStateMachine(this);
+            _machine.ChangeState(_machine.IdleState);
+        }
         public bool IsGrounded()
         {
             if (!GroundCheck) return false;
@@ -71,6 +84,7 @@ namespace GameSystem
         {
             if (Invincible || IsDead) return;
             currentHP = Mathf.Max(0f, currentHP - Mathf.Max(0, damage));
+            HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
             if (currentHP <= 0f) Die(); else EnterHurtByFacing();
         }
 
@@ -87,12 +101,14 @@ namespace GameSystem
         {
             if (IsDead) return;
             currentHP = Mathf.Min(Data.Stats.MaxHP, currentHP + Mathf.Max(0f, amount));
+            HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
         }
 
         public void Die()
         {
             currentHP = 0f;
             ResetCorruptionGauge();
+            HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
             _machine.ChangeState(_machine.DieState);
         }
 
@@ -107,16 +123,6 @@ namespace GameSystem
             }
         }
 
-        private void Awake()
-        {
-            Rb = GetComponent<Rigidbody2D>();
-            Animator = GetComponent<Animator>();
-            if (!Force) Force = GetComponent<ForceReceiver>();
-            currentHP = Data.Stats.MaxHP;
-
-            _machine = new PlayerStateMachine(this);
-            _machine.ChangeState(_machine.IdleState);
-        }
 
         private void Update()
         {

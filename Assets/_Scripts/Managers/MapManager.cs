@@ -73,12 +73,12 @@ public class MapManager : MonoBehaviour
 
         _currentMap = map;
         _currentMap.SetActive(true);
-        MovePlayerToSpawn(_currentMap);
+        MovePlayerSpawn(_currentMap);
 
         OnPortal = false;
     }
 
-    private void MovePlayerToSpawn(GameObject map)
+    private void MovePlayerSpawn(GameObject map)
     {
         Transform spawnPoint = map.transform.Find("SpawnPoint");
         if (spawnPoint != null)

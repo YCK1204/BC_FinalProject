@@ -13,9 +13,9 @@ public abstract class PatrolMonster : BaseMonster
     {
         base.Init();
 
-        curPatrolMovement = new PatrolMove(_dataHandler.Speed, this); ;
-        curChaseMovement = new ChaseMove(_dataHandler.Speed, this);
-        //curChaseMovement = new VanishMove(transform, this);
+        curPatrolMovement = new PatrolMove(this);
+        curChaseMovement = new ChaseMove(this);
+        //curChaseMovement = new VanishMove(this);
     }
 
     public IMovable GetChaseMovement()

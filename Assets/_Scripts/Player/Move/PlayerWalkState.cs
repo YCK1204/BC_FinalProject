@@ -1,4 +1,4 @@
-namespace GameSystem
+namespace Game.Player
 {
     public class PlayerWalkState : PlayerGroundedState
     {

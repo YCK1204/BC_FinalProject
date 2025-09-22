@@ -15,6 +15,8 @@ public class MonsterCahseState : MonsterBaseState
     {
         base.Enter();
 
+        _stateMachine.Owner.Ondetect?.Invoke();
+
         _target = _stateMachine.Owner.Target;
         _stateMachine.Owner.LookTarget();
 
@@ -45,7 +47,6 @@ public class MonsterCahseState : MonsterBaseState
         if (!CheckDetectRange())
             _stateMachine.ChangeState(Game.Monster.StateType.Idle);
 
-        //if(CheckAttackRange())
         if (_stateMachine.Owner.Attack.Attackable.GetCheckAttackable(_xMargin))
             _stateMachine.ChangeState(Game.Monster.StateType.Attack);
     }

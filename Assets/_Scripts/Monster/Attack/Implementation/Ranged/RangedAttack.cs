@@ -7,7 +7,7 @@ using UnityEngine;
 /// </summary>
 public class RangedAttack : BaseAttack
 {
-    public RangedAttack(float damage, float attackRange, Transform tr, MonsterAttack monsterAttack) : base(damage, attackRange, tr, monsterAttack)
+    public RangedAttack(Transform tr, MonsterAttack monsterAttack) : base(tr, monsterAttack)
     {
     }
 

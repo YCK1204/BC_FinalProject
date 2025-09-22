@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class VanishMove : Game.Monster.IMovable
 {
+    BaseMonster _owner;
+
     float _curMoveCoolTime;
     float _maxMoveCoolTime;
     float _blinkOffsetX;
@@ -10,14 +12,16 @@ public class VanishMove : Game.Monster.IMovable
     Transform _tr;
     Transform _target;
 
-    public VanishMove(Transform tr, BaseMonster owner)
+    public VanishMove(BaseMonster owner)
     {
+        _owner = owner;
+
         _curMoveCoolTime = 1f;
         _maxMoveCoolTime = 2f;
         _blinkOffsetX = 0.7f;
         _blinkOffsetY = 1f;
 
-        _tr = tr;
+        _tr = owner.transform;
         _target = owner.Target;
     }
 
