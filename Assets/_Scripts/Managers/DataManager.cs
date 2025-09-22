@@ -1,4 +1,4 @@
-using GameSystem;
+using Game.Player;
 using Newtonsoft.Json;
 using NUnit.Framework.Interfaces;
 using System;

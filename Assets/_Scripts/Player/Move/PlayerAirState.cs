@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GameSystem
+namespace Game.Player
 {
     public class PlayerAirState : PlayerBaseState
     {
@@ -38,10 +38,18 @@ namespace GameSystem
             var kb = UnityEngine.InputSystem.Keyboard.current;
             bool jump = kb != null && kb.spaceKey.wasPressedThisFrame;
             bool dash = kb != null && kb.sKey.wasPressedThisFrame;
+            bool attack = kb != null && kb.aKey.wasPressedThisFrame;
 #else
             bool jump = Input.GetKeyDown(KeyCode.Space);
             bool dash = Input.GetKeyDown(KeyCode.S);
+            bool attack = Input.GetKeyDown(KeyCode.A);
 #endif
+            if (attack && !_stateMachine.IsAttacking)
+            {
+                _stateMachine.ComboIndex = 2;
+                _stateMachine.ChangeState(_stateMachine.AirAttackState);
+                return;
+            }
             if (jump && _stateMachine.JumpsRemaining > 0)
             {
                 _stateMachine.ChangeState(_stateMachine.DoubleJumpState);
@@ -50,12 +58,11 @@ namespace GameSystem
             if (dash && _stateMachine.CanDash())
             {
                 _stateMachine.DashPressed = true;
-                _stateMachine.ChangeState(_stateMachine.AirDashState);
+                _stateMachine.ChangeState(_stateMachine.DashState);
                 return;
             }
-
 #if UNITY_2022_3_OR_NEWER
-            
+
             if (_stateMachine.Player.IsGrounded())
             {
                 if (_stateMachine.MovementInput == Vector2.zero)

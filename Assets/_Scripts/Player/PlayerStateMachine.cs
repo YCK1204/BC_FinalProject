@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GameSystem
+namespace Game.Player
 {
     public class PlayerStateMachine
     {
@@ -24,17 +24,21 @@ namespace GameSystem
         public int JumpsRemaining { get; set; }
 
         float _lastDashTime = -999f;
+        public int ComboIndex { get; set; }
+        public bool ContinueCombo { get; set; }
 
+        public IState ComboAttackState { get; private set; }
         public IState IdleState { get; private set; }
         public IState WalkState { get; private set; }
         public IState AttackState { get; private set; }
         public IState AirState { get; private set; }
         public IState DashState { get; private set; }
         public IState JumpState { get; private set; }
-        public IState AirDashState { get; private set; }
         public IState DoubleJumpState { get; private set; }
         public IState HurtState { get; private set; }
         public IState DieState { get; private set; }
+
+        public IState AirAttackState { get; private set; }
 
         IState _currentState;
 
@@ -50,11 +54,12 @@ namespace GameSystem
 
             IdleState = new PlayerIdleState(this);
             WalkState = new PlayerWalkState(this);
-            AttackState = new PlayerAttackState(this);
+            ComboAttackState = new PlayerComboAttackState(this);
             AirState = new PlayerAirState(this);
             DashState = new PlayerDashState(this);
             JumpState = new PlayerJumpState(this);
-            AirDashState = new PlayerAirDashState(this);
+            //AirDashState = new PlayerAirDashState(this);
+            AirAttackState = new PlayerAirAttackState(this);
             DoubleJumpState = new PlayerDoubleJumpState(this);
             HurtState = new PlayerHurtState(this);
             DieState = new PlayerDieState(this);

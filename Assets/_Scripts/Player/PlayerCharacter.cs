@@ -2,7 +2,7 @@ using Game.Monster;
 using System;
 using UnityEngine;
 
-namespace GameSystem
+namespace Game.Player
 {
     public class PlayerCharacter : MonoBehaviour, IDamageable
     {
@@ -49,6 +49,16 @@ namespace GameSystem
 
         public event Action<float, float> HpEvent;
 
+        private void Awake()
+        {
+            Rb = GetComponent<Rigidbody2D>();
+            Animator = GetComponent<Animator>();
+            if (!Force) Force = GetComponent<ForceReceiver>();
+            currentHP = Data.Stats.MaxHP;
+
+            _machine = new PlayerStateMachine(this);
+            _machine.ChangeState(_machine.IdleState);
+        }
         public bool IsGrounded()
         {
             if (!GroundCheck) return false;
@@ -113,16 +123,6 @@ namespace GameSystem
             }
         }
 
-        private void Awake()
-        {
-            Rb = GetComponent<Rigidbody2D>();
-            Animator = GetComponent<Animator>();
-            if (!Force) Force = GetComponent<ForceReceiver>();
-            currentHP = Data.Stats.MaxHP;
-
-            _machine = new PlayerStateMachine(this);
-            _machine.ChangeState(_machine.IdleState);
-        }
 
         private void Update()
         {
