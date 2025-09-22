@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MonsterStateMachine : Game.Monster.IStateMachine<BaseMonster>
+public class MonsterStateMachine : Game.Monster.IStateMachine<StateMachineMonster>
 {
     // 해당 스테이트 머신의 소유자
-    public BaseMonster Owner { get; private set; }
+    public StateMachineMonster Owner { get; private set; }
 
     // 몬스터의 현재 상태
     protected MonsterBaseState curState;
@@ -12,7 +12,7 @@ public class MonsterStateMachine : Game.Monster.IStateMachine<BaseMonster>
     // 몬스터의 상태를 담은 딕셔너리
     protected Dictionary<Game.Monster.StateType, MonsterBaseState> stateDic;
 
-    public MonsterStateMachine(BaseMonster owner)
+    public MonsterStateMachine(StateMachineMonster owner)
     {
         Owner = owner;
         Init();

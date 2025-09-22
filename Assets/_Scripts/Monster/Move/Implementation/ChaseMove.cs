@@ -6,7 +6,7 @@ using UnityEngine;
 public class ChaseMove : Game.Monster.IMovable
 {
     private float _speed { get { return _owner.MonsterData.Speed; } }
-    BaseMonster _owner;
+    StateMachineMonster _owner;
     Transform _tr;
     Rigidbody2D _rb;
     Collider2D _col;
@@ -17,7 +17,7 @@ public class ChaseMove : Game.Monster.IMovable
     // Todo: 벽과 땅에 대한 레이어가 생기면 이를 변경할 필요가 있음
     LayerMask _mask = ~(LayerMask.GetMask(Game.Monster.Layers.Player) | LayerMask.GetMask(Game.Monster.Layers.Monster));
 
-    public ChaseMove(BaseMonster owner)
+    public ChaseMove(StateMachineMonster owner)
     {
         _owner = owner;
         _tr = owner.transform;

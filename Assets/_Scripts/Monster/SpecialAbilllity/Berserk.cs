@@ -48,7 +48,7 @@ public class Berserk : MonoBehaviour, Game.Monster.ISpecialAbillity
         {
             if (_affectedMonsterList != null)
             {
-                foreach (BaseMonster affectedMonster in _affectedMonsterList)
+                foreach (StateMachineMonster affectedMonster in _affectedMonsterList)
                 {
                     affectedMonster.MonsterData.RemoveModifierByCaster(monster);
                 }

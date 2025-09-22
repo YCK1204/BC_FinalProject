@@ -20,7 +20,7 @@ public class MonsterCahseState : MonsterBaseState
         _target = _stateMachine.Owner.Target;
         _stateMachine.Owner.LookTarget();
 
-        _chaseMove = (_stateMachine.Owner as PatrolMonster)?.GetChaseMovement();
+        _chaseMove = (_stateMachine.Owner as PatrolStateMonster)?.GetChaseMovement();
 
         // 아 이거 마음에 안드는데
         if(_chaseMove is ChaseMove)

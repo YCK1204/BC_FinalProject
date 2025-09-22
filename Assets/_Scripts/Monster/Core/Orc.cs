@@ -1,7 +1,7 @@
 using Game.Monster;
 using UnityEngine;
 
-public class Orc : PatrolMonster
+public class Orc : PatrolStateMonster
 {
     IAttackable _curAttack;
 
