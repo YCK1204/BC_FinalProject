@@ -11,9 +11,9 @@ public abstract class StateMachineMonster : BaseMonster
     protected MonsterStateMachine _stateMachine;
     public MonsterStateMachine StateMachine { get { return _stateMachine; } }
 
-    protected override void Init()
+    protected override void Awake()
     {
-        base.Init();
+        base.Awake();
 
         _stateMachine = new MonsterStateMachine(this);
     }
@@ -22,7 +22,7 @@ public abstract class StateMachineMonster : BaseMonster
     {
         base.OnEnable();
 
-        _stateMachine.Init();
+        _stateMachine?.Init();
         Rb.bodyType = RigidbodyType2D.Dynamic;
         Col.isTrigger = false;
     }

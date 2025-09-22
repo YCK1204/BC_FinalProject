@@ -18,6 +18,7 @@ public class MonsterHitState : MonsterBaseState
         _curHitTime = 0f;
         //_stateMachine.Owner.Anim.SetFloat(Game.Monster.AnimatorParams.Speed, 0);
         _stateMachine.Owner.Anim.SetTrigger(Game.Monster.AnimatorParams.Hit);
+        _stateMachine.Owner.Rb.linearVelocityX = 0f;
     }
 
     // Todo: 피격 시, 몬스터 행동 불가 / 일정 시간 이후 대기 상태로 복귀

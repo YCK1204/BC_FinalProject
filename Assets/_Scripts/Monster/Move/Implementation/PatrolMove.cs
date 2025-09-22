@@ -28,13 +28,14 @@ public class PatrolMove : Game.Monster.IMovable
     public void Move()
     {
         _rb.linearVelocityX = _speed * _tr.localScale.x;
-        RaycastHit2D floor = Physics2D.Raycast(_tr.position + new Vector3(_col.bounds.size.x / 2f + 0.1f, 0, 0) * _tr.localScale.x, Vector2.down, (_col.bounds.size.y / 2f + 0.1f), _mask);
-        Debug.DrawRay(_tr.position + new Vector3(_col.bounds.size.x / 2f + 0.1f, 0, 0) * _tr.localScale.x, Vector2.down * (_col.bounds.size.y / 2f + 0.1f), Color.red);
+        RaycastHit2D floor = Physics2D.Raycast(_tr.position + new Vector3(_col.bounds.size.x / 2f + 0.1f, 0, 0) * _tr.localScale.x, Vector2.down, (_col.bounds.size.y + 0.1f), _mask);
+        Debug.DrawRay(_tr.position + new Vector3(_col.bounds.size.x / 2f + 0.1f, 0, 0) * _tr.localScale.x, Vector2.down * (_col.bounds.size.y + 0.1f), Color.red);
         RaycastHit2D wall = Physics2D.Raycast(_tr.position + new Vector3(_col.bounds.size.x / 2f + 0.1f, 0, 0) * _tr.localScale.x, Vector2.right * _tr.localScale.x, 0.3f, _mask);
         Debug.DrawRay(_tr.position + new Vector3(_col.bounds.size.x / 2f + 0.1f, 0, 0) * _tr.localScale.x, Vector2.right * _tr.localScale.x * 0.3f, Color.blue);
 
         if(floor.collider == null || wall.collider != null)
-            _tr.localScale = new Vector3( -1 * _tr.localScale.x, _tr.localScale.y, _tr.localScale.z);
+            _tr.localScale = new Vector3(-1 * _tr.localScale.x, _tr.localScale.y, _tr.localScale.z);
+
     }
 
     public void StopMove()

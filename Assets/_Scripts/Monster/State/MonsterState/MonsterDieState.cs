@@ -20,6 +20,7 @@ public class MonsterDieState : MonsterBaseState
         _stateMachine.Owner.Anim.SetTrigger(Game.Monster.AnimatorParams.Die);
         _stateMachine.Owner.Rb.bodyType = RigidbodyType2D.Kinematic;
         _stateMachine.Owner.Col.isTrigger = true;
+        _stateMachine.Owner.Rb.linearVelocityX = 0f;
     }
 
     public override void Update()

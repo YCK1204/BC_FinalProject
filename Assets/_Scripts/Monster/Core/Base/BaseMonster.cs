@@ -58,18 +58,7 @@ public abstract class BaseMonster : MonoBehaviour, Game.Monster.IDamageable
         _dataHandler = Extension.GetOrAddComponent<MonsterDataHandler>(this.gameObject);
         _dataHandler.Owner = this;
 
-        Init();
-    }
-
-    protected virtual void Init()
-    {
         _abillityList = new List<Game.Monster.ISpecialAbillity>();
-        Game.Monster.ISpecialAbillity[] abillities = GetComponents<Game.Monster.ISpecialAbillity>();
-        foreach (Game.Monster.ISpecialAbillity abillity in abillities)
-        {
-            _abillityList.Add(abillity);
-            abillity.Init(this);
-        }
 
         if (_ignoredColliderList != null)
             _ignoredColliderList.Clear();
@@ -77,16 +66,29 @@ public abstract class BaseMonster : MonoBehaviour, Game.Monster.IDamageable
             _ignoredColliderList = new List<Collider2D>();
     }
 
+    protected virtual void Init()
+    {
+        Game.Monster.ISpecialAbillity[] abillities = GetComponents<Game.Monster.ISpecialAbillity>();
+        foreach (Game.Monster.ISpecialAbillity abillity in abillities)
+        {
+            _abillityList.Add(abillity);
+            abillity.Init(this);
+        }
+    }
+
     protected virtual void OnEnable()
     {
         _dataHandler.Init();
         ResetTarget();
-        _abillityList.Clear();
-        _ignoredColliderList.Clear();
         OnDied = null;
         Ondetect = null;
         OnUpdate = null;
         OnHit = null;
+
+        _abillityList.Clear();
+        _ignoredColliderList.Clear();
+
+        Init();
     }
 
     public void SetTarget(Transform target)
