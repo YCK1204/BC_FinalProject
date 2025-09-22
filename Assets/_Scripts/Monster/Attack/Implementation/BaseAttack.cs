@@ -20,6 +20,11 @@ public abstract class BaseAttack : Game.Monster.IAttackable
 
     public abstract void Attack();
 
+    public virtual void StopAttack()
+    {
+
+    }
+
     /// <summary>
     /// 타겟이 공격 범위에 있는지 확인하는 메서드
     /// </summary>

@@ -6,7 +6,7 @@ using UnityEngine;
 public class ChaseMove : Game.Monster.IMovable
 {
     private float _speed { get { return _owner.MonsterData.Speed; } }
-    BaseMonster _owner;
+    StateMachineMonster _owner;
     Transform _tr;
     Rigidbody2D _rb;
     Collider2D _col;
@@ -17,7 +17,7 @@ public class ChaseMove : Game.Monster.IMovable
     // Todo: 벽과 땅에 대한 레이어가 생기면 이를 변경할 필요가 있음
     LayerMask _mask = ~(LayerMask.GetMask(Game.Monster.Layers.Player) | LayerMask.GetMask(Game.Monster.Layers.Monster));
 
-    public ChaseMove(BaseMonster owner)
+    public ChaseMove(StateMachineMonster owner)
     {
         _owner = owner;
         _tr = owner.transform;
@@ -42,8 +42,8 @@ public class ChaseMove : Game.Monster.IMovable
 
         _rb.linearVelocityX = _speed * dir;
 
-        RaycastHit2D floor = Physics2D.Raycast(_tr.position + new Vector3(_col.bounds.size.x / 2f + 0.1f, 0, 0) * _tr.localScale.x, Vector2.down, (_col.bounds.size.y / 2f + 0.1f), _mask);
-        Debug.DrawRay(_tr.position + new Vector3(_col.bounds.size.x / 2f + 0.1f, 0, 0) * _tr.localScale.x, Vector2.down * (_col.bounds.size.y / 2f + 0.1f), Color.red);
+        RaycastHit2D floor = Physics2D.Raycast(_tr.position + new Vector3(_col.bounds.size.x / 2f + 0.1f, 0, 0) * _tr.localScale.x, Vector2.down, (_col.bounds.size.y + 0.1f), _mask);
+        Debug.DrawRay(_tr.position + new Vector3(_col.bounds.size.x / 2f + 0.1f, 0, 0) * _tr.localScale.x, Vector2.down * (_col.bounds.size.y + 0.1f), Color.red);
         RaycastHit2D wall = Physics2D.Raycast(_tr.position + new Vector3(_col.bounds.size.x / 2f + 0.1f, 0, 0) * _tr.localScale.x, Vector2.right * _tr.localScale.x, 0.3f, _mask);
         Debug.DrawRay(_tr.position + new Vector3(_col.bounds.size.x / 2f + 0.1f, 0, 0) * _tr.localScale.x, Vector2.right * _tr.localScale.x * 0.3f, Color.blue);
 

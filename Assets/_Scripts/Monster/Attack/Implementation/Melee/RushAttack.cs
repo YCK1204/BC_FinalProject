@@ -24,6 +24,7 @@ public class RushAttack : MeleeAttack
 
     public override void Attack()
     {
+        _rushSpeed = _monsterAttack.Owner.MonsterData.Speed * 1.5f;
         _monsterAttack.Owner.DeleteIgnoreCollider(_target);
 
         _rb.bodyType = RigidbodyType2D.Kinematic;
@@ -31,6 +32,11 @@ public class RushAttack : MeleeAttack
 
         float dir = _tr.localScale.x < 0 ? -1 : 1;
         _rb.linearVelocityX = dir * _rushSpeed;
+    }
+
+    public override void StopAttack()
+    {
+        OnAttackEnd();
     }
 
     private void OnAttackEnd()
