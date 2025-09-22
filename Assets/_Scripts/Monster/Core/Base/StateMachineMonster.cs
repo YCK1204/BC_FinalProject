@@ -41,6 +41,11 @@ public abstract class StateMachineMonster : BaseMonster
     // 데미지 적용 메서드
     public override void TakeDamage(int damage)
     {
+        // 체력이 0이하면 종료
+        // 만약 넉백이 외부에서 구현한다면 그 부분은 호출하는 쪽에서 막을 필요가 있음
+        if (_dataHandler.CurHp <= 0)
+            return;
+
         _dataHandler.TakeDamage(damage);
         OnHit?.Invoke();
 

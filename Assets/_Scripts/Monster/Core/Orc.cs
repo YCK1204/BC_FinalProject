@@ -10,9 +10,9 @@ public class Orc : PatrolStateMonster
         base.Awake();
 
         _attack.Init(this);
-        //_curAttack = new SwingAttack(transform, _attack);
-        _curAttack = new RushAttack(transform, _attack);
-        //_curAttack = new RangedAttack(_attackPower, _attackRange, transform, _attack);
+        _curAttack = new SwingAttack(transform, _attack);
+        //_curAttack = new RushAttack(transform, _attack);
+        //_curAttack = new RangedAttack( transform, _attack);
 
         _attack.Attackable = _curAttack;
     }
