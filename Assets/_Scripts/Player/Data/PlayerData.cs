@@ -1,6 +1,8 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace GameSystem
+namespace Game.Player
 {
     [System.Serializable]
     public class PlayerGroundData
@@ -31,12 +33,47 @@ namespace GameSystem
     {
         public float AttackPower = 10f;
         public float AttackRange = 1.5f;
-        public float BaseAttackSpeedAPS = 2f;
-        public float AttackSpeedPercent = 0f;
+
+        public float AttackSpeed = 1f;
         public float ExtraDamage = 0f;
-        public float CriticalChancePercent = 5f;
-        public float CriticalDamagePercent = 200f;
+
+        public float CriticalChance = 5f;
+        public float CriticalDamage = 200f;
+        
+        public float SkillAttck = 10f;
+
+        // 기본 스킬가속 = 100% = 1f
+        public float SkillHaste = 1f;
+
+        public float CorruptionDuration = 10f;
+    }
+
+    [Serializable]
+    public class AttackInfoData
+    {
+        // 콤보어택
+        public int ComboStateIndex = -1;
         public float AttackDuration = 0.5f;
+        public float HitTiming = 0.2f;
+        public float Force = 2f;
+        public float ForceTime = 0.1f;
+        public float DamageSet = 1.0f;
+        public float ComboTime = 0.7f;
+    }
+
+    [Serializable]
+    public class PlayerComboAttackData
+    {
+        public List<AttackInfoData> AttackInfos = new List<AttackInfoData>();
+
+        public AttackInfoData GetAttackInfo(int index)
+        {
+            if (index >= 0 && index < AttackInfos.Count)
+            {
+                return AttackInfos[index];
+            }
+            return null;
+        }
     }
 
     [System.Serializable]
@@ -63,5 +100,6 @@ namespace GameSystem
         public PlayerCombatData CombatData = new PlayerCombatData();
         public PlayerHurtData HurtData = new PlayerHurtData();
         public PlayerStatsData Stats = new PlayerStatsData();
+        public PlayerComboAttackData ComboAttackData = new PlayerComboAttackData();
     }
 }

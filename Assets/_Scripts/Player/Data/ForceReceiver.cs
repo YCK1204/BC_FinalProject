@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace GameSystem
+namespace Game.Player
 {
     public class ForceReceiver : MonoBehaviour
     {
@@ -24,6 +24,12 @@ namespace GameSystem
 #else
             Body.velocity = velocity;
 #endif
+        }
+
+        public void AddImpulse(Vector2 force)
+        {
+            Body.linearVelocity = new Vector2(0, Body.linearVelocity.y);
+            Body.AddForce(force, ForceMode2D.Impulse);
         }
     }
 }

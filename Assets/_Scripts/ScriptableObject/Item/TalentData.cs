@@ -1,4 +1,4 @@
-using GameSystem;
+using Game.Player;
 using UnityEngine;
 
 public enum TalentType
