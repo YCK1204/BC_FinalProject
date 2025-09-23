@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-using Game.Traits;   // ← 네 SoulWallet(CurrentSoul/Set) 접근
+using Game.Traits;
 
 namespace Game.Traits.UI
 {
@@ -8,7 +8,7 @@ namespace Game.Traits.UI
     {
         [Header("Common")]
         [SerializeField] private string _name;
-        [SerializeField] private TraitNodeType _nodeType = TraitNodeType.Passive; // ← 타입 찾힘
+        [SerializeField] private TraitNodeType _nodeType = TraitNodeType.Passive;
         [SerializeField] private int _conditionGoods = 0;
         [SerializeField] private bool _isUnlocked = false;
 
@@ -18,7 +18,7 @@ namespace Game.Traits.UI
         [SerializeField] private int _descId = 0;
 
         [Header("Passive Only")]
-        [SerializeField] private Ability _ability = Ability.none; // ← 타입 찾힘
+        [SerializeField] private Ability _ability = Ability.none;
         [SerializeField] private float _value = 0f;
 
         [Header("Ability Display Map")]
@@ -61,7 +61,6 @@ namespace Game.Traits.UI
                 m.Lines.Add(new TooltipLine($"{disp.DisplayName}  {valueText}", emphasize: true));
             }
 
-            // 잠금일 때만 재화 줄 노출
             if (!_isUnlocked && _conditionGoods > 0)
             {
                 int owned = SoulWallet.Instance ? SoulWallet.Instance.CurrentSoul : 0;

@@ -6,13 +6,13 @@ using System.Collections;
 [RequireComponent(typeof(Image))]
 public class TraitLineIndicator : MonoBehaviour
 {
-    public TraitUnlockSystem system; // 인스펙터 드래그 권장
+    public TraitUnlockSystem system;
     public int fromId;
     public int toId;
 
-    public Color unlockedColor = Color.white;                        // 둘 다 해금
-    public Color canUnlockColor = new Color(0.7f, 1f, 0.7f, 1f);      // 해금 가능(연두)
-    public Color lockedColor = new Color(0.35f, 0.35f, 0.35f, 1f); // 잠김(회색)
+    public Color unlockedColor = Color.white;
+    public Color canUnlockColor = new Color(0.7f, 1f, 0.7f, 1f);
+    public Color lockedColor = new Color(0.35f, 0.35f, 0.35f, 1f);
 
     Image _img;
     Coroutine _bind;
@@ -20,7 +20,7 @@ public class TraitLineIndicator : MonoBehaviour
     void Awake()
     {
         _img = GetComponent<Image>();
-        if (_img) { _img.raycastTarget = false; _img.color = lockedColor; } // ✅ 기본은 회색
+        if (_img) { _img.raycastTarget = false; _img.color = lockedColor; }
     }
 
     void OnEnable()
@@ -72,8 +72,8 @@ public class TraitLineIndicator : MonoBehaviour
         bool fromUnlocked = system.IsUnlocked(fromId);
         bool toUnlocked = system.IsUnlocked(toId);
 
-        if (fromUnlocked && toUnlocked) _img.color = unlockedColor;   // 둘 다 해금 → 흰색
-        else if (fromUnlocked && system.CanUnlock(toId)) _img.color = canUnlockColor; // 해금 가능 → 연두
-        else _img.color = lockedColor;     // 나머지 → 회색
+        if (fromUnlocked && toUnlocked) _img.color = unlockedColor;
+        else if (fromUnlocked && system.CanUnlock(toId)) _img.color = canUnlockColor;
+        else _img.color = lockedColor;
     }
 }

@@ -13,22 +13,18 @@ public class UILineBetween : MonoBehaviour
     public RectTransform to;
 
     [Header("Layer & Style")]
-    public RectTransform lineLayer;             // 비우면 부모 사용
+    public RectTransform lineLayer;
     [Min(1f)] public float thickness = 2f;
 
     [Header("Endpoint")]
     public NodeShape fromShape = NodeShape.Circle;
     public NodeShape toShape = NodeShape.Rect;
-    [Tooltip("끝점별 테두리 안쪽으로 당기는 보정(px)")]
     public float fromInsetPx = 1.0f;
     public float toInsetPx = 1.0f;
 
     [Header("Auto Tighten")]
-    [Tooltip("틈이 보이지 않도록 선 끝을 살짝 겹칩니다.")]
     public bool autoTight = true;
-    [Tooltip("양끝 겹침(px). 대각선은 조금 더 겹칩니다.")]
     public float autoOverlapPx = 1.0f;
-    [Tooltip("수평/수직일 때만 픽셀 스냅(대각선은 스냅 해제 권장)")]
     public bool snapOnlyAxisAligned = true;
 
     RectTransform _self, _layer;
@@ -99,7 +95,6 @@ public class UILineBetween : MonoBehaviour
         Vector2 halfA = HalfSizeInLayer(from);
         Vector2 halfB = HalfSizeInLayer(to);
 
-        // 교차점 계산 (원은 타원으로!)
         Vector2 start =
             fromShape == NodeShape.Circle ? EdgeOnEllipse(a, dir, halfA, fromInsetPx) :
             fromShape == NodeShape.Diamond ? EdgeOnDiamond(a, dir, halfA, fromInsetPx) :
@@ -110,7 +105,6 @@ public class UILineBetween : MonoBehaviour
             toShape == NodeShape.Diamond ? EdgeOnDiamond(b, -dir, halfB, toInsetPx) :
                                              EdgeOnRect(b, -dir, halfB, toInsetPx);
 
-        // 틈 방지 겹침
         if (autoTight)
         {
             bool diagonal = Mathf.Abs(dir.x) > 0.01f && Mathf.Abs(dir.y) > 0.01f;
@@ -123,7 +117,6 @@ public class UILineBetween : MonoBehaviour
         float len = d.magnitude;
         if (len < 0.001f) { _self.sizeDelta = Vector2.zero; return; }
 
-        // 픽셀 스냅(수평/수직만)
         bool axisAligned = Mathf.Abs(dir.x) < 0.001f || Mathf.Abs(dir.y) < 0.001f;
         if (!snapOnlyAxisAligned || axisAligned)
         {
@@ -137,7 +130,6 @@ public class UILineBetween : MonoBehaviour
         _self.localRotation = Quaternion.Euler(0, 0, Mathf.Atan2(d.y, d.x) * Mathf.Rad2Deg);
     }
 
-    // ===== 좌표 유틸 =====
     Vector2 WorldCenterInLayer(RectTransform t)
     {
         Vector3 world = t.TransformPoint(t.rect.center);
@@ -154,8 +146,6 @@ public class UILineBetween : MonoBehaviour
         return size * 0.5f;
     }
 
-    // ===== 에지 교차 =====
-    // 타원(ellipse) 교차: x^2/a^2 + y^2/b^2 = 1
     Vector2 EdgeOnEllipse(Vector2 center, Vector2 dirFromCenter, Vector2 half, float inset)
     {
         Vector2 d = dirFromCenter.normalized;
@@ -172,7 +162,6 @@ public class UILineBetween : MonoBehaviour
         float ty = (Mathf.Abs(d.y) < 1e-4f) ? float.PositiveInfinity : h.y / Mathf.Abs(d.y);
         return center + d * Mathf.Min(tx, ty);
     }
-    // 마름모(|x|/a + |y|/b = 1) 교차
     Vector2 EdgeOnDiamond(Vector2 center, Vector2 dirFromCenter, Vector2 half, float inset)
     {
         Vector2 d = dirFromCenter.normalized;
