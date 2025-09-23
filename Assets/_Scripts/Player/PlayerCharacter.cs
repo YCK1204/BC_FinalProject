@@ -1,5 +1,6 @@
 using Game.Monster;
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Game.Player
@@ -44,7 +45,21 @@ namespace Game.Player
         public bool LastHitCritical => lastHitCritical;
         public void MarkLastHitCritical(bool on) { lastHitCritical = on; }
 
-        public float CurrentHP => currentHP;
+        public float CurrentHP
+        {
+            get
+            {
+                return currentHP; 
+            }
+            set
+            {
+                if (currentHP <= 0f) return;
+                CurrentHP = Mathf.Max(0, value);
+                HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
+                if (currentHP <= 0f)
+                    Die();
+            }
+        }
         public bool IsDead => currentHP <= 0f;
 
         public event Action<float, float> HpEvent;
@@ -128,6 +143,11 @@ namespace Game.Player
         {
             _machine.Tick();
             UpdateRuntimeDebug();
+
+            var kb = UnityEngine.InputSystem.Keyboard.current;
+            bool g = kb != null && kb.gKey.wasPressedThisFrame;
+            if (g)
+                Manager.Item.AddItem(this);
         }
 
         private void FixedUpdate()

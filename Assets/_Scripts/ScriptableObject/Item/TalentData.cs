@@ -73,32 +73,6 @@ public class TalentData : ScriptableObject
         //        break;
         //}
     }
-    public void UnregisterSpecialAbilityEvent(PlayerCharacter player)
-    {
-        switch (actionType)
-        {
-            case TalentActionType.OnAttack:
-                //player.OnAttack -= OnEvent;
-                break;
-            case TalentActionType.OnHit:
-                //player.OnHit -= OnEvent;
-                break;
-            case TalentActionType.OnKill:
-                //player.OnKill -= OnEvent;
-                break;
-            case TalentActionType.OnSkill:
-                //player.OnSkill -= OnEvent;
-                break;
-            case TalentActionType.OnStartRound:
-                //player.OnStartRound -= OnEvent;
-                break;
-            case TalentActionType.OnDashEnd:
-                //player.OnDashEnd -= OnEvent;
-                break;
-            case TalentActionType.Always:
-                break;
-        }
-    }
     void OnEvent(PlayerCharacter player)
     {
         if (Time.time - _lastCooldown < Cooldown) return;

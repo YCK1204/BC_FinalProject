@@ -46,6 +46,8 @@ namespace Game.Player
         public float SkillHaste = 1f;
 
         public float CorruptionDuration = 10f;
+        public float AttackPowerPercent = 0f;
+        public float SkillAttckPercent = 0f;
     }
 
     [Serializable]

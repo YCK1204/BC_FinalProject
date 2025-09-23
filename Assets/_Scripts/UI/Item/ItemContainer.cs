@@ -3,15 +3,12 @@ using UnityEngine;
 
 public class ItemContainer : MonoBehaviour
 {
-    [SerializeField]
-    ItemData ItemData;
-
-    TextMeshProUGUI Name;
-    TextMeshProUGUI Description;
-    TextMeshProUGUI Stat1;
-    TextMeshProUGUI Stat2;
-    TextMeshProUGUI SynergyCount;
-    TextMeshProUGUI SynergyName;
+    TextMeshPro Name;
+    TextMeshPro Description;
+    TextMeshPro Stat1;
+    TextMeshPro Stat2;
+    TextMeshPro SynergyCount;
+    TextMeshPro SynergyName;
 
     bool _isInit = false;
 
@@ -20,18 +17,16 @@ public class ItemContainer : MonoBehaviour
         if (_isInit)
             return;
         _isInit = true;
-        Name = transform.FindChild<TextMeshProUGUI>(false, "Name");
-        Description = transform.FindChild<TextMeshProUGUI>(false, "Description");
-        Stat1 = transform.FindChild<TextMeshProUGUI>(false, "Stat1");
-        Stat2 = transform.FindChild<TextMeshProUGUI>(false, "Stat2");
-        SynergyCount = transform.FindChild<TextMeshProUGUI>(false, "SynergyCount");
-        SynergyName = transform.FindChild<TextMeshProUGUI>(false, "SynergyName");
+        Name = transform.FindChild<TextMeshPro>(false, "Name");
+        Description = transform.FindChild<TextMeshPro>(false, "Description");
+        Stat1 = transform.FindChild<TextMeshPro>(false, "Stat1");
+        Stat2 = transform.FindChild<TextMeshPro>(false, "Stat2");
+        SynergyCount = transform.FindChild<TextMeshPro>(false, "SynergyCount");
+        SynergyName = transform.FindChild<TextMeshPro>(false, "SynergyName");
     }
     public void SetUI(ItemData itemData)
     {
         Init();
-        ItemData = itemData;
-
         Name.color = itemData.TierColor;
         Name.text = itemData.ItemName;
 

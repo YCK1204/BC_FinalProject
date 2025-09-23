@@ -134,6 +134,7 @@ namespace Game.Player
                 if (target != null && !_hitTargets.Contains(target))
                 {
                     _hitTargets.Add(target);
+                    Debug.Log("Hit " + damage);
                     target.TakeDamage(damage);
                     _stateMachine.Player.MarkLastHitCritical(isCrit);
                     if (isCrit) Debug.Log("Critical!");

@@ -17,12 +17,14 @@ public enum ItemTier
 public enum ItemStatType
 {
     None,
-    AttackPower,
+    Attack,
+    SkillAttack,
     AttackSpeed,
-    MaxHp,
-    MoveSpeed,
-    Corruption,
-    ExtraDamage
+    SkillHaste,
+    Hp,
+    CorruptionDuration,
+    CriticalChance,
+    CriticalDamage
 }
 
 public enum ItemTriggerType
@@ -80,12 +82,14 @@ public class ItemData : ScriptableObject
     };
     public static Dictionary<ItemStatType, string> ItemStatTypes = new Dictionary<ItemStatType, string>()
     {
-        { ItemStatType.AttackPower, "공격력" },
+        { ItemStatType.Attack, "공격력" },
+        { ItemStatType.SkillAttack, "스킬 데미지" },
         { ItemStatType.AttackSpeed, "공격속도" },
-        { ItemStatType.MaxHp, "최대체력" },
-        { ItemStatType.MoveSpeed, "이동속도" },
-        { ItemStatType.Corruption, "생성 타락 게이지" },
-        { ItemStatType.ExtraDamage, "추가 피해" },
+        { ItemStatType.SkillHaste, "스킬 쿨타임 감소" },
+        { ItemStatType.Hp, "최대체력" },
+        { ItemStatType.CorruptionDuration, "타락 지속 시간" },
+        { ItemStatType.CriticalDamage, "치명타 피해" },
+        { ItemStatType.CriticalChance, "치명타 확률" },
         { ItemStatType.None, "" },
     };
     public Color TierColor { get { return TierColors[(int)itemTier]; } }
@@ -107,12 +111,7 @@ public class ItemData : ScriptableObject
 
     public void Set(PlayerCharacter player)
     {
-        if (stat1 != null)
-        {
-
-        }
-    }
-    public void Unset(PlayerCharacter player)
-    {
+        ItemSetterUtil.ApplyStat(player, stat1.ItemStatType, stat1.Value);
+        ItemSetterUtil.ApplyStat(player, stat2.ItemStatType, stat1.Value);
     }
 }

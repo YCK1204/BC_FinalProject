@@ -3,39 +3,19 @@ using UnityEngine;
 
 public class ItemController : MonoBehaviour
 {
-    ItemContainer ItemContainer;
-    [SerializeField]
-    Vector2 ContainerOffset;
-    ItemData ItemData;
-    SpriteRenderer _spriteRenderer;
+    public ItemData ItemData { get; private set; }
 
     [SerializeField]
     Vector2 ColliderScale;
-
-    Canvas _canvas;
-
-    void Init(ItemContainer container)
+    
+    public void SetData(ItemData data)
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
-
-        // 캔버스 연결 리팩토링 필요
-        _canvas = GameObject.Find("CamCanvas").GetComponent<Canvas>();
-        ItemContainer = Manager.Resource.Instantiate(container);
-        ItemContainer.gameObject.SetActive(false);
-        ItemContainer.gameObject.transform.SetParent(_canvas.transform);
-        var rectTransform = ItemContainer.gameObject.GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = (Vector2)transform.position + ContainerOffset;
-    }
-    public void SetData(ItemData data, ItemContainer containerPrefab)
-    {
-        Init(containerPrefab);
-
         ItemData = data;
-
-        _spriteRenderer.sprite = data.ItemIcon;
-        ItemContainer.SetUI(ItemData);
+        // 렌더러에 설정된 아이템 이미지에 따라 콜라이더 크기 조정
+        var spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = data.ItemIcon;
         var boxCollider = GetComponent<BoxCollider2D>();
-        Vector2 size = _spriteRenderer.bounds.size;
+        Vector2 size = spriteRenderer.bounds.size;
         boxCollider.size = size * ColliderScale;
     }
 
@@ -43,14 +23,14 @@ public class ItemController : MonoBehaviour
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            ItemContainer.gameObject.SetActive(true);
+            Manager.Item.ShowItemInfo(this);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            ItemContainer.gameObject.SetActive(false);
+            Manager.Item.HideItemInfo(this);
         }
     }
 }

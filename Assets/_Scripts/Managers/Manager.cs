@@ -25,6 +25,7 @@ public class Manager : MonoBehaviour
         {
             _instance = this;
             Data.Load();
+            Item.Init();
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -45,4 +46,6 @@ public class Manager : MonoBehaviour
     public static PoolManager Pool { get { return Instance._pool; } set { Instance._pool = value; value.transform.parent = _instance.transform; } }
     DataManager _data = new DataManager();
     public static DataManager Data { get { return Instance._data; } }
+    ItemManager _item = new ItemManager();
+    public static ItemManager Item { get { return Instance._item; } }
 }
