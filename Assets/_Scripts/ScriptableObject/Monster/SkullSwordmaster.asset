@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d31fabbbdc9d924c95ddc5e3f0003b9, type: 3}
-  m_Name: NormalProjectile
-  m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
-  projectileName: Normal
-  damage: 5
-  speed: 10
-  rotateSpeed: 0
-  _lifeTime: 3
+  m_Script: {fileID: 11500000, guid: 97e65d2e36f92104e90d76fa5f85823d, type: 3}
+  m_Name: SkullSwordmaster
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterData
+  MaxHp: 50
+  Speed: 3
+  AttackPower: 5
+  AttackDelay: 1
+  AttackRange: 1
+  DetectRange: 5
+  CanMove: 1

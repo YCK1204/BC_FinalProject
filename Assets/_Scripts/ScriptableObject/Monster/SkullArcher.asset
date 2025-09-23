@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 97e65d2e36f92104e90d76fa5f85823d, type: 3}
-  m_Name: SkulSwordmaster
+  m_Name: SkullArcher
   m_EditorClassIdentifier: Assembly-CSharp::MonsterData
-  MaxHp: 50
+  MaxHp: 40
   Speed: 3
-  AttackPower: 5
+  AttackPower: 2
   AttackDelay: 1
-  AttackRange: 1
-  DetectRange: 5
+  AttackRange: 7
+  DetectRange: 7
   CanMove: 1

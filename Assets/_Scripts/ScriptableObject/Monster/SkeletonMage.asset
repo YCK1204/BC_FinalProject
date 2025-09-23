@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97e65d2e36f92104e90d76fa5f85823d, type: 3}
   m_Name: SkeletonMage
   m_EditorClassIdentifier: Assembly-CSharp::MonsterData
-  MaxHp: 25
-  Speed: 3
+  MaxHp: 40
+  Speed: 2
   AttackPower: 5
   AttackDelay: 1
-  AttackRange: 3
+  AttackRange: 1
   DetectRange: 5
   CanMove: 1

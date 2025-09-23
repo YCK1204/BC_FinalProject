@@ -195,7 +195,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 24
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -261,11 +261,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 534
-        y: 14
-        width: 27
-        height: 26
+        y: 11
+        width: 28
+        height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -283,11 +283,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 605
-        y: 15
-        width: 28
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        y: 11
+        width: 30
+        height: 30
+      alignment: 9
+      pivot: {x: 0.55, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -305,11 +305,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 679
-        y: 14
+        y: 11
         width: 28
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 30
+      alignment: 9
+      pivot: {x: 0.55, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -327,11 +327,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 830
-        y: 14
+        y: 11
         width: 27
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 30
+      alignment: 9
+      pivot: {x: 0.4, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -349,11 +349,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 903
-        y: 15
+        y: 11
         width: 26
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 30
+      alignment: 9
+      pivot: {x: 0.4, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -371,11 +371,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 976
-        y: 14
+        y: 11
         width: 25
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 30
+      alignment: 9
+      pivot: {x: 0.4, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -389,81 +389,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skull_archer_sprite_sheet_6
-      rect:
-        serializedVersion: 2
-        x: 1848
-        y: 39
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2742bec991e442cc0800000000000000
-      internalID: -3736775918896864142
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skull_archer_sprite_sheet_7
-      rect:
-        serializedVersion: 2
-        x: 1875
-        y: 35
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 351b913ccff6ca500800000000000000
-      internalID: 408824797579555155
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skull_archer_sprite_sheet_8
-      rect:
-        serializedVersion: 2
-        x: 1904
-        y: 9
-        width: 41
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d14b7eca2098b2f70800000000000000
-      internalID: 9163568511399212061
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skull_archer_sprite_sheet_9
+      name: Skull_archer_sprite_sheet_43
       rect:
         serializedVersion: 2
         x: 1956
         y: 5
         width: 89
         height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.597766, y: 0.52939636}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -477,59 +411,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skull_archer_sprite_sheet_10
-      rect:
-        serializedVersion: 2
-        x: 2140
-        y: 39
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7e312dafe3be0a810800000000000000
-      internalID: 1774676908912546791
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skull_archer_sprite_sheet_11
-      rect:
-        serializedVersion: 2
-        x: 2167
-        y: 35
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: a3f82b065ca431f10800000000000000
-      internalID: 2239215651324596026
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skull_archer_sprite_sheet_12
+      name: Skull_archer_sprite_sheet_46
       rect:
         serializedVersion: 2
         x: 2196
         y: 9
         width: 63
         height: 37
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.49999613, y: 0.36036748}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -543,7 +433,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skull_archer_sprite_sheet_13
+      name: Skull_archer_sprite_sheet_47
       rect:
         serializedVersion: 2
         x: 2280
@@ -551,7 +441,7 @@ TextureImporter:
         width: 40
         height: 40
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -565,59 +455,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skull_archer_sprite_sheet_14
-      rect:
-        serializedVersion: 2
-        x: 2352
-        y: 33
-        width: 18
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 02f166907436a9b70800000000000000
-      internalID: 8906540369830092576
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skull_archer_sprite_sheet_15
-      rect:
-        serializedVersion: 2
-        x: 2377
-        y: 33
-        width: 18
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 36241060c22a41280800000000000000
-      internalID: -9073449039281700253
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Skull_archer_sprite_sheet_16
       rect:
         serializedVersion: 2
         x: 25
         y: 11
         width: 24
-        height: 26
+        height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -639,7 +485,7 @@ TextureImporter:
         width: 26
         height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -658,10 +504,10 @@ TextureImporter:
         serializedVersion: 2
         x: 169
         y: 11
-        width: 26
+        width: 28
         height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -675,37 +521,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skull_archer_sprite_sheet_19
-      rect:
-        serializedVersion: 2
-        x: 191
-        y: 15
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d74ea5d0f01cd1b70800000000000000
-      internalID: 8871459111382475901
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Skull_archer_sprite_sheet_20
       rect:
         serializedVersion: 2
         x: 242
         y: 11
-        width: 26
+        width: 28
         height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -719,37 +543,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skull_archer_sprite_sheet_21
-      rect:
-        serializedVersion: 2
-        x: 264
-        y: 15
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4676124b46228fad0800000000000000
-      internalID: -2668344963302856860
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Skull_archer_sprite_sheet_22
       rect:
         serializedVersion: 2
         x: 315
         y: 11
-        width: 26
+        width: 28
         height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -763,37 +565,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skull_archer_sprite_sheet_23
-      rect:
-        serializedVersion: 2
-        x: 337
-        y: 15
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 05814db2537a7a360800000000000000
-      internalID: 7180891977675970640
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Skull_archer_sprite_sheet_24
       rect:
         serializedVersion: 2
         x: 389
         y: 11
         width: 26
-        height: 26
+        height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -813,9 +593,9 @@ TextureImporter:
         x: 462
         y: 11
         width: 25
-        height: 26
+        height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -829,37 +609,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skull_archer_sprite_sheet_26
-      rect:
-        serializedVersion: 2
-        x: 629
-        y: 18
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4ab36e8858a8e0a20800000000000000
-      internalID: 3030511905398995876
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Skull_archer_sprite_sheet_27
       rect:
         serializedVersion: 2
         x: 756
         y: 11
         width: 24
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        height: 30
+      alignment: 9
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -881,7 +639,7 @@ TextureImporter:
         width: 24
         height: 26
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -903,7 +661,7 @@ TextureImporter:
         width: 27
         height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -925,7 +683,7 @@ TextureImporter:
         width: 27
         height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -947,7 +705,7 @@ TextureImporter:
         width: 28
         height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -969,7 +727,7 @@ TextureImporter:
         width: 28
         height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -991,7 +749,7 @@ TextureImporter:
         width: 28
         height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1013,7 +771,7 @@ TextureImporter:
         width: 28
         height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1035,7 +793,7 @@ TextureImporter:
         width: 28
         height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1057,7 +815,7 @@ TextureImporter:
         width: 28
         height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1079,7 +837,7 @@ TextureImporter:
         width: 24
         height: 26
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1101,7 +859,7 @@ TextureImporter:
         width: 24
         height: 26
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1120,10 +878,10 @@ TextureImporter:
         serializedVersion: 2
         x: 1841
         y: 11
-        width: 31
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 41
+        height: 34
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1137,59 +895,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skull_archer_sprite_sheet_40
-      rect:
-        serializedVersion: 2
-        x: 1841
-        y: 16
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bab4d8ab487a8e2a0800000000000000
-      internalID: -6707927456461010005
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skull_archer_sprite_sheet_41
-      rect:
-        serializedVersion: 2
-        x: 1870
-        y: 15
-        width: 12
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 16d9dbe8195242f90800000000000000
-      internalID: -6979412215422149279
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Skull_archer_sprite_sheet_42
       rect:
         serializedVersion: 2
-        x: 1943
-        y: 15
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1904
+        y: 9
+        width: 45
+        height: 32
+      alignment: 9
+      pivot: {x: 0.67, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1203,7 +917,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skull_archer_sprite_sheet_43
+      name: Skull_archer_sprite_sheet_44
       rect:
         serializedVersion: 2
         x: 2069
@@ -1211,7 +925,7 @@ TextureImporter:
         width: 24
         height: 26
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1225,15 +939,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skull_archer_sprite_sheet_44
+      name: Skull_archer_sprite_sheet_45
       rect:
         serializedVersion: 2
         x: 2133
         y: 11
-        width: 31
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 40
+        height: 34
+      alignment: 9
+      pivot: {x: 0.49319458, y: 0.40402967}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1247,81 +961,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Skull_archer_sprite_sheet_45
-      rect:
-        serializedVersion: 2
-        x: 2133
-        y: 16
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8e37075e4cd2f33c0800000000000000
-      internalID: -4377729989094640664
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skull_archer_sprite_sheet_46
-      rect:
-        serializedVersion: 2
-        x: 2162
-        y: 15
-        width: 12
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1883e9735e05b7530800000000000000
-      internalID: 3853762851556440193
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skull_archer_sprite_sheet_47
+      name: Skull_archer_sprite_sheet_48
       rect:
         serializedVersion: 2
         x: 2352
         y: 0
-        width: 17
-        height: 14
+        width: 43
+        height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 39abb6cc6310f8910800000000000000
-      internalID: 1841692107487296147
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Skull_archer_sprite_sheet_48
-      rect:
-        serializedVersion: 2
-        x: 2380
-        y: 0
-        width: 15
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -1334,11 +982,33 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Skull_archer_sprite_sheet_49
+      rect:
+        serializedVersion: 2
+        x: 2426
+        y: 0
+        width: 43
+        height: 46
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7b80a4345c104304d90a411e55ed6aa1
+      internalID: -685417478
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: dfe6eb55c9d6cef4dae19982bf79c9f2
     internalID: 0
     vertices: []
     indices: 
@@ -1352,8 +1022,6 @@ TextureImporter:
       Skull_archer_sprite_sheet_1: 1364978179955764670
       Skull_archer_sprite_sheet_10: 1774676908912546791
       Skull_archer_sprite_sheet_11: 2239215651324596026
-      Skull_archer_sprite_sheet_12: -4617180335883601146
-      Skull_archer_sprite_sheet_13: 4361868861941732746
       Skull_archer_sprite_sheet_14: 8906540369830092576
       Skull_archer_sprite_sheet_15: -9073449039281700253
       Skull_archer_sprite_sheet_16: 6026847487494336413
@@ -1386,17 +1054,17 @@ TextureImporter:
       Skull_archer_sprite_sheet_40: -6707927456461010005
       Skull_archer_sprite_sheet_41: -6979412215422149279
       Skull_archer_sprite_sheet_42: 2488202597293405510
-      Skull_archer_sprite_sheet_43: 8616069083853262974
-      Skull_archer_sprite_sheet_44: -8614749193937951305
-      Skull_archer_sprite_sheet_45: -4377729989094640664
-      Skull_archer_sprite_sheet_46: 3853762851556440193
-      Skull_archer_sprite_sheet_47: 1841692107487296147
+      Skull_archer_sprite_sheet_43: 2988755909911045439
+      Skull_archer_sprite_sheet_44: 8616069083853262974
+      Skull_archer_sprite_sheet_45: -8614749193937951305
+      Skull_archer_sprite_sheet_46: -4617180335883601146
+      Skull_archer_sprite_sheet_47: 4361868861941732746
       Skull_archer_sprite_sheet_48: -4109793847749030504
+      Skull_archer_sprite_sheet_49: 408824797579555155
       Skull_archer_sprite_sheet_5: 7385238408177681071
       Skull_archer_sprite_sheet_6: -3736775918896864142
-      Skull_archer_sprite_sheet_7: 408824797579555155
+      Skull_archer_sprite_sheet_7: 1727862252
       Skull_archer_sprite_sheet_8: 9163568511399212061
-      Skull_archer_sprite_sheet_9: 2988755909911045439
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

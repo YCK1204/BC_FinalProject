@@ -10,9 +10,9 @@ public class HomingProjectile : BaseProjectile
         transform.localEulerAngles = Vector3.zero;
     }
 
-    public override void Init(Vector3 dir, Transform target = null)
+    public override void Init(Vector3 dir, Transform target = null, float attackPower = 1)
     {
-        base.Init(dir, target);
+        base.Init(dir, target, attackPower);
 
         if (_target != null && _rotateCoroutine == null)
         {
