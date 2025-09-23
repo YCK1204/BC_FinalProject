@@ -47,13 +47,14 @@ public abstract class MonsterBaseState : Game.Monster.IState
 
 
     // 탐지 범위내에 대상이 있는 지 확인하는 메서드
-    protected bool CheckDetectRange()
+    // 추가적으로 fov체크 여부를 인자로 전달받음
+    protected bool CheckDetectRange(bool isCheckFov = true)
     {
         Collider2D player = Physics2D.OverlapCircle(_stateMachine.Owner.transform.position,
                                                         _stateMachine.Owner.MonsterData.DetectRange, _playerLayer);
 
         // 플레이어가 감지 되었을 때, 시야각 내에 있지 않으면 false
-        if (player != null)
+        if (player != null && isCheckFov)
         {
             if (!CheckFov(_stateMachine.Owner.transform, player.transform, _detectFov))
                 return false;
