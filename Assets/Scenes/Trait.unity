@@ -322,6 +322,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 694243215230295723, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 782487719}
+    - targetCorrespondingSourceObject: {fileID: 694243215230295723, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 782487724}
+    - targetCorrespondingSourceObject: {fileID: 694243215230295723, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 782487723}
   m_SourcePrefab: {fileID: 100100000, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
 --- !u!1 &124335687 stripped
 GameObject:
@@ -539,6 +545,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 694243215230295723, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 254876683}
+    - targetCorrespondingSourceObject: {fileID: 694243215230295723, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 254876688}
+    - targetCorrespondingSourceObject: {fileID: 694243215230295723, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 254876687}
   m_SourcePrefab: {fileID: 100100000, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
 --- !u!1 &254876682 stripped
 GameObject:
@@ -559,6 +571,86 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TraitButton
   _traitId: 11007
   _unlockSystem: {fileID: 214726508}
+  _tooltipBuilder: {fileID: 0}
+--- !u!114 &254876687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254876682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9a40503e5922747b855ad6ca1599ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Traits.UI.TraitTooltipBuilder
+  _name: "\uD30C\uAD34"
+  _nodeType: 0
+  _conditionGoods: 10
+  _isUnlocked: 0
+  _skillType: 
+  _skillCooldown: 0
+  _descId: 0
+  _ability: 3
+  _value: 10
+  _abilityMap:
+  - Key: 1
+    DisplayName: "\uCD94\uAC00 \uACF5\uACA9\uB825"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 2
+    DisplayName: "\uCD94\uAC00 \uD53C\uD574"
+    Unit: '%'
+    Percent: 1
+  - Key: 3
+    DisplayName: "\uCD94\uAC00 \uC2A4\uD0AC \uACF5\uACA9\uB825"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 4
+    DisplayName: "\uCD94\uAC00 \uC2A4\uD0AC \uD53C\uD574"
+    Unit: '%'
+    Percent: 1
+  - Key: 5
+    DisplayName: "\uCD94\uAC00 \uACF5\uACA9 \uC18D\uB3C4"
+    Unit: '%'
+    Percent: 1
+  - Key: 6
+    DisplayName: "\uCD94\uAC00 \uC2A4\uD0AC \uAC00\uC18D"
+    Unit: '%'
+    Percent: 1
+  - Key: 7
+    DisplayName: "\uCD94\uAC00 \uCCB4\uB825"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 8
+    DisplayName: "\uCD94\uAC00 \uCE58\uBA85\uD0C0 \uD53C\uD574"
+    Unit: '%'
+    Percent: 1
+  - Key: 9
+    DisplayName: "\uCD94\uAC00 \uCE58\uBA85\uD0C0 \uD655\uB960"
+    Unit: '%'
+    Percent: 1
+  - Key: 10
+    DisplayName: "\uCD94\uAC00 \uD0C0\uB77D \uC9C0\uC18D \uC2DC\uAC04"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 11
+    DisplayName: "\uCD94\uAC00 \uC774\uB3D9 \uC18D\uB3C4"
+    Unit: '%'
+    Percent: 1
+--- !u!114 &254876688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 254876682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5724f0f0d3f08514483f1af907165031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Traits.UI.TooltipHover
+  _builder: {fileID: 254876687}
 --- !u!1 &260992065
 GameObject:
   m_ObjectHideFlags: 0
@@ -1404,6 +1496,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 694243215230295723, guid: 8647be200635743419fee61a844a8084, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1396781742}
+    - targetCorrespondingSourceObject: {fileID: 694243215230295723, guid: 8647be200635743419fee61a844a8084, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1396781747}
+    - targetCorrespondingSourceObject: {fileID: 694243215230295723, guid: 8647be200635743419fee61a844a8084, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1396781746}
   m_SourcePrefab: {fileID: 100100000, guid: 8647be200635743419fee61a844a8084, type: 3}
 --- !u!1 &397483250 stripped
 GameObject:
@@ -2072,6 +2170,86 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TraitButton
   _traitId: 11008
   _unlockSystem: {fileID: 214726508}
+  _tooltipBuilder: {fileID: 0}
+--- !u!114 &782487723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124335687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9a40503e5922747b855ad6ca1599ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Traits.UI.TraitTooltipBuilder
+  _name: "\uAC15\uC778"
+  _nodeType: 0
+  _conditionGoods: 10
+  _isUnlocked: 0
+  _skillType: 
+  _skillCooldown: 0
+  _descId: 0
+  _ability: 1
+  _value: 10
+  _abilityMap:
+  - Key: 1
+    DisplayName: "\uCD94\uAC00 \uACF5\uACA9\uB825"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 2
+    DisplayName: "\uCD94\uAC00 \uD53C\uD574"
+    Unit: '%'
+    Percent: 1
+  - Key: 3
+    DisplayName: "\uCD94\uAC00 \uC2A4\uD0AC \uACF5\uACA9\uB825"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 4
+    DisplayName: "\uCD94\uAC00 \uC2A4\uD0AC \uD53C\uD574"
+    Unit: '%'
+    Percent: 1
+  - Key: 5
+    DisplayName: "\uCD94\uAC00 \uACF5\uACA9 \uC18D\uB3C4"
+    Unit: '%'
+    Percent: 1
+  - Key: 6
+    DisplayName: "\uCD94\uAC00 \uC2A4\uD0AC \uAC00\uC18D"
+    Unit: '%'
+    Percent: 1
+  - Key: 7
+    DisplayName: "\uCD94\uAC00 \uCCB4\uB825"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 8
+    DisplayName: "\uCD94\uAC00 \uCE58\uBA85\uD0C0 \uD53C\uD574"
+    Unit: '%'
+    Percent: 1
+  - Key: 9
+    DisplayName: "\uCD94\uAC00 \uCE58\uBA85\uD0C0 \uD655\uB960"
+    Unit: '%'
+    Percent: 1
+  - Key: 10
+    DisplayName: "\uCD94\uAC00 \uD0C0\uB77D \uC9C0\uC18D \uC2DC\uAC04"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 11
+    DisplayName: "\uCD94\uAC00 \uC774\uB3D9 \uC18D\uB3C4"
+    Unit: '%'
+    Percent: 1
+--- !u!114 &782487724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 124335687}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5724f0f0d3f08514483f1af907165031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Traits.UI.TooltipHover
+  _builder: {fileID: 782487723}
 --- !u!1 &799229695
 GameObject:
   m_ObjectHideFlags: 0
@@ -2514,6 +2692,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 694243215230295723, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1922151869}
+    - targetCorrespondingSourceObject: {fileID: 694243215230295723, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1922151874}
+    - targetCorrespondingSourceObject: {fileID: 694243215230295723, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1922151873}
   m_SourcePrefab: {fileID: 100100000, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
 --- !u!1 &953541676 stripped
 GameObject:
@@ -2627,6 +2811,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 694243215230295723, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1141111150}
+    - targetCorrespondingSourceObject: {fileID: 694243215230295723, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1141111155}
+    - targetCorrespondingSourceObject: {fileID: 694243215230295723, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1141111154}
   m_SourcePrefab: {fileID: 100100000, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
 --- !u!224 &1141111148 stripped
 RectTransform:
@@ -2652,6 +2842,86 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TraitButton
   _traitId: 11005
   _unlockSystem: {fileID: 214726508}
+  _tooltipBuilder: {fileID: 0}
+--- !u!114 &1141111154
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141111149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5724f0f0d3f08514483f1af907165031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Traits.UI.TooltipHover
+  _builder: {fileID: 1141111155}
+--- !u!114 &1141111155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141111149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9a40503e5922747b855ad6ca1599ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Traits.UI.TraitTooltipBuilder
+  _name: "\uBA85\uC0C1"
+  _nodeType: 0
+  _conditionGoods: 10
+  _isUnlocked: 0
+  _skillType: 
+  _skillCooldown: 0
+  _descId: 0
+  _ability: 7
+  _value: 10
+  _abilityMap:
+  - Key: 1
+    DisplayName: "\uCD94\uAC00 \uACF5\uACA9\uB825"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 2
+    DisplayName: "\uCD94\uAC00 \uD53C\uD574"
+    Unit: '%'
+    Percent: 1
+  - Key: 3
+    DisplayName: "\uCD94\uAC00 \uC2A4\uD0AC \uACF5\uACA9\uB825"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 4
+    DisplayName: "\uCD94\uAC00 \uC2A4\uD0AC \uD53C\uD574"
+    Unit: '%'
+    Percent: 1
+  - Key: 5
+    DisplayName: "\uCD94\uAC00 \uACF5\uACA9 \uC18D\uB3C4"
+    Unit: '%'
+    Percent: 1
+  - Key: 6
+    DisplayName: "\uCD94\uAC00 \uC2A4\uD0AC \uAC00\uC18D"
+    Unit: '%'
+    Percent: 1
+  - Key: 7
+    DisplayName: "\uCD94\uAC00 \uCCB4\uB825"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 8
+    DisplayName: "\uCD94\uAC00 \uCE58\uBA85\uD0C0 \uD53C\uD574"
+    Unit: '%'
+    Percent: 1
+  - Key: 9
+    DisplayName: "\uCD94\uAC00 \uCE58\uBA85\uD0C0 \uD655\uB960"
+    Unit: '%'
+    Percent: 1
+  - Key: 10
+    DisplayName: "\uCD94\uAC00 \uD0C0\uB77D \uC9C0\uC18D \uC2DC\uAC04"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 11
+    DisplayName: "\uCD94\uAC00 \uC774\uB3D9 \uC18D\uB3C4"
+    Unit: '%'
+    Percent: 1
 --- !u!1 &1216229742
 GameObject:
   m_ObjectHideFlags: 0
@@ -2959,6 +3229,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 694243215230295723, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1333693714}
+    - targetCorrespondingSourceObject: {fileID: 694243215230295723, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1333693719}
+    - targetCorrespondingSourceObject: {fileID: 694243215230295723, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1333693718}
   m_SourcePrefab: {fileID: 100100000, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
 --- !u!224 &1333693712 stripped
 RectTransform:
@@ -2984,6 +3260,86 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TraitButton
   _traitId: 11012
   _unlockSystem: {fileID: 214726508}
+  _tooltipBuilder: {fileID: 0}
+--- !u!114 &1333693718
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1333693713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9a40503e5922747b855ad6ca1599ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Traits.UI.TraitTooltipBuilder
+  _name: "\uAC70\uC778"
+  _nodeType: 0
+  _conditionGoods: 20
+  _isUnlocked: 0
+  _skillType: 
+  _skillCooldown: 0
+  _descId: 0
+  _ability: 1
+  _value: 20
+  _abilityMap:
+  - Key: 1
+    DisplayName: "\uCD94\uAC00 \uACF5\uACA9\uB825"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 2
+    DisplayName: "\uCD94\uAC00 \uD53C\uD574"
+    Unit: '%'
+    Percent: 1
+  - Key: 3
+    DisplayName: "\uCD94\uAC00 \uC2A4\uD0AC \uACF5\uACA9\uB825"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 4
+    DisplayName: "\uCD94\uAC00 \uC2A4\uD0AC \uD53C\uD574"
+    Unit: '%'
+    Percent: 1
+  - Key: 5
+    DisplayName: "\uCD94\uAC00 \uACF5\uACA9 \uC18D\uB3C4"
+    Unit: '%'
+    Percent: 1
+  - Key: 6
+    DisplayName: "\uCD94\uAC00 \uC2A4\uD0AC \uAC00\uC18D"
+    Unit: '%'
+    Percent: 1
+  - Key: 7
+    DisplayName: "\uCD94\uAC00 \uCCB4\uB825"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 8
+    DisplayName: "\uCD94\uAC00 \uCE58\uBA85\uD0C0 \uD53C\uD574"
+    Unit: '%'
+    Percent: 1
+  - Key: 9
+    DisplayName: "\uCD94\uAC00 \uCE58\uBA85\uD0C0 \uD655\uB960"
+    Unit: '%'
+    Percent: 1
+  - Key: 10
+    DisplayName: "\uCD94\uAC00 \uD0C0\uB77D \uC9C0\uC18D \uC2DC\uAC04"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 11
+    DisplayName: "\uCD94\uAC00 \uC774\uB3D9 \uC18D\uB3C4"
+    Unit: '%'
+    Percent: 1
+--- !u!114 &1333693719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1333693713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5724f0f0d3f08514483f1af907165031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Traits.UI.TooltipHover
+  _builder: {fileID: 1333693718}
 --- !u!1001 &1357877367
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3262,6 +3618,86 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TraitButton
   _traitId: 11011
   _unlockSystem: {fileID: 214726508}
+  _tooltipBuilder: {fileID: 0}
+--- !u!114 &1396781746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397483250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9a40503e5922747b855ad6ca1599ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Traits.UI.TraitTooltipBuilder
+  _name: "\uAC01\uC131"
+  _nodeType: 1
+  _conditionGoods: 20
+  _isUnlocked: 0
+  _skillType: "\uC2A4\uD0AC2 \uB300\uCCB4"
+  _skillCooldown: 40
+  _descId: 9204
+  _ability: 0
+  _value: 0
+  _abilityMap:
+  - Key: 1
+    DisplayName: "\uCD94\uAC00 \uACF5\uACA9\uB825"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 2
+    DisplayName: "\uCD94\uAC00 \uD53C\uD574"
+    Unit: '%'
+    Percent: 1
+  - Key: 3
+    DisplayName: "\uCD94\uAC00 \uC2A4\uD0AC \uACF5\uACA9\uB825"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 4
+    DisplayName: "\uCD94\uAC00 \uC2A4\uD0AC \uD53C\uD574"
+    Unit: '%'
+    Percent: 1
+  - Key: 5
+    DisplayName: "\uCD94\uAC00 \uACF5\uACA9 \uC18D\uB3C4"
+    Unit: '%'
+    Percent: 1
+  - Key: 6
+    DisplayName: "\uCD94\uAC00 \uC2A4\uD0AC \uAC00\uC18D"
+    Unit: '%'
+    Percent: 1
+  - Key: 7
+    DisplayName: "\uCD94\uAC00 \uCCB4\uB825"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 8
+    DisplayName: "\uCD94\uAC00 \uCE58\uBA85\uD0C0 \uD53C\uD574"
+    Unit: '%'
+    Percent: 1
+  - Key: 9
+    DisplayName: "\uCD94\uAC00 \uCE58\uBA85\uD0C0 \uD655\uB960"
+    Unit: '%'
+    Percent: 1
+  - Key: 10
+    DisplayName: "\uCD94\uAC00 \uD0C0\uB77D \uC9C0\uC18D \uC2DC\uAC04"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 11
+    DisplayName: "\uCD94\uAC00 \uC774\uB3D9 \uC18D\uB3C4"
+    Unit: '%'
+    Percent: 1
+--- !u!114 &1396781747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 397483250}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5724f0f0d3f08514483f1af907165031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Traits.UI.TooltipHover
+  _builder: {fileID: 1396781746}
 --- !u!224 &1402513318 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6830211297292532911, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
@@ -3503,6 +3939,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 694243215230295723, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1680772945}
+    - targetCorrespondingSourceObject: {fileID: 694243215230295723, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1680772950}
+    - targetCorrespondingSourceObject: {fileID: 694243215230295723, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1680772949}
   m_SourcePrefab: {fileID: 100100000, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
 --- !u!224 &1680772943 stripped
 RectTransform:
@@ -3528,6 +3970,86 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TraitButton
   _traitId: 11010
   _unlockSystem: {fileID: 214726508}
+  _tooltipBuilder: {fileID: 0}
+--- !u!114 &1680772949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680772944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9a40503e5922747b855ad6ca1599ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Traits.UI.TraitTooltipBuilder
+  _name: "\uCE68\uC2DD"
+  _nodeType: 0
+  _conditionGoods: 20
+  _isUnlocked: 0
+  _skillType: 
+  _skillCooldown: 0
+  _descId: 0
+  _ability: 10
+  _value: 20
+  _abilityMap:
+  - Key: 1
+    DisplayName: "\uCD94\uAC00 \uACF5\uACA9\uB825"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 2
+    DisplayName: "\uCD94\uAC00 \uD53C\uD574"
+    Unit: '%'
+    Percent: 1
+  - Key: 3
+    DisplayName: "\uCD94\uAC00 \uC2A4\uD0AC \uACF5\uACA9\uB825"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 4
+    DisplayName: "\uCD94\uAC00 \uC2A4\uD0AC \uD53C\uD574"
+    Unit: '%'
+    Percent: 1
+  - Key: 5
+    DisplayName: "\uCD94\uAC00 \uACF5\uACA9 \uC18D\uB3C4"
+    Unit: '%'
+    Percent: 1
+  - Key: 6
+    DisplayName: "\uCD94\uAC00 \uC2A4\uD0AC \uAC00\uC18D"
+    Unit: '%'
+    Percent: 1
+  - Key: 7
+    DisplayName: "\uCD94\uAC00 \uCCB4\uB825"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 8
+    DisplayName: "\uCD94\uAC00 \uCE58\uBA85\uD0C0 \uD53C\uD574"
+    Unit: '%'
+    Percent: 1
+  - Key: 9
+    DisplayName: "\uCD94\uAC00 \uCE58\uBA85\uD0C0 \uD655\uB960"
+    Unit: '%'
+    Percent: 1
+  - Key: 10
+    DisplayName: "\uCD94\uAC00 \uD0C0\uB77D \uC9C0\uC18D \uC2DC\uAC04"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 11
+    DisplayName: "\uCD94\uAC00 \uC774\uB3D9 \uC18D\uB3C4"
+    Unit: '%'
+    Percent: 1
+--- !u!114 &1680772950
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680772944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5724f0f0d3f08514483f1af907165031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Traits.UI.TooltipHover
+  _builder: {fileID: 1680772949}
 --- !u!1 &1691445854
 GameObject:
   m_ObjectHideFlags: 0
@@ -3881,6 +4403,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TraitButton
   _traitId: 11001
   _unlockSystem: {fileID: 214726508}
+  _tooltipBuilder: {fileID: 0}
 --- !u!114 &1851215591
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4305,6 +4828,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TraitButton
   _traitId: 11002
   _unlockSystem: {fileID: 214726508}
+  _tooltipBuilder: {fileID: 0}
 --- !u!114 &1897313770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4493,6 +5017,86 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TraitButton
   _traitId: 11004
   _unlockSystem: {fileID: 214726508}
+  _tooltipBuilder: {fileID: 0}
+--- !u!114 &1922151873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 953541676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5724f0f0d3f08514483f1af907165031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Traits.UI.TooltipHover
+  _builder: {fileID: 1922151874}
+--- !u!114 &1922151874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 953541676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9a40503e5922747b855ad6ca1599ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Traits.UI.TraitTooltipBuilder
+  _name: "\uBD84\uB178"
+  _nodeType: 0
+  _conditionGoods: 5
+  _isUnlocked: 0
+  _skillType: 
+  _skillCooldown: 0
+  _descId: 0
+  _ability: 2
+  _value: 5
+  _abilityMap:
+  - Key: 1
+    DisplayName: "\uCD94\uAC00 \uACF5\uACA9\uB825"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 2
+    DisplayName: "\uCD94\uAC00 \uD53C\uD574"
+    Unit: '%'
+    Percent: 1
+  - Key: 3
+    DisplayName: "\uCD94\uAC00 \uC2A4\uD0AC \uACF5\uACA9\uB825"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 4
+    DisplayName: "\uCD94\uAC00 \uC2A4\uD0AC \uD53C\uD574"
+    Unit: '%'
+    Percent: 1
+  - Key: 5
+    DisplayName: "\uCD94\uAC00 \uACF5\uACA9 \uC18D\uB3C4"
+    Unit: '%'
+    Percent: 1
+  - Key: 6
+    DisplayName: "\uCD94\uAC00 \uC2A4\uD0AC \uAC00\uC18D"
+    Unit: '%'
+    Percent: 1
+  - Key: 7
+    DisplayName: "\uCD94\uAC00 \uCCB4\uB825"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 8
+    DisplayName: "\uCD94\uAC00 \uCE58\uBA85\uD0C0 \uD53C\uD574"
+    Unit: '%'
+    Percent: 1
+  - Key: 9
+    DisplayName: "\uCD94\uAC00 \uCE58\uBA85\uD0C0 \uD655\uB960"
+    Unit: '%'
+    Percent: 1
+  - Key: 10
+    DisplayName: "\uCD94\uAC00 \uD0C0\uB77D \uC9C0\uC18D \uC2DC\uAC04"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 11
+    DisplayName: "\uCD94\uAC00 \uC774\uB3D9 \uC18D\uB3C4"
+    Unit: '%'
+    Percent: 1
 --- !u!1 &1956020647
 GameObject:
   m_ObjectHideFlags: 0
@@ -4794,6 +5398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TraitButton
   _traitId: 11003
   _unlockSystem: {fileID: 214726508}
+  _tooltipBuilder: {fileID: 0}
 --- !u!114 &1983917687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4821,7 +5426,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Game.Traits.UI.TraitTooltipBuilder
   _name: "\uD65C\uB825"
   _nodeType: 0
-  _conditionGoods: 0
+  _conditionGoods: 5
   _isUnlocked: 0
   _skillType: 
   _skillCooldown: 0
@@ -5106,6 +5711,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 694243215230295723, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2041835091}
+    - targetCorrespondingSourceObject: {fileID: 694243215230295723, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2041835096}
+    - targetCorrespondingSourceObject: {fileID: 694243215230295723, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2041835095}
   m_SourcePrefab: {fileID: 100100000, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
 --- !u!1 &2041835090 stripped
 GameObject:
@@ -5126,6 +5737,86 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TraitButton
   _traitId: 11006
   _unlockSystem: {fileID: 214726508}
+  _tooltipBuilder: {fileID: 0}
+--- !u!114 &2041835095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041835090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5724f0f0d3f08514483f1af907165031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Traits.UI.TooltipHover
+  _builder: {fileID: 2041835096}
+--- !u!114 &2041835096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041835090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9a40503e5922747b855ad6ca1599ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Traits.UI.TraitTooltipBuilder
+  _name: "\uB0C9\uC815"
+  _nodeType: 0
+  _conditionGoods: 10
+  _isUnlocked: 0
+  _skillType: 
+  _skillCooldown: 0
+  _descId: 0
+  _ability: 6
+  _value: 20
+  _abilityMap:
+  - Key: 1
+    DisplayName: "\uCD94\uAC00 \uACF5\uACA9\uB825"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 2
+    DisplayName: "\uCD94\uAC00 \uD53C\uD574"
+    Unit: '%'
+    Percent: 1
+  - Key: 3
+    DisplayName: "\uCD94\uAC00 \uC2A4\uD0AC \uACF5\uACA9\uB825"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 4
+    DisplayName: "\uCD94\uAC00 \uC2A4\uD0AC \uD53C\uD574"
+    Unit: '%'
+    Percent: 1
+  - Key: 5
+    DisplayName: "\uCD94\uAC00 \uACF5\uACA9 \uC18D\uB3C4"
+    Unit: '%'
+    Percent: 1
+  - Key: 6
+    DisplayName: "\uCD94\uAC00 \uC2A4\uD0AC \uAC00\uC18D"
+    Unit: '%'
+    Percent: 1
+  - Key: 7
+    DisplayName: "\uCD94\uAC00 \uCCB4\uB825"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 8
+    DisplayName: "\uCD94\uAC00 \uCE58\uBA85\uD0C0 \uD53C\uD574"
+    Unit: '%'
+    Percent: 1
+  - Key: 9
+    DisplayName: "\uCD94\uAC00 \uCE58\uBA85\uD0C0 \uD655\uB960"
+    Unit: '%'
+    Percent: 1
+  - Key: 10
+    DisplayName: "\uCD94\uAC00 \uD0C0\uB77D \uC9C0\uC18D \uC2DC\uAC04"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 11
+    DisplayName: "\uCD94\uAC00 \uC774\uB3D9 \uC18D\uB3C4"
+    Unit: '%'
+    Percent: 1
 --- !u!1 &2092292470
 GameObject:
   m_ObjectHideFlags: 0
@@ -5475,6 +6166,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 694243215230295723, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2139797851}
+    - targetCorrespondingSourceObject: {fileID: 694243215230295723, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2139797856}
+    - targetCorrespondingSourceObject: {fileID: 694243215230295723, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2139797855}
   m_SourcePrefab: {fileID: 100100000, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
 --- !u!224 &2139797849 stripped
 RectTransform:
@@ -5500,6 +6197,86 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TraitButton
   _traitId: 11009
   _unlockSystem: {fileID: 214726508}
+  _tooltipBuilder: {fileID: 0}
+--- !u!114 &2139797855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139797850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a9a40503e5922747b855ad6ca1599ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Traits.UI.TraitTooltipBuilder
+  _name: "\uC2E0\uC18D"
+  _nodeType: 0
+  _conditionGoods: 10
+  _isUnlocked: 0
+  _skillType: 
+  _skillCooldown: 0
+  _descId: 0
+  _ability: 5
+  _value: 10
+  _abilityMap:
+  - Key: 1
+    DisplayName: "\uCD94\uAC00 \uACF5\uACA9\uB825"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 2
+    DisplayName: "\uCD94\uAC00 \uD53C\uD574"
+    Unit: '%'
+    Percent: 1
+  - Key: 3
+    DisplayName: "\uCD94\uAC00 \uC2A4\uD0AC \uACF5\uACA9\uB825"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 4
+    DisplayName: "\uCD94\uAC00 \uC2A4\uD0AC \uD53C\uD574"
+    Unit: '%'
+    Percent: 1
+  - Key: 5
+    DisplayName: "\uCD94\uAC00 \uACF5\uACA9 \uC18D\uB3C4"
+    Unit: '%'
+    Percent: 1
+  - Key: 6
+    DisplayName: "\uCD94\uAC00 \uC2A4\uD0AC \uAC00\uC18D"
+    Unit: '%'
+    Percent: 1
+  - Key: 7
+    DisplayName: "\uCD94\uAC00 \uCCB4\uB825"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 8
+    DisplayName: "\uCD94\uAC00 \uCE58\uBA85\uD0C0 \uD53C\uD574"
+    Unit: '%'
+    Percent: 1
+  - Key: 9
+    DisplayName: "\uCD94\uAC00 \uCE58\uBA85\uD0C0 \uD655\uB960"
+    Unit: '%'
+    Percent: 1
+  - Key: 10
+    DisplayName: "\uCD94\uAC00 \uD0C0\uB77D \uC9C0\uC18D \uC2DC\uAC04"
+    Unit: "\uACE0\uC815 \uAC12"
+    Percent: 0
+  - Key: 11
+    DisplayName: "\uCD94\uAC00 \uC774\uB3D9 \uC18D\uB3C4"
+    Unit: '%'
+    Percent: 1
+--- !u!114 &2139797856
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2139797850}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5724f0f0d3f08514483f1af907165031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Traits.UI.TooltipHover
+  _builder: {fileID: 2139797855}
 --- !u!1001 &2147360434
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Game.Traits;
+using Game.Traits.UI;
 
 [RequireComponent(typeof(Image), typeof(Button))]
 public class TraitButton : MonoBehaviour
@@ -8,10 +9,11 @@ public class TraitButton : MonoBehaviour
     [SerializeField] private int _traitId;
     [SerializeField] private TraitUnlockSystem _unlockSystem;
 
-    // 색상 상수 (알파 255 고정)
-    static readonly Color32 COLOR_UNLOCKED = new Color32(255, 255, 255, 255); // 흰색
-    static readonly Color32 COLOR_CAN = new Color32(153, 255, 153, 255); // 연두 #99FF99
-    static readonly Color32 COLOR_LOCKED = new Color32(128, 128, 128, 255); // 회색
+    [SerializeField] private TraitTooltipBuilder _tooltipBuilder;
+
+    static readonly Color32 COLOR_UNLOCKED = new Color32(255, 255, 255, 255);
+    static readonly Color32 COLOR_CAN = new Color32(153, 255, 153, 255);
+    static readonly Color32 COLOR_LOCKED = new Color32(128, 128, 128, 255);
 
     Image _img;
     Button _btn;
@@ -20,19 +22,23 @@ public class TraitButton : MonoBehaviour
     {
         _img = GetComponent<Image>();
         _btn = GetComponent<Button>();
+
         if (_unlockSystem == null)
 #if UNITY_2023_1_OR_NEWER
             _unlockSystem = Object.FindFirstObjectByType<TraitUnlockSystem>();
 #else
             _unlockSystem = FindObjectOfType<TraitUnlockSystem>();
 #endif
+
+        if (_tooltipBuilder == null)
+            _tooltipBuilder = GetComponent<TraitTooltipBuilder>();
     }
 
     void OnEnable()
     {
         _btn.onClick.AddListener(OnClick);
         if (_unlockSystem != null) _unlockSystem.OnStateChanged += Refresh;
-        Refresh(); // 초기 칠하기
+        Refresh();
     }
 
     void OnDisable()
@@ -44,6 +50,8 @@ public class TraitButton : MonoBehaviour
     void OnClick()
     {
         _unlockSystem?.TryUnlock(_traitId);
+
+        Refresh();
     }
 
     void Refresh()
@@ -55,5 +63,11 @@ public class TraitButton : MonoBehaviour
 
         _img.color = unlocked ? COLOR_UNLOCKED : (canUnlock ? COLOR_CAN : COLOR_LOCKED);
         _btn.interactable = canUnlock;
+
+        if (_tooltipBuilder != null)
+            _tooltipBuilder.SetUnlocked(unlocked);
+
+        if (TraitTooltip.Instance != null && TraitTooltip.Instance.gameObject.activeSelf && _tooltipBuilder != null)
+            TraitTooltip.Instance.Show(_tooltipBuilder.Build());
     }
 }
