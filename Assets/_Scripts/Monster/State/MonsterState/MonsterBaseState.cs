@@ -13,9 +13,8 @@ public abstract class MonsterBaseState : Game.Monster.IState
     protected float _curCheckTime;
     protected float _maxCheckTime;
 
-    // 이부분 몬스터 종류에 따라 설정해야 할 듯? ex) 근접(90/60), 원거리(360,360)
+    // 이부분 몬스터 종류에 따라 설정해야 할 듯? ex) 근접(90), 원거리(360)
     protected float _detectFov = 90f;
-    protected float _attackFov = 60f;
 
     // 공격 범위 탐색에서 보정하는 값
     protected float _xMargin = 0.3f;

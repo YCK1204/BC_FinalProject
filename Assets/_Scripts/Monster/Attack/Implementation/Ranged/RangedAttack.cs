@@ -2,8 +2,7 @@ using Game.Monster;
 using UnityEngine;
 
 /// <summary>
-/// 원거리 공격
-/// 기본적으로 투사체를 발사하는 방식? 추후에 다른 방식도 고려해서 만들 듯
+/// 원거리 공격 기본 클래스
 /// </summary>
 public class RangedAttack : BaseAttack
 {

@@ -9,27 +9,34 @@ public abstract class BaseProjectile : MonoBehaviour
 
     protected Rigidbody2D _rb;
     protected SpriteRenderer _sr;
+    protected Animator _anim;
 
     protected Transform _target;
     protected Vector3 _dir;
 
     private void Awake()
     {
-        _dataHandler = Extension.GetOrAddComponent<ProjectileDataHandler>(this.gameObject);
+        _dataHandler = GetComponent<ProjectileDataHandler>();
         _rb = GetComponent<Rigidbody2D>();
         _sr = GetComponentInChildren<SpriteRenderer>();
+        _anim = GetComponent<Animator>();
+    }
+
+    protected virtual void OnEnable()
+    {
+        _rb.linearVelocityX = 0;
         StartCoroutine(ProjectileLife(DataHandler.Data.LifeTime));
     }
 
-    public virtual void Init(Vector3 dir, Transform target = null, float attackPower = 1f)
+    public virtual void Init(Vector3 dir, Transform target = null, float attackPower = 0f)
     {
         _target = target;
         _dir = dir;
-        _dataHandler.SetMonsterAttackPower(attackPower);
+        _dataHandler.Damage = attackPower;
         _sr.flipX = dir.x < 0;
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         Move();
     }

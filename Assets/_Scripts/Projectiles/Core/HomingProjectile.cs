@@ -1,28 +1,36 @@
+using Game.Monster;
 using System.Collections;
 using UnityEngine;
 
 public class HomingProjectile : BaseProjectile
 {
     private Coroutine _rotateCoroutine;
+    private bool _startMove = false;
 
-    private void OnEnable()
+    protected override void OnEnable()
     {
+        base.OnEnable();
+        _startMove = false;
         transform.localEulerAngles = Vector3.zero;
+    }
+
+    protected override void FixedUpdate()
+    {
+        if (_startMove)
+        {
+            base.FixedUpdate();
+        }
     }
 
     public override void Init(Vector3 dir, Transform target = null, float attackPower = 1)
     {
         base.Init(dir, target, attackPower);
 
-        if (_target != null && _rotateCoroutine == null)
-        {
-            _rotateCoroutine = StartCoroutine(Rotate());
-        }
     }
 
     protected override void Move()
     {
-        _rb.linearVelocity = transform.right * _dir.x * DataHandler.Data.Speed;
+        _rb.linearVelocity = transform.up * DataHandler.Data.Speed;
     }
 
     private IEnumerator Rotate()
@@ -32,7 +40,7 @@ public class HomingProjectile : BaseProjectile
             Vector2 dir = ((Vector2)_target.position - _rb.position).normalized;
 
             // 목표 회전값
-            float targetAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            float targetAngle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90f;
             Quaternion targetRotation = Quaternion.Euler(0, 0, targetAngle);
 
             // 현재 회전에서 목표 회전으로 부드럽게 회전
@@ -44,5 +52,48 @@ public class HomingProjectile : BaseProjectile
 
             yield return null;
         }
+    }
+
+    public void StartMove()
+    {
+        _anim.SetTrigger("StartMove");
+        _startMove = true;
+
+        if (_target != null && _rotateCoroutine == null)
+        {
+            transform.localRotation = _dir.x > 0 ? Quaternion.Euler(0,0,-90f) : Quaternion.Euler(0, 0, 90f);
+            _rotateCoroutine = StartCoroutine(Rotate());
+        }
+    }
+
+    protected override void OnTriggerEnter2D(Collider2D other)
+    {
+        IDamageable damageable = other.GetComponent<IDamageable>();
+        // 플레이어면 데미지
+        if (damageable != null && (1 << other.gameObject.layer) == LayerMask.GetMask(Game.Monster.Layers.Player))
+        {
+            _rb.linearVelocity = Vector2.zero;
+            _startMove = false;
+            damageable.TakeDamage((int)DataHandler.Damage);
+            if (_anim != null)
+                _anim.SetTrigger("Explode");
+            else
+                DestroyProjectile();
+        }
+        // 벽이나 땅이면 소멸
+        else if ((1 << other.gameObject.layer) != LayerMask.GetMask(Game.Monster.Layers.Monster))
+        {
+            _rb.linearVelocity = Vector2.zero;
+            _startMove = false;
+            if (_anim != null)
+                _anim.SetTrigger("Explode");
+            else
+                DestroyProjectile();
+        }
+    }
+
+    protected override void DestroyProjectile()
+    {
+        base.DestroyProjectile();
     }
 }

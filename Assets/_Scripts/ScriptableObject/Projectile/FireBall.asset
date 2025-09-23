@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d31fabbbdc9d924c95ddc5e3f0003b9, type: 3}
   m_Name: FireBall
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
-  _projectileName: 
-  _damage: 0
-  _speed: 0
-  _rotateSpeed: 0
-  _lifeTime: 0
+  _projectileName: "\uD654\uC5FC\uAD6C"
+  _speed: 5
+  _rotateSpeed: 90
+  _lifeTime: 3
