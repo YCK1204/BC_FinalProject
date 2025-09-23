@@ -19,7 +19,7 @@ MonoBehaviour:
     itemStatType: 1
     itemModifierType: 0
     itemTriggerType: 5
-    value: 2
+    value: 100
   stat2:
     itemStatType: 0
     itemModifierType: 0
