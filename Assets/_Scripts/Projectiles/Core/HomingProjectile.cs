@@ -81,7 +81,9 @@ public class HomingProjectile : BaseProjectile
                 DestroyProjectile();
         }
         // 벽이나 땅이면 소멸
-        else if ((1 << other.gameObject.layer) != LayerMask.GetMask(Game.Monster.Layers.Monster))
+        // 일단 플레이어에 damageable이 없어서 조건 추가함
+        else if ((1 << other.gameObject.layer) == LayerMask.GetMask(Game.Monster.Layers.Ground) ||
+                 (1 << other.gameObject.layer) == LayerMask.GetMask(Game.Monster.Layers.Player))
         {
             _rb.linearVelocity = Vector2.zero;
             _startMove = false;

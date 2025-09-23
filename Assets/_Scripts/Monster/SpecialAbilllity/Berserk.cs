@@ -35,10 +35,10 @@ public class Berserk : MonoBehaviour, Game.Monster.ISpecialAbillity
                     switch (randomStat)
                     {
                         case 0:
-                            affectedMonster?.MonsterData.AddModifier(new StatModifier(Game.Monster.StatType.Attack, Game.Monster.ModifierType.Add, 5, monster));
+                            affectedMonster?.MonsterData.AddModifier(new StatModifier(Game.Monster.StatType.Attack, Game.Monster.ModifierType.Add, 3, monster));
                             break;
                         case 1:
-                            affectedMonster?.MonsterData.AddModifier(new StatModifier(Game.Monster.StatType.Speed, Game.Monster.ModifierType.Add, 5, monster));
+                            affectedMonster?.MonsterData.AddModifier(new StatModifier(Game.Monster.StatType.Speed, Game.Monster.ModifierType.Add, 2, monster));
                             break;
                     }
                     // 버프를 제공한 몬스터를 리스트에 등록

@@ -24,7 +24,7 @@ public abstract class MonsterBaseState : Game.Monster.IState
         _stateMachine = stateMachine;
 
         _playerLayer = LayerMask.GetMask(Game.Monster.Layers.Player);
-        _obstacleLayer = ~LayerMask.GetMask(Game.Monster.Layers.Monster);
+        _obstacleLayer = (LayerMask.GetMask(Game.Monster.Layers.Ground) | LayerMask.GetMask(Game.Monster.Layers.Player));
         _monsterLayer = LayerMask.GetMask(Game.Monster.Layers.Monster);
 
         _curCheckTime = 0;
