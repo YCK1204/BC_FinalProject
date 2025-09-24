@@ -60,7 +60,7 @@ public class DataManager
     }
     public void Load()
     {
-        ItemDict = MakeScriptableObjectDict<ItemData>("ItemData", (data) => data.ItemID);
+        //ItemDict = MakeScriptableObjectDict<ItemData>("ItemData", (data) => data.ItemID);
         SynergyDict = MakeScriptableObjectDict<SynergyData>("SynergyData", (data) => data.Id);
     }
     public void Save()

@@ -32,7 +32,7 @@ public class ItemController : MonoBehaviour
 
         ItemData = data;
 
-        _spriteRenderer.sprite = data.ItemIcon;
+        //_spriteRenderer.sprite = data.ItemIcon;
         ItemContainer.SetUI(ItemData);
         var boxCollider = GetComponent<BoxCollider2D>();
         Vector2 size = _spriteRenderer.bounds.size;
