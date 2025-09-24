@@ -2,8 +2,7 @@ using Game.Monster;
 using UnityEngine;
 
 /// <summary>
-/// 원거리 공격
-/// 기본적으로 투사체를 발사하는 방식? 추후에 다른 방식도 고려해서 만들 듯
+/// 원거리 공격 기본 클래스
 /// </summary>
 public class RangedAttack : BaseAttack
 {
@@ -21,7 +20,7 @@ public class RangedAttack : BaseAttack
     public override bool GetCheckAttackable(float margin = 0)
     {
         float dir = _tr.localScale.x < 0 ? -1 : 1;
-        _target = Physics2D.OverlapBox(_tr.position + new Vector3((_attackRange * 0.5f) * dir, 0, 0), new Vector2(_attackRange, 0.5f), 0, _mask);
+        _target = Physics2D.OverlapBox(_tr.position + new Vector3((_attackRange * 0.5f - margin) * dir, 0, 0), new Vector2(_attackRange, 0.5f), 0, _mask);
 
         return _target != null;
     }

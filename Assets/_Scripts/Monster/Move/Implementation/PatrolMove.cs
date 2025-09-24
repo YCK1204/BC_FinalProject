@@ -12,10 +12,9 @@ public class PatrolMove : Game.Monster.IMovable
     Collider2D _col;
 
     // 레이어 마스크 그라운드
-    // 레이어 마스크 벽
     // 임시 레이어
-    // Todo: 벽과 땅에 대한 레이어가 생기면 이를 변경할 필요가 있음
-    LayerMask _mask = ~(LayerMask.GetMask(Game.Monster.Layers.Player) | LayerMask.GetMask(Game.Monster.Layers.Monster));
+    // Todo: 벽과 땅에 대한 레이어가 생기면 이를 변경할 필요가 있음 -> 해결?
+    LayerMask _mask = LayerMask.GetMask(Game.Monster.Layers.Ground);
 
     public PatrolMove(StateMachineMonster owner)
     {

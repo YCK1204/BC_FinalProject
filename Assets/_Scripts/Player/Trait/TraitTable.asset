@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e721f102d3a775489370de5e338ed4c, type: 3}
+  m_Name: TraitTable
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Traits.TraitTable
+  Rows:
+  - Id: 11001
+    ConditionId: 0
+    Kind: 0
+    SoulCost: 1
+  - Id: 11002
+    ConditionId: 11001
+    Kind: 1
+    SoulCost: 5
+  - Id: 11003
+    ConditionId: 11001
+    Kind: 1
+    SoulCost: 10
+  - Id: 11004
+    ConditionId: 11001
+    Kind: 1
+    SoulCost: 3
+  - Id: 11005
+    ConditionId: 11002
+    Kind: 1
+    SoulCost: 5
+  - Id: 11006
+    ConditionId: 11003
+    Kind: 1
+    SoulCost: 10
+  - Id: 11007
+    ConditionId: 11003
+    Kind: 1
+    SoulCost: 15
+  - Id: 11008
+    ConditionId: 11004
+    Kind: 1
+    SoulCost: 20
+  - Id: 11009
+    ConditionId: 11004
+    Kind: 1
+    SoulCost: 20
+  - Id: 11010
+    ConditionId: 11005
+    Kind: 1
+    SoulCost: 20
+  - Id: 11011
+    ConditionId: 11007
+    Kind: 1
+    SoulCost: 20
+  - Id: 11012
+    ConditionId: 11008
+    Kind: 0
+    SoulCost: 20
