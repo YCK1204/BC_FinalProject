@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Game.Traits.UI
 {
@@ -21,6 +22,9 @@ namespace Game.Traits.UI
         public string Title;
         public string SubTitle;
         public List<TooltipLine> Lines = new List<TooltipLine>();
+        public bool HasAction;
+        public string ActionText;
+        public Action Action;
     }
 
     public class TraitTooltip : MonoBehaviour
@@ -35,6 +39,10 @@ namespace Game.Traits.UI
         [SerializeField] private RectTransform _body;
         [SerializeField] private TMP_Text _linePrefab;
 
+        [Header("Action")]
+        [SerializeField] private Button _actionButton;
+        [SerializeField] private TMP_Text _actionLabel;
+
         [Header("Layout (px)")]
         [SerializeField] private float _maxWidth = 520f;
         [SerializeField] private float _paddingX = 18f;
@@ -44,6 +52,8 @@ namespace Game.Traits.UI
         [SerializeField] private float _gapSubToBody = 12f;
         [SerializeField] private float _gapTitleToBody = 12f;
         [SerializeField] private float _lineSpacing = 8f;
+        [SerializeField] private float _gapBodyToAction = 12f;
+        [SerializeField] private float _actionHeight = 40f;
 
         [Header("Follow")]
         [SerializeField] private Vector2 _mouseOffset = new Vector2(24f, -16f);
@@ -61,6 +71,7 @@ namespace Game.Traits.UI
         private RectTransform _canvasRect;
         private Camera _uiCam;
         private readonly List<TMP_Text> _spawned = new List<TMP_Text>();
+        private Action _pendingAction;
 
         void Awake()
         {
@@ -76,6 +87,8 @@ namespace Game.Traits.UI
 
             if (_title) _title.textWrappingMode = TextWrappingModes.Normal;
             if (_subTitle) _subTitle.textWrappingMode = TextWrappingModes.Normal;
+
+            if (_actionButton != null) _actionButton.onClick.AddListener(() => _pendingAction?.Invoke());
         }
 
         public void Show(TraitTooltipModel model)
@@ -112,6 +125,18 @@ namespace Game.Traits.UI
                 t.fontStyle = line.Emphasize ? FontStyles.Bold : FontStyles.Normal;
                 t.color = line.Alert ? _alertColor : (line.Emphasize ? Color.white : _bodyColor);
                 _spawned.Add(t);
+            }
+
+            _pendingAction = null;
+            if (_actionButton != null)
+            {
+                bool show = model.HasAction && model.Action != null;
+                _actionButton.gameObject.SetActive(show);
+                if (show)
+                {
+                    _pendingAction = model.Action;
+                    if (_actionLabel != null) _actionLabel.text = string.IsNullOrEmpty(model.ActionText) ? "장착" : model.ActionText;
+                }
             }
 
             Relayout();
@@ -162,10 +187,23 @@ namespace Game.Traits.UI
                 if (i < _spawned.Count - 1) bodyHeight += _lineSpacing;
             }
             _body.sizeDelta = new Vector2(contentWidth, bodyHeight);
+            y -= bodyHeight;
+
+            float actionBlock = 0f;
+            if (_actionButton != null && _actionButton.gameObject.activeSelf)
+            {
+                actionBlock = _gapBodyToAction + _actionHeight;
+                var brt = (RectTransform)_actionButton.transform;
+                brt.anchorMin = new Vector2(0f, 1f);
+                brt.anchorMax = new Vector2(0f, 1f);
+                brt.pivot = new Vector2(0f, 1f);
+                brt.anchoredPosition = new Vector2(_paddingX, y - _gapBodyToAction);
+                brt.sizeDelta = new Vector2(contentWidth, _actionHeight);
+            }
 
             float totalHeight = _paddingTop + titleSize.y
                                 + (hasSub ? (_gapTitleToSub + subSize.y + _gapSubToBody) : _gapTitleToBody)
-                                + bodyHeight + _paddingBottom;
+                                + bodyHeight + actionBlock + _paddingBottom;
 
             _panel.sizeDelta = new Vector2(_maxWidth, totalHeight);
         }

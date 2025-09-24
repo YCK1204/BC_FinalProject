@@ -8,7 +8,6 @@ public class TraitButton : MonoBehaviour
 {
     [SerializeField] private int _traitId;
     [SerializeField] private TraitUnlockSystem _unlockSystem;
-
     [SerializeField] private TraitTooltipBuilder _tooltipBuilder;
 
     static readonly Color32 COLOR_UNLOCKED = new Color32(255, 255, 255, 255);
@@ -49,7 +48,8 @@ public class TraitButton : MonoBehaviour
 
     void OnClick()
     {
-        _unlockSystem?.TryUnlock(_traitId);
+        if (_unlockSystem != null)
+            _unlockSystem.TryUnlock(_traitId);
 
         Refresh();
     }
@@ -67,7 +67,8 @@ public class TraitButton : MonoBehaviour
         if (_tooltipBuilder != null)
             _tooltipBuilder.SetUnlocked(unlocked);
 
-        if (TraitTooltip.Instance != null && TraitTooltip.Instance.gameObject.activeSelf && _tooltipBuilder != null)
-            TraitTooltip.Instance.Show(_tooltipBuilder.Build());
+        var tip = TraitTooltip.Instance;
+        if (tip != null && tip.gameObject.activeSelf && _tooltipBuilder != null)
+            tip.Show(_tooltipBuilder.Build());
     }
 }
