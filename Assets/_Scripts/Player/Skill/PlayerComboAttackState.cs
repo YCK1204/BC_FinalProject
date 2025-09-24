@@ -1,5 +1,3 @@
-// PlayerComboAttackState.cs
-
 using UnityEngine;
 using Game.Monster;
 using System.Collections.Generic;
