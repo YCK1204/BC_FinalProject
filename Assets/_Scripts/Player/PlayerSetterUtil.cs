@@ -138,16 +138,6 @@ namespace Game.Player
             player.Data.HurtData.InvincibleDuringHurt = on;
         }
 
-        public static void ResetCorruptionGauge(PlayerCharacter player)
-        {
-            player.ResetCorruptionGauge();
-        }
-
-        public static void AddCorruptionOnHit(PlayerCharacter player)
-        {
-            player.ReportNormalAttackHit();
-        }
-
         public static void SetLayerCollisionIgnore(PlayerCharacter player, LayerMask mask, bool ignore)
         {
             player.SetLayerCollisionIgnore(mask, ignore);

@@ -148,6 +148,8 @@ namespace Game.Player
 
                     int damage = Mathf.RoundToInt(baseDmg * mult * _attackInfoData.DamageSet);
 
+                    _stateMachine.Player.GainAwakeningGauge();
+
                     target.TakeDamage(damage);
                     _stateMachine.Player.MarkLastHitCritical(isCrit);
                     if (isCrit) Debug.Log("Critical!!" + target.ToString());

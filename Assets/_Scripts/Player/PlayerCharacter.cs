@@ -2,6 +2,7 @@ using Game.Monster;
 using System;
 using System.Collections;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime.Misc;
 using UnityEngine;
 
 namespace Game.Player
@@ -35,11 +36,10 @@ namespace Game.Player
         [SerializeField] private Vector2 runtimeVelocity;
         [SerializeField] private float currentHP;
 
-        [Header("Corruption")]
-        [SerializeField] private int corruptionGauge;
-        [SerializeField] private int maxCorruptionGauge = 200;
-        [SerializeField] private int corruptionGainPerHit = 5;
-        public int CorruptionGauge => corruptionGauge;
+        [Header("Awakening")]
+        [SerializeField] private float currentAwakening;
+        public float CurrentAwakening => currentAwakening;
+        public bool IsAwakened { get; private set; }
 
         [Header("Combat Debug")]
         [SerializeField] private bool lastHitCritical;
@@ -84,18 +84,12 @@ namespace Game.Player
             return hitCenter.collider != null || hitLeft.collider != null || hitRight.collider != null;
         }
 
-        public void ReportNormalAttackHit()
-        {
-            if (corruptionGauge >= maxCorruptionGauge) return;
-            corruptionGauge = Mathf.Min(maxCorruptionGauge, corruptionGauge + Mathf.Max(0, corruptionGainPerHit));
-        }
-
-        public void ResetCorruptionGauge() { corruptionGauge = 0; }
 
         public void TakeDamage(float amount)
         {
             if (Invincible || IsDead) return;
             currentHP = Mathf.Max(0f, currentHP - Mathf.Max(0f, amount));
+            HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
             if (currentHP <= 0f) Die(); else EnterHurtByFacing();
         }
 
@@ -126,9 +120,38 @@ namespace Game.Player
         public void Die()
         {
             currentHP = 0f;
-            ResetCorruptionGauge();
             HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
             _machine.ChangeState(_machine.DieState);
+        }
+
+        public void GainAwakeningGauge()
+        {
+            if (IsAwakened || IsDead) return;
+            var awakeningData = Data.awakening;
+            currentAwakening = Mathf.Min(awakeningData.maxAwakeningGauge, currentAwakening + awakeningData.awakeningOnHit);
+
+            if (currentAwakening >= awakeningData.maxAwakeningGauge)
+            {
+                EnterAwakening();
+            }
+        }
+
+        private void EnterAwakening()
+        {
+            if (IsAwakened) return;
+            Debug.Log("각성!");
+            IsAwakened = true;
+            currentAwakening = 0f;
+            float totalDuration = Data.awakening.duration + Data.awakening.bonusDuration;
+            StartCoroutine(AwakeningTimer(totalDuration));
+        }
+
+        private IEnumerator AwakeningTimer(float duration)
+        {
+            yield return new WaitForSeconds(duration);
+
+            IsAwakened = false;
+            Debug.Log("각성종료");
         }
 
         public void SetLayerCollisionIgnore(LayerMask mask, bool ignore)
