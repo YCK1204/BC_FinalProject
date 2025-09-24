@@ -12,6 +12,7 @@ namespace Game.Traits.UI
         [SerializeField] TMP_Text _label;
         [SerializeField] string _txtEquip = "장착";
         [SerializeField] string _txtEquipped = "장착됨";
+
         Button _btn;
 
         void Awake()
@@ -37,18 +38,14 @@ namespace Game.Traits.UI
 
         void OnClick()
         {
-            if (SkillEquipSystem.Instance) SkillEquipSystem.Instance.Equip(_traitId);
+            if (SkillEquipSystem.Instance) SkillEquipSystem.Instance.ToggleEquip(_traitId);
         }
 
-        void Refresh(int[] equipped)
+        void Refresh(int[] _)
         {
             bool mine = SkillEquipSystem.Instance && SkillEquipSystem.Instance.IsEquipped(_traitId);
             if (_label) _label.text = mine ? _txtEquipped : _txtEquip;
-            _btn.interactable = !mine;
-
-            var cb = _btn.colors;
-            cb.disabledColor = cb.normalColor;
-            _btn.colors = cb;
+            _btn.interactable = true;
         }
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Traits
@@ -7,7 +8,10 @@ namespace Game.Traits
     {
         public static SkillEquipSystem Instance { get; private set; }
 
-        public readonly int[] Equipped = new int[2] { -1, -1 };
+        [SerializeField] int _maxSlots = 2;
+
+        readonly List<int> _equipped = new List<int>();
+        public int[] Equipped => _equipped.ToArray();
         public event Action<int[]> OnEquipped;
 
         void Awake()
@@ -16,27 +20,26 @@ namespace Game.Traits
             Instance = this;
         }
 
+        public bool IsEquipped(int traitId) => _equipped.Contains(traitId);
+
         public void Equip(int traitId)
         {
-            if (traitId < 0) return;
-            if (Array.IndexOf(Equipped, traitId) >= 0) { OnEquipped?.Invoke(Equipped); return; }
-
-            for (int i = 0; i < Equipped.Length; i++)
-            {
-                if (Equipped[i] == -1)
-                {
-                    Equipped[i] = traitId;
-                    OnEquipped?.Invoke(Equipped);
-                    Debug.Log($"[Equip] Slot {i + 1} <- {traitId}");
-                    return;
-                }
-            }
-
-            Equipped[0] = traitId;
+            if (IsEquipped(traitId)) return;
+            if (_equipped.Count >= _maxSlots) _equipped.RemoveAt(0);
+            _equipped.Add(traitId);
             OnEquipped?.Invoke(Equipped);
-            Debug.Log($"[Equip] Slot 1 <- {traitId} (replaced)");
         }
 
-        public bool IsEquipped(int traitId) => Array.IndexOf(Equipped, traitId) >= 0;
+        public void Unequip(int traitId)
+        {
+            if (_equipped.Remove(traitId))
+                OnEquipped?.Invoke(Equipped);
+        }
+
+        public void ToggleEquip(int traitId)
+        {
+            if (IsEquipped(traitId)) Unequip(traitId);
+            else Equip(traitId);
+        }
     }
 }
