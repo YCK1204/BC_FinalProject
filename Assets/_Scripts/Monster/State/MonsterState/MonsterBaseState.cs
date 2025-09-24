@@ -13,9 +13,8 @@ public abstract class MonsterBaseState : Game.Monster.IState
     protected float _curCheckTime;
     protected float _maxCheckTime;
 
-    // 이부분 몬스터 종류에 따라 설정해야 할 듯? ex) 근접(90/60), 원거리(360,360)
+    // 이부분 몬스터 종류에 따라 설정해야 할 듯? ex) 근접(90), 원거리(360)
     protected float _detectFov = 90f;
-    protected float _attackFov = 60f;
 
     // 공격 범위 탐색에서 보정하는 값
     protected float _xMargin = 0.3f;
@@ -25,7 +24,7 @@ public abstract class MonsterBaseState : Game.Monster.IState
         _stateMachine = stateMachine;
 
         _playerLayer = LayerMask.GetMask(Game.Monster.Layers.Player);
-        _obstacleLayer = ~LayerMask.GetMask(Game.Monster.Layers.Monster);
+        _obstacleLayer = (LayerMask.GetMask(Game.Monster.Layers.Ground) | LayerMask.GetMask(Game.Monster.Layers.Player));
         _monsterLayer = LayerMask.GetMask(Game.Monster.Layers.Monster);
 
         _curCheckTime = 0;
@@ -47,13 +46,14 @@ public abstract class MonsterBaseState : Game.Monster.IState
 
 
     // 탐지 범위내에 대상이 있는 지 확인하는 메서드
-    protected bool CheckDetectRange()
+    // 추가적으로 fov체크 여부를 인자로 전달받음
+    protected bool CheckDetectRange(bool isCheckFov = true)
     {
         Collider2D player = Physics2D.OverlapCircle(_stateMachine.Owner.transform.position,
                                                         _stateMachine.Owner.MonsterData.DetectRange, _playerLayer);
 
         // 플레이어가 감지 되었을 때, 시야각 내에 있지 않으면 false
-        if (player != null)
+        if (player != null && isCheckFov)
         {
             if (!CheckFov(_stateMachine.Owner.transform, player.transform, _detectFov))
                 return false;

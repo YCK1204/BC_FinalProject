@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d31fabbbdc9d924c95ddc5e3f0003b9, type: 3}
   m_Name: HomingProjectile
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
-  projectileName: Homing
-  damage: 3
-  speed: 5
-  rotateSpeed: 90
+  _projectileName: 
+  _damage: 1
+  _speed: 3
+  _rotateSpeed: 90
   _lifeTime: 3

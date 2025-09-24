@@ -1,0 +1,1314 @@
+fileFormatVersion: 2
+guid: b473b2d51cd854c44ab86ba7d33d645c
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4881134751484301477
+    second: Skeleton_mage_sprite_sheet_0
+  - first:
+      213: 7271157601056990708
+    second: Skeleton_mage_sprite_sheet_1
+  - first:
+      213: -1831248345644247655
+    second: Skeleton_mage_sprite_sheet_2
+  - first:
+      213: 4506438829186791911
+    second: Skeleton_mage_sprite_sheet_3
+  - first:
+      213: 7032782885306362120
+    second: Skeleton_mage_sprite_sheet_4
+  - first:
+      213: -6769181155305074728
+    second: Skeleton_mage_sprite_sheet_5
+  - first:
+      213: -7716591394213368637
+    second: Skeleton_mage_sprite_sheet_6
+  - first:
+      213: 6677025758014685243
+    second: Skeleton_mage_sprite_sheet_7
+  - first:
+      213: -4240438127043269893
+    second: Skeleton_mage_sprite_sheet_8
+  - first:
+      213: -3489321515354577635
+    second: Skeleton_mage_sprite_sheet_9
+  - first:
+      213: 6640683322955933581
+    second: Skeleton_mage_sprite_sheet_10
+  - first:
+      213: 2238112401573699030
+    second: Skeleton_mage_sprite_sheet_11
+  - first:
+      213: -603099037238790940
+    second: Skeleton_mage_sprite_sheet_12
+  - first:
+      213: -7944396614917542419
+    second: Skeleton_mage_sprite_sheet_13
+  - first:
+      213: -6275009246809494922
+    second: Skeleton_mage_sprite_sheet_14
+  - first:
+      213: 1231065944981009350
+    second: Skeleton_mage_sprite_sheet_15
+  - first:
+      213: -9163745326539085940
+    second: Skeleton_mage_sprite_sheet_16
+  - first:
+      213: 794354045550659960
+    second: Skeleton_mage_sprite_sheet_17
+  - first:
+      213: 2210812640782854855
+    second: Skeleton_mage_sprite_sheet_18
+  - first:
+      213: -348059092691694440
+    second: Skeleton_mage_sprite_sheet_19
+  - first:
+      213: 9201503345240915806
+    second: Skeleton_mage_sprite_sheet_20
+  - first:
+      213: 2940667312116870820
+    second: Skeleton_mage_sprite_sheet_21
+  - first:
+      213: -2718414324807884357
+    second: Skeleton_mage_sprite_sheet_22
+  - first:
+      213: -8027303617957920350
+    second: Skeleton_mage_sprite_sheet_23
+  - first:
+      213: 5385732075491338062
+    second: Skeleton_mage_sprite_sheet_24
+  - first:
+      213: 7118127647650090835
+    second: Skeleton_mage_sprite_sheet_25
+  - first:
+      213: 8284634083016377145
+    second: Skeleton_mage_sprite_sheet_26
+  - first:
+      213: 5594004816701834789
+    second: Skeleton_mage_sprite_sheet_27
+  - first:
+      213: 8206638557499303736
+    second: Skeleton_mage_sprite_sheet_28
+  - first:
+      213: -993599939462686168
+    second: Skeleton_mage_sprite_sheet_29
+  - first:
+      213: 8496305066424815758
+    second: Skeleton_mage_sprite_sheet_30
+  - first:
+      213: -1087835118461160384
+    second: Skeleton_mage_sprite_sheet_31
+  - first:
+      213: -7291927086967144652
+    second: Skeleton_mage_sprite_sheet_32
+  - first:
+      213: -7625996941159696993
+    second: Skeleton_mage_sprite_sheet_33
+  - first:
+      213: -7416618036184212996
+    second: Skeleton_mage_sprite_sheet_34
+  - first:
+      213: -2984638509312203203
+    second: Skeleton_mage_sprite_sheet_35
+  - first:
+      213: -8294381889236977604
+    second: Skeleton_mage_sprite_sheet_36
+  - first:
+      213: -7757977452379923374
+    second: Skeleton_mage_sprite_sheet_37
+  - first:
+      213: -6086484317941072061
+    second: Skeleton_mage_sprite_sheet_38
+  - first:
+      213: 3263444554684523062
+    second: Skeleton_mage_sprite_sheet_39
+  - first:
+      213: 4259367235542350500
+    second: Skeleton_mage_sprite_sheet_40
+  - first:
+      213: -2067375023105054768
+    second: Skeleton_mage_sprite_sheet_41
+  - first:
+      213: -6397072681369237108
+    second: Skeleton_mage_sprite_sheet_42
+  - first:
+      213: -7877708472940109846
+    second: Skeleton_mage_sprite_sheet_43
+  - first:
+      213: 2465459282651404754
+    second: Skeleton_mage_sprite_sheet_44
+  - first:
+      213: 8155222329928332292
+    second: Skeleton_mage_sprite_sheet_45
+  - first:
+      213: 7886117069532786320
+    second: Skeleton_mage_sprite_sheet_46
+  - first:
+      213: 2831408510014297408
+    second: Skeleton_mage_sprite_sheet_47
+  - first:
+      213: 5720738688405328441
+    second: Skeleton_mage_sprite_sheet_48
+  - first:
+      213: 1156012274417734948
+    second: Skeleton_mage_sprite_sheet_49
+  - first:
+      213: 5753978117467959514
+    second: Skeleton_mage_sprite_sheet_50
+  - first:
+      213: -2671842264770314388
+    second: Skeleton_mage_sprite_sheet_51
+  - first:
+      213: -7666001976207740895
+    second: Skeleton_mage_sprite_sheet_52
+  - first:
+      213: 1286303767521032612
+    second: Skeleton_mage_sprite_sheet_53
+  - first:
+      213: -9019030898696855850
+    second: Skeleton_mage_sprite_sheet_54
+  - first:
+      213: 1013128989580725156
+    second: Skeleton_mage_sprite_sheet_55
+  - first:
+      213: 1967805539885894755
+    second: Skeleton_mage_sprite_sheet_56
+  - first:
+      213: -5041703391095865311
+    second: Skeleton_mage_sprite_sheet_57
+  - first:
+      213: 5809625506551410407
+    second: Skeleton_mage_sprite_sheet_58
+  - first:
+      213: 1532276018576782752
+    second: Skeleton_mage_sprite_sheet_59
+  - first:
+      213: -7692455118143190382
+    second: Skeleton_mage_sprite_sheet_60
+  - first:
+      213: 5871826253146295332
+    second: Skeleton_mage_sprite_sheet_61
+  - first:
+      213: -691867355779118913
+    second: Skeleton_mage_sprite_sheet_62
+  - first:
+      213: -6940305279981206616
+    second: Skeleton_mage_sprite_sheet_63
+  - first:
+      213: 8835736121674579079
+    second: Skeleton_mage_sprite_sheet_64
+  - first:
+      213: 3977700847744142327
+    second: Skeleton_mage_sprite_sheet_65
+  - first:
+      213: -4643606026129875766
+    second: Skeleton_mage_sprite_sheet_66
+  - first:
+      213: -1755295172430424398
+    second: Skeleton_mage_sprite_sheet_67
+  - first:
+      213: 4327999527106473852
+    second: Skeleton_mage_sprite_sheet_68
+  - first:
+      213: -8981807000337318579
+    second: Skeleton_mage_sprite_sheet_69
+  - first:
+      213: -724257449496789553
+    second: Skeleton_mage_sprite_sheet_70
+  - first:
+      213: -8493758460392529702
+    second: Skeleton_mage_sprite_sheet_71
+  - first:
+      213: -4931013498810414849
+    second: Skeleton_mage_sprite_sheet_72
+  - first:
+      213: 4053060449132601580
+    second: Skeleton_mage_sprite_sheet_73
+  - first:
+      213: -5726458443248406624
+    second: Skeleton_mage_sprite_sheet_74
+  - first:
+      213: 6185629420438781608
+    second: Skeleton_mage_sprite_sheet_75
+  - first:
+      213: 5365873287171024961
+    second: Skeleton_mage_sprite_sheet_76
+  - first:
+      213: 5452880680713882631
+    second: Skeleton_mage_sprite_sheet_77
+  - first:
+      213: 4478358236499447989
+    second: Skeleton_mage_sprite_sheet_78
+  - first:
+      213: 2914464656300114028
+    second: Skeleton_mage_sprite_sheet_79
+  - first:
+      213: -139707209883703176
+    second: Skeleton_mage_sprite_sheet_80
+  - first:
+      213: 9155857058557348140
+    second: Skeleton_mage_sprite_sheet_81
+  - first:
+      213: -3238460240448735128
+    second: Skeleton_mage_sprite_sheet_82
+  - first:
+      213: -7811163555330973739
+    second: Skeleton_mage_sprite_sheet_83
+  - first:
+      213: -8331492409589132352
+    second: Skeleton_mage_sprite_sheet_84
+  - first:
+      213: 2353076720382409448
+    second: Skeleton_mage_sprite_sheet_85
+  - first:
+      213: 1619400002285103990
+    second: Skeleton_mage_sprite_sheet_86
+  - first:
+      213: -642517643334434911
+    second: Skeleton_mage_sprite_sheet_87
+  - first:
+      213: 8828685746065955151
+    second: Skeleton_mage_sprite_sheet_88
+  - first:
+      213: -801076520539209034
+    second: Skeleton_mage_sprite_sheet_89
+  - first:
+      213: 1836860573422081899
+    second: Skeleton_mage_sprite_sheet_90
+  - first:
+      213: -2565092689614841662
+    second: Skeleton_mage_sprite_sheet_91
+  - first:
+      213: 5660247691841157757
+    second: Skeleton_mage_sprite_sheet_92
+  - first:
+      213: 6799934357471962455
+    second: Skeleton_mage_sprite_sheet_93
+  - first:
+      213: -1444294524130262720
+    second: Skeleton_mage_sprite_sheet_94
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 24
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a05903f1364db340800000000000000
+      internalID: 4881134751484301477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_1
+      rect:
+        serializedVersion: 2
+        x: 90
+        y: 0
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4f522ec505758e460800000000000000
+      internalID: 7271157601056990708
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_2
+      rect:
+        serializedVersion: 2
+        x: 180
+        y: 0
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9955a5ef4591696e0800000000000000
+      internalID: -1831248345644247655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_3
+      rect:
+        serializedVersion: 2
+        x: 270
+        y: 0
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e9b4bf2d361a8e30800000000000000
+      internalID: 4506438829186791911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_4
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 0
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 809e12dd5c6799160800000000000000
+      internalID: 7032782885306362120
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_5
+      rect:
+        serializedVersion: 2
+        x: 450
+        y: 0
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8dfc5c99a990f02a0800000000000000
+      internalID: -6769181155305074728
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_6
+      rect:
+        serializedVersion: 2
+        x: 540
+        y: 0
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3cc631fd20929e490800000000000000
+      internalID: -7716591394213368637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_7
+      rect:
+        serializedVersion: 2
+        x: 630
+        y: 0
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b30499eec8f89ac50800000000000000
+      internalID: 6677025758014685243
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_8
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 0
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bfa20918dffe625c0800000000000000
+      internalID: -4240438127043269893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_9
+      rect:
+        serializedVersion: 2
+        x: 810
+        y: 0
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d15a92aa190739fc0800000000000000
+      internalID: -3489321515354577635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_10
+      rect:
+        serializedVersion: 2
+        x: 900
+        y: 0
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d8726a26c42782c50800000000000000
+      internalID: 6640683322955933581
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_11
+      rect:
+        serializedVersion: 2
+        x: 990
+        y: 0
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6dd52370f5f5f0f10800000000000000
+      internalID: 2238112401573699030
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_12
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 0
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e47009fe9c51a7f0800000000000000
+      internalID: -603099037238790940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_13
+      rect:
+        serializedVersion: 2
+        x: 1170
+        y: 0
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ded2605be55dfb190800000000000000
+      internalID: -7944396614917542419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_14
+      rect:
+        serializedVersion: 2
+        x: 1260
+        y: 0
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67ae0a12650bae8a0800000000000000
+      internalID: -6275009246809494922
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_15
+      rect:
+        serializedVersion: 2
+        x: 1350
+        y: 0
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6c37ca954ff951110800000000000000
+      internalID: 1231065944981009350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_16
+      rect:
+        serializedVersion: 2
+        x: 1440
+        y: 0
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c87ed775d26d3d080800000000000000
+      internalID: -9163745326539085940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_17
+      rect:
+        serializedVersion: 2
+        x: 1530
+        y: 0
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87901f6bbcc160b00800000000000000
+      internalID: 794354045550659960
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_18
+      rect:
+        serializedVersion: 2
+        x: 1620
+        y: 0
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7ca2ec622626eae10800000000000000
+      internalID: 2210812640782854855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_19
+      rect:
+        serializedVersion: 2
+        x: 1710
+        y: 0
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89c444b69127b2bf0800000000000000
+      internalID: -348059092691694440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_20
+      rect:
+        serializedVersion: 2
+        x: 1800
+        y: 0
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e5f37a47a8e42bf70800000000000000
+      internalID: 9201503345240915806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_21
+      rect:
+        serializedVersion: 2
+        x: 1890
+        y: 0
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ae245d07595fc820800000000000000
+      internalID: 2940667312116870820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_22
+      rect:
+        serializedVersion: 2
+        x: 1980
+        y: 0
+        width: 90
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb12e790390464ad0800000000000000
+      internalID: -2718414324807884357
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_23
+      rect:
+        serializedVersion: 2
+        x: 2070
+        y: 0
+        width: 90
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2a10963d3e9499090800000000000000
+      internalID: -8027303617957920350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_24
+      rect:
+        serializedVersion: 2
+        x: 2160
+        y: 0
+        width: 90
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e47a61fa9c6fdba40800000000000000
+      internalID: 5385732075491338062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_25
+      rect:
+        serializedVersion: 2
+        x: 2250
+        y: 0
+        width: 90
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 35f0210d16ba8c260800000000000000
+      internalID: 7118127647650090835
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_26
+      rect:
+        serializedVersion: 2
+        x: 2340
+        y: 0
+        width: 90
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 933094cfdcee8f270800000000000000
+      internalID: 8284634083016377145
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_27
+      rect:
+        serializedVersion: 2
+        x: 2430
+        y: 0
+        width: 90
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 52646531eb5e1ad40800000000000000
+      internalID: 5594004816701834789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_28
+      rect:
+        serializedVersion: 2
+        x: 2520
+        y: 0
+        width: 90
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83725c39946d3e170800000000000000
+      internalID: 8206638557499303736
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_29
+      rect:
+        serializedVersion: 2
+        x: 2610
+        y: 0
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 82a1a7f8e160632f0800000000000000
+      internalID: -993599939462686168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_30
+      rect:
+        serializedVersion: 2
+        x: 2700
+        y: 0
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e805a9b4170f8e570800000000000000
+      internalID: 8496305066424815758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_31
+      rect:
+        serializedVersion: 2
+        x: 2790
+        y: 0
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0447ded29bb37e0f0800000000000000
+      internalID: -1087835118461160384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_32
+      rect:
+        serializedVersion: 2
+        x: 2880
+        y: 0
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43f364dd2feddca90800000000000000
+      internalID: -7291927086967144652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_33
+      rect:
+        serializedVersion: 2
+        x: 2970
+        y: 0
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f95f5ffaf240b2690800000000000000
+      internalID: -7625996941159696993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_34
+      rect:
+        serializedVersion: 2
+        x: 3060
+        y: 0
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf91c76e031e21990800000000000000
+      internalID: -7416618036184212996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_35
+      rect:
+        serializedVersion: 2
+        x: 3150
+        y: 0
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d36ae7dc61f6496d0800000000000000
+      internalID: -2984638509312203203
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_36
+      rect:
+        serializedVersion: 2
+        x: 3240
+        y: 0
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c38b8940e9f64ec80800000000000000
+      internalID: -8294381889236977604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_37
+      rect:
+        serializedVersion: 2
+        x: 3330
+        y: 0
+        width: 90
+        height: 90
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25c976f4c90265490800000000000000
+      internalID: -7757977452379923374
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Skeleton_mage_sprite_sheet_38
+      rect:
+        serializedVersion: 2
+        x: 3420
+        y: 0
+        width: 90
+        height: 90
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c45c56a3ade4a94085e9678ab6346df
+      internalID: -6086484317941072061
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 09f7417450f023b4b9d88fdd35211efa
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":90.0,"y":90.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      Skeleton_mage_sprite_sheet_0: 4881134751484301477
+      Skeleton_mage_sprite_sheet_1: 7271157601056990708
+      Skeleton_mage_sprite_sheet_10: 6640683322955933581
+      Skeleton_mage_sprite_sheet_11: 2238112401573699030
+      Skeleton_mage_sprite_sheet_12: -603099037238790940
+      Skeleton_mage_sprite_sheet_13: -7944396614917542419
+      Skeleton_mage_sprite_sheet_14: -6275009246809494922
+      Skeleton_mage_sprite_sheet_15: 1231065944981009350
+      Skeleton_mage_sprite_sheet_16: -9163745326539085940
+      Skeleton_mage_sprite_sheet_17: 794354045550659960
+      Skeleton_mage_sprite_sheet_18: 2210812640782854855
+      Skeleton_mage_sprite_sheet_19: -348059092691694440
+      Skeleton_mage_sprite_sheet_2: -1831248345644247655
+      Skeleton_mage_sprite_sheet_20: 9201503345240915806
+      Skeleton_mage_sprite_sheet_21: 2940667312116870820
+      Skeleton_mage_sprite_sheet_22: -2718414324807884357
+      Skeleton_mage_sprite_sheet_23: -8027303617957920350
+      Skeleton_mage_sprite_sheet_24: 5385732075491338062
+      Skeleton_mage_sprite_sheet_25: 7118127647650090835
+      Skeleton_mage_sprite_sheet_26: 8284634083016377145
+      Skeleton_mage_sprite_sheet_27: 5594004816701834789
+      Skeleton_mage_sprite_sheet_28: 8206638557499303736
+      Skeleton_mage_sprite_sheet_29: -993599939462686168
+      Skeleton_mage_sprite_sheet_3: 4506438829186791911
+      Skeleton_mage_sprite_sheet_30: 8496305066424815758
+      Skeleton_mage_sprite_sheet_31: -1087835118461160384
+      Skeleton_mage_sprite_sheet_32: -7291927086967144652
+      Skeleton_mage_sprite_sheet_33: -7625996941159696993
+      Skeleton_mage_sprite_sheet_34: -7416618036184212996
+      Skeleton_mage_sprite_sheet_35: -2984638509312203203
+      Skeleton_mage_sprite_sheet_36: -8294381889236977604
+      Skeleton_mage_sprite_sheet_37: -7757977452379923374
+      Skeleton_mage_sprite_sheet_38: -6086484317941072061
+      Skeleton_mage_sprite_sheet_4: 7032782885306362120
+      Skeleton_mage_sprite_sheet_5: -6769181155305074728
+      Skeleton_mage_sprite_sheet_6: -7716591394213368637
+      Skeleton_mage_sprite_sheet_7: 6677025758014685243
+      Skeleton_mage_sprite_sheet_8: -4240438127043269893
+      Skeleton_mage_sprite_sheet_9: -3489321515354577635
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
