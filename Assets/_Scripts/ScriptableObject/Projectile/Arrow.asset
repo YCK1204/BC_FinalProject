@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1d31fabbbdc9d924c95ddc5e3f0003b9, type: 3}
-  m_Name: NormalProjectile
+  m_Name: Arrow
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileData
-  projectileName: Normal
-  damage: 5
-  speed: 10
-  rotateSpeed: 0
+  _projectileName: "\uD654\uC0B4"
+  _damage: 1
+  _speed: 5
+  _rotateSpeed: 0
   _lifeTime: 3
