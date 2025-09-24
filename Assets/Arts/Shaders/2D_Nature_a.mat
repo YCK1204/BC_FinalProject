@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 2D_Nature
+  m_Name: 2D_Nature_a
   m_Shader: {fileID: 4800000, guid: ebfc27ba21362644a87f1c054350d2b8, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -53,7 +53,7 @@ Material:
     - _ColorDrift: 0.4
     - _ColorMask: 15
     - _Cutoff: 0
-    - _DetailAmount: 0.05
+    - _DetailAmount: 0
     - _DetailFreq: 0
     - _DetailSpeed: 3
     - _DigitalNoise: 0.6
@@ -61,7 +61,7 @@ Material:
     - _Falloff: 1
     - _GlitchIntensity: 0.5
     - _Glossiness: 0.5
-    - _HeightInfluence: 2
+    - _HeightInfluence: 0
     - _Hologram: 0
     - _HorizontalShake: 0.2
     - _LightIntensity: 1
@@ -84,7 +84,7 @@ Material:
     - _VerticalJump: 0.3
     - _WindFrequency: 1.5
     - _WindSpeed: 1
-    - _WindStrength: 0.5
+    - _WindStrength: 0.2
     - _ZWrite: 0
     m_Colors:
     - _AmbientColor: {r: 0.19999996, g: 0.19999996, b: 0.29999998, a: 1}

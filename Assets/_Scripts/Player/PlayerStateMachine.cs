@@ -58,9 +58,7 @@ namespace Game.Player
             AirState = new PlayerAirState(this);
             DashState = new PlayerDashState(this);
             JumpState = new PlayerJumpState(this);
-            //AirDashState = new PlayerAirDashState(this);
             AirAttackState = new PlayerAirAttackState(this);
-            DoubleJumpState = new PlayerDoubleJumpState(this);
             HurtState = new PlayerHurtState(this);
             DieState = new PlayerDieState(this);
 

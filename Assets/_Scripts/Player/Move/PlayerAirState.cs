@@ -52,7 +52,7 @@ namespace Game.Player
             }
             if (jump && _stateMachine.JumpsRemaining > 0)
             {
-                _stateMachine.ChangeState(_stateMachine.DoubleJumpState);
+                _stateMachine.ChangeState(_stateMachine.JumpState);
                 return;
             }
             if (dash && _stateMachine.CanDash())

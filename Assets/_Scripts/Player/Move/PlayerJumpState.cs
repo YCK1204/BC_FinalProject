@@ -8,7 +8,11 @@ namespace Game.Player
 
         public override void Enter()
         {
-            _stateMachine.Player.ForceReceiver.Jump(_stateMachine.Player.Data.AirData.JumpForce);
+            float jumpForce = _stateMachine.JumpsRemaining == _stateMachine.MaxJumps
+                ? _stateMachine.Player.Data.AirData.JumpForce
+                : _stateMachine.Player.Data.AirData.DoubleJumpForce;
+
+            _stateMachine.Player.ForceReceiver.Jump(jumpForce);
             _stateMachine.JumpsRemaining = Mathf.Max(0, _stateMachine.JumpsRemaining - 1);
 
             _stateMachine.MovementSpeedModifier = 1f;
@@ -27,7 +31,7 @@ namespace Game.Player
 
         public override void Update()
         {
-            base.Update();
+            ReadMoveInput();
 
             if (_stateMachine.IsAttacking || _stateMachine.IsDashing)
             {
@@ -37,16 +41,12 @@ namespace Game.Player
 #if UNITY_2022_3_OR_NEWER
             if (_stateMachine.Player.Rb.linearVelocity.y <= 0f)
             {
-                StopAnimation(_stateMachine.Player.AnimationData.JumpParameterHash);
-                StartAnimation(_stateMachine.Player.AnimationData.FallParameterHash);
                 _stateMachine.ChangeState(_stateMachine.AirState);
                 return;
             }
 #else
             if (_stateMachine.Player.Rb.velocity.y <= 0f)
             {
-                StopAnimation(_stateMachine.Player.AnimationData.JumpParameterHash);
-                StartAnimation(_stateMachine.Player.AnimationData.FallParameterHash);
                 _stateMachine.ChangeState(_stateMachine.AirState);
                 return;
             }

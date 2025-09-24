@@ -61,8 +61,25 @@ namespace Game.Player
         }
         public bool IsGrounded()
         {
-            if (!GroundCheck) return false;
-            return Physics2D.OverlapCircle(GroundCheck.position, GroundRadius, GroundLayer);
+            if (!GroundCheck)
+            {
+                return false;
+            }
+
+            Vector2 center = GroundCheck.position;
+            Vector2 left = new Vector2(center.x - 0.21f, center.y);
+            Vector2 right = new Vector2(center.x + 0.21f, center.y);
+
+            RaycastHit2D hitCenter = Physics2D.Raycast(center, Vector2.down, GroundRadius, GroundLayer);
+            RaycastHit2D hitLeft = Physics2D.Raycast(left, Vector2.down, GroundRadius, GroundLayer);
+            RaycastHit2D hitRight = Physics2D.Raycast(right, Vector2.down, GroundRadius, GroundLayer);
+
+            // 레이 표시
+            Debug.DrawRay(center, Vector2.down * GroundRadius, hitCenter.collider != null ? Color.green : Color.red);
+            Debug.DrawRay(left, Vector2.down * GroundRadius, hitLeft.collider != null ? Color.green : Color.red);
+            Debug.DrawRay(right, Vector2.down * GroundRadius, hitRight.collider != null ? Color.green : Color.red);
+
+            return hitCenter.collider != null || hitLeft.collider != null || hitRight.collider != null;
         }
 
         public void ReportNormalAttackHit()
