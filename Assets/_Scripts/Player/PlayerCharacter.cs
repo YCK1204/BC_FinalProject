@@ -1,5 +1,7 @@
 using Game.Monster;
 using System;
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Game.Player
@@ -137,6 +139,42 @@ namespace Game.Player
             {
                 if ((m & (1 << i)) != 0)
                     Physics2D.IgnoreLayerCollision(playerLayer, i, ignore);
+            }
+        }
+
+        public void AutoMove(float a, Vector2 b)
+        {
+            StartCoroutine(AutoMoveCrt(a, b));
+        }
+
+        private IEnumerator AutoMoveCrt(float a, Vector2 b)
+        {
+            Animator.SetBool(AnimationData.WalkParameterHash, true);
+            Animator.SetBool(AnimationData.IdleParameterHash, false);
+            SetPlayerInput(false);
+
+            float timeElapsed = 0f;
+            while (timeElapsed < a)
+            {
+                _machine.MovementInput = b.normalized;
+
+                timeElapsed += Time.deltaTime;
+                yield return null;
+            }
+
+            SetPlayerInput(true);
+            _machine.MovementInput = Vector2.zero;
+            Animator.SetBool(AnimationData.WalkParameterHash, false);
+            Animator.SetBool(AnimationData.IdleParameterHash, true);
+        }
+
+        public void SetPlayerInput(bool isEnable)
+        {
+            _machine.InputActive = isEnable;
+
+            if (!isEnable)
+            {
+                _machine.MovementInput = Vector2.zero;
             }
         }
 

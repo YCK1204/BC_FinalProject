@@ -31,15 +31,13 @@ namespace Game.Player
 
         public override void Update()
         {
-            ReadMoveInput();
-
             if (_stateMachine.IsAttacking || _stateMachine.IsDashing)
             {
                 return;
             }
 
 #if UNITY_2022_3_OR_NEWER
-            if (_stateMachine.Player.Rb.linearVelocity.y <= 0f)
+            if (_stateMachine.Player.Rb.linearVelocity.y <= 4f)
             {
                 _stateMachine.ChangeState(_stateMachine.AirState);
                 return;
@@ -51,6 +49,8 @@ namespace Game.Player
                 return;
             }
 #endif
+
+            ReadMoveInput();
         }
 
         public override void PhysicsUpdate()

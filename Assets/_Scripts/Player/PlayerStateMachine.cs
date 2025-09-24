@@ -5,6 +5,7 @@ namespace Game.Player
     public class PlayerStateMachine
     {
         public PlayerCharacter Player { get; private set; }
+        public bool InputActive { get; set; } = true;
 
         public Vector2 MovementInput { get; set; }
         public float MovementSpeed { get; set; } = 5f;
