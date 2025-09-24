@@ -9,7 +9,7 @@ public class MonsterAttackState : MonsterBaseState
     float _maxCheckRayInterval = 0.2f;
     float _curCheckRayInterval = 0f;
 
-    LayerMask _mask = ~(LayerMask.GetMask(Game.Monster.Layers.Player) | LayerMask.GetMask(Game.Monster.Layers.Monster));
+    LayerMask _mask = LayerMask.GetMask(Game.Monster.Layers.Ground);
 
     public MonsterAttackState(MonsterStateMachine stateMachine) : base(stateMachine)
     {

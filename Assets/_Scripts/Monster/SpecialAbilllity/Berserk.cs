@@ -6,8 +6,12 @@ public class Berserk : MonoBehaviour, Game.Monster.ISpecialAbillity
     private bool _isBerserk = false;
     private List<BaseMonster> _affectedMonsterList;
 
+    [SerializeField] private GameObject PowerUpParticle;
+    private List<ParticleSystem> _particleList;
+
     public void Init(BaseMonster monster)
     {
+        _particleList = new List<ParticleSystem>();
         _affectedMonsterList = new List<BaseMonster>();
 
         // 몬스터가 플레이어를 발견하면 주변 몬스터에게 버프 부여
@@ -31,14 +35,21 @@ public class Berserk : MonoBehaviour, Game.Monster.ISpecialAbillity
                     switch (randomStat)
                     {
                         case 0:
-                            affectedMonster?.MonsterData.AddModifier(new StatModifier(Game.Monster.StatType.Attack, Game.Monster.ModifierType.Add, 5, monster));
+                            affectedMonster?.MonsterData.AddModifier(new StatModifier(Game.Monster.StatType.Attack, Game.Monster.ModifierType.Add, 3, monster));
                             break;
                         case 1:
-                            affectedMonster?.MonsterData.AddModifier(new StatModifier(Game.Monster.StatType.Speed, Game.Monster.ModifierType.Add, 5, monster));
+                            affectedMonster?.MonsterData.AddModifier(new StatModifier(Game.Monster.StatType.Speed, Game.Monster.ModifierType.Add, 2, monster));
                             break;
                     }
                     // 버프를 제공한 몬스터를 리스트에 등록
                     _affectedMonsterList.Add(affectedMonster);
+                    ParticleSystem particle = Instantiate(PowerUpParticle).GetComponent<ParticleSystem>();
+                    if (particle != null)
+                    {
+                        particle.transform.parent = affectedMonster.transform;
+                        particle.transform.localPosition = Vector3.zero;
+                        _particleList.Add(particle);
+                    }
                 }
             }
         };
@@ -51,6 +62,13 @@ public class Berserk : MonoBehaviour, Game.Monster.ISpecialAbillity
                 foreach (StateMachineMonster affectedMonster in _affectedMonsterList)
                 {
                     affectedMonster.MonsterData.RemoveModifierByCaster(monster);
+                }
+            }
+            if (_particleList != null)
+            {
+                foreach(ParticleSystem particle in _particleList)
+                {
+                    Destroy(particle.gameObject);
                 }
             }
         };
