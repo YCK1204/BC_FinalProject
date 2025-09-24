@@ -52,7 +52,7 @@ namespace Game.Player
         private void Awake()
         {
             Rb = GetComponent<Rigidbody2D>();
-            Animator = GetComponent<Animator>();
+            Animator = GetComponentInChildren<Animator>();
             if (!Force) Force = GetComponent<ForceReceiver>();
             currentHP = Data.Stats.MaxHP;
 
