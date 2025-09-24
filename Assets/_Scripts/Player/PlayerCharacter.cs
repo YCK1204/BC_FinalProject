@@ -75,12 +75,30 @@ namespace Game.Player
             RaycastHit2D hitRight = Physics2D.Raycast(right, Vector2.down, GroundRadius, GroundLayer);
 
             // 레이 표시
-            Debug.DrawRay(center, Vector2.down * GroundRadius, hitCenter.collider != null ? Color.green : Color.red);
-            Debug.DrawRay(left, Vector2.down * GroundRadius, hitLeft.collider != null ? Color.green : Color.red);
-            Debug.DrawRay(right, Vector2.down * GroundRadius, hitRight.collider != null ? Color.green : Color.red);
+            //Debug.DrawRay(center, Vector2.down * GroundRadius, hitCenter.collider != null ? Color.green : Color.red);
+            //Debug.DrawRay(left, Vector2.down * GroundRadius, hitLeft.collider != null ? Color.green : Color.red);
+            //Debug.DrawRay(right, Vector2.down * GroundRadius, hitRight.collider != null ? Color.green : Color.red);
 
             return hitCenter.collider != null || hitLeft.collider != null || hitRight.collider != null;
         }
+
+        public bool IsGroundInFront(float forward)
+        {
+            if (!GroundCheck)
+            {
+                return false;
+            }
+
+            float facingDirection = Mathf.Sign(transform.localScale.x);
+            Vector2 origin = (Vector2)GroundCheck.position + new Vector2(facingDirection * 0.5f, 0f);
+            Vector2 direction = new Vector2(facingDirection, -1f).normalized;
+            RaycastHit2D hit = Physics2D.Raycast(origin, direction, forward, GroundLayer);
+
+            Debug.DrawRay(origin, direction * forward, hit.collider != null ? Color.green : Color.red);
+
+            return hit.collider != null;
+        }
+
 
 
         public void TakeDamage(float amount)

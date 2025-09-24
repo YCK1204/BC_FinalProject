@@ -90,10 +90,21 @@ namespace Game.Player
                 }
             }
 
-            if (!_force && timePass >= forceTime)
+            if (!_force && timePass >= forceTime )
             {
                 _force = true;
-                _stateMachine.Player.Rb.linearVelocity = new Vector2(0, _stateMachine.Player.Rb.linearVelocity.y) * _attackcombatData.AttackSpeed;
+                if (_stateMachine.Player.IsGroundInFront(0.5f))
+                {
+                    _stateMachine.Player.Rb.linearVelocity = new Vector2(0, _stateMachine.Player.Rb.linearVelocity.y) * _attackcombatData.AttackSpeed;
+                }
+            }
+
+            if (!_stateMachine.Player.IsGroundInFront(0.5f))
+            {
+                Debug.Log("정지");
+
+                var rb = _stateMachine.Player.Rb;
+                rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
             }
 
             if (!_damage && timePass >= hitTime)
