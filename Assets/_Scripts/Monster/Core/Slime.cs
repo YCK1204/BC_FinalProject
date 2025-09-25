@@ -18,8 +18,14 @@ public class Slime : PatrolStateMonster
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.layer == (int)LayerMask.GetMask(Game.Monster.Layers.Player))
+        if (1 << collision.gameObject.layer == (int)LayerMask.GetMask(Game.Monster.Layers.Player))
         {
+            Vector2 knockBackDir = new Vector2(_rb.linearVelocityX < 0 ? -1 : 1, 1);
+            knockBackDir.Normalize();
+
+            // 수치를 어떻게 조정해야하지?
+            _target.GetComponent<Rigidbody2D>()?.AddForce(knockBackDir * 100);
+
             IDamageable damageable = collision.GetComponent<IDamageable>();
             damageable?.TakeDamage((int)_dataHandler.AttackPower);
         }
