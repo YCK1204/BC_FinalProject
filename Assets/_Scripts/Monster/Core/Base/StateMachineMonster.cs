@@ -5,7 +5,7 @@ using UnityEngine;
 /// <summary>
 /// 상태머신을 사용하는 몬스터 클래스
 /// </summary>
-public abstract class StateMachineMonster : BaseMonster
+public abstract class StateMachineMonster : NormalMonster
 {
     // 몬스터 상태 머신
     protected MonsterStateMachine _stateMachine;

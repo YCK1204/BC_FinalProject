@@ -107,12 +107,18 @@ public class MonsterDataHandler : MonoBehaviour
             float add, mul;
             GetStat(Game.Monster.StatType.Scale, out add, out mul);
 
-            _owner.Sr.transform.localScale = new Vector3(_owner.Sr.transform.localScale.x * mul,
-                                                      _owner.Sr.transform.localScale.y * mul,
-                                                      _owner.Sr.transform.localScale.z * mul);
-            BoxCollider2D col = _owner.Col as BoxCollider2D;
-            if(col != null)
-                col.size = new Vector2(col.size.x * mul, col.size.y * mul);
+            if(_owner is NormalMonster)
+            {
+                NormalMonster owner = (NormalMonster)_owner;
+
+                owner.Sr.transform.localScale = new Vector3(owner.Sr.transform.localScale.x * mul,
+                                                          owner.Sr.transform.localScale.y * mul,
+                                                          owner.Sr.transform.localScale.z * mul);
+                BoxCollider2D col = owner.Col as BoxCollider2D;
+
+                if (col != null)
+                    col.size = new Vector2(col.size.x * mul, col.size.y * mul);
+            }
         }
     }
 
@@ -126,7 +132,7 @@ public class MonsterDataHandler : MonoBehaviour
         _modifierList.Remove(modifier);
     }
 
-    public void RemoveModifierByCaster(BaseMonster caster)
+    public void RemoveModifierByCaster(NormalMonster caster)
     {
         for(int i=0; i<_modifierList.Count;i++)
         {
