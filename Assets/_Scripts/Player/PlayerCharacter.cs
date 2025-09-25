@@ -119,11 +119,11 @@ namespace Game.Player
 
         void EnterHurtByFacing()
         {
-            //float dir = -Mathf.Sign(transform.localScale.x);
-            //var hd = Data.HurtData;
-            //var kb = new Vector2(dir * hd.KnockbackX, hd.KnockbackY);
-            //ForceReceiver.Knockback(kb);
-            //_machine.ChangeState(_machine.HurtState);
+            float dir = -Mathf.Sign(transform.localScale.x);
+            var hd = Data.HurtData;
+            var kb = new Vector2(dir * hd.KnockbackX, hd.KnockbackY);
+            ForceReceiver.Knockback(kb);
+            _machine.ChangeState(_machine.HurtState);
         }
 
         public void Heal(float amount)
