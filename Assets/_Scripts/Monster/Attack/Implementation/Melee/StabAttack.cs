@@ -14,7 +14,8 @@ public class StabAttack : MeleeAttack
             Vector2 knockBackDir = new Vector2(_monsterAttack.Owner.transform.localScale.x < 0 ? -1 : 1, 1);
             knockBackDir.Normalize();
 
-            _target.GetComponent<Rigidbody2D>()?.AddForce(knockBackDir * 100);
+            _target.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+            _target.GetComponent<Rigidbody2D>().AddForce(knockBackDir * 400);
             _target.GetComponent<IDamageable>()?.TakeDamage((int)_damage);
         }
     }

@@ -66,9 +66,14 @@ public class Berserk : MonoBehaviour, Game.Monster.ISpecialAbillity
             }
             if (_particleList != null)
             {
-                foreach(ParticleSystem particle in _particleList)
+                for (int i = 0; i < _particleList.Count; i++)
                 {
-                    Destroy(particle.gameObject);
+                    if(_particleList[i] != null)
+                    {
+                        ParticleSystem tmp = _particleList[i--];
+                        _particleList.Remove(tmp);
+                        Destroy(tmp.gameObject);
+                    }
                 }
             }
         };

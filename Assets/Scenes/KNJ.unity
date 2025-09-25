@@ -381,7 +381,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8634604288746098228, guid: b0d51f84096c8104ba7d07c73f983a6a, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1115,7 +1115,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1258018613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1129,6 +1129,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoneReaper
   _dataHandler: {fileID: 0}
+  IsAttacking: 0
 --- !u!4 &1258018614
 Transform:
   m_ObjectHideFlags: 0
@@ -1160,7 +1161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bdd63bab680f574caedea7e4e59cdda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MonsterDataHandler
-  _data: {fileID: 0}
+  _data: {fileID: 11400000, guid: fce2efbc03c504f4a9f70389f5a46699, type: 2}
   _curHp: 0
 --- !u!1 &1352687980
 GameObject:

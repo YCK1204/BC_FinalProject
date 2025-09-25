@@ -54,8 +54,10 @@ public abstract class BaseProjectile : MonoBehaviour
             Vector2 knockBackDir = new Vector2(_rb.linearVelocityX < 0 ? -1 : 1, 1);
             knockBackDir.Normalize();
 
+            Debug.Log(knockBackDir);
             // 수치를 어떻게 조정해야하지?
-            _target.GetComponent<Rigidbody2D>()?.AddForce(knockBackDir * 100);
+            _target.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+            _target.GetComponent<Rigidbody2D>().AddForce(knockBackDir * 400);
 
             damageable?.TakeDamage((int)DataHandler.Damage);
             DestroyProjectile();

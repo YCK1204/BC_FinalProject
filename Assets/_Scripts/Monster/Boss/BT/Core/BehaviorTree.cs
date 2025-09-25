@@ -86,6 +86,11 @@ namespace Game.Monster
         public SequenceNode() { _chilldren= new List<INode>(); }
         public SequenceNode(List<INode> chilldren) { _chilldren= chilldren; }
 
+        public void AddChild(INode child)
+        {
+            _chilldren.Add(child);
+        }
+
         public NodeStatus Evaluate()
         {
             foreach (INode child in _chilldren)

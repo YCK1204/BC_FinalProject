@@ -22,7 +22,8 @@ public class SwingAttack : MeleeAttack
                 knockBackDir.Normalize();
 
                 // 수치를 어떻게 조정해야하지?
-                _target.GetComponent<Rigidbody2D>()?.AddForce(knockBackDir * 100);
+                _target.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
+                _target.GetComponent<Rigidbody2D>().AddForce(knockBackDir * 400);
                 _target.GetComponent<IDamageable>()?.TakeDamage((int)_damage);
             }
         }

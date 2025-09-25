@@ -5528,7 +5528,101 @@ CompositeCollider2D:
   m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
-  m_ColliderPaths: []
+  m_ColliderPaths:
+  - m_Collider: {fileID: 1712770798349652788}
+    m_ColliderPaths:
+    - - X: 530000000
+        Y: -80000000
+      - X: 540000000
+        Y: -80000000
+      - X: 540000000
+        Y: -60000000
+      - X: 550000000
+        Y: -60000000
+      - X: 550000000
+        Y: 180000000
+      - X: 540000000
+        Y: 180000000
+      - X: 540000000
+        Y: 60000000
+      - X: 500000000
+        Y: 60000000
+      - X: 500000000
+        Y: 50000000
+      - X: 540000000
+        Y: 50000000
+      - X: 540000000
+        Y: 0
+      - X: 500000000
+        Y: 0
+      - X: 500000000
+        Y: -10000000
+      - X: 540000000
+        Y: -10000000
+      - X: 540000000
+        Y: -30000000
+      - X: 440000000
+        Y: -30000000
+      - X: 440000000
+        Y: -70000000
+      - X: 80000000
+        Y: -70000000
+      - X: 80000000
+        Y: -50000000
+      - X: 130000000
+        Y: -50000000
+      - X: 130000000
+        Y: -40000000
+      - X: 80000000
+        Y: -40000000
+      - X: 80000000
+        Y: -20000000
+      - X: -30000000
+        Y: -20000000
+      - X: -30000000
+        Y: 0
+      - X: -60000000
+        Y: 0
+      - X: -60000000
+        Y: 180000000
+      - X: -70000000
+        Y: 180000000
+      - X: -70000000
+        Y: -90000000
+      - X: 530000000
+        Y: -90000000
+    - - X: 440000000
+        Y: 20000000
+      - X: 480000000
+        Y: 20000000
+      - X: 480000000
+        Y: 30000000
+      - X: 440000000
+        Y: 30000000
+      - X: 440000000
+        Y: 60000000
+      - X: 110000000
+        Y: 60000000
+      - X: 110000000
+        Y: 0
+      - X: 440000000
+        Y: 0
+    - - X: 390000000
+        Y: -40000000
+      - X: 310000000
+        Y: -40000000
+      - X: 310000000
+        Y: -50000000
+      - X: 390000000
+        Y: -50000000
+    - - X: 260000000
+        Y: -40000000
+      - X: 180000000
+        Y: -40000000
+      - X: 180000000
+        Y: -50000000
+      - X: 260000000
+        Y: -50000000
   m_CompositePaths:
     m_Paths:
     - - {x: 52.999973, y: -9}
@@ -5664,13 +5758,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChainMonsterSpawner
   SpawnInfos:
-  - Prefab: {fileID: 5500332636063280834, guid: b683c352ac0ada640ae7df0a54239d8f, type: 3}
+  - Prefab: {fileID: 8420547118552779038, guid: 911cf179560f9b44fabca07333225250, type: 3}
     Position: {x: 33, y: 7}
-  - Prefab: {fileID: 5500332636063280834, guid: b683c352ac0ada640ae7df0a54239d8f, type: 3}
+  - Prefab: {fileID: 1894069600366304804, guid: 8f1fd914d5d402545a1f8a28e7e28e93, type: 3}
     Position: {x: 36, y: 7}
-  - Prefab: {fileID: 5500332636063280834, guid: b683c352ac0ada640ae7df0a54239d8f, type: 3}
+  - Prefab: {fileID: 5635032555221613933, guid: 5f9ea8fe861564f44b81a81fe12adddc, type: 3}
     Position: {x: 28, y: 7}
-  - Prefab: {fileID: 5500332636063280834, guid: b683c352ac0ada640ae7df0a54239d8f, type: 3}
+  - Prefab: {fileID: 5114862662598244505, guid: b0d51f84096c8104ba7d07c73f983a6a, type: 3}
     Position: {x: 22, y: 7}
   Root: {fileID: 0}
   NextSpawners: []
@@ -5722,13 +5816,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AreaMonsterSpawner
   SpawnInfos:
-  - Prefab: {fileID: 5500332636063280834, guid: b683c352ac0ada640ae7df0a54239d8f, type: 3}
+  - Prefab: {fileID: 1894069600366304804, guid: 8f1fd914d5d402545a1f8a28e7e28e93, type: 3}
     Position: {x: 20, y: -3}
-  - Prefab: {fileID: 5500332636063280834, guid: b683c352ac0ada640ae7df0a54239d8f, type: 3}
+  - Prefab: {fileID: 1894069600366304804, guid: 8f1fd914d5d402545a1f8a28e7e28e93, type: 3}
     Position: {x: 24, y: -3}
-  - Prefab: {fileID: 5500332636063280834, guid: b683c352ac0ada640ae7df0a54239d8f, type: 3}
+  - Prefab: {fileID: 6995806667873288730, guid: 31e8fc94f4f82b443ba7f0ba01dac1dc, type: 3}
     Position: {x: 33, y: -3}
-  - Prefab: {fileID: 5500332636063280834, guid: b683c352ac0ada640ae7df0a54239d8f, type: 3}
+  - Prefab: {fileID: 6995806667873288730, guid: 31e8fc94f4f82b443ba7f0ba01dac1dc, type: 3}
     Position: {x: 37, y: -3}
   Root: {fileID: 0}
   NextSpawners:
@@ -11370,7 +11464,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3528504828122044192
 Transform:
   m_ObjectHideFlags: 0
@@ -11438,9 +11532,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AutoMonsterSpawner
   SpawnInfos:
-  - Prefab: {fileID: 5500332636063280834, guid: b683c352ac0ada640ae7df0a54239d8f, type: 3}
+  - Prefab: {fileID: 5635032555221613933, guid: 5f9ea8fe861564f44b81a81fe12adddc, type: 3}
     Position: {x: -1, y: -1}
-  - Prefab: {fileID: 5500332636063280834, guid: b683c352ac0ada640ae7df0a54239d8f, type: 3}
+  - Prefab: {fileID: 5635032555221613933, guid: 5f9ea8fe861564f44b81a81fe12adddc, type: 3}
     Position: {x: 4, y: -1}
   Root: {fileID: 0}
   NextSpawners: []
