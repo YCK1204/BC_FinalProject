@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -35,6 +36,9 @@ public abstract class NormalMonster : BaseMonster, Game.Monster.IDamageable
     public Action OnUpdate;
     public Action OnHit;
 
+    protected Material _originMat;
+    [SerializeField] protected Material FlashMat;
+
     // 슈퍼아머 상태 확인 변수
     public bool IsSuperArmor = false;
 
@@ -45,6 +49,7 @@ public abstract class NormalMonster : BaseMonster, Game.Monster.IDamageable
         _col = GetComponent<Collider2D>();
         _anim = GetComponentInChildren<Animator>();
         _sr = GetComponentInChildren<SpriteRenderer>();
+        _originMat = _sr.material;
 
         _attack = GetComponentInChildren<MonsterAttack>();
         _dataHandler = Extension.GetOrAddComponent<MonsterDataHandler>(this.gameObject);
@@ -56,6 +61,7 @@ public abstract class NormalMonster : BaseMonster, Game.Monster.IDamageable
             _ignoredColliderList.Clear();
         else
             _ignoredColliderList = new List<Collider2D>();
+
     }
 
     protected virtual void Init()
@@ -66,11 +72,19 @@ public abstract class NormalMonster : BaseMonster, Game.Monster.IDamageable
             _abillityList.Add(abillity);
             abillity.Init(this);
         }
+
     }
 
     protected virtual void OnEnable()
     {
         _dataHandler.Init();
+        OnHit += HitFlash;
+
+        Init();
+    }
+
+    protected virtual void OnDisable()
+    {
         ResetTarget();
         OnDied = null;
         Ondetect = null;
@@ -79,8 +93,24 @@ public abstract class NormalMonster : BaseMonster, Game.Monster.IDamageable
 
         _abillityList.Clear();
         _ignoredColliderList.Clear();
+    }
 
-        Init();
+    public void HitFlash()
+    {
+        if (FlashMat == null)
+            return;
+
+        _sr.material = FlashMat;
+        FlashMat.SetFloat("_FlashAmount", 1f);
+
+        Invoke(nameof(OffHitFlash), 0.1f);
+    }
+
+    public void OffHitFlash()
+    {
+        FlashMat.SetFloat("_FlashAmount", 0f);
+
+        _sr.material = _originMat;
     }
 
     public abstract void TakeDamage(int damage);
