@@ -35,11 +35,7 @@ public class EventController : MonoBehaviour
 
         if (currentIndex - 1 >= 0 && currentIndex - 1 < objects.Length)
         {
-            Animator anim = objects[currentIndex - 1].GetComponent<Animator>();
-            if (anim != null)
-            {
-                anim.SetBool("hide", true);
-            }
+            objects[currentIndex-1].SetActive(false);
         }
 
         if (currentIndex < objects.Length)
