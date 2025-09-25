@@ -388,17 +388,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0d51f84096c8104ba7d07c73f983a6a, type: 3}
---- !u!114 &252597836 stripped
+--- !u!114 &332664329 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5114862662598244505, guid: b0d51f84096c8104ba7d07c73f983a6a, type: 3}
-  m_PrefabInstance: {fileID: 193162573}
+  m_CorrespondingSourceObject: {fileID: 6995806667873288730, guid: 31e8fc94f4f82b443ba7f0ba01dac1dc, type: 3}
+  m_PrefabInstance: {fileID: 594201018}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55b3bd87055319a4a85760d7241d179e, type: 3}
+  m_Script: {fileID: 11500000, guid: 32b700b1c3aea614a86c6fdaa232cfdb, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SandGolem
+  m_EditorClassIdentifier: Assembly-CSharp::Slime
 --- !u!1 &336146543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1046,7 +1046,7 @@ Transform:
   m_GameObject: {fileID: 953801115}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.25, y: 3.69, z: 0}
+  m_LocalPosition: {x: 12.19, y: 2.73, z: 0}
   m_LocalScale: {x: 0.5, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1081,7 +1081,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffd82f8364e1b8c49bd9576c95ab7069, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyTest
-  monster: {fileID: 252597836}
+  monster: {fileID: 332664329}
   Damage: 15
 --- !u!4 &1208759512
 Transform:
@@ -1139,7 +1139,7 @@ Transform:
   m_GameObject: {fileID: 1258018612}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1249,7 +1249,7 @@ Transform:
   m_GameObject: {fileID: 1352687980}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.34, y: -1.1, z: 0}
+  m_LocalPosition: {x: -7.38, y: 3.35, z: 0}
   m_LocalScale: {x: 0.5, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1309,7 +1309,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1352687980}
-  m_BodyType: 0
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -1596,8 +1596,8 @@ Transform:
   m_GameObject: {fileID: 1755795924}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -2, z: 0}
-  m_LocalScale: {x: 15, y: 0.5, z: 1}
+  m_LocalPosition: {x: 0, y: -4, z: 0}
+  m_LocalScale: {x: 20, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1843,7 +1843,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4999494187481010608, guid: 5f9ea8fe861564f44b81a81fe12adddc, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.64
       objectReference: {fileID: 0}
     - target: {fileID: 4999494187481010608, guid: 5f9ea8fe861564f44b81a81fe12adddc, type: 3}
       propertyPath: m_LocalPosition.y

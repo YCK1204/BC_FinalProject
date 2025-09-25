@@ -21,7 +21,7 @@ public class BoneReaper : BossMonster
     public int CurBreathCount { get { return _curBreathCount; } }
 
     private float _curBTCheckTime;
-    private float _maxBTCheckTime = 0.2f;
+    private float _maxBTCheckTime = 0.5f;
 
     private BoneReaperBT _curBT;
     public BoneReaperBT BT { get { return _curBT; } }
@@ -33,6 +33,7 @@ public class BoneReaper : BossMonster
     private void Awake()
     {
         _dataHandler = GetComponent<MonsterDataHandler>();
+        _dataHandler.Init();
 
         _curBT = new BoneReaperBT();
         _curBT.Init(this);
@@ -59,7 +60,10 @@ public class BoneReaper : BossMonster
     private void Update()
     {
         if(_dataHandler.CurHp > 0 && _curBTCheckTime >= _maxBTCheckTime)
+        {
+            _curBTCheckTime = 0;
             _curBT.Evaluate();
+        }
         _curBTCheckTime += Time.deltaTime;
 
         if(!IsAttacking)
@@ -72,10 +76,12 @@ public class BoneReaper : BossMonster
                                                 MonsterData.DetectRange, _playerMask);
         if(player != null)
         {
+            Debug.Log("Find!");
             _target = player.transform;
             return NodeStatus.Success;
         }
 
+        Debug.Log("Not Foound...");
         return NodeStatus.Failure;
     }
 
@@ -87,8 +93,50 @@ public class BoneReaper : BossMonster
         _dataHandler.TakeDamage(damage);
         if (_dataHandler.CurHp <= 0)
         {
-            
+            // 사망 처리
         }
 
+    }
+
+    public NodeStatus LaserAttack()
+    {
+        if (IsAttacking) return NodeStatus.Running;
+
+        _patternCoolTime = 0;
+        Debug.Log("Laser");
+        _curSlamCount = 0;
+
+        return NodeStatus.Success;
+    }
+
+    public NodeStatus SlamAttack()
+    {
+        if (IsAttacking) return NodeStatus.Running;
+        _patternCoolTime = 0;
+        Debug.Log("Slam");
+
+        _curSlamCount++;
+        return NodeStatus.Success;
+    }
+
+    public NodeStatus SummonOrbAttack()
+    {
+        if (IsAttacking) return NodeStatus.Running;
+
+        _patternCoolTime = 0;
+        Debug.Log("SO");
+
+        _curBreathCount = 0;
+        return NodeStatus.Success;
+    }
+
+    public NodeStatus BreathAttack()
+    {
+        if (IsAttacking) return NodeStatus.Running;
+        _patternCoolTime = 0;
+        Debug.Log("Breath");
+
+        _curBreathCount++;
+        return NodeStatus.Success;
     }
 }

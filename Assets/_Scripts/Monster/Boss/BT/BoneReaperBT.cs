@@ -29,28 +29,67 @@ public class BoneReaperBT : BossBT
     private void SetNodes()
     {
         BoneReaper boneReaper = _owner as BoneReaper;
-        _root = new SelectorNode();
+        _root = new SelectorNode("RootNode");
 
         if (boneReaper == null)
             return;
 
         // 타겟 없으면?
-        ConditionNode checkTarget = new ConditionNode(() => { return _owner.Target != null; });
-        ActionNode findPlayer = new ActionNode(boneReaper.FindTarget);
+        ConditionNode checkTarget = new ConditionNode(() => { return _owner.Target != null; }, "TargetIsNull");
+        ActionNode findPlayer = new ActionNode(boneReaper.FindTarget, "FindPlayer");
+        InvertNode invertFindTarget = new InvertNode(findPlayer, "InvertFindTarget");
 
-        SequenceNode findTargetSequence = new SequenceNode();
+        SequenceNode findTargetSequence = new SequenceNode("FindPlayerSequence");
         findTargetSequence.AddChild(checkTarget);
-        findTargetSequence.AddChild(findPlayer);
+        findTargetSequence.AddChild(invertFindTarget);
 
         // 타겟 있으면?
-        SelectorNode attackSlector = new SelectorNode();
+        SelectorNode attackSlector = new SelectorNode("AttackSelector");
 
         // 공격 중인가?
-        ConditionNode isAttacking = new ConditionNode(() => { return boneReaper.IsAttacking; });
+        ConditionNode isAttacking = new ConditionNode(() => { return boneReaper.IsAttacking; }, "IsAttacking");
+
+        // 패턴 쿨타임 중인가?
+        ConditionNode isCoolTime = new ConditionNode(() => { return boneReaper.PatternCoolTime < boneReaper.PatternMaxCoolTime; }, "IsCoolTime");
 
         // 레이저 공격 시퀀스
-        SequenceNode laserAttackSequence = new SequenceNode();
-        ConditionNode isSlamMoreThan2 = new ConditionNode(() => { return boneReaper.CurSlamCount >= 2; });
+        SequenceNode laserAttackSequence = new SequenceNode("LaserAttackSequence");
+        ConditionNode isSlamMoreThan2 = new ConditionNode(() => { return boneReaper.CurSlamCount >= 2; }, "CheckLaser");
+        ActionNode laserAttack = new ActionNode(boneReaper.LaserAttack, "LaserAttack");
+
+        // 오브 공격 시퀀스
+        SequenceNode summonOrbSequence = new SequenceNode("SummonOrbSequence");
+        ConditionNode isBreathMoreThan2 = new ConditionNode(() => { return boneReaper.CurBreathCount >= 2; }, "CheckSummonOrb");
+        ActionNode summonOrbAttack = new ActionNode(boneReaper.SummonOrbAttack, "SummonOrbAttack");
+
+        // 일반 공격 랜덤 셀렉터
+        RandomSelectorNode normalAttackRandomSelector = new RandomSelectorNode("NormalAttackSelector");
+
+        // 내려치기 공격 노드
+        ActionNode slamAttack = new ActionNode(boneReaper.SlamAttack, "SlamAttack");
+
+        // 브레스 공격 노드
+        ActionNode breathAttack = new ActionNode(boneReaper.BreathAttack, "BreathAttack");
+
+
+        // 신나는 노드 조립 시간
+        normalAttackRandomSelector.AddChild(breathAttack);
+        normalAttackRandomSelector.AddChild(slamAttack);
+
+        summonOrbSequence.AddChild(isBreathMoreThan2);
+        summonOrbSequence.AddChild(summonOrbAttack);
+
+        laserAttackSequence.AddChild(isSlamMoreThan2);
+        laserAttackSequence.AddChild(laserAttack);
+
+        attackSlector.AddChild(isAttacking);
+        attackSlector.AddChild(isCoolTime);
+        attackSlector.AddChild(laserAttackSequence);
+        attackSlector.AddChild(summonOrbSequence);
+        attackSlector.AddChild(normalAttackRandomSelector);
+
+        _root.AddChild(findTargetSequence);
+        _root.AddChild(attackSlector);
     }
 
     public NodeStatus Evaluate()
