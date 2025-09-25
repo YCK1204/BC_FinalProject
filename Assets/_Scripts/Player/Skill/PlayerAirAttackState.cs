@@ -8,8 +8,10 @@ namespace Game.Player
     {
         private AttackInfoData _attackInfoData;
         private float _timer;
-        private bool _hasDealtDamage;
         private List<IDamageable> _hitTargets;
+
+        private float _damageInterval = 0.1f;
+        private float _damageTimer;
 
         public PlayerAirAttackState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
@@ -28,8 +30,9 @@ namespace Game.Player
             _stateMachine.Player.Animator.SetInteger(_stateMachine.Player.AnimationData.ComboParameterHash, 2);
             StartAnimation(_stateMachine.Player.AnimationData.AttackParameterHash);
 
-            _hasDealtDamage = false;
             _hitTargets = new List<IDamageable>();
+
+            _damageTimer = 0f;
         }
 
         public override void Exit()
@@ -46,11 +49,11 @@ namespace Game.Player
         {
             _timer -= Time.deltaTime;
 
-            float timePassed = _attackInfoData.AttackDuration - _timer;
-            if (!_hasDealtDamage && timePassed >= _attackInfoData.HitTiming)
+            _damageTimer -= Time.deltaTime;
+            if (_damageTimer <= 0f)
             {
-                _hasDealtDamage = true;
                 TryDealDamage();
+                _damageTimer = _damageInterval;
             }
 
             if (_timer <= 0f)
@@ -68,9 +71,6 @@ namespace Game.Player
 
             float baseDmg = d.AttackPower + d.ExtraDamage;
             float chance = Mathf.Max(0f, d.CriticalChance) * 0.01f;
-            bool isCrit = Random.value < chance;
-            float mult = isCrit ? (1f + Mathf.Max(0f, d.CriticalDamage) * 0.01f) : 1f;
-            int damage = Mathf.RoundToInt(baseDmg * mult * _attackInfoData.DamageSet);
 
             foreach (var col in cols)
             {
@@ -80,9 +80,21 @@ namespace Game.Player
                 if (target != null && !_hitTargets.Contains(target))
                 {
                     _hitTargets.Add(target);
+
+                    bool isCrit = Random.value < chance;
+                    float mult;
+
+                    if (isCrit)
+                        mult = 1f + Mathf.Max(0f, d.CriticalDamage) * 0.01f;
+                    else
+                        mult = 1f;
+
+                    int damage = Mathf.RoundToInt(baseDmg * mult * _attackInfoData.DamageSet);
+
                     target.TakeDamage(damage);
                     _stateMachine.Player.MarkLastHitCritical(isCrit);
-                    if (isCrit) Debug.Log("Critical!");
+                    if (isCrit) Debug.Log("Critical!!" + target.ToString());
+
                 }
             }
         }

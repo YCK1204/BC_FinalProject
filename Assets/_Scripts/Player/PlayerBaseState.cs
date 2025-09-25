@@ -21,6 +21,12 @@ namespace Game.Player
 
         protected void ReadMoveInput()
         {
+            if (!_stateMachine.InputActive)
+            {
+                _stateMachine.MovementInput = Vector2.zero;
+                return;
+            }
+
 #if ENABLE_INPUT_SYSTEM
             var kb = UnityEngine.InputSystem.Keyboard.current;
             float x = 0f;

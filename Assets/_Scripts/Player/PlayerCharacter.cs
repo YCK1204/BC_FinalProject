@@ -1,5 +1,6 @@
 using Game.Monster;
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Game.Player
@@ -33,11 +34,10 @@ namespace Game.Player
         [SerializeField] private Vector2 runtimeVelocity;
         [SerializeField] private float currentHP;
 
-        [Header("Corruption")]
-        [SerializeField] private int corruptionGauge;
-        [SerializeField] private int maxCorruptionGauge = 200;
-        [SerializeField] private int corruptionGainPerHit = 5;
-        public int CorruptionGauge => corruptionGauge;
+        [Header("Awakening")]
+        [SerializeField] private float currentAwakening;
+        public float CurrentAwakening => currentAwakening;
+        public bool IsAwakened { get; private set; }
 
         [Header("Combat Debug")]
         [SerializeField] private bool lastHitCritical;
@@ -52,7 +52,7 @@ namespace Game.Player
         private void Awake()
         {
             Rb = GetComponent<Rigidbody2D>();
-            Animator = GetComponent<Animator>();
+            Animator = GetComponentInChildren<Animator>();
             if (!Force) Force = GetComponent<ForceReceiver>();
             currentHP = Data.Stats.MaxHP;
 
@@ -61,22 +61,51 @@ namespace Game.Player
         }
         public bool IsGrounded()
         {
-            if (!GroundCheck) return false;
-            return Physics2D.OverlapCircle(GroundCheck.position, GroundRadius, GroundLayer);
+            if (!GroundCheck)
+            {
+                return false;
+            }
+
+            Vector2 center = GroundCheck.position;
+            Vector2 left = new Vector2(center.x - 0.21f, center.y);
+            Vector2 right = new Vector2(center.x + 0.21f, center.y);
+
+            RaycastHit2D hitCenter = Physics2D.Raycast(center, Vector2.down, GroundRadius, GroundLayer);
+            RaycastHit2D hitLeft = Physics2D.Raycast(left, Vector2.down, GroundRadius, GroundLayer);
+            RaycastHit2D hitRight = Physics2D.Raycast(right, Vector2.down, GroundRadius, GroundLayer);
+
+            // 레이 표시
+            //Debug.DrawRay(center, Vector2.down * GroundRadius, hitCenter.collider != null ? Color.green : Color.red);
+            //Debug.DrawRay(left, Vector2.down * GroundRadius, hitLeft.collider != null ? Color.green : Color.red);
+            //Debug.DrawRay(right, Vector2.down * GroundRadius, hitRight.collider != null ? Color.green : Color.red);
+
+            return hitCenter.collider != null || hitLeft.collider != null || hitRight.collider != null;
         }
 
-        public void ReportNormalAttackHit()
+        public bool IsGroundInFront(float forward)
         {
-            if (corruptionGauge >= maxCorruptionGauge) return;
-            corruptionGauge = Mathf.Min(maxCorruptionGauge, corruptionGauge + Mathf.Max(0, corruptionGainPerHit));
+            if (!GroundCheck)
+            {
+                return false;
+            }
+
+            float facingDirection = Mathf.Sign(transform.localScale.x);
+            Vector2 origin = (Vector2)GroundCheck.position + new Vector2(facingDirection * 0.5f, 0f);
+            Vector2 direction = new Vector2(facingDirection, -1f).normalized;
+            RaycastHit2D hit = Physics2D.Raycast(origin, direction, forward, GroundLayer);
+
+            Debug.DrawRay(origin, direction * forward, hit.collider != null ? Color.green : Color.red);
+
+            return hit.collider != null;
         }
 
-        public void ResetCorruptionGauge() { corruptionGauge = 0; }
+
 
         public void TakeDamage(float amount)
         {
             if (Invincible || IsDead) return;
             currentHP = Mathf.Max(0f, currentHP - Mathf.Max(0f, amount));
+            HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
             if (currentHP <= 0f) Die(); else EnterHurtByFacing();
         }
 
@@ -107,9 +136,38 @@ namespace Game.Player
         public void Die()
         {
             currentHP = 0f;
-            ResetCorruptionGauge();
             HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
             _machine.ChangeState(_machine.DieState);
+        }
+
+        public void GainAwakeningGauge()
+        {
+            if (IsAwakened || IsDead) return;
+            var awakeningData = Data.awakening;
+            currentAwakening = Mathf.Min(awakeningData.maxAwakeningGauge, currentAwakening + awakeningData.awakeningOnHit);
+
+            if (currentAwakening >= awakeningData.maxAwakeningGauge)
+            {
+                EnterAwakening();
+            }
+        }
+
+        private void EnterAwakening()
+        {
+            if (IsAwakened) return;
+            Debug.Log("각성!");
+            IsAwakened = true;
+            currentAwakening = 0f;
+            float totalDuration = Data.awakening.duration + Data.awakening.bonusDuration;
+            StartCoroutine(AwakeningTimer(totalDuration));
+        }
+
+        private IEnumerator AwakeningTimer(float duration)
+        {
+            yield return new WaitForSeconds(duration);
+
+            IsAwakened = false;
+            Debug.Log("각성종료");
         }
 
         public void SetLayerCollisionIgnore(LayerMask mask, bool ignore)
@@ -120,6 +178,42 @@ namespace Game.Player
             {
                 if ((m & (1 << i)) != 0)
                     Physics2D.IgnoreLayerCollision(playerLayer, i, ignore);
+            }
+        }
+
+        public void AutoMove(float a, Vector2 b)
+        {
+            StartCoroutine(AutoMoveCrt(a, b));
+        }
+
+        private IEnumerator AutoMoveCrt(float a, Vector2 b)
+        {
+            Animator.SetBool(AnimationData.WalkParameterHash, true);
+            Animator.SetBool(AnimationData.IdleParameterHash, false);
+            SetPlayerInput(false);
+
+            float timeElapsed = 0f;
+            while (timeElapsed < a)
+            {
+                _machine.MovementInput = b.normalized;
+
+                timeElapsed += Time.deltaTime;
+                yield return null;
+            }
+
+            SetPlayerInput(true);
+            _machine.MovementInput = Vector2.zero;
+            Animator.SetBool(AnimationData.WalkParameterHash, false);
+            Animator.SetBool(AnimationData.IdleParameterHash, true);
+        }
+
+        public void SetPlayerInput(bool isEnable)
+        {
+            _machine.InputActive = isEnable;
+
+            if (!isEnable)
+            {
+                _machine.MovementInput = Vector2.zero;
             }
         }
 
