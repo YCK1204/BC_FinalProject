@@ -56,8 +56,9 @@ public abstract class BaseProjectile : MonoBehaviour
 
             Debug.Log(knockBackDir);
             // 수치를 어떻게 조정해야하지?
-            _target.GetComponent<Rigidbody2D>().linearVelocity = Vector2.zero;
-            _target.GetComponent<Rigidbody2D>().AddForce(knockBackDir * 400);
+            Rigidbody2D targetRb = _target.GetComponent<Rigidbody2D>();
+            targetRb.linearVelocity = Vector2.zero;
+            targetRb.AddForce(knockBackDir * 400);
 
             damageable?.TakeDamage((int)DataHandler.Damage);
             DestroyProjectile();

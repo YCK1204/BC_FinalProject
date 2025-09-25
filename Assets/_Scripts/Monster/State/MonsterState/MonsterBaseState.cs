@@ -103,7 +103,6 @@ public abstract class MonsterBaseState : Game.Monster.IState
                         (target.position - observer.position).normalized);
 
         float angle = Mathf.Acos(dot) * Mathf.Rad2Deg;
-        Debug.Log(angle);
         return angle < fov * 0.5f ? true : false;
     }
 }
