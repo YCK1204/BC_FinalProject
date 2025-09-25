@@ -4,7 +4,6 @@ using System.Collections;
 public class EventController : MonoBehaviour
 {
     [SerializeField]
-
     private Game.Player.PlayerCharacter _player;
 
     [SerializeField]
@@ -18,7 +17,8 @@ public class EventController : MonoBehaviour
 
     private int currentIndex = 0;
 
-
+    [Header("Flash")]
+    [SerializeField] private MaterialFlash flashEffect;
 
     private IEnumerator Start()
     {
@@ -33,14 +33,21 @@ public class EventController : MonoBehaviour
     {
         if (triggerIndex != currentIndex) return;
 
-        if (currentIndex - 1 >= 0 && currentIndex - 1 < objects.Length)
+        if (currentIndex >= 5 && flashEffect != null)
         {
-            objects[currentIndex-1].SetActive(false);
+            flashEffect.Flash(0.2f);
         }
-
-        if (currentIndex < objects.Length)
+        else
         {
-            objects[currentIndex].SetActive(true);
+            if (currentIndex - 1 >= 0 && currentIndex - 1 < objects.Length)
+            {
+                objects[currentIndex - 1].SetActive(false);
+            }
+
+            if (currentIndex < objects.Length)
+            {
+                objects[currentIndex].SetActive(true);
+            }
         }
 
         currentIndex++;

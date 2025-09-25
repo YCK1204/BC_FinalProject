@@ -8,12 +8,12 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: GlitchMateral_player
-  m_Shader: {fileID: 4800000, guid: 07cc6a2895d04b24eadeb9c8b191cb49, type: 3}
+  m_Shader: {fileID: 4800000, guid: 40c4ab3e689a551438835739764b9205, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords: []
-  m_InvalidKeywords:
+  m_ValidKeywords:
   - ETC1_EXTERNAL_ALPHA
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -58,7 +58,7 @@ Material:
     - _GlitchCutAmountY: 1
     - _GlitchIntensity: 0
     - _HorizontalShake: 0.2
-    - _ScanLineJitter: 0.5
+    - _ScanLineJitter: 1
     - _ScanlineIntensity: 0.5
     - _Speed: 1
     - _Stencil: 0
