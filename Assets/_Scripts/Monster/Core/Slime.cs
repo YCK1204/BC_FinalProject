@@ -24,7 +24,9 @@ public class Slime : PatrolStateMonster
             knockBackDir.Normalize();
 
             // 수치를 어떻게 조정해야하지?
-            _target.GetComponent<Rigidbody2D>()?.AddForce(knockBackDir * 100);
+            Rigidbody2D targetRb = _target.GetComponent<Rigidbody2D>();
+            targetRb.linearVelocity = Vector2.zero;
+            targetRb.AddForce(knockBackDir * 400);
 
             IDamageable damageable = collision.GetComponent<IDamageable>();
             damageable?.TakeDamage((int)_dataHandler.AttackPower);

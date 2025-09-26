@@ -111,9 +111,9 @@ public class MonsterDataHandler : MonoBehaviour
             {
                 NormalMonster owner = (NormalMonster)_owner;
 
-                owner.Sr.transform.localScale = new Vector3(owner.Sr.transform.localScale.x * mul,
-                                                          owner.Sr.transform.localScale.y * mul,
-                                                          owner.Sr.transform.localScale.z * mul);
+                owner.transform.localScale = new Vector3(owner.transform.localScale.x * mul,
+                                                          owner.transform.localScale.y * mul,
+                                                          owner.transform.localScale.z * mul);
                 BoxCollider2D col = owner.Col as BoxCollider2D;
 
                 if (col != null)
