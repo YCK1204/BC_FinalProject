@@ -46,27 +46,27 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BlockSize: 8
-    - _ChromaticAberration: 0.02
+    - _BlockSize: 50
+    - _ChromaticAberration: 0.1
     - _ColorDrift: 0
     - _ColorMask: 15
     - _ColorShift: 0
-    - _DigitalNoise: 0.01
+    - _DigitalNoise: 1
     - _EnableExternalAlpha: 0
     - _GlitchAmount: 1
     - _GlitchCutAmountX: 1
     - _GlitchCutAmountY: 1
-    - _GlitchIntensity: 1
-    - _HorizontalShake: 0.01
+    - _GlitchIntensity: 0
+    - _HorizontalShake: 0
     - _ScanLineJitter: 0
-    - _ScanlineIntensity: 0.5
+    - _ScanlineIntensity: 1
     - _Speed: 1
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
     - _StencilReadMask: 255
     - _StencilWriteMask: 255
-    - _TimeScale: 1
+    - _TimeScale: 5
     - _UseUIAlphaClip: 0
     - _VerticalJump: 1
     - _ZWrite: 0

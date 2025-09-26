@@ -1,6 +1,7 @@
-using UnityEngine;
 using Game.Monster;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
+using UnityEngine;
 
 namespace Game.Player
 {
@@ -29,6 +30,7 @@ namespace Game.Player
             _timer = _attackInfoData.AttackDuration;
             _stateMachine.Player.Animator.SetInteger(_stateMachine.Player.AnimationData.ComboParameterHash, 2);
             StartAnimation(_stateMachine.Player.AnimationData.AttackParameterHash);
+            _stateMachine.Player.Animator.Play("Attack_3", 0, 0f);
 
             _hitTargets = new List<IDamageable>();
 
