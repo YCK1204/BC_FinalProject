@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using System.Collections;
 
 [DefaultExecutionOrder(-50)]
 public class NpcFPrompt : MonoBehaviour
@@ -26,12 +27,8 @@ public class NpcFPrompt : MonoBehaviour
     [SerializeField] int sortingOrderBase = 5000;
     [SerializeField] string keyText = "F";
 
-    [Header("Trait Window (no controller)")]
+    [Header("Trait Window")]
     [SerializeField] GameObject traitWindowRoot;
-    [SerializeField] bool autoFindByHierarchy = true;
-    [SerializeField] string traitWindowPath = "TraitWindow";
-    [SerializeField] bool autoFindByTag = false;
-    [SerializeField] string traitWindowTag = "TraitWindow";
 
     [Header("Debug")]
     [SerializeField] bool alwaysShow = false;
@@ -42,14 +39,13 @@ public class NpcFPrompt : MonoBehaviour
     Transform _root;
     SpriteRenderer _box;
     TextMeshPro _label;
-    Renderer _labelRenderer;
+    MeshRenderer _labelMr;
+
+    Collider2D _col2D;
 
     bool _inside;
     bool _windowOpen;
-    int _overlapCount = 0;
-
-    Collider _col3D;
-    Collider2D _col2D;
+    bool _suspendTriggers;
 
     int _sortingLayerId;
 
@@ -60,72 +56,83 @@ public class NpcFPrompt : MonoBehaviour
         {
             if (_whiteSprite == null)
             {
-                var tex = new Texture2D(2, 2, TextureFormat.RGBA32, false);
-                var c = Color.white;
-                tex.SetPixels(new[] { c, c, c, c });
-                tex.Apply();
-                _whiteSprite = Sprite.Create(tex, new Rect(0, 0, 2, 2), new Vector2(0.5f, 0.5f), 100f);
-                _whiteSprite.name = "RuntimeWhite";
+                var tex = new Texture2D(4, 4, TextureFormat.RGBA32, false);
+                tex.filterMode = FilterMode.Point;
+                tex.wrapMode = TextureWrapMode.Repeat;
+                var c = new Color32(255, 255, 255, 255);
+                var arr = new Color32[16];
+                for (int i = 0; i < arr.Length; i++) arr[i] = c;
+                tex.SetPixels32(arr);
+                tex.Apply(false, true);
+                _whiteSprite = Sprite.Create(tex, new Rect(0, 0, 4, 4), new Vector2(0.5f, 0.5f), 100f);
+                _whiteSprite.name = "RuntimeWhite_4x4";
             }
             return _whiteSprite;
         }
     }
 
+    Collider2D[] _overlapBuf = new Collider2D[8];
+
     void Awake()
     {
-        CacheComponents();
-        EnsureVisuals();
-        EnsureWindowRef();
-        SetVisible(false);
-        Reposition();
-        CloseWindowImmediate();
-        if ((_col2D == null && _col3D == null) && logEvents)
-            Debug.LogWarning("[NpcFPrompt] 충돌체(2D/3D)가 없습니다.", this);
-    }
-
-    void CacheComponents()
-    {
-        TryGetComponent(out _col3D);
         TryGetComponent(out _col2D);
-    }
-
-    void OnValidate()
-    {
-        if (!Application.isPlaying) EnsureVisuals();
+        EnsureVisuals();
         ApplyVisuals();
         Reposition();
+
+        _inside = false;
+        _windowOpen = false;
+        _suspendTriggers = false;
+
+        SetVisible(alwaysShow);
+
+        if (!_col2D && logEvents)
+            Debug.LogWarning("[NpcFPrompt] Collider2D가 필요합니다.", this);
     }
 
-    void OnTriggerEnter(Collider other) { if (_windowOpen) return; if (IsPlayer(other.gameObject.layer)) TryEnter(); }
-    void OnTriggerExit(Collider other) { if (_windowOpen) return; if (IsPlayer(other.gameObject.layer)) TryExit(); }
-    void OnTriggerEnter2D(Collider2D other) { if (_windowOpen) return; if (IsPlayer(other.gameObject.layer)) TryEnter(); }
-    void OnTriggerExit2D(Collider2D other) { if (_windowOpen) return; if (IsPlayer(other.gameObject.layer)) TryExit(); }
-
-    void TryEnter()
+    void OnEnable()
     {
-        int prev = _overlapCount;
-        _overlapCount++;
-        if (prev == 0 && _overlapCount == 1) Enter();
+        _inside = false;
+        _windowOpen = false;
+        _suspendTriggers = false;
+
+        SetVisible(alwaysShow);
+        StartCoroutine(InitialOverlapNextFrame());
     }
 
-    void TryExit()
+    IEnumerator InitialOverlapNextFrame()
     {
-        int prev = _overlapCount;
-        _overlapCount = Mathf.Max(0, _overlapCount - 1);
-        if (prev > 0 && _overlapCount == 0) Exit();
+        yield return new WaitForFixedUpdate();
+        SnapshotOverlap();
     }
 
     void Update()
     {
         if (alwaysShow) { SetVisible(true); Reposition(); }
+
         if (_inside && !_windowOpen && Input.GetKeyDown(interactKey))
         {
             if (logEvents) Debug.Log("[NpcFPrompt] Interact (F)!", this);
             OnInteract?.Invoke();
             OpenWindow();
         }
+
         if (_windowOpen && Input.GetKeyDown(closeKey))
             CloseWindow();
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (_suspendTriggers) return;
+        if (!IsPlayer(other.gameObject.layer)) return;
+        if (!_inside) Enter();
+    }
+
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (_suspendTriggers) return;
+        if (!IsPlayer(other.gameObject.layer)) return;
+        if (_inside) Exit();
     }
 
     bool IsPlayer(int layer) => (playerLayers.value & (1 << layer)) != 0;
@@ -142,49 +149,63 @@ public class NpcFPrompt : MonoBehaviour
     {
         _inside = false;
         if (logEvents) Debug.Log("[NpcFPrompt] Player EXIT", this);
-        if (!_windowOpen) SetVisible(false);
+        if (!_windowOpen && !alwaysShow) SetVisible(false);
     }
 
     void EnsureVisuals()
     {
         if (_root == null)
         {
-            var existed = transform.Find("FPrompt");
-            _root = existed ? existed : new GameObject("FPrompt").transform;
+            var t = transform.Find("FPrompt");
+            _root = t ? t : new GameObject("FPrompt").transform;
             _root.SetParent(transform, false);
+            _root.gameObject.layer = gameObject.layer;
         }
+
         if (_box == null)
         {
-            var existedBox = _root.Find("Box");
-            var go = existedBox ? existedBox.gameObject : new GameObject("Box", typeof(SpriteRenderer));
+            var t = _root.Find("Box");
+            var go = t ? t.gameObject : new GameObject("Box", typeof(SpriteRenderer));
             go.transform.SetParent(_root, false);
+            go.layer = _root.gameObject.layer;
             _box = go.GetComponent<SpriteRenderer>();
             _box.sprite = WhiteSprite;
         }
+
         if (_label == null)
         {
-            var existedLabel = _root.Find("Label");
-            var go = existedLabel ? existedLabel.gameObject : new GameObject("Label", typeof(TextMeshPro));
+            var t = _root.Find("Label");
+            var go = t ? t.gameObject : new GameObject("Label", typeof(TextMeshPro));
             go.transform.SetParent(_root, false);
+            go.layer = _root.gameObject.layer;
             _label = go.GetComponent<TextMeshPro>();
+            _labelMr = _label.GetComponent<MeshRenderer>();
         }
-        _labelRenderer = _label ? _label.GetComponent<Renderer>() : null;
-        ApplyVisuals();
+        else
+        {
+            _labelMr = _label.GetComponent<MeshRenderer>();
+        }
     }
 
     void ApplyVisuals()
     {
         _sortingLayerId = SortingLayer.NameToID(sortingLayer);
+
         if (_box)
         {
-            _box.color = boxColor;
+            var col = boxColor; col.a = 1f;
+            _box.color = col;
             _box.sortingLayerID = _sortingLayerId;
             _box.sortingOrder = sortingOrderBase;
-            _box.transform.localScale = new Vector3(boxSize.x, boxSize.y, 1f);
+
+            float sx = Mathf.Clamp(boxSize.x, 0.02f, 50f);
+            float sy = Mathf.Clamp(boxSize.y, 0.02f, 50f);
+            _box.transform.localScale = new Vector3(sx, sy, 1f);
         }
+
         if (_label)
         {
-            _label.font = font != null ? font : TMP_Settings.defaultFontAsset;
+            _label.font = font ? font : TMP_Settings.defaultFontAsset;
             _label.enableAutoSizing = false;
             _label.fontSize = fontSize;
             _label.alignment = TextAlignmentOptions.Center;
@@ -192,13 +213,14 @@ public class NpcFPrompt : MonoBehaviour
             _label.text = keyText;
             _label.isOrthographic = true;
             _label.textWrappingMode = TextWrappingModes.NoWrap;
-            if (_labelRenderer is MeshRenderer mr)
+
+            if (_labelMr)
             {
-                mr.sortingLayerID = _sortingLayerId;
-                mr.sortingOrder = sortingOrderBase + 1;
+                _labelMr.sortingLayerID = _sortingLayerId;
+                _labelMr.sortingOrder = sortingOrderBase + 1;
             }
-            var p = _label.transform.localPosition;
-            p.z = -0.001f;
+
+            var p = _label.transform.localPosition; p.z = -0.001f;
             _label.transform.localPosition = p;
             _label.ForceMeshUpdate();
         }
@@ -208,12 +230,12 @@ public class NpcFPrompt : MonoBehaviour
     {
         if (_root == null) return;
         Vector3 pos = transform.position;
-        if (useColliderBottom)
+
+        if (useColliderBottom && _col2D)
         {
-            if (_col3D) pos.y = _col3D.bounds.min.y;
-            if (_col2D) pos.y = _col2D.bounds.min.y;
-            pos.y += extraBottomPadding;
+            pos.y = _col2D.bounds.min.y + extraBottomPadding;
         }
+
         pos += (Vector3)(localOffset.x * (Vector2)transform.right + localOffset.y * (Vector2)transform.up);
         _root.position = pos;
     }
@@ -223,52 +245,24 @@ public class NpcFPrompt : MonoBehaviour
         if (_root) _root.gameObject.SetActive(v);
     }
 
-    void EnsureWindowRef()
-    {
-        if (traitWindowRoot) return;
-        if (autoFindByHierarchy && !string.IsNullOrEmpty(traitWindowPath))
-        {
-            Transform t = transform.Find(traitWindowPath);
-            if (!t)
-            {
-                var canvas = GetComponentInParent<Canvas>();
-                if (canvas) t = canvas.transform.Find(traitWindowPath);
-            }
-            if (t)
-            {
-                traitWindowRoot = t.gameObject;
-                return;
-            }
-        }
-        if (autoFindByTag && !string.IsNullOrEmpty(traitWindowTag))
-        {
-            var go = GameObject.FindWithTag(traitWindowTag);
-            if (go)
-            {
-                traitWindowRoot = go;
-                return;
-            }
-        }
-    }
-
     void OpenWindow()
     {
-        EnsureWindowRef();
         if (!traitWindowRoot) return;
+
         var cg = traitWindowRoot.GetComponent<CanvasGroup>();
         if (!cg) cg = traitWindowRoot.AddComponent<CanvasGroup>();
+
         traitWindowRoot.SetActive(true);
         traitWindowRoot.transform.SetAsLastSibling();
-        cg.alpha = 1f;
-        cg.blocksRaycasts = true;
-        cg.interactable = true;
+        cg.alpha = 1f; cg.blocksRaycasts = true; cg.interactable = true;
+
         _windowOpen = true;
+        _suspendTriggers = true;
         SetVisible(false);
-        EnableTrigger(false);
-        _inside = false;
-        _overlapCount = 0;
+
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+
         Canvas.ForceUpdateCanvases();
         var rt = traitWindowRoot.transform as RectTransform;
         if (rt) LayoutRebuilder.ForceRebuildLayoutImmediate(rt);
@@ -276,30 +270,43 @@ public class NpcFPrompt : MonoBehaviour
 
     void CloseWindow()
     {
-        if (!traitWindowRoot)
+        if (traitWindowRoot)
         {
-            _windowOpen = false;
-            if (_inside || alwaysShow) SetVisible(true);
-            return;
+            var cg = traitWindowRoot.GetComponent<CanvasGroup>();
+            if (!cg) cg = traitWindowRoot.AddComponent<CanvasGroup>();
+            cg.alpha = 0f; cg.blocksRaycasts = false; cg.interactable = false;
+            traitWindowRoot.SetActive(false);
         }
-        var cg = traitWindowRoot.GetComponent<CanvasGroup>();
-        if (!cg) cg = traitWindowRoot.AddComponent<CanvasGroup>();
-        cg.alpha = 0f;
-        cg.blocksRaycasts = false;
-        cg.interactable = false;
-        traitWindowRoot.SetActive(false);
+
         _windowOpen = false;
-        EnableTrigger(true);
-        if (_inside || alwaysShow) SetVisible(true);
+        _suspendTriggers = false;
+
+        SnapshotOverlap();
     }
 
-    void EnableTrigger(bool enable)
+    void SnapshotOverlap()
     {
-        if (_col3D) _col3D.enabled = enable;
-        if (_col2D) _col2D.enabled = enable;
-    }
+        bool any = false;
 
-    void CloseWindowImmediate() => CloseWindow();
+        if (_col2D)
+        {
+            var b = _col2D.bounds;
+#if UNITY_6000_0_OR_NEWER
+            var filter = new ContactFilter2D { useLayerMask = true, layerMask = playerLayers };
+            int n = Physics2D.OverlapBox(b.center, b.size, 0f, filter, _overlapBuf);
+            any = n > 0;
+#else
+            int n = Physics2D.OverlapBoxNonAlloc(b.center, b.size, 0f, _overlapBuf, playerLayers);
+            any = n > 0;
+#endif
+        }
+
+        _inside = any;
+        if (!_windowOpen)
+            SetVisible(any || alwaysShow);
+
+        Reposition();
+    }
 
     public static void CloseAllTraitWindows()
     {
@@ -315,7 +322,7 @@ public class NpcFPrompt : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         var pos = transform.position;
-        var c2 = _col2D ? _col2D : GetComponent<Collider2D>();
+        var c2 = GetComponent<Collider2D>();
         if (c2) pos.y = c2.bounds.min.y + extraBottomPadding;
         pos += (Vector3)(localOffset.x * (Vector2)transform.right + localOffset.y * (Vector2)transform.up);
         Gizmos.DrawSphere(pos, 0.05f);

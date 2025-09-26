@@ -1,24 +1,34 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Game.Traits;
 
 namespace Game.Traits.UI
 {
     [RequireComponent(typeof(RectTransform))]
     public class TraitEquipButtonSpawner : MonoBehaviour
     {
+        [Header("Skill")]
         [SerializeField] int traitId;
+
+        [Header("Style")]
         [SerializeField] TMP_FontAsset font;
         [SerializeField] Vector2 boxSize = new Vector2(88f, 30f);
         [SerializeField] int fontSize = 18;
         [SerializeField] float gap = 10f;
 
+        [Header("Rule")]
+        [SerializeField] bool alwaysUnlocked = false;
+
         RectTransform node;
         RectTransform parent;
         Canvas canvas;
         Camera uiCam;
+
         Button spawned;
         TextMeshProUGUI label;
+
+        TraitUnlockSystem _unlock;
 
         static readonly Color32 BASE = new Color32(125, 125, 125, 255);
         static readonly Color32 HIL = new Color32(150, 150, 150, 255);
@@ -31,7 +41,6 @@ namespace Game.Traits.UI
         static T FindOne<T>() where T : Object =>
             Object.FindObjectOfType<T>(true);
 #endif
-        TraitUnlockSystem _unlock;
 
         void Awake()
         {
@@ -44,26 +53,38 @@ namespace Game.Traits.UI
 
         void OnEnable()
         {
-            if (_unlock == null) _unlock = FindOne<TraitUnlockSystem>();
-            if (_unlock) _unlock.OnStateChanged += Refresh;
-            Refresh();
+            Subscribe();
+            EnsureButton();
+            ApplySizing();
+            Repos();
+            RefreshVisibility();
         }
 
         void OnDisable()
         {
-            if (_unlock) _unlock.OnStateChanged -= Refresh;
+            Unsubscribe();
         }
 
-        void Refresh()
+        void Subscribe()
         {
             if (_unlock == null) _unlock = FindOne<TraitUnlockSystem>();
-            bool unlocked = _unlock && _unlock.IsUnlocked(traitId);
-            if (unlocked) EnsureButton();
-            if (spawned)
-            {
-                spawned.gameObject.SetActive(unlocked);
-                if (unlocked) { ApplySizing(); Repos(); }
-            }
+            if (_unlock != null) _unlock.OnStateChanged += RefreshVisibility;
+
+            if (SkillEquipSystem.Instance != null)
+                SkillEquipSystem.Instance.OnSnapshotChanged += OnEquipChanged;
+        }
+
+        void Unsubscribe()
+        {
+            if (_unlock != null) _unlock.OnStateChanged -= RefreshVisibility;
+
+            if (SkillEquipSystem.Instance != null)
+                SkillEquipSystem.Instance.OnSnapshotChanged -= OnEquipChanged;
+        }
+
+        void OnEquipChanged(int[] _)
+        {
+            RefreshVisibility();
         }
 
         void EnsureButton()
@@ -102,15 +123,17 @@ namespace Game.Traits.UI
 
             var equip = go.AddComponent<TraitEquipButton>();
             equip.Init(traitId);
+            equip.SetAlwaysUnlocked(alwaysUnlocked);
 
             spawned = btn;
-            ApplySizing();
         }
 
         void ApplySizing()
         {
+            if (!spawned) return;
             var rt = (RectTransform)spawned.transform;
             rt.sizeDelta = boxSize;
+
             if (label)
             {
                 label.font = font != null ? font : TMP_Settings.defaultFontAsset;
@@ -120,7 +143,7 @@ namespace Game.Traits.UI
 
         void Repos()
         {
-            if (spawned == null || parent == null) return;
+            if (!spawned || parent == null) return;
 
             var btnRT = (RectTransform)spawned.transform;
             btnRT.anchorMin = new Vector2(0.5f, 0.5f);
@@ -138,6 +161,18 @@ namespace Game.Traits.UI
             btnRT.anchoredPosition = local;
         }
 
+        public void RefreshVisibility()
+        {
+            EnsureButton();
+            ApplySizing();
+            Repos();
+
+            if (!spawned) return;
+
+            var teb = spawned.GetComponent<TraitEquipButton>();
+            if (teb != null) teb.Refresh();
+        }
+
 #if UNITY_EDITOR
         void OnValidate()
         {
@@ -145,6 +180,7 @@ namespace Game.Traits.UI
             {
                 ApplySizing();
                 Repos();
+                RefreshVisibility();
             }
         }
 #endif
