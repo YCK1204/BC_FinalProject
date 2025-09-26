@@ -4,15 +4,15 @@ using UnityEngine;
 public class Berserk : MonoBehaviour, Game.Monster.ISpecialAbillity
 {
     private bool _isBerserk = false;
-    private List<BaseMonster> _affectedMonsterList;
+    private List<NormalMonster> _affectedMonsterList;
 
     [SerializeField] private GameObject PowerUpParticle;
     private List<ParticleSystem> _particleList;
 
-    public void Init(BaseMonster monster)
+    public void Init(NormalMonster monster)
     {
         _particleList = new List<ParticleSystem>();
-        _affectedMonsterList = new List<BaseMonster>();
+        _affectedMonsterList = new List<NormalMonster>();
 
         // 몬스터가 플레이어를 발견하면 주변 몬스터에게 버프 부여
         // 일단 체력 제외 공격력 또는 속도 버프 제공
@@ -30,7 +30,7 @@ public class Berserk : MonoBehaviour, Game.Monster.ISpecialAbillity
                     if (collider == monster.Col)
                         continue;
 
-                    BaseMonster affectedMonster = collider.GetComponent<BaseMonster>();
+                    NormalMonster affectedMonster = collider.GetComponent<NormalMonster>();
                     int randomStat = Random.Range(0, 2);
                     switch (randomStat)
                     {
@@ -43,6 +43,8 @@ public class Berserk : MonoBehaviour, Game.Monster.ISpecialAbillity
                     }
                     // 버프를 제공한 몬스터를 리스트에 등록
                     _affectedMonsterList.Add(affectedMonster);
+                    if (affectedMonster.GetComponentInChildren<ParticleSystem>() != null)
+                        continue;
                     ParticleSystem particle = Instantiate(PowerUpParticle).GetComponent<ParticleSystem>();
                     if (particle != null)
                     {
@@ -66,10 +68,12 @@ public class Berserk : MonoBehaviour, Game.Monster.ISpecialAbillity
             }
             if (_particleList != null)
             {
-                foreach(ParticleSystem particle in _particleList)
+                for (int i = 0; i < _particleList.Count; i++)
                 {
-                    Destroy(particle.gameObject);
+                    if(_particleList[i] != null)
+                        Destroy(_particleList[i].gameObject);
                 }
+                _particleList.Clear();
             }
         };
     }

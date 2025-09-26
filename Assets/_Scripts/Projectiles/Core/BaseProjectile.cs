@@ -49,9 +49,18 @@ public abstract class BaseProjectile : MonoBehaviour
     {
         IDamageable damageable = other.GetComponent<IDamageable>();
         // 플레이어면 데미지
-        if(damageable != null && (1 << other.gameObject.layer) == LayerMask.GetMask(Game.Monster.Layers.Player))
+        if((1 << other.gameObject.layer) == LayerMask.GetMask(Game.Monster.Layers.Player))
         {
-            damageable.TakeDamage((int)DataHandler.Damage);
+            Vector2 knockBackDir = new Vector2(_rb.linearVelocityX < 0 ? -1 : 1, 1);
+            knockBackDir.Normalize();
+
+            Debug.Log(knockBackDir);
+            // 수치를 어떻게 조정해야하지?
+            Rigidbody2D targetRb = _target.GetComponent<Rigidbody2D>();
+            targetRb.linearVelocity = Vector2.zero;
+            targetRb.AddForce(knockBackDir * 400);
+
+            damageable?.TakeDamage((int)DataHandler.Damage);
             DestroyProjectile();
         }
         // 벽이나 땅이면 소멸
