@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ea27569358eae343b44d1b15443a66b, type: 3}
+  m_Name: ItemAreaDataReader
+  m_EditorClassIdentifier: Assembly-CSharp::ItemAreaDataReaer
+  associatedSheet: 12caJqOR5SSlbMQerqCmjLh1uayleody_nUI7eH7W26E
+  associatedWorksheet: "\uC601\uC5ED\uC0DD\uC13105"
+  START_ROW_LENGTH: 2
+  END_ROW_LENGTH: 3
+  DataList:
+  - Id: 5001
+    AnmationDuration: 0.75
+    CreateAreaPosType: 0
+    Radius: 5
+    Damage: 1.5
+    AttackCount: 1
+  - Id: 5002
+    AnmationDuration: 0.5
+    CreateAreaPosType: 0
+    Radius: 10
+    Damage: 1.7
+    AttackCount: 1

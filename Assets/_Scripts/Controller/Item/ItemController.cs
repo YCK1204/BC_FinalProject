@@ -3,54 +3,52 @@ using UnityEngine;
 
 public class ItemController : MonoBehaviour
 {
-    ItemContainer ItemContainer;
+    public ItemData ItemData { get; private set; }
     [SerializeField]
-    Vector2 ContainerOffset;
-    ItemData ItemData;
-    SpriteRenderer _spriteRenderer;
+    Vector2 ContainerOffset = new Vector2(0f, 3f);
 
     [SerializeField]
     Vector2 ColliderScale;
+    [SerializeField]
+    ItemContainer ItemContainerPrefab;
 
-    Canvas _canvas;
+    ItemContainer _itemContainer;
+    SpriteRenderer _spriteRenderer;
 
-    void Init(ItemContainer container)
+    public void SetData(ItemData data)
     {
+        ItemData = data;
+        // 렌더러에 설정된 아이템 이미지에 따라 콜라이더 크기 조정
         _spriteRenderer = GetComponent<SpriteRenderer>();
 
-        // 캔버스 연결 리팩토링 필요
-        _canvas = GameObject.Find("CamCanvas").GetComponent<Canvas>();
-        ItemContainer = Manager.Resource.Instantiate(container);
-        ItemContainer.gameObject.SetActive(false);
-        ItemContainer.gameObject.transform.SetParent(_canvas.transform);
-        var rectTransform = ItemContainer.gameObject.GetComponent<RectTransform>();
-        rectTransform.anchoredPosition = (Vector2)transform.position + ContainerOffset;
-    }
-    public void SetData(ItemData data, ItemContainer containerPrefab)
-    {
-        Init(containerPrefab);
-
-        ItemData = data;
-
-        _spriteRenderer.sprite = data.ItemIcon;
-        ItemContainer.SetUI(ItemData);
+        
+        _itemContainer = Instantiate(ItemContainerPrefab);
+        _itemContainer.SetUI(ItemData);
+        _itemContainer.transform.position = (Vector2)transform.position + ContainerOffset;
+        _itemContainer.transform.parent = transform;
+        _itemContainer.gameObject.SetActive(false);
         var boxCollider = GetComponent<BoxCollider2D>();
         Vector2 size = _spriteRenderer.bounds.size;
         boxCollider.size = size * ColliderScale;
     }
-
+    public void SetSprite(Sprite sprite)
+    {
+        _spriteRenderer.sprite = sprite;
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            ItemContainer.gameObject.SetActive(true);
+            _itemContainer.gameObject.SetActive(true);
+            Manager.Item.OnTriggerEnterItem(this);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            ItemContainer.gameObject.SetActive(false);
+            _itemContainer.gameObject.SetActive(false);
+            Manager.Item.OnTriggerExitItem(this);
         }
     }
 }

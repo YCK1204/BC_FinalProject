@@ -14,6 +14,8 @@ public class Manager : MonoBehaviour
                 {
                     GameObject go = new GameObject("@Manager");
                     _instance = go.AddComponent<Manager>();
+                    Init();
+                    DontDestroyOnLoad(_instance);
                 }
             }
             return _instance;
@@ -24,7 +26,7 @@ public class Manager : MonoBehaviour
         if (_instance == null)
         {
             _instance = this;
-            Data.Load();
+            Init();
             DontDestroyOnLoad(gameObject);
         }
         else
@@ -32,9 +34,14 @@ public class Manager : MonoBehaviour
             Object.Destroy(gameObject);
         }
     }
+    static void Init()
+    {
+        Data.Load();
+        Item.Init();
+    }
 
-    GameManager _game;
-    public static GameManager Game { get { return Instance._game; } set { Instance._game = value; value.transform.parent = _instance.transform; } }
+    GameManager _game = new GameManager();
+    public static GameManager Game { get { return Instance._game; } }
     ResourceManager _resource = new ResourceManager();
     public static ResourceManager Resource { get { return Instance._resource; } }
     SceneManagerEx _scene;
@@ -45,4 +52,6 @@ public class Manager : MonoBehaviour
     public static PoolManager Pool { get { return Instance._pool; } set { Instance._pool = value; value.transform.parent = _instance.transform; } }
     DataManager _data = new DataManager();
     public static DataManager Data { get { return Instance._data; } }
+    ItemManager _item = new ItemManager();
+    public static ItemManager Item { get { return Instance._item; } }
 }

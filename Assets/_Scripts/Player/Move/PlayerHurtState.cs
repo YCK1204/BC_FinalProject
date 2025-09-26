@@ -15,16 +15,15 @@ namespace Game.Player
             _stateMachine.IsDashing = false;
             _stateMachine.MovementSpeedModifier = 0f;
             StartAnimation(_stateMachine.Player.AnimationData.HurtParameterHash);
-            if (_stateMachine.Player.Data.HurtData.InvincibleDuringHurt)
-                _stateMachine.Player.SetInvincible(true);
+
+            var rb = _stateMachine.Player.Rb;
+            rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
         }
 
         public override void Exit()
         {
             StopAnimation(_stateMachine.Player.AnimationData.HurtParameterHash);
             _stateMachine.MovementSpeedModifier = 1f;
-            if (_stateMachine.Player.Data.HurtData.InvincibleDuringHurt)
-                _stateMachine.Player.SetInvincible(false);
         }
 
         public override void Update()
