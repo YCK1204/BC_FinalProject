@@ -79,7 +79,7 @@ public class HomingProjectile : BaseProjectile
             _rb.linearVelocity = Vector2.zero;
             _startMove = false;
 
-            Vector2 knockBackDir = new Vector2(transform.position.x > other.transform.position.x ? -1 : 1, 1);
+            Vector2 knockBackDir = new Vector2(transform.position.x > other.transform.position.x ? -1 : 1, 0);
             knockBackDir.Normalize();
 
             // 수치를 어떻게 조정해야하지?

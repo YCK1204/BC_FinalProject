@@ -51,7 +51,7 @@ public abstract class BaseProjectile : MonoBehaviour
         // 플레이어면 데미지
         if((1 << other.gameObject.layer) == LayerMask.GetMask(Game.Monster.Layers.Player))
         {
-            Vector2 knockBackDir = new Vector2(_rb.linearVelocityX < 0 ? -1 : 1, 1);
+            Vector2 knockBackDir = new Vector2(_rb.linearVelocityX < 0 ? -1 : 1, 0);
             knockBackDir.Normalize();
 
             Debug.Log(knockBackDir);

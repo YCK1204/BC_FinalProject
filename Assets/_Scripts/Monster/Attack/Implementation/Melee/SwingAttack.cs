@@ -18,7 +18,7 @@ public class SwingAttack : MeleeAttack
         {
             if(_target != null)
             {
-                Vector2 knockBackDir = new Vector2(_monsterAttack.Owner.transform.localScale.x < 0 ? -1 : 1, 1);
+                Vector2 knockBackDir = new Vector2(_monsterAttack.Owner.transform.localScale.x < 0 ? -1 : 1, 0);
                 knockBackDir.Normalize();
 
                 // 수치를 어떻게 조정해야하지?

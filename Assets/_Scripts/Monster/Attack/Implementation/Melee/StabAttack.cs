@@ -11,7 +11,7 @@ public class StabAttack : MeleeAttack
     {
         if (GetCheckAttackable())
         {
-            Vector2 knockBackDir = new Vector2(_monsterAttack.Owner.transform.localScale.x < 0 ? -1 : 1, 1);
+            Vector2 knockBackDir = new Vector2(_monsterAttack.Owner.transform.localScale.x < 0 ? -1 : 1, 0);
             knockBackDir.Normalize();
 
             Rigidbody2D targetRb = _target.GetComponent<Rigidbody2D>();
