@@ -15,7 +15,6 @@ public abstract class PatrolStateMonster : StateMachineMonster
 
         curPatrolMovement = new PatrolMove(this);
         curChaseMovement = new ChaseMove(this);
-        //curChaseMovement = new VanishMove(this);
     }
 
     public IMovable GetChaseMovement()

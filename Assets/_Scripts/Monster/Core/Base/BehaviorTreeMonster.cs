@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BehaviorTreeMonster : BaseMonster
+public class BehaviorTreeMonster : NormalMonster
 {
     public override void TakeDamage(int damage)
     {

@@ -70,11 +70,18 @@ public class HomingProjectile : BaseProjectile
     {
         IDamageable damageable = other.GetComponent<IDamageable>();
         // 플레이어면 데미지
-        if (damageable != null && (1 << other.gameObject.layer) == LayerMask.GetMask(Game.Monster.Layers.Player))
+        if ((1 << other.gameObject.layer) == LayerMask.GetMask(Game.Monster.Layers.Player))
         {
             _rb.linearVelocity = Vector2.zero;
             _startMove = false;
-            damageable.TakeDamage((int)DataHandler.Damage);
+
+            Vector2 knockBackDir = new Vector2(_rb.linearVelocityX < 0 ? -1 : 1, 1);
+            knockBackDir.Normalize();
+
+            // 수치를 어떻게 조정해야하지?
+            _target.GetComponent<Rigidbody2D>()?.AddForce(knockBackDir * 100);
+
+            damageable?.TakeDamage((int)DataHandler.Damage);
             if (_anim != null)
                 _anim.SetTrigger("Explode");
             else

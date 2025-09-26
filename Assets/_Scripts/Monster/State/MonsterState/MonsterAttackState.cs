@@ -37,8 +37,6 @@ public class MonsterAttackState : MonsterBaseState
 
     public override void Update()
     {
-        base.Update();
-
         // 돌진 공격에서 플랫폼에서 떨어지는 것을 방지하기 위해 검사
         if(_curCheckRayInterval > _maxCheckRayInterval)
         {
