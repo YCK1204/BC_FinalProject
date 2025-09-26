@@ -109,7 +109,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.1, y: 0.6}
+  m_Size: {x: 2, y: 1.2}
   m_EdgeRadius: 0
 --- !u!114 &6995806667873288730
 MonoBehaviour:
@@ -124,6 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Slime
   _dataHandler: {fileID: 5380103683946045800}
+  FlashMat: {fileID: 0}
   IsSuperArmor: 0
 --- !u!114 &5380103683946045800
 MonoBehaviour:
