@@ -50,7 +50,7 @@ namespace Game.Monster
     {
         public const string Die = "Die";
         public const string Action = "Action";
-        public const string IsStart = "IsStart";
+        public const string IsLaserStart = "IsLaserStart";
         public const string SummonHex = "SummonHex";
         public const string Breath = "Breath";
         public const string Slam = "Slam";

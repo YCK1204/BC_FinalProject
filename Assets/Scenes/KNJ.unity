@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 108069952}
   - component: {fileID: 108069955}
   - component: {fileID: 108069954}
+  - component: {fileID: 108069956}
   m_Layer: 0
   m_Name: RightHand
   m_TagString: Untagged
@@ -307,6 +308,18 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &108069956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 108069950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d03237394a1ed1845a9cec60ad8943b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BoneReaperHand
 --- !u!1001 &193162573
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -552,6 +565,7 @@ GameObject:
   - component: {fileID: 634845192}
   - component: {fileID: 634845195}
   - component: {fileID: 634845194}
+  - component: {fileID: 634845196}
   m_Layer: 0
   m_Name: LeftHand
   m_TagString: Untagged
@@ -727,6 +741,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.3, y: 0.34000003}
   m_EdgeRadius: 0
+--- !u!114 &634845196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 634845190}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d03237394a1ed1845a9cec60ad8943b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BoneReaperHand
 --- !u!1 &667765826
 GameObject:
   m_ObjectHideFlags: 0
@@ -740,6 +766,7 @@ GameObject:
   - component: {fileID: 667765830}
   - component: {fileID: 667765829}
   - component: {fileID: 667765828}
+  - component: {fileID: 667765832}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -915,6 +942,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &667765832
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 667765826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f5f6f5b0c43f6f4986ca1894cd396a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BoneReaperHead
 --- !u!1 &953801115
 GameObject:
   m_ObjectHideFlags: 0
@@ -1249,7 +1288,7 @@ Transform:
   m_GameObject: {fileID: 1352687980}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.38, y: 3.35, z: 0}
+  m_LocalPosition: {x: -4, y: -2.13, z: 0}
   m_LocalScale: {x: 0.5, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1309,7 +1348,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1352687980}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

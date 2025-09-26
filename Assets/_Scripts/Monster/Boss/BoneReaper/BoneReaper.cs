@@ -38,6 +38,17 @@ public class BoneReaper : BossMonster
         _curBT = new BoneReaperBT();
         _curBT.Init(this);
 
+        _head = GetComponentInChildren<BoneReaperHead>();
+        BoneReaperHand[] hands = GetComponentsInChildren<BoneReaperHand>();
+
+        foreach (BoneReaperHand hand in hands)
+        {
+            if(hand.transform.localScale.x < 0)
+                _rightHand = hand;
+            else
+                _leftHand = hand;
+        }
+
         if (_head != null && _leftHand != null && _rightHand != null)
         {
             _head.Init(this);
@@ -48,7 +59,7 @@ public class BoneReaper : BossMonster
 
     private void OnEnable()
     {
-        _patternCoolTime = 0;
+        _patternCoolTime = 3;
         _curSlamCount = 0;
         _curBreathCount = 0;
         _curBTCheckTime = 0;
@@ -81,7 +92,7 @@ public class BoneReaper : BossMonster
             return NodeStatus.Success;
         }
 
-        Debug.Log("Not Foound...");
+        Debug.Log("Not Found...");
         return NodeStatus.Failure;
     }
 
@@ -102,9 +113,16 @@ public class BoneReaper : BossMonster
     {
         if (IsAttacking) return NodeStatus.Running;
 
-        _patternCoolTime = 0;
         Debug.Log("Laser");
+        IsAttacking = true;
+        _patternCoolTime = 0;
         _curSlamCount = 0;
+
+        int idx = Random.Range(0, 2);
+        if (idx == 0)
+            _leftHand.Laser();
+        else
+            _rightHand.Laser();
 
         return NodeStatus.Success;
     }
@@ -112,10 +130,18 @@ public class BoneReaper : BossMonster
     public NodeStatus SlamAttack()
     {
         if (IsAttacking) return NodeStatus.Running;
-        _patternCoolTime = 0;
-        Debug.Log("Slam");
 
+        Debug.Log("Slam");
+        IsAttacking = true;
+        _patternCoolTime = 0;
         _curSlamCount++;
+
+
+        if (Vector3.Distance(_target.position, _leftHand.transform.position) <= Vector3.Distance(_target.position, _rightHand.transform.position))
+            _leftHand.Slam();
+        else
+            _rightHand.Slam();
+
         return NodeStatus.Success;
     }
 
@@ -133,10 +159,14 @@ public class BoneReaper : BossMonster
     public NodeStatus BreathAttack()
     {
         if (IsAttacking) return NodeStatus.Running;
-        _patternCoolTime = 0;
-        Debug.Log("Breath");
 
+        Debug.Log("Breath");
+        IsAttacking = true;
+        _patternCoolTime = 0;
         _curBreathCount++;
+
+        _head.Breath();
+
         return NodeStatus.Success;
     }
 }

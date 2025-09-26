@@ -46,7 +46,7 @@ namespace Game.Monster
 
         public override NodeStatus Evaluate()
         {
-            Debug.Log(NodeName);
+            //Debug.Log(NodeName);
             return _action?.Invoke() ?? NodeStatus.Failure;
         }
     }
@@ -77,7 +77,7 @@ namespace Game.Monster
 
         public override NodeStatus Evaluate()
         {
-            Debug.Log(NodeName);
+            //Debug.Log(NodeName);
             foreach (INode child in _chilldren)
             {
                 NodeStatus result = child.Evaluate();
@@ -107,7 +107,7 @@ namespace Game.Monster
 
         public override NodeStatus Evaluate()
         {
-            Debug.Log(NodeName);
+            //Debug.Log(NodeName);
             foreach (INode child in _chilldren)
             {
                 NodeStatus result = child.Evaluate();
@@ -147,7 +147,7 @@ namespace Game.Monster
 
         public override NodeStatus Evaluate()
         {
-            Debug.Log(NodeName);
+            //Debug.Log(NodeName);
             if (_chilldren != null && _chilldren.Count != 0)
             {
                 int randomIndex = UnityEngine.Random.Range(0, _chilldren.Count);
@@ -173,7 +173,7 @@ namespace Game.Monster
 
         public override NodeStatus Evaluate()
         {
-            Debug.Log(NodeName);
+            //Debug.Log(NodeName);
             return _condition.Invoke() ? NodeStatus.Success : NodeStatus.Failure;
         }
     }

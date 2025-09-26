@@ -35,7 +35,7 @@ public class BoneReaperBT : BossBT
             return;
 
         // 타겟 없으면?
-        ConditionNode checkTarget = new ConditionNode(() => { return _owner.Target != null; }, "TargetIsNull");
+        ConditionNode checkTarget = new ConditionNode(() => { return _owner.Target == null; }, "TargetIsNull");
         ActionNode findPlayer = new ActionNode(boneReaper.FindTarget, "FindPlayer");
         InvertNode invertFindTarget = new InvertNode(findPlayer, "InvertFindTarget");
 
@@ -73,8 +73,9 @@ public class BoneReaperBT : BossBT
 
 
         // 신나는 노드 조립 시간
-        normalAttackRandomSelector.AddChild(breathAttack);
+        //normalAttackRandomSelector.AddChild(breathAttack);
         normalAttackRandomSelector.AddChild(slamAttack);
+        normalAttackRandomSelector.AddChild(laserAttack);
 
         summonOrbSequence.AddChild(isBreathMoreThan2);
         summonOrbSequence.AddChild(summonOrbAttack);
