@@ -364,6 +364,7 @@ RectTransform:
   m_Children:
   - {fileID: 413608635}
   - {fileID: 630626393}
+  - {fileID: 502459035}
   m_Father: {fileID: 353589650}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
@@ -927,7 +928,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.908882
+      value: 0.90888214
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_LocalRotation.x
@@ -939,15 +940,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.41705337
+      value: 0.4170531
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -720.47485
+      value: -720.475
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 554.1798
+      value: 554.1799
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1022,7 +1023,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &353589650
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1344,7 +1345,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 160.97314
+      value: 160.97319
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_SizeDelta.y
@@ -1364,7 +1365,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.4386238
+      value: 0.4386239
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1376,7 +1377,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.8986708
+      value: 0.89867073
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1986,6 +1987,70 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 479201490}
   m_CullTransparentMesh: 1
+--- !u!1 &502459034
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 502459035}
+  - component: {fileID: 502459036}
+  m_Layer: 5
+  m_Name: SkillBar
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &502459035
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502459034}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 127812482}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 800, y: -300}
+  m_SizeDelta: {x: 100, y: 100}
+  m_Pivot: {x: 1, y: 0}
+--- !u!114 &502459036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 502459034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a5c92c754d68c02468e139fd05ee4b07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.Traits.UI.SkillBarController
+  barPadding: {x: 40, y: 40}
+  slotSize: {x: 100, y: 100}
+  slotGap: 40
+  anchorCorner: 3
+  anchorOffset: {x: -800, y: -300}
+  slotColor: {r: 0.93, g: 0.93, b: 0.93, a: 1}
+  selectedOutline: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 1}
+  font: {fileID: 11400000, guid: e327a38d840da864aa571d3801a2c201, type: 2}
+  fontSize: 30
+  fontColor: {r: 0, g: 0, b: 0, a: 1}
+  unequipText: "\uD574\uC81C"
+  unequipSize: {x: 84, y: 40}
+  unequipBg: {r: 0.18, g: 0.18, b: 0.18, a: 1}
+  unequipTextColor: {r: 1, g: 1, b: 1, a: 1}
+  unequipFontSize: 25
+  unequipMarginTop: 20
 --- !u!1 &604654785
 GameObject:
   m_ObjectHideFlags: 0
@@ -2017,9 +2082,9 @@ RectTransform:
   - {fileID: 1691445855}
   m_Father: {fileID: 1216229743}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 74, y: -174}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &630626392
@@ -2057,7 +2122,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -835, y: 167}
+  m_AnchoredPosition: {x: -835, y: -342}
   m_SizeDelta: {x: 85, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!224 &635991474 stripped
@@ -2238,7 +2303,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 729280278}
   m_CullTransparentMesh: 1
---- !u!28 &767147060
+--- !u!28 &770384413
 Texture2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2383,6 +2448,216 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Traits.UI.TooltipHover
   _builder: {fileID: 782487723}
+--- !u!213 &791621187
+Sprite:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: RuntimeWhite
+  m_Rect:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 2
+    height: 2
+  m_Offset: {x: 0, y: 0}
+  m_Border: {x: 0, y: 0, z: 0, w: 0}
+  m_PixelsToUnits: 100
+  m_Pivot: {x: 0.5, y: 0.5}
+  m_Extrude: 0
+  m_IsPolygon: 0
+  m_PackingTag: 
+  m_RenderDataKey:
+    00000000000000000000000000000000: 0
+  m_AtlasTags: []
+  m_SpriteAtlas: {fileID: 0}
+  m_RD:
+    serializedVersion: 3
+    texture: {fileID: 770384413}
+    alphaTexture: {fileID: 0}
+    secondaryTextures: []
+    m_SubMeshes:
+    - serializedVersion: 2
+      firstByte: 0
+      indexCount: 6
+      topology: 0
+      baseVertex: 0
+      firstVertex: 0
+      vertexCount: 4
+      localAABB:
+        m_Center: {x: 0, y: 0, z: 0}
+        m_Extent: {x: 0, y: 0, z: 0}
+    m_IndexBuffer: 000001000200020001000300
+    m_VertexData:
+      serializedVersion: 3
+      m_VertexCount: 4
+      m_Channels:
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 3
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 1
+        offset: 0
+        format: 0
+        dimension: 2
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      m_DataSize: 80
+      _typelessdata: 0ad723bc0ad7233c000000000ad7233c0ad7233c000000000ad723bc0ad723bc000000000ad7233c0ad723bc00000000000000000000803f0000803f0000803f00000000000000000000803f00000000
+    m_Bindpose: []
+    textureRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 2
+      height: 2
+    textureRectOffset: {x: 0, y: 0}
+    atlasRectOffset: {x: -1, y: -1}
+    settingsRaw: 64
+    uvTransform: {x: 100, y: 1, z: 100, w: 1}
+    downscaleMultiplier: 1
+  m_AtlasRD:
+    serializedVersion: 3
+    texture: {fileID: 770384413}
+    alphaTexture: {fileID: 0}
+    secondaryTextures: []
+    m_SubMeshes:
+    - serializedVersion: 2
+      firstByte: 0
+      indexCount: 6
+      topology: 0
+      baseVertex: 0
+      firstVertex: 0
+      vertexCount: 4
+      localAABB:
+        m_Center: {x: 0, y: 0, z: 0}
+        m_Extent: {x: 0, y: 0, z: 0}
+    m_IndexBuffer: 000001000200020001000300
+    m_VertexData:
+      serializedVersion: 3
+      m_VertexCount: 4
+      m_Channels:
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 3
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 1
+        offset: 0
+        format: 0
+        dimension: 2
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      - stream: 0
+        offset: 0
+        format: 0
+        dimension: 0
+      m_DataSize: 80
+      _typelessdata: 0ad723bc0ad7233c000000000ad7233c0ad7233c000000000ad723bc0ad723bc000000000ad7233c0ad723bc00000000000000000000803f0000803f0000803f00000000000000000000803f00000000
+    m_Bindpose: []
+    textureRect:
+      serializedVersion: 2
+      x: 0
+      y: 0
+      width: 2
+      height: 2
+    textureRectOffset: {x: 0, y: 0}
+    atlasRectOffset: {x: -1, y: -1}
+    settingsRaw: 64
+    uvTransform: {x: 100, y: 1, z: 100, w: 1}
+    downscaleMultiplier: 1
+  m_PhysicsShape: []
+  m_Bones: []
+  m_ScriptableObjects: []
+  m_SpriteID: 
 --- !u!1 &799229695
 GameObject:
   m_ObjectHideFlags: 0
@@ -2417,7 +2692,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -737.90295}
+  m_AnchoredPosition: {x: 0, y: -737.9037}
   m_SizeDelta: {x: 0, y: -1000}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &799229697
@@ -2864,7 +3139,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalScale: {x: 25, y: 25, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1999631505}
@@ -2916,7 +3191,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 300
-  m_Sprite: {fileID: 1958534148}
+  m_Sprite: {fileID: 791621187}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3180,7 +3455,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -157}
+  m_AnchoredPosition: {x: 0, y: 24}
   m_SizeDelta: {x: -1820, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1216229744
@@ -3293,8 +3568,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 0.2
-  m_fontSizeBase: 0.2
+  m_fontSize: 0.5
+  m_fontSizeBase: 0.5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3684,16 +3959,18 @@ MonoBehaviour:
   localOffset: {x: 0, y: -0.4}
   extraBottomPadding: 0.05
   font: {fileID: 11400000, guid: e327a38d840da864aa571d3801a2c201, type: 2}
-  fontSize: 0.2
-  boxSize: {x: 10, y: 10}
+  fontSize: 0.5
+  boxSize: {x: 25, y: 25}
   boxColor: {r: 1, g: 1, b: 1, a: 1}
   textColor: {r: 0, g: 0, b: 0, a: 1}
-  sortingLayer: UI
+  sortingLayer: Default
   sortingOrderBase: 300
   keyText: F
   traitWindowRoot: {fileID: 353589649}
   autoFindByName: 1
   traitWindowName: TraitWindow
+  alwaysShow: 0
+  logEvents: 1
   OnInteract:
     m_PersistentCalls:
       m_Calls: []
@@ -4353,7 +4630,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.41705328
+      value: 0.4170534
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_LocalRotation.x
@@ -4365,15 +4642,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.908882
+      value: 0.90888196
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -931.7935
+      value: -931.7936
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 557.0496
+      value: 557.0497
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -4750,7 +5027,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.4170534
+      value: 0.41705328
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_LocalRotation.x
@@ -4762,7 +5039,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.90888196
+      value: 0.908882
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -4770,7 +5047,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 559.39624
+      value: 559.3963
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -5942,16 +6219,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1951594777}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.546875, y: 0.546875, z: 0.546875}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2100717044}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 960.00006, y: 363.88574}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1951594779
@@ -5966,6 +6243,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 975b95f5680c6054e8f9b2d52c13425c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Traits.SkillEquipSystem
+  _slotCount: 2
 --- !u!1 &1956020647
 GameObject:
   m_ObjectHideFlags: 0
@@ -5998,221 +6276,11 @@ RectTransform:
   - {fileID: 646954427}
   m_Father: {fileID: 1216229743}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 74, y: -58}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!213 &1958534148
-Sprite:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: RuntimeWhite
-  m_Rect:
-    serializedVersion: 2
-    x: 0
-    y: 0
-    width: 2
-    height: 2
-  m_Offset: {x: 0, y: 0}
-  m_Border: {x: 0, y: 0, z: 0, w: 0}
-  m_PixelsToUnits: 100
-  m_Pivot: {x: 0.5, y: 0.5}
-  m_Extrude: 0
-  m_IsPolygon: 0
-  m_PackingTag: 
-  m_RenderDataKey:
-    00000000000000000000000000000000: 0
-  m_AtlasTags: []
-  m_SpriteAtlas: {fileID: 0}
-  m_RD:
-    serializedVersion: 3
-    texture: {fileID: 767147060}
-    alphaTexture: {fileID: 0}
-    secondaryTextures: []
-    m_SubMeshes:
-    - serializedVersion: 2
-      firstByte: 0
-      indexCount: 6
-      topology: 0
-      baseVertex: 0
-      firstVertex: 0
-      vertexCount: 4
-      localAABB:
-        m_Center: {x: 0, y: 0, z: 0}
-        m_Extent: {x: 0, y: 0, z: 0}
-    m_IndexBuffer: 000001000200020001000300
-    m_VertexData:
-      serializedVersion: 3
-      m_VertexCount: 4
-      m_Channels:
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 3
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 1
-        offset: 0
-        format: 0
-        dimension: 2
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      m_DataSize: 80
-      _typelessdata: 0ad723bc0ad7233c000000000ad7233c0ad7233c000000000ad723bc0ad723bc000000000ad7233c0ad723bc00000000000000000000803f0000803f0000803f00000000000000000000803f00000000
-    m_Bindpose: []
-    textureRect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 2
-      height: 2
-    textureRectOffset: {x: 0, y: 0}
-    atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 64
-    uvTransform: {x: 100, y: 1, z: 100, w: 1}
-    downscaleMultiplier: 1
-  m_AtlasRD:
-    serializedVersion: 3
-    texture: {fileID: 767147060}
-    alphaTexture: {fileID: 0}
-    secondaryTextures: []
-    m_SubMeshes:
-    - serializedVersion: 2
-      firstByte: 0
-      indexCount: 6
-      topology: 0
-      baseVertex: 0
-      firstVertex: 0
-      vertexCount: 4
-      localAABB:
-        m_Center: {x: 0, y: 0, z: 0}
-        m_Extent: {x: 0, y: 0, z: 0}
-    m_IndexBuffer: 000001000200020001000300
-    m_VertexData:
-      serializedVersion: 3
-      m_VertexCount: 4
-      m_Channels:
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 3
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 1
-        offset: 0
-        format: 0
-        dimension: 2
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      - stream: 0
-        offset: 0
-        format: 0
-        dimension: 0
-      m_DataSize: 80
-      _typelessdata: 0ad723bc0ad7233c000000000ad7233c0ad7233c000000000ad723bc0ad723bc000000000ad7233c0ad723bc00000000000000000000803f0000803f0000803f00000000000000000000803f00000000
-    m_Bindpose: []
-    textureRect:
-      serializedVersion: 2
-      x: 0
-      y: 0
-      width: 2
-      height: 2
-    textureRectOffset: {x: 0, y: 0}
-    atlasRectOffset: {x: -1, y: -1}
-    settingsRaw: 64
-    uvTransform: {x: 100, y: 1, z: 100, w: 1}
-    downscaleMultiplier: 1
-  m_PhysicsShape: []
-  m_Bones: []
-  m_ScriptableObjects: []
-  m_SpriteID: 
 --- !u!224 &1961910461 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6830211297292532911, guid: 1101b94869bcd9b479c431a80396a0ee, type: 3}
@@ -6272,7 +6340,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.70727944
+      value: 0.70727926
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_LocalRotation.x
@@ -6284,7 +6352,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.7069341
+      value: 0.7069343
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -6644,7 +6712,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7069176
+      value: 0.70691776
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_LocalRotation.x
@@ -6656,7 +6724,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.707296
+      value: 0.7072958
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -6869,6 +6937,11 @@ MonoBehaviour:
       MaxHP: 10000
     ComboAttackData:
       AttackInfos: []
+    awakening:
+      maxAwakeningGauge: 100
+      awakeningOnHit: 10
+      duration: 10
+      bonusDuration: 0
   GroundCheck: {fileID: 183290233}
   GroundRadius: 0.15
   GroundLayer:
@@ -6881,9 +6954,7 @@ MonoBehaviour:
   runtimeMoveSpeed: 0
   runtimeVelocity: {x: 0, y: 0}
   currentHP: 0
-  corruptionGauge: 0
-  maxCorruptionGauge: 200
-  corruptionGainPerHit: 5
+  currentAwakening: 0
   lastHitCritical: 0
 --- !u!95 &2026763535
 Animator:
@@ -6987,7 +7058,7 @@ Transform:
   m_GameObject: {fileID: 2026763531}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.0501193, y: 0.16706444, z: 0}
+  m_LocalPosition: {x: 5.6, y: -1.11, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -7439,7 +7510,6 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 353589650}
-  - {fileID: 1951594778}
   - {fileID: 1939229915}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7460,10 +7530,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8625a600d0f7d914d92e05a62cb418df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.Traits.UI.TraitWindowController
-  _root: {fileID: 353589649}
-  _closeKey: 27
-  _group: {fileID: 0}
-  _rt: {fileID: 0}
 --- !u!1001 &2139797848
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7716,7 +7782,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 162.2468
+      value: 162.24684
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_SizeDelta.y
@@ -7736,7 +7802,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.8988038
+      value: 0.8988037
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_LocalRotation.x
@@ -7748,11 +7814,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.43835118
+      value: 0.43835133
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -870.83856
+      value: -870.8386
       objectReference: {fileID: 0}
     - target: {fileID: 9591793422963653, guid: 85e4cba4ba78cfb49bfc396e78ab133a, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -7812,5 +7878,6 @@ SceneRoots:
   - {fileID: 1902709345}
   - {fileID: 2100717044}
   - {fileID: 894481621}
+  - {fileID: 1951594778}
   - {fileID: 1331146893}
   - {fileID: 2026763538}

@@ -38,6 +38,8 @@ namespace Game.Traits.UI
             new AbilityDisplay{ Key=Ability.plusMovementSpeed,  DisplayName="추가 이동 속도",   Unit="%",      Percent=true  },
         };
 
+        public string GetName() => _name;
+
         public TraitTooltipModel Build()
         {
             var m = new TraitTooltipModel { Title = _name };
@@ -73,11 +75,24 @@ namespace Game.Traits.UI
 
         AbilityDisplay FindDisplay(Ability key)
         {
-            foreach (var a in _abilityMap) if (a.Key == key) return a;
-            return new AbilityDisplay { Key = key, DisplayName = key.ToString(), Unit = "", Percent = false };
+            foreach (var a in _abilityMap)
+                if (a.Key == key) return a;
+
+            return new AbilityDisplay
+            {
+                Key = key,
+                DisplayName = key.ToString(),
+                Unit = "",
+                Percent = false
+            };
         }
 
         public void SetUnlocked(bool unlocked) => _isUnlocked = unlocked;
-        public void SetOwnedSouls(int souls) { if (SoulWallet.Instance) SoulWallet.Instance.Set(souls); }
+
+        public void SetOwnedSouls(int souls)
+        {
+            if (SoulWallet.Instance)
+                SoulWallet.Instance.Set(souls);
+        }
     }
 }

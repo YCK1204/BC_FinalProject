@@ -17,6 +17,8 @@ public class TraitButton : MonoBehaviour
     Image _img;
     Button _btn;
 
+    public int TraitId => _traitId; // ✅ 슬롯 UI에서 참조 가능하도록 추가
+
     void Awake()
     {
         _img = GetComponent<Image>();
@@ -36,14 +38,17 @@ public class TraitButton : MonoBehaviour
     void OnEnable()
     {
         _btn.onClick.AddListener(OnClick);
-        if (_unlockSystem != null) _unlockSystem.OnStateChanged += Refresh;
+        if (_unlockSystem != null)
+            _unlockSystem.OnStateChanged += Refresh;
+
         Refresh();
     }
 
     void OnDisable()
     {
         _btn.onClick.RemoveListener(OnClick);
-        if (_unlockSystem != null) _unlockSystem.OnStateChanged -= Refresh;
+        if (_unlockSystem != null)
+            _unlockSystem.OnStateChanged -= Refresh;
     }
 
     void OnClick()
