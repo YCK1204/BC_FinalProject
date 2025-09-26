@@ -120,7 +120,7 @@ namespace Game.Player
 
             Debug.Log($"피해량체크- {amount} 남은체력- {currentHP}");
 
-            camShake.Shake(2f, 5f, 0.3f);
+            camShake.Shake(1f, 1f, 0.2f);
             _impulseSource.GenerateImpulse();
             if (currentHP <= 0f) Die(); else StartCoroutine(HitColor());
             ;
@@ -143,7 +143,7 @@ namespace Game.Player
         private IEnumerator HitColor()
         {
 
-            float a = 1f;
+            float a = 0.5f;
             float b = 0.1f;
             _machine.ChangeState(_machine.HurtState);
 
@@ -168,11 +168,11 @@ namespace Game.Player
 
         void EnterHurtByFacing()
         {
-            float dir = -Mathf.Sign(transform.localScale.x);
-            var hd = Data.HurtData;
-            var kb = new Vector2(dir * hd.KnockbackX, hd.KnockbackY);
+            //float dir = -Mathf.Sign(transform.localScale.x);
+            //var hd = Data.HurtData;
+            //var kb = new Vector2(dir * hd.KnockbackX, hd.KnockbackY);
             //ForceReceiver.Knockback(kb);
-            _machine.ChangeState(_machine.HurtState);
+            //_machine.ChangeState(_machine.HurtState);
         }
 
         public void Heal(float amount)
