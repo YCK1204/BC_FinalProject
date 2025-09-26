@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97e65d2e36f92104e90d76fa5f85823d, type: 3}
   m_Name: Slime
   m_EditorClassIdentifier: Assembly-CSharp::MonsterData
-  MaxHp: 40
+  MaxHp: 80
   Speed: 2
-  AttackPower: 5
-  AttackDelay: 0.5
+  AttackPower: 10
+  AttackDelay: 2
   AttackRange: 3
   DetectRange: 5
   CanMove: 1

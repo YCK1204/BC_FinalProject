@@ -58,7 +58,7 @@ public abstract class MonsterBaseState : Game.Monster.IState
             if (!CheckFov(_stateMachine.Owner.transform, player.transform, _detectFov))
                 return false;
         }
-
+ 
         // 플레이어가 감지되고 거리 내라면, 눈에 보이는 지 확인
         if (player != null && Vector3.Distance(_stateMachine.Owner.transform.position, player.transform.position) <= _stateMachine.Owner.MonsterData.DetectRange)
         {
@@ -99,11 +99,10 @@ public abstract class MonsterBaseState : Game.Monster.IState
     /// <returns></returns>
     protected bool CheckFov(Transform observer, Transform target, float fov)
     {
-        float dot = Vector2.Dot(observer.right * observer.localScale.x,
+        float dot = Vector2.Dot(observer.right * (observer.localScale.x < 0 ? -1 : 1),
                         (target.position - observer.position).normalized);
 
         float angle = Mathf.Acos(dot) * Mathf.Rad2Deg;
-
         return angle < fov * 0.5f ? true : false;
     }
 }

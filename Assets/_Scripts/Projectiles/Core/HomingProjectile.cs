@@ -68,6 +68,10 @@ public class HomingProjectile : BaseProjectile
 
     protected override void OnTriggerEnter2D(Collider2D other)
     {
+        // 움직이지 않는 상태에선 피격 판정X
+        if (!_startMove)
+            return;
+
         IDamageable damageable = other.GetComponent<IDamageable>();
         // 플레이어면 데미지
         if ((1 << other.gameObject.layer) == LayerMask.GetMask(Game.Monster.Layers.Player))
@@ -75,11 +79,13 @@ public class HomingProjectile : BaseProjectile
             _rb.linearVelocity = Vector2.zero;
             _startMove = false;
 
-            Vector2 knockBackDir = new Vector2(_rb.linearVelocityX < 0 ? -1 : 1, 1);
+            Vector2 knockBackDir = new Vector2(transform.position.x > other.transform.position.x ? -1 : 1, 1);
             knockBackDir.Normalize();
 
             // 수치를 어떻게 조정해야하지?
-            _target.GetComponent<Rigidbody2D>()?.AddForce(knockBackDir * 100);
+            Rigidbody2D targetRb = _target.GetComponent<Rigidbody2D>();
+            targetRb.linearVelocity = Vector2.zero;
+            targetRb.AddForce(knockBackDir * 400);
 
             damageable?.TakeDamage((int)DataHandler.Damage);
             if (_anim != null)

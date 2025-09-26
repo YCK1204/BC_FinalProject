@@ -12,8 +12,8 @@ public class SplitOnDeath : MonoBehaviour, Game.Monster.ISpecialAbillity
             monster1.MonsterData.AddModifier(new StatModifier(Game.Monster.StatType.Attack, Game.Monster.ModifierType.Multiply, 0.5f, null));
             monster1.MonsterData.AddModifier(new StatModifier(Game.Monster.StatType.Hp, Game.Monster.ModifierType.Multiply, 0.5f, null));
             monster1.MonsterData.AddModifier(new StatModifier(Game.Monster.StatType.Scale, Game.Monster.ModifierType.Multiply, 0.5f, null));
-            monster1.MonsterData.AddModifier(new StatModifier(Game.Monster.StatType.Speed, Game.Monster.ModifierType.Multiply, 0.5f, null));
             monster1.MonsterData.Init();
+
             // 혹시 모르니 만약 하위 자식이 분열기능을 가지고 있으면 제거, 추후에 수정할 가능성 높음
             if (Extension.HasComponent<SplitOnDeath>(monster1.gameObject))
                 monster1.OnDied = null;

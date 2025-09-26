@@ -43,6 +43,8 @@ public class Berserk : MonoBehaviour, Game.Monster.ISpecialAbillity
                     }
                     // 버프를 제공한 몬스터를 리스트에 등록
                     _affectedMonsterList.Add(affectedMonster);
+                    if (affectedMonster.GetComponentInChildren<ParticleSystem>() != null)
+                        continue;
                     ParticleSystem particle = Instantiate(PowerUpParticle).GetComponent<ParticleSystem>();
                     if (particle != null)
                     {
@@ -66,10 +68,12 @@ public class Berserk : MonoBehaviour, Game.Monster.ISpecialAbillity
             }
             if (_particleList != null)
             {
-                foreach(ParticleSystem particle in _particleList)
+                for (int i = 0; i < _particleList.Count; i++)
                 {
-                    Destroy(particle.gameObject);
+                    if(_particleList[i] != null)
+                        Destroy(_particleList[i].gameObject);
                 }
+                _particleList.Clear();
             }
         };
     }
