@@ -88,9 +88,15 @@
                     "initialStateCheck": false
                 },
                 {
+<<<<<<< HEAD
+                    "name": "CollectItem",
+                    "type": "Button",
+                    "id": "276fb53b-9dbe-41d6-a500-a83e7f0b5d8c",
+=======
                     "name": "Cancel",
                     "type": "Button",
                     "id": "95d2002a-4b09-4120-a45a-331b04dc229d",
+>>>>>>> dev
                     "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
@@ -496,12 +502,21 @@
                 },
                 {
                     "name": "",
+<<<<<<< HEAD
+                    "id": "b589b54e-7be3-419b-be91-a4fa7029369e",
+                    "path": "<Keyboard>/g",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "CollectItem",
+=======
                     "id": "76e3704c-daec-4277-ba84-ae884c3fcd61",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Cancel",
+>>>>>>> dev
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -16,16 +16,21 @@ MonoBehaviour:
   m_GUID: 6bfe878031b50ab4c9b9a7d268cbff32
   m_SerializeEntries:
   - m_GUID: 02823fff2dea75b4d8985597a61fb9fd
-    m_Address: Assets/Data/ScriptableObject/Item/Synergy/301000/IronWill.asset
+    m_Address: IronWill
     m_ReadOnly: 0
     m_SerializedLabels:
     - SynergyData
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1139cf116d27f5849a76b6009ff084ae
-    m_Address: Assets/Data/ScriptableObject/Item/Synergy/301000/CthughaFlame.asset
+    m_Address: CthughaFlame
     m_ReadOnly: 0
     m_SerializedLabels:
     - SynergyData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1d8767c1a2bfcfc41adeaa66c0face09
+    m_Address: ItemDataReader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3fbb9a2aff053ce44bde25084b967c34
     m_Address: BlackSubstance
@@ -34,7 +39,7 @@ MonoBehaviour:
     - ItemData
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 454dfc04775047d49844b73683b2572d
-    m_Address: Assets/Data/ScriptableObject/Item/Synergy/306000/YigCurse.asset
+    m_Address: YigCurse
     m_ReadOnly: 0
     m_SerializedLabels:
     - SynergyData
@@ -45,8 +50,13 @@ MonoBehaviour:
     m_SerializedLabels:
     - ItemData
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c5539bf491fbe19408f6f7454e28d733
+    m_Address: ItemContainer
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: da6158026c418374c8ac26277a37273f
-    m_Address: Assets/Data/ScriptableObject/Item/Synergy/301000/CthulhuWrath.asset
+    m_Address: CthulhuWrath
     m_ReadOnly: 0
     m_SerializedLabels:
     - SynergyData
@@ -58,7 +68,7 @@ MonoBehaviour:
     - ItemData
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f1c9819427414a446b1912994714a366
-    m_Address: Assets/Data/ScriptableObject/Item/Synergy/305000/MentalBreakdown.asset
+    m_Address: MentalBreakdown
     m_ReadOnly: 0
     m_SerializedLabels:
     - SynergyData
@@ -70,7 +80,7 @@ MonoBehaviour:
     - ItemData
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ff0ca519b6cb3634191df17ccca9bea1
-    m_Address: Assets/Data/ScriptableObject/Item/Synergy/301000/HasturWind.asset
+    m_Address: HasturWind
     m_ReadOnly: 0
     m_SerializedLabels:
     - SynergyData

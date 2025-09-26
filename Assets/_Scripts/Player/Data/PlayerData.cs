@@ -46,6 +46,8 @@ namespace Game.Player
         public float SkillHaste = 1f;
 
         public float CorruptionDuration = 10f;
+        public float AttackPowerPercent = 0f;
+        public float SkillAttckPercent = 0f;
     }
 
     [Serializable]
@@ -92,7 +94,6 @@ namespace Game.Player
         public float awakeningOnHit = 10f;
 
         public float duration = 10f;
-        public float bonusDuration = 0f;
     }
 
     [System.Serializable]

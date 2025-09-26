@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
+using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
 public static class Extension
@@ -190,5 +192,47 @@ public static class Extension
     {
         yield return null;
         callback?.Invoke();
+    }
+    /// <summary>
+    /// 비동기로 url에 있는 이미지를 불러와 Texture2D로 저장합니다.
+    /// </summary>
+    /// <param name="url">이미지 url</param>
+    /// <param name="callback">이미지를 저장할 콜백함수</param>
+    /// <returns></returns>
+    public static IEnumerator LoadTextureByURL(string url, Action<Texture2D> callback)
+    {
+        UnityWebRequest www = UnityWebRequestTexture.GetTexture(url);
+        yield return www.SendWebRequest();
+        if (www.result != UnityWebRequest.Result.Success)
+        {
+            Debug.Log(www.error);
+        }
+        else
+        {
+            callback.Invoke(((DownloadHandlerTexture)www.downloadHandler).texture);
+        }
+    }
+    /// <summary>
+    /// Texture2D를 Sprite로 변환합니다.
+    /// </summary>
+    /// <param name="texture">변환할 텍스처</param>
+    public static Sprite ToSprite(this Texture2D texture)
+    {
+        var newTexture = texture.RemoveNoise();
+        return Sprite.Create(newTexture, new Rect(0, 0, newTexture.width, newTexture.height), new Vector2(0.5f, 0.5f));
+    }
+    /// <summary>
+    /// 흐려진 텍스처 이미지 해상도를 바로 잡아줍니다.
+    /// </summary>
+    /// <param name="texture">변환될 텍스처</param>
+    /// <returns></returns>
+    public static Texture2D RemoveNoise(this Texture2D texture)
+    {
+        var newTexture = new Texture2D(texture.width, texture.height, TextureFormat.RGBA32, false);
+        newTexture.SetPixels(texture.GetPixels());
+        newTexture.Apply();
+        newTexture.filterMode = FilterMode.Point;
+        newTexture.anisoLevel = 0;
+        return newTexture;
     }
 }
