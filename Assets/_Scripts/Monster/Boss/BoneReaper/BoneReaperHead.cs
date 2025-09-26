@@ -41,14 +41,48 @@ public class BoneReaperHead : MonoBehaviour, IDamageable
         _anim.SetTrigger(BoneReaperAnimatorParams.Breath);
     }
 
-    public void BreathAttackSmall()
+    public void BreathAttack(float size)
     {
+        Collider2D target;
 
+        float t = Mathf.InverseLerp(2f, 5f, size);
+        float ySize = Mathf.Lerp(2f, 1f, t) / 2;
+
+        // 지상 0, 0.5 에서 좌우 size 상하 0.5 박스
+        Vector3 AttackPos = new Vector3(0, ySize, 0);
+        float lr = size;
+        float ud = ySize;
+        target = Physics2D.OverlapBox(transform.position + AttackPos, new Vector2(lr, ud), 0, _mask);
+#if UNITY_EDITOR
+        Debug.DrawLine(transform.position + AttackPos - Vector3.right * lr + Vector3.up * ud, transform.position + AttackPos + Vector3.right * lr + Vector3.up * ud, Color.blue, 5f);
+        Debug.DrawLine(transform.position + AttackPos - Vector3.right * lr - Vector3.up * ud, transform.position + AttackPos + Vector3.right * lr - Vector3.up * ud, Color.blue, 5f);
+        Debug.DrawLine(transform.position + AttackPos - Vector3.right * lr + Vector3.up * ud, transform.position + AttackPos - Vector3.right * lr - Vector3.up * ud, Color.blue, 5f);
+        Debug.DrawLine(transform.position + AttackPos + Vector3.right * lr + Vector3.up * ud, transform.position + AttackPos + Vector3.right * lr - Vector3.up * ud, Color.blue, 5f);
+#endif
+
+        if (target != null)
+        {
+            // Todo: 무적 체크
+
+            float knockBackDirX = target.transform.position.x < AttackPos.x ? -1 : 1;
+            Vector2 knockBackDir = new Vector2(knockBackDirX, 1);
+            knockBackDir.Normalize();
+
+            Rigidbody2D targetRb = target.GetComponent<Rigidbody2D>();
+            if (targetRb != null)
+            {
+                targetRb.linearVelocity = Vector2.zero;
+                targetRb.AddForce(knockBackDir * 400);
+            }
+
+            target.GetComponent<IDamageable>()?.TakeDamage((int)(_owner.MonsterData.AttackPower));
+            Debug.Log((int)(_owner.MonsterData.AttackPower));
+        }
     }
 
-    public void BreathAttackLarge()
+    public void EndBreath()
     {
-
+        _owner.IsAttacking = false;
     }
 
     #endregion

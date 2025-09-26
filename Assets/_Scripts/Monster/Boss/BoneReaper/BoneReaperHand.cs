@@ -12,6 +12,7 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
 
     private Vector3 _originPos;
     private float _offset = 1.33f;
+    private float _followYOffeset = 3f;
 
     private float _curFollowTime = 0f;
     private float _maxFollowTime = 3f;
@@ -20,10 +21,10 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
     private LayerMask _mask;
 
     [Header("레이저 공격 시작 및 종료 위치")]
-    private Vector3 _leftStartLocalPos = new Vector3(-8f, -2, 0);
-    private Vector3 _leftEndLocalPos = new Vector3(10f, -2, 0);
-    private Vector3 _rightStartLocalPos = new Vector3(8f, -2, 0);
-    private Vector3 _rightEndLocalPos = new Vector3(-10f, -2, 0);
+    private Vector3 _leftStartLocalPos = new Vector3(-8f, 0, 0);
+    private Vector3 _leftEndLocalPos = new Vector3(10f, 0, 0);
+    private Vector3 _rightStartLocalPos = new Vector3(8f, 0, 0);
+    private Vector3 _rightEndLocalPos = new Vector3(-10f, 0, 0);
 
     private void Awake()
     {
@@ -49,18 +50,22 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
 
     public void SlamAttack()
     {
+        transform.position -= Vector3.up * _followYOffeset;
         // 공중 공격 판정 확인 이후 없으면 지면 판정도 확인
         Collider2D target;
         float dir = transform.localScale.x < 0 ? -1 : 1;
 
+        float aLR = 1f;
+        float aUD = 1.5f + _followYOffeset/2;
+
         // 공중 -1.25(@),1.5 에서 좌우 1 상하 1.5 박스
-        Vector3 airAttakcPos = new Vector3(-1.25f * dir, 1.5f, 0);
-        target = Physics2D.OverlapBox(transform.position + airAttakcPos, new Vector2(1f, 1.5f), 0, _mask);
+        Vector3 airAttakcPos = new Vector3(-1.25f * dir, 1.5f + _followYOffeset / 2f, 0);
+        target = Physics2D.OverlapBox(transform.position + airAttakcPos, new Vector2(aLR, aUD), 0, _mask);
 #if UNITY_EDITOR
-        Debug.DrawLine(transform.position + airAttakcPos - Vector3.right + Vector3.up * 1.5f, transform.position + airAttakcPos + Vector3.right + Vector3.up * 1.5f, Color.blue, 5f);
-        Debug.DrawLine(transform.position + airAttakcPos - Vector3.right - Vector3.up * 1.5f, transform.position + airAttakcPos + Vector3.right - Vector3.up * 1.5f, Color.blue, 5f);
-        Debug.DrawLine(transform.position + airAttakcPos - Vector3.right + Vector3.up * 1.5f, transform.position + airAttakcPos - Vector3.right - Vector3.up * 1.5f, Color.blue, 5f);
-        Debug.DrawLine(transform.position + airAttakcPos + Vector3.right + Vector3.up * 1.5f, transform.position + airAttakcPos + Vector3.right - Vector3.up * 1.5f, Color.blue, 5f);
+        Debug.DrawLine(transform.position + airAttakcPos - Vector3.right + Vector3.up * aUD, transform.position + airAttakcPos + Vector3.right + Vector3.up * aUD, Color.blue, 5f);
+        Debug.DrawLine(transform.position + airAttakcPos - Vector3.right - Vector3.up * aUD, transform.position + airAttakcPos + Vector3.right - Vector3.up * aUD, Color.blue, 5f);
+        Debug.DrawLine(transform.position + airAttakcPos - Vector3.right + Vector3.up * aUD, transform.position + airAttakcPos - Vector3.right - Vector3.up * aUD, Color.blue, 5f);
+        Debug.DrawLine(transform.position + airAttakcPos + Vector3.right + Vector3.up * aUD, transform.position + airAttakcPos + Vector3.right - Vector3.up * aUD, Color.blue, 5f);
 #endif
 
         // 지면 -1(@),0.5 에서 좌우 2.5 상하 0.5f 박스
@@ -80,7 +85,7 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
         {
             // Todo: 무적 체크
 
-            float knockBackDirX = transform.position.x < groundAttakcPos.x ? -1 : 1;
+            float knockBackDirX = target.transform.position.x < groundAttakcPos.x ? -1 : 1;
             Vector2 knockBackDir = new Vector2(knockBackDirX, 1);
             knockBackDir.Normalize();
 
@@ -99,6 +104,7 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
     private IEnumerator FollowTarget()
     {
         float targetX = 0;
+        float curHeight = transform.position.y;
         while (_curFollowTime < _maxFollowTime)
         {
             float dir = transform.localScale.x < 0 ? -1 : 1;
@@ -106,8 +112,10 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
             if (Mathf.Abs(transform.position.x - targetX) > 0.3f)
             {
                 Vector3 pos = transform.position;
+                Vector3 newPos = Vector3.Lerp(pos, new Vector3(targetX, curHeight + _followYOffeset, transform.position.z), Time.deltaTime * _speed);
                 float newX = Mathf.Lerp(pos.x, targetX, Time.deltaTime * _speed);
-                transform.position = new Vector3(newX, pos.y, pos.z);
+                //transform.position = new Vector3(newX, pos.y, pos.z);
+                transform.position = newPos;
                 _curFollowTime += Time.deltaTime;
                 yield return null;
             }
@@ -115,7 +123,7 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
                 break;
         }
         _curFollowTime = 0;
-        transform.position = new Vector3(targetX, transform.position.y, transform.position.z);
+        transform.position = new Vector3(targetX, curHeight + _followYOffeset, transform.position.z);
         _anim.SetTrigger(BoneReaperAnimatorParams.Slam);
         _owner.Head.TriggerAnimation(BoneReaperAnimatorParams.Action);
         yield return null;
@@ -172,7 +180,7 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
         {
             // Todo: 무적 체크
 
-            float knockBackDirX = transform.position.x < airAttakcPos.x ? -1 : 1;
+            float knockBackDirX = target.transform.position.x < airAttakcPos.x ? -1 : 1;
             Vector2 knockBackDir = new Vector2(knockBackDirX, 1);
             knockBackDir.Normalize();
 
