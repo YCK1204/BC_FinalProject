@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class SuperArmor : MonoBehaviour, Game.Monster.ISpecialAbillity
 {
-    public void Init(BaseMonster monster)
+    public void Init(NormalMonster monster)
     {
         monster.IsSuperArmor = true;
         // Todo: 특수 효과 추가?

@@ -23,13 +23,13 @@ namespace Game.Player
                     player.Data.CombatData.AttackPower += stat.Value;
                     break;
                 case ItemExtraStatType.Attack:
-                    player.Data.CombatData.AttackPowerPercent += stat.Value;
+                    player.Data.CombatData.AttackPowerPercent += stat.Value / 100f;
                     break;
                 case ItemExtraStatType.PlusSkillAttack:
                     player.Data.CombatData.SkillAttck += stat.Value;
                     break;
                 case ItemExtraStatType.SkillAttack:
-                    player.Data.CombatData.SkillAttckPercent += stat.Value;
+                    player.Data.CombatData.SkillAttckPercent += stat.Value / 100f;
                     break;
                 case ItemExtraStatType.AttackSpeed:
                     player.Data.CombatData.AttackSpeed += stat.Value;
@@ -47,7 +47,7 @@ namespace Game.Player
                     player.Data.CombatData.CriticalChance += stat.Value;
                     break;
                 case ItemExtraStatType.AwakenDuration:
-                    //player.Data.CombatData.AwakenDuration += stat.Value;
+                    player.Data.awakening.duration += stat.Value;
                     break;
                 case ItemExtraStatType.PlusSpeed:
                     //player.Data.Stats.MoveSpeed += stat.Value;

@@ -213,6 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SandGolem
   _dataHandler: {fileID: 0}
+  FlashMat: {fileID: 2100000, guid: f91d0347af52ebb40a20e0a86ccdc47a, type: 2}
   IsSuperArmor: 0
 --- !u!114 &9022482633414693186
 MonoBehaviour:

@@ -11,6 +11,6 @@ namespace Game.Monster
 
     public interface ISpecialAbillity
     {
-        public void Init(BaseMonster monster);
+        public void Init(NormalMonster monster);
     }
 }

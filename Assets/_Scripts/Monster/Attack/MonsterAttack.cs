@@ -16,12 +16,12 @@ public class MonsterAttack : MonoBehaviour
     IAttackable _attack;
     public IAttackable Attackable { get { return _attack; } set { _attack = value; _attack?.Init(); } }
 
-    BaseMonster _owner;
-    public BaseMonster Owner { get { return _owner; } }
+    NormalMonster _owner;
+    public NormalMonster Owner { get { return _owner; } }
 
     public System.Action OnAttackEnd;
 
-    public void Init(BaseMonster owner, IAttackable attack = null)
+    public void Init(NormalMonster owner, IAttackable attack = null)
     {
         _owner = owner;
         _attack = attack;

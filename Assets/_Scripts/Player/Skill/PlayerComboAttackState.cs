@@ -7,6 +7,8 @@ namespace Game.Player
     public class PlayerComboAttackState : PlayerBaseState
     {
         private AttackInfoData _attackInfoData;
+        private PlayerCombatData _attackcombatData;
+
         private float _timer;
         private bool _force;
         private bool _damage;
@@ -22,6 +24,7 @@ namespace Game.Player
 
             int comboIndex = _stateMachine.ComboIndex;
             _attackInfoData = _stateMachine.Player.Data.ComboAttackData.GetAttackInfo(comboIndex);
+            _attackcombatData = _stateMachine.Player.Data.CombatData;
 
             if (_attackInfoData == null)
             {
@@ -29,9 +32,11 @@ namespace Game.Player
                 return;
             }
 
+            _stateMachine.Player.Animator.speed = _attackcombatData.AttackSpeed;
+
             _stateMachine.Player.ForceReceiver.AddImpulse(new Vector2(_stateMachine.FacingSign * _attackInfoData.Force, 0));
 
-            _timer = _attackInfoData.AttackDuration;
+            _timer = _attackInfoData.AttackDuration / _attackcombatData.AttackSpeed;
 
             _stateMachine.Player.Animator.SetInteger(_stateMachine.Player.AnimationData.ComboParameterHash, comboIndex);
             StartAnimation(_stateMachine.Player.AnimationData.AttackParameterHash);
@@ -46,10 +51,11 @@ namespace Game.Player
         {
             StopAnimation(_stateMachine.Player.AnimationData.AttackParameterHash);
             _stateMachine.IsAttacking = false;
+
+            _stateMachine.Player.Animator.speed = 1f;
         }
 
         public override void PhysicsUpdate() { }
-
 
         public override void Update()
         {
@@ -68,10 +74,14 @@ namespace Game.Player
                 return;
             }
 
-            float comboStart = _attackInfoData.AttackDuration * _attackInfoData.ComboTime;
-            float timePassed = _attackInfoData.AttackDuration - _timer;
+            float timePass = (_attackInfoData.AttackDuration / _attackcombatData.AttackSpeed) - _timer;
 
-            if (timePassed >= comboStart)
+            float comboStartTime = _attackInfoData.AttackDuration * _attackInfoData.ComboTime / _attackcombatData.AttackSpeed;
+            float forceTime = _attackInfoData.ForceTime / _attackcombatData.AttackSpeed;
+            float hitTime = _attackInfoData.HitTiming / _attackcombatData.AttackSpeed;
+
+
+            if (timePass >= comboStartTime)
             {
                 if (kb != null && kb.aKey.wasPressedThisFrame)
                 {
@@ -80,17 +90,29 @@ namespace Game.Player
                 }
             }
 
-            if (!_force && timePassed >= _attackInfoData.ForceTime)
+            if (!_force && timePass >= forceTime )
             {
                 _force = true;
-                _stateMachine.Player.Rb.linearVelocity = new Vector2(0, _stateMachine.Player.Rb.linearVelocity.y);
+                if (_stateMachine.Player.IsGroundInFront(0.5f))
+                {
+                    _stateMachine.Player.Rb.linearVelocity = new Vector2(0, _stateMachine.Player.Rb.linearVelocity.y) * _attackcombatData.AttackSpeed;
+                }
             }
 
-            if (!_damage && timePassed >= _attackInfoData.HitTiming)
+            if (!_stateMachine.Player.IsGroundInFront(0.5f))
+            {
+                Debug.Log("정지");
+
+                var rb = _stateMachine.Player.Rb;
+                rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
+            }
+
+            if (!_damage && timePass >= hitTime)
             {
                 _damage = true;
                 TryDealDamage();
             }
+
 
             if (_timer <= 0f)
             {
@@ -106,7 +128,6 @@ namespace Game.Player
                 }
             }
         }
-
         private void TryDealDamage()
         {
             var d = _stateMachine.Player.Data.CombatData;
@@ -116,15 +137,6 @@ namespace Game.Player
 
             float baseDmg = d.AttackPower + d.ExtraDamage;
             float chance = Mathf.Max(0f, d.CriticalChance) * 0.01f;
-            bool isCrit = Random.value < chance;
-            float mult;
-
-            if (isCrit)
-                mult = 1f + Mathf.Max(0f, d.CriticalDamage) * 0.01f;
-            else
-                mult = 1f;
-
-            int damage = Mathf.RoundToInt(baseDmg * mult * _attackInfoData.DamageSet);
 
             foreach (var col in cols)
             {
@@ -134,10 +146,22 @@ namespace Game.Player
                 if (target != null && !_hitTargets.Contains(target))
                 {
                     _hitTargets.Add(target);
-                    Debug.Log("Hit " + damage);
+
+                    bool isCrit = Random.value < chance;
+                    float mult;
+
+                    if (isCrit)
+                        mult = 1f + Mathf.Max(0f, d.CriticalDamage) * 0.01f;
+                    else
+                        mult = 1f;
+
+                    int damage = Mathf.RoundToInt(baseDmg * mult * _attackInfoData.DamageSet);
+
+                    _stateMachine.Player.GainAwakeningGauge();
+
                     target.TakeDamage(damage);
                     _stateMachine.Player.MarkLastHitCritical(isCrit);
-                    if (isCrit) Debug.Log("Critical!");
+                    if (isCrit) Debug.Log("Critical!!" + target.ToString());
                 }
             }
         }

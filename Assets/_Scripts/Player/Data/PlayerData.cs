@@ -87,6 +87,15 @@ namespace Game.Player
         public bool InvincibleDuringHurt = true;
     }
 
+    [Serializable]
+    public class PlayerAwakeningData
+    {
+        public float maxAwakeningGauge = 100f;
+        public float awakeningOnHit = 10f;
+
+        public float duration = 10f;
+    }
+
     [System.Serializable]
     public class PlayerStatsData
     {
@@ -103,5 +112,6 @@ namespace Game.Player
         public PlayerHurtData HurtData = new PlayerHurtData();
         public PlayerStatsData Stats = new PlayerStatsData();
         public PlayerComboAttackData ComboAttackData = new PlayerComboAttackData();
+        public PlayerAwakeningData awakening = new PlayerAwakeningData();
     }
 }

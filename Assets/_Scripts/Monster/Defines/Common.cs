@@ -45,4 +45,16 @@ namespace Game.Monster
         public const string Die = "Die";
     }
 
+    // 본 리퍼 애니메이션 패러미터 문자열
+    public static class BoneReaperAnimatorParams
+    {
+        public const string Die = "Die";
+        public const string Action = "Action";
+        public const string IsStart = "IsStart";
+        public const string SummonHex = "SummonHex";
+        public const string Breath = "Breath";
+        public const string Slam = "Slam";
+        public const string SlamSwipe = "SlamSwipe";
+    }
+
 }
