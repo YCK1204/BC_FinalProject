@@ -143,7 +143,7 @@ namespace Game.Player
         private IEnumerator HitColor()
         {
 
-            float a = 0.5f;
+            float a = 1f;
             float b = 0.1f;
             _machine.ChangeState(_machine.HurtState);
 
