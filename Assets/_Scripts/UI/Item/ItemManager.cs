@@ -12,10 +12,27 @@ public class ItemManager
     public List<ItemData> MissingItems { get; private set; }
 
     public Action<ItemController> OnItemAdded;
+    Dictionary<int, ItemController> _originalItems = new Dictionary<int, ItemController>();
     public void Init()
     {
-        MissingItems = Manager.Data.ItemDict.Values.ToList();
+        //MissingItems = Manager.Data.ItemDict.Values.ToList();
+
+        //var item = Manager.Resource.Load<ItemController>("ItemController");
+        //foreach (var data in MissingItems)
+        //{
+        //    var itemInstance = GameObject.Instantiate(item);
+        //    itemInstance.gameObject.SetActive(false);
+        //    itemInstance.SetData(data);
+        //    _originalItems.Add(data.Id, itemInstance);
+        //}
     }
+    //public ItemController InstantiateItem(int id)
+    //{
+    //    if (!Manager.Data.ItemDict.TryGetValue(id, out ItemData data))
+    //        return null;
+    //    _originalItems.TryGetValue(id, out ItemController item);
+    //    return GameObject.Instantiate(item);
+    //}
     public void OnTriggerEnterItem(ItemController item)
     {
         CurItem = item;

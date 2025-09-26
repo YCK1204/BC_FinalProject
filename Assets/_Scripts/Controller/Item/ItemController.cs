@@ -20,7 +20,6 @@ public class ItemController : MonoBehaviour
         ItemData = data;
         // 렌더러에 설정된 아이템 이미지에 따라 콜라이더 크기 조정
         _spriteRenderer = GetComponent<SpriteRenderer>();
-
         
         _itemContainer = Instantiate(ItemContainerPrefab);
         _itemContainer.SetUI(ItemData);
