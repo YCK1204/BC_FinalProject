@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65963ae4bb83849408c7290369de8a42, type: 3}
+  m_Name: ItemProjectileDataReader
+  m_EditorClassIdentifier: Assembly-CSharp::ItemProjectileDataReader
+  associatedSheet: 12caJqOR5SSlbMQerqCmjLh1uayleody_nUI7eH7W26E
+  associatedWorksheet: "\uD22C\uC0AC\uCCB404"
+  START_ROW_LENGTH: 2
+  END_ROW_LENGTH: 2
+  DataList:
+  - Id: 4001
+    Duration: 1
+    Speed: 10
+    Width: 0.5
+    Height: 2
+    CollisionCount: 8
+    Damage: 0.3

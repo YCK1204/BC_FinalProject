@@ -57,10 +57,10 @@ Material:
     - _GlitchCutAmountX: 1
     - _GlitchCutAmountY: 1
     - _GlitchIntensity: 0
-    - _HorizontalShake: 0.2
-    - _ScanLineJitter: 0.5
+    - _HorizontalShake: 0
+    - _ScanLineJitter: 1
     - _ScanlineIntensity: 0.5
-    - _Speed: 1
+    - _Speed: 10
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
@@ -68,7 +68,7 @@ Material:
     - _StencilWriteMask: 255
     - _TimeScale: 1
     - _UseUIAlphaClip: 0
-    - _VerticalJump: 0.3
+    - _VerticalJump: 0
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

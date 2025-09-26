@@ -150,6 +150,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 488115694ae533a4f86069e2f46c8a70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemController
-  ItemContainer: {fileID: 6807184489301325413, guid: c5539bf491fbe19408f6f7454e28d733, type: 3}
   ContainerOffset: {x: 0, y: 1}
   ColliderScale: {x: 1, y: 1}
+  ItemContainerPrefab: {fileID: -5834041776916537043, guid: c5539bf491fbe19408f6f7454e28d733, type: 3}

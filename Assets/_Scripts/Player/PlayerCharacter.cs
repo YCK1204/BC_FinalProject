@@ -1,6 +1,8 @@
+using DG.Tweening;
 using Game.Monster;
 using System;
 using System.Collections;
+using Unity.Cinemachine;
 using UnityEngine;
 
 namespace Game.Player
@@ -9,6 +11,10 @@ namespace Game.Player
     {
         public Rigidbody2D Rb { get; private set; }
         public Animator Animator { get; private set; }
+
+        [SerializeField] private SpriteRenderer _spriteRenderer;
+
+        [SerializeField] private CameraShake camShake;
 
         [SerializeField] private AnimationData AnimationDataSerialized;
         [SerializeField] private PlayerData DataSerialized;
@@ -22,6 +28,8 @@ namespace Game.Player
         public ForceReceiver ForceReceiver => Force;
 
         private PlayerStateMachine _machine;
+
+        private CinemachineImpulseSource _impulseSource;
 
         public bool Invincible { get; private set; }
         public void SetInvincible(bool on) { Invincible = on; }
@@ -44,10 +52,25 @@ namespace Game.Player
         public bool LastHitCritical => lastHitCritical;
         public void MarkLastHitCritical(bool on) { lastHitCritical = on; }
 
-        public float CurrentHP => currentHP;
+        public float CurrentHP
+        {
+            get
+            {
+                return currentHP; 
+            }
+            set
+            {
+                if (currentHP <= 0f) return;
+                CurrentHP = Mathf.Max(0, value);
+                HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
+                if (currentHP <= 0f)
+                    Die();
+            }
+        }
         public bool IsDead => currentHP <= 0f;
 
         public event Action<float, float> HpEvent;
+
 
         private void Awake()
         {
@@ -58,6 +81,8 @@ namespace Game.Player
 
             _machine = new PlayerStateMachine(this);
             _machine.ChangeState(_machine.IdleState);
+
+            _impulseSource = GetComponent<CinemachineImpulseSource>();
         }
         public bool IsGrounded()
         {
@@ -106,7 +131,13 @@ namespace Game.Player
             if (Invincible || IsDead) return;
             currentHP = Mathf.Max(0f, currentHP - Mathf.Max(0f, amount));
             HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
-            if (currentHP <= 0f) Die(); else EnterHurtByFacing();
+
+            Debug.Log($"피해량체크- {amount} 남은체력- {currentHP}");
+
+            camShake.Shake(1f, 1f, 0.2f);
+            _impulseSource.GenerateImpulse();
+            if (currentHP <= 0f) Die(); else StartCoroutine(HitColor());
+            ;
         }
 
         public void TakeDamage(int damage)
@@ -114,16 +145,48 @@ namespace Game.Player
             if (Invincible || IsDead) return;
             currentHP = Mathf.Max(0f, currentHP - Mathf.Max(0, damage));
             HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
-            if (currentHP <= 0f) Die(); else EnterHurtByFacing();
+
+            Debug.Log($"피해량체크- {damage} 남은체력- {currentHP}");
+
+            camShake.Shake(1f, 1f, 0.2f);
+            _impulseSource.GenerateImpulse();
+            if (currentHP <= 0f) Die(); else StartCoroutine(HitColor());
+            ;
+        }
+
+        private IEnumerator HitColor()
+        {
+
+            float a = 1f;
+            float b = 0.1f;
+            _machine.ChangeState(_machine.HurtState);
+
+            Color color = _spriteRenderer.color;
+            SetInvincible(true);
+
+            float time = 0f;
+            while (time < a)
+            {
+                _spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
+                yield return new WaitForSeconds(b);
+                time += b;
+
+                _spriteRenderer.color = color;
+                yield return new WaitForSeconds(b);
+                time += b;
+            }
+
+            _spriteRenderer.color = color;
+            SetInvincible(false);
         }
 
         void EnterHurtByFacing()
         {
-            float dir = -Mathf.Sign(transform.localScale.x);
-            var hd = Data.HurtData;
-            var kb = new Vector2(dir * hd.KnockbackX, hd.KnockbackY);
+            //float dir = -Mathf.Sign(transform.localScale.x);
+            //var hd = Data.HurtData;
+            //var kb = new Vector2(dir * hd.KnockbackX, hd.KnockbackY);
             //ForceReceiver.Knockback(kb);
-            _machine.ChangeState(_machine.HurtState);
+            //_machine.ChangeState(_machine.HurtState);
         }
 
         public void Heal(float amount)
@@ -158,7 +221,7 @@ namespace Game.Player
             Debug.Log("각성!");
             IsAwakened = true;
             currentAwakening = 0f;
-            float totalDuration = Data.awakening.duration + Data.awakening.bonusDuration;
+            float totalDuration = Data.awakening.duration;
             StartCoroutine(AwakeningTimer(totalDuration));
         }
 
@@ -217,11 +280,15 @@ namespace Game.Player
             }
         }
 
-
         private void Update()
         {
             _machine.Tick();
             UpdateRuntimeDebug();
+
+            var kb = UnityEngine.InputSystem.Keyboard.current;
+            bool g = kb != null && kb.gKey.wasPressedThisFrame;
+            if (g)
+                Manager.Item.AddItem(this);
         }
 
         private void FixedUpdate()
