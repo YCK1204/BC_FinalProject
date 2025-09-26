@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GlitchMateral_player
-  m_Shader: {fileID: 4800000, guid: 07cc6a2895d04b24eadeb9c8b191cb49, type: 3}
+  m_Name: GlitchMateral_Camera
+  m_Shader: {fileID: 4800000, guid: f676206312261fa4da0edf7d50ead292, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -28,15 +28,31 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _GlitchTex:
+    - _DispTex:
         m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _GlitchTex:
+        m_Texture: {fileID: 2800000, guid: c6054dcca59d51b42b1255cd33899c04, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 8400000, guid: 4e9d79158852cd045a9a1535d633bbab, type: 2}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseTex1:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseTex2:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -44,20 +60,32 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    - _TrashTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _AnalogGlitchIntensity: 1
     - _BlockSize: 8
     - _ChromaticAberration: 0.02
-    - _ColorDrift: 0.4
+    - _ColorDrift: 0
+    - _ColorIntensity: 0.2
     - _ColorMask: 15
     - _ColorShift: 0.4
-    - _DigitalNoise: 0.6
+    - _DigitalNoise: 0.5
+    - _DigitalNoiseIntensity: 0.919
     - _EnableExternalAlpha: 0
     - _GlitchAmount: 1
     - _GlitchCutAmountX: 1
     - _GlitchCutAmountY: 1
-    - _GlitchIntensity: 0
-    - _HorizontalShake: 0
+    - _GlitchIntensity: 0.3
+    - _GlitchSpeed: 5
+    - _GlitchTime: 0
+    - _HorizontalShake: 1
+    - _Intensity: 1
+    - _OffsetStrength: 0.1
+    - _RandomValue: 0
     - _ScanLineJitter: 1
     - _ScanlineIntensity: 0.5
     - _Speed: 10
@@ -68,14 +96,15 @@ Material:
     - _StencilWriteMask: 255
     - _TimeScale: 1
     - _UseUIAlphaClip: 0
-    - _VerticalJump: 0
+    - _VerticalJump: 1
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _GlitchColor1: {r: 1, g: 1, b: 1, a: 1}
-    - _GlitchColor2: {r: 1, g: 1, b: 1, a: 1}
-    - _GlitchColor3: {r: 1, g: 1, b: 1, a: 1}
+    - _GlitchColor1: {r: 0.88235295, g: 0, b: 0, a: 1}
+    - _GlitchColor2: {r: 0, g: 0.07813551, b: 0.9056604, a: 1}
+    - _GlitchColor3: {r: 0, g: 0.7830189, b: 0.1289679, a: 1}
+    - _RandomVector: {r: 0, g: 0, b: 0, a: 0}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1

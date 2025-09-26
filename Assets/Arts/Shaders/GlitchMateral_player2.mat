@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: GlitchMateral_player
+  m_Name: GlitchMateral_player2
   m_Shader: {fileID: 4800000, guid: 07cc6a2895d04b24eadeb9c8b191cb49, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -50,17 +50,17 @@ Material:
     - _ChromaticAberration: 0.02
     - _ColorDrift: 0.4
     - _ColorMask: 15
-    - _ColorShift: 0.4
+    - _ColorShift: 0
     - _DigitalNoise: 0.6
     - _EnableExternalAlpha: 0
     - _GlitchAmount: 1
     - _GlitchCutAmountX: 1
     - _GlitchCutAmountY: 1
     - _GlitchIntensity: 0
-    - _HorizontalShake: 0
+    - _HorizontalShake: 0.2
     - _ScanLineJitter: 1
     - _ScanlineIntensity: 0.5
-    - _Speed: 10
+    - _Speed: 1
     - _Stencil: 0
     - _StencilComp: 8
     - _StencilOp: 0
@@ -68,7 +68,7 @@ Material:
     - _StencilWriteMask: 255
     - _TimeScale: 1
     - _UseUIAlphaClip: 0
-    - _VerticalJump: 0
+    - _VerticalJump: 0.3
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

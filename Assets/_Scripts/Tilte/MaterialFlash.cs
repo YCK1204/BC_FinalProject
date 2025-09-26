@@ -1,20 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
-public class MaterialFlash : MonoBehaviour
+public class ScreenFlash : MonoBehaviour
 {
-    [SerializeField] private List<Renderer> _takgerMat;
-    [SerializeField] private Material _material;
+    [Header("Flash")]
+    [SerializeField] private GameObject _flashObject;
 
-    private Dictionary<Renderer, Material[]> originalMaterials = new Dictionary<Renderer, Material[]>();
+    [Header("Mat")]
+    [SerializeField] private Material _glitchMaterial;
+    [SerializeField] private Material _shakeMaterial;
 
-    void Awake()
+    private float _glitchValue = 0f;
+    private float _shakeValue = 0f;
+
+    private void Start()
     {
-        foreach (var rend in _takgerMat)
-        {
-            originalMaterials[rend] = rend.materials;
-        }
+        _glitchMaterial.SetFloat("_GlitchIntensity", _glitchValue);
+        _shakeMaterial.SetFloat("_HorizontalShake", _shakeValue);
     }
 
     public void Flash(float duration)
@@ -22,21 +24,29 @@ public class MaterialFlash : MonoBehaviour
         StartCoroutine(FlashCoroutine(duration));
     }
 
+    public void FlashSet()
+    {
+        _flashObject.SetActive(true);
+
+        _glitchMaterial.SetFloat("_GlitchIntensity", _glitchValue);
+
+        _shakeValue += 0.02f;
+        _shakeMaterial.SetFloat("_HorizontalShake", _shakeValue);
+    }
+
     private IEnumerator FlashCoroutine(float duration)
     {
-        foreach (var rend in _takgerMat)
-        {
-            Material[] mats = new Material[rend.materials.Length];
-            for (int i = 0; i < mats.Length; i++)
-                mats[i] = _material;
-            rend.materials = mats;
-        }
+        _flashObject.SetActive(true);
+
+        _glitchValue += 0.1f;
+        _glitchMaterial.SetFloat("_GlitchIntensity", _glitchValue);
+
+        _shakeValue += 0.01f;
+        _shakeMaterial.SetFloat("_HorizontalShake", _shakeValue);
 
         yield return new WaitForSeconds(duration);
 
-        foreach (var rend in _takgerMat)
-        {
-            rend.materials = originalMaterials[rend];
-        }
+        if (_flashObject != null)
+            _flashObject.SetActive(false);
     }
 }

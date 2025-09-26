@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 032700a77bbdc0d46adedc91f88859e4
+guid: c6054dcca59d51b42b1255cd33899c04
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -220639175148835440
-    second: Key_s_down_0
+      213: 7024701910510016638
+    second: Glitch_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 200
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -100,23 +100,23 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Key_s_down_0
+      name: Glitch_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 550
-        height: 200
+        width: 500
+        height: 667
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 09de7b5d6d120fcf0800000000000000
-      internalID: -220639175148835440
+      spriteID: e7815fc4b21cc7160800000000000000
+      internalID: 7024701910510016638
       vertices: []
       indices: 
       edges: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 0ede98041e726574b8c223d5c9d33f83
+    spriteID: 
     internalID: 0
     vertices: []
     indices: 
@@ -135,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Key_s_down_0: -220639175148835440
+      Glitch_0: 7024701910510016638
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
