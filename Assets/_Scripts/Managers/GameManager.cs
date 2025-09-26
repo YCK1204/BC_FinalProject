@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+public class GameManager
 {
     public Action OnMonstersClear = null;
     int _monsterCount = 0;
@@ -19,9 +19,5 @@ public class GameManager : MonoBehaviour
                 Debug.Log("몬스터 전부 처치");
             }
         }
-    }
-    private void Start()
-    {
-        Manager.Game = this;
     }
 }

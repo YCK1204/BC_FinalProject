@@ -5,37 +5,6 @@ namespace Game.Player
 {
     public static class ItemSetterUtil
     {
-        public static void ApplyStat(PlayerCharacter player, ItemStatType itemStatType, float value)
-        {
-            switch (itemStatType)
-            {
-                case ItemStatType.Attack:
-                    player.Data.CombatData.AttackPowerPercent += (value / 100f);
-                    break;
-                case ItemStatType.SkillAttack:
-                    player.Data.CombatData.SkillAttckPercent += (value / 100f);
-                    break;
-                case ItemStatType.AttackSpeed:
-                    player.Data.CombatData.AttackSpeed += (value / 100f);
-                    break;
-                case ItemStatType.SkillHaste:
-                    player.Data.CombatData.SkillHaste += (value / 100f);
-                    break;
-                case ItemStatType.Hp:
-                    player.Data.Stats.MaxHP += value;
-                    player.CurrentHP += value;
-                    break;
-                case ItemStatType.CorruptionDuration:
-                    player.Data.CombatData.CorruptionDuration += value;
-                    break;
-                case ItemStatType.CriticalDamage:
-                    player.Data.CombatData.CriticalDamage += value;
-                    break;
-                case ItemStatType.CriticalChance:
-                    player.Data.CombatData.CriticalChance += value;
-                    break;
-            }
-        }
         public static void SetMaxHP(PlayerCharacter player, float val)
         {
             var newMaxHp = player.Data.Stats.MaxHP + val;
@@ -43,6 +12,47 @@ namespace Game.Player
 
             player.Data.Stats.MaxHP += diff;
             player.CurrentHP += diff;
+        }
+        public static void ApplyStat(PlayerCharacter player, ItemStat stat)
+        {
+            if (stat == null || stat.ItemExtraStatType == ItemExtraStatType.None || stat.Value == 0)
+                return;
+            switch (stat.ItemExtraStatType)
+            {
+                case ItemExtraStatType.PlusAttack:
+                    player.Data.CombatData.AttackPower += stat.Value;
+                    break;
+                case ItemExtraStatType.Attack:
+                    player.Data.CombatData.AttackPowerPercent += stat.Value;
+                    break;
+                case ItemExtraStatType.PlusSkillAttack:
+                    player.Data.CombatData.SkillAttck += stat.Value;
+                    break;
+                case ItemExtraStatType.SkillAttack:
+                    player.Data.CombatData.SkillAttckPercent += stat.Value;
+                    break;
+                case ItemExtraStatType.AttackSpeed:
+                    player.Data.CombatData.AttackSpeed += stat.Value;
+                    break;
+                case ItemExtraStatType.SkillHaste:
+                    player.Data.CombatData.SkillHaste += stat.Value;
+                    break;
+                case ItemExtraStatType.HP:
+                    SetMaxHP(player, stat.Value);
+                    break;
+                case ItemExtraStatType.CriticalDamage:
+                    player.Data.CombatData.CriticalDamage += stat.Value;
+                    break;
+                case ItemExtraStatType.CriticalChance:
+                    player.Data.CombatData.CriticalChance += stat.Value;
+                    break;
+                case ItemExtraStatType.AwakenDuration:
+                    //player.Data.CombatData.AwakenDuration += stat.Value;
+                    break;
+                case ItemExtraStatType.PlusSpeed:
+                    //player.Data.Stats.MoveSpeed += stat.Value;
+                    break;
+            }
         }
     }
 }

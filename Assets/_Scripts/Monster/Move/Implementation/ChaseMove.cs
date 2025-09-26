@@ -15,7 +15,7 @@ public class ChaseMove : Game.Monster.IMovable
 
     // 임시 레이어
     // Todo: 벽과 땅에 대한 레이어가 생기면 이를 변경할 필요가 있음
-    LayerMask _mask = ~(LayerMask.GetMask(Game.Monster.Layers.Player) | LayerMask.GetMask(Game.Monster.Layers.Monster));
+    LayerMask _mask = LayerMask.GetMask(Game.Monster.Layers.Ground);
 
     public ChaseMove(StateMachineMonster owner)
     {

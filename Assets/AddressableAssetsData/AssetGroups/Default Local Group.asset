@@ -27,6 +27,11 @@ MonoBehaviour:
     m_SerializedLabels:
     - SynergyData
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1d8767c1a2bfcfc41adeaa66c0face09
+    m_Address: ItemDataReader
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3fbb9a2aff053ce44bde25084b967c34
     m_Address: BlackSubstance
     m_ReadOnly: 0

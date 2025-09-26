@@ -30,20 +30,20 @@ public class ItemContainer : MonoBehaviour
         Name.color = itemData.TierColor;
         Name.text = itemData.ItemName;
 
-        Manager.Data.SynergyDict.TryGetValue(itemData.ItemSetSynergyId, out SynergyData synergyData);
-        SynergyCount.text = $"시너지 1/{synergyData.RequiredItemCount}";
-        SynergyName.text = synergyData.SynergyName;
-        Description.text = synergyData.Description;
+        //Manager.Data.SynergyDict.TryGetValue(itemData.SynergyId, out SynergyData synergyData);
+        //SynergyCount.text = $"시너지 1/{synergyData.RequiredItemCount}";
+        //SynergyName.text = synergyData.SynergyName;
+        //Description.text = synergyData.Description;
         Stat1.text = "";
         Stat2.text = "";
-        if (itemData.Stat1.ItemStatType != ItemStatType.None)
+        if (itemData.Stat1.ItemExtraStatType != ItemExtraStatType.None)
         {
-            string stat1Ability = ItemData.ItemStatTypes[itemData.Stat1.ItemStatType];
+            string stat1Ability = ItemData.ItemExtraStatTypes[itemData.Stat1.ItemExtraStatType];
             Stat1.text = $"{stat1Ability} +{itemData.Stat1.Value}";
         }
-        if (itemData.Stat2.ItemStatType != ItemStatType.None)
+        if (itemData.Stat2.ItemExtraStatType != ItemExtraStatType.None)
         {
-            string stat2Ability = ItemData.ItemStatTypes[itemData.Stat2.ItemStatType];
+            string stat2Ability = ItemData.ItemExtraStatTypes[itemData.Stat2.ItemExtraStatType];
             Stat2.text = $"{stat2Ability} +{itemData.Stat2.Value}";
         }
     }

@@ -8,24 +8,35 @@ public abstract class BaseProjectile : MonoBehaviour
     public ProjectileDataHandler DataHandler {  get { return _dataHandler; } }
 
     protected Rigidbody2D _rb;
+    protected SpriteRenderer _sr;
+    protected Animator _anim;
 
     protected Transform _target;
     protected Vector3 _dir;
 
     private void Awake()
     {
-        _dataHandler = Extension.GetOrAddComponent<ProjectileDataHandler>(this.gameObject);
+        _dataHandler = GetComponent<ProjectileDataHandler>();
         _rb = GetComponent<Rigidbody2D>();
+        _sr = GetComponentInChildren<SpriteRenderer>();
+        _anim = GetComponent<Animator>();
+    }
+
+    protected virtual void OnEnable()
+    {
+        _rb.linearVelocityX = 0;
         StartCoroutine(ProjectileLife(DataHandler.Data.LifeTime));
     }
 
-    public virtual void Init(Vector3 dir, Transform target = null)
+    public virtual void Init(Vector3 dir, Transform target = null, float attackPower = 0f)
     {
         _target = target;
         _dir = dir;
+        _dataHandler.Damage = attackPower;
+        _sr.flipX = dir.x < 0;
     }
 
-    private void FixedUpdate()
+    protected virtual void FixedUpdate()
     {
         Move();
     }
@@ -38,13 +49,15 @@ public abstract class BaseProjectile : MonoBehaviour
     {
         IDamageable damageable = other.GetComponent<IDamageable>();
         // 플레이어면 데미지
-        if(damageable != null && (1 << other.gameObject.layer) != LayerMask.GetMask(Game.Monster.Layers.Monster))
+        if(damageable != null && (1 << other.gameObject.layer) == LayerMask.GetMask(Game.Monster.Layers.Player))
         {
-            damageable.TakeDamage(DataHandler.Data.Damage);
+            damageable.TakeDamage((int)DataHandler.Damage);
             DestroyProjectile();
         }
         // 벽이나 땅이면 소멸
-        else if((1 << other.gameObject.layer) != LayerMask.GetMask(Game.Monster.Layers.Monster))
+        // 일단 플레이어에 damageable이 없어서 조건 추가함
+        else if((1 << other.gameObject.layer) == LayerMask.GetMask(Game.Monster.Layers.Ground) ||
+                 (1 << other.gameObject.layer) == LayerMask.GetMask(Game.Monster.Layers.Player))
         {
             DestroyProjectile();
         }
