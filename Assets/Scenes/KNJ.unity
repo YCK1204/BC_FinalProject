@@ -1121,7 +1121,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyTest
   monster: {fileID: 332664329}
-  Damage: 15
+  hand: {fileID: 0}
+  head: {fileID: 0}
+  Damage: 100
 --- !u!4 &1208759512
 Transform:
   m_ObjectHideFlags: 0
@@ -1171,6 +1173,7 @@ MonoBehaviour:
   IsAttacking: 0
   VerticalOrb: {fileID: 3019393740764582530, guid: b7dee4d3c797760469b7c8a1fc6d815a, type: 3}
   SpikeOrb: {fileID: 463238937214169653, guid: dda7b61ffe08ca645bf9146d8ce10dd9, type: 3}
+  HitFlashMat: {fileID: 2100000, guid: f91d0347af52ebb40a20e0a86ccdc47a, type: 2}
 --- !u!4 &1258018614
 Transform:
   m_ObjectHideFlags: 0
@@ -1290,7 +1293,7 @@ Transform:
   m_GameObject: {fileID: 1352687980}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.97, y: -0.83, z: 0}
+  m_LocalPosition: {x: 0.11, y: -0.41, z: 0}
   m_LocalScale: {x: 0.5, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1638,7 +1641,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -4, z: 0}
-  m_LocalScale: {x: 20, y: 2, z: 1}
+  m_LocalScale: {x: 40, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

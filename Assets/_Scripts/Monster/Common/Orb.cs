@@ -14,6 +14,8 @@ public class Orb : MonoBehaviour
     {
         _owner = owner;
         _damage = _owner.MonsterData.AttackPower;
+
+        _mask = LayerMask.GetMask(Layers.Player);
     }
 
     public void VerticalBurst()
@@ -24,7 +26,7 @@ public class Orb : MonoBehaviour
         Vector3 airAttakcPos = new Vector3(0, _offset, 0);
         float lr = 0.5f;
         float ud = 3f;
-        target = Physics2D.OverlapBox(transform.position + airAttakcPos, new Vector2(lr, ud), 0, _mask);
+        target = Physics2D.OverlapBox(transform.position + airAttakcPos, new Vector2(lr * 2, ud * 2), 0, _mask);
 #if UNITY_EDITOR
         Debug.DrawLine(transform.position + airAttakcPos - Vector3.right * lr + Vector3.up * ud, transform.position + airAttakcPos + Vector3.right * lr + Vector3.up * ud, Color.blue, 5f);
         Debug.DrawLine(transform.position + airAttakcPos - Vector3.right * lr - Vector3.up * ud, transform.position + airAttakcPos + Vector3.right * lr - Vector3.up * ud, Color.blue, 5f);
@@ -60,7 +62,7 @@ public class Orb : MonoBehaviour
         Vector3 airAttakcPos = new Vector3(0, _offset, 0);
         float lr = 1.5f;
         float ud = 0.5f;
-        target = Physics2D.OverlapBox(transform.position + airAttakcPos, new Vector2(lr, ud), 0, _mask);
+        target = Physics2D.OverlapBox(transform.position + airAttakcPos, new Vector2(lr * 2, ud * 2), 0, _mask);
 #if UNITY_EDITOR
         Debug.DrawLine(transform.position + airAttakcPos - Vector3.right * lr + Vector3.up * ud, transform.position + airAttakcPos + Vector3.right * lr + Vector3.up * ud, Color.blue, 5f);
         Debug.DrawLine(transform.position + airAttakcPos - Vector3.right * lr - Vector3.up * ud, transform.position + airAttakcPos + Vector3.right * lr - Vector3.up * ud, Color.blue, 5f);

@@ -9,6 +9,9 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
     public Animator Anim {  get { return _anim; } }
     private BoxCollider2D _col;
     private Rigidbody2D _rb;
+    private SpriteRenderer _sr;
+
+    private Coroutine _hitEffect;
 
     private Vector3 _originPos;
     private float _offset = 1.33f;
@@ -31,6 +34,7 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
         _anim = GetComponent<Animator>();
         _col = GetComponent<BoxCollider2D>();
         _rb = GetComponent<Rigidbody2D>();
+        _sr = GetComponent<SpriteRenderer>();
 
         _originPos = transform.position;
         _mask = LayerMask.GetMask(Layers.Player);
@@ -60,7 +64,7 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
 
         // 공중 -1.25(@),1.5 에서 좌우 1 상하 1.5 박스
         Vector3 airAttakcPos = new Vector3(-1.25f * dir, 1.5f + _followYOffeset / 2f, 0);
-        target = Physics2D.OverlapBox(transform.position + airAttakcPos, new Vector2(aLR, aUD), 0, _mask);
+        target = Physics2D.OverlapBox(transform.position + airAttakcPos, new Vector2(aLR * 2, aUD * 2), 0, _mask);
 #if UNITY_EDITOR
         Debug.DrawLine(transform.position + airAttakcPos - Vector3.right + Vector3.up * aUD, transform.position + airAttakcPos + Vector3.right + Vector3.up * aUD, Color.blue, 5f);
         Debug.DrawLine(transform.position + airAttakcPos - Vector3.right - Vector3.up * aUD, transform.position + airAttakcPos + Vector3.right - Vector3.up * aUD, Color.blue, 5f);
@@ -72,7 +76,7 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
         Vector3 groundAttakcPos = new Vector3(-1 * dir, 0.5f, 0);
         if(target == null)
         {
-            target = Physics2D.OverlapBox(transform.position + groundAttakcPos, new Vector2(2.5f, 0.5f), 0, _mask);
+            target = Physics2D.OverlapBox(transform.position + groundAttakcPos, new Vector2(2.5f * 2, 0.5f * 2), 0, _mask);
 #if UNITY_EDITOR
             Debug.DrawLine(transform.position + groundAttakcPos - Vector3.right * 2.5f + Vector3.up * 0.5f, transform.position + groundAttakcPos + Vector3.right * 2.5f + Vector3.up * 0.5f, Color.red, 5f);
             Debug.DrawLine(transform.position + groundAttakcPos - Vector3.right * 2.5f - Vector3.up * 0.5f, transform.position + groundAttakcPos + Vector3.right * 2.5f - Vector3.up * 0.5f, Color.red, 5f);
@@ -168,7 +172,7 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
         Vector3 airAttakcPos = new Vector3(-1.4f * dir, 2f, 0);
         float lr = 0.5f;
         float ud = 2f;
-        target = Physics2D.OverlapBox(transform.position + airAttakcPos, new Vector2(lr, ud), 0, _mask);
+        target = Physics2D.OverlapBox(transform.position + airAttakcPos, new Vector2(lr * 2, ud * 2), 0, _mask);
 #if UNITY_EDITOR
         Debug.DrawLine(transform.position + airAttakcPos - Vector3.right * lr + Vector3.up * ud, transform.position + airAttakcPos + Vector3.right * lr + Vector3.up * ud, Color.blue, 5f);
         Debug.DrawLine(transform.position + airAttakcPos - Vector3.right * lr - Vector3.up * ud, transform.position + airAttakcPos + Vector3.right * lr - Vector3.up * ud, Color.blue, 5f);
@@ -246,11 +250,16 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
 
     public void TakeDamage(int damage)
     {
+        if (_owner.MonsterData.CurHp <= 0)
+            return;
+
+        _owner.HitFlash(_sr, _hitEffect);
         _owner.TakeDamage(damage);
     }
 
     public void Die()
     {
+        _anim.SetTrigger(BoneReaperAnimatorParams.Die);
         StopAllCoroutines();
     }
 }

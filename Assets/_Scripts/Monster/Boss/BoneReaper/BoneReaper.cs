@@ -1,4 +1,5 @@
 using Game.Monster;
+using System.Collections;
 using UnityEngine;
 
 public class BoneReaper : BossMonster
@@ -28,8 +29,12 @@ public class BoneReaper : BossMonster
 
     protected LayerMask _playerMask;
 
+    private WaitForSeconds _waitForHitFlash;
+
+    [Header("Externals")]
     [SerializeField] public Orb VerticalOrb;
     [SerializeField] public Orb SpikeOrb;
+    [SerializeField] public Material HitFlashMat;
 
     private void Awake()
     {
@@ -41,6 +46,8 @@ public class BoneReaper : BossMonster
 
         _head = GetComponentInChildren<BoneReaperHead>();
         BoneReaperHand[] hands = GetComponentsInChildren<BoneReaperHand>();
+
+        _waitForHitFlash = new WaitForSeconds(0.1f);
 
         foreach (BoneReaperHand hand in hands)
         {
@@ -175,5 +182,27 @@ public class BoneReaper : BossMonster
         _head.Breath();
 
         return NodeStatus.Success;
+    }
+
+    public void HitFlash(SpriteRenderer sr, Coroutine hitEffect)
+    {
+        if (HitFlashMat == null)
+            return;
+
+        Material originMat = sr.material;
+        sr.material = HitFlashMat;
+        HitFlashMat.SetFloat("_FlashAmount", 1f);
+
+        if(hitEffect != null)
+            StopCoroutine(hitEffect);
+        hitEffect = StartCoroutine(OffHitFlash(sr, originMat));
+    }
+
+    public IEnumerator OffHitFlash(SpriteRenderer sr, Material originMat)
+    {
+        yield return _waitForHitFlash;
+        HitFlashMat.SetFloat("_FlashAmount", 0f);
+
+        sr.material = originMat;
     }
 }

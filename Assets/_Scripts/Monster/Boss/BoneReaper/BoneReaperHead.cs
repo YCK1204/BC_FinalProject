@@ -8,6 +8,9 @@ public class BoneReaperHead : MonoBehaviour, IDamageable
     private Animator _anim;
     private BoxCollider2D _col;
     private Rigidbody2D _rb;
+    private SpriteRenderer _sr;
+
+    private Coroutine _hitEffect;
 
     private LayerMask _mask;
 
@@ -16,6 +19,7 @@ public class BoneReaperHead : MonoBehaviour, IDamageable
         _anim = GetComponent<Animator>();
         _col = GetComponent<BoxCollider2D>();
         _rb = GetComponent<Rigidbody2D>();
+        _sr = GetComponent<SpriteRenderer>();
 
         _mask = LayerMask.GetMask(Layers.Player);
     }
@@ -49,11 +53,12 @@ public class BoneReaperHead : MonoBehaviour, IDamageable
         float t = Mathf.InverseLerp(2f, 5f, size);
         float ySize = Mathf.Lerp(2f, 1f, t) / 2;
 
+
         // 지상 0, 0.5 에서 좌우 size 상하 0.5 박스
         Vector3 AttackPos = new Vector3(0, ySize, 0);
         float lr = size;
         float ud = ySize;
-        target = Physics2D.OverlapBox(transform.position + AttackPos, new Vector2(lr, ud), 0, _mask);
+        target = Physics2D.OverlapBox(transform.position + AttackPos, new Vector2(lr*2, ud*2), 0, _mask);
 #if UNITY_EDITOR
         Debug.DrawLine(transform.position + AttackPos - Vector3.right * lr + Vector3.up * ud, transform.position + AttackPos + Vector3.right * lr + Vector3.up * ud, Color.blue, 5f);
         Debug.DrawLine(transform.position + AttackPos - Vector3.right * lr - Vector3.up * ud, transform.position + AttackPos + Vector3.right * lr - Vector3.up * ud, Color.blue, 5f);
@@ -119,11 +124,16 @@ public class BoneReaperHead : MonoBehaviour, IDamageable
     // 기타 메서드
     public void TakeDamage(int damage)
     {
+        if (_owner.MonsterData.CurHp <= 0)
+            return;
+
+        _owner.HitFlash(_sr, _hitEffect);
         _owner.TakeDamage(damage);
     }
 
     public void Die()
     {
+        _anim.SetTrigger(BoneReaperAnimatorParams.Die);
         StopAllCoroutines();
     }
 }
