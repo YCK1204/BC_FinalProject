@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Orb_Spikes
+  m_Controller: {fileID: 9100000, guid: 3e950a6d4742d264c855a18ca772da52, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: f791c4aca34e19341a8fc663acc8e568, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: f791c4aca34e19341a8fc663acc8e568, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: a983ce94f03cb46428aa32c281a944f9, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 189eabec8d184d74f933dd195f8b8fcb, type: 2}

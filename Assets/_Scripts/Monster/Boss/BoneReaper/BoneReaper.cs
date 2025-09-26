@@ -28,7 +28,8 @@ public class BoneReaper : BossMonster
 
     protected LayerMask _playerMask;
 
-    public bool IsAttacking;
+    [SerializeField] public Orb VerticalOrb;
+    [SerializeField] public Orb SpikeOrb;
 
     private void Awake()
     {
@@ -105,6 +106,9 @@ public class BoneReaper : BossMonster
         if (_dataHandler.CurHp <= 0)
         {
             // 사망 처리
+            _head.Die();
+            _leftHand.Die();
+            _rightHand.Die();
         }
 
     }
@@ -149,10 +153,13 @@ public class BoneReaper : BossMonster
     {
         if (IsAttacking) return NodeStatus.Running;
 
-        _patternCoolTime = 0;
         Debug.Log("SO");
-
+        IsAttacking = true;
+        _patternCoolTime = 0;
         _curBreathCount = 0;
+
+        _head.SummonOrb();
+
         return NodeStatus.Success;
     }
 

@@ -1,0 +1,102 @@
+using Game.Monster;
+using UnityEngine;
+
+public class Orb : MonoBehaviour
+{
+    private BossMonster _owner;
+    private float _damage;
+
+    private float _offset = 3f;
+
+    private LayerMask _mask;
+
+    public void Init(BossMonster owner)
+    {
+        _owner = owner;
+        _damage = _owner.MonsterData.AttackPower;
+    }
+
+    public void VerticalBurst()
+    {
+        Collider2D target;
+
+        // 공중 0, 0에서 좌우 0.5 상하 3 박스
+        Vector3 airAttakcPos = new Vector3(0, _offset, 0);
+        float lr = 0.5f;
+        float ud = 3f;
+        target = Physics2D.OverlapBox(transform.position + airAttakcPos, new Vector2(lr, ud), 0, _mask);
+#if UNITY_EDITOR
+        Debug.DrawLine(transform.position + airAttakcPos - Vector3.right * lr + Vector3.up * ud, transform.position + airAttakcPos + Vector3.right * lr + Vector3.up * ud, Color.blue, 5f);
+        Debug.DrawLine(transform.position + airAttakcPos - Vector3.right * lr - Vector3.up * ud, transform.position + airAttakcPos + Vector3.right * lr - Vector3.up * ud, Color.blue, 5f);
+        Debug.DrawLine(transform.position + airAttakcPos - Vector3.right * lr + Vector3.up * ud, transform.position + airAttakcPos - Vector3.right * lr - Vector3.up * ud, Color.blue, 5f);
+        Debug.DrawLine(transform.position + airAttakcPos + Vector3.right * lr + Vector3.up * ud, transform.position + airAttakcPos + Vector3.right * lr - Vector3.up * ud, Color.blue, 5f);
+#endif
+
+        if (target != null)
+        {
+            // Todo: 무적 체크
+
+            float knockBackDirX = target.transform.position.x < airAttakcPos.x ? -1 : 1;
+            Vector2 knockBackDir = new Vector2(knockBackDirX, 0.5f);
+            knockBackDir.Normalize();
+
+            Rigidbody2D targetRb = target.GetComponent<Rigidbody2D>();
+            if (targetRb != null)
+            {
+                targetRb.linearVelocity = Vector2.zero;
+                targetRb.AddForce(knockBackDir * 400);
+            }
+
+            target.GetComponent<IDamageable>()?.TakeDamage((int)(_damage * 1.5f));
+            Debug.Log((int)(_owner.MonsterData.AttackPower * 1.5f));
+        }
+    }
+
+    public void SpikeBurst()
+    {
+        Collider2D target;
+
+        // 지상 0, 0에서 좌우 1.5 상하 0.5 박스
+        Vector3 airAttakcPos = new Vector3(0, _offset, 0);
+        float lr = 1.5f;
+        float ud = 0.5f;
+        target = Physics2D.OverlapBox(transform.position + airAttakcPos, new Vector2(lr, ud), 0, _mask);
+#if UNITY_EDITOR
+        Debug.DrawLine(transform.position + airAttakcPos - Vector3.right * lr + Vector3.up * ud, transform.position + airAttakcPos + Vector3.right * lr + Vector3.up * ud, Color.blue, 5f);
+        Debug.DrawLine(transform.position + airAttakcPos - Vector3.right * lr - Vector3.up * ud, transform.position + airAttakcPos + Vector3.right * lr - Vector3.up * ud, Color.blue, 5f);
+        Debug.DrawLine(transform.position + airAttakcPos - Vector3.right * lr + Vector3.up * ud, transform.position + airAttakcPos - Vector3.right * lr - Vector3.up * ud, Color.blue, 5f);
+        Debug.DrawLine(transform.position + airAttakcPos + Vector3.right * lr + Vector3.up * ud, transform.position + airAttakcPos + Vector3.right * lr - Vector3.up * ud, Color.blue, 5f);
+#endif
+
+        if (target != null)
+        {
+            // Todo: 무적 체크
+
+            float knockBackDirX = target.transform.position.x < airAttakcPos.x ? -1 : 1;
+            Vector2 knockBackDir = new Vector2(knockBackDirX, 0.5f);
+            knockBackDir.Normalize();
+
+            Rigidbody2D targetRb = target.GetComponent<Rigidbody2D>();
+            if (targetRb != null)
+            {
+                targetRb.linearVelocity = Vector2.zero;
+                targetRb.AddForce(knockBackDir * 400);
+            }
+
+            target.GetComponent<IDamageable>()?.TakeDamage((int)(_damage * 1.5f));
+            Debug.Log((int)(_owner.MonsterData.AttackPower * 1.5f));
+        }
+    }
+
+    public void Destroy()
+    {
+        // Todo: 풀로 리턴?
+        Destroy(gameObject);
+    }
+
+    public void OrbAttackEnd()
+    {
+        _owner.IsAttacking = false;
+        this.Destroy();
+    }
+}

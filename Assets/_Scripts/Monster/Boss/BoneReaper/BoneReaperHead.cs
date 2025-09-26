@@ -1,4 +1,5 @@
 using Game.Monster;
+using System.Collections;
 using UnityEngine;
 
 public class BoneReaperHead : MonoBehaviour, IDamageable
@@ -87,9 +88,42 @@ public class BoneReaperHead : MonoBehaviour, IDamageable
 
     #endregion
     // 행동2: 오브 생성하기
+    public void SummonOrb()
+    {
+        _anim.SetTrigger(BoneReaperAnimatorParams.SummonHex);
+        StartCoroutine(SummonOrbsSequence());
+    }
 
+    private IEnumerator SummonOrbsSequence()
+    {
+        WaitForSeconds orbCreateCoolTime = new WaitForSeconds(0.5f);
+        // 7 5 3
+        // Todo: 오브젝트 풀로 변경 필요할 듯?
+        Instantiate(_owner.VerticalOrb, transform.position + Vector3.right * 7, Quaternion.identity).Init(_owner);
+        Instantiate(_owner.VerticalOrb, transform.position + Vector3.right * -7, Quaternion.identity).Init(_owner);
+        yield return orbCreateCoolTime;
+
+        Instantiate(_owner.VerticalOrb, transform.position + Vector3.right * 5, Quaternion.identity).Init(_owner);
+        Instantiate(_owner.VerticalOrb, transform.position + Vector3.right * -5, Quaternion.identity).Init(_owner);
+        yield return orbCreateCoolTime;
+
+        Instantiate(_owner.VerticalOrb, transform.position + Vector3.right * 3, Quaternion.identity).Init(_owner);
+        Instantiate(_owner.VerticalOrb, transform.position + Vector3.right * -3, Quaternion.identity).Init(_owner);
+        yield return orbCreateCoolTime;
+
+        Instantiate(_owner.SpikeOrb, transform.position + Vector3.up * -2.5f, Quaternion.identity).Init(_owner);
+
+        yield return null;
+    }
+
+    // 기타 메서드
     public void TakeDamage(int damage)
     {
         _owner.TakeDamage(damage);
+    }
+
+    public void Die()
+    {
+        StopAllCoroutines();
     }
 }

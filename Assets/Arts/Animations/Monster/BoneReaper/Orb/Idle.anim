@@ -97,8 +97,44 @@ AnimationClip:
     m_Center: {x: 0, y: 0, z: 0}
     m_Extent: {x: 0, y: 0, z: 0}
   m_ClipBindingConstant:
-    genericBindings: []
-    pptrCurveMapping: []
+    genericBindings:
+    - serializedVersion: 2
+      path: 0
+      attribute: 3305885265
+      script: {fileID: 0}
+      typeID: 212
+      customType: 0
+      isPPtrCurve: 0
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    - serializedVersion: 2
+      path: 0
+      attribute: 0
+      script: {fileID: 0}
+      typeID: 212
+      customType: 23
+      isPPtrCurve: 1
+      isIntCurve: 0
+      isSerializeReferenceCurve: 0
+    pptrCurveMapping:
+    - {fileID: 6593513125478419218, guid: d752e977e73e8944eb314a576467798b, type: 3}
+    - {fileID: -6945039586013105784, guid: d752e977e73e8944eb314a576467798b, type: 3}
+    - {fileID: -5008453733147647343, guid: d752e977e73e8944eb314a576467798b, type: 3}
+    - {fileID: 5949284581718148408, guid: d752e977e73e8944eb314a576467798b, type: 3}
+    - {fileID: 1593320506728890880, guid: d752e977e73e8944eb314a576467798b, type: 3}
+    - {fileID: -724205909832447489, guid: d752e977e73e8944eb314a576467798b, type: 3}
+    - {fileID: 1463601130971932382, guid: d752e977e73e8944eb314a576467798b, type: 3}
+    - {fileID: 4743497751777873697, guid: d752e977e73e8944eb314a576467798b, type: 3}
+    - {fileID: 5832259698515855118, guid: d752e977e73e8944eb314a576467798b, type: 3}
+    - {fileID: 8713712148888002477, guid: d752e977e73e8944eb314a576467798b, type: 3}
+    - {fileID: 7274814468512556420, guid: d752e977e73e8944eb314a576467798b, type: 3}
+    - {fileID: 1236535849086670764, guid: d752e977e73e8944eb314a576467798b, type: 3}
+    - {fileID: -5117887314746707579, guid: d752e977e73e8944eb314a576467798b, type: 3}
+    - {fileID: 1079349647110063928, guid: d752e977e73e8944eb314a576467798b, type: 3}
+    - {fileID: 5781012442846247840, guid: d752e977e73e8944eb314a576467798b, type: 3}
+    - {fileID: -535247218969584862, guid: d752e977e73e8944eb314a576467798b, type: 3}
+    - {fileID: -3693889156091705731, guid: d752e977e73e8944eb314a576467798b, type: 3}
+    - {fileID: -3693889156091705731, guid: d752e977e73e8944eb314a576467798b, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -153,4 +189,18 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.59
+    functionName: VerticalBurst
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 1.1
+    functionName: Destroy
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
