@@ -15,6 +15,7 @@ namespace Game.Player
         private bool _damage;
         private List<IDamageable> _hitTargets;
 
+
         public PlayerComboAttackState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
         public override void Enter()
@@ -163,6 +164,15 @@ namespace Game.Player
                     target.TakeDamage(damage);
                     _stateMachine.Player.MarkLastHitCritical(isCrit);
                     if (isCrit) Debug.Log("Critical!!" + target.ToString());
+
+                    //Rigidbody2D targetRb = col.attachedRigidbody;
+                    //if (targetRb != null)
+                    //{
+                    //    float power = _attackInfoData.KnockbackPower;
+                    //    Vector2 knockDir = new Vector2(_stateMachine.FacingSign, 0f).normalized;
+
+                    //    targetRb.linearVelocity = knockDir * power;
+                    //}
                 }
             }
         }
