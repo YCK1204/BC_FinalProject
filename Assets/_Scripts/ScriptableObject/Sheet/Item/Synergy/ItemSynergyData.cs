@@ -1,6 +1,13 @@
 using System;
 using UnityEngine;
 
+public enum SynergyEffectType
+{
+    Duration,
+    Always,
+    Creation
+}
+
 [Serializable]
 public struct ItemSynergyData
 {
@@ -11,8 +18,9 @@ public struct ItemSynergyData
     public float Chance;
     public int SpecialAbilityID;
     public float CoolDown;
+    public SynergyEffectType EffectType;
     public int DescID;
-    public ItemSynergyData(int id, int count, string name, ItemActionType actionType, float chance, int specialAbilityID, float coolDown, int descID)
+    public ItemSynergyData(int id, int count, string name, ItemActionType actionType, float chance, int specialAbilityID, float coolDown, SynergyEffectType effectType int descID)
     {
         Id = id;
         Count = count;
@@ -21,6 +29,7 @@ public struct ItemSynergyData
         Chance = chance;
         SpecialAbilityID = specialAbilityID;
         CoolDown = coolDown;
+        EffectType = effectType;
         DescID = descID;
     }
 }

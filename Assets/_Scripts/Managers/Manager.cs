@@ -34,10 +34,14 @@ public class Manager : MonoBehaviour
             Object.Destroy(gameObject);
         }
     }
+    bool _isInit = false;
     static void Init()
     {
+        if (Instance._isInit)
+            return;
         Data.Load();
         Item.Init();
+        Instance._isInit = true;
     }
 
     GameManager _game = new GameManager();

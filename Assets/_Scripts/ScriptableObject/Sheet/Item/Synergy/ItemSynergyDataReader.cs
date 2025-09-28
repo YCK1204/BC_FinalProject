@@ -14,6 +14,7 @@ public class ItemSynergyDataReader : DataReaderBase<ItemSynergyData>
         float Chance = 0;
         int SpecialAbilityID = 0;
         float CoolDown = 0;
+        SynergyEffectType EffectType = SynergyEffectType.Always;
         int DescID = 0;
 
         foreach (var item in list)
@@ -41,11 +42,14 @@ public class ItemSynergyDataReader : DataReaderBase<ItemSynergyData>
                 case "Cooldown":
                     CoolDown = float.Parse(item.value);
                     break;
+                case "EffectType":
+                    EffectType = (SynergyEffectType)System.Enum.Parse(typeof(SynergyEffectType), item.value);
+                    break;
                 case "DescID":
                     DescID = int.Parse(item.value);
                     break;
             }
         }
-        DataList.Add(new ItemSynergyData(Id, Count, Name, ActionType, Chance, SpecialAbilityID, CoolDown, DescID));
+        DataList.Add(new ItemSynergyData(Id, Count, Name, ActionType, Chance, SpecialAbilityID, CoolDown, EffectType, DescID));
     }
 }

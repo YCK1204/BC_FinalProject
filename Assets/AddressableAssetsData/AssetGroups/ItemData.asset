@@ -40,7 +40,7 @@ MonoBehaviour:
     - ItemData
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: adbd102dbd853f846874fdf239187231
-    m_Address: ItemSynergeDataReader
+    m_Address: SynergyDataReader
     m_ReadOnly: 0
     m_SerializedLabels:
     - ItemData

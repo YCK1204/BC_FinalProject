@@ -66,27 +66,27 @@ public class DataManager
             ItemsData.Base = reader.DataList.ToDictionary(data => data.Id, data => data);
         }
         {
-            var reader = Manager.Resource.LoadData<ItemTalentDataReader>("ItemTalentDataReader");
+            var reader = Manager.Resource.LoadData<ItemTalentDataReader>("TalentDataReader");
             ItemsData.Talent = reader.DataList.ToDictionary(data => data.Id, data => data);
         }
         {
-            var reader = Manager.Resource.LoadData<ItemBuffDataReader>("ItemBuffDataReader");
+            var reader = Manager.Resource.LoadData<ItemBuffDataReader>("BuffDataReader");
             ItemsData.Buff = reader.DataList.ToDictionary(data => data.Id, data => data);
         }
         {
-            var reader = Manager.Resource.LoadData<ItemProjectileDataReader>("ItemProjectileDataReader");
+            var reader = Manager.Resource.LoadData<ItemProjectileDataReader>("ProjectileDataReader");
             ItemsData.Projectile = reader.DataList.ToDictionary(data => data.Id, data => data);
         }
         {
-            var reader = Manager.Resource.LoadData<ItemAreaDataReader>("ItemAreaDataReader");
+            var reader = Manager.Resource.LoadData<ItemAreaDataReader>("AreaDataReader");
             ItemsData.Area = reader.DataList.ToDictionary(data => data.Id, data => data);
         }
         {
-            var reader = Manager.Resource.LoadData<ItemSynergyDataReader>("ItemSynergyDataReader");
+            var reader = Manager.Resource.LoadData<ItemSynergyDataReader>("SynergyDataReader");
             ItemsData.Synergy = reader.DataList.ToDictionary(data => data.Id, data => data);
         }
         {
-            var reader = Manager.Resource.LoadData<ItemDescriptionDataReader>("ItemDescriptionDataReader");
+            var reader = Manager.Resource.LoadData<ItemDescriptionDataReader>("DescriptionDataReader");
             ItemsData.Description = reader.DataList.ToDictionary(data => data.Id, data => data);
         }
         #endregion

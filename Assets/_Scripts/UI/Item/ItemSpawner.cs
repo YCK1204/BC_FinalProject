@@ -8,8 +8,6 @@ using Random = UnityEngine.Random;
 public class ItemSpawner : MonoBehaviour
 {
     [SerializeField]
-    ItemController ItemPrefab;
-    [SerializeField]
     List<Vector2> ItemSpawnInfos;
     List<ItemController> _spawnedItems = new List<ItemController>();
 
@@ -51,6 +49,8 @@ public class ItemSpawner : MonoBehaviour
 
     public void SpawnItems()
     {
+        if (ItemSpawnInfos.Count == 0)
+            return;
         var list = Manager.Item.MissingItems.ToList();
 
         var common = list.Where(i => i.ItemGrade == ItemGradeType.Common).ToList();
@@ -103,16 +103,13 @@ public class ItemSpawner : MonoBehaviour
 
         for (int i = 0; i < ItemSpawnInfos.Count; i++)
         {
-            var item = Instantiate(ItemPrefab);
-            item.transform.SetParent(transform);
+            var item = Manager.Item.InstantiateItem(itemsData[i].Id);
+            item.transform.parent = transform;
             item.transform.position = ItemSpawnInfos[i];
             item.gameObject.SetActive(false);
             _spawnedItems.Add(item);
-            int idx = i;
-            item.SetData(itemsData[i]);
             StartCoroutine(Extension.LoadTextureByURL(itemsData[i].IconURL, (texture) =>
             {
-                Debug.Log(itemsData[idx].IconURL);
                 var sprite = texture.ToSprite();
                 item.SetSprite(sprite);
             }));
@@ -144,10 +141,6 @@ public class ItemSpawner : MonoBehaviour
     }
     public void RemoveItems()
     {
-        foreach (var item in _spawnedItems)
-        {
-            if (item != null)
-                Destroy(item.gameObject);
-        }
+        Destroy(gameObject);
     }
 }

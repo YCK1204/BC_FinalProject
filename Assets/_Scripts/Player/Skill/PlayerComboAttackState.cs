@@ -1,6 +1,7 @@
 using UnityEngine;
 using Game.Monster;
 using System.Collections.Generic;
+using DG.Tweening;
 
 namespace Game.Player
 {
