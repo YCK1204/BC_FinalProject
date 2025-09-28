@@ -15,15 +15,70 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: 6bfe878031b50ab4c9b9a7d268cbff32
   m_SerializeEntries:
-  - m_GUID: 8e8b0c59877d78b4283159d2d7d192b3
-    m_Address: ItemController
+  - m_GUID: 02823fff2dea75b4d8985597a61fb9fd
+    m_Address: IronWill
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SynergyData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1139cf116d27f5849a76b6009ff084ae
+    m_Address: CthughaFlame
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SynergyData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1d8767c1a2bfcfc41adeaa66c0face09
+    m_Address: ItemDataReader
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c5539bf491fbe19408f6f7454e28d733
-    m_Address: ItemContainer
+  - m_GUID: 3fbb9a2aff053ce44bde25084b967c34
+    m_Address: BlackSubstance
     m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - ItemData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 454dfc04775047d49844b73683b2572d
+    m_Address: YigCurse
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SynergyData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a57dcdf1d070fdc439cd360c85a4431d
+    m_Address: StickySlime
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ItemData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: da6158026c418374c8ac26277a37273f
+    m_Address: CthulhuWrath
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SynergyData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e6ff01c63b1512c479938a6339316a77
+    m_Address: TornPaper
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ItemData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f1c9819427414a446b1912994714a366
+    m_Address: MentalBreakdown
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SynergyData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f3366686dfaeb484c9f96422c226da5e
+    m_Address: BrokenFang
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ItemData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ff0ca519b6cb3634191df17ccca9bea1
+    m_Address: HasturWind
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - SynergyData
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 4a2a9dc179ae4da4399df09da69ceb08, type: 2}

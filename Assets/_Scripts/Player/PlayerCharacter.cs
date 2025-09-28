@@ -61,7 +61,7 @@ namespace Game.Player
             set
             {
                 if (currentHP <= 0f) return;
-                CurrentHP = Mathf.Max(0, value);
+                currentHP = Mathf.Max(0, value);
                 HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
                 if (currentHP <= 0f)
                     Die();

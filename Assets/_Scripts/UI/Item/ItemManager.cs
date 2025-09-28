@@ -7,7 +7,6 @@ using UnityEngine;
 public class ItemManager
 {
     ItemController CurItem;
-    Vector2 ContainerOffset = new Vector2(0f, 3f);
     Dictionary<int, ItemData> _items = new Dictionary<int, ItemData>();
     public List<ItemData> MissingItems { get; private set; }
 
@@ -30,7 +29,9 @@ public class ItemManager
     }
     public ItemController InstantiateItem(int id)
     {
-        return GameObject.Instantiate(_originalItems[id]);
+        var item = GameObject.Instantiate(_originalItems[id]);
+        item.SetData(_originalItems[id].ItemData);
+        return item;
     }
     public void OnTriggerEnterItem(ItemController item)
     {

@@ -20,7 +20,7 @@ public struct ItemSynergyData
     public float CoolDown;
     public SynergyEffectType EffectType;
     public int DescID;
-    public ItemSynergyData(int id, int count, string name, ItemActionType actionType, float chance, int specialAbilityID, float coolDown, SynergyEffectType effectType int descID)
+    public ItemSynergyData(int id, int count, string name, ItemActionType actionType, float chance, int specialAbilityID, float coolDown, SynergyEffectType effectType, int descID)
     {
         Id = id;
         Count = count;

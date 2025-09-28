@@ -10,7 +10,6 @@ using UnityEngine;
 
 public class DataManager
 {
-    //public Dictionary<int, SynergyData> SynergyDict { get; private set; } = new Dictionary<int, SynergyData>();
     public Item ItemsData = new Item();
     Dictionary<int, T1> MakeDict<T1, T2>(string fileName, Func<T2, Dictionary<int, T1>> factory) where T2 : class
     {

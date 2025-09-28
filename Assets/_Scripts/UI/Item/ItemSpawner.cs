@@ -104,7 +104,6 @@ public class ItemSpawner : MonoBehaviour
         for (int i = 0; i < ItemSpawnInfos.Count; i++)
         {
             var item = Manager.Item.InstantiateItem(itemsData[i].Id);
-            item.transform.parent = transform;
             item.transform.position = ItemSpawnInfos[i];
             item.gameObject.SetActive(false);
             _spawnedItems.Add(item);
@@ -141,6 +140,14 @@ public class ItemSpawner : MonoBehaviour
     }
     public void RemoveItems()
     {
-        Destroy(gameObject);
+        Manager.Item.OnItemAdded -= (item) =>
+        {
+            RemoveItems();
+        };
+        foreach (var item in _spawnedItems)
+        {
+            if (item != null)
+                Destroy(item.gameObject);
+        }
     }
 }

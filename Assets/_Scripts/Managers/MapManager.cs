@@ -14,7 +14,6 @@ public class MapManager : MonoBehaviour
     [Header("Map")]
     [SerializeField] private List<GameObject> _mapPrefabs;
 
-    private List<GameObject> _mapInstances = new List<GameObject>();
     private List<GameObject> _mapPool = new List<GameObject>();
     private GameObject _currentMap;
 
@@ -22,29 +21,22 @@ public class MapManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) 
+        if (Instance == null)
             Instance = this;
-        else 
+        else
             Destroy(gameObject);
     }
 
     void Start()
     {
-        foreach (GameObject prefab in _mapPrefabs)
-        {
-            GameObject map = Instantiate(prefab, transform);
-            map.SetActive(false);
-            _mapInstances.Add(map);
-        }
-
         ResetMaps();
-        LoadMap(_mapInstances[0]);
+        LoadMap(_mapPrefabs[0]);
     }
 
     private void ResetMaps()
     {
         _mapPool.Clear();
-        for (int i = 1; i < _mapInstances.Count; i++) _mapPool.Add(_mapInstances[i]);
+        for (int i = 1; i < _mapPrefabs.Count; i++) _mapPool.Add(_mapPrefabs[i]);
     }
 
     public void NextMap()
@@ -52,30 +44,32 @@ public class MapManager : MonoBehaviour
         if (_mapPool.Count > 0)
         {
             int index = Random.Range(0, _mapPool.Count);
-            GameObject nextMap = _mapPool[index];
+            GameObject prefab = _mapPool[index];
             _mapPool.RemoveAt(index);
 
-            LoadMap(nextMap);
-            Debug.Log(nextMap.name + "남은맵:" + _mapPool.Count);
+            LoadMap(prefab);
+            Debug.Log(prefab.name + "남은맵:" + _mapPool.Count);
         }
         else
         {
             ResetMaps();
-            LoadMap(_mapInstances[0]);
+            LoadMap(_mapPrefabs[0]);
             Debug.Log("맵 없음");
         }
     }
 
-    private void LoadMap(GameObject map)
+    private void LoadMap(GameObject prefab)
     {
-        if (_currentMap != null) 
-            _currentMap.SetActive(false);
+        if (_currentMap != null)
+            Destroy(_currentMap);
 
-        _currentMap = map;
-        _currentMap.SetActive(true);
+        _currentMap = Instantiate(prefab, transform);
+        //_currentMap.SetActive(false);
+        //_currentMap.SetActive(true);
         MovePlayerSpawn(_currentMap);
 
-        OnPortal = false;
+        //포탈on
+        OnPortal = true;
     }
 
     private void MovePlayerSpawn(GameObject map)

@@ -43,7 +43,6 @@ public class Manager : MonoBehaviour
         Item.Init();
         Instance._isInit = true;
     }
-
     GameManager _game = new GameManager();
     public static GameManager Game { get { return Instance._game; } }
     ResourceManager _resource = new ResourceManager();
