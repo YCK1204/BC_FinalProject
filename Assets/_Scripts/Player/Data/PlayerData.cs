@@ -61,6 +61,7 @@ namespace Game.Player
         public float ForceTime = 0.1f;
         public float DamageSet = 1.0f;
         public float ComboTime = 0.7f;
+        public float KnockbackPower = 1f;
     }
 
     [Serializable]
