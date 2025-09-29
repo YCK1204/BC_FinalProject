@@ -7,7 +7,7 @@ using UnityEngine.UI;
 namespace Game.Traits.UI
 {
     [RequireComponent(typeof(RectTransform))]
-    public class SkillBarController : MonoBehaviour
+    public class SkillBarController : MonoBehaviour, IPointerClickHandler
     {
         public enum AnchorCorner { TopLeft, TopRight, BottomLeft, BottomRight }
 
@@ -23,7 +23,6 @@ namespace Game.Traits.UI
         [SerializeField] Color selectedOutline = new Color(0.1f, 0.1f, 0.1f);
         [SerializeField] TMP_FontAsset font;
         [SerializeField] int fontSize = 18;
-        [SerializeField] bool slotLabelBold = true;
         [SerializeField] Color labelColor = new Color(0.7f, 0.7f, 0.7f);
 
         [Header("Unequip Button")]
@@ -35,80 +34,32 @@ namespace Game.Traits.UI
         [SerializeField] Color32 unequipPressed = new Color32(40, 40, 40, 255);
         [SerializeField] Color unequipLabelColor = new Color(0.9f, 0.9f, 0.9f);
 
-        [Header("Click Clearing")]
-        [SerializeField] bool clearOnClickOutside = true;
-        [SerializeField] RectTransform[] protectClickAreas;
-
         RectTransform _rt;
         readonly List<SlotView> _views = new();
+
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            if (SkillEquipSystem.Instance != null) SkillEquipSystem.Instance.ClearSelection();
+            RefreshSelected();
+        }
 
         void Awake()
         {
             _rt = (RectTransform)transform;
             ApplyAnchor();
             BuildSlots();
-            Wire();
-            RefreshAll();
             _rt.SetAsFirstSibling();
         }
 
-        void Update()
+        void OnEnable()
         {
-            if (!clearOnClickOutside) return;
-            if (Game.Traits.SkillEquipSystem.Instance == null) return;
-            if (Game.Traits.SkillEquipSystem.Instance.SelectedSlot < 0) return;
-            if (!Input.GetMouseButtonDown(0)) return;
-
-            var es = EventSystem.current;
-            if (es == null) return;
-
-            var ped = new PointerEventData(es) { position = Input.mousePosition };
-            var hits = new List<RaycastResult>();
-            es.RaycastAll(ped, hits);
-
-            bool clickedAnyUI = hits.Count > 0;
-            bool clickedOurBar = false;
-            bool clickedProtected = false;
-
-            for (int i = 0; i < hits.Count; i++)
-            {
-                var go = hits[i].gameObject;
-                if (go == null) continue;
-
-                if (_rt != null && go.transform.IsChildOf(_rt))
-                {
-                    clickedOurBar = true;
-                    break;
-                }
-
-                if (!clickedProtected && protectClickAreas != null)
-                {
-                    for (int p = 0; p < protectClickAreas.Length; p++)
-                    {
-                        var area = protectClickAreas[p];
-                        if (area != null && go.transform.IsChildOf(area))
-                        {
-                            clickedProtected = true;
-                            break;
-                        }
-                    }
-                }
-            }
-
-            if (!clickedAnyUI || (!clickedOurBar && !clickedProtected))
-            {
-                Game.Traits.SkillEquipSystem.Instance.ClearSelection();
-                RefreshSelected();
-            }
+            Wire();
+            RefreshAll();
         }
 
-        void OnDestroy()
+        void OnDisable()
         {
-            if (Game.Traits.SkillEquipSystem.Instance != null)
-            {
-                Game.Traits.SkillEquipSystem.Instance.OnEquipped -= OnEquipped;
-                Game.Traits.SkillEquipSystem.Instance.OnSelectedSlotChanged -= OnSelectedSlot;
-            }
+            Unwire();
         }
 
 #if UNITY_EDITOR
@@ -124,9 +75,19 @@ namespace Game.Traits.UI
 
         void Wire()
         {
-            if (Game.Traits.SkillEquipSystem.Instance == null) return;
-            Game.Traits.SkillEquipSystem.Instance.OnEquipped += OnEquipped;
-            Game.Traits.SkillEquipSystem.Instance.OnSelectedSlotChanged += OnSelectedSlot;
+            var sys = Game.Traits.SkillEquipSystem.Instance;
+            if (sys == null) return;
+            Unwire();
+            sys.OnEquipped += OnEquipped;
+            sys.OnSelectedSlotChanged += OnSelectedSlot;
+        }
+
+        void Unwire()
+        {
+            var sys = Game.Traits.SkillEquipSystem.Instance;
+            if (sys == null) return;
+            sys.OnEquipped -= OnEquipped;
+            sys.OnSelectedSlotChanged -= OnSelectedSlot;
         }
 
         void ApplyAnchor()
@@ -152,7 +113,7 @@ namespace Game.Traits.UI
             int count = Game.Traits.SkillEquipSystem.Instance ? Game.Traits.SkillEquipSystem.Instance.SlotCount : 2;
 
             float width = barPadding.x * 2 + (slotSize.x * count) + slotGap * (count - 1);
-            float height = barPadding.y * 2 + (slotSize.y) + unequipGap + unequipSize.y;
+            float height = barPadding.y * 2 + slotSize.y + unequipGap + unequipSize.y;
             _rt.sizeDelta = new Vector2(width, height);
 
             for (int i = 0; i < count; i++)
@@ -174,12 +135,12 @@ namespace Game.Traits.UI
                 var tr = (RectTransform)tgo.transform;
                 tr.SetParent(rt, false);
                 tr.anchorMin = Vector2.zero; tr.anchorMax = Vector2.one;
-                tr.offsetMin = Vector2.zero; tr.offsetMax = Vector2.zero;
+                tr.offsetMin = tr.offsetMax = Vector2.zero;
 
                 var label = tgo.GetComponent<TextMeshProUGUI>();
                 if (font) label.font = font;
                 label.fontSize = fontSize;
-                if (slotLabelBold) label.fontStyle |= FontStyles.Bold;
+                label.fontStyle |= FontStyles.Bold;
                 label.alignment = TextAlignmentOptions.Center;
                 label.color = labelColor;
                 label.raycastTarget = false;
@@ -189,7 +150,6 @@ namespace Game.Traits.UI
                 srt.SetParent(rt, false);
                 srt.anchorMin = Vector2.zero; srt.anchorMax = Vector2.one;
                 srt.offsetMin = srt.offsetMax = Vector2.zero;
-
                 var selImg = selGo.GetComponent<Image>();
                 selImg.color = selectedOutline;
                 selImg.raycastTarget = false;
@@ -207,7 +167,6 @@ namespace Game.Traits.UI
 
                 var uimg = unequipGo.GetComponent<Image>();
                 uimg.color = unequipBase;
-                uimg.raycastTarget = true;
 
                 var utxtGo = new GameObject("Label", typeof(RectTransform), typeof(TextMeshProUGUI));
                 var utr = (RectTransform)utxtGo.transform;
