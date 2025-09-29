@@ -1,4 +1,5 @@
 using Game.Monster;
+using Game.Player;
 using System.Collections;
 using UnityEngine;
 
@@ -51,7 +52,12 @@ public abstract class BaseProjectile : MonoBehaviour
         // 플레이어면 데미지
         if((1 << other.gameObject.layer) == LayerMask.GetMask(Game.Monster.Layers.Player))
         {
-            Vector2 knockBackDir = new Vector2(_rb.linearVelocityX < 0 ? -1 : 1, 1);
+            // 무적 체크
+            PlayerCharacter pc = other.GetComponent<PlayerCharacter>();
+            if (pc != null && pc.Invincible)
+                return;
+
+            Vector2 knockBackDir = new Vector2(_rb.linearVelocityX < 0 ? -1 : 1, 0);
             knockBackDir.Normalize();
 
             Debug.Log(knockBackDir);
@@ -60,7 +66,7 @@ public abstract class BaseProjectile : MonoBehaviour
             targetRb.linearVelocity = Vector2.zero;
             targetRb.AddForce(knockBackDir * 400);
 
-            damageable?.TakeDamage((int)DataHandler.Damage);
+            damageable?.TakeDamage(DataHandler.Damage);
             DestroyProjectile();
         }
         // 벽이나 땅이면 소멸

@@ -1,4 +1,5 @@
 using Game.Monster;
+using Game.Player;
 using UnityEngine;
 
 public class Slime : PatrolStateMonster
@@ -20,6 +21,11 @@ public class Slime : PatrolStateMonster
     {
         if (1 << collision.gameObject.layer == (int)LayerMask.GetMask(Game.Monster.Layers.Player))
         {
+            // 무적 체크
+            PlayerCharacter pc = collision.GetComponent<PlayerCharacter>();
+            if (pc != null && pc.Invincible)
+                return;
+
             Vector2 knockBackDir = new Vector2(_rb.linearVelocityX < 0 ? -1 : 1, 1);
             knockBackDir.Normalize();
 
@@ -29,7 +35,7 @@ public class Slime : PatrolStateMonster
             targetRb.AddForce(knockBackDir * 400);
 
             IDamageable damageable = collision.GetComponent<IDamageable>();
-            damageable?.TakeDamage((int)_dataHandler.AttackPower);
+            damageable?.TakeDamage(_dataHandler.AttackPower);
         }
     }
 }

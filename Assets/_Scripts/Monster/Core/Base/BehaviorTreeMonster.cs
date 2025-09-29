@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BehaviorTreeMonster : NormalMonster
 {
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(float damage)
     {
         throw new System.NotImplementedException();
     }

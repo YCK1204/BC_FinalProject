@@ -39,7 +39,7 @@ public abstract class StateMachineMonster : NormalMonster
     }
 
     // 데미지 적용 메서드
-    public override void TakeDamage(int damage)
+    public override void TakeDamage(float damage)
     {
         // 체력이 0이하면 종료
         // 만약 넉백이 외부에서 구현한다면 그 부분은 호출하는 쪽에서 막을 필요가 있음
