@@ -17,8 +17,7 @@ public class BoneReaperBT : BossBT
 
     공격 패턴 서브 트리
     셀렉터 노드
-    ㄴ 공격중이라면 종료 -> 공격중이면 성공 반환
-    ㄴ 패턴 쿨타임 중이라면 종료 -> 패턴 쿨타임이 최대 이하면 성공 반환
+    ㄴ 패턴 쿨타임 중이라면 종료 -> 패턴 쿨타임이 최대 이상이면 성공 반환
     ㄴ 내려찍기 2스택이라면? - 레이저 공격
     ㄴ 브레스 2스택이라면? - 오브 공격
     ㄴ 랜덤 셀렉터
@@ -66,7 +65,7 @@ public class BoneReaperBT : BossBT
         RandomSelectorNode normalAttackRandomSelector = new RandomSelectorNode("NormalAttackSelector");
 
         // 내려치기 공격 노드
-        ActionNode slamAttack = new ActionNode(boneReaper.SlamAttack, "SlamAttack");
+        ActionNode slamAttack = new ActionNode(boneReaper.TowHandSlamAttack, "SlamAttack");
 
         // 브레스 공격 노드
         ActionNode breathAttack = new ActionNode(boneReaper.BreathAttack, "BreathAttack");
@@ -83,8 +82,8 @@ public class BoneReaperBT : BossBT
         laserAttackSequence.AddChild(isSlamMoreThan2);
         laserAttackSequence.AddChild(laserAttack);
 
-        attackSlector.AddChild(isAttacking);
-        attackSlector.AddChild(isCoolTime);
+        //attackSlector.AddChild(isAttacking);
+        //attackSlector.AddChild(isCoolTime);
         attackSlector.AddChild(laserAttackSequence);
         attackSlector.AddChild(summonOrbSequence);
         attackSlector.AddChild(normalAttackRandomSelector);

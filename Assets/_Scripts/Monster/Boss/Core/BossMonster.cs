@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public abstract class BossMonster : BaseMonster
@@ -8,6 +9,7 @@ public abstract class BossMonster : BaseMonster
     // 3. 행동 트리
     // 4. 타겟 정보
 
+    public Action OnHealthchanged;
     public bool IsAttacking;
 
 }

@@ -602,6 +602,13 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 1.44
+    functionName: DelayAnimation
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 2
+    intParameter: 0
+    messageOptions: 0
   - time: 2.03
     functionName: Return
     data: 

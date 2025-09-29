@@ -46,28 +46,32 @@ namespace Game.Monster
 
         public override NodeStatus Evaluate()
         {
-            //Debug.Log(NodeName);
+            Debug.Log(NodeName);
             return _action?.Invoke() ?? NodeStatus.Failure;
         }
     }
 
+    #region Composite Node
     /// <summary>
     /// 셀렉터 노드: 한 개라도 성공하면 성공 반환
     /// </summary>
     public class SelectorNode : BTNode
     {
         List<INode> _chilldren;
+        int _curIndex;
 
         public SelectorNode(string nodeName = "NONE")
         {
             NodeName = nodeName;
             _chilldren = new List<INode>();
+            _curIndex = 0;
         }
 
         public SelectorNode(List<INode> chilldren, string nodeName = "NONE")
         {
             NodeName = nodeName;
             _chilldren = chilldren;
+            _curIndex = 0;
         }
 
         public void AddChild(INode child)
@@ -75,17 +79,27 @@ namespace Game.Monster
             _chilldren.Add(child);
         }
 
+        /// <summary>
+        /// 성공 -> 인덱스 초기화 & 성공 반환
+        /// 진행중 -> 인덱스 유지 & 평가 종료
+        /// 실패 -> 다음 노드 확인 & 모든 노드가 실패면 인덱스 초기화 및 실패 반환
+        /// </summary>
+        /// <returns>결과 상태</returns>
         public override NodeStatus Evaluate()
         {
-            //Debug.Log(NodeName);
-            foreach (INode child in _chilldren)
+            Debug.Log(NodeName);
+            for(;_curIndex < _chilldren.Count; _curIndex++)
             {
-                NodeStatus result = child.Evaluate();
-                if(result == NodeStatus.Success)
+                NodeStatus result = _chilldren[_curIndex].Evaluate();
+                if (result == NodeStatus.Success)
+                {
+                    _curIndex = 0;
                     return NodeStatus.Success;
-                else if(result == NodeStatus.Running)
+                }
+                else if (result == NodeStatus.Running)
                     return NodeStatus.Running;
             }
+            _curIndex = 0;
             return NodeStatus.Failure;
         }
     }
@@ -96,9 +110,10 @@ namespace Game.Monster
     public class SequenceNode : BTNode
     {
         List<INode> _chilldren;
+        int _curIndex;
 
-        public SequenceNode(string nodeName = "NONE") { NodeName = nodeName; _chilldren= new List<INode>(); }
-        public SequenceNode(List<INode> chilldren, string nodeName = "NONE") { NodeName = nodeName; _chilldren= chilldren; }
+        public SequenceNode(string nodeName = "NONE") { NodeName = nodeName; _chilldren= new List<INode>(); _curIndex = 0; }
+        public SequenceNode(List<INode> chilldren, string nodeName = "NONE") { NodeName = nodeName; _chilldren= chilldren; _curIndex = 0; }
 
         public void AddChild(INode child)
         {
@@ -108,14 +123,18 @@ namespace Game.Monster
         public override NodeStatus Evaluate()
         {
             //Debug.Log(NodeName);
-            foreach (INode child in _chilldren)
+            for(;_curIndex<_chilldren.Count; _curIndex++)
             {
-                NodeStatus result = child.Evaluate();
+                NodeStatus result = _chilldren[_curIndex].Evaluate();
                 if (result == NodeStatus.Failure)
+                {
+                    _curIndex = 0;
                     return NodeStatus.Failure;
+                }
                 else if (result == NodeStatus.Running)
                     return NodeStatus.Running;
             }
+            _curIndex = 0;
             return NodeStatus.Success;
         }
     }
@@ -127,17 +146,21 @@ namespace Game.Monster
     public class RandomSelectorNode : BTNode
     {
         List<INode> _chilldren;
+        // _curIndex = -1 => 인덱스가 초기화된 상태
+        int _curIndex;
 
         public RandomSelectorNode(string nodeName = "NONE")
         {
             NodeName = nodeName;
             _chilldren = new List<INode>();
+            _curIndex = -1;
         }
 
         public RandomSelectorNode(List<INode> chilldren, string nodeName = "NONE")
         {
             NodeName = nodeName;
             _chilldren = chilldren;
+            _curIndex = -1;
         }
 
         public void AddChild(INode child)
@@ -150,14 +173,27 @@ namespace Game.Monster
             //Debug.Log(NodeName);
             if (_chilldren != null && _chilldren.Count != 0)
             {
-                int randomIndex = UnityEngine.Random.Range(0, _chilldren.Count);
-                return _chilldren[randomIndex].Evaluate();
+                // 랜덤 인덱스가 초기화되지 않으면 이전 인덱스를 그대로 사용
+                if(_curIndex == -1)
+                    _curIndex = UnityEngine.Random.Range(0, _chilldren.Count);
+                NodeStatus result = _chilldren[_curIndex].Evaluate();
+
+                // 진행중이라면 인덱스 유지
+                if (result == NodeStatus.Running)
+                    return result;
+                else
+                {
+                    _curIndex = -1;
+                    return result;
+                }
             }
             else
                 return NodeStatus.Failure;
         }
     }
+    #endregion
 
+    #region 
     /// <summary>
     /// 컨디션 노드: 조건을 확인하여 성공과 실패를 판단하여 반환하는 노드
     /// </summary>
@@ -199,4 +235,5 @@ namespace Game.Monster
             else { return NodeStatus.Running; }
         }
     }
+    #endregion
 }

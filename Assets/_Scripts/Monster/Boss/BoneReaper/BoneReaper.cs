@@ -27,9 +27,15 @@ public class BoneReaper : BossMonster
     private BoneReaperBT _curBT;
     public BoneReaperBT BT { get { return _curBT; } }
 
+    private RandomPlatformGenerator _platformGenerator;
+    private BossUI _bossUI;
+
     protected LayerMask _playerMask;
 
     private WaitForSeconds _waitForHitFlash;
+
+    [Header("Slam")]
+    public int _curRunningHandsCount = 0;
 
     [Header("Externals")]
     [SerializeField] public Orb VerticalOrb;
@@ -44,10 +50,10 @@ public class BoneReaper : BossMonster
         _curBT = new BoneReaperBT();
         _curBT.Init(this);
 
+        _waitForHitFlash = new WaitForSeconds(0.1f);
+
         _head = GetComponentInChildren<BoneReaperHead>();
         BoneReaperHand[] hands = GetComponentsInChildren<BoneReaperHand>();
-
-        _waitForHitFlash = new WaitForSeconds(0.1f);
 
         foreach (BoneReaperHand hand in hands)
         {
@@ -63,6 +69,12 @@ public class BoneReaper : BossMonster
             _leftHand.Init(this);
             _rightHand.Init(this);
         }
+
+        _head.OnDie += DestroyOnDeath;
+
+        _platformGenerator = GetComponentInChildren<RandomPlatformGenerator>();
+        _bossUI = GetComponentInChildren<BossUI>();
+        _bossUI.Init(this);
     }
 
     private void OnEnable()
@@ -74,6 +86,8 @@ public class BoneReaper : BossMonster
         IsAttacking = false;
 
         _playerMask = LayerMask.GetMask(Game.Monster.Layers.Player);
+
+        _platformGenerator.StartGenerate();
     }
 
     private void Update()
@@ -110,12 +124,14 @@ public class BoneReaper : BossMonster
             return;
 
         _dataHandler.TakeDamage(damage);
+        OnHealthchanged?.Invoke();
         if (_dataHandler.CurHp <= 0)
         {
             // 사망 처리
             _head.Die();
             _leftHand.Die();
             _rightHand.Die();
+            _platformGenerator.StopGenerate();
         }
 
     }
@@ -123,65 +139,102 @@ public class BoneReaper : BossMonster
     public NodeStatus LaserAttack()
     {
         if (IsAttacking) return NodeStatus.Running;
+        if (_patternCoolTime < PatternMaxCoolTime) return NodeStatus.Failure;
 
-        Debug.Log("Laser");
+        //Debug.Log("Laser");
         IsAttacking = true;
         _patternCoolTime = 0;
         _curSlamCount = 0;
 
-        int idx = Random.Range(0, 2);
+        int idx = UnityEngine.Random.Range(0, 2);
         if (idx == 0)
             _leftHand.Laser();
         else
             _rightHand.Laser();
 
-        return NodeStatus.Success;
+        return IsAttacking ? NodeStatus.Running : NodeStatus.Success;
     }
 
-    public NodeStatus SlamAttack()
+    /// <summary>
+    /// 기획서대로 양손 시간차 공격
+    /// </summary>
+    /// <returns></returns>
+    public NodeStatus TowHandSlamAttack()
     {
         if (IsAttacking) return NodeStatus.Running;
+        if (_patternCoolTime < PatternMaxCoolTime) return NodeStatus.Failure;
 
-        Debug.Log("Slam");
+        //Debug.Log("Slam");
         IsAttacking = true;
         _patternCoolTime = 0;
         _curSlamCount++;
+        _curRunningHandsCount += 2;
 
+        if (Vector3.Distance(_target.position, _leftHand.transform.position) <= Vector3.Distance(_target.position, _rightHand.transform.position))
+        {
+            _leftHand.Slam();
+            _rightHand.Slam(3f);
+        }
+        else
+        {
+            _rightHand.Slam();
+            _leftHand.Slam(3f);
+        }
+
+        return IsAttacking ? NodeStatus.Running : NodeStatus.Success;
+    }
+
+    /// <summary>
+    /// 임의로 만든 한손 공격
+    /// </summary>
+    /// <returns></returns>
+    public NodeStatus OneHandSlamAttack()
+    {
+        if (IsAttacking) return NodeStatus.Running;
+        if (_patternCoolTime < PatternMaxCoolTime) return NodeStatus.Failure;
+
+        //Debug.Log("Slam");
+        IsAttacking = true;
+        _patternCoolTime = 0;
+        _curSlamCount++;
+        _curRunningHandsCount++;
 
         if (Vector3.Distance(_target.position, _leftHand.transform.position) <= Vector3.Distance(_target.position, _rightHand.transform.position))
             _leftHand.Slam();
         else
             _rightHand.Slam();
 
-        return NodeStatus.Success;
+        return IsAttacking ? NodeStatus.Running : NodeStatus.Success;
     }
 
     public NodeStatus SummonOrbAttack()
     {
         if (IsAttacking) return NodeStatus.Running;
+        if (_patternCoolTime < PatternMaxCoolTime) return NodeStatus.Failure;
 
-        Debug.Log("SO");
+        //Debug.Log("SO");
         IsAttacking = true;
         _patternCoolTime = 0;
         _curBreathCount = 0;
 
         _head.SummonOrb();
 
-        return NodeStatus.Success;
+        return IsAttacking ? NodeStatus.Running : NodeStatus.Success;
     }
 
     public NodeStatus BreathAttack()
     {
         if (IsAttacking) return NodeStatus.Running;
+        if (_patternCoolTime < PatternMaxCoolTime) return NodeStatus.Failure;
 
-        Debug.Log("Breath");
+        //Debug.Log("Breath");
         IsAttacking = true;
         _patternCoolTime = 0;
         _curBreathCount++;
 
         _head.Breath();
 
-        return NodeStatus.Success;
+        return IsAttacking ? NodeStatus.Running : NodeStatus.Success;
     }
 
     public void HitFlash(SpriteRenderer sr, Coroutine hitEffect)
@@ -204,5 +257,10 @@ public class BoneReaper : BossMonster
         HitFlashMat.SetFloat("_FlashAmount", 0f);
 
         sr.material = originMat;
+    }
+
+    private void DestroyOnDeath()
+    {
+        Destroy(gameObject);
     }
 }

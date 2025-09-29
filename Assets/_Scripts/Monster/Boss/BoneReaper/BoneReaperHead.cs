@@ -1,4 +1,5 @@
 using Game.Monster;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -11,6 +12,8 @@ public class BoneReaperHead : MonoBehaviour, IDamageable
     private SpriteRenderer _sr;
 
     private Coroutine _hitEffect;
+
+    public Action OnDie;
 
     private LayerMask _mask;
 
@@ -135,5 +138,10 @@ public class BoneReaperHead : MonoBehaviour, IDamageable
     {
         _anim.SetTrigger(BoneReaperAnimatorParams.Die);
         StopAllCoroutines();
+    }
+
+    public void DeathEvent()
+    {
+        OnDie();
     }
 }

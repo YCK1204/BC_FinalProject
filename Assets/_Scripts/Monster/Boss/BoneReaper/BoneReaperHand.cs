@@ -47,9 +47,9 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
 
     #region Slam
     // 행동1: 추적해서 내려찍기
-    public void Slam()
+    public void Slam(float delay = 0f)
     {
-        StartCoroutine(FollowTarget());
+        StartCoroutine(FollowTarget(delay));
     }
 
     public void SlamAttack()
@@ -105,8 +105,11 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
         }
     }
 
-    private IEnumerator FollowTarget()
+    private IEnumerator FollowTarget(float delay)
     {
+        if(delay != 0f)
+            yield return new WaitForSeconds(delay);
+
         float targetX = 0;
         float curHeight = transform.position.y;
         while (_curFollowTime < _maxFollowTime)
@@ -243,8 +246,20 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
                 break;
         }
         transform.position = _originPos;
-        _owner.IsAttacking = false;
+
+        // 슬램 카운트가 남아있으면 
+        if(_owner._curRunningHandsCount > 0)
+            _owner._curRunningHandsCount--;
+        if(_owner._curRunningHandsCount <= 0)
+            _owner.IsAttacking = false;
         yield return null;
+    }
+
+    public IEnumerator DelayAnimation(float delay)
+    {
+        _anim.speed = 0;
+        yield return new WaitForSeconds(delay);
+        _anim.speed = 1;
     }
     // 그 외 메서드
 
