@@ -11,88 +11,93 @@ namespace Game.Traits.UI
         [SerializeField] int _traitId;
         [SerializeField] TMP_Text _label;
         [SerializeField] string _txtEquip = "장착";
-        [SerializeField] bool _requireUnlock = true;
+        [SerializeField] bool _alwaysUnlocked = false;
 
-        bool _alwaysUnlocked = false; 
         Button _btn;
-
-        TraitUnlockSystem _unlock; 
-
-#if UNITY_2023_1_OR_NEWER
-        static T FindOne<T>() where T : Object =>
-            Object.FindFirstObjectByType<T>(FindObjectsInactive.Include);
-#else
-        static T FindOne<T>() where T : Object =>
-            Object.FindObjectOfType<T>(true);
-#endif
-
-        public void Init(int traitId) { _traitId = traitId; }
-        public void SetAlwaysUnlocked(bool v) { _alwaysUnlocked = v; }
+        CanvasGroup _group;
+        TraitUnlockSystem _unlock;
 
         void Awake()
         {
             _btn = GetComponent<Button>();
             if (_label == null) _label = GetComponentInChildren<TMP_Text>(true);
-            if (_unlock == null) _unlock = FindOne<TraitUnlockSystem>();
+            if (_label) _label.text = _txtEquip;
+
+            _group = GetComponent<CanvasGroup>();
+            if (_group == null) _group = gameObject.AddComponent<CanvasGroup>();
+
+#if UNITY_2023_1_OR_NEWER
+            _unlock = Object.FindFirstObjectByType<TraitUnlockSystem>(FindObjectsInactive.Include);
+#else
+            _unlock = FindObjectOfType<TraitUnlockSystem>(true);
+#endif
         }
 
         void OnEnable()
         {
-            if (_btn != null) _btn.onClick.AddListener(OnClick);
+            _btn.onClick.AddListener(OnClick);
 
-            if (_unlock == null) _unlock = FindOne<TraitUnlockSystem>();
-            if (_unlock != null) _unlock.OnStateChanged += Refresh;
+            var sys = SkillEquipSystem.Instance;
+            if (sys != null)
+            {
+                sys.OnEquipped += OnSys;
+                sys.OnSnapshotChanged += OnSys;
+                sys.OnSelectedSlotChanged += _ => UpdateState();
+            }
+            if (_unlock != null) _unlock.OnStateChanged += UpdateState;
 
-            if (SkillEquipSystem.Instance != null)
-                SkillEquipSystem.Instance.OnSnapshotChanged += OnSnapshot;
-
-            Refresh();
+            UpdateState();
         }
 
         void OnDisable()
         {
-            if (_btn != null) _btn.onClick.RemoveListener(OnClick);
+            _btn.onClick.RemoveListener(OnClick);
 
-            if (_unlock != null) _unlock.OnStateChanged -= Refresh;
-
-            if (SkillEquipSystem.Instance != null)
-                SkillEquipSystem.Instance.OnSnapshotChanged -= OnSnapshot;
+            var sys = SkillEquipSystem.Instance;
+            if (sys != null)
+            {
+                sys.OnEquipped -= OnSys;
+                sys.OnSnapshotChanged -= OnSys;
+                sys.OnSelectedSlotChanged -= _ => UpdateState();
+            }
+            if (_unlock != null) _unlock.OnStateChanged -= UpdateState;
         }
 
         void OnClick()
         {
             var sys = SkillEquipSystem.Instance;
             if (sys == null) return;
-
-            if (_requireUnlock && !_alwaysUnlocked)
-            {
-                if (_unlock == null) _unlock = FindOne<TraitUnlockSystem>();
-                if (_unlock == null || !_unlock.IsUnlocked(_traitId)) return;
-            }
-
-            sys.Equip(_traitId);
+            if (sys.Equip(_traitId))
+                sys.ClearSelection();
+            UpdateState();
         }
 
-        void OnSnapshot(int[] _) => Refresh();
+        void OnSys(int[] _) => UpdateState();
 
-        public void Refresh()
+        void UpdateState()
         {
             var sys = SkillEquipSystem.Instance;
 
-            bool equipped = (sys != null) && sys.IsEquipped(_traitId);
-            bool unlocked = true;
+            bool isBasic = _alwaysUnlocked;
+            bool unlocked = isBasic || (_unlock != null && _unlock.IsUnlocked(_traitId));
+            bool equipped = sys != null && sys.IsEquipped(_traitId);
+            bool hasSelection = sys != null && sys.SelectedSlot >= 0;
 
-            if (_requireUnlock && !_alwaysUnlocked)
+            bool visible = isBasic || (unlocked && !equipped);
+            bool interactable = visible && hasSelection;
+
+            if (_group != null)
             {
-                if (_unlock == null) _unlock = FindOne<TraitUnlockSystem>();
-                unlocked = (_unlock != null) && _unlock.IsUnlocked(_traitId);
+                _group.alpha = visible ? 1f : 0f;
+                _group.interactable = interactable;
+                _group.blocksRaycasts = interactable;
             }
-
-            bool show = (!equipped) && unlocked;
-            gameObject.SetActive(show);
-
             if (_label != null) _label.text = _txtEquip;
-            if (_btn != null) _btn.interactable = show;
         }
+
+        public void Init(int traitId) { _traitId = traitId; UpdateState(); }
+
+        public void SetAlwaysUnlocked(bool v) { _alwaysUnlocked = v; UpdateState(); }
+        public void Refresh() { UpdateState(); }
     }
 }
