@@ -122,7 +122,7 @@ public class BoneReaper : BossMonster
         return NodeStatus.Failure;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         if (_dataHandler.CurHp <= 0)
             return;

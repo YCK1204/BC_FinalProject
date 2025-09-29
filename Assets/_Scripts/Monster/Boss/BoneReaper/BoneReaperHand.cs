@@ -104,7 +104,7 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
                 targetRb.AddForce(knockBackDir * 400);
             }
 
-            target.GetComponent<IDamageable>()?.TakeDamage((int)_owner.MonsterData.AttackPower);
+            target.GetComponent<IDamageable>()?.TakeDamage(_owner.MonsterData.AttackPower);
             Debug.Log(_owner.MonsterData.AttackPower);
         }
     }
@@ -205,7 +205,7 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
                 targetRb.AddForce(knockBackDir * 400);
             }
 
-            target.GetComponent<IDamageable>()?.TakeDamage((int)(_owner.MonsterData.AttackPower * 1.5f));
+            target.GetComponent<IDamageable>()?.TakeDamage(_owner.MonsterData.AttackPower * 1.5f);
             Debug.Log((int)(_owner.MonsterData.AttackPower * 1.5f));
         }
     }
@@ -270,7 +270,7 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
     }
     // 그 외 메서드
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         if (_owner.MonsterData.CurHp <= 0 || _owner.IsOneFrameInvincible)
             return;

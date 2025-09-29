@@ -93,7 +93,7 @@ public class HomingProjectile : BaseProjectile
             targetRb.linearVelocity = Vector2.zero;
             targetRb.AddForce(knockBackDir * 400);
 
-            damageable?.TakeDamage((int)DataHandler.Damage);
+            damageable?.TakeDamage(DataHandler.Damage);
             if (_anim != null)
                 _anim.SetTrigger("Explode");
             else

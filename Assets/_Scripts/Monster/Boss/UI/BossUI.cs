@@ -18,7 +18,7 @@ public class BossUI : MonoBehaviour
     {
         if(_owner.MonsterData.CurHp >0)
         {
-            BossHpBarForward.fillAmount = _owner.MonsterData.CurHp * 1f / _owner.MonsterData.MaxHp;
+            BossHpBarForward.fillAmount = _owner.MonsterData.CurHp / _owner.MonsterData.MaxHp;
         }
         else
         {
