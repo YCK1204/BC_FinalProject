@@ -11,6 +11,13 @@ public class RandomPlatformGenerator : MonoBehaviour
     private WaitForSeconds _generateDelay;
     private WaitForSeconds _duration;
 
+    private BossMonster _owner;
+
+    public void Init(BossMonster boss)
+    {
+        _owner = boss;
+    }
+
     public void StartGenerate()
     {
         _generateDelay = new WaitForSeconds(GenerateDelay);
@@ -32,6 +39,12 @@ public class RandomPlatformGenerator : MonoBehaviour
     {
         while(true)
         {
+            if(_owner.IsIntro)
+            {
+                yield return null;
+                continue;
+            }
+
             yield return _generateDelay;
             int index = Random.Range(0, Platforms.Length);
 

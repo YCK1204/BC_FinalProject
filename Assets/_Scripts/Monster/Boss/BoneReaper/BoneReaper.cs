@@ -28,6 +28,7 @@ public class BoneReaper : BossMonster
     public BoneReaperBT BT { get { return _curBT; } }
 
     private RandomPlatformGenerator _platformGenerator;
+    private BossIntroController _introController;
     private BossUI _bossUI;
 
     protected LayerMask _playerMask;
@@ -75,8 +76,11 @@ public class BoneReaper : BossMonster
         _head.OnDie += DestroyOnDeath;
 
         _platformGenerator = GetComponentInChildren<RandomPlatformGenerator>();
+        _platformGenerator.Init(this);
         _bossUI = GetComponentInChildren<BossUI>();
         _bossUI.Init(this);
+        _introController = GetComponentInChildren<BossIntroController>();
+        _introController.Init(this);
     }
 
     private void OnEnable()
@@ -86,14 +90,18 @@ public class BoneReaper : BossMonster
         _curBreathCount = 0;
         _curBTCheckTime = 0;
         IsAttacking = false;
+        IsIntro = true;
 
         _playerMask = LayerMask.GetMask(Game.Monster.Layers.Player);
 
         _platformGenerator.StartGenerate();
+        _introController.StartIntro();
     }
 
     private void Update()
     {
+        if (IsIntro) return;
+
         if(_dataHandler.CurHp > 0 && _curBTCheckTime >= _maxBTCheckTime)
         {
             _curBTCheckTime = 0;

@@ -11,5 +11,6 @@ public abstract class BossMonster : BaseMonster
 
     public Action OnHealthchanged;
     public bool IsAttacking;
+    public bool IsIntro;
 
 }
