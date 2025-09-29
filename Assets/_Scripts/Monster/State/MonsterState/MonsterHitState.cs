@@ -17,6 +17,8 @@ public class MonsterHitState : MonsterBaseState
         _maxHitTime = 0.5f;
         _curHitTime = 0f;
         //_stateMachine.Owner.Anim.SetFloat(Game.Monster.AnimatorParams.Speed, 0);
+        // Hit 트리거 리셋
+        _stateMachine.Owner.Anim.ResetTrigger(Game.Monster.AnimatorParams.Hit);
         _stateMachine.Owner.Anim.SetTrigger(Game.Monster.AnimatorParams.Hit);
         _stateMachine.Owner.Rb.linearVelocityX = 0f;
     }

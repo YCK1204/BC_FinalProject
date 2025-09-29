@@ -1,4 +1,5 @@
 using Game.Monster;
+using Game.Player;
 using System.Collections;
 using UnityEngine;
 
@@ -76,10 +77,15 @@ public class HomingProjectile : BaseProjectile
         // 플레이어면 데미지
         if ((1 << other.gameObject.layer) == LayerMask.GetMask(Game.Monster.Layers.Player))
         {
+            // 무적 체크
+            PlayerCharacter pc = other.GetComponent<PlayerCharacter>();
+            if (pc != null && pc.Invincible)
+                return;
+
             _rb.linearVelocity = Vector2.zero;
             _startMove = false;
 
-            Vector2 knockBackDir = new Vector2(transform.position.x > other.transform.position.x ? -1 : 1, 1);
+            Vector2 knockBackDir = new Vector2(transform.position.x > other.transform.position.x ? -1 : 1, 0);
             knockBackDir.Normalize();
 
             // 수치를 어떻게 조정해야하지?
@@ -87,7 +93,7 @@ public class HomingProjectile : BaseProjectile
             targetRb.linearVelocity = Vector2.zero;
             targetRb.AddForce(knockBackDir * 400);
 
-            damageable?.TakeDamage((int)DataHandler.Damage);
+            damageable?.TakeDamage(DataHandler.Damage);
             if (_anim != null)
                 _anim.SetTrigger("Explode");
             else

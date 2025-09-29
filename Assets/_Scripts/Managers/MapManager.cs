@@ -64,8 +64,15 @@ public class MapManager : MonoBehaviour
             Destroy(_currentMap);
 
         _currentMap = Instantiate(prefab, transform);
-        //_currentMap.SetActive(false);
-        //_currentMap.SetActive(true);
+
+
+        var colliderTransform = _currentMap.transform.FindChild<Transform>(name: "Collider");
+        if (colliderTransform != null)
+        {
+            colliderTransform.gameObject.SetActive(false);
+            colliderTransform.gameObject.SetActive(true);
+        }
+
         MovePlayerSpawn(_currentMap);
 
         //포탈on

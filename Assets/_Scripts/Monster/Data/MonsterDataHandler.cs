@@ -30,8 +30,8 @@ public class MonsterDataHandler : MonoBehaviour
     [SerializeField] MonsterData _data;
     public MonsterData Data {  get { return _data; } set { _data = value; } }
 
-    [SerializeField] protected int _curHp;
-    public int CurHp { get { return _curHp; } }
+    [SerializeField] protected float _curHp;
+    public float CurHp { get { return _curHp; } }
 
     private BaseMonster _owner;
     public BaseMonster Owner { set { _owner = value; } }
@@ -80,13 +80,13 @@ public class MonsterDataHandler : MonoBehaviour
             return (Data.DetectRange + add) * mul;
         }
     }
-    public int MaxHp
+    public float MaxHp
     {
         get
         {
             float add, mul;
             GetStat(Game.Monster.StatType.Hp, out add, out mul);
-            return (int)((Data.MaxHp + add) * mul);
+            return (Data.MaxHp + add) * mul;
         }
     }
     public bool CanMove { get { return Data.CanMove; } }
@@ -169,7 +169,7 @@ public class MonsterDataHandler : MonoBehaviour
         }
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         _curHp -= Mathf.Max(0, damage);
     }
