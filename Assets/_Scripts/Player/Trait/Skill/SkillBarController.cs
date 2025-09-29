@@ -3,7 +3,6 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using Game.Traits;
 
 namespace Game.Traits.UI
 {
@@ -24,8 +23,8 @@ namespace Game.Traits.UI
         [SerializeField] Color selectedOutline = new Color(0.1f, 0.1f, 0.1f);
         [SerializeField] TMP_FontAsset font;
         [SerializeField] int fontSize = 18;
-        [SerializeField] Color labelColor = new Color(0.7f, 0.7f, 0.7f);
         [SerializeField] bool slotLabelBold = true;
+        [SerializeField] Color labelColor = new Color(0.7f, 0.7f, 0.7f);
 
         [Header("Unequip Button")]
         [SerializeField] Vector2 unequipSize = new Vector2(52, 24);
@@ -35,6 +34,10 @@ namespace Game.Traits.UI
         [SerializeField] Color32 unequipHi = new Color32(80, 80, 80, 255);
         [SerializeField] Color32 unequipPressed = new Color32(40, 40, 40, 255);
         [SerializeField] Color unequipLabelColor = new Color(0.9f, 0.9f, 0.9f);
+
+        [Header("Click Clearing")]
+        [SerializeField] bool clearOnClickOutside = true;
+        [SerializeField] RectTransform[] protectClickAreas;
 
         RectTransform _rt;
         readonly List<SlotView> _views = new();
@@ -46,12 +49,14 @@ namespace Game.Traits.UI
             BuildSlots();
             Wire();
             RefreshAll();
-
             _rt.SetAsFirstSibling();
         }
 
         void Update()
         {
+            if (!clearOnClickOutside) return;
+            if (Game.Traits.SkillEquipSystem.Instance == null) return;
+            if (Game.Traits.SkillEquipSystem.Instance.SelectedSlot < 0) return;
             if (!Input.GetMouseButtonDown(0)) return;
 
             var es = EventSystem.current;
@@ -61,41 +66,48 @@ namespace Game.Traits.UI
             var hits = new List<RaycastResult>();
             es.RaycastAll(ped, hits);
 
-            bool clickedAnyUI = false;
-            bool clickedOurSlot = false;
+            bool clickedAnyUI = hits.Count > 0;
+            bool clickedOurBar = false;
+            bool clickedProtected = false;
 
             for (int i = 0; i < hits.Count; i++)
             {
                 var go = hits[i].gameObject;
                 if (go == null) continue;
 
-                var btn = go.GetComponentInParent<Button>();
-                if (btn != null) clickedAnyUI = true;
-
                 if (_rt != null && go.transform.IsChildOf(_rt))
                 {
-                    clickedOurSlot = true;
+                    clickedOurBar = true;
+                    break;
+                }
+
+                if (!clickedProtected && protectClickAreas != null)
+                {
+                    for (int p = 0; p < protectClickAreas.Length; p++)
+                    {
+                        var area = protectClickAreas[p];
+                        if (area != null && go.transform.IsChildOf(area))
+                        {
+                            clickedProtected = true;
+                            break;
+                        }
+                    }
                 }
             }
 
-            if (!clickedAnyUI)
+            if (!clickedAnyUI || (!clickedOurBar && !clickedProtected))
             {
-                SkillEquipSystem.Instance?.ClearSelection();
-                RefreshSelected();
-            }
-            else if (!clickedOurSlot)
-            {
-                SkillEquipSystem.Instance?.ClearSelection();
+                Game.Traits.SkillEquipSystem.Instance.ClearSelection();
                 RefreshSelected();
             }
         }
 
         void OnDestroy()
         {
-            if (SkillEquipSystem.Instance != null)
+            if (Game.Traits.SkillEquipSystem.Instance != null)
             {
-                SkillEquipSystem.Instance.OnEquipped -= OnEquipped;
-                SkillEquipSystem.Instance.OnSelectedSlotChanged -= OnSelectedSlot;
+                Game.Traits.SkillEquipSystem.Instance.OnEquipped -= OnEquipped;
+                Game.Traits.SkillEquipSystem.Instance.OnSelectedSlotChanged -= OnSelectedSlot;
             }
         }
 
@@ -112,9 +124,9 @@ namespace Game.Traits.UI
 
         void Wire()
         {
-            if (SkillEquipSystem.Instance == null) return;
-            SkillEquipSystem.Instance.OnEquipped += OnEquipped;
-            SkillEquipSystem.Instance.OnSelectedSlotChanged += OnSelectedSlot;
+            if (Game.Traits.SkillEquipSystem.Instance == null) return;
+            Game.Traits.SkillEquipSystem.Instance.OnEquipped += OnEquipped;
+            Game.Traits.SkillEquipSystem.Instance.OnSelectedSlotChanged += OnSelectedSlot;
         }
 
         void ApplyAnchor()
@@ -137,10 +149,10 @@ namespace Game.Traits.UI
 
         void BuildSlots()
         {
-            int count = SkillEquipSystem.Instance ? SkillEquipSystem.Instance.SlotCount : 2;
+            int count = Game.Traits.SkillEquipSystem.Instance ? Game.Traits.SkillEquipSystem.Instance.SlotCount : 2;
 
             float width = barPadding.x * 2 + (slotSize.x * count) + slotGap * (count - 1);
-            float height = barPadding.y * 2 + slotSize.y + unequipGap + unequipSize.y;
+            float height = barPadding.y * 2 + (slotSize.y) + unequipGap + unequipSize.y;
             _rt.sizeDelta = new Vector2(width, height);
 
             for (int i = 0; i < count; i++)
@@ -151,11 +163,12 @@ namespace Game.Traits.UI
                 rt.sizeDelta = slotSize;
                 rt.anchorMin = rt.anchorMax = new Vector2(0, 0);
                 rt.pivot = new Vector2(0, 0);
-                rt.anchoredPosition = new Vector2(barPadding.x + i * (slotSize.x + slotGap), barPadding.y + unequipGap + unequipSize.y);
+                rt.anchoredPosition = new Vector2(barPadding.x + i * (slotSize.x + slotGap),
+                                                  barPadding.y + unequipGap + unequipSize.y);
 
                 var bg = go.GetComponent<Image>();
                 bg.color = slotColor;
-                bg.raycastTarget = false;
+                bg.raycastTarget = true;
 
                 var tgo = new GameObject("Label", typeof(RectTransform), typeof(TextMeshProUGUI));
                 var tr = (RectTransform)tgo.transform;
@@ -166,9 +179,10 @@ namespace Game.Traits.UI
                 var label = tgo.GetComponent<TextMeshProUGUI>();
                 if (font) label.font = font;
                 label.fontSize = fontSize;
+                if (slotLabelBold) label.fontStyle |= FontStyles.Bold;
                 label.alignment = TextAlignmentOptions.Center;
                 label.color = labelColor;
-                if (slotLabelBold) label.fontStyle |= FontStyles.Bold;
+                label.raycastTarget = false;
 
                 var selGo = new GameObject("Selected", typeof(RectTransform), typeof(Image));
                 var srt = (RectTransform)selGo.transform;
@@ -188,7 +202,8 @@ namespace Game.Traits.UI
                 urt.sizeDelta = unequipSize;
                 urt.anchorMin = urt.anchorMax = new Vector2(0, 0);
                 urt.pivot = new Vector2(0.5f, 1f);
-                urt.anchoredPosition = new Vector2(rt.anchoredPosition.x + slotSize.x * 0.5f, barPadding.y + unequipSize.y);
+                urt.anchoredPosition = new Vector2(rt.anchoredPosition.x + slotSize.x * 0.5f,
+                                                   barPadding.y + unequipSize.y);
 
                 var uimg = unequipGo.GetComponent<Image>();
                 uimg.color = unequipBase;
@@ -206,6 +221,7 @@ namespace Game.Traits.UI
                 utxt.alignment = TextAlignmentOptions.Center;
                 utxt.color = unequipLabelColor;
                 utxt.text = unequipText;
+                utxt.raycastTarget = false;
 
                 var ub = unequipGo.GetComponent<Button>();
                 var cb = ub.colors;
@@ -232,14 +248,14 @@ namespace Game.Traits.UI
 
                 view.button.onClick.AddListener(() =>
                 {
-                    var sys = SkillEquipSystem.Instance;
+                    var sys = Game.Traits.SkillEquipSystem.Instance;
                     if (sys != null) sys.SetSelectedSlot(slotIndex);
                     RefreshSelected();
                 });
 
                 view.unequipButton.onClick.AddListener(() =>
                 {
-                    var sys = SkillEquipSystem.Instance;
+                    var sys = Game.Traits.SkillEquipSystem.Instance;
                     if (sys == null) return;
                     if (sys.UnequipAt(slotIndex))
                     {
@@ -258,7 +274,7 @@ namespace Game.Traits.UI
 
         void RefreshAll()
         {
-            var sys = SkillEquipSystem.Instance;
+            var sys = Game.Traits.SkillEquipSystem.Instance;
             if (sys == null) return;
 
             for (int i = 0; i < _views.Count; i++)
@@ -272,7 +288,7 @@ namespace Game.Traits.UI
 
         void RefreshSelected()
         {
-            int sel = SkillEquipSystem.Instance ? SkillEquipSystem.Instance.SelectedSlot : -1;
+            int sel = Game.Traits.SkillEquipSystem.Instance ? Game.Traits.SkillEquipSystem.Instance.SelectedSlot : -1;
             for (int i = 0; i < _views.Count; i++)
                 _views[i].select.enabled = (i == sel);
         }
