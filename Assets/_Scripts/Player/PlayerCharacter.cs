@@ -70,6 +70,7 @@ namespace Game.Player
         public bool IsDead => currentHP <= 0f;
 
         public event Action<float, float> HpEvent;
+        public event Action<float, float> AwakeningEvent;
 
 
         private void Awake()
@@ -209,6 +210,8 @@ namespace Game.Player
             var awakeningData = Data.awakening;
             currentAwakening = Mathf.Min(awakeningData.maxAwakeningGauge, currentAwakening + awakeningData.awakeningOnHit);
 
+            AwakeningEvent?.Invoke(currentAwakening, awakeningData.maxAwakeningGauge);
+
             if (currentAwakening >= awakeningData.maxAwakeningGauge)
             {
                 EnterAwakening();
@@ -218,18 +221,34 @@ namespace Game.Player
         private void EnterAwakening()
         {
             if (IsAwakened) return;
+
+            var awakeningData = Data.awakening;
+
             Debug.Log("각성!");
             IsAwakened = true;
-            currentAwakening = 0f;
+            currentAwakening = awakeningData.maxAwakeningGauge;
             float totalDuration = Data.awakening.duration;
             StartCoroutine(AwakeningTimer(totalDuration));
         }
 
         private IEnumerator AwakeningTimer(float duration)
         {
-            yield return new WaitForSeconds(duration);
+            float time = 0f;
+            float start = currentAwakening;
 
+            while (time < duration)
+            {
+                time += Time.deltaTime;
+                currentAwakening = Mathf.Lerp(start, 0f, time / duration);
+
+                AwakeningEvent?.Invoke(currentAwakening, Data.awakening.maxAwakeningGauge);
+
+                yield return null;
+            }
+
+            currentAwakening = 0f;
             IsAwakened = false;
+            AwakeningEvent?.Invoke(currentAwakening, Data.awakening.maxAwakeningGauge);
             Debug.Log("각성종료");
         }
 
