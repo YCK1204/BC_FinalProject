@@ -1,8 +1,10 @@
+using Game.Player;
 using System;
+using System.Collections;
 using UnityEngine;
 
 [Serializable]
-public struct ItemBuffData
+public struct ItemBuffData : ItemAbilityEvent
 {
     public int Id;
     public float Duration;
@@ -26,5 +28,27 @@ public struct ItemBuffData
         IconURL = iconURL;
         Name = name;
         DescriptionId = descriptionId;
+        _lastBuffTime = 0f;
+        _buffCoroutine = null;
+    }
+    float _lastBuffTime;
+    Coroutine _buffCoroutine;
+    public void OnEvent(PlayerCharacter player)
+    {
+        _lastBuffTime = Time.time;
+        if (_buffCoroutine == null)
+            _buffCoroutine = player.StartCoroutine(CoBuff(player));
+    }
+    IEnumerator CoBuff(PlayerCharacter player)
+    {
+        ItemSetterUtil.ApplyStat(player, Ability1, Ability1Value);
+        ItemSetterUtil.ApplyStat(player, Ability2, Ability2Value);
+        while (Time.time - _lastBuffTime < Duration)
+        {
+            yield return null;
+        }
+        ItemSetterUtil.RemoveStat(player, Ability1, Ability1Value);
+        ItemSetterUtil.RemoveStat(player, Ability2, Ability2Value);
+        _buffCoroutine = null;
     }
 }

@@ -1,8 +1,9 @@
+using Game.Player;
 using System;
 using UnityEngine;
 
 [Serializable]
-public struct ItemProjectileData
+public struct ItemProjectileData : ItemAbilityEvent
 {
     public int Id;
     public float Duration;
@@ -21,5 +22,10 @@ public struct ItemProjectileData
         Height = height;
         CollisionCount = collisionCount;
         Damage = damage;
+    }
+    public void OnEvent(PlayerCharacter player)
+    {
+        var projectile = Manager.Pool.Pop<ProjectileController>();
+        projectile.Init(this, player);
     }
 }

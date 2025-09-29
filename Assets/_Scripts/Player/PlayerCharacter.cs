@@ -11,6 +11,7 @@ namespace Game.Player
     {
         public Rigidbody2D Rb { get; private set; }
         public Animator Animator { get; private set; }
+        public static PlayerCharacter Instance { get; private set; }
 
         [SerializeField] private SpriteRenderer _spriteRenderer;
 
@@ -74,6 +75,7 @@ namespace Game.Player
 
         private void Awake()
         {
+            Instance = this;
             Rb = GetComponent<Rigidbody2D>();
             Animator = GetComponentInChildren<Animator>();
             if (!Force) Force = GetComponent<ForceReceiver>();
