@@ -91,6 +91,7 @@ public class BoneReaper : BossMonster
         _curBTCheckTime = 0;
         IsAttacking = false;
         IsIntro = true;
+        IsOneFrameInvincible = true;
 
         _playerMask = LayerMask.GetMask(Game.Monster.Layers.Player);
 
