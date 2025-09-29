@@ -32,6 +32,7 @@ public class RandomPlatformGenerator : MonoBehaviour
     {
         while(true)
         {
+            yield return _generateDelay;
             int index = Random.Range(0, Platforms.Length);
 
             Platforms[index].gameObject.SetActive(true);
@@ -39,8 +40,6 @@ public class RandomPlatformGenerator : MonoBehaviour
             yield return _duration;
 
             Platforms[index].gameObject.SetActive(false);
-
-            yield return _generateDelay;
         }
     }
 }

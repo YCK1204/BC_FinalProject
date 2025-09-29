@@ -46,7 +46,7 @@ namespace Game.Monster
 
         public override NodeStatus Evaluate()
         {
-            Debug.Log(NodeName);
+            //Debug.Log(NodeName);
             return _action?.Invoke() ?? NodeStatus.Failure;
         }
     }
@@ -87,7 +87,7 @@ namespace Game.Monster
         /// <returns>결과 상태</returns>
         public override NodeStatus Evaluate()
         {
-            Debug.Log(NodeName);
+            //Debug.Log(NodeName);
             for(;_curIndex < _chilldren.Count; _curIndex++)
             {
                 NodeStatus result = _chilldren[_curIndex].Evaluate();

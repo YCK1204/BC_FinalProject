@@ -1,4 +1,5 @@
 using Game.Monster;
+using Game.Player;
 using UnityEngine;
 
 public class Orb : MonoBehaviour
@@ -36,7 +37,10 @@ public class Orb : MonoBehaviour
 
         if (target != null)
         {
-            // Todo: 무적 체크
+            // 무적 체크
+            PlayerCharacter pc = target.GetComponent<PlayerCharacter>();
+            if (pc != null && pc.Invincible)
+                return;
 
             float knockBackDirX = target.transform.position.x < airAttakcPos.x ? -1 : 1;
             Vector2 knockBackDir = new Vector2(knockBackDirX, 0.5f);

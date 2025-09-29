@@ -1,4 +1,5 @@
 using Game.Monster;
+using Game.Player;
 using System.Collections;
 using UnityEngine;
 
@@ -87,10 +88,13 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
 
         if(target != null)
         {
-            // Todo: 무적 체크
+            // 무적 체크
+            PlayerCharacter pc = target.GetComponent<PlayerCharacter>();
+            if (pc != null && pc.Invincible)
+                return;
 
             float knockBackDirX = target.transform.position.x < groundAttakcPos.x ? -1 : 1;
-            Vector2 knockBackDir = new Vector2(knockBackDirX, 1);
+            Vector2 knockBackDir = new Vector2(knockBackDirX, 0.5f);
             knockBackDir.Normalize();
 
             Rigidbody2D targetRb = target.GetComponent<Rigidbody2D>();
@@ -185,10 +189,13 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
 
         if (target != null)
         {
-            // Todo: 무적 체크
+            // 무적 체크
+            PlayerCharacter pc = target.GetComponent<PlayerCharacter>();
+            if (pc != null && pc.Invincible)
+                return;
 
             float knockBackDirX = target.transform.position.x < airAttakcPos.x ? -1 : 1;
-            Vector2 knockBackDir = new Vector2(knockBackDirX, 1);
+            Vector2 knockBackDir = new Vector2(knockBackDirX, 0.5f);
             knockBackDir.Normalize();
 
             Rigidbody2D targetRb = target.GetComponent<Rigidbody2D>();
@@ -265,9 +272,10 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
 
     public void TakeDamage(int damage)
     {
-        if (_owner.MonsterData.CurHp <= 0)
+        if (_owner.MonsterData.CurHp <= 0 || _owner.IsOneFrameInvincible)
             return;
 
+        _owner.IsOneFrameInvincible = true;
         _owner.HitFlash(_sr, _hitEffect);
         _owner.TakeDamage(damage);
     }

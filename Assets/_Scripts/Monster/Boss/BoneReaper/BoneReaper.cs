@@ -32,6 +32,8 @@ public class BoneReaper : BossMonster
 
     protected LayerMask _playerMask;
 
+    public bool IsOneFrameInvincible = false;
+
     private WaitForSeconds _waitForHitFlash;
 
     [Header("Slam")]
@@ -101,6 +103,8 @@ public class BoneReaper : BossMonster
 
         if(!IsAttacking)
             _patternCoolTime += Time.deltaTime;
+
+        IsOneFrameInvincible = false;
     }
 
     public NodeStatus FindTarget()
@@ -205,6 +209,33 @@ public class BoneReaper : BossMonster
             _rightHand.Slam();
 
         return IsAttacking ? NodeStatus.Running : NodeStatus.Success;
+    }
+
+    bool _attackFlag = false;
+    public NodeStatus OtherSlamAttack()
+    {
+        if (IsAttacking) return NodeStatus.Running;
+        //if (_patternCoolTime < PatternMaxCoolTime) return NodeStatus.Failure;
+
+        if(_attackFlag == false)
+        {
+            IsAttacking = true;
+            _patternCoolTime = 0;
+            _curSlamCount++;
+            _curRunningHandsCount++;
+
+            if (Vector3.Distance(_target.position, _leftHand.transform.position) <= Vector3.Distance(_target.position, _rightHand.transform.position))
+                _leftHand.Slam();
+            else
+                _rightHand.Slam();
+
+            return NodeStatus.Running;
+        }
+        else
+        {
+            _attackFlag = false;
+            return NodeStatus.Success;
+        }
     }
 
     public NodeStatus SummonOrbAttack()

@@ -1,4 +1,5 @@
 using Game.Monster;
+using Game.Player;
 using System.Collections;
 using UnityEngine;
 
@@ -76,6 +77,11 @@ public class HomingProjectile : BaseProjectile
         // 플레이어면 데미지
         if ((1 << other.gameObject.layer) == LayerMask.GetMask(Game.Monster.Layers.Player))
         {
+            // 무적 체크
+            PlayerCharacter pc = other.GetComponent<PlayerCharacter>();
+            if (pc != null && pc.Invincible)
+                return;
+
             _rb.linearVelocity = Vector2.zero;
             _startMove = false;
 

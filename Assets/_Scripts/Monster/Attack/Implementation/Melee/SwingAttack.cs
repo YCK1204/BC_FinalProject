@@ -1,4 +1,5 @@
 using Game.Monster;
+using Game.Player;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
@@ -18,6 +19,10 @@ public class SwingAttack : MeleeAttack
         {
             if(_target != null)
             {
+                PlayerCharacter pc = _target.GetComponent<PlayerCharacter>();
+                if (pc != null && pc.Invincible)
+                    return;
+
                 Vector2 knockBackDir = new Vector2(_monsterAttack.Owner.transform.localScale.x < 0 ? -1 : 1, 0);
                 knockBackDir.Normalize();
 
