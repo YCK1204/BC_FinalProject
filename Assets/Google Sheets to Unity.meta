@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/_Scripts/Player/Trait/Skill.meta
-guid: a61fe544eabbb214f98927bcec5d7047
-========
 guid: 1f595a140d76e9f48a685063600e89cc
->>>>>>>> dev:Assets/Google Sheets to Unity.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
