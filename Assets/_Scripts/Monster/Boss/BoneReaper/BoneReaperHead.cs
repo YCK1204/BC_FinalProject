@@ -55,12 +55,12 @@ public class BoneReaperHead : MonoBehaviour, IDamageable
         Collider2D target;
 
         float t = Mathf.InverseLerp(2f, 5f, size);
-        float ySize = Mathf.Lerp(2f, 1f, t) / 2;
+        float ySize = (Mathf.Lerp(2f, 1f, t) / 2) * _owner.BossScale;
 
 
         // 지상 0, 0.5 에서 좌우 size 상하 0.5 박스
         Vector3 AttackPos = new Vector3(0, ySize, 0);
-        float lr = size;
+        float lr = size * _owner.BossScale;
         float ud = ySize;
         target = Physics2D.OverlapBox(transform.position + AttackPos, new Vector2(lr*2, ud*2), 0, _mask);
 #if UNITY_EDITOR
@@ -111,19 +111,19 @@ public class BoneReaperHead : MonoBehaviour, IDamageable
         WaitForSeconds orbCreateCoolTime = new WaitForSeconds(0.5f);
         // 7 5 3
         // Todo: 오브젝트 풀로 변경 필요할 듯?
-        Instantiate(_owner.VerticalOrb, transform.position + Vector3.right * 7, Quaternion.identity).Init(_owner);
-        Instantiate(_owner.VerticalOrb, transform.position + Vector3.right * -7, Quaternion.identity).Init(_owner);
+        Instantiate(_owner.VerticalOrb, transform.position + Vector3.right * 7 * _owner.BossScale, Quaternion.identity).Init(_owner);
+        Instantiate(_owner.VerticalOrb, transform.position + Vector3.right * -7 * _owner.BossScale, Quaternion.identity).Init(_owner);
         yield return orbCreateCoolTime;
 
-        Instantiate(_owner.VerticalOrb, transform.position + Vector3.right * 5, Quaternion.identity).Init(_owner);
-        Instantiate(_owner.VerticalOrb, transform.position + Vector3.right * -5, Quaternion.identity).Init(_owner);
+        Instantiate(_owner.VerticalOrb, transform.position + Vector3.right * 5 * _owner.BossScale, Quaternion.identity).Init(_owner);
+        Instantiate(_owner.VerticalOrb, transform.position + Vector3.right * -5 * _owner.BossScale, Quaternion.identity).Init(_owner);
         yield return orbCreateCoolTime;
 
-        Instantiate(_owner.VerticalOrb, transform.position + Vector3.right * 3, Quaternion.identity).Init(_owner);
-        Instantiate(_owner.VerticalOrb, transform.position + Vector3.right * -3, Quaternion.identity).Init(_owner);
+        Instantiate(_owner.VerticalOrb, transform.position + Vector3.right * 3 * _owner.BossScale, Quaternion.identity).Init(_owner);
+        Instantiate(_owner.VerticalOrb, transform.position + Vector3.right * -3 * _owner.BossScale, Quaternion.identity).Init(_owner);
         yield return orbCreateCoolTime;
 
-        Instantiate(_owner.SpikeOrb, transform.position + Vector3.up * -2.5f, Quaternion.identity).Init(_owner);
+        Instantiate(_owner.SpikeOrb, transform.position + Vector3.up * -2.5f * _owner.BossScale, Quaternion.identity).Init(_owner);
 
         yield return null;
     }

@@ -54,6 +54,7 @@ public class BoneReaper : BossMonster
         _curBT.Init(this);
 
         _waitForHitFlash = new WaitForSeconds(0.1f);
+        _bossScale = transform.localScale.x;
 
         _head = GetComponentInChildren<BoneReaperHead>();
         BoneReaperHand[] hands = GetComponentsInChildren<BoneReaperHand>();
