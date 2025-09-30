@@ -13,6 +13,8 @@ namespace Game.Player
         public Animator Animator { get; private set; }
         public static PlayerCharacter Instance { get; private set; }
 
+        public bool OnTrait;
+
         [SerializeField] private SpriteRenderer _spriteRenderer;
 
         [SerializeField] private CameraShake camShake;
