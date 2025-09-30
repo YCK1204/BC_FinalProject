@@ -82,8 +82,8 @@ public struct ItemData
     public ItemGradeType ItemGrade;
     public void Set(PlayerCharacter player)
     {
-        ItemSetterUtil.ApplyStat(player, Stat1);
-        ItemSetterUtil.ApplyStat(player, Stat2);
+        ItemSetterUtil.ApplyStat(player, Stat1.ItemExtraStatType, Stat1.Value);
+        ItemSetterUtil.ApplyStat(player, Stat2.ItemExtraStatType, Stat2.Value);
     }
     public ItemData(int id, ItemGradeType itemGradeType, string _name, ItemExtraStatType ability_1Type, int ability_1Value, ItemExtraStatType ability_2Type, int ability_2Value, int itemTalentId, int synergyId, string iconURL, int descriptionId)
     {

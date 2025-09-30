@@ -10,8 +10,6 @@ public class ItemController : MonoBehaviour
     [SerializeField]
     Vector2 ColliderScale;
     [SerializeField]
-    ItemContainer ItemContainerPrefab;
-
     ItemContainer _itemContainer;
     SpriteRenderer _spriteRenderer;
 
@@ -22,7 +20,6 @@ public class ItemController : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
 
         
-        _itemContainer = Instantiate(ItemContainerPrefab);
         _itemContainer.SetUI(ItemData);
         _itemContainer.transform.position = (Vector2)transform.position + ContainerOffset;
         _itemContainer.transform.parent = transform;
@@ -33,6 +30,8 @@ public class ItemController : MonoBehaviour
     }
     public void SetSprite(Sprite sprite)
     {
+        if (_spriteRenderer == null)
+            _spriteRenderer = GetComponent<SpriteRenderer>();
         _spriteRenderer.sprite = sprite;
     }
     private void OnTriggerEnter2D(Collider2D collision)

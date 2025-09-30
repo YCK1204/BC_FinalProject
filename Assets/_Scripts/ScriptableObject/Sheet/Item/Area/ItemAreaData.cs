@@ -1,3 +1,4 @@
+using Game.Player;
 using System;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ public enum ItemCreateAreaPosType
 }
 
 [Serializable]
-public struct ItemAreaData
+public struct ItemAreaData : ItemAbilityEvent
 {
     public int Id;
     public float AnmationDuration;
@@ -25,5 +26,11 @@ public struct ItemAreaData
         Radius = radius;
         Damage = damage;
         AttackCount = attackCount;
+    }
+
+    public void OnEvent(PlayerCharacter player)
+    {
+        var area = Manager.Pool.Pop<AreaController>();
+        area.Init(this, player);
     }
 }

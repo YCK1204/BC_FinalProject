@@ -1,0 +1,199 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 75dfcf90ed682a743813a35444348356, type: 3}
+  m_Name: DataReader
+  m_EditorClassIdentifier: Assembly-CSharp::ItemDataReader
+  associatedSheet: 12caJqOR5SSlbMQerqCmjLh1uayleody_nUI7eH7W26E
+  associatedWorksheet: "\uC544\uC774\uD15C01"
+  START_ROW_LENGTH: 2
+  END_ROW_LENGTH: 13
+  DataList:
+  - Id: 1101
+    ItemName: "\uBB34\uB518 \uAC80"
+    Stat1:
+      ItemExtraStatType: 2
+      ItemTriggerType: 5
+      Value: 10
+    Stat2:
+      ItemExtraStatType: 0
+      ItemTriggerType: 5
+      Value: 0
+    IconURL: https://velog.velcdn.com/images/rokid_/post/bd52f005-735f-4a1d-aa13-07e274b4b0e0/image.png
+    ItemTalentId: 0
+    SynergyId: 6001
+    DescId: 9001
+    ItemGrade: 0
+  - Id: 1102
+    ItemName: "\uBE5B\uBC14\uB79C \uC624\uBE0C"
+    Stat1:
+      ItemExtraStatType: 4
+      ItemTriggerType: 5
+      Value: 10
+    Stat2:
+      ItemExtraStatType: 0
+      ItemTriggerType: 5
+      Value: 0
+    IconURL: https://velog.velcdn.com/images/rokid_/post/d594ad43-2eaf-48d4-968f-da208dd0a9c4/image.png
+    ItemTalentId: 0
+    SynergyId: 6003
+    DescId: 9002
+    ItemGrade: 0
+  - Id: 1103
+    ItemName: "\uB0A1\uC740 \uB048"
+    Stat1:
+      ItemExtraStatType: 5
+      ItemTriggerType: 5
+      Value: 10
+    Stat2:
+      ItemExtraStatType: 0
+      ItemTriggerType: 5
+      Value: 0
+    IconURL: https://velog.velcdn.com/images/rokid_/post/6bb457ac-3f11-4635-900e-a8ef3d37b289/image.png
+    ItemTalentId: 0
+    SynergyId: 6001
+    DescId: 9003
+    ItemGrade: 0
+  - Id: 1104
+    ItemName: "\uAC80\uC740 \uBB3C\uC9C8"
+    Stat1:
+      ItemExtraStatType: 6
+      ItemTriggerType: 5
+      Value: 40
+    Stat2:
+      ItemExtraStatType: 0
+      ItemTriggerType: 5
+      Value: 0
+    IconURL: https://velog.velcdn.com/images/rokid_/post/bf214d5b-117b-4c24-8c67-c29dfe0b6c2f/image.png
+    ItemTalentId: 0
+    SynergyId: 0
+    DescId: 9004
+    ItemGrade: 0
+  - Id: 1201
+    ItemName: "\uBCF4\uD638 \uC7A5\uBE44"
+    Stat1:
+      ItemExtraStatType: 7
+      ItemTriggerType: 5
+      Value: 20
+    Stat2:
+      ItemExtraStatType: 0
+      ItemTriggerType: 5
+      Value: 0
+    IconURL: https://velog.velcdn.com/images/rokid_/post/6c4c2705-a5bf-4dc2-bd7f-b4d60596520e/image.png
+    ItemTalentId: 0
+    SynergyId: 6003
+    DescId: 9005
+    ItemGrade: 1
+  - Id: 1202
+    ItemName: "\uACE0\uAE09 \uC5F0\uB9C8\uC81C"
+    Stat1:
+      ItemExtraStatType: 8
+      ItemTriggerType: 5
+      Value: 20
+    Stat2:
+      ItemExtraStatType: 0
+      ItemTriggerType: 5
+      Value: 0
+    IconURL: https://velog.velcdn.com/images/rokid_/post/ed880794-8bda-45b9-8ecd-e917b24ec5ca/image.png
+    ItemTalentId: 0
+    SynergyId: 6002
+    DescId: 9006
+    ItemGrade: 1
+  - Id: 1203
+    ItemName: "\uC8FC\uC220 \uB2E8\uAC80"
+    Stat1:
+      ItemExtraStatType: 9
+      ItemTriggerType: 5
+      Value: 5
+    Stat2:
+      ItemExtraStatType: 0
+      ItemTriggerType: 5
+      Value: 0
+    IconURL: https://velog.velcdn.com/images/rokid_/post/1cb89670-1f15-4f81-b7de-366f77792e1a/image.png
+    ItemTalentId: 0
+    SynergyId: 6002
+    DescId: 9007
+    ItemGrade: 1
+  - Id: 1301
+    ItemName: "\uAC01\uC131\uC758 \uB3CC"
+    Stat1:
+      ItemExtraStatType: 5
+      ItemTriggerType: 5
+      Value: 10
+    Stat2:
+      ItemExtraStatType: 9
+      ItemTriggerType: 5
+      Value: 5
+    IconURL: https://velog.velcdn.com/images/rokid_/post/b610ad3e-634e-4a68-9bd1-3b7e3a96cff4/image.png
+    ItemTalentId: 0
+    SynergyId: 6001
+    DescId: 9008
+    ItemGrade: 2
+  - Id: 1302
+    ItemName: "\uB9C8\uBC95 \uC2A4\uD06C\uB864"
+    Stat1:
+      ItemExtraStatType: 4
+      ItemTriggerType: 5
+      Value: 10
+    Stat2:
+      ItemExtraStatType: 7
+      ItemTriggerType: 5
+      Value: 20
+    IconURL: https://velog.velcdn.com/images/rokid_/post/6756bc50-ccfe-42d7-8eb4-e199ccaab9f0/image.png
+    ItemTalentId: 0
+    SynergyId: 6003
+    DescId: 9009
+    ItemGrade: 2
+  - Id: 1303
+    ItemName: "\uACF5\uBA85\uD558\uB294 \uB8EC"
+    Stat1:
+      ItemExtraStatType: 2
+      ItemTriggerType: 5
+      Value: 10
+    Stat2:
+      ItemExtraStatType: 8
+      ItemTriggerType: 5
+      Value: 20
+    IconURL: https://velog.velcdn.com/images/rokid_/post/d8305e37-8b4f-4ee5-b57d-1828a6ee029f/image.png
+    ItemTalentId: 0
+    SynergyId: 6002
+    DescId: 9010
+    ItemGrade: 2
+  - Id: 1401
+    ItemName: "\uBCBC\uB77D \uAC80"
+    Stat1:
+      ItemExtraStatType: 2
+      ItemTriggerType: 5
+      Value: 30
+    Stat2:
+      ItemExtraStatType: 5
+      ItemTriggerType: 5
+      Value: 40
+    IconURL: https://velog.velcdn.com/images/rokid_/post/bd52a936-57bc-4447-a2c9-a762fdea6068/image.png
+    ItemTalentId: 2401
+    SynergyId: 0
+    DescId: 9011
+    ItemGrade: 3
+  - Id: 1402
+    ItemName: "\uB291\uB300 \uD32C\uB358\uD2B8"
+    Stat1:
+      ItemExtraStatType: 4
+      ItemTriggerType: 5
+      Value: 30
+    Stat2:
+      ItemExtraStatType: 6
+      ItemTriggerType: 5
+      Value: 40
+    IconURL: https://velog.velcdn.com/images/rokid_/post/84fd6981-2d75-4073-a385-698d2a97a5a4/image.png
+    ItemTalentId: 2402
+    SynergyId: 0
+    DescId: 9012
+    ItemGrade: 3
