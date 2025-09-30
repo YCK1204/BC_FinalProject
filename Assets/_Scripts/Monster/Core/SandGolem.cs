@@ -40,7 +40,7 @@ public class SandGolem : PatrolStateMonster
             }
 
             IDamageable damageable = collision.GetComponent<IDamageable>();
-            damageable?.TakeDamage(_dataHandler.AttackPower);
+            damageable?.TakeDamage(_dataHandler.AttackPower, gameObject);
         }
     }
 }

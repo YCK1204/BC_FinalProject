@@ -57,7 +57,7 @@ public class Orb : MonoBehaviour
                 targetRb.AddForce(knockBackDir * 400);
             }
 
-            target.GetComponent<IDamageable>()?.TakeDamage(_damage * 1.5f);
+            target.GetComponent<IDamageable>()?.TakeDamage(_damage * 1.5f, _owner.gameObject);
             Debug.Log(_owner.MonsterData.AttackPower * 1.5f);
         }
     }
@@ -96,8 +96,8 @@ public class Orb : MonoBehaviour
                 targetRb.AddForce(knockBackDir * 400);
             }
 
-            target.GetComponent<IDamageable>()?.TakeDamage((int)(_damage * 1.5f));
-            Debug.Log((int)(_owner.MonsterData.AttackPower * 1.5f));
+            target.GetComponent<IDamageable>()?.TakeDamage(_damage * 1.5f, _owner.gameObject);
+            Debug.Log(_owner.MonsterData.AttackPower * 1.5f);
         }
     }
 

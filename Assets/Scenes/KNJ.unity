@@ -606,7 +606,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1352687980}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -927,7 +927,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -4, z: 0}
-  m_LocalScale: {x: 10, y: 2, z: 1}
+  m_LocalScale: {x: 40, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1065,13 +1065,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 841770613}
     m_Modifications:
+    - target: {fileID: 4126678701790403654, guid: 9d6c2ce076308014d9373e5e1198207b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7921484483355794989, guid: 9d6c2ce076308014d9373e5e1198207b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.31486
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7921484483355794989, guid: 9d6c2ce076308014d9373e5e1198207b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.14104
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7921484483355794989, guid: 9d6c2ce076308014d9373e5e1198207b, type: 3}
       propertyPath: m_LocalPosition.z

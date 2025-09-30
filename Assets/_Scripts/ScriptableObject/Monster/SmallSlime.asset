@@ -16,6 +16,6 @@ MonoBehaviour:
   Speed: 1
   AttackPower: 5
   AttackDelay: 2
-  AttackRange: 3
+  AttackRange: 1.5
   DetectRange: 5
   CanMove: 1
