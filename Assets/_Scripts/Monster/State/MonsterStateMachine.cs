@@ -67,6 +67,11 @@ public class MonsterStateMachine : Game.Monster.IStateMachine<StateMachineMonste
 
     public void Update()
     {
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            ChangeState(Game.Monster.StateType.Die);
+            return;
+        }
         curState?.Update();
     }
 

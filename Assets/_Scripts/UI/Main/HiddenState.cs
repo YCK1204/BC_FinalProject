@@ -9,7 +9,8 @@ public class HiddenState : UiStateBase
         Debug.Log("ui:out");
         ui.ShowScreen("off");
         ui.Animator.SetInteger("State", 0);
-        Time.timeScale = 1f;
+        //Time.timeScale = 1f;
+        PlayerManager.Instance.Player.SetPlayerInput(true);
     }
 
     public override void Exit() { }

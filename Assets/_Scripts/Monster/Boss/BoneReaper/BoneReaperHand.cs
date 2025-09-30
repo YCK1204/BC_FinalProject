@@ -25,10 +25,10 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
     private LayerMask _mask;
 
     [Header("레이저 공격 시작 및 종료 위치")]
-    private Vector3 _leftStartLocalPos = new Vector3(-8f, 0, 0);
-    private Vector3 _leftEndLocalPos = new Vector3(10f, 0, 0);
-    private Vector3 _rightStartLocalPos = new Vector3(8f, 0, 0);
-    private Vector3 _rightEndLocalPos = new Vector3(-10f, 0, 0);
+    private Vector3 _leftStartLocalPos = new Vector3(-5f, 0, 0); //Vector3(-8f, 0, 0)
+    private Vector3 _leftEndLocalPos = new Vector3(6f, 0, 0); //Vector3(10f, 0, 0)
+    private Vector3 _rightStartLocalPos = new Vector3(5f, 0, 0); //Vector3(8f, 0, 0)
+    private Vector3 _rightEndLocalPos = new Vector3(-6f, 0, 0); //Vector3(-10f, 0, 0)
 
     private void Awake()
     {
@@ -60,29 +60,34 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
         Collider2D target;
         float dir = transform.localScale.x < 0 ? -1 : 1;
 
-        float aLR = 1f;
-        float aUD = 1.5f + _followYOffeset/2;
+        float aLR = 1f * _owner.BossScale;
+        float aUD = 1.5f + (_followYOffeset / 2) * _owner.BossScale;
 
         // 공중 -1.25(@),1.5 에서 좌우 1 상하 1.5 박스
-        Vector3 airAttakcPos = new Vector3(-1.25f * dir, 1.5f + _followYOffeset / 2f, 0);
+        Vector3 airAttakcPos = new Vector3(-1.25f * dir * _owner.BossScale, 1.5f * _owner.BossScale + _followYOffeset / 2f, 0);
         target = Physics2D.OverlapBox(transform.position + airAttakcPos, new Vector2(aLR * 2, aUD * 2), 0, _mask);
 #if UNITY_EDITOR
-        Debug.DrawLine(transform.position + airAttakcPos - Vector3.right + Vector3.up * aUD, transform.position + airAttakcPos + Vector3.right + Vector3.up * aUD, Color.blue, 5f);
-        Debug.DrawLine(transform.position + airAttakcPos - Vector3.right - Vector3.up * aUD, transform.position + airAttakcPos + Vector3.right - Vector3.up * aUD, Color.blue, 5f);
-        Debug.DrawLine(transform.position + airAttakcPos - Vector3.right + Vector3.up * aUD, transform.position + airAttakcPos - Vector3.right - Vector3.up * aUD, Color.blue, 5f);
-        Debug.DrawLine(transform.position + airAttakcPos + Vector3.right + Vector3.up * aUD, transform.position + airAttakcPos + Vector3.right - Vector3.up * aUD, Color.blue, 5f);
+        Debug.DrawLine(transform.position + airAttakcPos - Vector3.right * aLR + Vector3.up * aUD, transform.position + airAttakcPos + Vector3.right * aLR + Vector3.up * aUD, Color.blue, 5f);
+        Debug.DrawLine(transform.position + airAttakcPos - Vector3.right * aLR - Vector3.up * aUD, transform.position + airAttakcPos + Vector3.right * aLR - Vector3.up * aUD, Color.blue, 5f);
+        Debug.DrawLine(transform.position + airAttakcPos - Vector3.right * aLR + Vector3.up * aUD, transform.position + airAttakcPos - Vector3.right * aLR - Vector3.up * aUD, Color.blue, 5f);
+        Debug.DrawLine(transform.position + airAttakcPos + Vector3.right * aLR + Vector3.up * aUD, transform.position + airAttakcPos + Vector3.right * aLR - Vector3.up * aUD, Color.blue, 5f);
 #endif
 
         // 지면 -1(@),0.5 에서 좌우 2.5 상하 0.5f 박스
-        Vector3 groundAttakcPos = new Vector3(-1 * dir, 0.5f, 0);
-        if(target == null)
+        Vector3 groundAttakcPos = new Vector3(-1 * dir * _owner.BossScale, 0.5f * _owner.BossScale, 0);
+        float gLR = 2.5f * _owner.BossScale;
+        float gUD = 0.5f * _owner.BossScale;
+
+        // 이거 빗나가면 지면판정인데 못 피할거 같아서 일단 비활성화
+        //if(target == null)
+        if(false)
         {
-            target = Physics2D.OverlapBox(transform.position + groundAttakcPos, new Vector2(2.5f * 2, 0.5f * 2), 0, _mask);
+            target = Physics2D.OverlapBox(transform.position + groundAttakcPos, new Vector2(gLR * 2, gUD * 2), 0, _mask);
 #if UNITY_EDITOR
-            Debug.DrawLine(transform.position + groundAttakcPos - Vector3.right * 2.5f + Vector3.up * 0.5f, transform.position + groundAttakcPos + Vector3.right * 2.5f + Vector3.up * 0.5f, Color.red, 5f);
-            Debug.DrawLine(transform.position + groundAttakcPos - Vector3.right * 2.5f - Vector3.up * 0.5f, transform.position + groundAttakcPos + Vector3.right * 2.5f - Vector3.up * 0.5f, Color.red, 5f);
-            Debug.DrawLine(transform.position + groundAttakcPos - Vector3.right * 2.5f + Vector3.up * 0.5f, transform.position + groundAttakcPos - Vector3.right * 2.5f - Vector3.up * 0.5f, Color.red, 5f);
-            Debug.DrawLine(transform.position + groundAttakcPos + Vector3.right * 2.5f + Vector3.up * 0.5f, transform.position + groundAttakcPos + Vector3.right * 2.5f - Vector3.up * 0.5f, Color.red, 5f);
+            Debug.DrawLine(transform.position + groundAttakcPos - Vector3.right * gLR + Vector3.up * gUD, transform.position + groundAttakcPos + Vector3.right * gLR + Vector3.up * gUD, Color.red, 5f);
+            Debug.DrawLine(transform.position + groundAttakcPos - Vector3.right * gLR - Vector3.up * gUD, transform.position + groundAttakcPos + Vector3.right * gLR - Vector3.up * gUD, Color.red, 5f);
+            Debug.DrawLine(transform.position + groundAttakcPos - Vector3.right * gLR + Vector3.up * gUD, transform.position + groundAttakcPos - Vector3.right * gLR - Vector3.up * gUD, Color.red, 5f);
+            Debug.DrawLine(transform.position + groundAttakcPos + Vector3.right * gLR + Vector3.up * gUD, transform.position + groundAttakcPos + Vector3.right * gLR - Vector3.up * gUD, Color.red, 5f);
 #endif
         }
 
@@ -176,9 +181,9 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
         float dir = transform.localScale.x < 0 ? -1 : 1;
 
         // 공중 -1.4(@), 2 에서 좌우 0.5 상하 2 박스
-        Vector3 airAttakcPos = new Vector3(-1.4f * dir, 2f, 0);
-        float lr = 0.5f;
-        float ud = 2f;
+        Vector3 airAttakcPos = new Vector3(-1.4f * dir * _owner.BossScale, 2f * _owner.BossScale, 0);
+        float lr = 0.5f * _owner.BossScale;
+        float ud = 2f * _owner.BossScale;
         target = Physics2D.OverlapBox(transform.position + airAttakcPos, new Vector2(lr * 2, ud * 2), 0, _mask);
 #if UNITY_EDITOR
         Debug.DrawLine(transform.position + airAttakcPos - Vector3.right * lr + Vector3.up * ud, transform.position + airAttakcPos + Vector3.right * lr + Vector3.up * ud, Color.blue, 5f);

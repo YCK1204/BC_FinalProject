@@ -62,7 +62,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &3944063640851575386
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -136,6 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkullSwordmaster
   _dataHandler: {fileID: 0}
+  FlashMat: {fileID: 0}
   IsSuperArmor: 0
 --- !u!1 &4548696125265454920
 GameObject:

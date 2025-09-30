@@ -13,9 +13,13 @@ public class MapManager : MonoBehaviour
 
     [Header("Map")]
     [SerializeField] private List<GameObject> _mapPrefabs;
+    [SerializeField] private GameObject _bossroomPrefabs;
 
     private List<GameObject> _mapPool = new List<GameObject>();
     private GameObject _currentMap;
+
+    private int _roomCount = 0;
+    [SerializeField] private int _bossRoomTrigger = 4;
 
     public bool OnPortal = false;
 
@@ -41,6 +45,15 @@ public class MapManager : MonoBehaviour
 
     public void NextMap()
     {
+        _roomCount++;
+
+        if (_roomCount == _bossRoomTrigger)
+        {
+            LoadMap(_bossroomPrefabs);
+            Debug.Log("보스방 입장!");
+            return;
+        }
+
         if (_mapPool.Count > 0)
         {
             int index = Random.Range(0, _mapPool.Count);

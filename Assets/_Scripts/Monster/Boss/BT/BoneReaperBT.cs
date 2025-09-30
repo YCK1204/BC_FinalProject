@@ -106,7 +106,6 @@ public class BoneReaperBT : BossBT
         normalAttackRandomSelector.AddChild(breathAttack);
         normalAttackRandomSelector.AddChild(slamAttack);
 
-
         summonOrbSequence.AddChild(isBreathMoreThan2);
         summonOrbSequence.AddChild(summonOrbAttack);
 

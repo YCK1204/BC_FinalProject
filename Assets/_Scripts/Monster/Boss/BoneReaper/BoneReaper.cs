@@ -1,5 +1,7 @@
 using Game.Monster;
 using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BoneReaper : BossMonster
@@ -14,7 +16,7 @@ public class BoneReaper : BossMonster
 
     protected float _patternCoolTime = 0f;
     public float PatternCoolTime { get { return _patternCoolTime; } }
-    public readonly float PatternMaxCoolTime = 5f;
+    public readonly float PatternMaxCoolTime = 3f;
 
     protected int _curSlamCount;
     public int CurSlamCount { get { return _curSlamCount; } }
@@ -37,10 +39,14 @@ public class BoneReaper : BossMonster
 
     private WaitForSeconds _waitForHitFlash;
 
+    [Header("Summon Orb")]
+    public Dictionary<string, Pool> OrbPool;
+
     [Header("Slam")]
     public int _curRunningHandsCount = 0;
 
     [Header("Externals")]
+    [SerializeField] public Transform PoolTr;
     [SerializeField] public Orb VerticalOrb;
     [SerializeField] public Orb SpikeOrb;
     [SerializeField] public Material HitFlashMat;
@@ -54,6 +60,22 @@ public class BoneReaper : BossMonster
         _curBT.Init(this);
 
         _waitForHitFlash = new WaitForSeconds(0.1f);
+        _bossScale = transform.localScale.x;
+
+        OrbPool = new Dictionary<string, Pool>();
+
+        if (VerticalOrb != null)
+        {
+            Pool verticalOrbPool = new Pool();
+            verticalOrbPool.Init(10, PoolTr, VerticalOrb.gameObject);
+            OrbPool.Add("Vertical", verticalOrbPool);
+        }
+        if (SpikeOrb != null)
+        {
+            Pool spikeOrbPool = new Pool();
+            spikeOrbPool.Init(2, PoolTr, SpikeOrb.gameObject);
+            OrbPool.Add("Spike", spikeOrbPool);
+        }
 
         _head = GetComponentInChildren<BoneReaperHead>();
         BoneReaperHand[] hands = GetComponentsInChildren<BoneReaperHand>();
@@ -85,12 +107,13 @@ public class BoneReaper : BossMonster
 
     private void OnEnable()
     {
-        _patternCoolTime = 3;
+        _patternCoolTime = 1;
         _curSlamCount = 0;
         _curBreathCount = 0;
         _curBTCheckTime = 0;
         IsAttacking = false;
         IsIntro = true;
+        IsOneFrameInvincible = true;
 
         _playerMask = LayerMask.GetMask(Game.Monster.Layers.Player);
 

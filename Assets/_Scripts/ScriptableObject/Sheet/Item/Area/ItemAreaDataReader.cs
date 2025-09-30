@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "ItemAreaDataReader", menuName = "ScriptableObject/Item/AreaDataReader")]
-public class ItemAreaDataReaer : DataReaderBase<ItemAreaData>
+public class ItemAreaDataReader : DataReaderBase<ItemAreaData>
 {
     public override void UpdateStats(List<GSTU_Cell> list)
     {

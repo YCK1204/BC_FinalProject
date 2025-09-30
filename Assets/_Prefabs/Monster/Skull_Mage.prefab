@@ -63,7 +63,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &8255869218546864291
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -137,6 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SkullMage
   _dataHandler: {fileID: 0}
+  FlashMat: {fileID: 0}
   IsSuperArmor: 0
 --- !u!114 &5960457482455548534
 MonoBehaviour:
