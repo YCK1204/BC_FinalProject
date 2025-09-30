@@ -10,8 +10,7 @@ using UnityEngine;
 
 public class DataManager
 {
-    public Dictionary<int, ItemData> ItemDict { get; private set; } = new Dictionary<int, ItemData>();
-    //public Dictionary<int, SynergyData> SynergyDict { get; private set; } = new Dictionary<int, SynergyData>();
+    public Item ItemsData = new Item();
     Dictionary<int, T1> MakeDict<T1, T2>(string fileName, Func<T2, Dictionary<int, T1>> factory) where T2 : class
     {
         try
@@ -60,10 +59,36 @@ public class DataManager
     }
     public void Load()
     {
-        var reader = Manager.Resource.LoadData<ItemDataReader>("ItemDataReader");
-        foreach (var data in reader.DataList)
-            ItemDict.Add(data.Id, data);
-        //SynergyDict = MakeScriptableObjectDict<SynergyData>("SynergyData", (data) => data.Id);
+        #region Item
+        {
+            var reader = Manager.Resource.LoadData<ItemDataReader>("ItemDataReader");
+            ItemsData.Base = reader.DataList.ToDictionary(data => data.Id, data => data);
+        }
+        {
+            var reader = Manager.Resource.LoadData<ItemTalentDataReader>("TalentDataReader");
+            ItemsData.Talent = reader.DataList.ToDictionary(data => data.Id, data => data);
+        }
+        {
+            var reader = Manager.Resource.LoadData<ItemBuffDataReader>("BuffDataReader");
+            ItemsData.Buff = reader.DataList.ToDictionary(data => data.Id, data => data);
+        }
+        {
+            var reader = Manager.Resource.LoadData<ItemProjectileDataReader>("ProjectileDataReader");
+            ItemsData.Projectile = reader.DataList.ToDictionary(data => data.Id, data => data);
+        }
+        {
+            var reader = Manager.Resource.LoadData<ItemAreaDataReader>("AreaDataReader");
+            ItemsData.Area = reader.DataList.ToDictionary(data => data.Id, data => data);
+        }
+        {
+            var reader = Manager.Resource.LoadData<ItemSynergyDataReader>("SynergyDataReader");
+            ItemsData.Synergy = reader.DataList.ToDictionary(data => data.Id, data => data);
+        }
+        {
+            var reader = Manager.Resource.LoadData<ItemDescriptionDataReader>("DescriptionDataReader");
+            ItemsData.Description = reader.DataList.ToDictionary(data => data.Id, data => data);
+        }
+        #endregion
     }
     public void Save()
     {

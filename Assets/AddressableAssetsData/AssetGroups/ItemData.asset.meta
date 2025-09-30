@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/AddressableAssetsData/AssetGroups/ItemData.asset.meta
+guid: 6c48a48e5b1eeb049b80ee054c7d0184
+========
+guid: eb76fcea8d8f6044c8338fc3e2cbd484
+>>>>>>>> dev:Assets/_Scripts/ScriptableObject/Sheet/Item/ItemAreaDataReader.asset.meta
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
