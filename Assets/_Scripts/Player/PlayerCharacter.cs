@@ -87,6 +87,49 @@ namespace Game.Player
 
             _impulseSource = GetComponent<CinemachineImpulseSource>();
         }
+
+        #region Callback
+        public event Action OnKill;
+        public event Action OnUsingSkill;
+        public event Action OnUsingAttackStart;
+        public event Action OnUsingAttackEnd;
+        public event Action OnAttackHit;
+        public event Action OnStartRound;
+        public event Action OnDashEnd;
+
+        public void Kill()
+        {
+            OnKill?.Invoke();
+        }
+        public void UsingSkill()
+        {
+            OnUsingSkill?.Invoke();
+        }
+        public void UsingAttack_Start()
+        {
+            OnUsingAttackStart?.Invoke();
+        }
+        public void UsingAttackt_End()
+        {
+            OnUsingAttackEnd?.Invoke();
+        }
+        public void AttackHit()
+        {
+            OnAttackHit?.Invoke();
+        }
+        public void StartRound()
+        {
+            OnStartRound?.Invoke();
+        }
+        public void DashEnd()
+        {
+            OnDashEnd?.Invoke();
+        }
+
+        #endregion
+
+        #region Player
+
         public bool IsGrounded()
         {
             if (!GroundCheck)
@@ -300,6 +343,8 @@ namespace Game.Player
                 _machine.MovementInput = Vector2.zero;
             }
         }
+
+        #endregion
 
         private void Update()
         {
