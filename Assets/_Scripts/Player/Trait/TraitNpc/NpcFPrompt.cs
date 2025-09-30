@@ -142,6 +142,7 @@ public class NpcFPrompt : MonoBehaviour
         _inside = true;
         if (logEvents) Debug.Log("[NpcFPrompt] Player ENTER", this);
         if (!_windowOpen) SetVisible(true);
+        PlayerManager.Instance.Player.OnTrait = true;
         Reposition();
     }
 
@@ -150,6 +151,7 @@ public class NpcFPrompt : MonoBehaviour
         _inside = false;
         if (logEvents) Debug.Log("[NpcFPrompt] Player EXIT", this);
         if (!_windowOpen && !alwaysShow) SetVisible(false);
+        PlayerManager.Instance.Player.OnTrait = false;
     }
 
     void EnsureVisuals()
