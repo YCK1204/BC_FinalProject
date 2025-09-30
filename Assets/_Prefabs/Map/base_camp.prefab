@@ -20601,7 +20601,6 @@ Transform:
   - {fileID: 2090026421834368704}
   - {fileID: 2482613049540594599}
   - {fileID: 1428102232263265066}
-  - {fileID: 7028111679473950573}
   - {fileID: 7677824487032283497}
   - {fileID: 1296036420707991314}
   - {fileID: 7053081273210242860}
@@ -25851,7 +25850,7 @@ Rigidbody2D:
     serializedVersion: 2
     m_Bits: 0
   m_Interpolate: 0
-  m_SleepingMode: 1
+  m_SleepingMode: 0
   m_CollisionDetection: 1
   m_Constraints: 0
 --- !u!66 &683719012096688849
