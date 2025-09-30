@@ -108,22 +108,32 @@ public class BoneReaperHead : MonoBehaviour, IDamageable
 
     private IEnumerator SummonOrbsSequence()
     {
+        string vertical = "Vertical";
+        string spike = "Spike";
+
         WaitForSeconds orbCreateCoolTime = new WaitForSeconds(0.5f);
         // 7 5 3
         // Todo: 오브젝트 풀로 변경 필요할 듯?
-        Instantiate(_owner.VerticalOrb, transform.position + Vector3.right * 7 * _owner.BossScale, Quaternion.identity).Init(_owner);
-        Instantiate(_owner.VerticalOrb, transform.position + Vector3.right * -7 * _owner.BossScale, Quaternion.identity).Init(_owner);
+        _owner.OrbPool[vertical].Pop().GetComponent<Orb>().Init(_owner, transform.position + Vector3.right * 7 * _owner.BossScale, vertical);
+        _owner.OrbPool[vertical].Pop().GetComponent<Orb>().Init(_owner, transform.position + Vector3.right * -7 * _owner.BossScale, vertical);
+        //Instantiate(_owner.VerticalOrb, transform.position + Vector3.right * 7 * _owner.BossScale, Quaternion.identity).Init(_owner);
+        //Instantiate(_owner.VerticalOrb, transform.position + Vector3.right * -7 * _owner.BossScale, Quaternion.identity).Init(_owner);
         yield return orbCreateCoolTime;
 
-        Instantiate(_owner.VerticalOrb, transform.position + Vector3.right * 5 * _owner.BossScale, Quaternion.identity).Init(_owner);
-        Instantiate(_owner.VerticalOrb, transform.position + Vector3.right * -5 * _owner.BossScale, Quaternion.identity).Init(_owner);
+        _owner.OrbPool[vertical].Pop().GetComponent<Orb>().Init(_owner, transform.position + Vector3.right * 5 * _owner.BossScale, vertical);
+        _owner.OrbPool[vertical].Pop().GetComponent<Orb>().Init(_owner, transform.position + Vector3.right * -5 * _owner.BossScale, vertical);
+        //Instantiate(_owner.VerticalOrb, transform.position + Vector3.right * 5 * _owner.BossScale, Quaternion.identity).Init(_owner);
+        //Instantiate(_owner.VerticalOrb, transform.position + Vector3.right * -5 * _owner.BossScale, Quaternion.identity).Init(_owner);
         yield return orbCreateCoolTime;
 
-        Instantiate(_owner.VerticalOrb, transform.position + Vector3.right * 3 * _owner.BossScale, Quaternion.identity).Init(_owner);
-        Instantiate(_owner.VerticalOrb, transform.position + Vector3.right * -3 * _owner.BossScale, Quaternion.identity).Init(_owner);
+        _owner.OrbPool[vertical].Pop().GetComponent<Orb>().Init(_owner, transform.position + Vector3.right * 3 * _owner.BossScale, vertical);
+        _owner.OrbPool[vertical].Pop().GetComponent<Orb>().Init(_owner, transform.position + Vector3.right * -3 * _owner.BossScale, vertical);
+        //Instantiate(_owner.VerticalOrb, transform.position + Vector3.right * 3 * _owner.BossScale, Quaternion.identity).Init(_owner);
+        //Instantiate(_owner.VerticalOrb, transform.position + Vector3.right * -3 * _owner.BossScale, Quaternion.identity).Init(_owner);
         yield return orbCreateCoolTime;
 
-        Instantiate(_owner.SpikeOrb, transform.position + Vector3.up * -2.5f * _owner.BossScale, Quaternion.identity).Init(_owner);
+        _owner.OrbPool[spike].Pop().GetComponent<Orb>().Init(_owner, transform.position + Vector3.up * -2.5f * _owner.BossScale, spike);
+        //Instantiate(_owner.SpikeOrb, transform.position + Vector3.up * -2.5f * _owner.BossScale, Quaternion.identity).Init(_owner);
 
         yield return null;
     }
