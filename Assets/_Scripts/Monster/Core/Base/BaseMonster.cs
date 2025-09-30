@@ -12,7 +12,6 @@ public abstract class BaseMonster : MonoBehaviour
     public int MonsterCount = 1;
 
     public Action OnDied;
-    public Action OnDiedSA;
 
     public void SetTarget(Transform target)
     {
@@ -35,7 +34,6 @@ public abstract class BaseMonster : MonoBehaviour
     public virtual void Die()
     {
         OnDied?.Invoke();
-        OnDiedSA?.Invoke();
         // Todo: 오브젝트 풀로 리턴
         Destroy(gameObject);
     }
