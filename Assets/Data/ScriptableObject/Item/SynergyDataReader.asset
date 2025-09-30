@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b46bf5df103fbae4ba9b3ec13fdc6ba2, type: 3}
+  m_Name: SynergyDataReader
+  m_EditorClassIdentifier: Assembly-CSharp::ItemSynergeDataReader
+  associatedSheet: 12caJqOR5SSlbMQerqCmjLh1uayleody_nUI7eH7W26E
+  associatedWorksheet: "\uC2DC\uB108\uC9C0\uD6A8\uACFC06"
+  START_ROW_LENGTH: 2
+  END_ROW_LENGTH: 4
+  DataList:
+  - Id: 6001
+    Count: 3
+    Name: "\uBC14\uB78C \uAE38"
+    ActionType: 3
+    Chance: 25
+    SpecialAbilityID: 4001
+    CoolDown: 0
+    DescID: 9301
+  - Id: 6002
+    Count: 3
+    Name: "\uC12C\uAD11"
+    ActionType: 6
+    Chance: 100
+    SpecialAbilityID: 5001
+    CoolDown: 0
+    DescID: 9302
+  - Id: 6003
+    Count: 3
+    Name: "\uB0A0\uCE74\uB85C\uC6C0"
+    ActionType: 4
+    Chance: 100
+    SpecialAbilityID: 3001
+    CoolDown: 0
+    DescID: 9303

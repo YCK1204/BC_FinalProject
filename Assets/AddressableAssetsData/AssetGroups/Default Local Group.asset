@@ -50,11 +50,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - ItemData
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: c5539bf491fbe19408f6f7454e28d733
-    m_Address: ItemContainer
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: da6158026c418374c8ac26277a37273f
     m_Address: CthulhuWrath
     m_ReadOnly: 0
