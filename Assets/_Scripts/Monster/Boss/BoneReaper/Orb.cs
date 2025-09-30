@@ -4,17 +4,21 @@ using UnityEngine;
 
 public class Orb : MonoBehaviour
 {
-    private BossMonster _owner;
+    private BoneReaper _owner;
     private float _damage;
+    private string _name;
 
     private float _offset = 3f;
 
     private LayerMask _mask;
 
-    public void Init(BossMonster owner)
+    public void Init(BoneReaper owner, Vector3 position, string name)
     {
         _owner = owner;
         _damage = _owner.MonsterData.AttackPower;
+        _name = name;
+
+        transform.position = position;
 
         _mask = LayerMask.GetMask(Layers.Player);
     }
@@ -76,7 +80,10 @@ public class Orb : MonoBehaviour
 
         if (target != null)
         {
-            // Todo: 무적 체크
+            // 무적 체크
+            PlayerCharacter pc = target.GetComponent<PlayerCharacter>();
+            if (pc != null && pc.Invincible)
+                return;
 
             float knockBackDirX = target.transform.position.x < airAttakcPos.x ? -1 : 1;
             Vector2 knockBackDir = new Vector2(knockBackDirX, 0.5f);
@@ -96,8 +103,7 @@ public class Orb : MonoBehaviour
 
     public void Destroy()
     {
-        // Todo: 풀로 리턴?
-        Destroy(gameObject);
+        _owner.OrbPool[_name].Push(gameObject);
     }
 
     public void OrbAttackEnd()

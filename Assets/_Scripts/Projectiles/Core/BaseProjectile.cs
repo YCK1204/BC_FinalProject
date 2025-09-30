@@ -60,7 +60,6 @@ public abstract class BaseProjectile : MonoBehaviour
             Vector2 knockBackDir = new Vector2(_rb.linearVelocityX < 0 ? -1 : 1, 0);
             knockBackDir.Normalize();
 
-            Debug.Log(knockBackDir);
             // 수치를 어떻게 조정해야하지?
             Rigidbody2D targetRb = _target.GetComponent<Rigidbody2D>();
             targetRb.linearVelocity = Vector2.zero;

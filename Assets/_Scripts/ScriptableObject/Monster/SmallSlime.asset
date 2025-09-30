@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97e65d2e36f92104e90d76fa5f85823d, type: 3}
   m_Name: SmallSlime
   m_EditorClassIdentifier: Assembly-CSharp::MonsterData
-  MaxHp: 20
-  Speed: 1.5
+  MaxHp: 40
+  Speed: 1
   AttackPower: 5
-  AttackDelay: 1
-  AttackRange: 1
-  DetectRange: 3
+  AttackDelay: 2
+  AttackRange: 3
+  DetectRange: 5
   CanMove: 1
