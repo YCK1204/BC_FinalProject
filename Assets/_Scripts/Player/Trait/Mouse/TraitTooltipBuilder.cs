@@ -25,17 +25,17 @@ namespace Game.Traits.UI
         [SerializeField]
         private AbilityDisplay[] _abilityMap = new AbilityDisplay[]
         {
-            new AbilityDisplay{ Key=Ability.plusAttack,         DisplayName="추가 공격력",     Unit="고정 값", Percent=false },
-            new AbilityDisplay{ Key=Ability.attack,             DisplayName="추가 피해",       Unit="%",      Percent=true  },
-            new AbilityDisplay{ Key=Ability.plusSkillAttack,    DisplayName="추가 스킬 공격력", Unit="고정 값", Percent=false },
-            new AbilityDisplay{ Key=Ability.skillAttack,        DisplayName="추가 스킬 피해",   Unit="%",      Percent=true  },
-            new AbilityDisplay{ Key=Ability.attackSpeed,        DisplayName="추가 공격 속도",   Unit="%",      Percent=true  },
-            new AbilityDisplay{ Key=Ability.skillHaste,         DisplayName="추가 스킬 가속",   Unit="%",      Percent=true  },
-            new AbilityDisplay{ Key=Ability.HP,                 DisplayName="추가 체력",       Unit="고정 값", Percent=false },
-            new AbilityDisplay{ Key=Ability.criticalDamage,     DisplayName="추가 치명타 피해", Unit="%",      Percent=true  },
-            new AbilityDisplay{ Key=Ability.criticalChance,     DisplayName="추가 치명타 확률", Unit="%",      Percent=true  },
-            new AbilityDisplay{ Key=Ability.corruptionDuration, DisplayName="추가 타락 지속 시간", Unit="고정 값", Percent=false },
-            new AbilityDisplay{ Key=Ability.plusMovementSpeed,  DisplayName="추가 이동 속도",   Unit="%",      Percent=true  },
+            new AbilityDisplay{ Key=Ability.plusAttack,         DisplayName="추가 공격력",       Unit="고정 값", Percent=false },
+            new AbilityDisplay{ Key=Ability.attack,             DisplayName="추가 피해",         Unit="%",      Percent=true  },
+            new AbilityDisplay{ Key=Ability.plusSkillAttack,    DisplayName="추가 스킬 공격력",   Unit="고정 값", Percent=false },
+            new AbilityDisplay{ Key=Ability.skillAttack,        DisplayName="추가 스킬 피해",     Unit="%",      Percent=true  },
+            new AbilityDisplay{ Key=Ability.attackSpeed,        DisplayName="추가 공격 속도",     Unit="%",      Percent=true  },
+            new AbilityDisplay{ Key=Ability.skillHaste,         DisplayName="추가 스킬 가속",     Unit="%",      Percent=true  },
+            new AbilityDisplay{ Key=Ability.HP,                 DisplayName="추가 체력",         Unit="고정 값", Percent=false },
+            new AbilityDisplay{ Key=Ability.criticalDamage,     DisplayName="추가 치명타 피해",   Unit="%",      Percent=true  },
+            new AbilityDisplay{ Key=Ability.criticalChance,     DisplayName="추가 치명타 확률",   Unit="%",      Percent=true  },
+            new AbilityDisplay{ Key=Ability.plusMovementSpeed,  DisplayName="추가 이동 속도",     Unit="%",      Percent=true  },
+            new AbilityDisplay{ Key=Ability.awakenDuration,     DisplayName="추가 각성 지속 시간", Unit="고정 값", Percent=false },
         };
 
         public string GetName() => _name;

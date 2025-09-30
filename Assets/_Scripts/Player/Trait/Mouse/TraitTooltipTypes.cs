@@ -20,7 +20,7 @@ namespace Game.Traits.UI
         HP,
         criticalDamage,
         criticalChance,
-        corruptionDuration,
+        awakenDuration,
         plusMovementSpeed
     }
 
