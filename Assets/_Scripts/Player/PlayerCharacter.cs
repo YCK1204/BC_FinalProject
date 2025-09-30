@@ -32,6 +32,11 @@ namespace Game.Player
 
         private CinemachineImpulseSource _impulseSource;
 
+        [SerializeField] private RuntimeAnimatorController normalAnimator;
+        [SerializeField] private RuntimeAnimatorController awakenedAnimator;
+
+        
+
         public bool Invincible { get; private set; }
         public void SetInvincible(bool on) { Invincible = on; }
 
@@ -48,10 +53,14 @@ namespace Game.Player
         public float CurrentAwakening => currentAwakening;
         public bool IsAwakened { get; private set; }
 
+        [SerializeField] private GameObject awakeningEffect;
+
         [Header("Combat Debug")]
         [SerializeField] private bool lastHitCritical;
         public bool LastHitCritical => lastHitCritical;
         public void MarkLastHitCritical(bool on) { lastHitCritical = on; }
+
+        [SerializeField] private bool isPlayer = true;
 
         public float CurrentHP
         {
@@ -273,6 +282,12 @@ namespace Game.Player
             IsAwakened = true;
             currentAwakening = awakeningData.maxAwakeningGauge;
             float totalDuration = Data.awakening.duration;
+            Data.CombatData.AttackRange = 1.6f;
+
+            Animator.runtimeAnimatorController = awakenedAnimator;
+
+            awakeningEffect.SetActive(true);
+
             StartCoroutine(AwakeningTimer(totalDuration));
         }
 
@@ -293,6 +308,12 @@ namespace Game.Player
 
             currentAwakening = 0f;
             IsAwakened = false;
+            Data.CombatData.AttackRange = 1.1f;
+
+            Animator.runtimeAnimatorController = normalAnimator;
+
+            awakeningEffect.SetActive(false);
+
             AwakeningEvent?.Invoke(currentAwakening, Data.awakening.maxAwakeningGauge);
             Debug.Log("각성종료");
         }
@@ -345,6 +366,19 @@ namespace Game.Player
         }
 
         #endregion
+
+        private void OnDrawGizmosSelected()
+        {
+            if (Data == null) return;
+
+            float r = Data.CombatData.AttackRange;
+            float facing = Mathf.Sign(transform.localScale.x);
+
+            Vector2 pos = (Vector2)transform.position + new Vector2(facing * r * 0.5f, 0f);
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(pos, r);
+        }
 
         private void Update()
         {

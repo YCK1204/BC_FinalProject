@@ -46,6 +46,7 @@ public class MapManager : MonoBehaviour
     public void NextMap()
     {
         _roomCount++;
+        OnPortal = false;
 
         if (_roomCount == _bossRoomTrigger)
         {
@@ -89,7 +90,7 @@ public class MapManager : MonoBehaviour
         MovePlayerSpawn(_currentMap);
 
         //포탈on
-        OnPortal = true;
+        
     }
 
     private void MovePlayerSpawn(GameObject map)
