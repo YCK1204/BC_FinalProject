@@ -16824,7 +16824,7 @@ MonoBehaviour:
   - {fileID: 3278153624945427460, guid: c393b1fc5607fb845b578b005347193f, type: 3}
   - {fileID: 6555901067502335982, guid: 95cf48bb0e2b8ee4b889131b0cdcbe9f, type: 3}
   _bossroomPrefabs: {fileID: 9068971754435094937, guid: 9d6c2ce076308014d9373e5e1198207b, type: 3}
-  _bossRoomTrigger: 1
+  _bossRoomTrigger: 4
   OnPortal: 1
 --- !u!4 &922601901
 Transform:
