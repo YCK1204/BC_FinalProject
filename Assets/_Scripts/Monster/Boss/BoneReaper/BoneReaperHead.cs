@@ -88,7 +88,7 @@ public class BoneReaperHead : MonoBehaviour, IDamageable
                 targetRb.AddForce(knockBackDir * 400);
             }
 
-            target.GetComponent<IDamageable>()?.TakeDamage(_owner.MonsterData.AttackPower);
+            target.GetComponent<IDamageable>()?.TakeDamage(_owner.MonsterData.AttackPower, _owner.gameObject);
             Debug.Log((_owner.MonsterData.AttackPower));
         }
     }
@@ -139,14 +139,14 @@ public class BoneReaperHead : MonoBehaviour, IDamageable
     }
 
     // 기타 메서드
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, GameObject attacker)
     {
         if (_owner.MonsterData.CurHp <= 0 || _owner.IsOneFrameInvincible)
             return;
 
         _owner.IsOneFrameInvincible = true;
         _owner.HitFlash(_sr, _hitEffect);
-        _owner.TakeDamage(damage);
+        _owner.TakeDamage(damage, attacker);
     }
 
     public void Die()

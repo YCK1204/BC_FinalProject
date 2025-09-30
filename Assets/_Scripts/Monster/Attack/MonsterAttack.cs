@@ -55,6 +55,6 @@ public class MonsterAttack : MonoBehaviour
 
         float dir = Owner.transform.localScale.x > 0 ? 1f : -1f;
         BaseProjectile proj = Instantiate(_projectile, transform.position + new Vector3(0.5f * dir,0,0), Quaternion.identity);
-        proj.Init(Owner.transform.localScale, target, Owner.MonsterData.AttackPower);
+        proj.Init(Owner.transform.localScale, _owner.gameObject, target, Owner.MonsterData.AttackPower);
     }
 }

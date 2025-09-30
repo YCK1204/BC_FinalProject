@@ -1,4 +1,5 @@
 using Game.Monster;
+using Game.Player;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -153,7 +154,7 @@ public class BoneReaper : BossMonster
         return NodeStatus.Failure;
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage, GameObject attacker)
     {
         if (_dataHandler.CurHp <= 0)
             return;
@@ -163,6 +164,7 @@ public class BoneReaper : BossMonster
         if (_dataHandler.CurHp <= 0)
         {
             // 사망 처리
+            attacker.GetComponent<PlayerCharacter>()?.Kill();
             _head.Die();
             _leftHand.Die();
             _rightHand.Die();

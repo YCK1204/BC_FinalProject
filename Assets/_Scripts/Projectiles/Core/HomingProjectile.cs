@@ -23,9 +23,9 @@ public class HomingProjectile : BaseProjectile
         }
     }
 
-    public override void Init(Vector3 dir, Transform target = null, float attackPower = 1)
+    public override void Init(Vector3 dir, GameObject attacker, Transform target = null, float attackPower = 1)
     {
-        base.Init(dir, target, attackPower);
+        base.Init(dir, attacker, target, attackPower);
 
     }
 
@@ -93,7 +93,7 @@ public class HomingProjectile : BaseProjectile
             targetRb.linearVelocity = Vector2.zero;
             targetRb.AddForce(knockBackDir * 400);
 
-            damageable?.TakeDamage(DataHandler.Damage);
+            damageable?.TakeDamage(DataHandler.Damage, _attacker);
             if (_anim != null)
                 _anim.SetTrigger("Explode");
             else
