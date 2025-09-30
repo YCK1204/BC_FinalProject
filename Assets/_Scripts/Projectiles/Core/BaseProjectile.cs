@@ -11,6 +11,7 @@ public abstract class BaseProjectile : MonoBehaviour
     protected Rigidbody2D _rb;
     protected SpriteRenderer _sr;
     protected Animator _anim;
+    protected GameObject _attacker;
 
     protected Transform _target;
     protected Vector3 _dir;
@@ -29,11 +30,12 @@ public abstract class BaseProjectile : MonoBehaviour
         StartCoroutine(ProjectileLife(DataHandler.Data.LifeTime));
     }
 
-    public virtual void Init(Vector3 dir, Transform target = null, float attackPower = 0f)
+    public virtual void Init(Vector3 dir, GameObject attacker, Transform target = null, float attackPower = 0f)
     {
         _target = target;
         _dir = dir;
         _dataHandler.Damage = attackPower;
+        _attacker = attacker;
         _sr.flipX = dir.x < 0;
     }
 
@@ -65,7 +67,7 @@ public abstract class BaseProjectile : MonoBehaviour
             targetRb.linearVelocity = Vector2.zero;
             targetRb.AddForce(knockBackDir * 400);
 
-            damageable?.TakeDamage(DataHandler.Damage);
+            damageable?.TakeDamage(DataHandler.Damage, _attacker);
             DestroyProjectile();
         }
         // 벽이나 땅이면 소멸

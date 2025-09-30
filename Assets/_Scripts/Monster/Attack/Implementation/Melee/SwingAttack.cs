@@ -30,7 +30,7 @@ public class SwingAttack : MeleeAttack
                 Rigidbody2D targetRb = _target.GetComponent<Rigidbody2D>();
                 targetRb.linearVelocity = Vector2.zero;
                 targetRb.AddForce(knockBackDir * 400);
-                _target.GetComponent<IDamageable>()?.TakeDamage(_damage);
+                _target.GetComponent<IDamageable>()?.TakeDamage(_damage, _tr.gameObject);
             }
         }
     }
