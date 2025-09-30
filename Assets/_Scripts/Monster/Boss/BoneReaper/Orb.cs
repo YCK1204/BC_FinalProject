@@ -24,9 +24,9 @@ public class Orb : MonoBehaviour
         Collider2D target;
 
         // 공중 0, 0에서 좌우 0.5 상하 3 박스
-        Vector3 airAttakcPos = new Vector3(0, _offset, 0);
-        float lr = 0.5f;
-        float ud = 3f;
+        Vector3 airAttakcPos = new Vector3(0, _offset * _owner.BossScale, 0);
+        float lr = 0.5f * _owner.BossScale;
+        float ud = 3f * _owner.BossScale;
         target = Physics2D.OverlapBox(transform.position + airAttakcPos, new Vector2(lr * 2, ud * 2), 0, _mask);
 #if UNITY_EDITOR
         Debug.DrawLine(transform.position + airAttakcPos - Vector3.right * lr + Vector3.up * ud, transform.position + airAttakcPos + Vector3.right * lr + Vector3.up * ud, Color.blue, 5f);
@@ -63,9 +63,9 @@ public class Orb : MonoBehaviour
         Collider2D target;
 
         // 지상 0, 0에서 좌우 1.5 상하 0.5 박스
-        Vector3 airAttakcPos = new Vector3(0, _offset, 0);
-        float lr = 1.5f;
-        float ud = 0.5f;
+        Vector3 airAttakcPos = new Vector3(0, _offset * _owner.BossScale, 0);
+        float lr = 1.5f * _owner.BossScale;
+        float ud = 0.5f * _owner.BossScale;
         target = Physics2D.OverlapBox(transform.position + airAttakcPos, new Vector2(lr * 2, ud * 2), 0, _mask);
 #if UNITY_EDITOR
         Debug.DrawLine(transform.position + airAttakcPos - Vector3.right * lr + Vector3.up * ud, transform.position + airAttakcPos + Vector3.right * lr + Vector3.up * ud, Color.blue, 5f);

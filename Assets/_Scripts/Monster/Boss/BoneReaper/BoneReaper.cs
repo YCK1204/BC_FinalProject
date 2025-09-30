@@ -54,6 +54,7 @@ public class BoneReaper : BossMonster
         _curBT.Init(this);
 
         _waitForHitFlash = new WaitForSeconds(0.1f);
+        _bossScale = transform.localScale.x;
 
         _head = GetComponentInChildren<BoneReaperHead>();
         BoneReaperHand[] hands = GetComponentsInChildren<BoneReaperHand>();
@@ -91,6 +92,7 @@ public class BoneReaper : BossMonster
         _curBTCheckTime = 0;
         IsAttacking = false;
         IsIntro = true;
+        IsOneFrameInvincible = true;
 
         _playerMask = LayerMask.GetMask(Game.Monster.Layers.Player);
 

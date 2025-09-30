@@ -103,9 +103,10 @@ public class BoneReaperBT : BossBT
 
 
         // 신나는 노드 조립 시간
-        normalAttackRandomSelector.AddChild(breathAttack);
-        normalAttackRandomSelector.AddChild(slamAttack);
-
+        //normalAttackRandomSelector.AddChild(breathAttack);
+        //normalAttackRandomSelector.AddChild(slamAttack);
+        normalAttackRandomSelector.AddChild(laserAttack);
+        //normalAttackRandomSelector.AddChild(summonOrbAttack);
 
         summonOrbSequence.AddChild(isBreathMoreThan2);
         summonOrbSequence.AddChild(summonOrbAttack);

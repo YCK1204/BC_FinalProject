@@ -32,9 +32,12 @@ public class SandGolem : PatrolStateMonster
             knockBackDir.Normalize();
 
             // 수치를 어떻게 조정해야하지?
-            Rigidbody2D targetRb = _target.GetComponent<Rigidbody2D>();
-            targetRb.linearVelocity = Vector2.zero;
-            targetRb.AddForce(knockBackDir * 400);
+            Rigidbody2D targetRb = _target?.GetComponent<Rigidbody2D>();
+            if(targetRb != null)
+            {
+                targetRb.linearVelocity = Vector2.zero;
+                targetRb.AddForce(knockBackDir * 400);
+            }
 
             IDamageable damageable = collision.GetComponent<IDamageable>();
             damageable?.TakeDamage(_dataHandler.AttackPower);

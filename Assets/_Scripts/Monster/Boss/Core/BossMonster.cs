@@ -13,4 +13,6 @@ public abstract class BossMonster : BaseMonster
     public bool IsAttacking;
     public bool IsIntro;
 
+    protected float _bossScale = 1f;
+    public float BossScale { get { return _bossScale; } }
 }
