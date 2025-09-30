@@ -36,6 +36,8 @@ public class Trap_ToggleCollider : MonoBehaviour
 
     private IEnumerator TrabCrt()
     {
+
+        //콜라이더를 껏다켜서 OnTriggerEnter2D를 유도
         _isWaiting = true;
         _trapCollider.enabled = false;
 
