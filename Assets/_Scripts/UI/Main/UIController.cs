@@ -53,7 +53,7 @@ public class UIController : MonoBehaviour
         if (isState) return;
 
         // Test
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !PlayerManager.Instance.Player.OnTrait && !PlayerManager.Instance.Player.IsDead)
         {
             Debug.Log($"esc - {CurrentState}");
             if (CurrentState == UiState.NormalView)

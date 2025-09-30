@@ -84,6 +84,8 @@ namespace Game.Player
         public event Action<float, float> HpEvent;
         public event Action<float, float> AwakeningEvent;
 
+        private DeadControl deadControl;
+
 
         private void Awake()
         {
@@ -97,6 +99,10 @@ namespace Game.Player
             _machine.ChangeState(_machine.IdleState);
 
             _impulseSource = GetComponent<CinemachineImpulseSource>();
+
+            Transform deadObj = transform.Find("DeadControl");
+            if (deadObj != null)
+                deadControl = deadObj.GetComponent<DeadControl>();
         }
 
         #region Callback
@@ -258,6 +264,8 @@ namespace Game.Player
             currentHP = 0f;
             HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
             _machine.ChangeState(_machine.DieState);
+
+            deadControl.DieSet();
         }
 
         public void GainAwakeningGauge()
@@ -391,6 +399,11 @@ namespace Game.Player
             bool g = kb != null && kb.gKey.wasPressedThisFrame;
             if (g)
                 Manager.Item.AddItem(this);
+
+            if (kb != null && kb.rKey.wasPressedThisFrame)
+            {
+                Die();
+            }
         }
 
         private void FixedUpdate()
