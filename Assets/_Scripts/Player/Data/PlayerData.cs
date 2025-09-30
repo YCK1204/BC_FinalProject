@@ -32,7 +32,7 @@ namespace Game.Player
     public class PlayerCombatData
     {
         public float AttackPower = 10f;
-        public float AttackRange = 1.5f;
+        public float AttackRange = 1.2f;
 
         public float AttackSpeed = 1f;
         public float ExtraDamage = 0f;
