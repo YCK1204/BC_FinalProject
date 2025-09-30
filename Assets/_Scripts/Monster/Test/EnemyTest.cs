@@ -17,6 +17,10 @@ public class EnemyTest : MonoBehaviour
             (hand as IDamageable)?.TakeDamage(Damage);
             (head as IDamageable)?.TakeDamage(Damage);
         }
+        else if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            monster.OnDied += () => { Debug.Log(monster.MonsterCount); };
+        }
     }
 
 }

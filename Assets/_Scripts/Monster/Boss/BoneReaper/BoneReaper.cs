@@ -164,7 +164,7 @@ public class BoneReaper : BossMonster
         if (_dataHandler.CurHp <= 0)
         {
             // 사망 처리
-            attacker.GetComponent<PlayerCharacter>()?.Kill();
+            attacker?.GetComponent<PlayerCharacter>()?.Kill();
             _head.Die();
             _leftHand.Die();
             _rightHand.Die();
