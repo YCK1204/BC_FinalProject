@@ -1,6 +1,7 @@
-using UnityEngine;
-using System.Collections;
 using DG.Tweening;
+using System.Collections;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EventController : MonoBehaviour
 {
@@ -86,6 +87,9 @@ public class EventController : MonoBehaviour
         yield return new WaitForSeconds(3f);
         _animator.SetTrigger("SetStart");
         DOTween.Restart("phonshake2");
+
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene("Main");
     }
 
     //void Update()

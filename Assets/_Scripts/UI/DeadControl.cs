@@ -87,17 +87,19 @@ public class DeadControl : MonoBehaviour
 
     public void DieSet()
     {
-        _setAnimator.Play("Die", 0, 0f);
-        _pickObject.SetActive(true);
-
         StartCoroutine(DeathSequence());
     }
 
     IEnumerator DeathSequence()
     {
         PlayerManager.Instance.Player.Animator.Play("Idle", 0, 0f);
+
+        yield return new WaitForSeconds(1f);
+
+        _setAnimator.Play("Die", 0, 0f);
         _deadEffect.SetActive(true);
         _deadAnimator.Play(_dieAnim, 0, 0f);
+        _pickObject.SetActive(true);
 
         Debug.Log("죽음연출");
 
@@ -168,7 +170,10 @@ public class DeadControl : MonoBehaviour
 
         StartCoroutine(FadeBloom(10f, 3f));
 
-        yield return new WaitForSeconds(4);
+        yield return new WaitForSeconds(1);
+        PlayerManager.Instance.Player.PlayerMaterial.SetGlitchMaterial();
+
+        yield return new WaitForSeconds(3);
 
         SceneManager.LoadScene("Main");
         _setAnimator.Play(_againAnim2, 0, 0f);

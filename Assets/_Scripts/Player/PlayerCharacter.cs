@@ -3,7 +3,9 @@ using Game.Monster;
 using System;
 using System.Collections;
 using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditorInternal.ReorderableList;
 
 namespace Game.Player
 {
@@ -15,7 +17,9 @@ namespace Game.Player
 
         public bool OnTrait;
 
-        [SerializeField] private SpriteRenderer _spriteRenderer;
+        public SpriteRenderer _spriteRenderer;
+
+        public MaterialInitializer PlayerMaterial;
 
         [SerializeField] private CameraShake camShake;
 
@@ -28,6 +32,9 @@ namespace Game.Player
 
         public AnimationData AnimationData => AnimationDataSerialized;
         public PlayerData Data => DataSerialized;
+
+        private PlayerData _originalData;
+
         public ForceReceiver ForceReceiver => Force;
 
         private PlayerStateMachine _machine;
@@ -92,6 +99,8 @@ namespace Game.Player
             Rb = GetComponent<Rigidbody2D>();
             Animator = GetComponentInChildren<Animator>();
             if (!Force) Force = GetComponent<ForceReceiver>();
+            _originalData = DataSerialized.Clone();
+
             currentHP = Data.Stats.MaxHP;
 
             _machine = new PlayerStateMachine(this);
@@ -260,14 +269,23 @@ namespace Game.Player
             HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
             _machine.ChangeState(_machine.DieState);
 
+            gameObject.layer = LayerMask.NameToLayer("Default");
+
             deadControl.DieSet();
         }
 
         public void Resurrection()
         {
+            DataSerialized = _originalData.Clone();
+
+            Animator.runtimeAnimatorController = normalAnimator;
+
             currentHP = Data.Stats.MaxHP;
             HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
             _machine.ChangeState(_machine.IdleState);
+
+            gameObject.layer = LayerMask.NameToLayer("Player");
+            PlayerMaterial.SetDefaultMaterial();
         }
 
         public void GainAwakeningGauge()
