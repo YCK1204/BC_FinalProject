@@ -11,6 +11,7 @@ public class NormalViewState : UiStateBase
         ui.Animator.SetInteger("State", 1);
         //Time.timeScale = 0;
         PlayerManager.Instance.Player.SetPlayerInput(false);
+        PlayerManager.Instance.Player.Animator.Play("Phon");
     }
 
     public override void Exit() { }
