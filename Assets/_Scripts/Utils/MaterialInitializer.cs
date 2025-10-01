@@ -47,11 +47,11 @@ public class MaterialInitializer : MonoBehaviour
 
     public void SetGlitchMaterial()
     {
-        PlayerManager.Instance.Player._spriteRenderer.material = _glitchMaterial2;
+        PlayerManager.Instance.Player.SpriteRenderer.material = _glitchMaterial2;
     }
 
     public void SetDefaultMaterial()
     {
-        PlayerManager.Instance.Player._spriteRenderer.material = _playerDefaultMaterial;
+        PlayerManager.Instance.Player.SpriteRenderer.material = _playerDefaultMaterial;
     }
 }

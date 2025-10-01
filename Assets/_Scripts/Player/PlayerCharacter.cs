@@ -17,7 +17,7 @@ namespace Game.Player
 
         public bool OnTrait;
 
-        public SpriteRenderer _spriteRenderer;
+        public SpriteRenderer SpriteRenderer;
 
         public MaterialInitializer PlayerMaterial;
 
@@ -207,19 +207,19 @@ namespace Game.Player
             ;
         }
 
-        public void TakeDamage(int damage)
-        {
-            if (Invincible || IsDead) return;
-            currentHP = Mathf.Max(0f, currentHP - Mathf.Max(0, damage));
-            HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
+        //public void TakeDamage(int damage)
+        //{
+        //    if (Invincible || IsDead) return;
+        //    currentHP = Mathf.Max(0f, currentHP - Mathf.Max(0, damage));
+        //    HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
 
-            Debug.Log($"피해량체크- {damage} 남은체력- {currentHP}");
+        //    Debug.Log($"피해량체크- {damage} 남은체력- {currentHP}");
 
-            camShake.Shake(1f, 1f, 0.2f);
-            _impulseSource.GenerateImpulse();
-            if (currentHP <= 0f) Die(); else StartCoroutine(HitColor());
-            ;
-        }
+        //    camShake.Shake(1f, 1f, 0.2f);
+        //    _impulseSource.GenerateImpulse();
+        //    if (currentHP <= 0f) Die(); else StartCoroutine(HitColor());
+        //    ;
+        //}
 
         private IEnumerator HitColor()
         {
@@ -228,22 +228,22 @@ namespace Game.Player
             float b = 0.1f;
             _machine.ChangeState(_machine.HurtState);
 
-            Color color = _spriteRenderer.color;
+            Color color = SpriteRenderer.color;
             SetInvincible(true);
 
             float time = 0f;
             while (time < a)
             {
-                _spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
+                SpriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
                 yield return new WaitForSeconds(b);
                 time += b;
 
-                _spriteRenderer.color = color;
+                SpriteRenderer.color = color;
                 yield return new WaitForSeconds(b);
                 time += b;
             }
 
-            _spriteRenderer.color = color;
+            SpriteRenderer.color = color;
             SetInvincible(false);
         }
 

@@ -5647,7 +5647,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 9.8}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 40, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1255762134
@@ -6020,7 +6020,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameSystem.Player
   OnTrait: 0
-  _spriteRenderer: {fileID: 310275703}
+  SpriteRenderer: {fileID: 310275703}
   PlayerMaterial: {fileID: 922601903}
   camShake: {fileID: 138208472}
   AnimationDataSerialized:
@@ -9327,5 +9327,5 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 763334106}
-  - {fileID: 375481399}
   - {fileID: 922601901}
+  - {fileID: 375481399}
