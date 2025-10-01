@@ -3,7 +3,9 @@ using Game.Monster;
 using System;
 using System.Collections;
 using Unity.Cinemachine;
+using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEditorInternal.ReorderableList;
 
 namespace Game.Player
 {
@@ -15,7 +17,9 @@ namespace Game.Player
 
         public bool OnTrait;
 
-        [SerializeField] private SpriteRenderer _spriteRenderer;
+        public SpriteRenderer SpriteRenderer;
+
+        public MaterialInitializer PlayerMaterial;
 
         [SerializeField] private CameraShake camShake;
 
@@ -28,6 +32,9 @@ namespace Game.Player
 
         public AnimationData AnimationData => AnimationDataSerialized;
         public PlayerData Data => DataSerialized;
+
+        private PlayerData _originalData;
+
         public ForceReceiver ForceReceiver => Force;
 
         private PlayerStateMachine _machine;
@@ -92,6 +99,8 @@ namespace Game.Player
             Rb = GetComponent<Rigidbody2D>();
             Animator = GetComponentInChildren<Animator>();
             if (!Force) Force = GetComponent<ForceReceiver>();
+            _originalData = DataSerialized.Clone();
+
             currentHP = Data.Stats.MaxHP;
 
             _machine = new PlayerStateMachine(this);
@@ -198,19 +207,19 @@ namespace Game.Player
             ;
         }
 
-        public void TakeDamage(int damage)
-        {
-            if (Invincible || IsDead) return;
-            currentHP = Mathf.Max(0f, currentHP - Mathf.Max(0, damage));
-            HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
+        //public void TakeDamage(int damage)
+        //{
+        //    if (Invincible || IsDead) return;
+        //    currentHP = Mathf.Max(0f, currentHP - Mathf.Max(0, damage));
+        //    HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
 
-            Debug.Log($"피해량체크- {damage} 남은체력- {currentHP}");
+        //    Debug.Log($"피해량체크- {damage} 남은체력- {currentHP}");
 
-            camShake.Shake(1f, 1f, 0.2f);
-            _impulseSource.GenerateImpulse();
-            if (currentHP <= 0f) Die(); else StartCoroutine(HitColor());
-            ;
-        }
+        //    camShake.Shake(1f, 1f, 0.2f);
+        //    _impulseSource.GenerateImpulse();
+        //    if (currentHP <= 0f) Die(); else StartCoroutine(HitColor());
+        //    ;
+        //}
 
         private IEnumerator HitColor()
         {
@@ -219,22 +228,22 @@ namespace Game.Player
             float b = 0.1f;
             _machine.ChangeState(_machine.HurtState);
 
-            Color color = _spriteRenderer.color;
+            Color color = SpriteRenderer.color;
             SetInvincible(true);
 
             float time = 0f;
             while (time < a)
             {
-                _spriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
+                SpriteRenderer.color = new Color(1f, 1f, 1f, 0.5f);
                 yield return new WaitForSeconds(b);
                 time += b;
 
-                _spriteRenderer.color = color;
+                SpriteRenderer.color = color;
                 yield return new WaitForSeconds(b);
                 time += b;
             }
 
-            _spriteRenderer.color = color;
+            SpriteRenderer.color = color;
             SetInvincible(false);
         }
 
@@ -260,14 +269,23 @@ namespace Game.Player
             HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
             _machine.ChangeState(_machine.DieState);
 
+            gameObject.layer = LayerMask.NameToLayer("Default");
+
             deadControl.DieSet();
         }
 
         public void Resurrection()
         {
+            DataSerialized = _originalData.Clone();
+
+            Animator.runtimeAnimatorController = normalAnimator;
+
             currentHP = Data.Stats.MaxHP;
             HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
             _machine.ChangeState(_machine.IdleState);
+
+            gameObject.layer = LayerMask.NameToLayer("Player");
+            PlayerMaterial.SetDefaultMaterial();
         }
 
         public void GainAwakeningGauge()
