@@ -40,7 +40,7 @@ public abstract class StateMachineMonster : NormalMonster
     }
 
     // 데미지 적용 메서드
-    public override void TakeDamage(float damage, GameObject attacker)
+    public override void TakeDamage(float damage, GameObject attacker = null)
     {
         // 체력이 0이하면 종료
         // 만약 넉백이 외부에서 구현한다면 그 부분은 호출하는 쪽에서 막을 필요가 있음
@@ -52,7 +52,9 @@ public abstract class StateMachineMonster : NormalMonster
 
         if (_dataHandler.CurHp <= 0)
         {
-            attacker?.GetComponent<PlayerCharacter>()?.Kill();
+            Attack.StopAttack();
+            //attacker?.GetComponent<PlayerCharacter>()?.Kill();
+            PlayerCharacter.Instance.Kill();
             _stateMachine.ChangeState(Game.Monster.StateType.Die);
         }
         else if(!IsSuperArmor)

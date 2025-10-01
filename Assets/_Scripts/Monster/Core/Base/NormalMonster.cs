@@ -113,7 +113,7 @@ public abstract class NormalMonster : BaseMonster, Game.Monster.IDamageable
         _sr.material = _originMat;
     }
 
-    public abstract void TakeDamage(float damage, GameObject attacker);
+    public abstract void TakeDamage(float damage, GameObject attacker = null);
 
     /// <summary>
     /// 해당 콜라이더를 충돌 무시로 지정하고 리스트에 넣음
