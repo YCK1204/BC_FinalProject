@@ -34,7 +34,6 @@ namespace Game.Player
         public PlayerData Data => DataSerialized;
 
         private PlayerData _originalData;
-
         public ForceReceiver ForceReceiver => Force;
 
         private PlayerStateMachine _machine;
@@ -45,7 +44,6 @@ namespace Game.Player
         [SerializeField] private RuntimeAnimatorController awakenedAnimator;
 
         
-
         public bool Invincible { get; private set; }
         public void SetInvincible(bool on) { Invincible = on; }
 
@@ -84,6 +82,7 @@ namespace Game.Player
                     Die();
             }
         }
+
         public bool IsDead => currentHP <= 0f;
         [SerializeField] private DeadControl deadControl;
 
@@ -397,18 +396,18 @@ namespace Game.Player
 
         #endregion
 
-        private void OnDrawGizmosSelected()
-        {
-            if (Data == null) return;
+        //private void OnDrawGizmosSelected()
+        //{
+        //    if (Data == null) return;
 
-            float r = Data.CombatData.AttackRange;
-            float facing = Mathf.Sign(transform.localScale.x);
+        //    float r = Data.CombatData.AttackRange;
+        //    float facing = Mathf.Sign(transform.localScale.x);
 
-            Vector2 pos = (Vector2)transform.position + new Vector2(facing * r * 0.5f, 0f);
+        //    Vector2 pos = (Vector2)transform.position + new Vector2(facing * r * 0.5f, 0f);
 
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(pos, r);
-        }
+        //    Gizmos.color = Color.red;
+        //    Gizmos.DrawWireSphere(pos, r);
+        //}
 
         private void Update()
         {
