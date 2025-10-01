@@ -62,8 +62,6 @@ namespace Game.Player
         public bool LastHitCritical => lastHitCritical;
         public void MarkLastHitCritical(bool on) { lastHitCritical = on; }
 
-        [SerializeField] private bool isPlayer = true;
-
         public float CurrentHP
         {
             get
@@ -80,11 +78,12 @@ namespace Game.Player
             }
         }
         public bool IsDead => currentHP <= 0f;
+        [SerializeField] private DeadControl deadControl;
+
 
         public event Action<float, float> HpEvent;
         public event Action<float, float> AwakeningEvent;
 
-        private DeadControl deadControl;
 
 
         private void Awake()
@@ -99,10 +98,6 @@ namespace Game.Player
             _machine.ChangeState(_machine.IdleState);
 
             _impulseSource = GetComponent<CinemachineImpulseSource>();
-
-            Transform deadObj = transform.Find("DeadControl");
-            if (deadObj != null)
-                deadControl = deadObj.GetComponent<DeadControl>();
         }
 
         #region Callback
@@ -266,6 +261,13 @@ namespace Game.Player
             _machine.ChangeState(_machine.DieState);
 
             deadControl.DieSet();
+        }
+
+        public void Resurrection()
+        {
+            currentHP = Data.Stats.MaxHP;
+            HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
+            _machine.ChangeState(_machine.IdleState);
         }
 
         public void GainAwakeningGauge()
