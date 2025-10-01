@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MapManager : MonoBehaviour
 {
@@ -26,21 +27,38 @@ public class MapManager : MonoBehaviour
     private void Awake()
     {
         if (Instance == null)
+        {
             Instance = this;
+            DontDestroyOnLoad(gameObject);
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
         else
+        {
             Destroy(gameObject);
+            return;
+        }
     }
 
-    void Start()
+    private void Start()
     {
+        //초기화
+        InitFloor();
+    }
+
+
+    public void InitFloor()
+    {
+        _roomCount = 0;
         ResetMaps();
         LoadMap(_mapPrefabs[0]);
+        OnPortal = true;
     }
 
     private void ResetMaps()
     {
         _mapPool.Clear();
-        for (int i = 1; i < _mapPrefabs.Count; i++) _mapPool.Add(_mapPrefabs[i]);
+        for (int i = 1; i < _mapPrefabs.Count; i++)
+            _mapPool.Add(_mapPrefabs[i]);
     }
 
     public void NextMap()
@@ -62,13 +80,13 @@ public class MapManager : MonoBehaviour
             _mapPool.RemoveAt(index);
 
             LoadMap(prefab);
-            Debug.Log(prefab.name + "남은맵:" + _mapPool.Count);
+            Debug.Log(prefab.name + " 남은맵:" + _mapPool.Count);
         }
         else
         {
             ResetMaps();
             LoadMap(_mapPrefabs[0]);
-            Debug.Log("맵 없음");
+            Debug.Log("리셋");
         }
     }
 
@@ -79,8 +97,8 @@ public class MapManager : MonoBehaviour
 
         _currentMap = Instantiate(prefab, transform);
 
-
-        var colliderTransform = _currentMap.transform.FindChild<Transform>(name: "Collider");
+        //콜라이더 초기화
+        var colliderTransform = _currentMap.transform.Find("Collider");
         if (colliderTransform != null)
         {
             colliderTransform.gameObject.SetActive(false);
@@ -89,8 +107,8 @@ public class MapManager : MonoBehaviour
 
         MovePlayerSpawn(_currentMap);
 
-        //포탈on
-        
+        //포탈 off
+        OnPortal = false;
     }
 
     private void MovePlayerSpawn(GameObject map)
@@ -100,14 +118,27 @@ public class MapManager : MonoBehaviour
         {
             _player.position = spawnPoint.position;
             _player.rotation = spawnPoint.rotation;
-            _cam.ForceCameraPosition(new Vector3(spawnPoint.position.x, spawnPoint.position.y, _cam.transform.position.z), Quaternion.identity);
+            _cam.ForceCameraPosition(
+                new Vector3(spawnPoint.position.x, spawnPoint.position.y, _cam.transform.position.z),
+                Quaternion.identity
+            );
         }
-        else Debug.LogError(map.name + "!!스폰포인트 없음");
+        else Debug.LogError(map.name + "!! 스폰포인트 없음");
     }
 
     public void SetPortal()
     {
         OnPortal = true;
         Debug.Log("포탈 열림");
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        InitFloor();
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

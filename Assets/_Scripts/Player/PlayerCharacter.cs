@@ -62,8 +62,6 @@ namespace Game.Player
         public bool LastHitCritical => lastHitCritical;
         public void MarkLastHitCritical(bool on) { lastHitCritical = on; }
 
-        [SerializeField] private bool isPlayer = true;
-
         public float CurrentHP
         {
             get
@@ -80,9 +78,12 @@ namespace Game.Player
             }
         }
         public bool IsDead => currentHP <= 0f;
+        [SerializeField] private DeadControl deadControl;
+
 
         public event Action<float, float> HpEvent;
         public event Action<float, float> AwakeningEvent;
+
 
 
         private void Awake()
@@ -258,6 +259,15 @@ namespace Game.Player
             currentHP = 0f;
             HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
             _machine.ChangeState(_machine.DieState);
+
+            deadControl.DieSet();
+        }
+
+        public void Resurrection()
+        {
+            currentHP = Data.Stats.MaxHP;
+            HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
+            _machine.ChangeState(_machine.IdleState);
         }
 
         public void GainAwakeningGauge()
@@ -391,6 +401,11 @@ namespace Game.Player
             bool g = kb != null && kb.gKey.wasPressedThisFrame;
             if (g)
                 Manager.Item.AddItem(this);
+
+            if (kb != null && kb.rKey.wasPressedThisFrame)
+            {
+                Die();
+            }
         }
 
         private void FixedUpdate()

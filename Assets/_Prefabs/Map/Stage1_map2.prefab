@@ -48,17 +48,9 @@ MonoBehaviour:
   SpawnInfos:
   - Prefab: {fileID: 6995806667873288730, guid: 31e8fc94f4f82b443ba7f0ba01dac1dc, type: 3}
     Position: {x: 1, y: 10}
-  - Prefab: {fileID: 6995806667873288730, guid: 31e8fc94f4f82b443ba7f0ba01dac1dc, type: 3}
+  - Prefab: {fileID: 5114862662598244505, guid: b0d51f84096c8104ba7d07c73f983a6a, type: 3}
     Position: {x: -3, y: 10}
   - Prefab: {fileID: 5114862662598244505, guid: b0d51f84096c8104ba7d07c73f983a6a, type: 3}
-    Position: {x: -8, y: 10}
-  - Prefab: {fileID: 5114862662598244505, guid: b0d51f84096c8104ba7d07c73f983a6a, type: 3}
-    Position: {x: -8, y: 10}
-  - Prefab: {fileID: 8420547118552779038, guid: 911cf179560f9b44fabca07333225250, type: 3}
-    Position: {x: -8, y: 10}
-  - Prefab: {fileID: 8420547118552779038, guid: 911cf179560f9b44fabca07333225250, type: 3}
-    Position: {x: -8, y: 10}
-  - Prefab: {fileID: 5635032555221613933, guid: 5f9ea8fe861564f44b81a81fe12adddc, type: 3}
     Position: {x: -8, y: 10}
   Root: {fileID: 0}
   NextSpawners: []
@@ -159,14 +151,12 @@ MonoBehaviour:
     Position: {x: 15, y: 1}
   - Prefab: {fileID: 6995806667873288730, guid: 31e8fc94f4f82b443ba7f0ba01dac1dc, type: 3}
     Position: {x: 22, y: 1}
-  - Prefab: {fileID: 5114862662598244505, guid: b0d51f84096c8104ba7d07c73f983a6a, type: 3}
+  - Prefab: {fileID: 1894069600366304804, guid: 8f1fd914d5d402545a1f8a28e7e28e93, type: 3}
     Position: {x: 25, y: 1}
   - Prefab: {fileID: 8420547118552779038, guid: 911cf179560f9b44fabca07333225250, type: 3}
     Position: {x: 18, y: 1}
-  - Prefab: {fileID: 8420547118552779038, guid: 911cf179560f9b44fabca07333225250, type: 3}
+  - Prefab: {fileID: 1894069600366304804, guid: 8f1fd914d5d402545a1f8a28e7e28e93, type: 3}
     Position: {x: 27, y: 1}
-  - Prefab: {fileID: 5635032555221613933, guid: 5f9ea8fe861564f44b81a81fe12adddc, type: 3}
-    Position: {x: 20, y: 1}
   Root: {fileID: 0}
   NextSpawners: []
   GizmoColor: {r: 1, g: 0, b: 0, a: 1}
