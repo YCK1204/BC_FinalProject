@@ -1,11 +1,13 @@
 using Game.Player;
 using System;
 using UnityEngine;
-
-public enum ItemCreateAreaPosType
+using Random = UnityEngine.Random;
+public enum ItemEffectCreatePosType
 {
     Player,
-    Collision
+    Collision,
+    NearestEnemy,
+    WithInRangeEnemy,
 }
 
 [Serializable]
@@ -13,16 +15,16 @@ public struct ItemAreaData : ItemAbilityEvent
 {
     public int Id;
     public float AnmationDuration;
-    public ItemCreateAreaPosType CreateAreaPosType;
+    public ItemEffectCreatePosType CreatePosType;
     public float Radius;
     public float Damage;
     public int AttackCount;
 
-    public ItemAreaData(int id, float anmationDuration, ItemCreateAreaPosType createAreaPosType, float radius, float damage, int attackCount)
+    public ItemAreaData(int id, float anmationDuration, ItemEffectCreatePosType createPosType, float radius, float damage, int attackCount)
     {
         Id = id;
         AnmationDuration = anmationDuration;
-        CreateAreaPosType = createAreaPosType;
+        CreatePosType = createPosType;
         Radius = radius;
         Damage = damage;
         AttackCount = attackCount;

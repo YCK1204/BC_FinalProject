@@ -17,7 +17,7 @@ MonoBehaviour:
   START_ROW_LENGTH: 2
   END_ROW_LENGTH: 2
   DataList:
-  - Id: 3001
+  - Id: 1
     Duration: 3
     MaxCount: 1
     Ability1: 8

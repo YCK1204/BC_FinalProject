@@ -9,7 +9,7 @@ public class ItemAreaDataReader : DataReaderBase<ItemAreaData>
     {
         int Id = 0;
         float AnmationDuration = 0;
-        ItemCreateAreaPosType CreateAreaPosType = ItemCreateAreaPosType.Player;
+        ItemEffectCreatePosType CreateAreaPosType = ItemEffectCreatePosType.Player;
         float Radius = 0;
         float Damage = 0;
         int AttackCount = 0;
@@ -24,7 +24,7 @@ public class ItemAreaDataReader : DataReaderBase<ItemAreaData>
                     AnmationDuration = float.Parse(item.value);
                     break;
                 case "CreatePosition":
-                    CreateAreaPosType = (ItemCreateAreaPosType)System.Enum.Parse(typeof(ItemCreateAreaPosType), item.value);
+                    CreateAreaPosType = (ItemEffectCreatePosType)System.Enum.Parse(typeof(ItemEffectCreatePosType), item.value);
                     break;
                 case "Radius":
                     Radius = float.Parse(item.value);

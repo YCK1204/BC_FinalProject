@@ -84,6 +84,10 @@ public class DataManager
             var reader = Manager.Resource.LoadData<ItemDescriptionDataReader>("DescriptionDataReader");
             ItemsData.Description = reader.DataList.ToDictionary(data => data.Id, data => data);
         }
+        {
+            var reader = Manager.Resource.LoadData<ItemEffectDataReader>("ItemEffectDataReader");
+            ItemsData.Effect = reader.DataList.ToDictionary(data => data.Id, data => data);
+        }
         #endregion
     }
     public void Save()

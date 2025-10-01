@@ -16,16 +16,4 @@ MonoBehaviour:
   associatedWorksheet: "\uC601\uC5ED\uC0DD\uC13105"
   START_ROW_LENGTH: 2
   END_ROW_LENGTH: 3
-  DataList:
-  - Id: 5001
-    AnmationDuration: 0.75
-    CreateAreaPosType: 0
-    Radius: 5
-    Damage: 1.5
-    AttackCount: 1
-  - Id: 5002
-    AnmationDuration: 0.5
-    CreateAreaPosType: 0
-    Radius: 10
-    Damage: 1.7
-    AttackCount: 1
+  DataList: []

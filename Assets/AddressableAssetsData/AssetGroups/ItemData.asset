@@ -27,12 +27,6 @@ MonoBehaviour:
     m_SerializedLabels:
     - ItemData
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 20e46af2ac858154eac495f682f90379
-    m_Address: TalentDataReader
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - ItemData
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: adbd102dbd853f846874fdf239187231
     m_Address: SynergyDataReader
     m_ReadOnly: 0

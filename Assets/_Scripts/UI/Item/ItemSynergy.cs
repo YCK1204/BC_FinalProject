@@ -38,24 +38,24 @@ public class ItemSynergy
     {
         var player = PlayerCharacter.Instance;
 
-        switch (Data.ActionType)
-        {
-            case ItemActionType.Always:
-                break;
-            case ItemActionType.Kill:
-                break;
-            case ItemActionType.UsingSkill:
-                break;
-            case ItemActionType.UsingAttack:
-                break;
-            case ItemActionType.AttackHit:
-                break;
-            case ItemActionType.StartRound:
-                break;
-            case ItemActionType.DashEnd:
-                break;
-            case ItemActionType.OnSynergy:
-                break;
-        }
+        //switch (Data.ActionType)
+        //{
+        //    case ItemActionType.Always:
+        //        break;
+        //    case ItemActionType.Kill:
+        //        break;
+        //    case ItemActionType.UsingSkill:
+        //        break;
+        //    case ItemActionType.UsingAttack:
+        //        break;
+        //    case ItemActionType.AttackHit:
+        //        break;
+        //    case ItemActionType.StartRound:
+        //        break;
+        //    case ItemActionType.DashEnd:
+        //        break;
+        //    case ItemActionType.OnSynergy:
+        //        break;
+        //}
     }
 }

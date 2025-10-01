@@ -76,26 +76,31 @@ public struct ItemData
     public ItemStat Stat1;
     public ItemStat Stat2;
     public string IconURL;
-    public int ItemTalentId;
+    public int ItemEffectId;
     public int SynergyId;
-    public int DescId;
     public ItemGradeType ItemGrade;
+    public ItemEffectData EffectData;
     public void Set(PlayerCharacter player)
     {
         ItemSetterUtil.ApplyStat(player, Stat1.ItemExtraStatType, Stat1.Value);
         ItemSetterUtil.ApplyStat(player, Stat2.ItemExtraStatType, Stat2.Value);
+        if (ItemEffectId == 0)
+            return;
+        Manager.Data.ItemsData.Effect.TryGetValue(ItemEffectId, out var effectData);
+        EffectData = effectData;
+        EffectData.Set();
     }
-    public ItemData(int id, ItemGradeType itemGradeType, string _name, ItemExtraStatType ability_1Type, int ability_1Value, ItemExtraStatType ability_2Type, int ability_2Value, int itemTalentId, int synergyId, string iconURL, int descriptionId)
+    public ItemData(int id, ItemGradeType itemGradeType, string _name, ItemExtraStatType ability_1Type, float ability_1Value, ItemExtraStatType ability_2Type, float ability_2Value, int itemEffectId, int synergyId, string iconURL)
     {
         Id = id;
         ItemGrade = itemGradeType;
         ItemName = _name;
         Stat1 = new ItemStat() { ItemExtraStatType = ability_1Type, ItemTriggerType = ItemTriggerType.Always, Value = ability_1Value };
         Stat2 = new ItemStat() { ItemExtraStatType = ability_2Type, ItemTriggerType = ItemTriggerType.Always, Value = ability_2Value };
-        ItemTalentId = itemTalentId;
+        ItemEffectId = itemEffectId;
         SynergyId = synergyId;
         IconURL = iconURL;
-        DescId = descriptionId;
+        EffectData = default(ItemEffectData);
     }
 }
 

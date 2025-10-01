@@ -1,5 +1,7 @@
 using Game.Player;
+using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class AreaController : MonoBehaviour
@@ -13,6 +15,7 @@ public class AreaController : MonoBehaviour
     public void Init(ItemAreaData data, PlayerCharacter owner)
     {
         _data = data;
+        //_animator.runtimeAnimatorController 나중에 설정된 애니메이터 경로의 애니메이터로 변경
     }
     IEnumerator CoShot()
     {
@@ -24,11 +27,14 @@ public class AreaController : MonoBehaviour
         StopCoroutine(CoShot());
         Manager.Pool.Push<AreaController>(gameObject);
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void HitEnemiesInRadius()
     {
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Enemy"))
+        var hits = Physics2D.OverlapCircleAll(transform.position, _data.Radius, LayerMask.GetMask("Monster"));
+
+        foreach (var hit in hits)
         {
-            // 데미지 처리
+            var monster = hit.GetComponent<NormalMonster>();
+            //monster.TakeDamage((int)_data.Damage);
         }
     }
 }

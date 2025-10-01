@@ -9,4 +9,5 @@ public class Item
     public Dictionary<int, ItemAreaData> Area = new Dictionary<int, ItemAreaData>();
     public Dictionary<int, ItemSynergyData> Synergy = new Dictionary<int, ItemSynergyData>();
     public Dictionary<int, ItemDescriptionData> Description = new Dictionary<int, ItemDescriptionData>();
+    public Dictionary<int, ItemEffectData> Effect = new Dictionary<int, ItemEffectData>();
 }
