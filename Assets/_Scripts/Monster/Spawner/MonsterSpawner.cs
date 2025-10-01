@@ -69,7 +69,10 @@ public abstract class MonsterSpawner : MonoBehaviour
     {
         StartCoroutine(LateStart(() =>
         {
-            Manager.Game.MonsterCount += SpawnInfos.Count;
+            foreach (var info in SpawnInfos)
+            {
+                Manager.Game.MonsterCount += info.Prefab.MonsterCount;
+            }
         }));
     }
     private void Start()
@@ -88,6 +91,7 @@ public abstract class MonsterSpawner : MonoBehaviour
         foreach (var info in SpawnInfos)
         {
             var monster = Manager.Resource.Instantiate<BaseMonster>(info.Prefab);
+            SpawnedCount += monster.MonsterCount;
             monster.OnDied += () =>
             {
                 SpawnedCount--;
@@ -98,7 +102,6 @@ public abstract class MonsterSpawner : MonoBehaviour
             _spawnedMonsters.Add(monster);
             // 몬스터 OnDestroy 시 SpawnedCount 감소
         }
-        SpawnedCount = SpawnInfos.Count;
         _isSpawned = true;
     }
 }
