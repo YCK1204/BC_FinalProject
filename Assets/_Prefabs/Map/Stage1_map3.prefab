@@ -48,11 +48,9 @@ MonoBehaviour:
   - Prefab: {fileID: 8420547118552779038, guid: 911cf179560f9b44fabca07333225250, type: 3}
     Position: {x: 0, y: -4}
   - Prefab: {fileID: 8420547118552779038, guid: 911cf179560f9b44fabca07333225250, type: 3}
-    Position: {x: 5, y: -4}
-  - Prefab: {fileID: 8420547118552779038, guid: 911cf179560f9b44fabca07333225250, type: 3}
-    Position: {x: 2, y: -4}
+    Position: {x: 3, y: -4}
   - Prefab: {fileID: 1894069600366304804, guid: 8f1fd914d5d402545a1f8a28e7e28e93, type: 3}
-    Position: {x: 9, y: -4}
+    Position: {x: 6, y: -4}
   - Prefab: {fileID: 1894069600366304804, guid: 8f1fd914d5d402545a1f8a28e7e28e93, type: 3}
     Position: {x: 7, y: -4}
   Root: {fileID: 0}
@@ -10657,7 +10655,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AreaMonsterSpawner
   SpawnInfos:
-  - Prefab: {fileID: 5114862662598244505, guid: b0d51f84096c8104ba7d07c73f983a6a, type: 3}
+  - Prefab: {fileID: 8420547118552779038, guid: 911cf179560f9b44fabca07333225250, type: 3}
     Position: {x: 15, y: 15}
   - Prefab: {fileID: 8420547118552779038, guid: 911cf179560f9b44fabca07333225250, type: 3}
     Position: {x: 9, y: 15}
