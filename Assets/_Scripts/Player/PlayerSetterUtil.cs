@@ -32,7 +32,7 @@ namespace Game.Player
                     player.Data.CombatData.SkillAttckPercent += val / 100f;
                     break;
                 case ItemExtraStatType.AttackSpeed:
-                    player.Data.CombatData.AttackSpeed += val;
+                    player.Data.CombatData.AttackSpeed += val / 100f;
                     break;
                 case ItemExtraStatType.SkillHaste:
                     player.Data.CombatData.SkillHaste += val;
