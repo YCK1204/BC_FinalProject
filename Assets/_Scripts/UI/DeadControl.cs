@@ -88,6 +88,7 @@ public class DeadControl : MonoBehaviour
     public void DieSet()
     {
         _setAnimator.Play("Die", 0, 0f);
+        _pickObject.SetActive(true);
 
         StartCoroutine(DeathSequence());
     }
@@ -155,6 +156,7 @@ public class DeadControl : MonoBehaviour
     {
         _canInteract = false;
         _isMouseOver = false;
+        _pickObject.SetActive(false);
 
         PlayerManager.Instance.Player.SetPlayerInput(false);
 
