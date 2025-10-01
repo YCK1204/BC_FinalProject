@@ -114,5 +114,66 @@ namespace Game.Player
         public PlayerStatsData Stats = new PlayerStatsData();
         public PlayerComboAttackData ComboAttackData = new PlayerComboAttackData();
         public PlayerAwakeningData awakening = new PlayerAwakeningData();
+
+        public PlayerData Clone()
+        {
+            return new PlayerData
+            {
+                GroundData = new PlayerGroundData
+                {
+                    BaseSpeed = GroundData.BaseSpeed,
+                    WalkSpeedModifier = GroundData.WalkSpeedModifier
+                },
+                AirData = new PlayerAirData
+                {
+                    JumpForce = AirData.JumpForce,
+                    DoubleJumpForce = AirData.DoubleJumpForce
+                },
+                DashData = new PlayerDashData
+                {
+                    Duration = DashData.Duration,
+                    SpeedMultiplier = DashData.SpeedMultiplier,
+                    Cooldown = DashData.Cooldown,
+                    InvincibleDuringDash = DashData.InvincibleDuringDash,
+                    PassThroughLayers = DashData.PassThroughLayers
+                },
+                CombatData = new PlayerCombatData
+                {
+                    AttackPower = CombatData.AttackPower,
+                    AttackRange = CombatData.AttackRange,
+                    AttackSpeed = CombatData.AttackSpeed,
+                    ExtraDamage = CombatData.ExtraDamage,
+                    CriticalChance = CombatData.CriticalChance,
+                    CriticalDamage = CombatData.CriticalDamage,
+                    SkillAttck = CombatData.SkillAttck,
+                    SkillHaste = CombatData.SkillHaste,
+                    CorruptionDuration = CombatData.CorruptionDuration,
+                    AttackPowerPercent = CombatData.AttackPowerPercent,
+                    SkillAttckPercent = CombatData.SkillAttckPercent
+                },
+                HurtData = new PlayerHurtData
+                {
+                    Duration = HurtData.Duration,
+                    KnockbackX = HurtData.KnockbackX,
+                    KnockbackY = HurtData.KnockbackY,
+                    InvincibleDuringHurt = HurtData.InvincibleDuringHurt
+                },
+                Stats = new PlayerStatsData
+                {
+                    MaxHP = Stats.MaxHP
+                },
+                ComboAttackData = new PlayerComboAttackData
+                {
+                    AttackInfos = new List<AttackInfoData>(ComboAttackData.AttackInfos)
+                },
+                awakening = new PlayerAwakeningData
+                {
+                    maxAwakeningGauge = awakening.maxAwakeningGauge,
+                    awakeningOnHit = awakening.awakeningOnHit,
+                    duration = awakening.duration
+                }
+            };
+        }
     }
+
 }

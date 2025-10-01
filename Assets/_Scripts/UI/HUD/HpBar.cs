@@ -7,9 +7,7 @@ public class HpBar : MonoBehaviour
 {
     public Slider slider;
     public float lerpSpeed = 2f;
-
     public PlayerCharacter player;
-
 
     void Start()
     {
@@ -18,10 +16,10 @@ public class HpBar : MonoBehaviour
             slider.minValue = 0f;
             slider.maxValue = 1f;
             slider.value = 1f;
-
             player.HpEvent += UpdateHp;
         }
     }
+
     void OnDestroy()
     {
         if (player != null)
@@ -31,8 +29,16 @@ public class HpBar : MonoBehaviour
     void UpdateHp(float currentHp, float maxHp)
     {
         float hp = currentHp / maxHp;
-        StopAllCoroutines();
-        StartCoroutine(UpdateHpBar(hp));
+
+        if (gameObject.activeInHierarchy)
+        {
+            StopAllCoroutines();
+            StartCoroutine(UpdateHpBar(hp));
+        }
+        else
+        {
+            slider.value = hp;
+        }
     }
 
     public void SetMaxHp(float maxHp)
@@ -43,8 +49,15 @@ public class HpBar : MonoBehaviour
 
     public void SetHp(float hp)
     {
-        StopAllCoroutines();
-        StartCoroutine(UpdateHpBar(hp));
+        if (gameObject.activeInHierarchy)
+        {
+            StopAllCoroutines();
+            StartCoroutine(UpdateHpBar(hp));
+        }
+        else
+        {
+            slider.value = hp;
+        }
     }
 
     private IEnumerator UpdateHpBar(float targetHp)
