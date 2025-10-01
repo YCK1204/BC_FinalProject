@@ -36,7 +36,7 @@ public class MonsterStateMachine : Game.Monster.IStateMachine<StateMachineMonste
     public void ChangeState(Game.Monster.StateType type)
     {
         // 현재 상태와 같은 상태로 변경 시도하면 종료
-        if (curState.StateType == type)
+        if (curState.StateType == type && curState.StateType != Game.Monster.StateType.Hit)
             return;
 
         // 변경하려는 스테이트가 딕셔너리에 존재해야만 변경

@@ -1,4 +1,5 @@
 using Game.Monster;
+using Game.Player;
 using System.Collections;
 using UnityEngine;
 
@@ -10,6 +11,7 @@ public abstract class BaseProjectile : MonoBehaviour
     protected Rigidbody2D _rb;
     protected SpriteRenderer _sr;
     protected Animator _anim;
+    protected GameObject _attacker;
 
     protected Transform _target;
     protected Vector3 _dir;
@@ -28,11 +30,12 @@ public abstract class BaseProjectile : MonoBehaviour
         StartCoroutine(ProjectileLife(DataHandler.Data.LifeTime));
     }
 
-    public virtual void Init(Vector3 dir, Transform target = null, float attackPower = 0f)
+    public virtual void Init(Vector3 dir, GameObject attacker, Transform target = null, float attackPower = 0f)
     {
         _target = target;
         _dir = dir;
         _dataHandler.Damage = attackPower;
+        _attacker = attacker;
         _sr.flipX = dir.x < 0;
     }
 
@@ -51,16 +54,20 @@ public abstract class BaseProjectile : MonoBehaviour
         // 플레이어면 데미지
         if((1 << other.gameObject.layer) == LayerMask.GetMask(Game.Monster.Layers.Player))
         {
-            Vector2 knockBackDir = new Vector2(_rb.linearVelocityX < 0 ? -1 : 1, 1);
+            // 무적 체크
+            PlayerCharacter pc = other.GetComponent<PlayerCharacter>();
+            if (pc != null && pc.Invincible)
+                return;
+
+            Vector2 knockBackDir = new Vector2(_rb.linearVelocityX < 0 ? -1 : 1, 0);
             knockBackDir.Normalize();
 
-            Debug.Log(knockBackDir);
             // 수치를 어떻게 조정해야하지?
             Rigidbody2D targetRb = _target.GetComponent<Rigidbody2D>();
             targetRb.linearVelocity = Vector2.zero;
             targetRb.AddForce(knockBackDir * 400);
 
-            damageable?.TakeDamage((int)DataHandler.Damage);
+            damageable?.TakeDamage(DataHandler.Damage, _attacker);
             DestroyProjectile();
         }
         // 벽이나 땅이면 소멸

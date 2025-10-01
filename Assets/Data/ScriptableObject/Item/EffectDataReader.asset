@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5484fef374fcedf4ba721008df3700d5, type: 3}
+  m_Name: EffectDataReader
+  m_EditorClassIdentifier: Assembly-CSharp::ItemEffectDataReader
+  associatedSheet: 12caJqOR5SSlbMQerqCmjLh1uayleody_nUI7eH7W26E
+  associatedWorksheet: "\uC544\uC774\uD15C \uD6A8\uACFC"
+  START_ROW_LENGTH: 2
+  END_ROW_LENGTH: 6
+  DataList: []

@@ -13,6 +13,8 @@ namespace Game.Player
         public Animator Animator { get; private set; }
         public static PlayerCharacter Instance { get; private set; }
 
+        public bool OnTrait;
+
         [SerializeField] private SpriteRenderer _spriteRenderer;
 
         [SerializeField] private CameraShake camShake;
@@ -32,6 +34,11 @@ namespace Game.Player
 
         private CinemachineImpulseSource _impulseSource;
 
+        [SerializeField] private RuntimeAnimatorController normalAnimator;
+        [SerializeField] private RuntimeAnimatorController awakenedAnimator;
+
+        
+
         public bool Invincible { get; private set; }
         public void SetInvincible(bool on) { Invincible = on; }
 
@@ -47,6 +54,8 @@ namespace Game.Player
         [SerializeField] private float currentAwakening;
         public float CurrentAwakening => currentAwakening;
         public bool IsAwakened { get; private set; }
+
+        [SerializeField] private GameObject awakeningEffect;
 
         [Header("Combat Debug")]
         [SerializeField] private bool lastHitCritical;
@@ -69,8 +78,12 @@ namespace Game.Player
             }
         }
         public bool IsDead => currentHP <= 0f;
+        [SerializeField] private DeadControl deadControl;
+
 
         public event Action<float, float> HpEvent;
+        public event Action<float, float> AwakeningEvent;
+
 
 
         private void Awake()
@@ -86,6 +99,49 @@ namespace Game.Player
 
             _impulseSource = GetComponent<CinemachineImpulseSource>();
         }
+
+        #region Callback
+        public event Action OnKill;
+        public event Action OnUsingSkill;
+        public event Action OnUsingAttackStart;
+        public event Action OnUsingAttackEnd;
+        public event Action OnAttackHit;
+        public event Action OnStartRound;
+        public event Action OnDashEnd;
+
+        public void Kill()
+        {
+            OnKill?.Invoke();
+        }
+        public void UsingSkill()
+        {
+            OnUsingSkill?.Invoke();
+        }
+        public void UsingAttack_Start()
+        {
+            OnUsingAttackStart?.Invoke();
+        }
+        public void UsingAttackt_End()
+        {
+            OnUsingAttackEnd?.Invoke();
+        }
+        public void AttackHit()
+        {
+            OnAttackHit?.Invoke();
+        }
+        public void StartRound()
+        {
+            OnStartRound?.Invoke();
+        }
+        public void DashEnd()
+        {
+            OnDashEnd?.Invoke();
+        }
+
+        #endregion
+
+        #region Player
+
         public bool IsGrounded()
         {
             if (!GroundCheck)
@@ -128,7 +184,7 @@ namespace Game.Player
 
 
 
-        public void TakeDamage(float amount)
+        public void TakeDamage(float amount, GameObject attacker = null)
         {
             if (Invincible || IsDead) return;
             currentHP = Mathf.Max(0f, currentHP - Mathf.Max(0f, amount));
@@ -203,6 +259,15 @@ namespace Game.Player
             currentHP = 0f;
             HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
             _machine.ChangeState(_machine.DieState);
+
+            deadControl.DieSet();
+        }
+
+        public void Resurrection()
+        {
+            currentHP = Data.Stats.MaxHP;
+            HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
+            _machine.ChangeState(_machine.IdleState);
         }
 
         public void GainAwakeningGauge()
@@ -210,6 +275,8 @@ namespace Game.Player
             if (IsAwakened || IsDead) return;
             var awakeningData = Data.awakening;
             currentAwakening = Mathf.Min(awakeningData.maxAwakeningGauge, currentAwakening + awakeningData.awakeningOnHit);
+
+            AwakeningEvent?.Invoke(currentAwakening, awakeningData.maxAwakeningGauge);
 
             if (currentAwakening >= awakeningData.maxAwakeningGauge)
             {
@@ -220,18 +287,46 @@ namespace Game.Player
         private void EnterAwakening()
         {
             if (IsAwakened) return;
+
+            var awakeningData = Data.awakening;
+
             Debug.Log("각성!");
             IsAwakened = true;
-            currentAwakening = 0f;
+            currentAwakening = awakeningData.maxAwakeningGauge;
             float totalDuration = Data.awakening.duration;
+            Data.CombatData.AttackRange = 1.6f;
+
+            Animator.runtimeAnimatorController = awakenedAnimator;
+
+            awakeningEffect.SetActive(true);
+
             StartCoroutine(AwakeningTimer(totalDuration));
         }
 
         private IEnumerator AwakeningTimer(float duration)
         {
-            yield return new WaitForSeconds(duration);
+            float time = 0f;
+            float start = currentAwakening;
 
+            while (time < duration)
+            {
+                time += Time.deltaTime;
+                currentAwakening = Mathf.Lerp(start, 0f, time / duration);
+
+                AwakeningEvent?.Invoke(currentAwakening, Data.awakening.maxAwakeningGauge);
+
+                yield return null;
+            }
+
+            currentAwakening = 0f;
             IsAwakened = false;
+            Data.CombatData.AttackRange = 1.1f;
+
+            Animator.runtimeAnimatorController = normalAnimator;
+
+            awakeningEffect.SetActive(false);
+
+            AwakeningEvent?.Invoke(currentAwakening, Data.awakening.maxAwakeningGauge);
             Debug.Log("각성종료");
         }
 
@@ -282,6 +377,21 @@ namespace Game.Player
             }
         }
 
+        #endregion
+
+        private void OnDrawGizmosSelected()
+        {
+            if (Data == null) return;
+
+            float r = Data.CombatData.AttackRange;
+            float facing = Mathf.Sign(transform.localScale.x);
+
+            Vector2 pos = (Vector2)transform.position + new Vector2(facing * r * 0.5f, 0f);
+
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(pos, r);
+        }
+
         private void Update()
         {
             _machine.Tick();
@@ -291,6 +401,11 @@ namespace Game.Player
             bool g = kb != null && kb.gKey.wasPressedThisFrame;
             if (g)
                 Manager.Item.AddItem(this);
+
+            if (kb != null && kb.rKey.wasPressedThisFrame)
+            {
+                Die();
+            }
         }
 
         private void FixedUpdate()

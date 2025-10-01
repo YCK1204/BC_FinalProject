@@ -9,6 +9,8 @@ public abstract class BaseMonster : MonoBehaviour
     protected Transform _target;
     public Transform Target { get { return _target; } }
 
+    public int MonsterCount = 1;
+
     public Action OnDied;
 
     public void SetTarget(Transform target)

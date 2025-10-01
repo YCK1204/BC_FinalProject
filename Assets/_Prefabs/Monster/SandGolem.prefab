@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 6186612078484227909}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.65, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -153,7 +153,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &2920379862236665263
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -213,6 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SandGolem
   _dataHandler: {fileID: 0}
+  MonsterCount: 1
   FlashMat: {fileID: 2100000, guid: f91d0347af52ebb40a20e0a86ccdc47a, type: 2}
   IsSuperArmor: 0
 --- !u!114 &9022482633414693186

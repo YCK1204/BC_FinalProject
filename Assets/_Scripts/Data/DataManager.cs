@@ -65,10 +65,6 @@ public class DataManager
             ItemsData.Base = reader.DataList.ToDictionary(data => data.Id, data => data);
         }
         {
-            var reader = Manager.Resource.LoadData<ItemTalentDataReader>("TalentDataReader");
-            ItemsData.Talent = reader.DataList.ToDictionary(data => data.Id, data => data);
-        }
-        {
             var reader = Manager.Resource.LoadData<ItemBuffDataReader>("BuffDataReader");
             ItemsData.Buff = reader.DataList.ToDictionary(data => data.Id, data => data);
         }
