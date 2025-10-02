@@ -35,7 +35,7 @@ public class ProjectileController : MonoBehaviour
     {
         switch (collision.gameObject.layer)
         {
-            case var layer when layer == LayerMask.NameToLayer("Enemy"):
+            case var layer when layer == LayerMask.NameToLayer("Monster"):
                 _collisionCount--;
                 Debug.Log("HITHITHIT");
                 // 데미지 처리
