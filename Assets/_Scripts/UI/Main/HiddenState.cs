@@ -11,6 +11,7 @@ public class HiddenState : UiStateBase
         ui.Animator.SetInteger("State", 0);
         //Time.timeScale = 1f;
         PlayerManager.Instance.Player.SetPlayerInput(true);
+        PlayerManager.Instance.Player.Animator.Play("Idle");
     }
 
     public override void Exit() { }

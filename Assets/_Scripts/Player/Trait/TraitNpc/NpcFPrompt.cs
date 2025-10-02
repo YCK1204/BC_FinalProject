@@ -142,7 +142,6 @@ public class NpcFPrompt : MonoBehaviour
         _inside = true;
         if (logEvents) Debug.Log("[NpcFPrompt] Player ENTER", this);
         if (!_windowOpen) SetVisible(true);
-        PlayerManager.Instance.Player.OnTrait = true;
         Reposition();
     }
 
@@ -151,7 +150,6 @@ public class NpcFPrompt : MonoBehaviour
         _inside = false;
         if (logEvents) Debug.Log("[NpcFPrompt] Player EXIT", this);
         if (!_windowOpen && !alwaysShow) SetVisible(false);
-        PlayerManager.Instance.Player.OnTrait = false;
     }
 
     void EnsureVisuals()
@@ -164,25 +162,25 @@ public class NpcFPrompt : MonoBehaviour
             _root.gameObject.layer = gameObject.layer;
         }
 
-        if (_box == null)
-        {
-            var t = _root.Find("Box");
-            var go = t ? t.gameObject : new GameObject("Box", typeof(SpriteRenderer));
-            go.transform.SetParent(_root, false);
-            go.layer = _root.gameObject.layer;
-            _box = go.GetComponent<SpriteRenderer>();
-            _box.sprite = WhiteSprite;
-        }
+        //if (_box == null)
+        //{
+        //    var t = _root.Find("Box");
+        //    var go = t ? t.gameObject : new GameObject("Box", typeof(SpriteRenderer));
+        //    go.transform.SetParent(_root, false);
+        //    go.layer = _root.gameObject.layer;
+        //    _box = go.GetComponent<SpriteRenderer>();
+        //    _box.sprite = WhiteSprite;
+        //}
 
-        if (_label == null)
-        {
-            var t = _root.Find("Label");
-            var go = t ? t.gameObject : new GameObject("Label", typeof(TextMeshPro));
-            go.transform.SetParent(_root, false);
-            go.layer = _root.gameObject.layer;
-            _label = go.GetComponent<TextMeshPro>();
-            _labelMr = _label.GetComponent<MeshRenderer>();
-        }
+        //if (_label == null)
+        //{
+        //    var t = _root.Find("Label");
+        //    var go = t ? t.gameObject : new GameObject("Label", typeof(TextMeshPro));
+        //    go.transform.SetParent(_root, false);
+        //    go.layer = _root.gameObject.layer;
+        //    _label = go.GetComponent<TextMeshPro>();
+        //    _labelMr = _label.GetComponent<MeshRenderer>();
+        //}
         else
         {
             _labelMr = _label.GetComponent<MeshRenderer>();
@@ -250,6 +248,9 @@ public class NpcFPrompt : MonoBehaviour
     void OpenWindow()
     {
         if (!traitWindowRoot) return;
+        PlayerManager.Instance.HUBSet(false);
+        PlayerManager.Instance.Player.OnTrait = true;
+        PlayerManager.Instance.Player.SetPlayerInput(false);
 
         var cg = traitWindowRoot.GetComponent<CanvasGroup>();
         if (!cg) cg = traitWindowRoot.AddComponent<CanvasGroup>();
@@ -272,6 +273,10 @@ public class NpcFPrompt : MonoBehaviour
 
     void CloseWindow()
     {
+        PlayerManager.Instance.HUBSet(true);
+        PlayerManager.Instance.Player.OnTrait = false;
+        PlayerManager.Instance.Player.SetPlayerInput(true);
+
         if (traitWindowRoot)
         {
             var cg = traitWindowRoot.GetComponent<CanvasGroup>();
