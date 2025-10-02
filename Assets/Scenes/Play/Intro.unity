@@ -17260,7 +17260,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameSystem.Player
   OnTrait: 0
-  _spriteRenderer: {fileID: 310275703}
+  SpriteRenderer: {fileID: 310275703}
+  PlayerMaterial: {fileID: 0}
   camShake: {fileID: 0}
   AnimationDataSerialized:
     IdleParameterHash: 2081823275
