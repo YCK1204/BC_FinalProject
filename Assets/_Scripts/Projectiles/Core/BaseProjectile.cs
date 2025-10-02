@@ -50,7 +50,8 @@ public abstract class BaseProjectile : MonoBehaviour
     // Todo: 레이어 정보 변경하기
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
-        IDamageable damageable = other.GetComponent<IDamageable>();
+        IDamageable damageable = other.gameObject.GetComponentInChildren<IDamageable>();
+        if (damageable == null) return;
         // 플레이어면 데미지
         if((1 << other.gameObject.layer) == LayerMask.GetMask(Game.Monster.Layers.Player))
         {
@@ -63,7 +64,7 @@ public abstract class BaseProjectile : MonoBehaviour
             knockBackDir.Normalize();
 
             // 수치를 어떻게 조정해야하지?
-            Rigidbody2D targetRb = _target.GetComponent<Rigidbody2D>();
+            Rigidbody2D targetRb = other.GetComponentInChildren<Rigidbody2D>();
             targetRb.linearVelocity = Vector2.zero;
             targetRb.AddForce(knockBackDir * 400);
 
