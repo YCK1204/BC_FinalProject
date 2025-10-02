@@ -82,42 +82,54 @@ public struct ItemEffectData
         }
         _eventData = dict[SpecialAbilityId];
 
-        //switch (ActionType)
-        //{
-        //    case ItemActionType.Kill:
-        //        PlayerCharacter.Instance.OnKillEnemy -= OnEvent;
-        //        PlayerCharacter.Instance.OnKillEnemy += OnEvent;
-        //        break;
-        //    case ItemActionType.UsingSkill:
-        //        PlayerCharacter.Instance.Input.Skill.performed -= ctx => OnEvent();
-        //        PlayerCharacter.Instance.Input.Skill.performed += ctx => OnEvent();
-        //        break;
-        //    case ItemActionType.UsingAttack:
-        //        PlayerCharacter.Instance.Input.Attack.performed -= ctx => OnEvent();
-        //        break;
-        //    case ItemActionType.AttackHit:
-        //        PlayerCharacter.Instance.OnAttackHit -= OnEvent;
-        //        PlayerCharacter.Instance.OnAttackHit += OnEvent;
-        //        break;
-        //    case ItemActionType.StartRound:
-        //        break;
-        //    case ItemActionType.DashEnd:
-        //        break;
-        //    case ItemActionType.OnSynergy:
-        //        break;
-        //        PlayerCharacter.Instance.Input.Dash.canceled -= ctx => OnEvent();
-        //}
-        //PlayerCharacter.Instance
+        switch (ActionType)
+        {
+            case ItemActionType.Kill:
+                PlayerCharacter.Instance.OnKill -= OnEvent;
+                PlayerCharacter.Instance.OnKill += OnEvent;
+                break;
+            case ItemActionType.UsingSkill:
+                PlayerCharacter.Instance.OnUsingSkill -= OnEvent;
+                PlayerCharacter.Instance.OnUsingSkill += OnEvent;
+                break;
+            case ItemActionType.UsingAttack:
+                PlayerCharacter.Instance.OnUsingAttackStart -= OnEvent;
+                PlayerCharacter.Instance.OnUsingAttackStart += OnEvent;
+                break;
+            case ItemActionType.AttackHit:
+                PlayerCharacter.Instance.OnAttackHit -= OnEvent;
+                PlayerCharacter.Instance.OnAttackHit += OnEvent;
+                break;
+            case ItemActionType.StartRound:
+                // 맵 매니저 콜백 처리
+                break;
+            case ItemActionType.DashEnd:
+                PlayerCharacter.Instance.OnDashEnd -= OnEvent;
+                PlayerCharacter.Instance.OnDashEnd += OnEvent;
+                break;
+            case ItemActionType.OnSynergy:
+                // 시너지 콜백 처리
+                break;
+            case ItemActionType.Always:
+                // ??
+                break;
+        }
     }
     float _lastEventTime;
     void OnEvent()
     {
-        var ran = Random.Range(0f, 100f);
-        if (ran > Chance)
-            return;
-        if (Time.time - _lastEventTime < Cooldown)
-            return;
-        _lastEventTime = Time.time;
+        if (Cooldown > 0f)
+        {
+            if (Time.time - _lastEventTime < Cooldown)
+                return;
+            _lastEventTime = Time.time;
+        }
+        if (Chance != 100f)
+        {
+            var ran = Random.Range(0f, 100f);
+            if (ran > Chance)
+                return;
+        }
         _eventData.OnEvent(PlayerCharacter.Instance);
     }
 }

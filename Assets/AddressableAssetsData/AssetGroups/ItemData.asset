@@ -21,8 +21,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - ItemData
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1d8767c1a2bfcfc41adeaa66c0face09
+    m_Address: ItemDataReader
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ItemData
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 1e4eb31fc2770344296fa2897561634f
     m_Address: DescriptionDataReader
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ItemData
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3e0162053309b484fa5afeffd6d7fb4e
+    m_Address: EffectDataReader
     m_ReadOnly: 0
     m_SerializedLabels:
     - ItemData

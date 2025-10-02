@@ -16,6 +16,8 @@ public class ItemManager
     {
         MissingItems = Manager.Data.ItemsData.Base.Values.ToList();
 
+        var proj = Manager.Resource.Load<ProjectileController>("Projectile");
+        Manager.Pool.CreatePool<ProjectileController>(10, proj.gameObject);
         var item = Manager.Resource.Load<ItemController>("ItemController");
         GameObject go = new GameObject("ItemRoot");
         GameObject.DontDestroyOnLoad(go);

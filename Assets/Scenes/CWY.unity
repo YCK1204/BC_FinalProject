@@ -16840,7 +16840,7 @@ MonoBehaviour:
   - {fileID: 5104247365805502873, guid: a9ba7730081a3ce42a7bac27b7bb3e73, type: 3}
   - {fileID: 3278153624945427460, guid: c393b1fc5607fb845b578b005347193f, type: 3}
   - {fileID: 6555901067502335982, guid: 95cf48bb0e2b8ee4b889131b0cdcbe9f, type: 3}
-  _bossroomPrefabs: {fileID: 9068971754435094937, guid: 9d6c2ce076308014d9373e5e1198207b, type: 3}
+  _bossroomPrefabs: {fileID: 0}
   _bossRoomTrigger: 4
   OnPortal: 1
 --- !u!4 &922601901
@@ -19321,6 +19321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 686abc175d3a27244a25b496aaf89c8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameSystem.Player
+  OnTrait: 0
   _spriteRenderer: {fileID: 310275703}
   camShake: {fileID: 138208472}
   AnimationDataSerialized:
@@ -19405,8 +19406,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16384
   Force: {fileID: 1333591361}
-  normalAnimator: {fileID: 9100000, guid: 79ed20ba5a3e6474ba90a5da46e2e6e4, type: 2}
-  awakenedAnimator: {fileID: 9100000, guid: be26a36d384a4274b9ab36d62ea5f066, type: 2}
+  normalAnimator: {fileID: 0}
+  awakenedAnimator: {fileID: 0}
   showRuntime: 1
   runtimeIsDashing: 0
   runtimeSpeedModifier: 1
@@ -19414,9 +19415,9 @@ MonoBehaviour:
   runtimeVelocity: {x: 0, y: 0}
   currentHP: 100
   currentAwakening: 0
-  awakeningEffect: {fileID: 1958834722}
+  awakeningEffect: {fileID: 0}
   lastHitCritical: 0
-  isPlayer: 1
+  deadControl: {fileID: 0}
 --- !u!114 &1333591361
 MonoBehaviour:
   m_ObjectHideFlags: 0

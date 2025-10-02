@@ -15,8 +15,10 @@ public class ProjectileController : MonoBehaviour
     public void Init(ItemProjectileData data, PlayerCharacter owner)
     {
         _data = data;
+        transform.position = owner.transform.position;
         _collisionCount = _data.CollisionCount;
         _isDestroyed = false;
+        StartCoroutine(CoShot());
     }
     IEnumerator CoShot()
     {
@@ -24,7 +26,7 @@ public class ProjectileController : MonoBehaviour
         while (Time.time - startTime < _data.Duration && !_isDestroyed)
         {
             //방향 지정해야함
-            //transform.Translate(Vector2.right * _data.Speed * Time.deltaTime);
+            transform.Translate(Vector2.right * _data.Speed * Time.deltaTime);
             yield return null;
         }
         End();
@@ -35,6 +37,7 @@ public class ProjectileController : MonoBehaviour
         {
             case var layer when layer == LayerMask.NameToLayer("Enemy"):
                 _collisionCount--;
+                Debug.Log("HITHITHIT");
                 // 데미지 처리
                 if (_collisionCount <= 0)
                     End();

@@ -40,7 +40,7 @@ MonoBehaviour:
   - Id: 3
     Condition: 0
     Nmae: "\uBC14\uB78C \uAE38"
-    ActionType: 3
+    ActionType: 1
     Chance: 25
     SpecialAbilityId: 1
     AbilityType: 2

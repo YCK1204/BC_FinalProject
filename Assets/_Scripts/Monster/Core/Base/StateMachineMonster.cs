@@ -52,7 +52,8 @@ public abstract class StateMachineMonster : NormalMonster
 
         if (_dataHandler.CurHp <= 0)
         {
-            attacker?.GetComponent<PlayerCharacter>()?.Kill();
+            PlayerCharacter.Instance.Kill();
+            //attacker?.GetComponent<PlayerCharacter>()?.Kill();
             _stateMachine.ChangeState(Game.Monster.StateType.Die);
         }
         else if(!IsSuperArmor)
