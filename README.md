@@ -27,24 +27,21 @@
 
 <aside>
 
-### **1. KILL**
-
+### - KILL
 죽는 한 까지 던전에서 몬스터 처치
 
 </aside>
 
 <aside>
 
-### 2. GET
-
+### - GET
 아이템을 획득해 더 많은 몬스터 처치
 
 </aside>
 
 <aside>
 
-### 3. GROW
-
+### - GROW
 특성을 열어 강력한 스킬 사용
 
 </aside>
