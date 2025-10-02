@@ -6,6 +6,8 @@ public class PlayerManager : MonoBehaviour
     public static PlayerManager Instance { get; private set; }
     public PlayerCharacter Player;
 
+    public GameObject[] HUB;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -17,4 +19,15 @@ public class PlayerManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
+
+    public void HUBSet(bool setbool)
+    {
+        foreach (GameObject hub in HUB)
+        {
+            if (hub != null)
+                hub.SetActive(setbool);
+        }
+    }
+
+
 }
