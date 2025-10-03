@@ -277,6 +277,14 @@ namespace Game.Player
         {
             DataSerialized = _originalData.Clone();
 
+            OnKill = null;
+            OnUsingSkill = null;
+            OnUsingAttackStart = null;
+            OnUsingAttackEnd = null;
+            OnAttackHit = null;
+            OnStartRound = null;
+            OnDashEnd = null;
+
             Animator.runtimeAnimatorController = normalAnimator;
 
             currentHP = Data.Stats.MaxHP;
