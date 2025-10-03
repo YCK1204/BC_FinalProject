@@ -73,7 +73,8 @@ public class HomingProjectile : BaseProjectile
         if (!_startMove)
             return;
 
-        IDamageable damageable = other.GetComponent<IDamageable>();
+        IDamageable damageable = other.gameObject.GetComponentInChildren<IDamageable>();
+        if (damageable == null) return;
         // 플레이어면 데미지
         if ((1 << other.gameObject.layer) == LayerMask.GetMask(Game.Monster.Layers.Player))
         {
@@ -89,7 +90,7 @@ public class HomingProjectile : BaseProjectile
             knockBackDir.Normalize();
 
             // 수치를 어떻게 조정해야하지?
-            Rigidbody2D targetRb = _target.GetComponent<Rigidbody2D>();
+            Rigidbody2D targetRb = other.GetComponent<Rigidbody2D>();
             targetRb.linearVelocity = Vector2.zero;
             targetRb.AddForce(knockBackDir * 400);
 

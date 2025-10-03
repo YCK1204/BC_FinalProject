@@ -42,9 +42,9 @@ public class ProjectileController : MonoBehaviour
                 if (_collisionCount <= 0)
                     End();
                 break;
-            case var layer when layer == LayerMask.NameToLayer("Ground"):
-                End();
-                break;
+            //case var layer when layer == LayerMask.NameToLayer("Ground"):
+            //    End();
+            //    break;
         }
     }
     void End()
