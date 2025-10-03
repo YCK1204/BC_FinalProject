@@ -113,6 +113,8 @@ public class MapManager : MonoBehaviour
 
     private void MovePlayerSpawn(GameObject map)
     {
+        PlayerManager.Instance.Player.StartRound();
+
         Transform spawnPoint = map.transform.Find("SpawnPoint");
         if (spawnPoint != null)
         {

@@ -42,6 +42,8 @@ namespace Game.Player
 
         public override void Exit()
         {
+            _stateMachine.Player.DashEnd();
+
             _stateMachine.IsDashing = false;
             _stateMachine.MovementSpeedModifier = 1f;
             _stateMachine.Player.Rb.gravityScale = _prevGravity;
