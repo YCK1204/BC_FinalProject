@@ -57,7 +57,7 @@ Material:
     - _GlitchCutAmountX: 1
     - _GlitchCutAmountY: 1
     - _GlitchIntensity: 0
-    - _HorizontalShake: 0.04
+    - _HorizontalShake: 0
     - _ScanLineJitter: 0
     - _ScanlineIntensity: 1
     - _Speed: 1

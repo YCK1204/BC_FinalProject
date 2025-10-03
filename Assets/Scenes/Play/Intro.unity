@@ -1074,9 +1074,11 @@ GameObject:
   - component: {fileID: 266890072}
   - component: {fileID: 266890077}
   - component: {fileID: 266890076}
+  - component: {fileID: 266890080}
   - component: {fileID: 266890074}
   - component: {fileID: 266890075}
   - component: {fileID: 266890078}
+  - component: {fileID: 266890079}
   m_Layer: 0
   m_Name: RenderCamera
   m_TagString: Untagged
@@ -1312,6 +1314,35 @@ MonoBehaviour:
   m_CropFrameX: 0
   m_CropFrameY: 0
   m_StretchFill: 0
+--- !u!114 &266890079
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266890070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05aaefd9528d79d4aafa7920e5c069bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraShake
+--- !u!114 &266890080
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 266890070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Cinemachine::Unity.Cinemachine.CinemachineBasicMultiChannelPerlin
+  NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  PivotOffset: {x: 0, y: 0, z: 0}
+  AmplitudeGain: 0
+  FrequencyGain: 0
+  m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &303792823
 GameObject:
   m_ObjectHideFlags: 0
@@ -16605,8 +16636,8 @@ Transform:
   - {fileID: 1551872007}
   - {fileID: 1540640204}
   - {fileID: 1492011427}
-  - {fileID: 882996126}
   - {fileID: 324020891}
+  - {fileID: 882996126}
   - {fileID: 510941670}
   - {fileID: 1510676062}
   - {fileID: 1100009590}
@@ -17262,7 +17293,7 @@ MonoBehaviour:
   OnTrait: 0
   SpriteRenderer: {fileID: 310275703}
   PlayerMaterial: {fileID: 0}
-  camShake: {fileID: 0}
+  camShake: {fileID: 266890079}
   AnimationDataSerialized:
     IdleParameterHash: 2081823275
     WalkParameterHash: 765711723
