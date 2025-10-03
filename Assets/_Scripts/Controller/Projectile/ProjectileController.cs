@@ -8,16 +8,33 @@ public class ProjectileController : MonoBehaviour
     ItemProjectileData _data;
     bool _isDestroyed = false;
     int _collisionCount = 0;
-    private void Start()
+    Animator _animator;
+    bool _isSetComponent = false;
+    void SetPomponent()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>(); // 나중에 투사체 이미지 따로 저장해야함
+        _animator = GetComponent<Animator>();
+        _isSetComponent = true;
     }
     public void Init(ItemProjectileData data, PlayerCharacter owner)
     {
+        if (!_isSetComponent)
+            SetPomponent();
         _data = data;
         transform.position = owner.transform.position;
         _collisionCount = _data.CollisionCount;
         _isDestroyed = false;
+        switch (data.ImageType)
+        {
+            case ImageType.Sprite:
+                _spriteRenderer.sprite = data.sprite;
+                _animator.enabled = false;
+                break;
+            case ImageType.Animation:
+                _animator.runtimeAnimatorController = data.Animator;
+                _animator.enabled = true;
+                break;
+        }
         StartCoroutine(CoShot());
     }
     IEnumerator CoShot()
@@ -42,9 +59,9 @@ public class ProjectileController : MonoBehaviour
                 if (_collisionCount <= 0)
                     End();
                 break;
-            //case var layer when layer == LayerMask.NameToLayer("Ground"):
-            //    End();
-            //    break;
+                //case var layer when layer == LayerMask.NameToLayer("Ground"):
+                //    End();
+                //    break;
         }
     }
     void End()

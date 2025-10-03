@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: 6bfe878031b50ab4c9b9a7d268cbff32
   m_currentHash:
     serializedVersion: 2
-    Hash: 37b2a5240bc29a93b69828d73ae8393e
+    Hash: 00000000000000000000000000000000
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_CatalogRequestsTimeout: 0
@@ -62,6 +62,7 @@ MonoBehaviour:
   m_GroupAssets:
   - {fileID: 11400000, guid: 0a1fd8f1c9beefc47a985f3fa4b5d352, type: 2}
   - {fileID: 11400000, guid: 6c48a48e5b1eeb049b80ee054c7d0184, type: 2}
+  - {fileID: 11400000, guid: 43c4cb1e07de25a47920dcf27863cc7b, type: 2}
   - {fileID: 11400000, guid: 3a7186e4b700efb4e85a8b94f44325c6, type: 2}
   m_BuildSettings:
     m_LogResourceManagerExceptions: 1
@@ -104,6 +105,8 @@ MonoBehaviour:
     - default
     - ItemData
     - SynergyData
+    - ProjectileAnimation
+    - ProjectileSprite
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: f07f572190cfb3d4a96813c985bcfb0c, type: 2}

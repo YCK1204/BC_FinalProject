@@ -15,12 +15,5 @@ MonoBehaviour:
   associatedSheet: 12caJqOR5SSlbMQerqCmjLh1uayleody_nUI7eH7W26E
   associatedWorksheet: "\uD22C\uC0AC\uCCB404"
   START_ROW_LENGTH: 2
-  END_ROW_LENGTH: 2
-  DataList:
-  - Id: 1
-    Duration: 1
-    Speed: 10
-    Width: 0.5
-    Height: 2
-    CollisionCount: 8
-    Damage: 0.3
+  END_ROW_LENGTH: 3
+  DataList: []

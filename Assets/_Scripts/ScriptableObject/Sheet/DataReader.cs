@@ -8,7 +8,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class DataReaderBase<T> : ScriptableObject where T : struct
+public abstract class DataReaderBase<T> : ScriptableObject
 {
     [Header("시트의 주소")][SerializeField] public string associatedSheet = "";
     [Header("스프레드 시트의 시트 이름")][SerializeField] public string associatedWorksheet = "";

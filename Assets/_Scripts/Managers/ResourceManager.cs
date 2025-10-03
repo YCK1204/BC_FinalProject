@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
+using UnityEditor;
+using UnityEditor.AddressableAssets;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -195,6 +197,54 @@ public class ResourceManager
         if (result != null)
             return result.GetComponent<T>();
         Debug.LogError($"Failed to load asset: {name}");
+        return null;
+    }
+    /// <summary>
+    /// 그룹 및 이름으로 에셋 동기 로드
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="groupName"></param>
+    /// <param name="name"></param>
+    /// <returns></returns>
+    public T LoadByGroup<T>(string groupName, string name) where T : Object
+    {
+        var settings = AddressableAssetSettingsDefaultObject.Settings;
+        foreach (var group in settings.groups)
+        {
+            if (group.name != groupName)
+                continue;
+            foreach (var entry in group.entries)
+            {
+                if (entry.address == name)
+                {
+                    string path = AssetDatabase.GUIDToAssetPath(entry.guid);
+                    return AssetDatabase.LoadAssetAtPath<T>(path);
+                }
+            }
+        }
+        return null;
+    }
+    /// <summary>
+    /// 라벨 및 이름으로 에셋 동기 로드
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
+    /// <param name="labelName"></param>
+    /// <param name="name"></param>
+    /// <returns></returns>
+    public T LoadByLabel<T>(string labelName, string name) where T : Object
+    {
+        var settings = AddressableAssetSettingsDefaultObject.Settings;
+        foreach (var group in settings.groups)
+        {
+            foreach (var entry in group.entries)
+            {
+                if (entry.address == name && entry.labels.Contains(labelName))
+                {
+                    string path = AssetDatabase.GUIDToAssetPath(entry.guid);
+                    return AssetDatabase.LoadAssetAtPath<T>(path);
+                }
+            }
+        }
         return null;
     }
     /// <summary>
