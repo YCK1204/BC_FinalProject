@@ -60,6 +60,7 @@ MonoBehaviour:
   m_BuildAddressablesWithPlayerBuild: 0
   m_overridePlayerVersion: '[UnityEditor.PlayerSettings.bundleVersion]'
   m_GroupAssets:
+  - {fileID: 11400000, guid: 5d84d13cba98abc459a9de253d699b21, type: 2}
   - {fileID: 11400000, guid: 0a1fd8f1c9beefc47a985f3fa4b5d352, type: 2}
   - {fileID: 11400000, guid: 6c48a48e5b1eeb049b80ee054c7d0184, type: 2}
   - {fileID: 11400000, guid: 43c4cb1e07de25a47920dcf27863cc7b, type: 2}
@@ -107,6 +108,8 @@ MonoBehaviour:
     - SynergyData
     - ProjectileAnimation
     - ProjectileSprite
+    - Area
+    - ItemEffectObject
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: f07f572190cfb3d4a96813c985bcfb0c, type: 2}

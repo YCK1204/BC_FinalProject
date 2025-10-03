@@ -12,7 +12,7 @@ public class ItemAreaDataReader : DataReaderBase<ItemAreaData>
         ItemEffectCreatePosType CreateAreaPosType = ItemEffectCreatePosType.Player;
         float Radius = 0;
         float Damage = 0;
-        int AttackCount = 0;
+        int AnimId = 0;
         foreach (var item in list)
         {
             switch (item.columnId)
@@ -32,11 +32,11 @@ public class ItemAreaDataReader : DataReaderBase<ItemAreaData>
                 case "Damage":
                     Damage = float.Parse(item.value);
                     break;
-                case "AttackCount":
-                    AttackCount = int.Parse(item.value);
+                case "AnimID":
+                    AnimId = int.Parse(item.value);
                     break;
             }
         }
-        DataList.Add(new ItemAreaData(Id, AnmationDuration, CreateAreaPosType, Radius, Damage, AttackCount));
+        DataList.Add(new ItemAreaData(Id, AnmationDuration, CreateAreaPosType, Radius, Damage, AnimId));
     }
 }

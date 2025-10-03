@@ -2,6 +2,7 @@ using Game.Player;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ItemManager
@@ -16,8 +17,21 @@ public class ItemManager
     {
         MissingItems = Manager.Data.ItemsData.Base.Values.ToList();
 
-        var proj = Manager.Resource.Load<ProjectileController>("Projectile");
-        Manager.Pool.CreatePool<ProjectileController>(10, proj.gameObject);
+        Manager.Resource.LoadAsync("ItemEffectObject", (list) =>
+        {
+            foreach (var item in list)
+            {
+                switch (item.name)
+                {
+                    case "Projectile":
+                        Manager.Pool.CreatePool<ProjectileController>(10, item.GetComponent<ProjectileController>().gameObject);
+                        break;
+                    case "Area":
+                        Manager.Pool.CreatePool<AreaController>(10, item.GetComponent<AreaController>().gameObject);
+                        break;
+                }
+            }
+        });
         var item = Manager.Resource.Load<ItemController>("ItemController");
         GameObject go = new GameObject("ItemRoot");
         GameObject.DontDestroyOnLoad(go);

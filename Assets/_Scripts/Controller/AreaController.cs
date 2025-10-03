@@ -2,6 +2,7 @@ using Game.Player;
 using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class AreaController : MonoBehaviour
@@ -15,7 +16,34 @@ public class AreaController : MonoBehaviour
     public void Init(ItemAreaData data, PlayerCharacter owner)
     {
         _data = data;
-        //_animator.runtimeAnimatorController 나중에 설정된 애니메이터 경로의 애니메이터로 변경
+        _animator.runtimeAnimatorController = _data.Animator;
+
+        switch (_data.CreatePosType)
+        {
+            case ItemEffectCreatePosType.Player:
+                transform.position = owner.transform.position;
+                break;
+            case ItemEffectCreatePosType.NearestEnemy:
+                transform.position = GetNearestEnemyPosition(owner).position;
+                break;
+            case ItemEffectCreatePosType.WithInRangeEnemy:
+                transform.position = GetInRangeEnemyPosition(owner).position;
+                break;
+        }
+    }
+    Transform GetNearestEnemyPosition(PlayerCharacter player)
+    {
+        var hits = Physics2D.OverlapCircleAll(transform.position, _data.Radius, LayerMask.GetMask("Monster"));
+        if (hits.Length != 0)
+            return hits.OrderBy(x => player.transform.DirectionTo(x.transform)).First().transform;
+        return player.transform;
+    }
+    Transform GetInRangeEnemyPosition(PlayerCharacter player)
+    {
+        var hits = Physics2D.OverlapCircleAll(transform.position, _data.Radius, LayerMask.GetMask("Monster"));
+        if (hits.Length != 0)
+            return hits[Random.Range(0, hits.Length)].transform;
+        return player.transform;
     }
     IEnumerator CoShot()
     {

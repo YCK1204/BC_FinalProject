@@ -28,7 +28,7 @@ MonoBehaviour:
       ItemTriggerType: 5
       Value: 0
     IconURL: https://velog.velcdn.com/images/rokid_/post/bd52f005-735f-4a1d-aa13-07e274b4b0e0/image.png
-    ItemEffectId: 3
+    ItemEffectId: 1
     SynergyId: 1
     ItemGrade: 0
     EffectData:
@@ -53,7 +53,7 @@ MonoBehaviour:
       ItemTriggerType: 5
       Value: 0
     IconURL: https://velog.velcdn.com/images/rokid_/post/d594ad43-2eaf-48d4-968f-da208dd0a9c4/image.png
-    ItemEffectId: 3
+    ItemEffectId: 1
     SynergyId: 3
     ItemGrade: 0
     EffectData:
@@ -78,7 +78,7 @@ MonoBehaviour:
       ItemTriggerType: 5
       Value: 0
     IconURL: https://velog.velcdn.com/images/rokid_/post/6bb457ac-3f11-4635-900e-a8ef3d37b289/image.png
-    ItemEffectId: 3
+    ItemEffectId: 1
     SynergyId: 1
     ItemGrade: 0
     EffectData:
@@ -103,7 +103,7 @@ MonoBehaviour:
       ItemTriggerType: 5
       Value: 0
     IconURL: https://velog.velcdn.com/images/rokid_/post/bf214d5b-117b-4c24-8c67-c29dfe0b6c2f/image.png
-    ItemEffectId: 3
+    ItemEffectId: 1
     SynergyId: 0
     ItemGrade: 0
     EffectData:
@@ -128,7 +128,7 @@ MonoBehaviour:
       ItemTriggerType: 5
       Value: 0
     IconURL: https://velog.velcdn.com/images/rokid_/post/6c4c2705-a5bf-4dc2-bd7f-b4d60596520e/image.png
-    ItemEffectId: 3
+    ItemEffectId: 1
     SynergyId: 3
     ItemGrade: 1
     EffectData:
@@ -153,7 +153,7 @@ MonoBehaviour:
       ItemTriggerType: 5
       Value: 0
     IconURL: https://velog.velcdn.com/images/rokid_/post/ed880794-8bda-45b9-8ecd-e917b24ec5ca/image.png
-    ItemEffectId: 3
+    ItemEffectId: 1
     SynergyId: 2
     ItemGrade: 1
     EffectData:
@@ -178,7 +178,7 @@ MonoBehaviour:
       ItemTriggerType: 5
       Value: 0
     IconURL: https://velog.velcdn.com/images/rokid_/post/1cb89670-1f15-4f81-b7de-366f77792e1a/image.png
-    ItemEffectId: 3
+    ItemEffectId: 1
     SynergyId: 2
     ItemGrade: 1
     EffectData:
@@ -203,7 +203,7 @@ MonoBehaviour:
       ItemTriggerType: 5
       Value: 5
     IconURL: https://velog.velcdn.com/images/rokid_/post/b610ad3e-634e-4a68-9bd1-3b7e3a96cff4/image.png
-    ItemEffectId: 3
+    ItemEffectId: 1
     SynergyId: 1
     ItemGrade: 2
     EffectData:
@@ -228,7 +228,7 @@ MonoBehaviour:
       ItemTriggerType: 5
       Value: 20
     IconURL: https://velog.velcdn.com/images/rokid_/post/6756bc50-ccfe-42d7-8eb4-e199ccaab9f0/image.png
-    ItemEffectId: 3
+    ItemEffectId: 1
     SynergyId: 3
     ItemGrade: 2
     EffectData:
@@ -253,7 +253,7 @@ MonoBehaviour:
       ItemTriggerType: 5
       Value: 20
     IconURL: https://velog.velcdn.com/images/rokid_/post/d8305e37-8b4f-4ee5-b57d-1828a6ee029f/image.png
-    ItemEffectId: 3
+    ItemEffectId: 1
     SynergyId: 2
     ItemGrade: 2
     EffectData:
@@ -278,7 +278,7 @@ MonoBehaviour:
       ItemTriggerType: 5
       Value: 40
     IconURL: https://velog.velcdn.com/images/rokid_/post/bd52a936-57bc-4447-a2c9-a762fdea6068/image.png
-    ItemEffectId: 3
+    ItemEffectId: 1
     SynergyId: 0
     ItemGrade: 3
     EffectData:
@@ -303,7 +303,7 @@ MonoBehaviour:
       ItemTriggerType: 5
       Value: 40
     IconURL: https://velog.velcdn.com/images/rokid_/post/84fd6981-2d75-4073-a385-698d2a97a5a4/image.png
-    ItemEffectId: 3
+    ItemEffectId: 1
     SynergyId: 0
     ItemGrade: 3
     EffectData:

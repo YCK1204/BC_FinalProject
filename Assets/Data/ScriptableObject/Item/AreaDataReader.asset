@@ -22,10 +22,10 @@ MonoBehaviour:
     CreatePosType: 0
     Radius: 5
     Damage: 1.5
-    AttackCount: 1
+    Animator: {fileID: 9100000, guid: 135ea94c38fac68479fbc28f9c02d4a2, type: 2}
   - Id: 2
     AnmationDuration: 0.5
     CreatePosType: 0
     Radius: 10
     Damage: 1.7
-    AttackCount: 1
+    Animator: {fileID: 9100000, guid: 487117d0b5a3d2844a1347b94d837284, type: 2}
