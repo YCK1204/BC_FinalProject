@@ -92,7 +92,7 @@ namespace Game.Player
                 if (kb != null && kb.aKey.wasPressedThisFrame)
                 {
                     _stateMachine.ContinueCombo = true;
-                    Debug.Log("콤보");
+                    //Debug.Log("콤보");
                 }
             }
 
@@ -107,7 +107,7 @@ namespace Game.Player
 
             if (!_stateMachine.Player.IsGroundInFront(0.5f))
             {
-                Debug.Log("정지");
+                //Debug.Log("정지");
 
                 var rb = _stateMachine.Player.Rb;
                 rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
