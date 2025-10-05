@@ -8,7 +8,6 @@ public class ItemAreaDataReader : DataReaderBase<ItemAreaData>
     public override void UpdateStats(List<GSTU_Cell> list)
     {
         int Id = 0;
-        float AnmationDuration = 0;
         ItemEffectCreatePosType CreateAreaPosType = ItemEffectCreatePosType.Player;
         float Radius = 0;
         float Damage = 0;
@@ -19,9 +18,6 @@ public class ItemAreaDataReader : DataReaderBase<ItemAreaData>
             {
                 case "ID":
                     Id = int.Parse(item.value);
-                    break;
-                case "AnimationDuration":
-                    AnmationDuration = float.Parse(item.value);
                     break;
                 case "CreatePosition":
                     CreateAreaPosType = (ItemEffectCreatePosType)System.Enum.Parse(typeof(ItemEffectCreatePosType), item.value);
@@ -37,6 +33,6 @@ public class ItemAreaDataReader : DataReaderBase<ItemAreaData>
                     break;
             }
         }
-        DataList.Add(new ItemAreaData(Id, AnmationDuration, CreateAreaPosType, Radius, Damage, AnimId));
+        DataList.Add(new ItemAreaData(Id, CreateAreaPosType, Radius, Damage, AnimId));
     }
 }

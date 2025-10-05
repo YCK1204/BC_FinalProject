@@ -19,7 +19,7 @@ MonoBehaviour:
   DataList:
   - Id: 1
     AnmationDuration: 0.75
-    CreatePosType: 0
+    CreatePosType: 2
     Radius: 5
     Damage: 1.5
     Animator: {fileID: 9100000, guid: 135ea94c38fac68479fbc28f9c02d4a2, type: 2}

@@ -15,16 +15,14 @@ public enum ItemEffectCreatePosType
 public class ItemAreaData : ItemAbilityEvent
 {
     public int Id;
-    public float AnmationDuration;
     public ItemEffectCreatePosType CreatePosType;
     public float Radius;
     public float Damage;
     public RuntimeAnimatorController Animator;
 
-    public ItemAreaData(int id, float anmationDuration, ItemEffectCreatePosType createPosType, float radius, float damage, int animId)
+    public ItemAreaData(int id, ItemEffectCreatePosType createPosType, float radius, float damage, int animId)
     {
         Id = id;
-        AnmationDuration = anmationDuration;
         CreatePosType = createPosType;
         Radius = radius;
         Damage = damage;

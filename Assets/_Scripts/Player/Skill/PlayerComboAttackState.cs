@@ -96,7 +96,7 @@ namespace Game.Player
                 }
             }
 
-            if (!_force && timePass >= forceTime )
+            if (!_force && timePass >= forceTime)
             {
                 _force = true;
                 if (_stateMachine.Player.IsGroundInFront(0.5f))
@@ -143,7 +143,7 @@ namespace Game.Player
 
             float baseDmg = d.AttackPower + d.ExtraDamage;
             float chance = Mathf.Max(0f, d.CriticalChance) * 0.01f;
-
+            bool hitted = false;
             foreach (var col in cols)
             {
                 if (col.transform.IsChildOf(_stateMachine.Player.transform)) continue;
@@ -151,7 +151,7 @@ namespace Game.Player
                 var target = col.GetComponentInParent<IDamageable>();
                 if (target != null && !_hitTargets.Contains(target))
                 {
-                    _stateMachine.Player.AttackHit();
+                    hitted = true;
 
                     _hitTargets.Add(target);
 
@@ -180,6 +180,11 @@ namespace Game.Player
                     //    targetRb.linearVelocity = knockDir * power;
                     //}
                 }
+            }
+
+            if (hitted)
+            {
+                _stateMachine.Player.AttackHit();
             }
         }
     }

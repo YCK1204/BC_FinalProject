@@ -21,7 +21,7 @@ MonoBehaviour:
     Condition: 0
     Nmae: "\uB291\uB300"
     ActionType: 3
-    Chance: 25
+    Chance: 100
     SpecialAbilityId: 1
     AbilityType: 0
     Cooldown: 0
