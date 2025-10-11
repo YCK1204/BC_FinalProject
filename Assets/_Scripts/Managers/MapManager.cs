@@ -11,6 +11,7 @@ public class MapManager : MonoBehaviour
     [Header("Player")]
     [SerializeField] private Transform _player;
     [SerializeField] private CinemachineCamera _cam;
+    public GameObject CameraObj;
 
     [Header("Map")]
     [SerializeField] private List<GameObject> _mapPrefabs;
