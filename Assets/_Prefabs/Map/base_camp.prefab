@@ -17002,7 +17002,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3365152710063467165}
   - component: {fileID: 4338322225798807070}
-  - component: {fileID: 626080851937947387}
+  - component: {fileID: 6756562171737763874}
   m_Layer: 15
   m_Name: Sprite
   m_TagString: Untagged
@@ -17083,7 +17083,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &626080851937947387
+--- !u!95 &6756562171737763874
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
@@ -17093,7 +17093,7 @@ Animator:
   m_GameObject: {fileID: 4931521310969949938}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 8423578885913373979, guid: bc52e45f615edf041abda421119df953, type: 3}
+  m_Controller: {fileID: 9100000, guid: c3566e4c66a827a4cbe0abb8afd94686, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -17233,7 +17233,7 @@ Transform:
   m_GameObject: {fileID: 5059779287065619411}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 18.59, y: -2.84, z: 0}
+  m_LocalPosition: {x: 18.59, y: -2.44, z: 0}
   m_LocalScale: {x: 1.19, y: 1.19, z: 1.19}
   m_ConstrainProportionsScale: 1
   m_Children:
