@@ -7,7 +7,6 @@ public class UIController : MonoBehaviour
 {
     [Header("UI")]
     public Animator Animator;
-    [SerializeField] private Animator _uiHUB;
     [SerializeField] private Animator _uiFade;
 
     [Header("화면 등록")]
@@ -60,10 +59,12 @@ public class UIController : MonoBehaviour
             Debug.Log($"esc - {CurrentState}");
             if (CurrentState == UiState.NormalView)
             {
+                _uiFade.Play("off_UI", 0, 0f);
                 HideUI();
             }
             else
             {
+                _uiFade.Play("on_UI", 0, 0f);
                 ShowNormalView();
             }
                 
@@ -152,6 +153,7 @@ public class UIController : MonoBehaviour
                     break;
 
                 case UiState.NormalView:
+                    _uiFade.Play("off_UI", 0, 0f);
                     ChangeState(UiState.Hidden);
                     break;
 
