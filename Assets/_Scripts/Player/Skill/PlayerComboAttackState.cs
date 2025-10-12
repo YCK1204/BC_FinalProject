@@ -20,6 +20,8 @@ namespace Game.Player
 
         public override void Enter()
         {
+            _stateMachine.Player.UsingAttack_Start();
+
             _stateMachine.IsAttacking = true;
             _stateMachine.MovementSpeedModifier = 0f;
             _stateMachine.Player.Rb.linearVelocity = new Vector2(0, _stateMachine.Player.Rb.linearVelocity.y);
@@ -51,6 +53,8 @@ namespace Game.Player
 
         public override void Exit()
         {
+            _stateMachine.Player.UsingAttackt_End();
+
             StopAnimation(_stateMachine.Player.AnimationData.AttackParameterHash);
             _stateMachine.IsAttacking = false;
 
@@ -88,7 +92,7 @@ namespace Game.Player
                 if (kb != null && kb.aKey.wasPressedThisFrame)
                 {
                     _stateMachine.ContinueCombo = true;
-                    Debug.Log("콤보");
+                    //Debug.Log("콤보");
                 }
             }
 
@@ -103,7 +107,7 @@ namespace Game.Player
 
             if (!_stateMachine.Player.IsGroundInFront(0.5f))
             {
-                Debug.Log("정지");
+                //Debug.Log("정지");
 
                 var rb = _stateMachine.Player.Rb;
                 rb.linearVelocity = new Vector2(0f, rb.linearVelocity.y);
@@ -147,6 +151,8 @@ namespace Game.Player
                 var target = col.GetComponentInParent<IDamageable>();
                 if (target != null && !_hitTargets.Contains(target))
                 {
+                    _stateMachine.Player.AttackHit();
+
                     _hitTargets.Add(target);
 
                     bool isCrit = Random.value < chance;

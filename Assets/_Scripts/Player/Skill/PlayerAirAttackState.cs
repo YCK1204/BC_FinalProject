@@ -18,6 +18,7 @@ namespace Game.Player
 
         public override void Enter()
         {
+            _stateMachine.Player.UsingAttack_Start();
             _stateMachine.IsAttacking = true;
             _stateMachine.MovementSpeedModifier = 0f;
 
@@ -39,7 +40,7 @@ namespace Game.Player
 
         public override void Exit()
         {
-            Debug.Log("공중공격끝");
+            _stateMachine.Player.UsingAttackt_End();
             _stateMachine.ComboIndex = 0;
             StopAnimation(_stateMachine.Player.AnimationData.AttackParameterHash);
             _stateMachine.IsAttacking = false;
