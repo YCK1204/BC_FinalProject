@@ -5,7 +5,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
-/// 몬스터 최상위 클래스
+/// 몬스터 상위 클래스
 /// </summary>
 public abstract class NormalMonster : BaseMonster, Game.Monster.IDamageable
 {

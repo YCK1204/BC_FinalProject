@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7436268963657580372}
   - component: {fileID: 7116748273804556015}
   - component: {fileID: 4559282255353082733}
-  - component: {fileID: 6995806667873288730}
   - component: {fileID: 5380103683946045800}
   - component: {fileID: 8777792387990832089}
+  - component: {fileID: 403116380218979254}
   m_Layer: 8
   m_Name: Slime
   m_TagString: Untagged
@@ -111,22 +111,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.1, y: 0.6748651}
   m_EdgeRadius: 0
---- !u!114 &6995806667873288730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 214553272594497168}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 32b700b1c3aea614a86c6fdaa232cfdb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Slime
-  _dataHandler: {fileID: 5380103683946045800}
-  MonsterCount: 3
-  FlashMat: {fileID: 0}
-  IsSuperArmor: 0
 --- !u!114 &5380103683946045800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +137,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4311480168f564447811610819aadcbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SplitOnDeath
+--- !u!114 &403116380218979254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 214553272594497168}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa3cea18e1e4f0442bb1983e9735ef63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RushMonster
+  _dataHandler: {fileID: 0}
+  MonsterCount: 3
+  FlashMat: {fileID: 0}
+  IsSuperArmor: 0
 --- !u!1 &846934528323952326
 GameObject:
   m_ObjectHideFlags: 0
