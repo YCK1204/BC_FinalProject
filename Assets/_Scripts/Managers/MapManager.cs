@@ -125,6 +125,7 @@ public class MapManager : MonoBehaviour
                 new Vector3(spawnPoint.position.x, spawnPoint.position.y, _cam.transform.position.z),
                 Quaternion.identity
             );
+            PlayerManager.Instance.Player.StartRound();
         }
         else Debug.LogError(map.name + "!! 스폰포인트 없음");
     }
