@@ -7,20 +7,21 @@ public class UIController : MonoBehaviour
 {
     [Header("UI")]
     public Animator Animator;
+    [SerializeField] private Animator _uiFade;
 
     [Header("화면 등록")]
     public UIScreen[] screens;
 
-    private Dictionary<string, UIScreen> screenMap;
-    private UIScreen currentScreen;
+    private Dictionary<string, UIScreen> _screenMap;
+    private UIScreen _currentScreen;
 
-    private Dictionary<UiState, UiStateBase> stateMap;
-    private UiStateBase activeState;
+    private Dictionary<UiState, UiStateBase> _stateMap;
+    private UiStateBase _activeState;
     public UiState CurrentState { get; private set; }
     public UiState PreviousState { get; private set; }
-    private UiState nextState;
+    private UiState _nextState;
 
-    private bool isState = false;
+    private bool _isState = false;
 
     private void Awake()
     {
@@ -29,7 +30,7 @@ public class UIController : MonoBehaviour
         DOTween.defaultTimeScaleIndependent = true;
 
         // 초기화
-        stateMap = new Dictionary<UiState, UiStateBase>
+        _stateMap = new Dictionary<UiState, UiStateBase>
         {
             { UiState.Hidden, new HiddenState(this) },
             { UiState.NormalView, new NormalViewState(this) },
@@ -38,11 +39,11 @@ public class UIController : MonoBehaviour
         };
 
         // 화면 등록
-        screenMap = new Dictionary<string, UIScreen>();
+        _screenMap = new Dictionary<string, UIScreen>();
         foreach (UIScreen s in screens)
         {
             s.panel.SetActive(false);
-            screenMap[s.name] = s;
+            _screenMap[s.name] = s;
         }
 
         ChangeState(UiState.Hidden);
@@ -50,7 +51,7 @@ public class UIController : MonoBehaviour
 
     private void Update()
     {
-        if (isState) return;
+        if (_isState) return;
 
         // Test
         if (Input.GetKeyDown(KeyCode.Escape) && !PlayerManager.Instance.Player.OnTrait && !PlayerManager.Instance.Player.IsDead)
@@ -58,10 +59,12 @@ public class UIController : MonoBehaviour
             Debug.Log($"esc - {CurrentState}");
             if (CurrentState == UiState.NormalView)
             {
+                _uiFade.Play("off_UI", 0, 0f);
                 HideUI();
             }
             else
             {
+                _uiFade.Play("on_UI", 0, 0f);
                 ShowNormalView();
             }
                 
@@ -70,7 +73,7 @@ public class UIController : MonoBehaviour
 
     public void ChangeState(UiState state)
     {
-        if (CurrentState == state || isState)
+        if (CurrentState == state || _isState)
             return;
 
         StartCoroutine(ChangeStateRoutine(state));
@@ -78,18 +81,18 @@ public class UIController : MonoBehaviour
 
     private IEnumerator ChangeStateRoutine(UiState newState)
     {
-        isState = true;
+        _isState = true;
 
-        activeState?.Exit();
+        _activeState?.Exit();
 
         PreviousState = CurrentState;
         CurrentState = newState;
-        activeState = stateMap[newState];
-        activeState.Enter();
+        _activeState = _stateMap[newState];
+        _activeState.Enter();
 
         yield return new WaitForSecondsRealtime(0.5f);
 
-        isState = false;
+        _isState = false;
     }
 
     public void ShowScreen(string screenName)
@@ -100,29 +103,29 @@ public class UIController : MonoBehaviour
             return;
         }
 
-        if (!screenMap.TryGetValue(screenName, out UIScreen screen))
+        if (!_screenMap.TryGetValue(screenName, out UIScreen screen))
         {
             Debug.LogError($"!없는 스크린");
             return;
         }
 
-        if (currentScreen == screen)
+        if (_currentScreen == screen)
         {
             Debug.Log($"!같은 스크린");
             return;
         }
 
         // 스크린 끄기
-        if (currentScreen != null && currentScreen.panel != null)
+        if (_currentScreen != null && _currentScreen.panel != null)
         {
-            currentScreen.panel.SetActive(false);
+            _currentScreen.panel.SetActive(false);
         }
 
         // 스크린 켜기
-        currentScreen = screen;
-        if (currentScreen.panel != null)
+        _currentScreen = screen;
+        if (_currentScreen.panel != null)
         {
-            currentScreen.panel.SetActive(true);
+            _currentScreen.panel.SetActive(true);
         }
     }
 
@@ -150,6 +153,7 @@ public class UIController : MonoBehaviour
                     break;
 
                 case UiState.NormalView:
+                    _uiFade.Play("off_UI", 0, 0f);
                     ChangeState(UiState.Hidden);
                     break;
 

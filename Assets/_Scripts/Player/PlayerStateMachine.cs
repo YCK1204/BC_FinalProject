@@ -28,6 +28,13 @@ namespace Game.Player
         public int ComboIndex { get; set; }
         public bool ContinueCombo { get; set; }
 
+        // 스킬 쿨타임
+        private float _lastQSkillTime = -999f;
+        private float _lastWSkillTime = -999f;
+
+        public IState QSkillState { get; private set; }
+        public IState WSkillState { get; private set; }
+
         public IState ComboAttackState { get; private set; }
         public IState IdleState { get; private set; }
         public IState WalkState { get; private set; }
@@ -62,6 +69,8 @@ namespace Game.Player
             AirAttackState = new PlayerAirAttackState(this);
             HurtState = new PlayerHurtState(this);
             DieState = new PlayerDieState(this);
+            QSkillState = new PlayerQSkillState(this);
+            WSkillState = new PlayerWSkillState(this);
 
             JumpsRemaining = MaxJumps;
         }
@@ -78,5 +87,11 @@ namespace Game.Player
 
         public bool CanDash() => !IsDashing && (Time.time >= _lastDashTime + DashCooldown);
         public void MarkDashedNow() { _lastDashTime = Time.time; }
+
+        public bool CanUseQSkill() => Time.time >= _lastQSkillTime + Player.Data.SkillData.QSkillCooldown;
+        public void MarkQSkillUsed() { _lastQSkillTime = Time.time; }
+
+        public bool CanUseWSkill() => Time.time >= _lastWSkillTime + Player.Data.SkillData.WSkillCooldown;
+        public void MarkWSkillUsed() { _lastWSkillTime = Time.time; }
     }
 }

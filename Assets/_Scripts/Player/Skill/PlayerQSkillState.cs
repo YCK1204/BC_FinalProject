@@ -1,0 +1,23 @@
+using UnityEngine;
+
+namespace Game.Player
+{
+    public class PlayerQSkillState : PlayerSkillState
+    {
+        public PlayerQSkillState(PlayerStateMachine stateMachine)
+            : base(stateMachine, stateMachine.Player.Data.SkillData.QSkillCastingDuration) { }
+
+        public override void Enter()
+        {
+            base.Enter();
+            Debug.Log("Q 스킬사용");
+        }
+
+        public override void Exit()
+        {
+            base.Exit();
+            _stateMachine.MarkQSkillUsed();
+            Debug.Log("Q 스킬종료");
+        }
+    }
+}
