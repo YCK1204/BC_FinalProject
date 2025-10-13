@@ -1,7 +1,8 @@
-using UnityEngine;
+using Destructible2D;
+using DG.Tweening;
 using Game.Monster;
 using System.Collections.Generic;
-using DG.Tweening;
+using UnityEngine;
 
 namespace Game.Player
 {
@@ -147,6 +148,12 @@ namespace Game.Player
             foreach (var col in cols)
             {
                 if (col.transform.IsChildOf(_stateMachine.Player.transform)) continue;
+
+                if (col.gameObject.layer == LayerMask.NameToLayer("Destructible"))
+                {
+                    var d2dDmg = col.gameObject.transform.parent.GetComponent<D2dDamage>();
+                    d2dDmg.Damage++;
+                }
 
                 var target = col.GetComponentInParent<IDamageable>();
                 if (target != null && !_hitTargets.Contains(target))

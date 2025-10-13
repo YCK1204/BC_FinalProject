@@ -28,3 +28,14 @@ MonoBehaviour:
     Name: "\uC608\uB9AC\uD568"
     DescriptionId: 9101
     Icon: {fileID: -3065535781590047035, guid: bea9c80c07942dc49812fc7b2ea1f328, type: 3}
+  - Id: 2
+    Duration: 3
+    MaxCount: 1
+    Ability1: 8
+    Ability1Value: 20
+    Ability2: 9
+    Ability2Value: 10
+    IconURL: '-'
+    Name: "\uC608\uB9AC\uD568"
+    DescriptionId: 9101
+    Icon: {fileID: -3499203182451548828, guid: 6c040a4e0c2cf5143b753cf2156c289a, type: 3}

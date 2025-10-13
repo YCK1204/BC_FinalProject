@@ -43,6 +43,9 @@ public class Manager : MonoBehaviour
         Pool.Init();
         Item.Init();
         Instance._isInit = true;
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Destructible"));
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Gold"));
+        Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Destructible"), LayerMask.NameToLayer("Gold"));
     }
     GameManager _game = new GameManager();
     public static GameManager Game { get { return Instance._game; } }

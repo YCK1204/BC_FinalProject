@@ -40,10 +40,12 @@ public class ProjectileController : MonoBehaviour
     IEnumerator CoShot()
     {
         float startTime = Time.time;
+        PlayerCharacter player = PlayerCharacter.Instance;
+        Vector2 dir = player.transform.localScale.x > 0 ? Vector2.right : Vector2.left;
         while (Time.time - startTime < _data.Duration && !_isDestroyed)
         {
             //방향 지정해야함
-            transform.Translate(Vector2.right * _data.Speed * Time.deltaTime);
+            transform.Translate(dir * _data.Speed * Time.deltaTime);
             yield return null;
         }
         End();

@@ -4,31 +4,34 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a Unity 2D action platformer game project (BC_FinalProject) built with Unity 6000.2.2f1. The project features a player character that can battle various monsters, collect items, and unlock traits in a 2D side-scrolling environment.
+This is a Unity 2D action platformer game project (BC_FinalProject) built with Unity 6000.2.2f1. The project is a bootcamp final project ("내배캠 11기 최종 프로젝트") featuring a player character that can battle various monsters, collect items, and unlock traits in a 2D side-scrolling environment.
 
 ## Development Commands
 
 ### Unity Development
 - **Open Project**: Open the project folder in Unity Hub or directly launch Unity with this directory
-- **Build Game**: Use Unity's Build Settings (File > Build Settings) or use Addressables build system
-- **Run Tests**: Use Unity Test Runner (Window > General > Test Runner)
+- **Build Game**: Use Unity's Build Settings (File > Build Settings) or use Addressables build system (Window > Asset Management > Addressables)
+- **Run Tests**: Use Unity Test Runner (Window > General > Test Runner) - limited test coverage currently exists
+- **Asset Management**: Use Addressables Groups window to manage asset bundles and loading
 
 ### C# Development
 - **Open in IDE**: Open `BC_FinalProject.sln` or `Final.sln` in Visual Studio/Rider
 - **Compile Scripts**: Unity automatically compiles scripts on save or manually via Assets > Reimport All
+- **Manager Initialization**: Central Manager.cs handles initialization order: Data → Pool → Item → Physics2D layer setup
 
 ## Core Architecture
 
 ### Manager System
-The project uses a singleton manager pattern located in `Assets/_Scripts/Managers/`:
-- **Manager.cs**: Central singleton that manages all other managers
+The project uses a singleton manager pattern with centralized initialization in `Assets/_Scripts/Managers/Manager.cs`:
+- **Manager.cs**: Central singleton that manages all other managers with DontDestroyOnLoad lifecycle
+- **Initialization Order**: Critical sequence - Data.Load() → Pool.Init() → Item.Init() → Physics2D layer collision setup
 - **GameManager**: Handles game state, monster counting, and level progression
-- **ResourceManager**: Handles resource loading and asset management
-- **AudioManager**: Manages audio systems
+- **ResourceManager**: Handles resource loading and asset management  
+- **AudioManager & SceneManagerEx**: Scene and audio management (set via properties with transform parenting)
 - **PoolManager**: Object pooling for performance optimization
 - **DataManager**: Handles data persistence and ScriptableObject management
 - **ItemManager**: Manages item collection, inventory, and item effects
-- **PlayerManager**: Manages player-specific functionality
+- **Static Access Pattern**: All managers accessed via `Manager.ManagerName` (e.g., `Manager.Game`, `Manager.Data`)
 
 ### Player System
 Located in `Assets/_Scripts/Player/`:
@@ -46,10 +49,11 @@ Located in `Assets/_Scripts/Monster/`:
 
 ### Item System
 Located in `Assets/_Scripts/UI/Item/` and data in `Assets/_Scripts/ScriptableObject/`:
-- **Google Sheets Integration**: Uses `com.shlifedev.ugs` package for data management
-- **ScriptableObject Data**: ItemData, ItemBuffData, ItemProjectileData, ItemAreaData
-- **Synergy System**: Items can combine for enhanced effects
-- **Data Readers**: Automated data loading from Google Sheets
+- **Google Sheets Integration**: Uses `com.shlifedev.ugs` package (external Git dependency) for data management
+- **Complex Data Architecture**: ItemData, ItemBuffData, ItemProjectileData, ItemAreaData, ItemSynergyData, ItemDescriptionData, ItemEffectData
+- **Synergy System**: Items can combine for enhanced effects with dedicated synergy data structure
+- **Data Readers**: Automated parsing from Google Sheets to Unity data structures with runtime dictionary access
+- **Buff Management**: Separate BuffManager for item effect application and management
 
 ### UI Architecture
 Located in `Assets/_Scripts/UI/`:
@@ -92,14 +96,15 @@ Located in `Assets/_Scripts/UI/`:
 
 ## Package Dependencies
 
-Key packages used:
-- **Addressables**: Asset management and loading
-- **Cinemachine**: Camera system
-- **Input System**: Modern input handling
-- **URP**: Universal Render Pipeline for 2D graphics
-- **DOTween**: Animation tweening
-- **Timeline**: Cutscenes and scripted sequences
-- **Google Sheets Integration**: External data management
+Critical packages and versions:
+- **com.shlifedev.ugs**: Google Sheets integration (external Git dependency from GitHub)
+- **com.unity.addressables (2.7.2)**: Asset management and loading system
+- **com.unity.render-pipelines.universal (17.2.0)**: Universal Render Pipeline for 2D graphics
+- **com.unity.inputsystem (1.14.2)**: Modern input handling with action maps
+- **com.unity.cinemachine (3.1.4)**: Advanced camera system
+- **com.unity.timeline (1.8.9)**: Cutscenes and scripted sequences
+- **2D Animation Package Suite**: Complete 2D animation pipeline (animation, aseprite, psd importer, sprite tools)
+- **com.unity.test-framework (1.5.1)**: Testing infrastructure (limited current usage)
 
 ## Build Configuration
 
@@ -110,8 +115,32 @@ Key packages used:
 
 ## Development Notes
 
-- The project uses namespace organization (e.g., `Game.Player`, `Game.Monster`)
-- Extensive use of Unity's new Input System
-- State machine patterns for both player and monster AI
-- Manager classes follow singleton pattern with proper initialization order
-- ScriptableObject-based data architecture for easy content modification
+### Code Organization & Patterns
+- **Namespace Organization**: `Game.Player`, `Game.Monster` for logical separation and avoiding naming conflicts
+- **Interface-Driven Design**: Consistent use of interfaces like `IDamageable`, `IAttackable`, `IMovable`, `IStateMachine`
+- **State Machine Architecture**: Robust implementation for both player and monster AI systems
+- **Manager Singleton Pattern**: Centralized management with proper initialization sequence and lifecycle
+- **ScriptableObject Data Architecture**: Extensive use for game data with external Google Sheets integration
+
+### Input System Configuration
+- Modern Unity Input System with comprehensive action maps
+- Configured Player actions: Move, Look, Attack, Interact, Crouch, Jump, Dash
+- Supports multiple input methods and devices
+
+### Team Collaboration
+- **Korean Development Team**: Comments and documentation in Korean, code in English
+- **GitHub Workflow**: Structured PR templates with Korean descriptions and categorized change types
+- **Minimal Current Documentation**: Only basic README with project name "내배캠 11기 최종 프로젝트"
+
+### Testing & Quality
+- **Limited Test Coverage**: Only one test file (`EnemyTest.cs`) for basic monster damage testing
+- **Editor Development Tools**: Custom Gizmos for monster detection and attack ranges
+- **Debug Systems**: Test triggers and development utilities available
+
+### Performance Considerations
+- **Object Pooling**: Implemented via PoolManager for frequently instantiated objects
+- **Addressable Asset System**: For efficient asset loading and memory management
+- **Physics2D Optimization**: Specific layer collision matrix setup (Player ignores Destructible layer)
+
+## Language Settings
+- **Development Language Note**: 나는 한국인이니까 앞으로 한국어로 답해 (As I am Korean, I will respond in Korean from now on)

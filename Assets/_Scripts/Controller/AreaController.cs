@@ -86,16 +86,6 @@ public class AreaController : MonoBehaviour
         }
         return player.transform;
     }
-    IEnumerator CoShot()
-    {
-        float startTime = Time.time;
-        while (Time.time - startTime < _data.AnmationDuration)
-        {
-            yield return null;
-        }
-        StopCoroutine(CoShot());
-        Manager.Pool.Push<AreaController>(gameObject);
-    }
     public void HitEnemiesInRadius()
     {
         var hits = Physics2D.OverlapCircleAll(transform.position, _data.Radius, LayerMask.GetMask("Monster"));
