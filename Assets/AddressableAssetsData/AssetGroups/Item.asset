@@ -15,8 +15,35 @@ MonoBehaviour:
   m_GroupName: Item
   m_GUID: b1ce8263c1a43e64f8af803028998bf0
   m_SerializeEntries:
+  - m_GUID: 0b8db5f11c24e8249807a1d5f0c7a35a
+    m_Address: BuffUI
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6a1288562abfeff468295da74643a7d6
+    m_Address: Projectile
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ItemEffectObject
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 704607406e3b87641995fa146b5756d7
+    m_Address: GoldUI
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8e8b0c59877d78b4283159d2d7d192b3
     m_Address: ItemController
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aaf536534ceb97746a297f454e168ccc
+    m_Address: Area
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - ItemEffectObject
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b574788fc3e7dd64998f09049a92ef62
+    m_Address: BuffCanvas
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

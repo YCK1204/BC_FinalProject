@@ -38,15 +38,14 @@ public class Pool
     }
 }
 
-public class PoolManager : MonoBehaviour
+public class PoolManager
 {
     Dictionary<string, Pool> _pools = new Dictionary<string, Pool>();
-    private void Start()
+    GameObject _root;
+    public void Init()
     {
-        if (Manager.Pool != null)
-            Object.Destroy(gameObject);
-        else
-            Manager.Pool = this;
+        _root = new GameObject("@Pool");
+        Object.DontDestroyOnLoad(_root);
     }
     public void CreatePool<T>(int count, GameObject prefab) where T : MonoBehaviour
     {
@@ -54,7 +53,7 @@ public class PoolManager : MonoBehaviour
         if (_pools.ContainsKey(key)) return;
 
         Pool pool = new Pool();
-        pool.Init(count, transform, prefab);
+        pool.Init(count, _root.transform, prefab);
         _pools.Add(key, pool);
     }
     public T Pop<T>() where T : MonoBehaviour
