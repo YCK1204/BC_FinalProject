@@ -21,6 +21,7 @@ public class MonsterDieState : MonsterBaseState
         _stateMachine.Owner.Rb.bodyType = RigidbodyType2D.Kinematic;
         _stateMachine.Owner.Col.isTrigger = true;
         _stateMachine.Owner.Rb.linearVelocityX = 0f;
+        _stateMachine.Owner.Rb.linearVelocityY = 0f;
     }
 
     public override void Update()

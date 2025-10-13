@@ -41,7 +41,8 @@ public class RushAttack : MeleeAttack
 
     private void OnAttackEnd()
     {
-        _monsterAttack.Owner.RegisterIgnoreCollider(_target);
+        if(_target != null)
+            _monsterAttack.Owner.RegisterIgnoreCollider(_target);
 
         _rb.linearVelocityX = 0;
         _rb.bodyType = RigidbodyType2D.Dynamic;
