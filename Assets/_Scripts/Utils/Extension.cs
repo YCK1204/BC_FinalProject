@@ -123,7 +123,7 @@ public static class Extension
     /// </summary>
     public static Vector3 DirectionTo(this Transform from, Transform to)
     {
-        return (to.position - from.position).normalized;
+        return from.gameObject.DirectionTo(to.gameObject);
     }
     /// <summary>
     /// 두 GameObject 간의 방향 벡터를 계산합니다.

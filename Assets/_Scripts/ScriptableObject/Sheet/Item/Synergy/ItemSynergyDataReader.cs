@@ -9,13 +9,7 @@ public class ItemSynergyDataReader : DataReaderBase<ItemSynergyData>
     {
         int Id = 0;
         int Count = 0;
-        string Name = "";
-        ItemActionType ActionType =  ItemActionType.Always;
-        float Chance = 0;
-        int SpecialAbilityID = 0;
-        float CoolDown = 0;
-        SynergyEffectType EffectType = SynergyEffectType.Always;
-        int DescID = 0;
+        int ItemEffectID = 0;
 
         foreach (var item in list)
         {
@@ -27,29 +21,11 @@ public class ItemSynergyDataReader : DataReaderBase<ItemSynergyData>
                 case "Count":
                     Count = int.Parse(item.value);
                     break;
-                case "Name":
-                    Name = item.value;
-                    break;
-                case "Action":
-                    ActionType = (ItemActionType)System.Enum.Parse(typeof(ItemActionType), item.value);
-                    break;
-                case "Chance":
-                    Chance = float.Parse(item.value);
-                    break;
-                case "SpecialAbilityID":
-                    SpecialAbilityID = int.Parse(item.value);
-                    break;
-                case "Cooldown":
-                    CoolDown = float.Parse(item.value);
-                    break;
-                case "EffectType":
-                    EffectType = (SynergyEffectType)System.Enum.Parse(typeof(SynergyEffectType), item.value);
-                    break;
-                case "DescID":
-                    DescID = int.Parse(item.value);
+                case "ItemEffectID":
+                    ItemEffectID = int.Parse(item.value);
                     break;
             }
         }
-        DataList.Add(new ItemSynergyData(Id, Count, Name, ActionType, Chance, SpecialAbilityID, CoolDown, EffectType, DescID));
+        DataList.Add(new ItemSynergyData(Id, Count, ItemEffectID));
     }
 }

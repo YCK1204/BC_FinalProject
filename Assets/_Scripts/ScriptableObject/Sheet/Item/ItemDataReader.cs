@@ -11,14 +11,13 @@ public class ItemDataReader : DataReaderBase<ItemData>
         int id = 0;
         string name = "";
         ItemExtraStatType ability1Type = ItemExtraStatType.None;
-        int ability1Value = 0;
+        float ability1Value = 0;
         ItemExtraStatType ability2Type = ItemExtraStatType.None;
-        int ability2Value = 0;
-        int itemTalentId = 0;
+        float ability2Value = 0;
+        int itemEffectId = 0;
         int synergyId = 0;
         ItemGradeType itemGradeType = ItemGradeType.Common;
         string iconURL = "";
-        int descriptionId = 0;
 
         for (int i = 0; i < list.Count; i++)
         {
@@ -34,7 +33,6 @@ public class ItemDataReader : DataReaderBase<ItemData>
                         itemGradeType = Enum.Parse<ItemGradeType>(list[i].value);
                         break;
                     }
-
                 case "Name":
                     {
                         name = list[i].value;
@@ -47,7 +45,7 @@ public class ItemDataReader : DataReaderBase<ItemData>
                     }
                 case "Value1":
                     {
-                        ability1Value = int.Parse(list[i].value);
+                        ability1Value = float.Parse(list[i].value);
                         break;
                     }
                 case "Ability2":
@@ -57,12 +55,12 @@ public class ItemDataReader : DataReaderBase<ItemData>
                     }
                 case "Value2":
                     {
-                        ability2Value = int.Parse(list[i].value);
+                        ability2Value = float.Parse(list[i].value);
                         break;
                     }
-                case "ItemTalentID":
+                case "ItemEffectID":
                     {
-                        itemTalentId = int.Parse(list[i].value);
+                        itemEffectId = int.Parse(list[i].value);
                         break;
                     }
                 case "SynergyID":
@@ -75,14 +73,8 @@ public class ItemDataReader : DataReaderBase<ItemData>
                         iconURL = list[i].value;
                         break;
                     }
-                case "DescID":
-                    {
-                        descriptionId = int.Parse(list[i].value);
-                        break;
-                    }
             }
         }
-
-        DataList.Add(new ItemData(id, itemGradeType, name, ability1Type, ability1Value, ability2Type, ability2Value, itemTalentId, synergyId, iconURL, descriptionId));
+        DataList.Add(new ItemData(id, itemGradeType, name, ability1Type, ability1Value, ability2Type, ability2Value, itemEffectId, synergyId, iconURL));
     }
 }

@@ -17,27 +17,12 @@ MonoBehaviour:
   START_ROW_LENGTH: 2
   END_ROW_LENGTH: 4
   DataList:
-  - Id: 6001
+  - Id: 1
     Count: 3
-    Name: "\uBC14\uB78C \uAE38"
-    ActionType: 3
-    Chance: 25
-    SpecialAbilityID: 4001
-    CoolDown: 0
-    DescID: 9301
-  - Id: 6002
+    ItemEffectID: 3
+  - Id: 2
     Count: 3
-    Name: "\uC12C\uAD11"
-    ActionType: 6
-    Chance: 100
-    SpecialAbilityID: 5001
-    CoolDown: 0
-    DescID: 9302
-  - Id: 6003
+    ItemEffectID: 4
+  - Id: 3
     Count: 3
-    Name: "\uB0A0\uCE74\uB85C\uC6C0"
-    ActionType: 4
-    Chance: 100
-    SpecialAbilityID: 3001
-    CoolDown: 0
-    DescID: 9303
+    ItemEffectID: 5

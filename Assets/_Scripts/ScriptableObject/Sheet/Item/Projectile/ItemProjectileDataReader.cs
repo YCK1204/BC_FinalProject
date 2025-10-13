@@ -14,6 +14,8 @@ public class ItemProjectileDataReader : DataReaderBase<ItemProjectileData>
         float height = 0;
         int collisionCount = 0;
         float damage = 0;
+        ImageType imageType = ImageType.Sprite;
+        int imageId = 0;
 
         foreach (var item in list)
         {
@@ -40,8 +42,14 @@ public class ItemProjectileDataReader : DataReaderBase<ItemProjectileData>
                 case "Damage":
                     damage = float.Parse(item.value);
                     break;
+                    case "ImageType":
+                    imageType = (ImageType)System.Enum.Parse(typeof(ImageType), item.value);
+                    break;
+                    case "ImageID":
+                    imageId = int.Parse(item.value);
+                    break;
             }
         }
-        DataList.Add(new ItemProjectileData(id, duration, speed, width, height, collisionCount, damage));
+        DataList.Add(new ItemProjectileData(id, duration, speed, width, height, collisionCount, damage, imageType, imageId));
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 using CW.Common;
 
@@ -478,7 +478,7 @@ namespace Destructible2D
 			if (OnSplitStart != null)
 			{
 				OnSplitStart();
-			}
+            }
 
 			alphaData = null;
 		}

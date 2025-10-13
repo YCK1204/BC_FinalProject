@@ -15,9 +15,9 @@ MonoBehaviour:
   associatedSheet: 12caJqOR5SSlbMQerqCmjLh1uayleody_nUI7eH7W26E
   associatedWorksheet: "\uBC84\uD50403"
   START_ROW_LENGTH: 2
-  END_ROW_LENGTH: 2
+  END_ROW_LENGTH: 3
   DataList:
-  - Id: 3001
+  - Id: 1
     Duration: 3
     MaxCount: 1
     Ability1: 8
@@ -27,3 +27,15 @@ MonoBehaviour:
     IconURL: '-'
     Name: "\uC608\uB9AC\uD568"
     DescriptionId: 9101
+    Icon: {fileID: -3065535781590047035, guid: bea9c80c07942dc49812fc7b2ea1f328, type: 3}
+  - Id: 2
+    Duration: 3
+    MaxCount: 1
+    Ability1: 8
+    Ability1Value: 20
+    Ability2: 9
+    Ability2Value: 10
+    IconURL: '-'
+    Name: "\uC608\uB9AC\uD568"
+    DescriptionId: 9101
+    Icon: {fileID: -3499203182451548828, guid: 6c040a4e0c2cf5143b753cf2156c289a, type: 3}

@@ -2,6 +2,7 @@ using DG.Tweening;
 using Game.Monster;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -17,6 +18,7 @@ namespace Game.Player
 
         public bool OnTrait;
 
+        public List<InteractableController> Interactables = new List<InteractableController>();
         public SpriteRenderer SpriteRenderer;
 
         public MaterialInitializer PlayerMaterial;
@@ -43,7 +45,7 @@ namespace Game.Player
         [SerializeField] private RuntimeAnimatorController normalAnimator;
         [SerializeField] private RuntimeAnimatorController awakenedAnimator;
 
-        
+
         public bool Invincible { get; private set; }
         public void SetInvincible(bool on) { Invincible = on; }
 
@@ -71,7 +73,7 @@ namespace Game.Player
         {
             get
             {
-                return currentHP; 
+                return currentHP;
             }
             set
             {
@@ -424,9 +426,13 @@ namespace Game.Player
             UpdateRuntimeDebug();
 
             var kb = UnityEngine.InputSystem.Keyboard.current;
-            bool g = kb != null && kb.gKey.wasPressedThisFrame;
-            if (g)
-                Manager.Item.AddItem(this);
+            bool f = kb != null && kb.fKey.wasPressedThisFrame;
+            if (f)
+            {
+                if (Interactables.Count == 0)
+                    return;
+                Interactables[Interactables.Count - 1].OnInteract();
+            }
 
             if (kb != null && kb.rKey.wasPressedThisFrame)
             {

@@ -17,6 +17,7 @@ class ItemBuffDataReader : DataReaderBase<ItemBuffData>
         string iconURL = "";
         string name = "";
         int descriptionId = 0;
+        int imageId = 0;
 
         foreach (var item in list)
         {
@@ -52,8 +53,11 @@ class ItemBuffDataReader : DataReaderBase<ItemBuffData>
                 case "DescID":
                     descriptionId = int.Parse(item.value);
                     break;
+                case "ImageID":
+                    imageId = int.Parse(item.value);
+                    break;
             }
         }
-        DataList.Add(new ItemBuffData(id, duration, maxCount, ability1, ability1Value, ability2, ability2Value, iconURL, name, descriptionId));
+        DataList.Add(new ItemBuffData(id, duration, maxCount, ability1, ability1Value, ability2, ability2Value, iconURL, name, descriptionId, imageId));
     }
 }
