@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections.Generic;
 using CW.Common;
 
@@ -164,16 +164,16 @@ namespace Destructible2D
 		protected virtual void Awake()
 		{
 			// Auto destroy all default collider2Ds
-			if (GetComponent<Collider2D>() != null)
-			{
-				var collider2Ds = GetComponents<Collider2D>();
+            if (GetComponent<Collider2D>() != null)
+            {
+                var collider2Ds = GetComponents<Collider2D>();
 
-				for (var i = collider2Ds.Length - 1; i >= 0; i--)
-				{
-					CwHelper.Destroy(collider2Ds[i]);
-				}
-			}
-		}
+                for (var i = collider2Ds.Length - 1; i >= 0; i--)
+                {
+                    CwHelper.Destroy(collider2Ds[i]);
+                }
+            }
+        }
 
 		protected virtual void Start()
 		{
