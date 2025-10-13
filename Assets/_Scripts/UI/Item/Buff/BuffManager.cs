@@ -31,8 +31,8 @@ class Buff
         {
             var player = PlayerCharacter.Instance;
             _container.gameObject.SetActive(false);
-            ItemSetterUtil.RemoveStat(player, _data.Ability1, _data.Ability1Value);
-            ItemSetterUtil.RemoveStat(player, _data.Ability2, _data.Ability2Value);
+            ItemSetterUtil.RemoveStat(player, _data.Stat1.ItemExtraStatType, _data.Stat1.Value);
+            ItemSetterUtil.RemoveStat(player, _data.Stat2.ItemExtraStatType, _data.Stat2.Value);
             return false;
         }
         return true;
@@ -46,8 +46,8 @@ class Buff
         if (last)
             _container.transform.SetAsLastSibling();
         _container.gameObject.SetActive(true);
-        ItemSetterUtil.ApplyStat(player, _data.Ability1, _data.Ability1Value);
-        ItemSetterUtil.ApplyStat(player, _data.Ability2, _data.Ability2Value);
+        ItemSetterUtil.ApplyStat(player, _data.Stat1.ItemExtraStatType, _data.Stat1.Value);
+        ItemSetterUtil.ApplyStat(player, _data.Stat2.ItemExtraStatType, _data.Stat2.Value);
     }
     public void SetParent(Transform parent)
     {
@@ -83,8 +83,8 @@ public class BuffManager
         bool last = false;
         if (buff.BuffCoroutine != null)
         {
-            ItemSetterUtil.RemoveStat(player, data.Ability1, data.Ability1Value);
-            ItemSetterUtil.RemoveStat(player, data.Ability2, data.Ability2Value);
+            ItemSetterUtil.RemoveStat(player, data.Stat1.ItemExtraStatType, data.Stat1.Value);
+            ItemSetterUtil.RemoveStat(player, data.Stat2.ItemExtraStatType, data.Stat2.Value);
             player.StopCoroutine(buff.BuffCoroutine);
         }
         else

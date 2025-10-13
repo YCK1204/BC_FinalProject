@@ -14,20 +14,20 @@ public class ItemSynergy
     public int Count
     {
         get { return _count; }
-        private set
+        set
         {
             _count = value;
             if (_count >= Data.Count)
             {
-                if (!_isActive)
+                if (!Activated)
                 {
-                    _isActive = true;
+                    Activated = true;
                     OnSynergy();
                 }
             }
         }
     }
-    bool _isActive = false;
+    public bool Activated = false;
     public ItemSynergyData Data { get; private set; }
     public ItemSynergy(ItemSynergyData data)
     {
@@ -37,25 +37,13 @@ public class ItemSynergy
     void OnSynergy()
     {
         var player = PlayerCharacter.Instance;
+        Manager.Data.ItemsData.Effect.TryGetValue(Data.Id, out var effectData);
 
-        //switch (Data.ActionType)
-        //{
-        //    case ItemActionType.Always:
-        //        break;
-        //    case ItemActionType.Kill:
-        //        break;
-        //    case ItemActionType.UsingSkill:
-        //        break;
-        //    case ItemActionType.UsingAttack:
-        //        break;
-        //    case ItemActionType.AttackHit:
-        //        break;
-        //    case ItemActionType.StartRound:
-        //        break;
-        //    case ItemActionType.DashEnd:
-        //        break;
-        //    case ItemActionType.OnSynergy:
-        //        break;
-        //}
+        if (effectData == null)
+        {
+            Debug.LogError($"ItemEffectId {Data.Id} not found");
+            return;
+        }
+        effectData.Set();
     }
 }

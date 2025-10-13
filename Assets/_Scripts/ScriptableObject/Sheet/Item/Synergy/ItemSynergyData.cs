@@ -1,5 +1,4 @@
 using System;
-using UnityEngine;
 
 public enum SynergyEffectType
 {
@@ -9,7 +8,7 @@ public enum SynergyEffectType
 }
 
 [Serializable]
-public struct ItemSynergyData
+public class ItemSynergyData
 {
     public int Id;
     public int Count;

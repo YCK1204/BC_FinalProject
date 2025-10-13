@@ -15,11 +15,11 @@ MonoBehaviour:
   associatedSheet: 12caJqOR5SSlbMQerqCmjLh1uayleody_nUI7eH7W26E
   associatedWorksheet: "\uC544\uC774\uD15C \uD6A8\uACFC"
   START_ROW_LENGTH: 2
-  END_ROW_LENGTH: 7
+  END_ROW_LENGTH: 6
   DataList:
   - Id: 1
     Condition: 0
-    Nmae: "\uB291\uB300"
+    Nmae: "\uBC88\uAC1C"
     ActionType: 3
     Chance: 25
     SpecialAbilityId: 1
@@ -29,7 +29,7 @@ MonoBehaviour:
     Desc: 
   - Id: 2
     Condition: 0
-    Nmae: "\uBC88\uAC1C"
+    Nmae: "\uB291\uB300"
     ActionType: 0
     Chance: 100
     SpecialAbilityId: 2
@@ -41,7 +41,7 @@ MonoBehaviour:
     Condition: 0
     Nmae: "\uBC14\uB78C \uAE38"
     ActionType: 1
-    Chance: 25
+    Chance: 100
     SpecialAbilityId: 1
     AbilityType: 2
     Cooldown: 0
@@ -63,16 +63,6 @@ MonoBehaviour:
     ActionType: 4
     Chance: 50
     SpecialAbilityId: 1
-    AbilityType: 1
-    Cooldown: 0
-    DescId: 9303
-    Desc: 
-  - Id: 6
-    Condition: 0
-    Nmae: "\uB0A0\uCE74\uB85C\uC6C0"
-    ActionType: 4
-    Chance: 50
-    SpecialAbilityId: 2
     AbilityType: 1
     Cooldown: 0
     DescId: 9303

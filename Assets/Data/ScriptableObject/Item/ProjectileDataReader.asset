@@ -19,21 +19,23 @@ MonoBehaviour:
   DataList:
   - Id: 2
     Duration: 1
+    MoveType: 0
     Speed: 10
     Width: 0.5
     Height: 2
     CollisionCount: 8
     Damage: 0.3
     ImageType: 1
-    sprite: {fileID: -855298285791758126, guid: 00e71d7ccb578c3458fb6e016c786638, type: 3}
+    Sprite: {fileID: -855298285791758126, guid: 00e71d7ccb578c3458fb6e016c786638, type: 3}
     Animator: {fileID: 0}
   - Id: 1
     Duration: 1
-    Speed: 10
+    MoveType: 0
+    Speed: 6
     Width: 0.5
     Height: 2
     CollisionCount: 8
     Damage: 0.3
     ImageType: 0
-    sprite: {fileID: 0}
-    Animator: {fileID: 9100000, guid: 15f75a6ff8c052d47a9ea80cd2d1bd57, type: 2}
+    Sprite: {fileID: 0}
+    Animator: {fileID: 9100000, guid: 566d7d2e1648a3547aaad57e2f347496, type: 2}

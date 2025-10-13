@@ -34,7 +34,7 @@ public enum ItemActionType
 }
 
 [Serializable]
-public struct ItemEffectData
+public class ItemEffectData
 {
     public int Id;
     public ConditionType Condition;
@@ -58,7 +58,6 @@ public struct ItemEffectData
         Cooldown = cooldown;
         DescId = descId;
         Desc = "";
-        _eventData = default(ItemAbilityEvent);
         _lastEventTime = 0f;
     }
     ItemAbilityEvent _eventData;
@@ -85,29 +84,27 @@ public struct ItemEffectData
         switch (ActionType)
         {
             case ItemActionType.Kill:
-                PlayerCharacter.Instance.OnKill -= OnEvent;
                 PlayerCharacter.Instance.OnKill += OnEvent;
                 break;
             case ItemActionType.UsingSkill:
-                PlayerCharacter.Instance.OnUsingSkill -= OnEvent;
                 PlayerCharacter.Instance.OnUsingSkill += OnEvent;
                 break;
             case ItemActionType.UsingAttack:
-                PlayerCharacter.Instance.OnUsingAttackStart -= OnEvent;
                 PlayerCharacter.Instance.OnUsingAttackStart += OnEvent;
                 break;
             case ItemActionType.AttackHit:
-                PlayerCharacter.Instance.OnAttackHit -= OnEvent;
                 PlayerCharacter.Instance.OnAttackHit += OnEvent;
                 break;
             case ItemActionType.StartRound:
                 // 맵 매니저 콜백 처리
                 break;
             case ItemActionType.DashEnd:
-                PlayerCharacter.Instance.OnDashEnd -= OnEvent;
                 PlayerCharacter.Instance.OnDashEnd += OnEvent;
                 break;
             case ItemActionType.OnSynergy:
+                //Manager.Data.ItemsData.Base.TryGetValue(Id, out var data);
+                //if (Manager.Item.Synergies[data.SynergyId].Activated == false)
+                //    return;
                 // 시너지 콜백 처리
                 break;
             case ItemActionType.Always:
