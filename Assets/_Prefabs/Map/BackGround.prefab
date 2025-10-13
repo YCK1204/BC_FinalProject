@@ -139,7 +139,7 @@ PositionConstraint:
   m_TranslationOffset: {x: -787.5214, y: -728.45886, z: 0}
   m_AffectTranslationX: 1
   m_AffectTranslationY: 0
-  m_AffectTranslationZ: 1
+  m_AffectTranslationZ: 0
   m_Active: 1
   m_IsLocked: 0
   m_Sources:
@@ -263,7 +263,7 @@ PositionConstraint:
   m_TranslationOffset: {x: -787.5214, y: -728.45886, z: 0}
   m_AffectTranslationX: 1
   m_AffectTranslationY: 0
-  m_AffectTranslationZ: 1
+  m_AffectTranslationZ: 0
   m_Active: 1
   m_IsLocked: 0
   m_Sources:
