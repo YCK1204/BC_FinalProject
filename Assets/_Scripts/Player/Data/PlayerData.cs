@@ -65,6 +65,15 @@ namespace Game.Player
     }
 
     [Serializable]
+    public class PlayerSkillData
+    {
+        public float QSkillCastingDuration = 0.5f;
+        public float QSkillCooldown = 1.0f;
+        public float WSkillCastingDuration = 0.0f;
+        public float WSkillCooldown = 1.0f;
+    }
+
+    [Serializable]
     public class PlayerComboAttackData
     {
         public List<AttackInfoData> AttackInfos = new List<AttackInfoData>();
@@ -114,6 +123,7 @@ namespace Game.Player
         public PlayerStatsData Stats = new PlayerStatsData();
         public PlayerComboAttackData ComboAttackData = new PlayerComboAttackData();
         public PlayerAwakeningData awakening = new PlayerAwakeningData();
+        public PlayerSkillData SkillData = new PlayerSkillData();
 
         public PlayerData Clone()
         {
@@ -171,7 +181,15 @@ namespace Game.Player
                     maxAwakeningGauge = awakening.maxAwakeningGauge,
                     awakeningOnHit = awakening.awakeningOnHit,
                     duration = awakening.duration
+                },
+                SkillData = new PlayerSkillData
+                {
+                    QSkillCastingDuration = SkillData.QSkillCastingDuration,
+                    QSkillCooldown = SkillData.QSkillCooldown,
+                    WSkillCastingDuration = SkillData.WSkillCastingDuration,
+                    WSkillCooldown = SkillData.WSkillCooldown
                 }
+
             };
         }
     }
