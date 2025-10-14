@@ -22,6 +22,7 @@ public abstract class StateMachineMonster : NormalMonster
         base.Awake();
 
         _stateMachine = new MonsterStateMachine(this);
+        OnDiedEnter += DisableEffects;
     }
 
     protected override void OnEnable()
@@ -78,4 +79,13 @@ public abstract class StateMachineMonster : NormalMonster
         }
     }
 
+
+    private void DisableEffects()
+    {
+        ParticleSystem[] particles = GetComponentsInChildren<ParticleSystem>();
+        foreach (ParticleSystem particle in particles)
+        {
+            particle.gameObject.SetActive(false);
+        }
+    }
 }
