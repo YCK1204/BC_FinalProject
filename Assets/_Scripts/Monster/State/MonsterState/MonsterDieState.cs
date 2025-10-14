@@ -23,7 +23,8 @@ public class MonsterDieState : MonsterBaseState
         _stateMachine.Owner.Rb.linearVelocityX = 0f;
         _stateMachine.Owner.Rb.linearVelocityY = 0f;
 
-        _stateMachine.Owner.OnDiedEnter();
+        if(_stateMachine.Owner.OnDiedEnter != null)
+            _stateMachine.Owner.OnDiedEnter();
     }
 
     public override void Update()
