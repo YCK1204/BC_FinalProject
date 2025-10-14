@@ -11,10 +11,8 @@ public class ItemBuffData : ItemAbilityEvent
     public int Id;
     public float Duration;
     public int MaxCount;
-    public ItemExtraStatType Ability1;
-    public float Ability1Value;
-    public ItemExtraStatType Ability2;
-    public float Ability2Value;
+    public ItemStat Stat1;
+    public ItemStat Stat2;
     public string IconURL;
     public string Name;
     public int DescriptionId;
@@ -24,34 +22,14 @@ public class ItemBuffData : ItemAbilityEvent
         Id = id;
         Duration = duration;
         MaxCount = maxCount;
-        Ability1 = ability1;
-        Ability1Value = ability1Value;
-        Ability2 = ability2;
-        Ability2Value = ability2Value;
+        Stat1 = new ItemStat() { ItemExtraStatType = ability1, ItemTriggerType = ItemTriggerType.Always, Value = ability1Value };
+        Stat2 = new ItemStat() { ItemExtraStatType = ability2, ItemTriggerType = ItemTriggerType.Always, Value = ability2Value };
         IconURL = iconURL;
         Name = name;
         DescriptionId = descriptionId;
         _lastBuffTime = 0f;
         _buffCoroutine = null;
-        Icon = Load<Sprite>(imageId.ToString());
-    }
-    T Load<T>(string sourceName) where T : UnityEngine.Object
-    {
-        var settings = AddressableAssetSettingsDefaultObject.Settings;
-        foreach (var group in settings.groups)
-        {
-            if (group.name != "Buff")
-                continue;
-            foreach (var entry in group.entries)
-            {
-                if (entry.address == sourceName)
-                {
-                    string path = AssetDatabase.GUIDToAssetPath(entry.guid);
-                    return (AssetDatabase.LoadAssetAtPath<T>(path));
-                }
-            }
-        }
-        return null;
+        Icon = Extension.LoadWithAddresssableByGroup<Sprite>($"{imageId}", "Buff");
     }
     float _lastBuffTime;
     Coroutine _buffCoroutine;

@@ -156,6 +156,7 @@ namespace Game.Player
                 {
                     var d2dDmg = col.gameObject.transform.parent.GetComponent<D2dDamage>();
                     d2dDmg.Damage++;
+                    continue;
                 }
 
                 var target = col.GetComponentInParent<IDamageable>();
@@ -193,9 +194,7 @@ namespace Game.Player
             }
 
             if (hitted)
-            {
                 _stateMachine.Player.AttackHit();
-            }
         }
     }
 }

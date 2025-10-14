@@ -41,7 +41,7 @@ namespace Game.Player
 
         public float CriticalChance = 5f;
         public float CriticalDamage = 200f;
-        
+
         public float SkillAttck = 10f;
 
         // 기본 스킬가속 = 100% = 1f

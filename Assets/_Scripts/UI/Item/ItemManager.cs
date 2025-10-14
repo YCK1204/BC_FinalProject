@@ -10,6 +10,7 @@ public class ItemManager
     public BuffManager Buff = new BuffManager();
     ItemController CurItem;
     Dictionary<int, ItemData> _items = new Dictionary<int, ItemData>();
+    public Dictionary<int, ItemSynergy> Synergies = new Dictionary<int, ItemSynergy>();
     public List<ItemData> MissingItems { get; private set; }
 
     public Action<ItemController> OnItemAdded;
@@ -18,6 +19,7 @@ public class ItemManager
     {
         Buff.Init();
         MissingItems = Manager.Data.ItemsData.Base.Values.ToList();
+        Synergies = Manager.Data.ItemsData.Synergy.Values.ToDictionary(x => x.Id, x => new ItemSynergy(x));
 
         Manager.Resource.LoadAsync("ItemEffectObject", (list) =>
         {
@@ -72,6 +74,7 @@ public class ItemManager
         data.Set(player);
         MissingItems.Remove(data);
         OnItemAdded?.Invoke(item);
+        Synergies[data.SynergyId].Count++;
     }
     public bool HasItem(int itemID)
     {
