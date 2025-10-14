@@ -11,7 +11,7 @@ public abstract class BossMonster : BaseMonster
 
     public Action OnHealthchanged;
     public bool IsAttacking;
-    public bool IsIntro;
+    public bool IsDirecting;
 
     protected float _bossScale = 1f;
     public float BossScale { get { return _bossScale; } }

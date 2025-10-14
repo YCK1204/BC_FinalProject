@@ -1,3 +1,4 @@
+using Game.Monster;
 using Game.Player;
 using System;
 using System.Collections.Generic;
@@ -12,11 +13,16 @@ public abstract class StateMachineMonster : NormalMonster
     protected MonsterStateMachine _stateMachine;
     public MonsterStateMachine StateMachine { get { return _stateMachine; } }
 
+    protected IAttackable _curAttack;
+    protected IMovable _curPatrolMovement;
+    protected IMovable _curChaseMovement;
+
     protected override void Awake()
     {
         base.Awake();
 
         _stateMachine = new MonsterStateMachine(this);
+        OnDiedEnter += DisableEffects;
     }
 
     protected override void OnEnable()
@@ -37,6 +43,16 @@ public abstract class StateMachineMonster : NormalMonster
     protected virtual void FixedUpdate()
     {
         _stateMachine?.FixedUpdate();
+    }
+
+    public IMovable GetChaseMovement()
+    {
+        return _curChaseMovement;
+    }
+
+    public IMovable GetPatrolMovement()
+    {
+        return _curPatrolMovement;
     }
 
     // 데미지 적용 메서드
@@ -63,4 +79,13 @@ public abstract class StateMachineMonster : NormalMonster
         }
     }
 
+
+    private void DisableEffects()
+    {
+        ParticleSystem[] particles = GetComponentsInChildren<ParticleSystem>();
+        foreach (ParticleSystem particle in particles)
+        {
+            particle.gameObject.SetActive(false);
+        }
+    }
 }

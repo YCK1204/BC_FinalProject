@@ -1,10 +1,8 @@
 using Game.Monster;
 using UnityEngine;
 
-public class Orc : PatrolStateMonster
+public class Orc : StateMachineMonster
 {
-    IAttackable _curAttack;
-
     protected override void Awake()
     {
         base.Awake();
@@ -15,6 +13,14 @@ public class Orc : PatrolStateMonster
         //_curAttack = new RangedAttack( transform, _attack);
 
         _attack.Attackable = _curAttack;
+    }
+
+    protected override void Init()
+    {
+        base.Init();
+
+        _curPatrolMovement = new PatrolMove(this);
+        _curChaseMovement = new ChaseMove(this);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

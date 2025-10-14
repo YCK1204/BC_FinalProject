@@ -102,7 +102,7 @@ GameObject:
   - component: {fileID: 6510153067552574600}
   - component: {fileID: 3944063640851575386}
   - component: {fileID: 222779823246255543}
-  - component: {fileID: 8420547118552779038}
+  - component: {fileID: 213162892808832554}
   m_Layer: 8
   m_Name: Skull_Swordmaster
   m_TagString: Untagged
@@ -214,7 +214,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MonsterDataHandler
   _data: {fileID: 11400000, guid: 6e8ad473b427d404885cdf1c1e435e5b, type: 2}
   _curHp: 0
---- !u!114 &8420547118552779038
+--- !u!114 &213162892808832554
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -223,9 +223,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 3087812622545265710}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71633e01cedb42845a6929ec7812233c, type: 3}
+  m_Script: {fileID: 11500000, guid: 8becc821228dd0745907e56a9478d53b, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SkullSwordmaster
+  m_EditorClassIdentifier: Assembly-CSharp::SwingMonster
   _dataHandler: {fileID: 0}
   MonsterCount: 1
   FlashMat: {fileID: 0}

@@ -21,7 +21,7 @@ public class MonsterPatrolState : MonsterBaseState
         base.Enter();
 
         // 이동 관련 초기화
-        _patrolMove = (_stateMachine.Owner as PatrolStateMonster)?.GetPatrolMovement();
+        _patrolMove = _stateMachine.Owner?.GetPatrolMovement();
 
         Vector3 scale = _stateMachine.Owner.transform.localScale;
         int dir = Random.Range(0, 2) % 2 == 0 ? 1 : -1;

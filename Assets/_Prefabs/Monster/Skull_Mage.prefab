@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 4338102295617334550}
   - component: {fileID: 8255869218546864291}
   - component: {fileID: 1148787053814409224}
-  - component: {fileID: 5635032555221613933}
   - component: {fileID: 5960457482455548534}
+  - component: {fileID: 8364519739090574707}
   m_Layer: 8
   m_Name: Skull_Mage
   m_TagString: Untagged
@@ -125,22 +125,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MonsterDataHandler
   _data: {fileID: 11400000, guid: a4a77c7d9131aca4d943393241ed9204, type: 2}
   _curHp: 0
---- !u!114 &5635032555221613933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1060028033759195596}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0dceb0bfa868884cb592e746268d8a5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SkullMage
-  _dataHandler: {fileID: 0}
-  MonsterCount: 1
-  FlashMat: {fileID: 0}
-  IsSuperArmor: 0
 --- !u!114 &5960457482455548534
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,6 +138,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Berserk
   PowerUpParticle: {fileID: 963380715689973210, guid: 4d757b123cb4bb541965ed6d65db1cab, type: 3}
+--- !u!114 &8364519739090574707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1060028033759195596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ef24593503a1e44581102fd6e02654c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HomingRnagedMonster
+  _dataHandler: {fileID: 0}
+  MonsterCount: 1
+  FlashMat: {fileID: 0}
+  IsSuperArmor: 0
 --- !u!1 &5708268602780680466
 GameObject:
   m_ObjectHideFlags: 0
