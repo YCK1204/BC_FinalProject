@@ -69,6 +69,7 @@ namespace Game.Player
             AirAttackState = new PlayerAirAttackState(this);
             HurtState = new PlayerHurtState(this);
             DieState = new PlayerDieState(this);
+
             QSkillState = new PlayerQSkillState(this);
             WSkillState = new PlayerWSkillState(this);
 

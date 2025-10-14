@@ -8,6 +8,7 @@ namespace Game.Player
         {
             base.Enter();
             _stateMachine.MovementSpeedModifier = _stateMachine.Player.Data.GroundData.WalkSpeedModifier;
+            _stateMachine.Player.Animator.Play("walk", 0, 0f);
             StartAnimation(_stateMachine.Player.AnimationData.WalkParameterHash);
             StopAnimation(_stateMachine.Player.AnimationData.IdleParameterHash);
         }

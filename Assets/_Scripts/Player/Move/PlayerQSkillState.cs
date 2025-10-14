@@ -12,6 +12,8 @@ namespace Game.Player
             base.Enter();
             PlayerManager.Instance.CooldownQ.StartCooldown(_stateMachine.Player.Data.SkillData.QSkillCooldown);
             Debug.Log("Q 스킬사용");
+
+            _stateMachine.Player.ShadowSlashSkill.Execute();
         }
 
         public override void Exit()

@@ -39,7 +39,7 @@ namespace Game.Player
         private PlayerData _originalData;
         public ForceReceiver ForceReceiver => Force;
 
-        private PlayerStateMachine _machine;
+        public PlayerStateMachine StateMachine { get; private set; }
 
         private CinemachineImpulseSource _impulseSource;
 
@@ -93,6 +93,9 @@ namespace Game.Player
         public event Action<float, float> HpEvent;
         public event Action<float, float> AwakeningEvent;
 
+        [field: SerializeField] public Skill ShadowSlashSkill { get; private set; }
+        [field: SerializeField] public Skill DoubleStrikeSkill { get; private set; }
+
 
 
         private void Awake()
@@ -105,10 +108,15 @@ namespace Game.Player
 
             currentHP = Data.Stats.MaxHP;
 
-            _machine = new PlayerStateMachine(this);
-            _machine.ChangeState(_machine.IdleState);
+            StateMachine = new PlayerStateMachine(this);
+            StateMachine.ChangeState(StateMachine.IdleState);
 
             _impulseSource = GetComponent<CinemachineImpulseSource>();
+            DoubleStrikeSkill = GetComponent<DoubleStrike>();
+            ShadowSlashSkill = GetComponent<ShadowSlash>();
+
+            ShadowSlashSkill?.Initialize(this);
+            DoubleStrikeSkill?.Initialize(this);
         }
 
         #region Callback
@@ -229,7 +237,7 @@ namespace Game.Player
 
             float a = 1f;
             float b = 0.1f;
-            _machine.ChangeState(_machine.HurtState);
+            StateMachine.ChangeState(StateMachine.HurtState);
 
             Color color = SpriteRenderer.color;
             SetInvincible(true);
@@ -270,7 +278,7 @@ namespace Game.Player
         {
             currentHP = 0f;
             HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
-            _machine.ChangeState(_machine.DieState);
+            StateMachine.ChangeState(StateMachine.DieState);
 
             gameObject.layer = LayerMask.NameToLayer("Default");
 
@@ -295,7 +303,7 @@ namespace Game.Player
 
             currentHP = Data.Stats.MaxHP;
             HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
-            _machine.ChangeState(_machine.IdleState);
+            StateMachine.ChangeState(StateMachine.IdleState);
 
             gameObject.layer = LayerMask.NameToLayer("Player");
             PlayerMaterial.SetDefaultMaterial();
@@ -387,25 +395,25 @@ namespace Game.Player
             float timeElapsed = 0f;
             while (timeElapsed < a)
             {
-                _machine.MovementInput = b.normalized;
+                StateMachine.MovementInput = b.normalized;
 
                 timeElapsed += Time.deltaTime;
                 yield return null;
             }
 
             SetPlayerInput(true);
-            _machine.MovementInput = Vector2.zero;
+            StateMachine.MovementInput = Vector2.zero;
             Animator.SetBool(AnimationData.WalkParameterHash, false);
             Animator.SetBool(AnimationData.IdleParameterHash, true);
         }
 
         public void SetPlayerInput(bool isEnable)
         {
-            _machine.InputActive = isEnable;
+            StateMachine.InputActive = isEnable;
 
             if (!isEnable)
             {
-                _machine.MovementInput = Vector2.zero;
+                StateMachine.MovementInput = Vector2.zero;
             }
         }
 
@@ -426,7 +434,7 @@ namespace Game.Player
 
         private void Update()
         {
-            _machine.Tick();
+            StateMachine.Tick();
             UpdateRuntimeDebug();
 
             var kb = UnityEngine.InputSystem.Keyboard.current;
@@ -446,16 +454,16 @@ namespace Game.Player
 
         private void FixedUpdate()
         {
-            _machine.FixedTick();
+            StateMachine.FixedTick();
             UpdateRuntimeDebug();
         }
 
         void UpdateRuntimeDebug()
         {
             if (!showRuntime) return;
-            runtimeIsDashing = _machine.IsDashing;
-            runtimeSpeedModifier = _machine.MovementSpeedModifier;
-            runtimeMoveSpeed = _machine.MovementSpeed * _machine.MovementSpeedModifier;
+            runtimeIsDashing = StateMachine.IsDashing;
+            runtimeSpeedModifier = StateMachine.MovementSpeedModifier;
+            runtimeMoveSpeed = StateMachine.MovementSpeed * StateMachine.MovementSpeedModifier;
 #if UNITY_2022_3_OR_NEWER
             runtimeVelocity = Rb.linearVelocity;
 #else

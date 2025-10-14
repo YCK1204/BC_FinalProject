@@ -46,6 +46,8 @@ namespace Game.Player
             _stateMachine.Player.Animator.SetInteger(_stateMachine.Player.AnimationData.ComboParameterHash, comboIndex);
             StartAnimation(_stateMachine.Player.AnimationData.AttackParameterHash);
 
+            _stateMachine.Player.Animator.Play(_attackInfoData.AnimName, 0, 0f);
+
             _stateMachine.ContinueCombo = false;
             _force = false;
             _damage = false;
