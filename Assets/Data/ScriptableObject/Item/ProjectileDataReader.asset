@@ -27,4 +27,4 @@ MonoBehaviour:
     Damage: 0.3
     ImageType: 0
     Sprite: {fileID: 0}
-    Animator: {fileID: 0}
+    Animator: {fileID: 9100000, guid: 566d7d2e1648a3547aaad57e2f347496, type: 2}

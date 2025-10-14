@@ -28,9 +28,7 @@ public enum ItemActionType
     UsingSkill,
     UsingAttack,
     AttackHit,
-    StartRound,
     DashEnd,
-    OnSynergy,
 }
 
 [Serializable]
@@ -95,24 +93,30 @@ public class ItemEffectData
             case ItemActionType.AttackHit:
                 PlayerCharacter.Instance.OnAttackHit += OnEvent;
                 break;
-            case ItemActionType.StartRound:
-                // 맵 매니저 콜백 처리
-                break;
             case ItemActionType.DashEnd:
                 PlayerCharacter.Instance.OnDashEnd += OnEvent;
                 break;
-            case ItemActionType.OnSynergy:
-                //Manager.Data.ItemsData.Base.TryGetValue(Id, out var data);
-                //if (Manager.Item.Synergies[data.SynergyId].Activated == false)
-                //    return;
-                // 시너지 콜백 처리
-                break;
             case ItemActionType.Always:
-                // ??
+                PlayerCharacter.Instance.OnDied += Clear;
+                _coAlwaysEffect = PlayerCharacter.Instance.StartCoroutine(CoAlwaysEffect());
                 break;
         }
     }
+    void Clear()
+    {
+        if (_coAlwaysEffect != null)
+            PlayerCharacter.Instance.StopCoroutine(_coAlwaysEffect);
+    }
     float _lastEventTime;
+    Coroutine _coAlwaysEffect = null;
+    IEnumerator CoAlwaysEffect()
+    {
+        while (true)
+        {
+            OnEvent();
+            yield return new WaitForSeconds(.1f);
+        }
+    }
     void OnEvent()
     {
         if (Cooldown > 0f)

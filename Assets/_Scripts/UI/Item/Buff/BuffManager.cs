@@ -64,6 +64,7 @@ public class BuffManager
         Manager.Resource.LoadAssetAsync<Canvas>("BuffCanvas", (canvas) =>
         {
             _canvas = GameObject.Instantiate(canvas);
+            _canvas.transform.parent = _canvas.transform;
             GameObject.DontDestroyOnLoad(_canvas.gameObject);
             _layout = _canvas.transform.FindChild<GridLayoutGroup>();
 
@@ -90,6 +91,17 @@ public class BuffManager
         else
             last = true;
         buff.BuffCoroutine = player.StartCoroutine(CoBuff(buff, player, last));
+    }
+    public void Clear()
+    {
+        foreach (var buffData in _buffDict)
+        {
+            if (buffData.Value.BuffCoroutine != null)
+            {
+                PlayerCharacter.Instance.StopCoroutine(buffData.Value.BuffCoroutine);
+                buffData.Value.BuffCoroutine = null;
+            }
+        }
     }
     IEnumerator CoBuff(Buff buff, PlayerCharacter player, bool last)
     {
