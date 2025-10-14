@@ -12,6 +12,7 @@ public abstract class BaseMonster : MonoBehaviour
     public int MonsterCount = 1;
 
     public Action OnDied;
+    public Action OnDiedEnter;
 
     public void SetTarget(Transform target)
     {

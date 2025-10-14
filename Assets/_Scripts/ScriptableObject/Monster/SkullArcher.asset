@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MonsterData
   MaxHp: 60
   Speed: 3
-  AttackPower: 6
-  AttackDelay: 1
+  AttackPower: 10
+  AttackDelay: 2
   AttackRange: 7
   DetectRange: 7
   CanMove: 1

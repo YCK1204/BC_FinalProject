@@ -39,7 +39,7 @@ public class RandomPlatformGenerator : MonoBehaviour
     {
         while(true)
         {
-            if(_owner.IsIntro)
+            if(_owner.IsDirecting)
             {
                 yield return null;
                 continue;
