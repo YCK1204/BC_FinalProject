@@ -1,7 +1,7 @@
 using System;
 
 [Serializable]
-public struct ItemDescriptionData
+public class ItemDescriptionData
 {
     public int Id;
     public string Korean;

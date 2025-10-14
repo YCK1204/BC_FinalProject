@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
+using UnityEditor.AddressableAssets;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
@@ -234,5 +236,51 @@ public static class Extension
         newTexture.filterMode = FilterMode.Point;
         newTexture.anisoLevel = 0;
         return newTexture;
+    }
+    public static T LoadWithAddresssableByGroup<T>(string sourceName, string groupName) where T : UnityEngine.Object
+    {
+        var settings = AddressableAssetSettingsDefaultObject.Settings;
+        foreach (var group in settings.groups)
+        {
+            if (group.name != groupName)
+                continue;
+            foreach (var entry in group.entries)
+            {
+                if (entry.address == sourceName)
+                {
+                    string path = AssetDatabase.GUIDToAssetPath(entry.guid);
+                    return (AssetDatabase.LoadAssetAtPath<T>(path));
+                }
+            }
+        }
+        return null;
+    }
+    public static T FindNearestObject<T>(this Transform from, float range, LayerMask layer) where T : Component
+    {
+        return from.position.FindNearestObject<T>(range, layer);
+    }
+    public static T FindNearestObject<T>(this Vector3 from, float range, LayerMask layer) where T : Component
+    {
+        var objects = Physics2D.OverlapCircleAll(from, range, layer);
+        T nearest = null;
+        float minDist = range;
+        foreach (var obj in objects)
+        {
+            float dist = Vector3.Distance(from, obj.transform.position);
+            if (dist < minDist)
+            {
+                minDist = dist;
+                nearest = obj.GetComponent<T>();
+            }
+        }
+        return nearest;
+    }
+    public static T FindNearestObject<T>(this Transform from, float range, string name) where T : Component
+    {
+        return from.FindNearestObject<T>(range, LayerMask.NameToLayer(name));
+    }
+    public static T FindNearestObject<T>(this Vector3 from, float range, string name) where T : Component
+    {
+        return from.FindNearestObject<T>(range, LayerMask.NameToLayer(name));
     }
 }

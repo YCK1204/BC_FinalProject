@@ -46,7 +46,7 @@ public class ItemStat
 
 
 [Serializable]
-public struct ItemData
+public class ItemData
 {
     static List<Color> TierColors { get; } = new List<Color>()
     {
@@ -87,6 +87,11 @@ public struct ItemData
         if (ItemEffectId == 0)
             return;
         Manager.Data.ItemsData.Effect.TryGetValue(ItemEffectId, out var effectData);
+        if (effectData == null)
+        {
+            Debug.LogError($"ItemEffectId {ItemEffectId} not found");
+            return;
+        }
         EffectData = effectData;
         EffectData.Set();
     }
@@ -103,6 +108,3 @@ public struct ItemData
         EffectData = default(ItemEffectData);
     }
 }
-
-
-

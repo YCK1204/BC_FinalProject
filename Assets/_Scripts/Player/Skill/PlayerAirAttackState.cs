@@ -76,6 +76,7 @@ namespace Game.Player
             float baseDmg = d.AttackPower + d.ExtraDamage;
             float chance = Mathf.Max(0f, d.CriticalChance) * 0.01f;
 
+            bool hitted = false;
             foreach (var col in cols)
             {
                 if (col.transform.IsChildOf(_stateMachine.Player.transform)) continue;
@@ -84,11 +85,13 @@ namespace Game.Player
                 {
                     var d2dDmg = col.gameObject.transform.parent.GetComponent<D2dDamage>();
                     d2dDmg.Damage++;
+                    continue;
                 }
 
                 var target = col.GetComponentInParent<IDamageable>();
                 if (target != null && !_hitTargets.Contains(target))
                 {
+                    hitted = true;
                     _hitTargets.Add(target);
 
                     bool isCrit = Random.value < chance;
@@ -107,6 +110,8 @@ namespace Game.Player
 
                 }
             }
+            if (hitted)
+                _stateMachine.Player.AttackHit();
         }
     }
 }

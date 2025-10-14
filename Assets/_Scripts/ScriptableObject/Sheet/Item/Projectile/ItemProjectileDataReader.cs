@@ -10,6 +10,7 @@ public class ItemProjectileDataReader : DataReaderBase<ItemProjectileData>
         int id = 0;
         float duration = 0;
         float speed = 0;
+        ProjectileMoveType moveType = ProjectileMoveType.Forward;
         float width = 0;
         float height = 0;
         int collisionCount = 0;
@@ -27,6 +28,9 @@ public class ItemProjectileDataReader : DataReaderBase<ItemProjectileData>
                 case "Duration":
                     duration = float.Parse(item.value);
                     break;
+                case "MoveType":
+                    moveType = (ProjectileMoveType)System.Enum.Parse(typeof(ProjectileMoveType), item.value);
+                    break;
                 case "Speed":
                     speed = float.Parse(item.value);
                     break;
@@ -42,14 +46,14 @@ public class ItemProjectileDataReader : DataReaderBase<ItemProjectileData>
                 case "Damage":
                     damage = float.Parse(item.value);
                     break;
-                    case "ImageType":
+                case "ImageType":
                     imageType = (ImageType)System.Enum.Parse(typeof(ImageType), item.value);
                     break;
-                    case "ImageID":
+                case "ImageID":
                     imageId = int.Parse(item.value);
                     break;
             }
         }
-        DataList.Add(new ItemProjectileData(id, duration, speed, width, height, collisionCount, damage, imageType, imageId));
+        DataList.Add(new ItemProjectileData(id, duration, moveType, speed, width, height, collisionCount, damage, imageType, imageId));
     }
 }
