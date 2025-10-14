@@ -18,11 +18,11 @@ MonoBehaviour:
   END_ROW_LENGTH: 4
   DataList:
   - Id: 1
-    Count: 3
+    Count: 1
     ItemEffectID: 3
   - Id: 2
-    Count: 3
+    Count: 1
     ItemEffectID: 4
   - Id: 3
-    Count: 3
+    Count: 1
     ItemEffectID: 5

@@ -28,13 +28,11 @@ public enum ItemActionType
     UsingSkill,
     UsingAttack,
     AttackHit,
-    StartRound,
     DashEnd,
-    OnSynergy,
 }
 
 [Serializable]
-public struct ItemEffectData
+public class ItemEffectData
 {
     public int Id;
     public ConditionType Condition;
@@ -58,7 +56,6 @@ public struct ItemEffectData
         Cooldown = cooldown;
         DescId = descId;
         Desc = "";
-        _eventData = default(ItemAbilityEvent);
         _lastEventTime = 0f;
     }
     ItemAbilityEvent _eventData;
@@ -85,37 +82,41 @@ public struct ItemEffectData
         switch (ActionType)
         {
             case ItemActionType.Kill:
-                PlayerCharacter.Instance.OnKill -= OnEvent;
                 PlayerCharacter.Instance.OnKill += OnEvent;
                 break;
             case ItemActionType.UsingSkill:
-                PlayerCharacter.Instance.OnUsingSkill -= OnEvent;
                 PlayerCharacter.Instance.OnUsingSkill += OnEvent;
                 break;
             case ItemActionType.UsingAttack:
-                PlayerCharacter.Instance.OnUsingAttackStart -= OnEvent;
                 PlayerCharacter.Instance.OnUsingAttackStart += OnEvent;
                 break;
             case ItemActionType.AttackHit:
-                PlayerCharacter.Instance.OnAttackHit -= OnEvent;
                 PlayerCharacter.Instance.OnAttackHit += OnEvent;
                 break;
-            case ItemActionType.StartRound:
-                // 맵 매니저 콜백 처리
-                break;
             case ItemActionType.DashEnd:
-                PlayerCharacter.Instance.OnDashEnd -= OnEvent;
                 PlayerCharacter.Instance.OnDashEnd += OnEvent;
                 break;
-            case ItemActionType.OnSynergy:
-                // 시너지 콜백 처리
-                break;
             case ItemActionType.Always:
-                // ??
+                PlayerCharacter.Instance.OnDied += Clear;
+                _coAlwaysEffect = PlayerCharacter.Instance.StartCoroutine(CoAlwaysEffect());
                 break;
         }
     }
+    void Clear()
+    {
+        if (_coAlwaysEffect != null)
+            PlayerCharacter.Instance.StopCoroutine(_coAlwaysEffect);
+    }
     float _lastEventTime;
+    Coroutine _coAlwaysEffect = null;
+    IEnumerator CoAlwaysEffect()
+    {
+        while (true)
+        {
+            OnEvent();
+            yield return new WaitForSeconds(.1f);
+        }
+    }
     void OnEvent()
     {
         if (Cooldown > 0f)

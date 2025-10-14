@@ -9,6 +9,8 @@ public class ItemAreaDataReader : DataReaderBase<ItemAreaData>
     {
         int Id = 0;
         ItemEffectCreatePosType CreateAreaPosType = ItemEffectCreatePosType.Player;
+        DetailPosition detailPosition = DetailPosition.MiddleCenter;
+        float detectionRange = 0;
         float Radius = 0;
         float Damage = 0;
         int AnimId = 0;
@@ -22,6 +24,12 @@ public class ItemAreaDataReader : DataReaderBase<ItemAreaData>
                 case "CreatePosition":
                     CreateAreaPosType = (ItemEffectCreatePosType)System.Enum.Parse(typeof(ItemEffectCreatePosType), item.value);
                     break;
+                case "DetailPosition":
+                    detailPosition = (DetailPosition)System.Enum.Parse(typeof(DetailPosition), item.value);
+                    break;
+                case "DetectionRange":
+                    detectionRange = float.Parse(item.value);
+                    break;
                 case "Radius":
                     Radius = float.Parse(item.value);
                     break;
@@ -33,6 +41,6 @@ public class ItemAreaDataReader : DataReaderBase<ItemAreaData>
                     break;
             }
         }
-        DataList.Add(new ItemAreaData(Id, CreateAreaPosType, Radius, Damage, AnimId));
+        DataList.Add(new ItemAreaData(Id, CreateAreaPosType, detectionRange, detailPosition, Radius, Damage, AnimId));
     }
 }

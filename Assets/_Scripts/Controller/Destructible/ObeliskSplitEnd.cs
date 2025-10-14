@@ -18,7 +18,6 @@ public class ObeliskSplitEnd : ChildColliderController
         ImpactType = D2DImpactType.SplitEnd;
         base.Start();
         _originalGravity = _rb2d.gravityScale;
-        _rb2d.gravityScale = 0f;
         HandleImpact();
     }
 
@@ -26,7 +25,6 @@ public class ObeliskSplitEnd : ChildColliderController
     {
         foreach (var fragment in fragments)
         {
-            fragment.GetComponent<DOTweenAnimation>().DOKill();
             var rb = fragment.GetComponent<Rigidbody2D>();
             rb.gravityScale = _originalGravity;
             D2dDamage damageComponent = fragment.GetComponent<D2dDamage>();

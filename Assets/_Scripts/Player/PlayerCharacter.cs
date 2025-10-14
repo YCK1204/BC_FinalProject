@@ -119,6 +119,7 @@ namespace Game.Player
         public event Action OnAttackHit;
         public event Action OnStartRound;
         public event Action OnDashEnd;
+        public event Action OnDied;
 
         public void Kill()
         {
@@ -280,6 +281,8 @@ namespace Game.Player
         {
             DataSerialized = _originalData.Clone();
 
+            OnDied.Invoke();
+            OnDied = null;
             OnKill = null;
             OnUsingSkill = null;
             OnUsingAttackStart = null;

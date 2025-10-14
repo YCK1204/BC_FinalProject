@@ -3,7 +3,6 @@ using System;
 using UnityEditor;
 using UnityEditor.AddressableAssets;
 using UnityEngine;
-using Random = UnityEngine.Random;
 public enum ItemEffectCreatePosType
 {
     Player,
@@ -11,41 +10,41 @@ public enum ItemEffectCreatePosType
     WithInRangeEnemy,
 }
 
+public enum DetailPosition
+{
+    TopLeft,
+    TopCenter,
+    TopRight,
+    MiddleLeft,
+    MiddleCenter,
+    MiddleRight,
+    BottomLeft,
+    BottomCenter,
+    BottomRight
+}
+
 [Serializable]
 public class ItemAreaData : ItemAbilityEvent
 {
     public int Id;
     public ItemEffectCreatePosType CreatePosType;
+    public DetailPosition DetailPosition;
+    public float DetectionRange;
     public float Radius;
     public float Damage;
     public RuntimeAnimatorController Animator;
 
-    public ItemAreaData(int id, ItemEffectCreatePosType createPosType, float radius, float damage, int animId)
+    public ItemAreaData(int id, ItemEffectCreatePosType createPosType, float detectionRange, DetailPosition detailPosition, float radius, float damage, int animId)
     {
         Id = id;
         CreatePosType = createPosType;
+        DetailPosition = detailPosition;
+        DetectionRange = detectionRange;
         Radius = radius;
         Damage = damage;
-        Animator = Load<RuntimeAnimatorController>($"{animId}");
+        Animator = Extension.LoadWithAddresssableByGroup<RuntimeAnimatorController>($"{animId}", "Area");
     }
-    T Load<T>(string sourceName) where T : UnityEngine.Object
-    {
-        var settings = AddressableAssetSettingsDefaultObject.Settings;
-        foreach (var group in settings.groups)
-        {
-            if (group.name != "Area")
-                continue;
-            foreach (var entry in group.entries)
-            {
-                if (entry.address == sourceName)
-                {
-                    string path = AssetDatabase.GUIDToAssetPath(entry.guid);
-                    return (AssetDatabase.LoadAssetAtPath<T>(path));
-                }
-            }
-        }
-        return null;
-    }
+
     public void OnEvent(PlayerCharacter player)
     {
         var area = Manager.Pool.Pop<AreaController>();

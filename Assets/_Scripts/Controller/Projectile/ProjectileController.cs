@@ -1,4 +1,6 @@
+using Game.Monster;
 using Game.Player;
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -10,66 +12,132 @@ public class ProjectileController : MonoBehaviour
     int _collisionCount = 0;
     Animator _animator;
     bool _isSetComponent = false;
-    void SetPomponent()
+    Vector2 _direction = Vector2.zero;
+    CircleCollider2D _circleCollider2D;
+    BoxCollider2D _boxCollider2D;
+    void SetComponent()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>(); // 나중에 투사체 이미지 따로 저장해야함
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         _animator = GetComponent<Animator>();
+        _circleCollider2D = GetComponent<CircleCollider2D>();
+        _boxCollider2D = GetComponent<BoxCollider2D>();
         _isSetComponent = true;
     }
     public void Init(ItemProjectileData data, PlayerCharacter owner)
     {
         if (!_isSetComponent)
-            SetPomponent();
+            SetComponent();
         _data = data;
         transform.position = owner.transform.position;
         _collisionCount = _data.CollisionCount;
         _isDestroyed = false;
+
         switch (data.ImageType)
         {
             case ImageType.Sprite:
-                _spriteRenderer.sprite = data.sprite;
+                _spriteRenderer.sprite = data.Sprite;
                 _animator.enabled = false;
+                _direction = owner.transform.localScale.x < 0 ? Vector2.left : Vector2.right;
+                StartCoroutine(CoShotForward(false));
                 break;
             case ImageType.Animation:
                 _animator.runtimeAnimatorController = data.Animator;
                 _animator.enabled = true;
+
+                var clips = _animator.runtimeAnimatorController.animationClips;
+                foreach (var clip in clips)
+                {
+                    var events = clip.events;
+                    foreach (var e in events)
+                    {
+                        if (string.IsNullOrEmpty(e.functionName))
+                        {
+                            e.functionName = "End";
+                        }
+                    }
+                    clip.events = events;
+                }
+                switch (data.MoveType)
+                {
+                    case ProjectileMoveType.Forward:
+                        _direction = owner.transform.localScale.x < 0 ? Vector2.left : Vector2.right;
+                        StartCoroutine(CoShotForward(true));
+                        break;
+                    case ProjectileMoveType.Tracking:
+                        //var target = transform.FindNearestObject<BaseMonster>(_data.range, LayerMask.GetMask("Monster"));
+                        //StartCoroutine(CoShotTracking(target));
+                        break;
+                    case ProjectileMoveType.Oblque:
+                        StartCoroutine(CoShotObique());
+                        break;
+                }
                 break;
         }
-        StartCoroutine(CoShot());
+
+        //if (data.ColliderType == ColliderType.Circle)
+        //{
+        //    _circleCollider2D.enabled = true;
+        //    _boxCollider2D.enabled = false;
+        //    _circleCollider2D.radius = data.ColliderRadius;
+        //}
+        //else if (data.ColliderType == ColliderType.Box)
+        //{
+        //    _circleCollider2D.enabled = false;
+        //    _boxCollider2D.enabled = true;
+        //    _boxCollider2D.size = data.ColliderSize;
+        //}
     }
-    IEnumerator CoShot()
+    IEnumerator CoShotForward(bool autoDestroy)
     {
         float startTime = Time.time;
-        PlayerCharacter player = PlayerCharacter.Instance;
-        Vector2 dir = player.transform.localScale.x > 0 ? Vector2.right : Vector2.left;
-        while (Time.time - startTime < _data.Duration && !_isDestroyed)
+
+        while ((autoDestroy && Time.time - startTime < _data.Duration) || (!autoDestroy))
         {
-            //방향 지정해야함
-            transform.Translate(dir * _data.Speed * Time.deltaTime);
+            transform.Translate(_direction * _data.Speed * Time.deltaTime);
             yield return null;
         }
         End();
+    }
+    IEnumerator CoShotTracking(BaseMonster target)
+    {
+        float startTime = Time.time;
+        while (Time.time - startTime < _data.Duration)
+        {
+            if (target != null)
+                _direction = (target.transform.position - transform.position).normalized;
+            transform.Translate(_direction * _data.Speed * Time.deltaTime);
+            yield return null;
+        }
+        End();
+    }
+    IEnumerator CoShotObique()
+    {
+        yield return null;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         switch (collision.gameObject.layer)
         {
             case var layer when layer == LayerMask.NameToLayer("Monster"):
-                _collisionCount--;
-                Debug.Log("HITHITHIT");
-                // 데미지 처리
-                if (_collisionCount <= 0)
-                    End();
+                HandleTriggerMonster(collision);
                 break;
                 //case var layer when layer == LayerMask.NameToLayer("Ground"):
                 //    End();
                 //    break;
         }
     }
-    void End()
+    void HandleTriggerMonster(Collider2D collision)
+    {
+        _collisionCount--;
+        var data = PlayerCharacter.Instance.Data.CombatData;
+        collision.GetComponent<IDamageable>()?.TakeDamage(
+            data.SkillAttck * (1 + data.AttackPowerPercent) * _data.Damage);
+        if (_collisionCount <= 0)
+            End();
+    }
+    public void End()
     {
         if (_isDestroyed) return;
-        StopCoroutine(CoShot());
         Manager.Pool.Push<ProjectileController>(gameObject);
         _isDestroyed = true;
     }
