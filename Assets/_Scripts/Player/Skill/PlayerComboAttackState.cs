@@ -147,6 +147,7 @@ namespace Game.Player
             bool hitted = false;
             foreach (var col in cols)
             {
+                if (col == null) continue;
                 if (col.transform.IsChildOf(_stateMachine.Player.transform)) continue;
 
                 if (col.gameObject.layer == LayerMask.NameToLayer("Destructible"))

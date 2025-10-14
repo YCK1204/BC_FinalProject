@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
+using UnityEditorInternal;
 using UnityEngine;
 using static UnityEditorInternal.ReorderableList;
 
@@ -209,19 +210,19 @@ namespace Game.Player
             ;
         }
 
-        //public void TakeDamage(int damage)
-        //{
-        //    if (Invincible || IsDead) return;
-        //    currentHP = Mathf.Max(0f, currentHP - Mathf.Max(0, damage));
-        //    HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
+        public void TakeDamage(int damage)
+        {
+            if (Invincible || IsDead) return;
+            currentHP = Mathf.Max(0f, currentHP - Mathf.Max(0, damage));
+            HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
 
-        //    Debug.Log($"피해량체크- {damage} 남은체력- {currentHP}");
+            Debug.Log($"피해량체크- {damage} 남은체력- {currentHP}");
 
-        //    camShake.Shake(1f, 1f, 0.2f);
-        //    _impulseSource.GenerateImpulse();
-        //    if (currentHP <= 0f) Die(); else StartCoroutine(HitColor());
-        //    ;
-        //}
+            camShake.Shake(1f, 1f, 0.2f);
+            _impulseSource.GenerateImpulse();
+            if (currentHP <= 0f) Die(); else StartCoroutine(HitColor());
+            ;
+        }
 
         private IEnumerator HitColor()
         {
@@ -274,6 +275,8 @@ namespace Game.Player
             gameObject.layer = LayerMask.NameToLayer("Default");
 
             deadControl.DieSet();
+
+            PlayerManager.Instance.CooldownD.ShowCooldown();
         }
 
         public void Resurrection()
@@ -316,6 +319,7 @@ namespace Game.Player
         {
             if (IsAwakened) return;
 
+            PlayerManager.Instance.CooldownD.ShowCooldown();
             var awakeningData = Data.awakening;
 
             Debug.Log("각성!");

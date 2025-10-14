@@ -26,6 +26,8 @@ namespace Game.Player
         public float Cooldown = 3f;
         public bool InvincibleDuringDash = true;
         public LayerMask PassThroughLayers;
+
+        public GameObject DashEffectPrefab;
     }
 
     [System.Serializable]
