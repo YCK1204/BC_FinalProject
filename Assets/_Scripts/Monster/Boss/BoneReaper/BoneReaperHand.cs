@@ -277,10 +277,10 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage, GameObject attacker)
     {
-        if (_owner.MonsterData.CurHp <= 0 || _owner.IsOneFrameInvincible)
+        if (_owner.MonsterData.CurHp <= 0 || _owner.IsInvincible)
             return;
 
-        _owner.IsOneFrameInvincible = true;
+        _owner.IsInvincible = true;
         _owner.HitFlash(_sr, _hitEffect);
         _owner.TakeDamage(damage, attacker);
     }

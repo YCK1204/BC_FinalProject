@@ -101,8 +101,9 @@ GameObject:
   - component: {fileID: 6869653617883005454}
   - component: {fileID: 5968297267653654014}
   - component: {fileID: 2920379862236665263}
-  - component: {fileID: 5114862662598244505}
   - component: {fileID: 9022482633414693186}
+  - component: {fileID: 5346025083666735753}
+  - component: {fileID: 7861047966093602325}
   m_Layer: 8
   m_Name: SandGolem
   m_TagString: Untagged
@@ -200,22 +201,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2, y: 2.4}
   m_EdgeRadius: 0
---- !u!114 &5114862662598244505
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8634604288746098228}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55b3bd87055319a4a85760d7241d179e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SandGolem
-  _dataHandler: {fileID: 0}
-  MonsterCount: 1
-  FlashMat: {fileID: 2100000, guid: f91d0347af52ebb40a20e0a86ccdc47a, type: 2}
-  IsSuperArmor: 0
 --- !u!114 &9022482633414693186
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -230,6 +215,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MonsterDataHandler
   _data: {fileID: 11400000, guid: 1e631cda79f238a47b1bd96342802191, type: 2}
   _curHp: 0
+--- !u!114 &5346025083666735753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8634604288746098228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa3cea18e1e4f0442bb1983e9735ef63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RushMonster
+  _dataHandler: {fileID: 0}
+  MonsterCount: 1
+  FlashMat: {fileID: 2100000, guid: f91d0347af52ebb40a20e0a86ccdc47a, type: 2}
+  IsSuperArmor: 0
+--- !u!114 &7861047966093602325
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8634604288746098228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2ff40c386f7e2f499bdb716f2c3bf4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SuperArmor
 --- !u!1 &9156902064502497762
 GameObject:
   m_ObjectHideFlags: 0

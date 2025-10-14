@@ -15,7 +15,7 @@ public class Berserk : MonoBehaviour, Game.Monster.ISpecialAbillity
         _affectedMonsterList = new List<NormalMonster>();
 
         // 몬스터가 플레이어를 발견하면 주변 몬스터에게 버프 부여
-        // 일단 체력 제외 공격력 또는 속도 버프 제공
+        // 공격력 버프 제공
         monster.Ondetect += () =>
         {
             // 한번만 발동하도록 설정
@@ -30,17 +30,10 @@ public class Berserk : MonoBehaviour, Game.Monster.ISpecialAbillity
                     if (collider == monster.Col)
                         continue;
 
+                    // 공격력만 상승
                     NormalMonster affectedMonster = collider.GetComponent<NormalMonster>();
-                    int randomStat = Random.Range(0, 2);
-                    switch (randomStat)
-                    {
-                        case 0:
-                            affectedMonster?.MonsterData.AddModifier(new StatModifier(Game.Monster.StatType.Attack, Game.Monster.ModifierType.Add, 3, monster));
-                            break;
-                        case 1:
-                            affectedMonster?.MonsterData.AddModifier(new StatModifier(Game.Monster.StatType.Speed, Game.Monster.ModifierType.Add, 2, monster));
-                            break;
-                    }
+                    affectedMonster?.MonsterData.AddModifier(new StatModifier(Game.Monster.StatType.Attack, Game.Monster.ModifierType.Add, 10, monster));
+
                     // 버프를 제공한 몬스터를 리스트에 등록
                     _affectedMonsterList.Add(affectedMonster);
                     if (affectedMonster.GetComponentInChildren<ParticleSystem>() != null)
@@ -57,7 +50,7 @@ public class Berserk : MonoBehaviour, Game.Monster.ISpecialAbillity
         };
 
         // 해당 몬스터가 죽으면 리스트를 순회하며 버프 제거
-        monster.OnDied += () =>
+        monster.OnDiedEnter += () =>
         {
             if (_affectedMonsterList != null)
             {
