@@ -111,6 +111,7 @@ namespace Game.Player
         }
 
         #region Callback
+
         public event Action OnKill;
         public event Action OnUsingSkill;
         public event Action OnUsingAttackStart;

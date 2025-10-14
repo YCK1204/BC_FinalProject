@@ -39,7 +39,7 @@ namespace Game.Player
 
         public float CriticalChance = 5f;
         public float CriticalDamage = 200f;
-        
+
         public float SkillAttck = 10f;
 
         // 기본 스킬가속 = 100% = 1f
@@ -62,6 +62,15 @@ namespace Game.Player
         public float DamageSet = 1.0f;
         public float ComboTime = 0.7f;
         public float KnockbackPower = 1f;
+    }
+
+    [Serializable]
+    public class PlayerSkillData
+    {
+        public float QSkillCastingDuration = 0.5f;
+        public float QSkillCooldown = 1.0f;
+        public float WSkillCastingDuration = 0.0f;
+        public float WSkillCooldown = 1.0f;
     }
 
     [Serializable]
@@ -114,6 +123,7 @@ namespace Game.Player
         public PlayerStatsData Stats = new PlayerStatsData();
         public PlayerComboAttackData ComboAttackData = new PlayerComboAttackData();
         public PlayerAwakeningData awakening = new PlayerAwakeningData();
+        public PlayerSkillData SkillData = new PlayerSkillData();
 
         public PlayerData Clone()
         {
@@ -171,7 +181,15 @@ namespace Game.Player
                     maxAwakeningGauge = awakening.maxAwakeningGauge,
                     awakeningOnHit = awakening.awakeningOnHit,
                     duration = awakening.duration
+                },
+                SkillData = new PlayerSkillData
+                {
+                    QSkillCastingDuration = SkillData.QSkillCastingDuration,
+                    QSkillCooldown = SkillData.QSkillCooldown,
+                    WSkillCastingDuration = SkillData.WSkillCastingDuration,
+                    WSkillCooldown = SkillData.WSkillCooldown
                 }
+
             };
         }
     }

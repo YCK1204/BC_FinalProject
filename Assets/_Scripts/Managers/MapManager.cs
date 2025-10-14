@@ -11,6 +11,7 @@ public class MapManager : MonoBehaviour
     [Header("Player")]
     [SerializeField] private Transform _player;
     [SerializeField] private CinemachineCamera _cam;
+    public GameObject CameraObj;
 
     [Header("Map")]
     [SerializeField] private List<GameObject> _mapPrefabs;
@@ -124,6 +125,7 @@ public class MapManager : MonoBehaviour
                 new Vector3(spawnPoint.position.x, spawnPoint.position.y, _cam.transform.position.z),
                 Quaternion.identity
             );
+            PlayerManager.Instance.Player.StartRound();
         }
         else Debug.LogError(map.name + "!! 스폰포인트 없음");
     }

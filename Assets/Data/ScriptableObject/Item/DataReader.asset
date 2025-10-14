@@ -29,7 +29,7 @@ MonoBehaviour:
       Value: 0
     IconURL: https://velog.velcdn.com/images/rokid_/post/bd52f005-735f-4a1d-aa13-07e274b4b0e0/image.png
     ItemEffectId: 1
-    SynergyId: 1
+    SynergyId: 3
     ItemGrade: 0
     EffectData:
       Id: 0
@@ -79,7 +79,7 @@ MonoBehaviour:
       Value: 0
     IconURL: https://velog.velcdn.com/images/rokid_/post/6bb457ac-3f11-4635-900e-a8ef3d37b289/image.png
     ItemEffectId: 1
-    SynergyId: 1
+    SynergyId: 3
     ItemGrade: 0
     EffectData:
       Id: 0
@@ -104,7 +104,7 @@ MonoBehaviour:
       Value: 0
     IconURL: https://velog.velcdn.com/images/rokid_/post/bf214d5b-117b-4c24-8c67-c29dfe0b6c2f/image.png
     ItemEffectId: 1
-    SynergyId: 0
+    SynergyId: 3
     ItemGrade: 0
     EffectData:
       Id: 0
@@ -154,7 +154,7 @@ MonoBehaviour:
       Value: 0
     IconURL: https://velog.velcdn.com/images/rokid_/post/ed880794-8bda-45b9-8ecd-e917b24ec5ca/image.png
     ItemEffectId: 1
-    SynergyId: 2
+    SynergyId: 3
     ItemGrade: 1
     EffectData:
       Id: 0
@@ -179,7 +179,7 @@ MonoBehaviour:
       Value: 0
     IconURL: https://velog.velcdn.com/images/rokid_/post/1cb89670-1f15-4f81-b7de-366f77792e1a/image.png
     ItemEffectId: 1
-    SynergyId: 2
+    SynergyId: 3
     ItemGrade: 1
     EffectData:
       Id: 0
@@ -204,7 +204,7 @@ MonoBehaviour:
       Value: 5
     IconURL: https://velog.velcdn.com/images/rokid_/post/b610ad3e-634e-4a68-9bd1-3b7e3a96cff4/image.png
     ItemEffectId: 1
-    SynergyId: 1
+    SynergyId: 3
     ItemGrade: 2
     EffectData:
       Id: 0
@@ -254,7 +254,7 @@ MonoBehaviour:
       Value: 20
     IconURL: https://velog.velcdn.com/images/rokid_/post/d8305e37-8b4f-4ee5-b57d-1828a6ee029f/image.png
     ItemEffectId: 1
-    SynergyId: 2
+    SynergyId: 3
     ItemGrade: 2
     EffectData:
       Id: 0
@@ -279,7 +279,7 @@ MonoBehaviour:
       Value: 40
     IconURL: https://velog.velcdn.com/images/rokid_/post/bd52a936-57bc-4447-a2c9-a762fdea6068/image.png
     ItemEffectId: 1
-    SynergyId: 0
+    SynergyId: 3
     ItemGrade: 3
     EffectData:
       Id: 0
@@ -304,7 +304,7 @@ MonoBehaviour:
       Value: 40
     IconURL: https://www.notion.so/image/https%3A%2F%2Fvelog.velcdn.com%2Fimages%2Frokid_%2Fpost%2F84fd6981-2d75-4073-a385-698d2a97a5a4%2Fimage.png?table=block&id=282a69a8-b2d0-80db-92e2-dc35fe8119e4&spaceId=607a69a8-b2d0-8115-a706-000328db9561&width=2000&userId=21dd872b-594c-8131-b640-00026b3ef8e9&cache=v2
     ItemEffectId: 1
-    SynergyId: 0
+    SynergyId: 3
     ItemGrade: 3
     EffectData:
       Id: 0
