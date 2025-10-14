@@ -2,11 +2,8 @@ using Game.Monster;
 using Game.Player;
 using UnityEngine;
 
-public class Slime : PatrolStateMonster
+public class RushMonster : StateMachineMonster
 {
-    // 분열 능력 존재
-    IAttackable _curAttack;
-
     protected override void Awake()
     {
         base.Awake();
@@ -15,6 +12,14 @@ public class Slime : PatrolStateMonster
         _curAttack = new RushAttack(transform, _attack);
 
         _attack.Attackable = _curAttack;
+    }
+
+    protected override void Init()
+    {
+        base.Init();
+
+        _curPatrolMovement = new PatrolMove(this);
+        _curChaseMovement = new ChaseMove(this);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -30,9 +35,12 @@ public class Slime : PatrolStateMonster
             knockBackDir.Normalize();
 
             // 수치를 어떻게 조정해야하지?
-            Rigidbody2D targetRb = _target.GetComponent<Rigidbody2D>();
-            targetRb.linearVelocity = Vector2.zero;
-            targetRb.AddForce(knockBackDir * 400);
+            Rigidbody2D targetRb = _target?.GetComponent<Rigidbody2D>();
+            if (targetRb != null)
+            {
+                targetRb.linearVelocity = Vector2.zero;
+                targetRb.AddForce(knockBackDir * 400);
+            }
 
             IDamageable damageable = collision.GetComponent<IDamageable>();
             damageable?.TakeDamage(_dataHandler.AttackPower, gameObject);

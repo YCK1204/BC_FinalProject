@@ -32,7 +32,7 @@ public class BossIntroController : MonoBehaviour
 
         BossHealthBar.SetActive(true);
 
-        _owner.IsIntro = false;
+        _owner.IsDirecting = false;
     }
 
     [SerializeField] private float duration = 1f;

@@ -1,3 +1,4 @@
+using Game.Monster;
 using Game.Player;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,10 @@ public abstract class StateMachineMonster : NormalMonster
     // 몬스터 상태 머신
     protected MonsterStateMachine _stateMachine;
     public MonsterStateMachine StateMachine { get { return _stateMachine; } }
+
+    protected IAttackable _curAttack;
+    protected IMovable _curPatrolMovement;
+    protected IMovable _curChaseMovement;
 
     protected override void Awake()
     {
@@ -37,6 +42,16 @@ public abstract class StateMachineMonster : NormalMonster
     protected virtual void FixedUpdate()
     {
         _stateMachine?.FixedUpdate();
+    }
+
+    public IMovable GetChaseMovement()
+    {
+        return _curChaseMovement;
+    }
+
+    public IMovable GetPatrolMovement()
+    {
+        return _curPatrolMovement;
     }
 
     // 데미지 적용 메서드

@@ -1,10 +1,8 @@
 using Game.Monster;
 using UnityEngine;
 
-public class SkullSwordmaster : PatrolStateMonster
+public class SwingMonster : StateMachineMonster
 {
-    IAttackable _curAttack;
-
     protected override void Awake()
     {
         base.Awake();
@@ -13,5 +11,13 @@ public class SkullSwordmaster : PatrolStateMonster
         _curAttack = new SwingAttack(transform, _attack);
 
         _attack.Attackable = _curAttack;
+    }
+
+    protected override void Init()
+    {
+        base.Init();
+
+        _curPatrolMovement = new PatrolMove(this);
+        _curChaseMovement = new ChaseMove(this);
     }
 }

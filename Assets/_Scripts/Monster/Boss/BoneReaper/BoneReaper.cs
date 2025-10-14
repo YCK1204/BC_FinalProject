@@ -27,6 +27,8 @@ public class BoneReaper : BossMonster
     private float _curBTCheckTime;
     private float _maxBTCheckTime = 0.5f;
 
+    public int CurPhase;
+
     private BoneReaperBT _curBT;
     public BoneReaperBT BT { get { return _curBT; } }
 
@@ -36,7 +38,7 @@ public class BoneReaper : BossMonster
 
     protected LayerMask _playerMask;
 
-    public bool IsOneFrameInvincible = false;
+    public bool IsInvincible = false;
 
     private WaitForSeconds _waitForHitFlash;
 
@@ -112,9 +114,10 @@ public class BoneReaper : BossMonster
         _curSlamCount = 0;
         _curBreathCount = 0;
         _curBTCheckTime = 0;
+        CurPhase = 1;
         IsAttacking = false;
-        IsIntro = true;
-        IsOneFrameInvincible = true;
+        IsDirecting = true;
+        IsInvincible = true;
 
         _playerMask = LayerMask.GetMask(Game.Monster.Layers.Player);
 
@@ -124,7 +127,7 @@ public class BoneReaper : BossMonster
 
     private void Update()
     {
-        if (IsIntro) return;
+        if (IsDirecting) return;
 
         if(_dataHandler.CurHp > 0 && _curBTCheckTime >= _maxBTCheckTime)
         {
@@ -136,7 +139,8 @@ public class BoneReaper : BossMonster
         if(!IsAttacking)
             _patternCoolTime += Time.deltaTime;
 
-        IsOneFrameInvincible = false;
+        // 연출 중이 아닐때는 매 프레임마다 무적 해제
+        IsInvincible = false;
     }
 
     public NodeStatus FindTarget()
@@ -163,17 +167,21 @@ public class BoneReaper : BossMonster
         OnHealthchanged?.Invoke();
         if (_dataHandler.CurHp <= 0)
         {
-            // 사망 처리
-            //attacker?.GetComponent<PlayerCharacter>()?.Kill();
-            PlayerCharacter.Instance.Kill();
-            _head.Die();
-            _leftHand.Die();
-            _rightHand.Die();
-            _platformGenerator.StopGenerate();
+            Die();
         }
 
     }
 
+    public override void Die()
+    {
+        PlayerCharacter.Instance.Kill();
+        _head.Die();
+        _leftHand.Die();
+        _rightHand.Die();
+        _platformGenerator.StopGenerate();
+    }
+
+    #region 페이즈 1
     public NodeStatus LaserAttack()
     {
         if (IsAttacking) return NodeStatus.Running;
@@ -197,7 +205,7 @@ public class BoneReaper : BossMonster
     /// 기획서대로 양손 시간차 공격
     /// </summary>
     /// <returns></returns>
-    public NodeStatus TowHandSlamAttack()
+    public NodeStatus TwoHandSlamAttack()
     {
         if (IsAttacking) return NodeStatus.Running;
         if (_patternCoolTime < PatternMaxCoolTime) return NodeStatus.Failure;
@@ -301,6 +309,48 @@ public class BoneReaper : BossMonster
 
         return IsAttacking ? NodeStatus.Running : NodeStatus.Success;
     }
+    #endregion
+
+    #region 페이즈 2
+    public NodeStatus ChangePhase2()
+    {
+        //IsDirecting = true;
+        //IsInvincible = true;
+
+        CurPhase = 2;
+        Debug.Log("페이즈2");
+
+        // 포효 애니메이션 실행, 애니메이션이 끝나면 연출 및 무적 해제
+
+        // 능력치 강화
+
+        // BT 변경
+        _curBT.ChangeAttackSelector();
+
+        return NodeStatus.Success;
+    }
+
+    public NodeStatus AdvSlamAttack()
+    {
+        return NodeStatus.Success;
+    }
+
+    public NodeStatus AdvBreathAttack()
+    {
+        return NodeStatus.Success;
+    }
+
+    public NodeStatus AdvLaserAttack()
+    {
+        return NodeStatus.Success;
+    }
+
+    public NodeStatus AdvSummonOrbAttack()
+    {
+        return NodeStatus.Success;
+    }
+
+    #endregion
 
     public void HitFlash(SpriteRenderer sr, Coroutine hitEffect)
     {
