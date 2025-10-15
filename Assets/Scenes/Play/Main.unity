@@ -1943,6 +1943,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 813669507}
   - {fileID: 1907768340}
   - {fileID: 821723545}
   - {fileID: 2072921756}
@@ -4028,7 +4029,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &813669502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4141,11 +4142,11 @@ Transform:
   m_GameObject: {fileID: 813669500}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 1333591363}
+  m_Father: {fileID: 490874141}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &813669510
 MonoBehaviour:
@@ -5718,6 +5719,7 @@ MonoBehaviour:
   _gameUI: {fileID: 359806896}
   _player: {fileID: 1333591356}
   _camera: {fileID: 821723544}
+  _mainCamera: {fileID: 813669500}
   _playerAnimator: {fileID: 310275702}
   _titleAnimator: {fileID: 2072921761}
   _uiAnimator: {fileID: 359806901}
@@ -7139,7 +7141,6 @@ Transform:
   - {fileID: 310275701}
   - {fileID: 1513150353}
   - {fileID: 51927320}
-  - {fileID: 813669507}
   - {fileID: 1605656616}
   - {fileID: 729839153}
   m_Father: {fileID: 375481399}
@@ -7209,13 +7210,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e98397f04e9d8c949bf0b422a4af35e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DoubleStrike
-  _attackRange: 2
-  _hitDelay: 0.2
-  _hitDelay2: 0.4
+  _attackRange: 1.5
+  _hitDelay: 0.1
+  _hitDelay2: 0.25
   _hitMultiplier: 1.2
   _hitMultiplier2: 1.4
-  _SlashPrefab_1: {fileID: 0}
-  _SlashPrefab_2: {fileID: 0}
+  _slashPrefab: {fileID: 4748125247279394270, guid: 8e2dc9461b53ddb4c93697c1f45af5f4, type: 3}
+  _spawnOffset: {x: 0.3, y: 0}
 --- !u!114 &1333591366
 MonoBehaviour:
   m_ObjectHideFlags: 0

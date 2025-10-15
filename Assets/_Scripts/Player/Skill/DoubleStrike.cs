@@ -11,27 +11,32 @@ public class DoubleStrike : Skill
     [SerializeField] private float _hitMultiplier = 1.2f;
     [SerializeField] private float _hitMultiplier2 = 1.4f;
 
-    [SerializeField] private GameObject _SlashPrefab_1;
-    [SerializeField] private GameObject _SlashPrefab_2;
+    [SerializeField] private GameObject _slashPrefab;
+    [SerializeField] private Vector2 _spawnOffset = new Vector2(1.0f, 0.0f);
 
     public override void Execute()
     {
         owner.StartCoroutine(DoubleStrikeCoroutine());
 
         Debug.Log("발동!");
-        // owner.Animator.Play("DoubleStrikeAnimation");
+        owner.Animator.Play("SkillW");
     }
 
     private IEnumerator DoubleStrikeCoroutine()
     {
-        float attackSpeed = owner.Data.CombatData.AttackSpeed;
-        PlayerManager.Instance.Player.Animator.Play("Attack_1", 0, 0f);
+        float facingSign = owner.StateMachine.FacingSign;
 
-        yield return new WaitForSeconds(_hitDelay / attackSpeed);
+        Vector2 offset = new Vector2(_spawnOffset.x * facingSign, _spawnOffset.y);
+        Vector2 spawnPosition = (Vector2)owner.transform.position + offset;
+
+        Quaternion rotation = facingSign > 0 ? Quaternion.identity : Quaternion.Euler(0, 180, 0);
+
+        PlayerPool.Instance.GetFromPool(_slashPrefab, spawnPosition, rotation);
+
+        yield return new WaitForSeconds(_hitDelay);
         DealAreaDamage(_hitMultiplier);
 
-        PlayerManager.Instance.Player.Animator.Play("Attack_1", 0, 0f);
-        yield return new WaitForSeconds(_hitDelay2 / attackSpeed);
+        yield return new WaitForSeconds(_hitDelay2);
         DealAreaDamage(_hitMultiplier2);
     }
 
