@@ -7,9 +7,8 @@ using UnityEngine.SceneManagement;
 [System.Serializable]
 public class MapSaveData
 {
-    public string CurrentMapName;
-    public List<string> ClearedMaps;
-    public int RoomCount;
+    public int CurrentMapIndex;
+    public List<int> ClearedMapIndices;
     public float PlayTime;
 }
 
@@ -33,7 +32,7 @@ public class MapManager : MonoBehaviour
     private int _roomCount = 0;
     [SerializeField] private int _bossRoomTrigger = 4;
 
-    private List<string> _clearedMaps = new List<string>();
+    private List<int> _clearedMaps = new List<int>();
 
     public bool OnPortal = false;
 
@@ -60,7 +59,6 @@ public class MapManager : MonoBehaviour
         if (_isTimerOn)
         {
             _playTime += Time.deltaTime;
-            Debug.Log(_playTime);
         }
     }
 
@@ -73,7 +71,8 @@ public class MapManager : MonoBehaviour
 
     public void InitFloor()
     {
-        _roomCount = 0;
+        _clearedMaps.Clear();
+        UpdateRoomCount();
         ResetMaps();
         LoadMap(_mapPrefabs[0]);
         OnPortal = true;
@@ -86,8 +85,7 @@ public class MapManager : MonoBehaviour
         _mapPool.Clear();
         for (int i = 1; i < _mapPrefabs.Count; i++)
         {
-            string mapName = _mapPrefabs[i].name;
-            if (_clearedMaps.Contains(mapName)) continue;
+            if (_clearedMaps.Contains(i)) continue;
             _mapPool.Add(_mapPrefabs[i]);
         }
     }
@@ -95,9 +93,15 @@ public class MapManager : MonoBehaviour
     public void NextMap()
     {
         if (_currentMapPrefab != null)
-            _clearedMaps.Add(_currentMapPrefab.name.Replace("(Clone)", ""));
+        {
+            int clearedIndex = _mapPrefabs.IndexOf(_currentMapPrefab);
+            if (clearedIndex > 0 && !_clearedMaps.Contains(clearedIndex))
+            {
+                _clearedMaps.Add(clearedIndex);
+            }
+        }
 
-        _roomCount++;
+        UpdateRoomCount();
         OnPortal = false;
 
         if (_roomCount == 1 && !_isTimerOn)
@@ -115,15 +119,17 @@ public class MapManager : MonoBehaviour
 
         if (_mapPool.Count > 0)
         {
-            int index = Random.Range(0, _mapPool.Count);
-            GameObject prefab = _mapPool[index];
-            _mapPool.RemoveAt(index);
+            int poolIndex = Random.Range(0, _mapPool.Count);
+            GameObject prefab = _mapPool[poolIndex];
+            _mapPool.RemoveAt(poolIndex);
 
             LoadMap(prefab);
             Debug.Log(prefab.name + " 남은맵:" + _mapPool.Count);
         }
         else
         {
+            _clearedMaps.Clear();
+            UpdateRoomCount();
             ResetMaps();
             LoadMap(_mapPrefabs[0]);
             Debug.Log("리셋");
@@ -163,9 +169,13 @@ public class MapManager : MonoBehaviour
                 new Vector3(spawnPoint.position.x, spawnPoint.position.y, _cam.transform.position.z),
                 Quaternion.identity
             );
-            PlayerManager.Instance.Player.StartRound();
         }
         else Debug.LogError(map.name + "!! 스폰포인트 없음");
+    }
+
+    private void UpdateRoomCount()
+    {
+        _roomCount = _clearedMaps.Count;
     }
 
     public void SetPortal()
@@ -187,44 +197,59 @@ public class MapManager : MonoBehaviour
     public MapSaveData GetSaveData()
     {
         MapSaveData data = new MapSaveData();
-        data.CurrentMapName = _currentMapPrefab != null ? _currentMapPrefab.name : "None";
-        data.ClearedMaps = new List<string>(_clearedMaps);
-        data.RoomCount = _roomCount;
+
+        if (_currentMapPrefab == _bossroomPrefabs)
+        {
+            data.CurrentMapIndex = -1;
+        }
+        else if (_currentMapPrefab != null)
+        {
+            data.CurrentMapIndex = _mapPrefabs.IndexOf(_currentMapPrefab);
+        }
+        else
+        {
+            data.CurrentMapIndex = -99;
+        }
+
+        data.ClearedMapIndices = new List<int>(_clearedMaps);
         data.PlayTime = _playTime;
         return data;
     }
 
     public void LoadFromData(MapSaveData data)
     {
-        _roomCount = data.RoomCount;
-        _clearedMaps = new List<string>(data.ClearedMaps);
+        _clearedMaps = new List<int>(data.ClearedMapIndices);
+        UpdateRoomCount();
         _playTime = data.PlayTime;
 
-        if(_roomCount > 0)
+        if (_roomCount > 0)
         {
             _isTimerOn = true;
         }
 
         ResetMaps();
 
-        GameObject found = _mapPrefabs.Find(p => p.name == data.CurrentMapName);
-        if (found != null)
+        int mapIndex = data.CurrentMapIndex;
+        GameObject mapToLoad = null;
+
+        if (mapIndex == -1)
         {
-            LoadMap(found);
-            Debug.Log("맵: " + found.name);
+            mapToLoad = _bossroomPrefabs;
+        }
+        else if (mapIndex >= 0 && mapIndex < _mapPrefabs.Count)
+        {
+            mapToLoad = _mapPrefabs[mapIndex];
+        }
+
+        if (mapToLoad != null)
+        {
+            LoadMap(mapToLoad);
+            Debug.Log("맵: " + mapToLoad.name);
         }
         else
         {
-            if (_bossroomPrefabs != null && _bossroomPrefabs.name == data.CurrentMapName)
-            {
-                LoadMap(_bossroomPrefabs);
-                Debug.Log("맵: " + _bossroomPrefabs.name);
-            }
-            else
-            {
-                Debug.LogWarning("저장된 맵 없음");
-                LoadMap(_mapPrefabs[0]);
-            }
+            Debug.LogWarning("저장된 맵 없음");
+            LoadMap(_mapPrefabs[0]);
         }
     }
 }
