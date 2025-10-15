@@ -17322,6 +17322,7 @@ MonoBehaviour:
       PassThroughLayers:
         serializedVersion: 2
         m_Bits: 256
+      DashEffectPrefab: {fileID: 0}
     CombatData:
       AttackPower: 10
       AttackRange: 1.2
@@ -17351,6 +17352,7 @@ MonoBehaviour:
         DamageSet: 1
         ComboTime: 0.5
         KnockbackPower: 2
+        AnimName: 
       - ComboStateIndex: 2
         AttackDuration: 0.4
         HitTiming: 0.1
@@ -17359,6 +17361,7 @@ MonoBehaviour:
         DamageSet: 1
         ComboTime: 0.5
         KnockbackPower: 6
+        AnimName: 
       - ComboStateIndex: 0
         AttackDuration: 0.4
         HitTiming: 0.2
@@ -17367,6 +17370,7 @@ MonoBehaviour:
         DamageSet: 1.5
         ComboTime: 1
         KnockbackPower: 4
+        AnimName: 
     awakening:
       maxAwakeningGauge: 100
       awakeningOnHit: 2.5
@@ -17394,6 +17398,8 @@ MonoBehaviour:
   awakeningEffect: {fileID: 0}
   lastHitCritical: 0
   deadControl: {fileID: 0}
+  <ShadowSlashSkill>k__BackingField: {fileID: 0}
+  <DoubleStrikeSkill>k__BackingField: {fileID: 0}
 --- !u!114 &1333591361
 MonoBehaviour:
   m_ObjectHideFlags: 0

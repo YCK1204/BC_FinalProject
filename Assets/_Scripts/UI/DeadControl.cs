@@ -31,7 +31,7 @@ public class DeadControl : MonoBehaviour
     [Header("Interaction")]
     [SerializeField] private GameObject _pickObject;
 
-    [SerializeField] private CameraShake camShake;
+    [SerializeField] private CameraShake _camShake;
 
     private Bloom _bloom;
     private Collider2D _pickCol;
@@ -183,8 +183,9 @@ public class DeadControl : MonoBehaviour
         _player.gameObject.SetActive(true);
         PlayerManager.Instance.Player.Resurrection();
         PlayerManager.Instance.Player.Animator.Play("Landing", 0, 0f);
+        _deadEffect.SetActive(false);
 
-        camShake.Shake(1f, 3f, 0.2f);
+        _camShake.Shake(1f, 3f, 0.2f);
 
         StartCoroutine(FadeBloom(0.4f, 0.5f));
 
