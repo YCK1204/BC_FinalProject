@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using Unity.VisualScripting;
+using UnityEditorInternal;
 using UnityEngine;
 using static UnityEditorInternal.ReorderableList;
 
@@ -38,7 +39,7 @@ namespace Game.Player
         private PlayerData _originalData;
         public ForceReceiver ForceReceiver => Force;
 
-        private PlayerStateMachine _machine;
+        public PlayerStateMachine StateMachine { get; private set; }
 
         private CinemachineImpulseSource _impulseSource;
 
@@ -59,6 +60,7 @@ namespace Game.Player
 
         [Header("Awakening")]
         [SerializeField] private float currentAwakening;
+        //각성게이지
         public float CurrentAwakening => currentAwakening;
         public bool IsAwakened { get; private set; }
 
@@ -69,6 +71,7 @@ namespace Game.Player
         public bool LastHitCritical => lastHitCritical;
         public void MarkLastHitCritical(bool on) { lastHitCritical = on; }
 
+        //현재 체력
         public float CurrentHP
         {
             get
@@ -92,6 +95,9 @@ namespace Game.Player
         public event Action<float, float> HpEvent;
         public event Action<float, float> AwakeningEvent;
 
+        [field: SerializeField] public Skill ShadowSlashSkill { get; private set; }
+        [field: SerializeField] public Skill DoubleStrikeSkill { get; private set; }
+
 
 
         private void Awake()
@@ -104,10 +110,26 @@ namespace Game.Player
 
             currentHP = Data.Stats.MaxHP;
 
-            _machine = new PlayerStateMachine(this);
-            _machine.ChangeState(_machine.IdleState);
+            StateMachine = new PlayerStateMachine(this);
+            StateMachine.ChangeState(StateMachine.IdleState);
 
             _impulseSource = GetComponent<CinemachineImpulseSource>();
+            DoubleStrikeSkill = GetComponent<DoubleStrike>();
+            ShadowSlashSkill = GetComponent<ShadowSlash>();
+
+            ShadowSlashSkill?.Initialize(this);
+            DoubleStrikeSkill?.Initialize(this);
+        }
+
+        public void ApplyData(PlayerSaveData data)
+        {
+            this.currentHP = data.CurrentHP;
+            this.currentAwakening = data.CurrentAwakening;
+
+            HpEvent?.Invoke(this.currentHP, Data.Stats.MaxHP);
+            AwakeningEvent?.Invoke(this.currentAwakening, Data.awakening.maxAwakeningGauge);
+
+            Debug.Log("데이터 저장 동기화");
         }
 
         #region Callback
@@ -210,26 +232,26 @@ namespace Game.Player
             ;
         }
 
-        //public void TakeDamage(int damage)
-        //{
-        //    if (Invincible || IsDead) return;
-        //    currentHP = Mathf.Max(0f, currentHP - Mathf.Max(0, damage));
-        //    HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
+        public void TakeDamage(int damage)
+        {
+            if (Invincible || IsDead) return;
+            currentHP = Mathf.Max(0f, currentHP - Mathf.Max(0, damage));
+            HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
 
-        //    Debug.Log($"피해량체크- {damage} 남은체력- {currentHP}");
+            Debug.Log($"피해량체크- {damage} 남은체력- {currentHP}");
 
-        //    camShake.Shake(1f, 1f, 0.2f);
-        //    _impulseSource.GenerateImpulse();
-        //    if (currentHP <= 0f) Die(); else StartCoroutine(HitColor());
-        //    ;
-        //}
+            camShake.Shake(1f, 1f, 0.2f);
+            _impulseSource.GenerateImpulse();
+            if (currentHP <= 0f) Die(); else StartCoroutine(HitColor());
+            ;
+        }
 
         private IEnumerator HitColor()
         {
 
             float a = 1f;
             float b = 0.1f;
-            _machine.ChangeState(_machine.HurtState);
+            StateMachine.ChangeState(StateMachine.HurtState);
 
             Color color = SpriteRenderer.color;
             SetInvincible(true);
@@ -268,20 +290,24 @@ namespace Game.Player
 
         public void Die()
         {
+            OnDied?.Invoke();
+
+
             currentHP = 0f;
             HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
-            _machine.ChangeState(_machine.DieState);
+            StateMachine.ChangeState(StateMachine.DieState);
 
             gameObject.layer = LayerMask.NameToLayer("Default");
 
             deadControl.DieSet();
+
+            PlayerManager.Instance.CooldownD.ShowCooldown();
         }
 
         public void Resurrection()
         {
             DataSerialized = _originalData.Clone();
 
-            OnDied.Invoke();
             OnDied = null;
             OnKill = null;
             OnUsingSkill = null;
@@ -295,7 +321,7 @@ namespace Game.Player
 
             currentHP = Data.Stats.MaxHP;
             HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
-            _machine.ChangeState(_machine.IdleState);
+            StateMachine.ChangeState(StateMachine.IdleState);
 
             gameObject.layer = LayerMask.NameToLayer("Player");
             PlayerMaterial.SetDefaultMaterial();
@@ -319,6 +345,7 @@ namespace Game.Player
         {
             if (IsAwakened) return;
 
+            PlayerManager.Instance.CooldownD.ShowCooldown();
             var awakeningData = Data.awakening;
 
             Debug.Log("각성!");
@@ -386,25 +413,25 @@ namespace Game.Player
             float timeElapsed = 0f;
             while (timeElapsed < a)
             {
-                _machine.MovementInput = b.normalized;
+                StateMachine.MovementInput = b.normalized;
 
                 timeElapsed += Time.deltaTime;
                 yield return null;
             }
 
             SetPlayerInput(true);
-            _machine.MovementInput = Vector2.zero;
+            StateMachine.MovementInput = Vector2.zero;
             Animator.SetBool(AnimationData.WalkParameterHash, false);
             Animator.SetBool(AnimationData.IdleParameterHash, true);
         }
 
         public void SetPlayerInput(bool isEnable)
         {
-            _machine.InputActive = isEnable;
+            StateMachine.InputActive = isEnable;
 
             if (!isEnable)
             {
-                _machine.MovementInput = Vector2.zero;
+                StateMachine.MovementInput = Vector2.zero;
             }
         }
 
@@ -425,7 +452,7 @@ namespace Game.Player
 
         private void Update()
         {
-            _machine.Tick();
+            StateMachine.Tick();
             UpdateRuntimeDebug();
 
             var kb = UnityEngine.InputSystem.Keyboard.current;
@@ -445,16 +472,16 @@ namespace Game.Player
 
         private void FixedUpdate()
         {
-            _machine.FixedTick();
+            StateMachine.FixedTick();
             UpdateRuntimeDebug();
         }
 
         void UpdateRuntimeDebug()
         {
             if (!showRuntime) return;
-            runtimeIsDashing = _machine.IsDashing;
-            runtimeSpeedModifier = _machine.MovementSpeedModifier;
-            runtimeMoveSpeed = _machine.MovementSpeed * _machine.MovementSpeedModifier;
+            runtimeIsDashing = StateMachine.IsDashing;
+            runtimeSpeedModifier = StateMachine.MovementSpeedModifier;
+            runtimeMoveSpeed = StateMachine.MovementSpeed * StateMachine.MovementSpeedModifier;
 #if UNITY_2022_3_OR_NEWER
             runtimeVelocity = Rb.linearVelocity;
 #else

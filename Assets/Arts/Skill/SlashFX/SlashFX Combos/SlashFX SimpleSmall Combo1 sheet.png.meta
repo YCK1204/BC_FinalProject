@@ -46,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -125,12 +125,12 @@ TextureImporter:
       name: SlashFX SimpleSmall Combo1 sheet_0
       rect:
         serializedVersion: 2
-        x: 44
-        y: 32
-        width: 46
-        height: 26
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -147,12 +147,12 @@ TextureImporter:
       name: SlashFX SimpleSmall Combo1 sheet_1
       rect:
         serializedVersion: 2
-        x: 198
-        y: 41
-        width: 26
-        height: 22
+        x: 128
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -169,12 +169,12 @@ TextureImporter:
       name: SlashFX SimpleSmall Combo1 sheet_2
       rect:
         serializedVersion: 2
-        x: 333
-        y: 53
-        width: 19
-        height: 11
+        x: 256
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -187,33 +187,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: SlashFX SimpleSmall Combo1 sheet_3
-      rect:
-        serializedVersion: 2
-        x: 207
-        y: 34
-        width: 11
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: da68ec36c33194710800000000000000
-      internalID: 1677893486265665197
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: d7fc057ff317cd44ba24cb6da693627b
     internalID: 0
     vertices: []
     indices: 
@@ -221,12 +199,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":128.0,"y":128.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       SlashFX SimpleSmall Combo1 sheet_0: 6809493419194432320
       SlashFX SimpleSmall Combo1 sheet_1: 2920159451561828530
       SlashFX SimpleSmall Combo1 sheet_2: 5155520625921772926
-      SlashFX SimpleSmall Combo1 sheet_3: 1677893486265665197
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

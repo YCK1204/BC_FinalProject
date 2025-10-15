@@ -17291,6 +17291,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameSystem.Player
   OnTrait: 0
+  Interactables: []
   SpriteRenderer: {fileID: 310275703}
   PlayerMaterial: {fileID: 0}
   camShake: {fileID: 266890079}
@@ -17321,6 +17322,7 @@ MonoBehaviour:
       PassThroughLayers:
         serializedVersion: 2
         m_Bits: 256
+      DashEffectPrefab: {fileID: 0}
     CombatData:
       AttackPower: 10
       AttackRange: 1.2
@@ -17350,6 +17352,7 @@ MonoBehaviour:
         DamageSet: 1
         ComboTime: 0.5
         KnockbackPower: 2
+        AnimName: 
       - ComboStateIndex: 2
         AttackDuration: 0.4
         HitTiming: 0.1
@@ -17358,6 +17361,7 @@ MonoBehaviour:
         DamageSet: 1
         ComboTime: 0.5
         KnockbackPower: 6
+        AnimName: 
       - ComboStateIndex: 0
         AttackDuration: 0.4
         HitTiming: 0.2
@@ -17366,10 +17370,16 @@ MonoBehaviour:
         DamageSet: 1.5
         ComboTime: 1
         KnockbackPower: 4
+        AnimName: 
     awakening:
       maxAwakeningGauge: 100
       awakeningOnHit: 2.5
       duration: 10
+    SkillData:
+      QSkillCastingDuration: 0.5
+      QSkillCooldown: 1
+      WSkillCastingDuration: 0
+      WSkillCooldown: 1
   GroundCheck: {fileID: 1410422797}
   GroundRadius: 0.15
   GroundLayer:
@@ -17388,6 +17398,8 @@ MonoBehaviour:
   awakeningEffect: {fileID: 0}
   lastHitCritical: 0
   deadControl: {fileID: 0}
+  <ShadowSlashSkill>k__BackingField: {fileID: 0}
+  <DoubleStrikeSkill>k__BackingField: {fileID: 0}
 --- !u!114 &1333591361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17417,6 +17429,7 @@ Transform:
   - {fileID: 1410422797}
   - {fileID: 310275701}
   - {fileID: 1605656616}
+  - {fileID: 1714033150}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1333591364
@@ -21282,6 +21295,50 @@ MonoBehaviour:
   preset: 0
   onEnableBehaviour: 0
   onDisableBehaviour: 0
+--- !u!1 &1714033149
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1714033150}
+  - component: {fileID: 1714033151}
+  m_Layer: 0
+  m_Name: PlayerPool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1714033150
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714033149}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 779.83, y: 729.32, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1333591363}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1714033151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1714033149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 204cfc4080d77ae4182aa3ce747bbbfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerPool
 --- !u!1 &1719809899
 GameObject:
   m_ObjectHideFlags: 0
