@@ -64,7 +64,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -78,7 +78,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 20
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -143,12 +143,12 @@ TextureImporter:
       name: SlashFX Combo1 sheet_0
       rect:
         serializedVersion: 2
-        x: 51
-        y: 53
-        width: 54
-        height: 39
+        x: 0
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -165,12 +165,12 @@ TextureImporter:
       name: SlashFX Combo1 sheet_1
       rect:
         serializedVersion: 2
-        x: 172
-        y: 56
-        width: 62
-        height: 37
+        x: 128
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -187,12 +187,12 @@ TextureImporter:
       name: SlashFX Combo1 sheet_2
       rect:
         serializedVersion: 2
-        x: 299
-        y: 59
-        width: 51
-        height: 34
+        x: 256
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -209,12 +209,12 @@ TextureImporter:
       name: SlashFX Combo1 sheet_3
       rect:
         serializedVersion: 2
-        x: 349
-        y: 68
-        width: 13
-        height: 18
+        x: 384
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -231,12 +231,12 @@ TextureImporter:
       name: SlashFX Combo1 sheet_4
       rect:
         serializedVersion: 2
-        x: 439
-        y: 82
-        width: 15
-        height: 9
+        x: 512
+        y: 0
+        width: 128
+        height: 128
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -249,121 +249,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: SlashFX Combo1 sheet_5
-      rect:
-        serializedVersion: 2
-        x: 482
-        y: 74
-        width: 7
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 07836604a2d396810800000000000000
-      internalID: 1759004381143251056
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SlashFX Combo1 sheet_6
-      rect:
-        serializedVersion: 2
-        x: 567
-        y: 82
-        width: 15
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 711ffa42550a351c0800000000000000
-      internalID: -4516089713774300905
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SlashFX Combo1 sheet_7
-      rect:
-        serializedVersion: 2
-        x: 610
-        y: 74
-        width: 7
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 071b033a9f3bb4de0800000000000000
-      internalID: -1347785778701225616
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SlashFX Combo1 sheet_8
-      rect:
-        serializedVersion: 2
-        x: 427
-        y: 59
-        width: 16
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6c1589e1ba30e8d20800000000000000
-      internalID: 3282565211887260102
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SlashFX Combo1 sheet_9
-      rect:
-        serializedVersion: 2
-        x: 555
-        y: 59
-        width: 16
-        height: 20
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f43dad1a5cc4c7e70800000000000000
-      internalID: 9114244157598782287
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 9119792961911e140a700808d70234d1
     internalID: 0
     vertices: []
     indices: 
@@ -371,18 +261,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":128.0,"y":128.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       SlashFX Combo1 sheet_0: 6566990249812935391
       SlashFX Combo1 sheet_1: 2215464939857069991
       SlashFX Combo1 sheet_2: -5178808433615151375
       SlashFX Combo1 sheet_3: -7558254343829563152
       SlashFX Combo1 sheet_4: -3464336304830206612
-      SlashFX Combo1 sheet_5: 1759004381143251056
-      SlashFX Combo1 sheet_6: -4516089713774300905
-      SlashFX Combo1 sheet_7: -1347785778701225616
-      SlashFX Combo1 sheet_8: 3282565211887260102
-      SlashFX Combo1 sheet_9: 9114244157598782287
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

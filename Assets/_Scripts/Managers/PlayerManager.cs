@@ -8,6 +8,11 @@ public class PlayerManager : MonoBehaviour
 
     public GameObject[] HUB;
 
+    public CooldownUI CooldownQ;
+    public CooldownUI CooldownW;
+    public CooldownUI CooldownS;
+    public CooldownUI CooldownD;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -18,6 +23,8 @@ public class PlayerManager : MonoBehaviour
 
         Instance = this;
         DontDestroyOnLoad(gameObject);
+
+        //PoolManager.CreatePool<a>(20,a);
     }
 
     public void HUBSet(bool setbool)

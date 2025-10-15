@@ -26,6 +26,7 @@ namespace Game.Player
             StopAnimation(_stateMachine.Player.AnimationData.DashParameterHash);
             StopAnimation(_stateMachine.Player.AnimationData.HurtParameterHash);
             StartAnimation(_stateMachine.Player.AnimationData.DieParameterHash);
+            _stateMachine.Player.Animator.Play("Die", 0, 0f);
         }
 
         public override void Exit()
