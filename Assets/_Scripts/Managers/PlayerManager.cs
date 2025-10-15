@@ -1,6 +1,13 @@
 using Game.Player;
 using UnityEngine;
 
+[System.Serializable]
+public class PlayerSaveData
+{
+    public float CurrentHP;
+    public float CurrentAwakening;
+}
+
 public class PlayerManager : MonoBehaviour
 {
     public static PlayerManager Instance { get; private set; }
@@ -36,5 +43,22 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    public PlayerSaveData GetSaveData()
+    {
+        if (Player == null) return null;
 
+        PlayerSaveData data = new PlayerSaveData();
+
+        data.CurrentHP = Player.CurrentHP;
+        data.CurrentAwakening = Player.CurrentAwakening;
+
+        return data;
+    }
+
+    public void LoadFromData(PlayerSaveData data)
+    {
+        if (Player == null || data == null) return;
+
+        Player.ApplyData(data);
+    }
 }

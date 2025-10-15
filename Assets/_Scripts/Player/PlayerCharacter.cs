@@ -60,6 +60,7 @@ namespace Game.Player
 
         [Header("Awakening")]
         [SerializeField] private float currentAwakening;
+        //각성게이지
         public float CurrentAwakening => currentAwakening;
         public bool IsAwakened { get; private set; }
 
@@ -70,6 +71,7 @@ namespace Game.Player
         public bool LastHitCritical => lastHitCritical;
         public void MarkLastHitCritical(bool on) { lastHitCritical = on; }
 
+        //현재 체력
         public float CurrentHP
         {
             get
@@ -117,6 +119,17 @@ namespace Game.Player
 
             ShadowSlashSkill?.Initialize(this);
             DoubleStrikeSkill?.Initialize(this);
+        }
+
+        public void ApplyData(PlayerSaveData data)
+        {
+            this.currentHP = data.CurrentHP;
+            this.currentAwakening = data.CurrentAwakening;
+
+            HpEvent?.Invoke(this.currentHP, Data.Stats.MaxHP);
+            AwakeningEvent?.Invoke(this.currentAwakening, Data.awakening.maxAwakeningGauge);
+
+            Debug.Log("데이터 저장 동기화");
         }
 
         #region Callback
@@ -277,6 +290,9 @@ namespace Game.Player
 
         public void Die()
         {
+            OnDied?.Invoke();
+
+
             currentHP = 0f;
             HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
             StateMachine.ChangeState(StateMachine.DieState);
@@ -292,7 +308,6 @@ namespace Game.Player
         {
             DataSerialized = _originalData.Clone();
 
-            OnDied.Invoke();
             OnDied = null;
             OnKill = null;
             OnUsingSkill = null;
