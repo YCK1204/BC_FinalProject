@@ -14,7 +14,7 @@ public class AwakeningBar : MonoBehaviour
         if (player != null)
         {
             slider.minValue = 0f;
-            slider.maxValue = player.Data.awakening.maxAwakeningGauge;
+            slider.maxValue = player.Data.awakening.MaxAwakeningGauge;
             slider.value = 0f;
 
             player.AwakeningEvent += UpdateAwakening;

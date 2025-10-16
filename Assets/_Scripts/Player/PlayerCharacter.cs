@@ -127,7 +127,7 @@ namespace Game.Player
             this.currentAwakening = data.CurrentAwakening;
 
             HpEvent?.Invoke(this.currentHP, Data.Stats.MaxHP);
-            AwakeningEvent?.Invoke(this.currentAwakening, Data.awakening.maxAwakeningGauge);
+            AwakeningEvent?.Invoke(this.currentAwakening, Data.awakening.MaxAwakeningGauge);
 
             Debug.Log("데이터 저장 동기화");
         }
@@ -175,6 +175,8 @@ namespace Game.Player
         #endregion
 
         #region Player
+
+        public bool CanAwaken() => currentAwakening >= Data.awakening.MaxAwakeningGauge && !IsAwakened;
 
         public bool IsGrounded()
         {
@@ -292,6 +294,7 @@ namespace Game.Player
         {
             OnDied?.Invoke();
 
+            PlayerManager.Instance.CooldownD.ShowCooldown();
 
             currentHP = 0f;
             HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
@@ -325,6 +328,9 @@ namespace Game.Player
             HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
             StateMachine.ChangeState(StateMachine.IdleState);
 
+            currentAwakening = 0;
+            AwakeningEvent?.Invoke(currentAwakening, Data.awakening.MaxAwakeningGauge);
+
             gameObject.layer = LayerMask.NameToLayer("Player");
             PlayerMaterial.SetDefaultMaterial();
         }
@@ -333,17 +339,18 @@ namespace Game.Player
         {
             if (IsAwakened || IsDead) return;
             var awakeningData = Data.awakening;
-            currentAwakening = Mathf.Min(awakeningData.maxAwakeningGauge, currentAwakening + awakeningData.awakeningOnHit);
+            currentAwakening = Mathf.Min(awakeningData.MaxAwakeningGauge, currentAwakening + awakeningData.AwakeningOnHit);
 
-            AwakeningEvent?.Invoke(currentAwakening, awakeningData.maxAwakeningGauge);
+            AwakeningEvent?.Invoke(currentAwakening, awakeningData.MaxAwakeningGauge);
 
-            if (currentAwakening >= awakeningData.maxAwakeningGauge)
+            if (currentAwakening >= awakeningData.MaxAwakeningGauge)
             {
-                EnterAwakening();
+                PlayerManager.Instance.CooldownD.HideCooldown();
+
             }
         }
 
-        private void EnterAwakening()
+        public void ActivateAwakening()
         {
             if (IsAwakened) return;
 
@@ -352,8 +359,8 @@ namespace Game.Player
 
             Debug.Log("각성!");
             IsAwakened = true;
-            currentAwakening = awakeningData.maxAwakeningGauge;
-            float totalDuration = Data.awakening.duration;
+            currentAwakening = awakeningData.MaxAwakeningGauge;
+            float totalDuration = Data.awakening.Duration;
             Data.CombatData.AttackRange = 1.6f;
 
             Animator.runtimeAnimatorController = awakenedAnimator;
@@ -373,7 +380,7 @@ namespace Game.Player
                 time += Time.deltaTime;
                 currentAwakening = Mathf.Lerp(start, 0f, time / duration);
 
-                AwakeningEvent?.Invoke(currentAwakening, Data.awakening.maxAwakeningGauge);
+                AwakeningEvent?.Invoke(currentAwakening, Data.awakening.MaxAwakeningGauge);
 
                 yield return null;
             }
@@ -386,7 +393,7 @@ namespace Game.Player
 
             awakeningEffect.SetActive(false);
 
-            AwakeningEvent?.Invoke(currentAwakening, Data.awakening.maxAwakeningGauge);
+            AwakeningEvent?.Invoke(currentAwakening, Data.awakening.MaxAwakeningGauge);
             Debug.Log("각성종료");
         }
 

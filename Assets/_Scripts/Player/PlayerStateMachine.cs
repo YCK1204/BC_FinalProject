@@ -45,7 +45,7 @@ namespace Game.Player
         public IState DoubleJumpState { get; private set; }
         public IState HurtState { get; private set; }
         public IState DieState { get; private set; }
-
+        public IState AwakeningState { get; private set; }
         public IState AirAttackState { get; private set; }
 
         IState _currentState;
@@ -69,6 +69,7 @@ namespace Game.Player
             AirAttackState = new PlayerAirAttackState(this);
             HurtState = new PlayerHurtState(this);
             DieState = new PlayerDieState(this);
+            AwakeningState = new PlayerAwakeningState(this);
 
             QSkillState = new PlayerQSkillState(this);
             WSkillState = new PlayerWSkillState(this);
