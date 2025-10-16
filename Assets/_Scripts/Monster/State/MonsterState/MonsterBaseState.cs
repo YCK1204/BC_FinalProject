@@ -29,6 +29,7 @@ public abstract class MonsterBaseState : Game.Monster.IState
 
         _curCheckTime = 0;
         _maxCheckTime = 0.2f;
+        CheckColliders();
     }
 
     public virtual void Enter() { /*Debug.Log(StateType);*/ }
