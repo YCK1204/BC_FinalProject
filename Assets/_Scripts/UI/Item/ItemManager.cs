@@ -65,4 +65,9 @@ public class ItemManager
         if (Synergies.TryGetValue(synergyID, out var synergy))
             synergy.Count++;
     }
+
+    public void Clear()
+    {
+        Buff.Release();
+    }
 }

@@ -2,30 +2,12 @@ using UnityEngine;
 
 public class Manager : MonoBehaviour
 {
-    static Manager _instance = null;
-    static Manager Instance
-    {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = FindAnyObjectByType<Manager>();
-                if (_instance == null)
-                {
-                    GameObject go = new GameObject("@Manager");
-                    _instance = go.AddComponent<Manager>();
-                    Init();
-                    DontDestroyOnLoad(_instance);
-                }
-            }
-            return _instance;
-        }
-    }
+    static Manager Instance;
     private void Awake()
     {
-        if (_instance == null)
+        if (Instance == null)
         {
-            _instance = this;
+            Instance = this;
             Init();
             DontDestroyOnLoad(gameObject);
         }
@@ -52,9 +34,9 @@ public class Manager : MonoBehaviour
     ResourceManager _resource = new ResourceManager();
     public static ResourceManager Resource { get { return Instance._resource; } }
     SceneManagerEx _scene;
-    public static SceneManagerEx Scene { get { return Instance._scene; } set { Instance._scene = value; value.transform.parent = _instance.transform; } }
+    public static SceneManagerEx Scene { get { return Instance._scene; } set { Instance._scene = value; value.transform.parent = Instance.transform; } }
     AudioManager _audio;
-    public static AudioManager Audio { get { return Instance._audio; } set { Instance._audio = value; value.transform.parent = _instance.transform; } }
+    public static AudioManager Audio { get { return Instance._audio; } set { Instance._audio = value; value.transform.parent = Instance.transform; } }
     PoolManager _pool = new PoolManager();
     public static PoolManager Pool { get { return Instance._pool; } }
     DataManager _data = new DataManager();

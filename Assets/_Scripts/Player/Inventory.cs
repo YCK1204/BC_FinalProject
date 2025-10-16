@@ -1,4 +1,6 @@
 using Game.Player;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,6 +12,17 @@ public class Inventory
     Dictionary<int, ItemData> _items = new Dictionary<int, ItemData>();
     public Action<ItemController> OnItemAdded { get; set; }
     public bool IsDirty { get; private set; } = false;
+    int _gold = 0;
+    public int Gold
+    {
+        get { return _gold; }
+        set
+        {
+            if (_gold != value)
+                IsDirty = true;
+            _gold = value;
+        }
+    }
     public void EnterCurItem(ItemController item)
     {
         _curItem = item;
@@ -34,6 +47,7 @@ public class Inventory
         Manager.Item.MissingItems.Remove(data);
         OnItemAdded?.Invoke(item);
         Manager.Item.AddSynergy(data.SynergyId);
+        Debug.Log(PlayerCharacter.Instance.Inventory.GetJsonString());
     }
     public void Reset()
     {
@@ -43,5 +57,14 @@ public class Inventory
     public bool HasItem(int itemID)
     {
         return _items.ContainsKey(itemID);
+    }
+    public string GetJsonString()
+    {
+        var json = new JObject();
+        json.Add("Gold", Gold);
+        var jArray = new JArray();
+        _items.Keys.ToList().ForEach((id) => jArray.Add(id));
+        json.Add("ItemsId", jArray);
+        return json.ToString();
     }
 }
