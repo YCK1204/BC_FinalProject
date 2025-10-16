@@ -297,7 +297,7 @@ namespace Game.Player
             HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
             StateMachine.ChangeState(StateMachine.DieState);
 
-            gameObject.layer = LayerMask.NameToLayer("Default");
+            gameObject.layer = LayerMask.NameToLayer("Player_die");
 
             deadControl.DieSet();
 
