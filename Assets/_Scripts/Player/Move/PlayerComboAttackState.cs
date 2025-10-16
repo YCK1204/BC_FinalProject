@@ -46,6 +46,8 @@ namespace Game.Player
             _stateMachine.Player.Animator.SetInteger(_stateMachine.Player.AnimationData.ComboParameterHash, comboIndex);
             StartAnimation(_stateMachine.Player.AnimationData.AttackParameterHash);
 
+            _stateMachine.Player.Animator.Play(_attackInfoData.AnimName, 0, 0f);
+
             _stateMachine.ContinueCombo = false;
             _force = false;
             _damage = false;
@@ -147,6 +149,7 @@ namespace Game.Player
             bool hitted = false;
             foreach (var col in cols)
             {
+                if (col == null) continue;
                 if (col.transform.IsChildOf(_stateMachine.Player.transform)) continue;
 
                 if (col.gameObject.layer == LayerMask.NameToLayer("Destructible"))

@@ -26,6 +26,8 @@ namespace Game.Player
         public float Cooldown = 3f;
         public bool InvincibleDuringDash = true;
         public LayerMask PassThroughLayers;
+
+        public GameObject DashEffectPrefab;
     }
 
     [System.Serializable]
@@ -62,6 +64,8 @@ namespace Game.Player
         public float DamageSet = 1.0f;
         public float ComboTime = 0.7f;
         public float KnockbackPower = 1f;
+
+        public string AnimName;
     }
 
     [Serializable]

@@ -20,6 +20,7 @@ namespace Game.Player
             StopAnimation(_stateMachine.Player.AnimationData.IdleParameterHash);
             StopAnimation(_stateMachine.Player.AnimationData.FallParameterHash);
             StartAnimation(_stateMachine.Player.AnimationData.JumpParameterHash);
+            _stateMachine.Player.Animator.Play("jump", 0, 0f);
         }
 
         public override void Exit()
