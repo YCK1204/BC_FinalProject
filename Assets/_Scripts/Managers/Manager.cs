@@ -42,6 +42,7 @@ public class Manager : MonoBehaviour
         Data.Load();
         Pool.Init();
         Item.Init();
+        Analytics.Init();
         Instance._isInit = true;
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Destructible"));
         Physics2D.IgnoreLayerCollision(LayerMask.NameToLayer("Player"), LayerMask.NameToLayer("Gold"));
@@ -61,4 +62,6 @@ public class Manager : MonoBehaviour
     public static DataManager Data { get { return Instance._data; } }
     ItemManager _item = new ItemManager();
     public static ItemManager Item { get { return Instance._item; } }
+    AnalyticsManager _analytics = new AnalyticsManager();
+    public static AnalyticsManager Analytics { get { return Instance._analytics; } }
 }
