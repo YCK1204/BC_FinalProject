@@ -306,6 +306,8 @@ namespace Game.Player
 
         public void Resurrection()
         {
+            Manager.Game.MonsterCount = 0;
+
             DataSerialized = _originalData.Clone();
 
             OnDied = null;
