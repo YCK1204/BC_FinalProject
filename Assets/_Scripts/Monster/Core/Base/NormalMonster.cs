@@ -80,6 +80,8 @@ public abstract class NormalMonster : BaseMonster, Game.Monster.IDamageable
         _dataHandler.Init();
         OnHit += HitFlash;
 
+        RegisterIgnoreCollider(PlayerManager.Instance?.Player.GetComponent<Collider2D>());
+
         Init();
     }
 
@@ -121,7 +123,7 @@ public abstract class NormalMonster : BaseMonster, Game.Monster.IDamageable
     /// <param name="collider">충돌을 무시할 콜라이더</param>
     public void RegisterIgnoreCollider(Collider2D collider)
     {
-        if (!_ignoredColliderList.Contains(collider))
+        if (collider != null && !_ignoredColliderList.Contains(collider))
         {
             Physics2D.IgnoreCollision(Col, collider, true);
             _ignoredColliderList.Add(collider);
@@ -134,7 +136,7 @@ public abstract class NormalMonster : BaseMonster, Game.Monster.IDamageable
     /// <param name="collider">충돌 가능하게 만들 콜라이더</param>
     public void DeleteIgnoreCollider(Collider2D collider)
     {
-        if (_ignoredColliderList.Contains(collider))
+        if (collider != null && _ignoredColliderList.Contains(collider))
         {
             Physics2D.IgnoreCollision(Col, collider, false);
             _ignoredColliderList.Remove(collider);
