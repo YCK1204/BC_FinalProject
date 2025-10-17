@@ -13,8 +13,14 @@ MonoBehaviour:
   m_Name: Boss
   m_EditorClassIdentifier: Assembly-CSharp::MapAudioContext
   PlayerAudioData:
-    PlayerAttackAudioDatas: []
-    PlayerMoveAudioDatas: []
+    PlayerAttackAudioDatas:
+    - {fileID: 11400000, guid: 81fb205cf887e8c4981e9648081f3484, type: 2}
+    - {fileID: 11400000, guid: 191bf51074c781141a9634e482308285, type: 2}
+    PlayerMoveAudioDatas:
+    - {fileID: 11400000, guid: d2ae24faa202c874caf0e5adcc4694cc, type: 2}
+    - {fileID: 11400000, guid: 341d6c0a2ea9ca147b8f770a77fc3527, type: 2}
+    - {fileID: 11400000, guid: cfb3b1eb2a0d9954a8e34cf8d4e2a661, type: 2}
+    - {fileID: 11400000, guid: c4aad91653f43a142a35abd6eb0496dc, type: 2}
     PlayerSkillAudioDatas: []
   MonsterAudioData:
     MonsterAttackAudioDatas: []

@@ -128,8 +128,8 @@ public class TraitAudioDataContext : IAudioDataContext
 [CreateAssetMenu(fileName = "New Map Audio Context", menuName = "ScriptableObject/Audio/Map/Map Audio Context", order = 0)]
 public class MapAudioContext : ScriptableObject, IAudioDataContext
 {
-    public PlayerAudioDataContext PlayerAudioData;
-    public MonsterAudioDataContext MonsterAudioData;
+    public PlayerAudioDataContext PlayerAudioDataContext;
+    public MonsterAudioDataContext MonsterAudioDataContext;
     public ItemAudioDataContext ItemAudioDataContext;
     public EnvironmentAudioDataContext EnvironmentAudioDataContext;
     public BGMAudioDataContext BGMAudioDataContext;
@@ -142,14 +142,14 @@ public class MapAudioContext : ScriptableObject, IAudioDataContext
     public Dictionary<string, AudioData> ToDict()
     {
         Dictionary<string, AudioData> dict = new Dictionary<string, AudioData>();
-        PlayerAudioData.ToDict().ToList().ForEach(x => dict.Add(x.Key, x.Value));
-        MonsterAudioData.ToDict().ToList().ForEach(x => dict.Add(x.Key, x.Value));
-        ItemAudioDataContext.ToDict().ToList().ForEach(x => dict.Add(x.Key, x.Value));
-        EnvironmentAudioDataContext.ToDict().ToList().ForEach(x => dict.Add(x.Key, x.Value));
-        BGMAudioDataContext.ToDict().ToList().ForEach(x => dict.Add(x.Key, x.Value));
-        DirecitonAudioDataContext.ToDict().ToList().ForEach(x => dict.Add(x.Key, x.Value));
-        UIAudioDataContext.ToDict().ToList().ForEach(x => dict.Add(x.Key, x.Value));
-        TraitAudioDataContext.ToDict().ToList().ForEach(x => dict.Add(x.Key, x.Value));
+        PlayerAudioDataContext?.ToDict().ToList().ForEach(x => dict.Add(x.Key, x.Value));
+        MonsterAudioDataContext?.ToDict().ToList().ForEach(x => dict.Add(x.Key, x.Value));
+        ItemAudioDataContext?.ToDict().ToList().ForEach(x => dict.Add(x.Key, x.Value));
+        EnvironmentAudioDataContext?.ToDict().ToList().ForEach(x => dict.Add(x.Key, x.Value));
+        BGMAudioDataContext?.ToDict().ToList().ForEach(x => dict.Add(x.Key, x.Value));
+        DirecitonAudioDataContext?.ToDict().ToList().ForEach(x => dict.Add(x.Key, x.Value));
+        UIAudioDataContext?.ToDict().ToList().ForEach(x => dict.Add(x.Key, x.Value));
+        TraitAudioDataContext?.ToDict().ToList().ForEach(x => dict.Add(x.Key, x.Value));
         return dict;
     }
 }

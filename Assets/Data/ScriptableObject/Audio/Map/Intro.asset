@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6683fa880a202c4297c562225fea568, type: 3}
   m_Name: Intro
   m_EditorClassIdentifier: Assembly-CSharp::MapAudioContext
-  PlayerAudioData:
+  PlayerAudioDataContext:
     PlayerAttackAudioDatas: []
     PlayerMoveAudioDatas: []
     PlayerSkillAudioDatas: []
-  MonsterAudioData:
+  MonsterAudioDataContext:
     MonsterAttackAudioDatas: []
     MonsterDieAudioDatas: []
     MonsterProjectileAudioDatas: []
@@ -26,11 +26,12 @@ MonoBehaviour:
   EnvironmentAudioDataContext:
     environmentAudioDatas: []
   BGMAudioDataContext:
-    bgmAudioDatas: []
+    bgmAudioDatas:
+    - {fileID: 11400000, guid: 48515b7644a90cc4cb217f23bccf97c3, type: 2}
   DirecitonAudioDataContext:
     directionalAudioDatas: []
   UIAudioDataContext:
     uiAudioDatas: []
   TraitAudioDataContext:
     traitAudioDatas: []
-  AutoSetBGM: 0
+  AutoSetBGM: 1

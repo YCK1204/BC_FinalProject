@@ -125,6 +125,12 @@ public class AudioManager : MonoBehaviour
             mapAudioDict.TryGetValue(x, out var audioData);
             if (audioData != null) _audioDataDict.Add(x, audioData);
         });
+
+        if (mapAudioContext.AutoSetBGM)
+        {
+            var bgmData = mapAudioContext.BGMAudioDataContext.bgmAudioDatas[0];
+            SetBgm(bgmData.AudioClip, bgmData.FadeInTime);
+        }
     }
     private AudioSource GetSource()
     {
@@ -165,6 +171,7 @@ public class AudioManager : MonoBehaviour
             Debug.LogError($"AudioManager Play Error! No AudioClip Key : {key.ToString()}");
             return;
         }
+
         AudioSource source = GetSource();
         source.spatialBlend = is3D ? 1f : 0f;
         source.loop = audioData.IsLoop;
@@ -236,13 +243,26 @@ public class AudioManager : MonoBehaviour
     /// <param name="bgm">재생할 BGM AudioClip</param>
     /// <param name="fadeInDuration">페이드인 지속 시간 (초 단위, 0이면 즉시 재생)</param>
     /// <param name="onFadeInCompleted">페이드인 완료 시 실행할 콜백</param>
-    public void SetBgm(AudioClip bgm, float fadeInDuration = 0f, Action onFadeInCompleted = null)
+    public void SetBgm(AudioKey.BGM key, Action onFadeInCompleted = null)
+    {
+        _audioDataDict.TryGetValue(key.ToString(), out var audioData);
+        if (audioData == null)
+        {
+            Debug.LogError($"AudioManager Play Error! No AudioData Key : {key.ToString()}");
+            return;
+        }
+        var bgmAudioData = audioData as BGMAudioData;
+        SetBgm(bgmAudioData.AudioClip, bgmAudioData.FadeInTime, onFadeInCompleted);
+    }
+    void SetBgm(AudioClip bgm, float fadeInDuration = 0f, Action onFadeInCompleted = null)
     {
         if (_bgmSource.clip == bgm) return;
+
         _bgmSource.clip = bgm;
         _bgmSource.loop = true;
+        _bgmSource.outputAudioMixerGroup = AudioMixer.FindMatchingGroups(AudioMixerType.BGM.ToString())[0];
         _bgmSource.Play();
-        _bgmSource.DOFade(1f, fadeInDuration).onComplete += () => onFadeInCompleted?.Invoke();
+        SetVolume(AudioMixerType.BGM, 1f, fadeInDuration);
     }
     /// <summary>
     /// BGM 정지 (페이드아웃 효과 지원)
@@ -276,16 +296,6 @@ public class AudioManager : MonoBehaviour
     #endregion
     #region Volume Control
     /// <summary>
-    /// BGM AudioSource의 볼륨 직접 설정
-    /// - 범위: 0.0 ~ 1.0
-    /// - AudioMixer 볼륨과는 별도로 동작
-    /// </summary>
-    /// <param name="volume">볼륨 값 (0.0 = 무음, 1.0 = 최대)</param>
-    public void SetBgmVolume(float volume)
-    {
-        _bgmSource.volume = volume;
-    }
-    /// <summary>
     /// AudioMixer 그룹의 볼륨 설정
     /// - MASTER: 전체 볼륨
     /// - BGM: 배경음악 볼륨
@@ -294,9 +304,15 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     /// <param name="type">볼륨을 설정할 AudioMixer 타입</param>
     /// <param name="volume">볼륨 값 (0.0001 ~ 1.0, 로그 스케일로 변환)</param>
-    public void SetVolume(AudioMixerType type, float volume)
+    public void SetVolume(AudioMixerType type, float volume, float fadeInDuration = 0f)
     {
-        AudioMixer.SetFloat(type.ToString(), Mathf.Log10(volume) * 20);
+        AudioMixer.SetFloat(type.ToString(), Mathf.Log10(0.001f) * 20);
+        AudioMixer.DOSetFloat(type.ToString(), Mathf.Log10(volume) * 20, fadeInDuration);
+    }
+    public float GetVolume(AudioMixerType type)
+    {
+        AudioMixer.GetFloat(type.ToString(), out var dbVolume);
+        return Mathf.Pow(10, dbVolume / 20);
     }
     #endregion
     /// <summary>
