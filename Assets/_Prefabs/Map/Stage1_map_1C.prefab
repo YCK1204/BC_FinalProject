@@ -108,7 +108,8 @@ MonoBehaviour:
   - Prefab: {fileID: 5346025083666735753, guid: b0d51f84096c8104ba7d07c73f983a6a, type: 3}
     Position: {x: 42, y: 6}
   Root: {fileID: 0}
-  NextSpawners: []
+  NextSpawners:
+  - {fileID: 430182022504545689}
   GizmoColor: {r: 1, g: 0, b: 0, a: 1}
   GizmoSize: 1
 --- !u!61 &2718388511151576120
@@ -10719,7 +10720,7 @@ GameObject:
   m_Component:
   - component: {fileID: 416774993288512733}
   m_Layer: 14
-  m_Name: Stage1_map3
+  m_Name: Stage1_map_1C
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
