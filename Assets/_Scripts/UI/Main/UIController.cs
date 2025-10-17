@@ -33,9 +33,10 @@ public class UIController : MonoBehaviour
         _stateMap = new Dictionary<UiState, UiStateBase>
         {
             { UiState.Hidden, new HiddenState(this) },
-            { UiState.NormalView, new NormalViewState(this) },
-            { UiState.WideView, new WideViewState(this) },
-            { UiState.FullScreen, new FullScreenState(this) },
+            { UiState.Main, new MainState(this) },
+            { UiState.Inven, new InventoryState(this) },
+            { UiState.Stats, new CharacterStatsState(this) },
+            { UiState.Setting, new SettingsState(this) },
         };
 
         // 화면 등록
@@ -57,7 +58,7 @@ public class UIController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && !PlayerManager.Instance.Player.OnTrait && !PlayerManager.Instance.Player.IsDead)
         {
             Debug.Log($"esc - {CurrentState}");
-            if (CurrentState == UiState.NormalView)
+            if (CurrentState == UiState.Main)
             {
                 _uiFade.Play("off_UI", 0, 0f);
                 HideUI();
@@ -129,15 +130,12 @@ public class UIController : MonoBehaviour
         }
     }
 
-    public void ShowNormalView() => ChangeState(UiState.NormalView);
-    public void ShowWideView() => ChangeState(UiState.WideView);
-    public void ShowFullScreen() => ChangeState(UiState.FullScreen);
+    public void ShowNormalView() => ChangeState(UiState.Main);
+    public void ShowWideView() => ChangeState(UiState.Inven);
+    public void ShowFullScreen() => ChangeState(UiState.Stats);
     public void HideUI() => ChangeState(UiState.Hidden);
+    public void ShowSettingUI() => ChangeState(UiState.Setting);
 
-    public void ShowSettingUI()
-    {
-        Animator.SetBool("Setting", true);
-    }
     public void BackUI()
     {
         if (Animator.GetBool("Setting"))
@@ -148,17 +146,17 @@ public class UIController : MonoBehaviour
         {
             switch (CurrentState)
             {
-                case UiState.WideView:
-                    ChangeState(UiState.NormalView);
+                case UiState.Inven:
+                    ChangeState(UiState.Main);
                     break;
 
-                case UiState.NormalView:
+                case UiState.Main:
                     _uiFade.Play("off_UI", 0, 0f);
                     ChangeState(UiState.Hidden);
                     break;
 
-                case UiState.FullScreen:
-                    ChangeState(UiState.NormalView);
+                case UiState.Stats:
+                    ChangeState(UiState.Main);
                     break;
 
                 case UiState.Hidden:

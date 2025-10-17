@@ -23,23 +23,23 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     {
         KillTween();
 
-        Debug.Log("»£πˆ");
+        Debug.Log("Ìò∏Î≤Ñ");
         //transform.localScale = btuScale * 1.05f;
-        currentTweenA = transform.DOScale(0.8f, 0.2f);
+        currentTweenA = transform.DOScale(0.75f, 0.2f);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         KillTween();
 
-        Debug.Log("≥™∞®");
+        Debug.Log("ÎÇòÍ∞ê");
         //transform.localScale = btuScale;
         currentTweenA = transform.DOScale(0.7f, 0.2f);
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log($"¥©∏ß {on}");
+        Debug.Log($"ÎàÑÎ¶Ñ {on}");
         if (on) return;
         on = true;
 
@@ -48,7 +48,7 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             currentTweenB.Kill();
         }
 
-        currentTweenB = transform.DOPunchScale(new Vector3(-0.1f, -0.1f, -0.1f), 0.3f, 10, 1)
+        currentTweenB = transform.DOPunchScale(new Vector3(-0.05f, -0.05f, -0.05f), 0.3f, 10, 1)
             .OnComplete(() => {
                  on = false;
                 OnClicked?.Invoke();
@@ -57,16 +57,16 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Debug.Log("∂¿");
+        Debug.Log("Îóå");
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
         
 
-        Debug.Log("¿Ã∫•∆Æ");
+        Debug.Log("Ïù¥Î≤§Ìä∏");
         
-        // ¿Ã∫•∆Æ
+        // Ïù¥Î≤§Ìä∏
     }
 
     private void KillTween()

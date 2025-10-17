@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class FullScreenState : UiStateBase
+public class CharacterStatsState : UiStateBase
 {
-    public FullScreenState(UIController controller) : base(controller) { }
+    public CharacterStatsState(UIController controller) : base(controller) { }
 
     public override void Enter()
     {

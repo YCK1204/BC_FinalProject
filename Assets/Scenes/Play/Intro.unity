@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SmallSlime
       objectReference: {fileID: 0}
+    - target: {fileID: 214553272594497168, guid: edc49433c60f6d64a98d31f56a0869e2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7436268963657580372, guid: edc49433c60f6d64a98d31f56a0869e2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 40.89
@@ -16104,6 +16108,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SmallSlime (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 214553272594497168, guid: edc49433c60f6d64a98d31f56a0869e2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7436268963657580372, guid: edc49433c60f6d64a98d31f56a0869e2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 44.82539
@@ -16572,6 +16580,10 @@ PrefabInstance:
     - target: {fileID: 214553272594497168, guid: edc49433c60f6d64a98d31f56a0869e2, type: 3}
       propertyPath: m_Name
       value: SmallSlime (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 214553272594497168, guid: edc49433c60f6d64a98d31f56a0869e2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7436268963657580372, guid: edc49433c60f6d64a98d31f56a0869e2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17307,6 +17319,7 @@ MonoBehaviour:
     HurtParameterHash: 1740614436
     DieParameterHash: 20298039
     ComboParameterHash: 1895636814
+    AwakeningParameterHash: 1269572527
   DataSerialized:
     GroundData:
       BaseSpeed: 5
@@ -17372,9 +17385,10 @@ MonoBehaviour:
         KnockbackPower: 4
         AnimName: 
     awakening:
-      maxAwakeningGauge: 100
-      awakeningOnHit: 2.5
-      duration: 10
+      MaxAwakeningGauge: 100
+      AwakeningOnHit: 10
+      Duration: 10
+      AwakeningAnimDuration: 1.5
     SkillData:
       QSkillCastingDuration: 0.5
       QSkillCooldown: 1

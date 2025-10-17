@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class NormalViewState : UiStateBase
+public class MainState : UiStateBase
 {
-    public NormalViewState(UIController controller) : base(controller) { }
+    public MainState(UIController controller) : base(controller) { }
 
     public override void Enter()
     {
