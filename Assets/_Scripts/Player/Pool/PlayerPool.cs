@@ -25,9 +25,11 @@ public class PlayerPool : MonoBehaviour
 
         Queue<GameObject> pool = _poolDictionary[prefabName];
 
+        GameObject obj;
+
         if (pool.Count > 0)
         {
-            GameObject obj = pool.Dequeue();
+            obj = pool.Dequeue();
             obj.transform.position = position;
             obj.transform.rotation = rotation;
             obj.SetActive(true);
@@ -35,7 +37,7 @@ public class PlayerPool : MonoBehaviour
         }
         else
         {
-            GameObject obj = Instantiate(prefab, position, rotation);
+            obj = Instantiate(prefab, position, rotation, transform);
 
             EffectReturn effectReturn = obj.GetComponent<EffectReturn>();
             if (effectReturn != null)

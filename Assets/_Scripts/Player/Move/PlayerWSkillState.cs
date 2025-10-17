@@ -21,6 +21,7 @@ namespace Game.Player
             base.Exit();
             _stateMachine.MarkWSkillUsed();
             Debug.Log("W 스킬종료");
+            PlayerManager.Instance.Player.Animator.Play("Idle", 0, 0f);
         }
     }
 }

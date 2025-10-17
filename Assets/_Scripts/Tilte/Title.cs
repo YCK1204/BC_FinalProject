@@ -8,6 +8,7 @@ public class Title : MonoBehaviour
     [SerializeField] private GameObject _gameUI;
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _camera;
+    [SerializeField] private GameObject _mainCamera;
 
     [Header("Anim")]
     [SerializeField] private Animator _playerAnimator;
@@ -27,6 +28,7 @@ public class Title : MonoBehaviour
         _camera.SetActive(false);
 
         _player.SetActive(true);
+        _mainCamera.SetActive(true);
 
         _playerAnimator.Play("Landing", 0, 0f);
         PlayerManager.Instance.Player.SetPlayerInput(false);

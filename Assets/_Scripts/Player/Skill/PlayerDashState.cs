@@ -25,13 +25,9 @@ namespace Game.Player
             _prevGravity = _stateMachine.Player.Rb.gravityScale;
             _stateMachine.Player.Rb.gravityScale = 0f;
 
-#if UNITY_2022_3_OR_NEWER
             var v = _stateMachine.Player.Rb.linearVelocity;
             _stateMachine.Player.Rb.linearVelocity = new Vector2(v.x, 0f);
-#else
-            var v = _stateMachine.Player.Rb.velocity;
-            _stateMachine.Player.Rb.velocity = new Vector2(v.x, 0f);
-#endif
+
 
             _stateMachine.MovementSpeedModifier = _stateMachine.DashSpeedMult;
             StartAnimation(_stateMachine.Player.AnimationData.DashParameterHash);

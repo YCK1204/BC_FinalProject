@@ -47,7 +47,7 @@ namespace Game.Player
                     player.Data.CombatData.CriticalChance += val;
                     break;
                 case ItemExtraStatType.AwakenDuration:
-                    player.Data.awakening.duration += val;
+                    player.Data.awakening.Duration += val;
                     break;
                 case ItemExtraStatType.PlusSpeed:
                     //player.Data.Stats.MoveSpeed += val;
@@ -88,7 +88,7 @@ namespace Game.Player
                     player.Data.CombatData.CriticalChance -= val;
                     break;
                 case ItemExtraStatType.AwakenDuration:
-                    player.Data.awakening.duration -= val;
+                    player.Data.awakening.Duration -= val;
                     break;
                 case ItemExtraStatType.PlusSpeed:
                     //player.Data.Stats.MoveSpeed -= val;

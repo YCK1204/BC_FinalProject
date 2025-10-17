@@ -1,25 +1,40 @@
 fileFormatVersion: 2
-guid: 4a7ff89ae5ba9ee4880866f459138922
+guid: 990bb63b25b3e224db9ca454a5f43696
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3679201514497855568
-    second: SlashFX Combo3 sheet_0
+      213: 7773031391787181946
+    second: sprite-sheet_0
   - first:
-      213: -669632192562743492
-    second: SlashFX Combo3 sheet_1
+      213: -1426790471357470633
+    second: sprite-sheet_1
   - first:
-      213: -8504501931282011906
-    second: SlashFX Combo3 sheet_2
+      213: -2506210909196879853
+    second: sprite-sheet_2
   - first:
-      213: -4952648635671445252
-    second: SlashFX Combo3 sheet_3
+      213: -8907015550746980148
+    second: sprite-sheet_3
   - first:
-      213: 5690443051400067676
-    second: SlashFX Combo3 sheet_4
+      213: -3085487725770422062
+    second: sprite-sheet_4
   - first:
-      213: -7867354919124456816
-    second: SlashFX Combo3 sheet_5
+      213: -7371053094594084745
+    second: sprite-sheet_5
+  - first:
+      213: -3062665138650254500
+    second: sprite-sheet_6
+  - first:
+      213: -1924591734268745998
+    second: sprite-sheet_7
+  - first:
+      213: 2940483688060090369
+    second: sprite-sheet_8
+  - first:
+      213: 4123475054659131201
+    second: sprite-sheet_9
+  - first:
+      213: -7328016140542092180
+    second: sprite-sheet_10
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -66,7 +81,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 40
+  spritePixelsToUnits: 30
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -111,24 +126,121 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: SlashFX Combo3 sheet_0
+      name: sprite-sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a776f671eda5fdb60800000000000000
+      internalID: 7773031391787181946
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite-sheet_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75863d130a5033ce0800000000000000
+      internalID: -1426790471357470633
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite-sheet_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3187c11e476283dd0800000000000000
+      internalID: -2506210909196879853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite-sheet_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cc098d84c8ce36480800000000000000
+      internalID: -8907015550746980148
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite-sheet_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d840a2d2452e25d0800000000000000
+      internalID: -3085487725770422062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: sprite-sheet_5
       rect:
         serializedVersion: 2
         x: 0
@@ -143,14 +255,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 05059b0c8462f0330800000000000000
-      internalID: 3679201514497855568
+      spriteID: 7700d249342c4b990800000000000000
+      internalID: -7371053094594084745
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SlashFX Combo3 sheet_1
+      name: sprite-sheet_6
       rect:
         serializedVersion: 2
         x: 128
@@ -165,14 +277,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c37b128911df4b6f0800000000000000
-      internalID: -669632192562743492
+      spriteID: c5377c8784a3f75d0800000000000000
+      internalID: -3062665138650254500
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SlashFX Combo3 sheet_2
+      name: sprite-sheet_7
       rect:
         serializedVersion: 2
         x: 256
@@ -187,14 +299,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ef8ef426d80f9f980800000000000000
-      internalID: -8504501931282011906
+      spriteID: 2f6224db30a7a45e0800000000000000
+      internalID: -1924591734268745998
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: SlashFX Combo3 sheet_3
+      name: sprite-sheet_8
       rect:
         serializedVersion: 2
         x: 384
@@ -209,8 +321,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: cf00b7d5e48a44bb0800000000000000
-      internalID: -4952648635671445252
+      spriteID: 108f6aeb552bec820800000000000000
+      internalID: 2940483688060090369
       vertices: []
       indices: 
       edges: []
@@ -219,7 +331,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: fb31b3e33f5a24d4386dd4a645b10b3a
+    spriteID: e67359e35b2cf214d897eeadae07dd61
     internalID: 0
     vertices: []
     indices: 
@@ -228,15 +340,18 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries:
-      - key: SpriteEditor.SliceOnImport
-        value: False
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":128.0,"y":128.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      SlashFX Combo3 sheet_0: 3679201514497855568
-      SlashFX Combo3 sheet_1: -669632192562743492
-      SlashFX Combo3 sheet_2: -8504501931282011906
-      SlashFX Combo3 sheet_3: -4952648635671445252
+      sprite-sheet_0: 7773031391787181946
+      sprite-sheet_1: -1426790471357470633
+      sprite-sheet_2: -2506210909196879853
+      sprite-sheet_3: -8907015550746980148
+      sprite-sheet_4: -3085487725770422062
+      sprite-sheet_5: -7371053094594084745
+      sprite-sheet_6: -3062665138650254500
+      sprite-sheet_7: -1924591734268745998
+      sprite-sheet_8: 2940483688060090369
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

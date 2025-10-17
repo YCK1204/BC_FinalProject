@@ -16,5 +16,7 @@ namespace Game.Player
         public int HurtParameterHash = Animator.StringToHash("Hurt");
         public int DieParameterHash = Animator.StringToHash("Die");
         public int ComboParameterHash = Animator.StringToHash("Combo");
+
+        public int AwakeningParameterHash = Animator.StringToHash("Awaken");
     }
 }
