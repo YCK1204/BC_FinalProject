@@ -80,6 +80,8 @@ public abstract class NormalMonster : BaseMonster, Game.Monster.IDamageable
         _dataHandler.Init();
         OnHit += HitFlash;
 
+        RegisterIgnoreCollider(PlayerManager.Instance.Player.GetComponent<Collider2D>());
+
         Init();
     }
 
