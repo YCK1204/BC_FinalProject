@@ -7463,8 +7463,8 @@ MonoBehaviour:
   _hitDelay2: 0.4
   _hitMultiplier: 1.2
   _hitMultiplier2: 1.4
-  _SlashPrefab_1: {fileID: 0}
-  _SlashPrefab_2: {fileID: 0}
+  _slashPrefab: {fileID: 0}
+  _spawnOffset: {x: 1, y: 0}
 --- !u!114 &1324951073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7647,6 +7647,7 @@ MonoBehaviour:
     HurtParameterHash: 1740614436
     DieParameterHash: 20298039
     ComboParameterHash: 1895636814
+    AwakeningParameterHash: 1269572527
   DataSerialized:
     GroundData:
       BaseSpeed: 5
@@ -7712,9 +7713,10 @@ MonoBehaviour:
         KnockbackPower: 4
         AnimName: Attack_3
     awakening:
-      maxAwakeningGauge: 100
-      awakeningOnHit: 2.5
-      duration: 10
+      MaxAwakeningGauge: 100
+      AwakeningOnHit: 10
+      Duration: 10
+      AwakeningAnimDuration: 1.5
     SkillData:
       QSkillCastingDuration: 0
       QSkillCooldown: 1
@@ -7798,6 +7800,7 @@ MonoBehaviour:
   _gameUI: {fileID: 949544081}
   _player: {fileID: 1324951070}
   _camera: {fileID: 232773206}
+  _mainCamera: {fileID: 0}
   _playerAnimator: {fileID: 2016699130}
   _titleAnimator: {fileID: 345920689}
   _uiAnimator: {fileID: 949544083}

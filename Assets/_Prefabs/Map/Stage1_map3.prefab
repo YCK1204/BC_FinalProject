@@ -46,13 +46,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AutoMonsterSpawner
   SpawnInfos:
   - Prefab: {fileID: 213162892808832554, guid: 911cf179560f9b44fabca07333225250, type: 3}
-    Position: {x: 0, y: -4}
-  - Prefab: {fileID: 213162892808832554, guid: 911cf179560f9b44fabca07333225250, type: 3}
-    Position: {x: 3, y: -4}
+    Position: {x: 1, y: -4}
   - Prefab: {fileID: 3147132771611515457, guid: 8f1fd914d5d402545a1f8a28e7e28e93, type: 3}
-    Position: {x: 6, y: -4}
-  - Prefab: {fileID: 8364519739090574707, guid: 5f9ea8fe861564f44b81a81fe12adddc, type: 3}
     Position: {x: 7, y: -4}
+  - Prefab: {fileID: 5346025083666735753, guid: b0d51f84096c8104ba7d07c73f983a6a, type: 3}
+    Position: {x: 4, y: -4}
   Root: {fileID: 0}
   NextSpawners: []
   GizmoColor: {r: 1, g: 0, b: 0, a: 1}
@@ -84,7 +82,7 @@ Transform:
   m_GameObject: {fileID: 3122831980294707597}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 44, y: 10, z: 0}
+  m_LocalPosition: {x: 44.5, y: 10, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -104,15 +102,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AreaMonsterSpawner
   SpawnInfos:
   - Prefab: {fileID: 213162892808832554, guid: 911cf179560f9b44fabca07333225250, type: 3}
-    Position: {x: 44, y: 6}
-  - Prefab: {fileID: 213162892808832554, guid: 911cf179560f9b44fabca07333225250, type: 3}
-    Position: {x: 38, y: 6}
-  - Prefab: {fileID: 3147132771611515457, guid: 8f1fd914d5d402545a1f8a28e7e28e93, type: 3}
-    Position: {x: 36, y: 6}
-  - Prefab: {fileID: 8364519739090574707, guid: 5f9ea8fe861564f44b81a81fe12adddc, type: 3}
-    Position: {x: 32, y: 6}
+    Position: {x: 34, y: 6}
   - Prefab: {fileID: 403116380218979254, guid: 31e8fc94f4f82b443ba7f0ba01dac1dc, type: 3}
-    Position: {x: 30, y: 6}
+    Position: {x: 38, y: 6}
+  - Prefab: {fileID: 5346025083666735753, guid: b0d51f84096c8104ba7d07c73f983a6a, type: 3}
+    Position: {x: 42, y: 6}
   Root: {fileID: 0}
   NextSpawners: []
   GizmoColor: {r: 1, g: 0, b: 0, a: 1}
@@ -161,7 +155,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 10, y: 3}
+  m_Size: {x: 7, y: 4}
   m_EdgeRadius: 0
 --- !u!1 &3596850166955524445
 GameObject:
@@ -10636,7 +10630,7 @@ Transform:
   m_GameObject: {fileID: 6115394109192914206}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3, y: 18, z: 0}
+  m_LocalPosition: {x: -3, y: 17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10656,21 +10650,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AreaMonsterSpawner
   SpawnInfos:
   - Prefab: {fileID: 213162892808832554, guid: 911cf179560f9b44fabca07333225250, type: 3}
-    Position: {x: 15, y: 15}
-  - Prefab: {fileID: 213162892808832554, guid: 911cf179560f9b44fabca07333225250, type: 3}
     Position: {x: 9, y: 15}
+  - Prefab: {fileID: 213162892808832554, guid: 911cf179560f9b44fabca07333225250, type: 3}
+    Position: {x: 12, y: 15}
   - Prefab: {fileID: 8364519739090574707, guid: 5f9ea8fe861564f44b81a81fe12adddc, type: 3}
+    Position: {x: 15, y: 15}
+  - Prefab: {fileID: 3147132771611515457, guid: 8f1fd914d5d402545a1f8a28e7e28e93, type: 3}
     Position: {x: 18, y: 15}
   - Prefab: {fileID: 3147132771611515457, guid: 8f1fd914d5d402545a1f8a28e7e28e93, type: 3}
-    Position: {x: 20, y: 15}
-  - Prefab: {fileID: 213162892808832554, guid: 911cf179560f9b44fabca07333225250, type: 3}
-    Position: {x: 22, y: 15}
-  - Prefab: {fileID: 3147132771611515457, guid: 8f1fd914d5d402545a1f8a28e7e28e93, type: 3}
-    Position: {x: 24, y: 15}
-  - Prefab: {fileID: 3147132771611515457, guid: 8f1fd914d5d402545a1f8a28e7e28e93, type: 3}
-    Position: {x: 11, y: 15}
-  - Prefab: {fileID: 213162892808832554, guid: 911cf179560f9b44fabca07333225250, type: 3}
-    Position: {x: 26, y: 15}
+    Position: {x: 21, y: 15}
   Root: {fileID: 0}
   NextSpawners: []
   GizmoColor: {r: 1, g: 0, b: 0, a: 1}
@@ -10719,7 +10707,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 7, y: 10}
+  m_Size: {x: 6, y: 10}
   m_EdgeRadius: 0
 --- !u!1 &6555901067502335982
 GameObject:
@@ -10759,6 +10747,7 @@ Transform:
   - {fileID: 7926012501650914594}
   - {fileID: 7123191227725210128}
   - {fileID: 6805997428919902823}
+  - {fileID: 2306986206800987102}
   - {fileID: 6701610893982426082}
   - {fileID: 4700274824855743766}
   m_Father: {fileID: 0}
@@ -10789,7 +10778,7 @@ Transform:
   m_GameObject: {fileID: 7071102478843323637}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4, y: -3.5, z: 0}
+  m_LocalPosition: {x: -4, y: -3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -10809,6 +10798,59 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::GizmoBox
   boxSize: {x: 2, y: 2, z: 2}
   gizmoColor: {r: 0, g: 0.83948016, b: 1, a: 1}
+--- !u!1 &7240805398420308299
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2306986206800987102}
+  - component: {fileID: 430182022504545689}
+  m_Layer: 14
+  m_Name: Spawner_Chain
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2306986206800987102
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7240805398420308299}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 416774993288512733}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &430182022504545689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7240805398420308299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d399906c724de1448b24df2b1d812819, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ChainMonsterSpawner
+  SpawnInfos:
+  - Prefab: {fileID: 3147132771611515457, guid: 8f1fd914d5d402545a1f8a28e7e28e93, type: 3}
+    Position: {x: 34, y: 1}
+  - Prefab: {fileID: 8364519739090574707, guid: 5f9ea8fe861564f44b81a81fe12adddc, type: 3}
+    Position: {x: 38, y: 1}
+  Root: {fileID: 0}
+  NextSpawners: []
+  GizmoColor: {r: 1, g: 1, b: 1, a: 1}
+  GizmoSize: 1
 --- !u!1 &8153836008364919978
 GameObject:
   m_ObjectHideFlags: 0
