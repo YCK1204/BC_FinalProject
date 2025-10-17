@@ -6,101 +6,101 @@ public static class AudioKey
     {
         public enum Move
         {
-            WALK,
-            DASH,
-            JUMP_START,
-            JUMP_END,
-            TAKE_DAMAGE,
+            P_MOVE_WALK,
+            P_MOVE_DASH,
+            P_MOVE_JUMP_START,
+            P_MOVE_JUMP_END,
+            P_MOVE_TAKE_DAMAGE,
         }
         public enum Hit
         {
-            MISS,
-            UNDEAD_BOSS,
-            UNDEAD_SHIELD,
-            SLIME,
-            GOLEM,
+            P_HIT_MISS,
+            P_HIT_UNDEAD_BOSS,
+            P_HIT_UNDEAD_SHIELD,
+            P_HIT_SLIME,
+            P_HIT_GOLEM,
         }
         public enum Skill
         {
-            SHADOW_CREATE,
-            SHADOW_HIT,
-            WIND_SWING,
-            HIT_EXTRA_AWAKEN,
+            P_SKILL_SHADOW_CREATE,
+            P_SKILL_SHADOW_HIT,
+            P_SKILL_WIND_SWING,
+            P_SKILL_HIT_EXTRA_AWAKEN,
         }
     }
     public static class Monster
     {
         public enum Die
         {
-            SLIME,
-            UNDEAD,
-            GOLEM,
-            BOSS,
+            M_DIE_SLIME,
+            M_DIE_UNDEAD,
+            M_DIE_GOLEM,
+            M_DIE_BOSS,
         }
         public enum Attack
         {
-            UNDEAD_CLOSE,
-            UNDEAD_MAGE,
-            GOLEM,
-            BOSS_HAND_DOWN,
-            BOSS_LASER,
-            BOSS_ORB_PHASE1,
-            BOSS_ORB_PHASE2,
-            BOSS_BREATH,
+            M_ATK_UNDEAD_CLOSE,
+            M_ATK_UNDEAD_MAGE,
+            M_ATK_GOLEM,
+            M_ATK_BOSS_HAND_DOWN,
+            M_ATK_BOSS_LASER,
+            M_ATK_BOSS_ORB_PHASE1,
+            M_ATK_BOSS_ORB_PHASE2,
+            M_ATK_BOSS_BREATH,
         }
         public enum Projectile
         {
-            UNDEAD_MAGE_CREATE,
-            UNDEAD_MAGE_SHOT,
+            M_PROJ_UNDEAD_MAGE_CREATE,
+            M_PROJ_UNDEAD_MAGE_SHOT,
         }
     }
     public static class Item
     {
         public enum Box
         {
-            BOX_SHAKE,
-            BOX_OPEN,
-            LEGENDARY_ITEM,
-            COLLECT_ITEM,
+            ITEM_BOX_SHAKE,
+            ITEM_BOX_OPEN,
+            ITEM_BOX_LEGENDARY_ITEM,
+            ITEM_BOX_COLLECT_ITEM,
         }
         public enum Effect
         {
-            WIND,
-            THUNDER,
-            HOWLING,
+            ITEM_EFFECT_WIND,
+            ITEM_EFFECT_THUNDER,
+            ITEM_EFFECT_HOWLING,
         }
     }
     public enum Direction
     {
-        BOSS_START,
-        STAGE_CLEAR,
-        DEATH_SCREEN_DARKEN,
-        DEATH_SCREEN_LIGHTEN,
-        DEATH_TEXT,
-        PLAYER_SPAWN,
+        DIR_BOSS_START,
+        DIR_STAGE_CLEAR,
+        DIR_DEATH_SCREEN_DARKEN,
+        DIR_DEATH_SCREEN_LIGHTEN,
+        DIR_DEATH_TEXT,
+        DIR_PLAYER_SPAWN,
     }
     public enum BGM
     {
-        BASE,
-        BOSS_PHASE1,
-        BOSS_PHASE2,
+        BGM_BASE,
+        BGM_BOSS_PHASE1,
+        BGM_BOSS_PHASE2,
     }
     public enum UI
     {
-        CLICK,
-        TITLE
+        UI_CLICK,
+        UI_TITLE
     }
     public enum Trait
     {
-        NPC_INTERACT,
-        SUCCESS,
-        FAIL,
+        TRAIT_NPC_INTERACT,
+        TRAIT_SUCCESS,
+        TRAIT_FAIL,
     }
     public enum Environment
     {
-        PORTAL,
-        GOLD_DESTROY,
-        GOLD_COLLECT,
+        ENV_PORTAL,
+        ENV_GOLD_DESTROY,
+        ENV_GOLD_COLLECT,
     }
 }
 public class AudioData : ScriptableObject

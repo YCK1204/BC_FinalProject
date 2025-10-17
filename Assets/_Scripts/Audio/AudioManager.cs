@@ -36,8 +36,6 @@ class LoopingAudio
 public class AudioManager : MonoBehaviour
 {
     [SerializeField]
-    string AddrGroup = "Audio";
-    [SerializeField]
     AudioMixer AudioMixer;
     [SerializeField]
     AudioSource Prefab;
