@@ -4121,7 +4121,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 61879
+    m_Bits: 127415
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -4840,6 +4840,7 @@ MonoBehaviour:
   - {fileID: 70534995776027679, guid: 04b4346aed2461f4da8c26501d069973, type: 3}
   - {fileID: 7931798618544817307, guid: 036350b34cb42494e973a9ce3b2b1d63, type: 3}
   _bossroomPrefabs: {fileID: 9068971754435094937, guid: 9d6c2ce076308014d9373e5e1198207b, type: 3}
+  _itemRoomPrefab: {fileID: 0}
   _bossRoomTrigger: 6
   OnPortal: 1
 --- !u!4 &922601901
