@@ -99,7 +99,7 @@ namespace Game.Traits
             d.CombatData.CriticalDamage -= _applied.CriticalDamage;
             d.CombatData.CriticalChance -= _applied.CriticalChance;
 
-            d.awakening.duration -= _applied.AwakenDuration;
+            d.awakening.Duration -= _applied.AwakenDuration;
 
             _applied = default;
         }
@@ -152,7 +152,7 @@ namespace Game.Traits
             d.CombatData.CriticalDamage += dlt.CriticalDamage;
             d.CombatData.CriticalChance += dlt.CriticalChance;
 
-            d.awakening.duration += dlt.AwakenDuration;
+            d.awakening.Duration += dlt.AwakenDuration;
         }
     }
 }
