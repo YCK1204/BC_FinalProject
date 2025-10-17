@@ -28,9 +28,16 @@ namespace Game.Player
                 bool attack = kb != null && kb.aKey.wasPressedThisFrame;
                 bool qSkill = kb != null && kb.qKey.wasPressedThisFrame;
                 bool wSkill = kb != null && kb.wKey.wasPressedThisFrame;
+                bool awaken = kb != null && kb.dKey.wasPressedThisFrame;
 
                 _stateMachine.DashPressed = dash;
 
+
+                if (awaken && _stateMachine.Player.CanAwaken())
+                {
+                    _stateMachine.ChangeState(_stateMachine.AwakeningState);
+                    return;
+                }
                 if (qSkill && _stateMachine.CanUseQSkill())
                 {
                     _stateMachine.ChangeState(_stateMachine.QSkillState);

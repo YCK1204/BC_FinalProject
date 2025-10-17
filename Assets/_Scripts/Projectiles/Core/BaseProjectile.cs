@@ -51,10 +51,10 @@ public abstract class BaseProjectile : MonoBehaviour
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {
         IDamageable damageable = other.gameObject.GetComponentInChildren<IDamageable>();
-        if (damageable == null) return;
         // 플레이어면 데미지
         if((1 << other.gameObject.layer) == LayerMask.GetMask(Game.Monster.Layers.Player))
         {
+            if (damageable == null) return;
             // 무적 체크
             PlayerCharacter pc = other.GetComponent<PlayerCharacter>();
             if (pc != null && pc.Invincible)
@@ -73,8 +73,7 @@ public abstract class BaseProjectile : MonoBehaviour
         }
         // 벽이나 땅이면 소멸
         // 일단 플레이어에 damageable이 없어서 조건 추가함
-        else if((1 << other.gameObject.layer) == LayerMask.GetMask(Game.Monster.Layers.Ground) ||
-                 (1 << other.gameObject.layer) == LayerMask.GetMask(Game.Monster.Layers.Player))
+        else if((1 << other.gameObject.layer) == LayerMask.GetMask(Game.Monster.Layers.Ground))
         {
             DestroyProjectile();
         }

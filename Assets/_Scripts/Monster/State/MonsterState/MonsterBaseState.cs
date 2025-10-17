@@ -29,7 +29,7 @@ public abstract class MonsterBaseState : Game.Monster.IState
 
         _curCheckTime = 0;
         _maxCheckTime = 0.2f;
-        CheckColliders();
+        //CheckColliders();
     }
 
     public virtual void Enter() { /*Debug.Log(StateType);*/ }
@@ -83,7 +83,7 @@ public abstract class MonsterBaseState : Game.Monster.IState
     {
         // 공격 가능 여부 확인
         Collider2D[] ignoreCollider = Physics2D.OverlapCircleAll(_stateMachine.Owner.transform.position,
-                                                    _stateMachine.Owner.MonsterData.DetectRange, _playerLayer | _monsterLayer);
+                                                    _stateMachine.Owner.MonsterData.DetectRange, _playerLayer);
 
         foreach (Collider2D collider in ignoreCollider)
         {

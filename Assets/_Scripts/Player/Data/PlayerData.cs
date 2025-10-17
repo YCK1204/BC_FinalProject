@@ -104,10 +104,11 @@ namespace Game.Player
     [Serializable]
     public class PlayerAwakeningData
     {
-        public float maxAwakeningGauge = 100f;
-        public float awakeningOnHit = 10f;
+        public float MaxAwakeningGauge = 100f;
+        public float AwakeningOnHit = 10f;
 
-        public float duration = 10f;
+        public float Duration = 10f;
+        public float AwakeningAnimDuration = 1.5f;
     }
 
     [System.Serializable]
@@ -182,9 +183,10 @@ namespace Game.Player
                 },
                 awakening = new PlayerAwakeningData
                 {
-                    maxAwakeningGauge = awakening.maxAwakeningGauge,
-                    awakeningOnHit = awakening.awakeningOnHit,
-                    duration = awakening.duration
+                    MaxAwakeningGauge = awakening.MaxAwakeningGauge,
+                    AwakeningOnHit = awakening.AwakeningOnHit,
+                    Duration = awakening.Duration,
+                    AwakeningAnimDuration = awakening.AwakeningAnimDuration
                 },
                 SkillData = new PlayerSkillData
                 {
