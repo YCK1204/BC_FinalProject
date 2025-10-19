@@ -117,7 +117,7 @@ Transform:
   m_GameObject: {fileID: 689020228350834554}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 22.23, y: 0.03, z: 0}
+  m_LocalPosition: {x: 22, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -136,23 +136,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AreaMonsterSpawner
   SpawnInfos:
-  - Prefab: {fileID: 403116380218979254, guid: 31e8fc94f4f82b443ba7f0ba01dac1dc, type: 3}
-    Position: {x: 37, y: -7}
   - Prefab: {fileID: 5346025083666735753, guid: b0d51f84096c8104ba7d07c73f983a6a, type: 3}
-    Position: {x: 40, y: -7}
-  - Prefab: {fileID: 213162892808832554, guid: 911cf179560f9b44fabca07333225250, type: 3}
-    Position: {x: 43, y: -7}
-  - Prefab: {fileID: 213162892808832554, guid: 911cf179560f9b44fabca07333225250, type: 3}
-    Position: {x: 46, y: -7}
+    Position: {x: 34, y: -7}
   - Prefab: {fileID: 3147132771611515457, guid: 8f1fd914d5d402545a1f8a28e7e28e93, type: 3}
-    Position: {x: 49, y: -7}
+    Position: {x: 38, y: -7}
   - Prefab: {fileID: 3147132771611515457, guid: 8f1fd914d5d402545a1f8a28e7e28e93, type: 3}
-    Position: {x: 52, y: -7}
-  - Prefab: {fileID: 8364519739090574707, guid: 5f9ea8fe861564f44b81a81fe12adddc, type: 3}
-    Position: {x: 55, y: -7}
+    Position: {x: 42, y: -7}
+  - Prefab: {fileID: 213162892808832554, guid: 911cf179560f9b44fabca07333225250, type: 3}
+    Position: {x: 48, y: 1}
+  - Prefab: {fileID: 3147132771611515457, guid: 8f1fd914d5d402545a1f8a28e7e28e93, type: 3}
+    Position: {x: 52, y: 1}
   Root: {fileID: 0}
   NextSpawners: []
-  GizmoColor: {r: 1, g: 0, b: 0, a: 1}
+  GizmoColor: {r: 0, g: 0.92699885, b: 1, a: 1}
   GizmoSize: 1
 --- !u!61 &1022330499136878222
 BoxCollider2D:
@@ -198,7 +194,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 6, y: 6}
+  m_Size: {x: 2, y: 6}
   m_EdgeRadius: 0
 --- !u!1 &816839339393992328
 GameObject:
@@ -6124,18 +6120,122 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AutoMonsterSpawner
   SpawnInfos:
-  - Prefab: {fileID: 403116380218979254, guid: 31e8fc94f4f82b443ba7f0ba01dac1dc, type: 3}
-    Position: {x: 1, y: -6}
-  - Prefab: {fileID: 213162892808832554, guid: 911cf179560f9b44fabca07333225250, type: 3}
-    Position: {x: 5, y: -6}
-  - Prefab: {fileID: 403116380218979254, guid: 31e8fc94f4f82b443ba7f0ba01dac1dc, type: 3}
-    Position: {x: 9, y: -6}
-  - Prefab: {fileID: 213162892808832554, guid: 911cf179560f9b44fabca07333225250, type: 3}
-    Position: {x: 13, y: -6}
+  - Prefab: {fileID: 5346025083666735753, guid: b0d51f84096c8104ba7d07c73f983a6a, type: 3}
+    Position: {x: 8, y: -7}
+  - Prefab: {fileID: 3147132771611515457, guid: 8f1fd914d5d402545a1f8a28e7e28e93, type: 3}
+    Position: {x: 12, y: -7}
   Root: {fileID: 0}
   NextSpawners: []
   GizmoColor: {r: 1, g: 0, b: 0, a: 1}
   GizmoSize: 1
+--- !u!1 &3724832662757355054
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 283770552800361781}
+  - component: {fileID: 5509536050886875046}
+  - component: {fileID: 8403259626156385192}
+  m_Layer: 0
+  m_Name: Spawner_Area
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &283770552800361781
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3724832662757355054}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 57, y: -1.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 988077741545533514}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5509536050886875046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3724832662757355054}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 795e5e2d22c2d9a4d8ad10ddd7181b35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AreaMonsterSpawner
+  SpawnInfos:
+  - Prefab: {fileID: 213162892808832554, guid: 911cf179560f9b44fabca07333225250, type: 3}
+    Position: {x: 36, y: 5}
+  - Prefab: {fileID: 3147132771611515457, guid: 8f1fd914d5d402545a1f8a28e7e28e93, type: 3}
+    Position: {x: 32, y: 5}
+  - Prefab: {fileID: 213162892808832554, guid: 911cf179560f9b44fabca07333225250, type: 3}
+    Position: {x: 20, y: 5}
+  - Prefab: {fileID: 3147132771611515457, guid: 8f1fd914d5d402545a1f8a28e7e28e93, type: 3}
+    Position: {x: 16, y: 5}
+  - Prefab: {fileID: 3147132771611515457, guid: 8f1fd914d5d402545a1f8a28e7e28e93, type: 3}
+    Position: {x: 12, y: 5}
+  - Prefab: {fileID: 8364519739090574707, guid: 5f9ea8fe861564f44b81a81fe12adddc, type: 3}
+    Position: {x: 8, y: 5}
+  Root: {fileID: 0}
+  NextSpawners: []
+  GizmoColor: {r: 0, g: 0.98317504, b: 1, a: 1}
+  GizmoSize: 1
+--- !u!61 &8403259626156385192
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3724832662757355054}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 4, y: 3}
+  m_EdgeRadius: 0
 --- !u!1 &5476991238224865814
 GameObject:
   m_ObjectHideFlags: 0
@@ -6220,6 +6320,7 @@ Transform:
   - {fileID: 898988816668655452}
   - {fileID: 1293767086073804105}
   - {fileID: 5873738633525266444}
+  - {fileID: 283770552800361781}
   - {fileID: 7708974419054311610}
   - {fileID: 4183588882992709319}
   m_Father: {fileID: 0}

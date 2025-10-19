@@ -35,6 +35,8 @@ Transform:
   - {fileID: 7718828015509687694}
   - {fileID: 271607425219938496}
   - {fileID: 2144532093545639472}
+  - {fileID: 7860002363139977287}
+  - {fileID: 426847802713843700}
   - {fileID: 1049545463998970445}
   - {fileID: 6193163859167729902}
   - {fileID: 3581718485954588101}
@@ -85,19 +87,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AutoMonsterSpawner
   SpawnInfos:
-  - Prefab: {fileID: 403116380218979254, guid: 31e8fc94f4f82b443ba7f0ba01dac1dc, type: 3}
+  - Prefab: {fileID: 5346025083666735753, guid: b0d51f84096c8104ba7d07c73f983a6a, type: 3}
     Position: {x: 9, y: -7}
-  - Prefab: {fileID: 213162892808832554, guid: 911cf179560f9b44fabca07333225250, type: 3}
-    Position: {x: 11, y: -7}
-  - Prefab: {fileID: 403116380218979254, guid: 31e8fc94f4f82b443ba7f0ba01dac1dc, type: 3}
-    Position: {x: 13, y: -7}
-  - Prefab: {fileID: 213162892808832554, guid: 911cf179560f9b44fabca07333225250, type: 3}
-    Position: {x: 15, y: -7}
-  - Prefab: {fileID: 8364519739090574707, guid: 5f9ea8fe861564f44b81a81fe12adddc, type: 3}
-    Position: {x: 17, y: -7}
   Root: {fileID: 0}
   NextSpawners:
-  - {fileID: 7196496740924572823}
+  - {fileID: 0}
   GizmoColor: {r: 1, g: 0, b: 0, a: 1}
   GizmoSize: 1
 --- !u!1 &1433198750460413193
@@ -145,22 +139,122 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChainMonsterSpawner
   SpawnInfos:
-  - Prefab: {fileID: 5346025083666735753, guid: b0d51f84096c8104ba7d07c73f983a6a, type: 3}
-    Position: {x: 36, y: -7}
   - Prefab: {fileID: 213162892808832554, guid: 911cf179560f9b44fabca07333225250, type: 3}
-    Position: {x: 38, y: -7}
+    Position: {x: 47, y: 3}
+  - Prefab: {fileID: 213162892808832554, guid: 911cf179560f9b44fabca07333225250, type: 3}
+    Position: {x: 38, y: 3}
   - Prefab: {fileID: 8364519739090574707, guid: 5f9ea8fe861564f44b81a81fe12adddc, type: 3}
-    Position: {x: 40, y: -7}
+    Position: {x: 41, y: 3}
   - Prefab: {fileID: 213162892808832554, guid: 911cf179560f9b44fabca07333225250, type: 3}
-    Position: {x: 42, y: -7}
-  - Prefab: {fileID: 3147132771611515457, guid: 8f1fd914d5d402545a1f8a28e7e28e93, type: 3}
-    Position: {x: 44, y: -7}
-  - Prefab: {fileID: 3147132771611515457, guid: 8f1fd914d5d402545a1f8a28e7e28e93, type: 3}
-    Position: {x: 46, y: -7}
+    Position: {x: 44, y: 3}
   Root: {fileID: 0}
   NextSpawners: []
   GizmoColor: {r: 1, g: 0, b: 0.62804985, a: 1}
   GizmoSize: 1
+--- !u!1 &1437669263447897213
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 426847802713843700}
+  - component: {fileID: 3104102616494168353}
+  - component: {fileID: 5533368447572587171}
+  m_Layer: 0
+  m_Name: Spawner_Area
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &426847802713843700
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437669263447897213}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 23, y: -3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5334720032003796244}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3104102616494168353
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437669263447897213}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 795e5e2d22c2d9a4d8ad10ddd7181b35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AreaMonsterSpawner
+  SpawnInfos:
+  - Prefab: {fileID: 3147132771611515457, guid: 8f1fd914d5d402545a1f8a28e7e28e93, type: 3}
+    Position: {x: 50, y: -2}
+  - Prefab: {fileID: 3147132771611515457, guid: 8f1fd914d5d402545a1f8a28e7e28e93, type: 3}
+    Position: {x: 46, y: -2}
+  - Prefab: {fileID: 3147132771611515457, guid: 8f1fd914d5d402545a1f8a28e7e28e93, type: 3}
+    Position: {x: 42, y: -2}
+  - Prefab: {fileID: 3147132771611515457, guid: 8f1fd914d5d402545a1f8a28e7e28e93, type: 3}
+    Position: {x: 38, y: -2}
+  Root: {fileID: 0}
+  NextSpawners: []
+  GizmoColor: {r: 0, g: 0.92699885, b: 1, a: 1}
+  GizmoSize: 1
+--- !u!61 &5533368447572587171
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1437669263447897213}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 2, y: 4}
+  m_EdgeRadius: 0
 --- !u!1 &1668655546095145438
 GameObject:
   m_ObjectHideFlags: 0
@@ -4420,6 +4514,113 @@ TilemapCollider2D:
   m_MaximumTileChangeCount: 1000
   m_ExtrusionFactor: 0
   m_UseDelaunayMesh: 0
+--- !u!1 &6170952797826483417
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7860002363139977287}
+  - component: {fileID: 2079967407560579160}
+  - component: {fileID: 569194658970948981}
+  m_Layer: 0
+  m_Name: Spawner_Area
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7860002363139977287
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6170952797826483417}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 23, y: -3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5334720032003796244}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2079967407560579160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6170952797826483417}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 795e5e2d22c2d9a4d8ad10ddd7181b35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AreaMonsterSpawner
+  SpawnInfos:
+  - Prefab: {fileID: 213162892808832554, guid: 911cf179560f9b44fabca07333225250, type: 3}
+    Position: {x: 34, y: -7}
+  - Prefab: {fileID: 213162892808832554, guid: 911cf179560f9b44fabca07333225250, type: 3}
+    Position: {x: 38, y: -7}
+  - Prefab: {fileID: 213162892808832554, guid: 911cf179560f9b44fabca07333225250, type: 3}
+    Position: {x: 42, y: -7}
+  - Prefab: {fileID: 213162892808832554, guid: 911cf179560f9b44fabca07333225250, type: 3}
+    Position: {x: 48, y: -7}
+  - Prefab: {fileID: 8364519739090574707, guid: 5f9ea8fe861564f44b81a81fe12adddc, type: 3}
+    Position: {x: 52, y: -7}
+  Root: {fileID: 0}
+  NextSpawners:
+  - {fileID: 7196496740924572823}
+  GizmoColor: {r: 0, g: 0.92699885, b: 1, a: 1}
+  GizmoSize: 1
+--- !u!61 &569194658970948981
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6170952797826483417}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 2, y: 4}
+  m_EdgeRadius: 0
 --- !u!1 &6174147897037576682
 GameObject:
   m_ObjectHideFlags: 0
