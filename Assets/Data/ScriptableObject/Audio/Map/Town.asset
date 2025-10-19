@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6683fa880a202c4297c562225fea568, type: 3}
+  m_Name: Town
+  m_EditorClassIdentifier: Assembly-CSharp::MapAudioContext
+  PlayerAudioDataContext:
+    PlayerAttackAudioDatas:
+    - {fileID: 11400000, guid: 81fb205cf887e8c4981e9648081f3484, type: 2}
+    PlayerMoveAudioDatas:
+    - {fileID: 11400000, guid: c4aad91653f43a142a35abd6eb0496dc, type: 2}
+    - {fileID: 11400000, guid: cfb3b1eb2a0d9954a8e34cf8d4e2a661, type: 2}
+    - {fileID: 11400000, guid: 341d6c0a2ea9ca147b8f770a77fc3527, type: 2}
+    - {fileID: 11400000, guid: 948dbaffc79a2ad4b910be36b190e5ee, type: 2}
+    - {fileID: 11400000, guid: d2ae24faa202c874caf0e5adcc4694cc, type: 2}
+    PlayerSkillAudioDatas:
+    - {fileID: 11400000, guid: 39671c469e2a58946adc7d43dba35cca, type: 2}
+    - {fileID: 11400000, guid: 3b43a17c15f00af4fb1093d6fb66566b, type: 2}
+    - {fileID: 11400000, guid: a62db7e5634fe9c46b83a2bfd1eb89f7, type: 2}
+    - {fileID: 11400000, guid: 3e51b04f744cd534c9f764cf3590464c, type: 2}
+  MonsterAudioDataContext:
+    MonsterAttackAudioDatas: []
+    MonsterDieAudioDatas: []
+    MonsterProjectileAudioDatas: []
+  ItemAudioDataContext:
+    itemBoxAudioDatas: []
+    itemEffectAudioDatas:
+    - {fileID: 11400000, guid: a5f42e3e4b4f48b469990c5d721bc7c4, type: 2}
+    - {fileID: 11400000, guid: 080ddd785b67e5b40937cd287bb91ada, type: 2}
+    - {fileID: 11400000, guid: 9c62853ef30e2cb4799e0f639fa9ee27, type: 2}
+  EnvironmentAudioDataContext:
+    environmentAudioDatas:
+    - {fileID: 11400000, guid: 7c19ded283b910f4fb370d18f22ecba7, type: 2}
+  BGMAudioDataContext:
+    bgmAudioDatas:
+    - {fileID: 11400000, guid: 48515b7644a90cc4cb217f23bccf97c3, type: 2}
+  DirecitonAudioDataContext:
+    directionalAudioDatas: []
+  UIAudioDataContext:
+    uiAudioDatas:
+    - {fileID: 11400000, guid: 2adaf0993cb1b1843ac6a2ae62361839, type: 2}
+    - {fileID: 11400000, guid: b21622ed575986e41875956a8a61ca99, type: 2}
+  TraitAudioDataContext:
+    traitAudioDatas:
+    - {fileID: 11400000, guid: b68b16bf196c69e44aaa096b7f62fe8f, type: 2}
+    - {fileID: 11400000, guid: 351f8901796ae2740987194ca374275d, type: 2}
+    - {fileID: 11400000, guid: 816960a135afb3e40b64b8fb71f5e933, type: 2}
+  AutoSetBGM: 1

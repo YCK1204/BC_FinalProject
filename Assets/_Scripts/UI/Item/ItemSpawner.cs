@@ -1,3 +1,4 @@
+using Game.Player;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ public class ItemSpawner : MonoBehaviour
         StartCoroutine(Extension.LateStart(() =>
         {
             Manager.Game.OnMonstersClear += ActiveItems;
-            Manager.Item.OnItemAdded += (item) =>
+            PlayerCharacter.Instance.Inventory.OnItemAdded += (item) =>
             {
                 RemoveItems();
             };
@@ -140,7 +141,7 @@ public class ItemSpawner : MonoBehaviour
     }
     public void RemoveItems()
     {
-        Manager.Item.OnItemAdded -= (item) =>
+        PlayerCharacter.Instance.Inventory.OnItemAdded -= (item) =>
         {
             RemoveItems();
         };

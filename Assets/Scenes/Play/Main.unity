@@ -4121,7 +4121,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 127415
+    m_Bits: 61879
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -4836,12 +4836,8 @@ MonoBehaviour:
   - {fileID: 5104247365805502873, guid: a9ba7730081a3ce42a7bac27b7bb3e73, type: 3}
   - {fileID: 3278153624945427460, guid: c393b1fc5607fb845b578b005347193f, type: 3}
   - {fileID: 6555901067502335982, guid: 95cf48bb0e2b8ee4b889131b0cdcbe9f, type: 3}
-  - {fileID: 7123926372146022852, guid: 50640f43e03a17845b32d4c8f65e1bad, type: 3}
-  - {fileID: 70534995776027679, guid: 04b4346aed2461f4da8c26501d069973, type: 3}
-  - {fileID: 7931798618544817307, guid: 036350b34cb42494e973a9ce3b2b1d63, type: 3}
   _bossroomPrefabs: {fileID: 9068971754435094937, guid: 9d6c2ce076308014d9373e5e1198207b, type: 3}
-  _itemRoomPrefab: {fileID: 0}
-  _bossRoomTrigger: 6
+  _bossRoomTrigger: 3
   OnPortal: 1
 --- !u!4 &922601901
 Transform:
@@ -6576,6 +6572,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1255762132}
   m_CullTransparentMesh: 1
+--- !u!1 &1278553843
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1278553845}
+  - component: {fileID: 1278553844}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1278553844
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278553843}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 241511164e528e64c82779eb033e1b9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AudioManager
+  AddrGroup: Audio
+  AudioMixer: {fileID: 24100000, guid: c49e9afbcdd1a9944830be2ddc9f9900, type: 2}
+  Prefab: {fileID: 6722650377872159071, guid: 5bddb0ab0a7b77244a24447036c1cacf, type: 3}
+  InitialPoolSize: 20
+--- !u!4 &1278553845
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1278553843}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.62532, y: 2.99032, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1286373747
 GameObject:
   m_ObjectHideFlags: 0
@@ -10645,3 +10689,4 @@ SceneRoots:
   - {fileID: 922601901}
   - {fileID: 375481399}
   - {fileID: 308093261}
+  - {fileID: 1278553845}

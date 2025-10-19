@@ -1,4 +1,5 @@
 using Game.Player;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -55,7 +56,9 @@ public class ItemData
         Color.blue,
         Color.orange,
     };
+    [JsonIgnore]
     public Color TierColor { get { return TierColors[(int)ItemGrade]; } }
+    [JsonIgnore]
     public static Dictionary<ItemExtraStatType, string> ItemExtraStatTypes = new Dictionary<ItemExtraStatType, string>()
     {
         { ItemExtraStatType.PlusAttack, "추가 공격력" },

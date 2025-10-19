@@ -71,6 +71,7 @@ public abstract class MonsterSpawner : MonoBehaviour
         {
             foreach (var info in SpawnInfos)
             {
+                if (info.Prefab == null) continue;
                 Manager.Game.MonsterCount += info.Prefab.MonsterCount;
             }
         }));
@@ -90,6 +91,7 @@ public abstract class MonsterSpawner : MonoBehaviour
 
         foreach (var info in SpawnInfos)
         {
+            if (info.Prefab == null) continue;
             var monster = Manager.Resource.Instantiate<BaseMonster>(info.Prefab);
             SpawnedCount += monster.MonsterCount;
             monster.OnDied += () =>
