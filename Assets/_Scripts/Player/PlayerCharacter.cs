@@ -337,7 +337,7 @@ namespace Game.Player
 
         public void GainAwakeningGauge()
         {
-            if (IsAwakened || IsDead) return;
+            if (IsAwakened || IsDead || PlayerManager.Instance == null) return;
             var awakeningData = Data.awakening;
             currentAwakening = Mathf.Min(awakeningData.MaxAwakeningGauge, currentAwakening + awakeningData.AwakeningOnHit);
 
@@ -346,7 +346,6 @@ namespace Game.Player
             if (currentAwakening >= awakeningData.MaxAwakeningGauge)
             {
                 PlayerManager.Instance.CooldownD.HideCooldown();
-
             }
         }
 

@@ -6025,6 +6025,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CooldownUI
   _cooldownImage: {fileID: 1473894350}
   _chk: 1
+  CoolChk: 0
 --- !u!1 &708551524
 GameObject:
   m_ObjectHideFlags: 0
@@ -14786,6 +14787,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CooldownUI
   _cooldownImage: {fileID: 997022121}
   _chk: 0
+  CoolChk: 0
 --- !u!1 &1863943385
 GameObject:
   m_ObjectHideFlags: 0
@@ -15516,6 +15518,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CooldownUI
   _cooldownImage: {fileID: 519919008}
   _chk: 0
+  CoolChk: 0
 --- !u!1 &1958834722
 GameObject:
   m_ObjectHideFlags: 0
@@ -17002,6 +17005,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CooldownUI
   _cooldownImage: {fileID: 571707059}
   _chk: 0
+  CoolChk: 0
 --- !u!1 &2093611438
 GameObject:
   m_ObjectHideFlags: 0

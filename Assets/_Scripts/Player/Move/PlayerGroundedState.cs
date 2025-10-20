@@ -33,17 +33,17 @@ namespace Game.Player
                 _stateMachine.DashPressed = dash;
 
 
-                if (awaken && _stateMachine.Player.CanAwaken())
+                if (awaken && _stateMachine.Player.CanAwaken() && PlayerManager.Instance != null)
                 {
                     _stateMachine.ChangeState(_stateMachine.AwakeningState);
                     return;
                 }
-                if (qSkill && _stateMachine.CanUseQSkill())
+                if (qSkill && _stateMachine.CanUseQSkill() && PlayerManager.Instance != null)
                 {
                     _stateMachine.ChangeState(_stateMachine.QSkillState);
                     return;
                 }
-                if (wSkill && _stateMachine.CanUseWSkill())
+                if (wSkill && _stateMachine.CanUseWSkill() && PlayerManager.Instance != null)
                 {
                     _stateMachine.ChangeState(_stateMachine.WSkillState);
                     return;
