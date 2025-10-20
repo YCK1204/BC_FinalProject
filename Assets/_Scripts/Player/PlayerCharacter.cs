@@ -13,6 +13,7 @@ namespace Game.Player
 {
     public class PlayerCharacter : MonoBehaviour, IDamageable
     {
+        public Inventory Inventory = new Inventory();
         public Rigidbody2D Rb { get; private set; }
         public Animator Animator { get; private set; }
         public static PlayerCharacter Instance { get; private set; }

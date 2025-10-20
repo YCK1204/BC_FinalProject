@@ -40,18 +40,23 @@ public class ItemController : InteractableController
         {
             PlayerCharacter.Instance.Interactables.Add(this);
             _itemContainer.gameObject.SetActive(true);
-            Manager.Item.OnTriggerEnterItem(this);
+            PlayerCharacter.Instance.Inventory.EnterCurItem(this);
         };
         onExitTrigger = () =>
         {
             PlayerCharacter.Instance.Interactables.Remove(this);
             _itemContainer.gameObject.SetActive(false);
-            Manager.Item.OnTriggerExitItem(this);
+            PlayerCharacter.Instance.Inventory.ExitCurItem(this);
         };
     }
 
     public override void OnInteract()
     {
-        Manager.Item.AddItem(PlayerCharacter.Instance);
+        var player = PlayerCharacter.Instance;
+        player.Inventory.AddItem(player);
+    }
+    private void OnDestroy()
+    {
+        PlayerCharacter.Instance.Interactables.Remove(this);
     }
 }
