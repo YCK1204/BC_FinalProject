@@ -323,7 +323,7 @@ public class BoneReaper : BossMonster
         IsInvincible = true;
 
         CurPhase = 2;
-        Debug.Log("페이즈2");
+        //Debug.Log("페이즈2");
 
         // 포효 애니메이션 실행, 애니메이션이 끝나면 연출 및 무적 해제
         _head.TriggerAnimation(Game.Monster.BoneReaperAnimatorParams.PhaseChange);
@@ -344,7 +344,7 @@ public class BoneReaper : BossMonster
         if (IsAttacking) return NodeStatus.Running;
         if (_patternCoolTime < PatternMaxCoolTime) return NodeStatus.Failure;
 
-        Debug.Log("Slam2");
+        //Debug.Log("Slam2");
         IsAttacking = true;
         _patternCoolTime = 0;
         _curSlamCount++;
@@ -384,7 +384,7 @@ public class BoneReaper : BossMonster
         if (IsAttacking) return NodeStatus.Running;
         if (_patternCoolTime < PatternMaxCoolTime) return NodeStatus.Failure;
 
-        Debug.Log("Laser2");
+        //Debug.Log("Laser2");
         IsAttacking = true;
         _patternCoolTime = 0;
         _curSlamCount = 0;

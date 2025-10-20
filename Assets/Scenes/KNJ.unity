@@ -504,7 +504,7 @@ MonoBehaviour:
   monster: {fileID: 0}
   hand: {fileID: 0}
   head: {fileID: 0}
-  Damage: 10
+  Damage: 1000
 --- !u!4 &1208759512
 Transform:
   m_ObjectHideFlags: 0

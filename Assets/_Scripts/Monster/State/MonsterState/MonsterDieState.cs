@@ -15,7 +15,7 @@ public class MonsterDieState : MonsterBaseState
         base.Enter();
 
         _curRetrunTime = 0f;
-        _maxReturnTime = 2f;
+        _maxReturnTime = 1f;
 
         _stateMachine.Owner.Anim.SetTrigger(Game.Monster.AnimatorParams.Die);
         _stateMachine.Owner.Rb.bodyType = RigidbodyType2D.Kinematic;

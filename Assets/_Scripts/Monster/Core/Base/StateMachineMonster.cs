@@ -70,7 +70,8 @@ public abstract class StateMachineMonster : NormalMonster
         {
             Attack.StopAttack();
             //attacker?.GetComponent<PlayerCharacter>()?.Kill();
-            PlayerCharacter.Instance.Kill();
+            if(PlayerCharacter.Instance != null)
+                PlayerCharacter.Instance.Kill();
             _stateMachine.ChangeState(Game.Monster.StateType.Die);
         }
         else if(!IsSuperArmor)
