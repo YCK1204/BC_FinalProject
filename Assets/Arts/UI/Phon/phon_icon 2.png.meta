@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f216745b82612784e82c4e5da57f5bfd
+guid: fcce302c46b934f4a88fac0d56a23002
 TextureImporter:
   internalIDToNameTable:
   - first:
@@ -103,12 +103,12 @@ TextureImporter:
       name: phon_icon_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 64
-        height: 64
+        x: 10
+        y: 8
+        width: 46
+        height: 46
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -125,7 +125,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 06866a5992bf7704daafb5608405d8d9
     internalID: 0
     vertices: []
     indices: 

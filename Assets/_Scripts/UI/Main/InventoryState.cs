@@ -6,7 +6,7 @@ public class InventoryState : UiStateBase
 
     public override void Enter()
     {
-        Debug.Log("ui:wide");
+        Debug.Log("ui:inven");
         ui.ShowScreen("inven");
     }
 
