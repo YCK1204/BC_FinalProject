@@ -17,7 +17,8 @@ public class BoneReaper : BossMonster
 
     protected float _patternCoolTime = 0f;
     public float PatternCoolTime { get { return _patternCoolTime; } }
-    public readonly float PatternMaxCoolTime = 3f;
+    protected float _patternMaxCoolTime = 3f;
+    public float PatternMaxCoolTime { get { return _patternMaxCoolTime; } }
 
     protected int _curSlamCount;
     public int CurSlamCount { get { return _curSlamCount; } }
@@ -119,6 +120,9 @@ public class BoneReaper : BossMonster
         IsDirecting = true;
         IsInvincible = true;
 
+        if(PlayerManager.Instance != null)
+            PlayerManager.Instance.Player.OnDied += _bossUI.DisableUI;
+
         _playerMask = LayerMask.GetMask(Game.Monster.Layers.Player);
 
         _platformGenerator.StartGenerate();
@@ -140,7 +144,8 @@ public class BoneReaper : BossMonster
             _patternCoolTime += Time.deltaTime;
 
         // 연출 중이 아닐때는 매 프레임마다 무적 해제
-        IsInvincible = false;
+        if(!IsDirecting)
+            IsInvincible = false;
     }
 
     public NodeStatus FindTarget()
@@ -314,15 +319,19 @@ public class BoneReaper : BossMonster
     #region 페이즈 2
     public NodeStatus ChangePhase2()
     {
-        //IsDirecting = true;
-        //IsInvincible = true;
+        IsDirecting = true;
+        IsInvincible = true;
 
         CurPhase = 2;
         Debug.Log("페이즈2");
 
         // 포효 애니메이션 실행, 애니메이션이 끝나면 연출 및 무적 해제
-
+        _head.TriggerAnimation(Game.Monster.BoneReaperAnimatorParams.PhaseChange);
         // 능력치 강화
+        MonsterData.AddModifier(new StatModifier(StatType.Attack, ModifierType.Add, 10, this));
+        _leftHand.PhaseChange();
+        _rightHand.PhaseChange();
+        _patternMaxCoolTime = 2f;
 
         // BT 변경
         _curBT.ChangeAttackSelector();
@@ -332,22 +341,73 @@ public class BoneReaper : BossMonster
 
     public NodeStatus AdvSlamAttack()
     {
-        return NodeStatus.Success;
+        if (IsAttacking) return NodeStatus.Running;
+        if (_patternCoolTime < PatternMaxCoolTime) return NodeStatus.Failure;
+
+        Debug.Log("Slam2");
+        IsAttacking = true;
+        _patternCoolTime = 0;
+        _curSlamCount++;
+        _curRunningHandsCount += 2;
+
+        if (Vector3.Distance(_target.position, _leftHand.transform.position) <= Vector3.Distance(_target.position, _rightHand.transform.position))
+        {
+            _leftHand.Slam();
+            _rightHand.Slam(3f);
+        }
+        else
+        {
+            _rightHand.Slam();
+            _leftHand.Slam(3f);
+        }
+
+        return IsAttacking ? NodeStatus.Running : NodeStatus.Success;
     }
 
     public NodeStatus AdvBreathAttack()
     {
-        return NodeStatus.Success;
+        if (IsAttacking) return NodeStatus.Running;
+        if (_patternCoolTime < PatternMaxCoolTime) return NodeStatus.Failure;
+
+        //Debug.Log("Breath");
+        IsAttacking = true;
+        _patternCoolTime = 0;
+        _curBreathCount++;
+
+        _head.Breath();
+
+        return IsAttacking ? NodeStatus.Running : NodeStatus.Success;
     }
 
     public NodeStatus AdvLaserAttack()
     {
-        return NodeStatus.Success;
+        if (IsAttacking) return NodeStatus.Running;
+        if (_patternCoolTime < PatternMaxCoolTime) return NodeStatus.Failure;
+
+        Debug.Log("Laser2");
+        IsAttacking = true;
+        _patternCoolTime = 0;
+        _curSlamCount = 0;
+
+        _leftHand.Laser();
+        _rightHand.Laser();
+
+        return IsAttacking ? NodeStatus.Running : NodeStatus.Success;
     }
 
     public NodeStatus AdvSummonOrbAttack()
     {
-        return NodeStatus.Success;
+        if (IsAttacking) return NodeStatus.Running;
+        if (_patternCoolTime < PatternMaxCoolTime) return NodeStatus.Failure;
+
+        //Debug.Log("SO");
+        IsAttacking = true;
+        _patternCoolTime = 0;
+        _curBreathCount = 0;
+
+        _head.SummonOrbPhase2();
+
+        return IsAttacking ? NodeStatus.Running : NodeStatus.Success;
     }
 
     #endregion

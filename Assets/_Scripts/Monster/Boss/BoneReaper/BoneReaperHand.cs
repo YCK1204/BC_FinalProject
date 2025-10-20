@@ -46,11 +46,58 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
         _owner = boneReaper;
     }
 
+    public void PhaseChange()
+    {
+        _anim.SetInteger("CurPhase", 2);
+        _speed = 4.5f;
+    }
+
     #region Slam
     // 행동1: 추적해서 내려찍기
     public void Slam(float delay = 0f)
     {
         StartCoroutine(FollowTarget(delay));
+    }
+
+    public void Swipe()
+    {
+        Collider2D target;
+        float dir = transform.localScale.x < 0 ? -1 : 1;
+
+        // 지면 -1(@),0.5 에서 좌우 2.5 상하 0.5f 박스
+        Vector3 groundAttakcPos = new Vector3(1 * dir * _owner.BossScale, 0.5f * _owner.BossScale, 0);
+        float gLR = 2.5f * _owner.BossScale;
+        float gUD = 0.5f * _owner.BossScale;
+
+        target = Physics2D.OverlapBox(transform.position + groundAttakcPos, new Vector2(gLR * 2, gUD * 2), 0, _mask);
+#if UNITY_EDITOR
+        Debug.DrawLine(transform.position + groundAttakcPos - Vector3.right * gLR + Vector3.up * gUD, transform.position + groundAttakcPos + Vector3.right * gLR + Vector3.up * gUD, Color.red, 5f);
+        Debug.DrawLine(transform.position + groundAttakcPos - Vector3.right * gLR - Vector3.up * gUD, transform.position + groundAttakcPos + Vector3.right * gLR - Vector3.up * gUD, Color.red, 5f);
+        Debug.DrawLine(transform.position + groundAttakcPos - Vector3.right * gLR + Vector3.up * gUD, transform.position + groundAttakcPos - Vector3.right * gLR - Vector3.up * gUD, Color.red, 5f);
+        Debug.DrawLine(transform.position + groundAttakcPos + Vector3.right * gLR + Vector3.up * gUD, transform.position + groundAttakcPos + Vector3.right * gLR - Vector3.up * gUD, Color.red, 5f);
+#endif
+
+        if (target != null)
+        {
+            // 무적 체크
+            PlayerCharacter pc = target.GetComponent<PlayerCharacter>();
+            if (pc != null && pc.Invincible)
+                return;
+
+            float knockBackDirX = dir;
+            Vector2 knockBackDir = new Vector2(knockBackDirX, 0.5f);
+            knockBackDir.Normalize();
+
+            Rigidbody2D targetRb = target.GetComponent<Rigidbody2D>();
+            if (targetRb != null)
+            {
+                targetRb.linearVelocity = Vector2.zero;
+                targetRb.AddForce(knockBackDir * 400);
+            }
+
+            target.GetComponent<IDamageable>()?.TakeDamage(_owner.MonsterData.AttackPower, _owner.gameObject);
+            Debug.Log(_owner.MonsterData.AttackPower);
+        }
     }
 
     public void SlamAttack()
@@ -217,6 +264,7 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
 
     public IEnumerator MoveToEndPos()
     {
+        yield return new WaitForSeconds(0.3f);
         // 왼쪽은 로컬 기준 -8에서 8.5까지
         // 오른쪽은 로컬 기준 6에서 -10.5까지
         Vector3 startLocalPos = transform.localScale.x < 0 ? _rightStartLocalPos : _leftStartLocalPos;

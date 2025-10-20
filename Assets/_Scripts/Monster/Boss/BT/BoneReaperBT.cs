@@ -217,5 +217,20 @@ public class BoneReaperBT : BossBT
                 }, "RandomAdvancedNormalAttack")
         }
         , "Phase2AttackSubTree");
+
+        _root = new SelectorNode(new List<INode>()
+        {
+            new SequenceNode(new List<INode>()
+            {
+                new ConditionNode(() => {return (boneReaper.MonsterData.CurHp <= boneReaper.MonsterData.MaxHp * 0.5f) && (boneReaper.CurPhase == 1); }, "IsPhase2Ready"),
+                new ActionNode(boneReaper.ChangePhase2, "ChangePhase2")
+            }, "BossPhaseCheckTree"),
+            new SequenceNode(new List<INode>()
+            {
+                new ConditionNode(() => { return boneReaper.Target == null; }, "TargetIsNull"),
+                new InvertNode(new ActionNode(boneReaper.FindTarget, "FindPlayer"), "FindTargetResultInverter")
+            }, "TargetSearchTree"),
+            _attackSelector
+        }, "RootNode");
     }
 }
