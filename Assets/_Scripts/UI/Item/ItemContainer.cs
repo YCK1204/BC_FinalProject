@@ -30,6 +30,7 @@ public class ItemContainer : MonoBehaviour
         Name.color = itemData.TierColor;
         Name.text = itemData.ItemName;
 
+        Manager.Data.ItemsData.Synergy.TryGetValue(itemData.SynergyId, out ItemSynergyData synergyData);
         //Manager.Data.SynergyDict.TryGetValue(itemData.SynergyId, out SynergyData synergyData);
         //SynergyCount.text = $"시너지 1/{synergyData.RequiredItemCount}";
         //SynergyName.text = synergyData.SynergyName;
