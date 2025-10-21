@@ -10,4 +10,7 @@ public class MonsterData : ScriptableObject
     public float AttackRange = 3f;
     public float DetectRange = 5f;
     public bool CanMove = true;
+
+    public AudioKey.Monster.Attack AttackSfx;
+    public AudioKey.Monster.Die DieSfx;
 }

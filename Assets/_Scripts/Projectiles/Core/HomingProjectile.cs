@@ -13,6 +13,7 @@ public class HomingProjectile : BaseProjectile
         base.OnEnable();
         _startMove = false;
         transform.localEulerAngles = Vector3.zero;
+        Manager.Audio.Play(AudioKey.Monster.Projectile.M_PROJ_UNDEAD_MAGE_CREATE, transform);
     }
 
     protected override void FixedUpdate()
@@ -59,6 +60,7 @@ public class HomingProjectile : BaseProjectile
     {
         _anim.SetTrigger("StartMove");
         _startMove = true;
+        Manager.Audio.Play(AudioKey.Monster.Projectile.M_PROJ_UNDEAD_MAGE_SHOT, transform);
 
         if (_target != null && _rotateCoroutine == null)
         {

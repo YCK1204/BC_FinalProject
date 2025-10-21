@@ -14,6 +14,8 @@ public class RangedAttack : BaseAttack
     {
         // Todo: 투사체 생성
         // 일단은 일반 생성 -> 이후에 풀에서 가져오는 것으로 변경
+        base.Attack();
+
         _monsterAttack.CreateProjectile(_target.transform);
     }
 
