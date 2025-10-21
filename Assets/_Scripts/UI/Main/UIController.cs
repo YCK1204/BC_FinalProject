@@ -90,7 +90,11 @@ public class UIController : MonoBehaviour
         _activeState = _stateMap[newState];
         _activeState.Enter();
 
-        yield return new WaitForSecondsRealtime(0.5f);
+        if ((PreviousState == UiState.Hidden && newState == UiState.Main) ||
+            (PreviousState == UiState.Main && newState == UiState.Hidden))
+        {
+            yield return new WaitForSecondsRealtime(0.5f);
+        }
 
         _isState = false;
     }
