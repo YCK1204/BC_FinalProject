@@ -52,6 +52,8 @@ public class BoneReaperHead : MonoBehaviour, IDamageable
 
     public void BreathAttack(float size)
     {
+        Manager.Audio.Play(AudioKey.Monster.Attack.M_ATK_BOSS_BREATH, transform);
+
         Collider2D target;
 
         float t = Mathf.InverseLerp(2f, 5f, size);

@@ -184,6 +184,7 @@ public class BoneReaper : BossMonster
         _leftHand.Die();
         _rightHand.Die();
         _platformGenerator.StopGenerate();
+        Manager.Audio.Play(AudioKey.Monster.Die.M_DIE_BOSS, transform);
     }
 
     #region 페이즈 1
