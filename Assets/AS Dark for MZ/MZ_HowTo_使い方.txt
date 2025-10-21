@@ -1,0 +1,24 @@
+
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+＝＝＝　Animations Select - MZ How-To ＝＝＝
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
+Please refer to the Manual for information on Pack Content, Asset Specifications, Terms of Use, etc.
+
+★★★　How to use in RPG Maker MZ　★★★
+
+1. From the MZ Demo folder, copy all the contents from the "effects" folder (including the "Model" and "Texture" folders) into your project's "effects" folder.
+2. Open up both the MZ Demo and your project in RPG Maker MZ, within Database > Animations, copy each animation from the Demo into your project. 
+
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+＝＝＝　アニメーション精選　ツクールMZ　使い方　＝＝＝
+＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+
+本製品の収録内容やスペックや利用規約など説明は同梱のマニュアルをご確認ください。
+
+★★★　アセットの使い方　★★★
+
+１．MZサンプルプロジェクトの「effects」フォルダーから全ての中身を自分のプロジェクトの「effects」フォルダーにコピーします。
+２．サンプルプロジェクトと自分のプロジェクト両方MZで開いて、データベースのアニメーションデータをコピーします。
+
+©　Dreams Circle

@@ -11,7 +11,7 @@ public class Inventory
     ItemController _curItem;
     Dictionary<int, ItemData> _items = new Dictionary<int, ItemData>();
     public Action<ItemController> OnItemAdded { get; set; }
-    public bool IsDirty { get; private set; } = false;
+    public bool IsDirty { get; set; } = false;
     int _gold = 0;
     public int Gold
     {
@@ -47,7 +47,23 @@ public class Inventory
         Manager.Item.MissingItems.Remove(data);
         OnItemAdded?.Invoke(item);
         Manager.Item.AddSynergy(data.SynergyId);
-        Debug.Log(PlayerCharacter.Instance.Inventory.GetJsonString());
+    }
+    public void LoadFromJson(InventoryJsonData inventoryJsonData)
+    {
+        PlayerCharacter player = PlayerCharacter.Instance;
+        Gold = inventoryJsonData.Gold;
+        var itemsId = inventoryJsonData.ItemsId;
+        itemsId.ForEach((id) =>
+        {
+            Manager.Data.ItemsData.Base.TryGetValue(id, out var data);
+            if (data != null)
+            {
+                _items.Add(id, data);
+                data.Set(player);
+                Manager.Item.AddSynergy(data.SynergyId);
+                Manager.Item.MissingItems.Remove(data);
+            }
+        });
     }
     public void Reset()
     {
@@ -58,7 +74,7 @@ public class Inventory
     {
         return _items.ContainsKey(itemID);
     }
-    public string GetJsonString()
+    public string GetItemJsonData()
     {
         var json = new JObject();
         json.Add("Gold", Gold);
