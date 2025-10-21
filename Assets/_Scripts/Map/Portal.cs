@@ -29,6 +29,7 @@ public class Portal : MonoBehaviour
         {
             Debug.Log("이동!");
             MapManager.Instance.NextMap();
+            Manager.Data.Save();
         }
     }
 }

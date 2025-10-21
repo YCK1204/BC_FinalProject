@@ -14,7 +14,6 @@ public class GoldController : InteractableController
     public override void OnInteract()
     {
         PlayerCharacter.Instance.Inventory.Gold += Gold;
-        Debug.Log(PlayerCharacter.Instance.Inventory.GetJsonString());
         Destroy(gameObject);
     }
     protected override void Init()

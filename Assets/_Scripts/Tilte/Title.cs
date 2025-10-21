@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System.Collections;
 using UnityEngine;
 
@@ -18,13 +19,41 @@ public class Title : MonoBehaviour
 
     public void OnStartButton()
     {
-        StartCoroutine(StartGame());
+        if (PlayerPrefs.GetInt("is_intro_completed") == 1)
+        {
+            var playerData = Manager.Data.PlayerData;
+            if (playerData == null)
+                StartCoroutine(StartGame());
+            else
+            {
+                MapSaveData mapSaveData = new MapSaveData()
+                {
+                    ClearedMapIndices = playerData.ClearedMaps,
+                    CurrentMapIndex = playerData.CurMap,
+                    PlayTime = playerData.PlayTime
+                };
+                MapManager.Instance.LoadFromData(mapSaveData);
+                PlayerSaveData playerSaveData = new PlayerSaveData()
+                {
+                    CurrentAwakening = playerData.Awaken,
+                    CurrentHP = playerData.Hp,
+                };
+                PlayerManager.Instance.LoadFromData(playerSaveData);
+                var itemData = PlayerPrefs.GetString("ItemData");
+                if (string.IsNullOrEmpty(itemData) == false)
+                {
+                    var itemJsonData = JsonConvert.DeserializeObject<InventoryJsonData>(itemData);
+                    PlayerManager.Instance.Player.Inventory.LoadFromJson(itemJsonData);
+                }
+                StartCoroutine(StartGame());
+            }
+        }
     }
 
     private IEnumerator StartGame()
     {
         _titleAnimator.Play("Tilte_Gamestart", 0, 0f);
-        
+
         _camera.SetActive(false);
 
         _player.SetActive(true);

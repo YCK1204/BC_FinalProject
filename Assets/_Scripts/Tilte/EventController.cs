@@ -1,4 +1,5 @@
 using DG.Tweening;
+using Game.Player;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -89,6 +90,7 @@ public class EventController : MonoBehaviour
         DOTween.Restart("phonshake2");
 
         yield return new WaitForSeconds(3f);
+        PlayerPrefs.SetInt("is_intro_completed", 1);
         SceneManager.LoadScene("Main");
     }
 
