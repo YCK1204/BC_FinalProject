@@ -6,7 +6,8 @@ public class CharacterStatsState : UiStateBase
 
     public override void Enter()
     {
-        ui.Animator.SetTrigger("ShowFull");
+        Debug.Log("ui:stats");
+        ui.ShowScreen("stats");
     }
 
     public override void Exit() { }

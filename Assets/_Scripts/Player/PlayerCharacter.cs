@@ -243,7 +243,7 @@ namespace Game.Player
 
             Debug.Log($"피해량체크- {damage} 남은체력- {currentHP}");
 
-            camShake.Shake(1f, 1f, 0.2f);
+            camShake.Shake(2f, 2f, 0.2f);
             _impulseSource.GenerateImpulse();
             if (currentHP <= 0f) Die(); else StartCoroutine(HitColor());
             ;

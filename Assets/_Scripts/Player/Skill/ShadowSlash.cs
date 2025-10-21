@@ -18,10 +18,11 @@ public class ShadowSlash : Skill
     {
         float facingSign = owner.StateMachine.FacingSign;
         Vector2 offset = new Vector2(_spawnOffset.x * facingSign, _spawnOffset.y);
-        Vector2 spawnPosition = (Vector2)owner.transform.position + offset;
+        Vector2 spawnPosition;
 
         for (int i = 0; i < _count; i++)
         {
+            spawnPosition = (Vector2)owner.transform.position + offset;
             Quaternion rotation = facingSign > 0 ? Quaternion.identity : Quaternion.Euler(0, 180, 0);
 
             GameObject projectileObj = PlayerPool.Instance.GetFromPool(_projectilePrefab, spawnPosition, rotation);

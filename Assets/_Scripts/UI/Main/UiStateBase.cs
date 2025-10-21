@@ -7,7 +7,6 @@ public enum UiState
     Hidden,
     Updating,
     Main,
-    Inven,
     Stats,
     Setting
 }

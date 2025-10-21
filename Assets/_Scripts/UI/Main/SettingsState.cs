@@ -7,7 +7,7 @@ public class SettingsState : UiStateBase
     public override void Enter()
     {
         Debug.Log("ui:setting");
-        ui.Animator.SetBool("Setting", true);
+        ui.ShowScreen("setting");
     }
 
     public override void Exit() { }

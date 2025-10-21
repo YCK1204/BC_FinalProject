@@ -34,7 +34,6 @@ public class UIController : MonoBehaviour
         {
             { UiState.Hidden, new HiddenState(this) },
             { UiState.Main, new MainState(this) },
-            { UiState.Inven, new InventoryState(this) },
             { UiState.Stats, new CharacterStatsState(this) },
             { UiState.Setting, new SettingsState(this) },
         };
@@ -131,37 +130,37 @@ public class UIController : MonoBehaviour
     }
 
     public void ShowNormalView() => ChangeState(UiState.Main);
-    public void ShowWideView() => ChangeState(UiState.Inven);
-    public void ShowFullScreen() => ChangeState(UiState.Stats);
+    public void ShowStatsUI() => ChangeState(UiState.Stats);
     public void HideUI() => ChangeState(UiState.Hidden);
     public void ShowSettingUI() => ChangeState(UiState.Setting);
+    public void ExitGame()
+    {
+#if UNITY_WEBGL && !UNITY_EDITOR
+        CloseBrowserTab();
+#else
+        Application.Quit();
+#endif
+    }
 
     public void BackUI()
     {
-        if (Animator.GetBool("Setting"))
+        switch (CurrentState)
         {
-            Animator.SetBool("Setting", false);
-        }
-        else
-        {
-            switch (CurrentState)
-            {
-                case UiState.Inven:
-                    ChangeState(UiState.Main);
-                    break;
+            case UiState.Main:
+                _uiFade.Play("off_UI", 0, 0f);
+                ChangeState(UiState.Hidden);
+                break;
 
-                case UiState.Main:
-                    _uiFade.Play("off_UI", 0, 0f);
-                    ChangeState(UiState.Hidden);
-                    break;
+            case UiState.Stats:
+                ChangeState(UiState.Main);
+                break;
 
-                case UiState.Stats:
-                    ChangeState(UiState.Main);
-                    break;
+            case UiState.Setting:
+                ChangeState(UiState.Main);
+                break;
 
-                case UiState.Hidden:
-                    break;
-            }
+            case UiState.Hidden:
+                break;
         }
     }
 }
