@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MonsterAttackAudioData
   Clip: {fileID: 8300000, guid: 686fcda3647c1014f95e4d9db68289bd, type: 3}
   Loop: 0
-  audioKey: 6
+  audioKey: 8

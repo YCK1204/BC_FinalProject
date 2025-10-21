@@ -13,4 +13,5 @@ public class MonsterData : ScriptableObject
 
     public AudioKey.Monster.Attack AttackSfx;
     public AudioKey.Monster.Die DieSfx;
+    public AudioKey.Player.Hit HitSfx;
 }

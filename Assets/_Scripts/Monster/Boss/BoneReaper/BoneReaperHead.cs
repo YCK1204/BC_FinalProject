@@ -194,4 +194,19 @@ public class BoneReaperHead : MonoBehaviour, IDamageable
     {
         OnDie();
     }
+
+    public void PlayLoar()
+    {
+        Manager.Audio.Play(AudioKey.Direction.DIR_BOSS_START, transform);
+    }
+
+    public void PlayLaser()
+    {
+        Manager.Audio.Play(AudioKey.Monster.Attack.M_ATK_BOSS_LASER, transform);
+    }
+
+    public void EndLaser()
+    {
+        Manager.Audio.StopLoop(transform);
+    }
 }

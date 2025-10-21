@@ -121,7 +121,10 @@ public class BoneReaper : BossMonster
         IsInvincible = true;
 
         if(PlayerManager.Instance != null)
+        {
             PlayerManager.Instance.Player.OnDied += _bossUI.DisableUI;
+            PlayerManager.Instance.Player.OnDied += StopBoss;
+        }
 
         _playerMask = LayerMask.GetMask(Game.Monster.Layers.Player);
 
@@ -438,5 +441,10 @@ public class BoneReaper : BossMonster
     private void DestroyOnDeath()
     {
         Destroy(gameObject);
+    }
+
+    private void StopBoss()
+    {
+        IsDirecting = true;
     }
 }

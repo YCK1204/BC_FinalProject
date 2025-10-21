@@ -64,6 +64,7 @@ public abstract class StateMachineMonster : NormalMonster
             return;
 
         _dataHandler.TakeDamage(damage);
+        Manager.Audio.Play(MonsterData.Data.HitSfx, transform);
         OnHit?.Invoke();
 
         if (_dataHandler.CurHp <= 0)

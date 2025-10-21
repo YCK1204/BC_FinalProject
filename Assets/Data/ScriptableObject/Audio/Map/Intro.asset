@@ -24,7 +24,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: d2ae24faa202c874caf0e5adcc4694cc, type: 2}
     PlayerSkillAudioDatas: []
   MonsterAudioDataContext:
-    MonsterAttackAudioDatas: []
+    MonsterAttackAudioDatas:
+    - {fileID: 11400000, guid: b98fa8f51762e4942a9fd749d770f0ce, type: 2}
     MonsterDieAudioDatas:
     - {fileID: 11400000, guid: f3fc538243e1c6a46b09a2ee0d772930, type: 2}
     MonsterProjectileAudioDatas: []
