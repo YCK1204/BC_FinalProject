@@ -12,6 +12,7 @@ public class Inventory
     Dictionary<int, ItemData> _items = new Dictionary<int, ItemData>();
     public Action<ItemController> OnItemAdded { get; set; }
     public bool IsDirty { get; set; } = false;
+
     int _gold = 0;
     public int Gold
     {
