@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ef49f58ae3731f47b7e25504c770a38, type: 3}
+  m_Name: UndeadMageShot
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterProjectileAudioData
+  Clip: {fileID: 8300000, guid: 7c3349ccb08b93a42a5bdb2fbd7c63ff, type: 3}
+  Loop: 0
+  audioKey: 1

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d29d513de4bc92947b0a3e659f8aece7, type: 3}
+  m_Name: Slime
+  m_EditorClassIdentifier: Assembly-CSharp::MonsterDieAudioData
+  Clip: {fileID: 8300000, guid: 958e0c770f7c8b342a113d2debcb8d41, type: 3}
+  Loop: 0
+  audioKey: 0

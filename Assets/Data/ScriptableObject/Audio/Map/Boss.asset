@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6683fa880a202c4297c562225fea568, type: 3}
+  m_Name: Boss
+  m_EditorClassIdentifier: Assembly-CSharp::MapAudioContext
+  PlayerAudioDataContext:
+    PlayerAttackAudioDatas:
+    - {fileID: 11400000, guid: 58c96aeae66542c47b452181e3243e5d, type: 2}
+    - {fileID: 11400000, guid: 81fb205cf887e8c4981e9648081f3484, type: 2}
+    - {fileID: 11400000, guid: 191bf51074c781141a9634e482308285, type: 2}
+    - {fileID: 11400000, guid: 98ea88af324b39b468cd0ad643549cd6, type: 2}
+    - {fileID: 11400000, guid: c2471d8540dae7c4fa17305c528a1577, type: 2}
+    PlayerMoveAudioDatas:
+    - {fileID: 11400000, guid: c4aad91653f43a142a35abd6eb0496dc, type: 2}
+    - {fileID: 11400000, guid: cfb3b1eb2a0d9954a8e34cf8d4e2a661, type: 2}
+    - {fileID: 11400000, guid: 341d6c0a2ea9ca147b8f770a77fc3527, type: 2}
+    - {fileID: 11400000, guid: 948dbaffc79a2ad4b910be36b190e5ee, type: 2}
+    - {fileID: 11400000, guid: d2ae24faa202c874caf0e5adcc4694cc, type: 2}
+    PlayerSkillAudioDatas:
+    - {fileID: 11400000, guid: 39671c469e2a58946adc7d43dba35cca, type: 2}
+    - {fileID: 11400000, guid: 3b43a17c15f00af4fb1093d6fb66566b, type: 2}
+    - {fileID: 11400000, guid: a62db7e5634fe9c46b83a2bfd1eb89f7, type: 2}
+    - {fileID: 11400000, guid: 3e51b04f744cd534c9f764cf3590464c, type: 2}
+  MonsterAudioDataContext:
+    MonsterAttackAudioDatas:
+    - {fileID: 11400000, guid: cb8d80e501f69654ead16f2097678da4, type: 2}
+    - {fileID: 11400000, guid: 101eebcd8efc0b24ab343261b42f136e, type: 2}
+    - {fileID: 11400000, guid: 745bb3a070032b042aaeecd11a9d7ecd, type: 2}
+    - {fileID: 11400000, guid: c72d455afd08e254195d748aa8c821e1, type: 2}
+    - {fileID: 11400000, guid: 4b75599b9db642f4e91094e5937b5375, type: 2}
+    MonsterDieAudioDatas:
+    - {fileID: 11400000, guid: b0c17a9f329411946b4b82b0156ce5c2, type: 2}
+    MonsterProjectileAudioDatas: []
+  ItemAudioDataContext:
+    itemBoxAudioDatas: []
+    itemEffectAudioDatas:
+    - {fileID: 11400000, guid: a5f42e3e4b4f48b469990c5d721bc7c4, type: 2}
+    - {fileID: 11400000, guid: 080ddd785b67e5b40937cd287bb91ada, type: 2}
+    - {fileID: 11400000, guid: 9c62853ef30e2cb4799e0f639fa9ee27, type: 2}
+  EnvironmentAudioDataContext:
+    environmentAudioDatas: []
+  BGMAudioDataContext:
+    bgmAudioDatas:
+    - {fileID: 11400000, guid: 0821be31c6055ff47bd189774c50560a, type: 2}
+    - {fileID: 11400000, guid: 4e43e187969b5c9429d967360a7ba651, type: 2}
+  DirecitonAudioDataContext:
+    directionalAudioDatas:
+    - {fileID: 11400000, guid: bf3b64b647aa82347b6095289868d1ab, type: 2}
+    - {fileID: 11400000, guid: 56fc2831c24b6854bb140df5ab5c8696, type: 2}
+    - {fileID: 11400000, guid: 9238fbe1b4a5b654f8ab6102fc00b947, type: 2}
+    - {fileID: 11400000, guid: d4e2fa9bdff5a0243919a66fdef5c6fe, type: 2}
+    - {fileID: 11400000, guid: 187ee9eb7cf341249b406e305ca3fb53, type: 2}
+    - {fileID: 11400000, guid: cd7bbd2a38b61484ca6bd351fc25d090, type: 2}
+  UIAudioDataContext:
+    uiAudioDatas:
+    - {fileID: 11400000, guid: 2adaf0993cb1b1843ac6a2ae62361839, type: 2}
+    - {fileID: 11400000, guid: b21622ed575986e41875956a8a61ca99, type: 2}
+  TraitAudioDataContext:
+    traitAudioDatas: []
+  AutoSetBGM: 1

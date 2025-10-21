@@ -13,7 +13,8 @@ public class GoldController : InteractableController
     GameObject _goldUI;
     public override void OnInteract()
     {
-        Debug.Log($"Gold {Gold} 획득");
+        PlayerCharacter.Instance.Inventory.Gold += Gold;
+        Debug.Log(PlayerCharacter.Instance.Inventory.GetJsonString());
         Destroy(gameObject);
     }
     protected override void Init()

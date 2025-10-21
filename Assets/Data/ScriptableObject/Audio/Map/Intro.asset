@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6683fa880a202c4297c562225fea568, type: 3}
+  m_Name: Intro
+  m_EditorClassIdentifier: Assembly-CSharp::MapAudioContext
+  PlayerAudioDataContext:
+    PlayerAttackAudioDatas:
+    - {fileID: 11400000, guid: 81fb205cf887e8c4981e9648081f3484, type: 2}
+    - {fileID: 11400000, guid: 191bf51074c781141a9634e482308285, type: 2}
+    PlayerMoveAudioDatas:
+    - {fileID: 11400000, guid: c4aad91653f43a142a35abd6eb0496dc, type: 2}
+    - {fileID: 11400000, guid: cfb3b1eb2a0d9954a8e34cf8d4e2a661, type: 2}
+    - {fileID: 11400000, guid: 341d6c0a2ea9ca147b8f770a77fc3527, type: 2}
+    - {fileID: 11400000, guid: 948dbaffc79a2ad4b910be36b190e5ee, type: 2}
+    - {fileID: 11400000, guid: d2ae24faa202c874caf0e5adcc4694cc, type: 2}
+    PlayerSkillAudioDatas: []
+  MonsterAudioDataContext:
+    MonsterAttackAudioDatas: []
+    MonsterDieAudioDatas:
+    - {fileID: 11400000, guid: f3fc538243e1c6a46b09a2ee0d772930, type: 2}
+    MonsterProjectileAudioDatas: []
+  ItemAudioDataContext:
+    itemBoxAudioDatas: []
+    itemEffectAudioDatas: []
+  EnvironmentAudioDataContext:
+    environmentAudioDatas:
+    - {fileID: 11400000, guid: 7c19ded283b910f4fb370d18f22ecba7, type: 2}
+  BGMAudioDataContext:
+    bgmAudioDatas:
+    - {fileID: 11400000, guid: 48515b7644a90cc4cb217f23bccf97c3, type: 2}
+  DirecitonAudioDataContext:
+    directionalAudioDatas: []
+  UIAudioDataContext:
+    uiAudioDatas:
+    - {fileID: 11400000, guid: 2adaf0993cb1b1843ac6a2ae62361839, type: 2}
+    - {fileID: 11400000, guid: b21622ed575986e41875956a8a61ca99, type: 2}
+  TraitAudioDataContext:
+    traitAudioDatas: []
+  AutoSetBGM: 1
