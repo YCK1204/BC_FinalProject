@@ -49,7 +49,7 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
     public void PhaseChange()
     {
         _anim.SetInteger("CurPhase", 2);
-        _speed = 4.5f;
+        _speed = 4f;
     }
 
     #region Slam
@@ -61,6 +61,8 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
 
     public void Swipe()
     {
+        Manager.Audio.Play(AudioKey.Monster.Attack.M_ATK_BOSS_SWING, transform);
+
         Collider2D target;
         float dir = transform.localScale.x < 0 ? -1 : 1;
 

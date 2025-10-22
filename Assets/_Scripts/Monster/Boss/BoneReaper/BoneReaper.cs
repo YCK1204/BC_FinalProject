@@ -327,7 +327,10 @@ public class BoneReaper : BossMonster
         IsInvincible = true;
 
         CurPhase = 2;
-        //Debug.Log("페이즈2");
+
+        // 보스 페이즈 브금 변경, 현재 오류있어서 페이드 아웃은 제거
+        SetBgmPhase2();
+        //Manager.Audio.StopBgm(2, SetBgmPhase2);
 
         // 포효 애니메이션 실행, 애니메이션이 끝나면 연출 및 무적 해제
         _head.TriggerAnimation(Game.Monster.BoneReaperAnimatorParams.PhaseChange);
@@ -341,6 +344,11 @@ public class BoneReaper : BossMonster
         _curBT.ChangeAttackSelector();
 
         return NodeStatus.Success;
+    }
+
+    private void SetBgmPhase2()
+    {
+        Manager.Audio.SetBgm(AudioKey.BGM.BGM_BOSS_PHASE2);
     }
 
     public NodeStatus AdvSlamAttack()

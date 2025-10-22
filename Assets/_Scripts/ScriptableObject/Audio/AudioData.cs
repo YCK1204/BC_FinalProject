@@ -49,6 +49,7 @@ public static class AudioKey
             M_ATK_BOSS_ORB_PHASE1,
             M_ATK_BOSS_ORB_PHASE2,
             M_ATK_BOSS_BREATH,
+            M_ATK_BOSS_SWING,
         }
         public enum Projectile
         {
