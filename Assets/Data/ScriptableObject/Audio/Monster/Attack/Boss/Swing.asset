@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27d4510dc0e3c1e49b9a264647794d7e, type: 3}
   m_Name: Swing
   m_EditorClassIdentifier: Assembly-CSharp::MonsterAttackAudioData
-  Clip: {fileID: 0}
+  Clip: {fileID: 8300000, guid: be72f880b8969044d9a51fd0c9fa9e4a, type: 3}
   Loop: 0
-  audioKey: 0
+  audioKey: 10

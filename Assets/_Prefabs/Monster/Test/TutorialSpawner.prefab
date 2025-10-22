@@ -97,7 +97,6 @@ MonoBehaviour:
   SpawnPosition:
   - {x: 40, y: 0}
   - {x: 44, y: 0}
-  - {x: 48, y: 0}
 --- !u!1 &8593444497242904955
 GameObject:
   m_ObjectHideFlags: 0
