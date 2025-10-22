@@ -37,6 +37,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 745bb3a070032b042aaeecd11a9d7ecd, type: 2}
     - {fileID: 11400000, guid: c72d455afd08e254195d748aa8c821e1, type: 2}
     - {fileID: 11400000, guid: 4b75599b9db642f4e91094e5937b5375, type: 2}
+    - {fileID: 11400000, guid: 55b132dc636758148a3ddc627fcd73ba, type: 2}
     MonsterDieAudioDatas:
     - {fileID: 11400000, guid: b0c17a9f329411946b4b82b0156ce5c2, type: 2}
     MonsterProjectileAudioDatas: []

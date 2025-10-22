@@ -21,6 +21,7 @@ public class Title : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("is_intro_completed") == 1)
         {
+            Manager.Analytics.SendFunnelStep(FunnelStep.None, 10);
             var playerData = Manager.Data.PlayerData;
             if (playerData == null)
                 StartCoroutine(StartGame());
