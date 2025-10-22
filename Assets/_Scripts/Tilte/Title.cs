@@ -59,6 +59,7 @@ public class Title : MonoBehaviour
     private IEnumerator StartGame()
     {
         Debug.Log("!!");
+
         Manager.Analytics.SendFunnelStep(FunnelStep.None, 10);
 
         _titleAnimator.Play("Tilte_Gamestart", 0, 0f);
