@@ -13,6 +13,8 @@ public class Inventory
     public Action<ItemController> OnItemAdded { get; set; }
     public bool IsDirty { get; set; } = false;
 
+    public IReadOnlyDictionary<int, ItemData> Items => _items;
+
     int _gold = 0;
     public int Gold
     {
