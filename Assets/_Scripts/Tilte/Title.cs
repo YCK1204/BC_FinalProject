@@ -19,6 +19,11 @@ public class Title : MonoBehaviour
 
     public void OnStartButton()
     {
+        StartCoroutine(StartGame());
+    }
+
+    public void OnContinueButton()
+    {
         if (PlayerPrefs.GetInt("is_intro_completed") == 1)
         {
             var playerData = Manager.Data.PlayerData;
