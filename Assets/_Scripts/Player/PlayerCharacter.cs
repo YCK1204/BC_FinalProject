@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Game.Player
 {
@@ -106,7 +107,7 @@ namespace Game.Player
             Rb = GetComponent<Rigidbody2D>();
             Animator = GetComponentInChildren<Animator>();
             if (!Force) Force = GetComponent<ForceReceiver>();
-            //_originalData = DataSerialized.Clone();
+            _originalData = DataSerialized.Clone();
 
             currentHP = Data.Stats.MaxHP;
 
@@ -119,6 +120,8 @@ namespace Game.Player
 
             ShadowSlashSkill?.Initialize(this);
             DoubleStrikeSkill?.Initialize(this);
+            if (SceneManager.GetActiveScene().name != "Intro")
+                gameObject.SetActive(false);
         }
         public void SetData(PlayerData data)
         {

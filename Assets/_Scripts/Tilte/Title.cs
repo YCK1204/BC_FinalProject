@@ -38,6 +38,7 @@ public class Title : MonoBehaviour
                     CurrentAwakening = playerData.Awaken,
                     CurrentHP = playerData.Hp,
                 };
+                //PlayerManager.Instance.Player.LoadPlayerFromJson(JsonConvert.SerializeObject(playerSaveData));
                 PlayerManager.Instance.LoadFromData(playerSaveData);
                 var itemData = PlayerPrefs.GetString("ItemData");
                 if (string.IsNullOrEmpty(itemData) == false)
@@ -48,6 +49,7 @@ public class Title : MonoBehaviour
                 StartCoroutine(StartGame());
             }
         }
+        PlayerManager.Instance.gameObject.SetActive(true);
     }
 
     private IEnumerator StartGame()

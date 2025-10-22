@@ -67,6 +67,7 @@ public class AudioManager : MonoBehaviour
             var loopingAudio = new LoopingAudio(LoopStopAction);
             _loopingAudioPool.Push(loopingAudio);
         }
+        _originalBgmVolume = GetVolume(AudioMixerType.BGM);
         StartCoroutine(CoCheckDisableLoop());
     }
     void LoopStopAction(LoopingAudio la)
@@ -243,6 +244,7 @@ public class AudioManager : MonoBehaviour
     /// <param name="onFadeInCompleted">페이드인 완료 시 실행할 콜백</param>
     public void SetBgm(AudioKey.BGM key, Action onFadeInCompleted = null)
     {
+        SetVolume(AudioMixerType.BGM, _originalBgmVolume);
         _audioDataDict.TryGetValue(key.ToString(), out var audioData);
         if (audioData == null)
         {
@@ -260,7 +262,7 @@ public class AudioManager : MonoBehaviour
         _bgmSource.loop = true;
         _bgmSource.outputAudioMixerGroup = AudioMixer.FindMatchingGroups(AudioMixerType.BGM.ToString())[0];
         _bgmSource.Play();
-        SetVolume(AudioMixerType.BGM, 1f, fadeInDuration);
+        _bgmSource.DOFade(1f, fadeInDuration).onComplete += () => onFadeInCompleted?.Invoke();
     }
     /// <summary>
     /// BGM 정지 (페이드아웃 효과 지원)
@@ -269,8 +271,11 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     /// <param name="fadeOutDuration">페이드아웃 지속 시간 (초 단위, 0이면 즉시 정지)</param>
     /// <param name="onFadeOutCompleted">페이드아웃 완료 시 실행할 콜백</param>
+    /// 
+    float _originalBgmVolume = 1f;
     public void StopBgm(float fadeOutDuration = 0, Action onFadeOutCompleted = null)
     {
+        _originalBgmVolume = GetVolume(AudioMixerType.BGM);
         _bgmSource.DOFade(0f, fadeOutDuration).onComplete += () => onFadeOutCompleted?.Invoke();
     }
     /// <summary>

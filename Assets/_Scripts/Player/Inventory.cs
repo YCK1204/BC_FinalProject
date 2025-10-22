@@ -78,10 +78,10 @@ public class Inventory
     public string GetItemJsonData()
     {
         var json = new JObject();
-        json.Add("Gold", Gold);
+        json.Add("gold", Gold);
         var jArray = new JArray();
         _items.Keys.ToList().ForEach((id) => jArray.Add(id));
-        json.Add("ItemsId", jArray);
+        json.Add("items_id", jArray);
         return json.ToString();
     }
 }

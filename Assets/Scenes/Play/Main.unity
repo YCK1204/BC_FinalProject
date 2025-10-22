@@ -6602,9 +6602,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 241511164e528e64c82779eb033e1b9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AudioManager
-
-  AddrGroup: Audio
-
   AudioMixer: {fileID: 24100000, guid: c49e9afbcdd1a9944830be2ddc9f9900, type: 2}
   Prefab: {fileID: 6722650377872159071, guid: 5bddb0ab0a7b77244a24447036c1cacf, type: 3}
   InitialPoolSize: 20
@@ -6623,7 +6620,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-
 --- !u!82 &1278553846
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7063,7 +7059,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!61 &1333591357
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7249,7 +7245,6 @@ MonoBehaviour:
   Force: {fileID: 1333591361}
   normalAnimator: {fileID: 9100000, guid: 79ed20ba5a3e6474ba90a5da46e2e6e4, type: 2}
   awakenedAnimator: {fileID: 9100000, guid: be26a36d384a4274b9ab36d62ea5f066, type: 2}
-  IsIntroComplete: 0
   showRuntime: 1
   runtimeIsDashing: 0
   runtimeSpeedModifier: 1
