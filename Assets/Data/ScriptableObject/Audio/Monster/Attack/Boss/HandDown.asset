@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27d4510dc0e3c1e49b9a264647794d7e, type: 3}
   m_Name: HandDown
   m_EditorClassIdentifier: Assembly-CSharp::MonsterAttackAudioData
-  Clip: {fileID: 8300000, guid: 11f77943d3ca0fa4d95f5a1e7e1660b6, type: 3}
+  Clip: {fileID: 8300000, guid: 5d136b76b65e77e4392308f733dfc77b, type: 3}
   Loop: 0
-  audioKey: 3
+  audioKey: 5

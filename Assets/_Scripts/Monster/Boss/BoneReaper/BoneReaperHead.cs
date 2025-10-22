@@ -52,6 +52,8 @@ public class BoneReaperHead : MonoBehaviour, IDamageable
 
     public void BreathAttack(float size)
     {
+        Manager.Audio.Play(AudioKey.Monster.Attack.M_ATK_BOSS_BREATH, transform);
+
         Collider2D target;
 
         float t = Mathf.InverseLerp(2f, 5f, size);
@@ -138,6 +140,39 @@ public class BoneReaperHead : MonoBehaviour, IDamageable
         yield return null;
     }
 
+    public void ChangePhase()
+    {
+        _anim.SetInteger("CurPhase", 2);
+
+        _owner.IsDirecting = false;
+        _owner.IsInvincible = false;
+    }
+
+    public void SummonOrbPhase2()
+    {
+        _anim.SetTrigger(BoneReaperAnimatorParams.SummonHex);
+        StartCoroutine(SummonOrbsSequencePhase2());
+    }
+
+    private IEnumerator SummonOrbsSequencePhase2()
+    {
+        string vertical = "Vertical";
+
+        WaitForSeconds orbCreateCoolTime = new WaitForSeconds(0.5f);
+        // 7 5 3
+        _owner.OrbPool[vertical].Pop().GetComponent<Orb>().Init(_owner, transform.position + Vector3.right * 8 * _owner.BossScale, vertical);
+        _owner.OrbPool[vertical].Pop().GetComponent<Orb>().Init(_owner, transform.position + Vector3.right * -8 * _owner.BossScale, vertical);
+        _owner.OrbPool[vertical].Pop().GetComponent<Orb>().Init(_owner, transform.position + Vector3.right * 6 * _owner.BossScale, vertical);
+        _owner.OrbPool[vertical].Pop().GetComponent<Orb>().Init(_owner, transform.position + Vector3.right * -6 * _owner.BossScale, vertical);
+        _owner.OrbPool[vertical].Pop().GetComponent<Orb>().Init(_owner, transform.position + Vector3.right * 4 * _owner.BossScale, vertical);
+        _owner.OrbPool[vertical].Pop().GetComponent<Orb>().Init(_owner, transform.position + Vector3.right * -4 * _owner.BossScale, vertical);
+        _owner.OrbPool[vertical].Pop().GetComponent<Orb>().Init(_owner, transform.position + Vector3.right * 2 * _owner.BossScale, vertical);
+        _owner.OrbPool[vertical].Pop().GetComponent<Orb>().Init(_owner, transform.position + Vector3.right * -2 * _owner.BossScale, vertical);
+
+        yield return orbCreateCoolTime;
+        _owner.IsAttacking = false;
+    }
+
     // 기타 메서드
     public void TakeDamage(float damage, GameObject attacker)
     {
@@ -158,5 +193,20 @@ public class BoneReaperHead : MonoBehaviour, IDamageable
     public void DeathEvent()
     {
         OnDie();
+    }
+
+    public void PlayLoar()
+    {
+        Manager.Audio.Play(AudioKey.Direction.DIR_BOSS_START, transform);
+    }
+
+    public void PlayLaser()
+    {
+        Manager.Audio.Play(AudioKey.Monster.Attack.M_ATK_BOSS_LASER, transform);
+    }
+
+    public void EndLaser()
+    {
+        Manager.Audio.StopLoop(transform);
     }
 }

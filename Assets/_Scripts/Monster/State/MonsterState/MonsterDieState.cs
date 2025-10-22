@@ -15,13 +15,15 @@ public class MonsterDieState : MonsterBaseState
         base.Enter();
 
         _curRetrunTime = 0f;
-        _maxReturnTime = 2f;
+        _maxReturnTime = 1f;
 
         _stateMachine.Owner.Anim.SetTrigger(Game.Monster.AnimatorParams.Die);
         _stateMachine.Owner.Rb.bodyType = RigidbodyType2D.Kinematic;
         _stateMachine.Owner.Col.isTrigger = true;
         _stateMachine.Owner.Rb.linearVelocityX = 0f;
         _stateMachine.Owner.Rb.linearVelocityY = 0f;
+
+        Manager.Audio.Play(_stateMachine.Owner.MonsterData.Data.DieSfx, _stateMachine.Owner.transform);
 
         if(_stateMachine.Owner.OnDiedEnter != null)
             _stateMachine.Owner.OnDiedEnter();

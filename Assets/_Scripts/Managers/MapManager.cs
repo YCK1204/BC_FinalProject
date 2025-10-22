@@ -24,6 +24,7 @@ public class MapManager : MonoBehaviour
     [Header("Map")]
     [SerializeField] private List<GameObject> _mapPrefabs;
     [SerializeField] private GameObject _bossroomPrefabs;
+    [SerializeField] private GameObject _itemRoomPrefab;
 
     private List<GameObject> _mapPool = new List<GameObject>();
     private GameObject _currentMap;
@@ -86,8 +87,23 @@ public class MapManager : MonoBehaviour
         }
     }
 
+    IEnumerator ItemStageTrigger()
+    {
+        yield return null;
+        yield return null;
+        Manager.Game.MonsterCount = 0;
+    }
+
     public void NextMap()
     {
+        if(_currentMapPrefab == _mapPrefabs[0])
+        {
+            LoadMap(_itemRoomPrefab);
+            //Manager.Game.MonsterCount = 0;
+            StartCoroutine(ItemStageTrigger());
+            return;
+        }
+
         if (_currentMapPrefab != null)
         {
             int clearedIndex = _mapPrefabs.IndexOf(_currentMapPrefab);

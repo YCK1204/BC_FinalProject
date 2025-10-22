@@ -25,4 +25,9 @@ public class BossUI : MonoBehaviour
             BossHpBar.gameObject.SetActive(false);
         }
     }
+
+    public void DisableUI()
+    {
+        BossHpBar.SetActive(false);
+    }    
 }

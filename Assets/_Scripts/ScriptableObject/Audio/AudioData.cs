@@ -40,13 +40,16 @@ public static class AudioKey
         public enum Attack
         {
             M_ATK_UNDEAD_CLOSE,
+            M_ATK_UNDEAD_ARCHER,
             M_ATK_UNDEAD_MAGE,
             M_ATK_GOLEM,
+            M_ATK_SLIME,
             M_ATK_BOSS_HAND_DOWN,
-            M_ATK_BOSS_LASER,
+            M_ATK_BOSS_LASER, 
             M_ATK_BOSS_ORB_PHASE1,
             M_ATK_BOSS_ORB_PHASE2,
             M_ATK_BOSS_BREATH,
+            M_ATK_BOSS_SWING,
         }
         public enum Projectile
         {
