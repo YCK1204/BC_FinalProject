@@ -26,6 +26,7 @@ public class Title : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("is_intro_completed") == 1)
         {
+            Manager.Analytics.SendFunnelStep(FunnelStep.None, 10);
             var playerData = Manager.Data.PlayerData;
             if (playerData == null)
                 StartCoroutine(StartGame());
@@ -58,6 +59,8 @@ public class Title : MonoBehaviour
     private IEnumerator StartGame()
     {
         Debug.Log("!!");
+
+        Manager.Analytics.SendFunnelStep(FunnelStep.None, 10);
 
         _titleAnimator.Play("Tilte_Gamestart", 0, 0f);
 
