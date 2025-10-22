@@ -24,6 +24,8 @@ public class RushAttack : MeleeAttack
 
     public override void Attack()
     {
+        base.Attack();
+
         _rushSpeed = _monsterAttack.Owner.MonsterData.Speed * 2f;
         _monsterAttack.Owner.DeleteIgnoreCollider(_target);
 

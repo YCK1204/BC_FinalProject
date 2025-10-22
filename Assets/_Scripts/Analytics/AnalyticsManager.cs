@@ -42,6 +42,9 @@ public class AnalyticsManager
 
             _isInitialized = true;
             Debug.Log("Unity Services Initialized");
+
+            // [PS] 초기화와 동시에 퍼널 0,1 수행
+            SendFunnelStep(FunnelStep.None, 1);
         }
         catch (System.Exception e)
         {
@@ -69,6 +72,6 @@ public class AnalyticsManager
         funnelEvent[paramName] = stepNumber; //parameter
 
         AnalyticsService.Instance.RecordEvent(funnelEvent); //custom event
-        //Debug.Log($"Event Send {eventName} / {paramName} / {stepNumber}");
+        Debug.Log($"Event Send {eventName} / {paramName} / {stepNumber}");
     }
 }

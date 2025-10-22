@@ -15,7 +15,9 @@ public class SwingAttack : MeleeAttack
     /// </summary>
     public override void Attack()
     {
-        if(GetCheckAttackable())
+        base.Attack();
+
+        if (GetCheckAttackable())
         {
             if(_target != null)
             {

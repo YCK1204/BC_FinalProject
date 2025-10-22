@@ -10,6 +10,8 @@ public class StabAttack : MeleeAttack
 
     public override void Attack()
     {
+        base.Attack();
+
         if (GetCheckAttackable())
         {
             PlayerCharacter pc = _target.GetComponent<PlayerCharacter>();

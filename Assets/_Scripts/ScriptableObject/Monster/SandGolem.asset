@@ -19,3 +19,6 @@ MonoBehaviour:
   AttackRange: 3
   DetectRange: 5
   CanMove: 1
+  AttackSfx: 3
+  DieSfx: 2
+  HitSfx: 4
