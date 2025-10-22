@@ -17553,7 +17553,6 @@ MonoBehaviour:
   Force: {fileID: 1333591361}
   normalAnimator: {fileID: 9100000, guid: 79ed20ba5a3e6474ba90a5da46e2e6e4, type: 2}
   awakenedAnimator: {fileID: 9100000, guid: be26a36d384a4274b9ab36d62ea5f066, type: 2}
-  IsIntroComplete: 0
   showRuntime: 1
   runtimeIsDashing: 0
   runtimeSpeedModifier: 1

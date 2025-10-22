@@ -52,6 +52,8 @@ public class Title : MonoBehaviour
 
     private IEnumerator StartGame()
     {
+        Debug.Log("!!");
+
         _titleAnimator.Play("Tilte_Gamestart", 0, 0f);
 
         _camera.SetActive(false);
