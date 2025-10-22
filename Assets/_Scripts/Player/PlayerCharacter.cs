@@ -106,7 +106,7 @@ namespace Game.Player
             Rb = GetComponent<Rigidbody2D>();
             Animator = GetComponentInChildren<Animator>();
             if (!Force) Force = GetComponent<ForceReceiver>();
-            //_originalData = DataSerialized.Clone();
+            _originalData = DataSerialized.Clone();
 
             currentHP = Data.Stats.MaxHP;
 
