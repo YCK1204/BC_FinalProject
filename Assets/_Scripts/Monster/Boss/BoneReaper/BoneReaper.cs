@@ -153,6 +153,10 @@ public class BoneReaper : BossMonster
         // 연출 중이 아닐때는 매 프레임마다 무적 해제
         if(!IsDirecting)
             IsInvincible = false;
+
+#if UNITY_EDITOR
+        DebugBossDamage();
+#endif
     }
 
     public NodeStatus FindTarget()
@@ -474,13 +478,21 @@ public class BoneReaper : BossMonster
             {
                 if ((MonsterData.CurHp / MonsterData.Data.MaxHp) * 100 <= 10f * (9-i))
                 {
-                    Debug.Log((MonsterData.CurHp / MonsterData.Data.MaxHp) * 10);
+                    //Debug.Log((MonsterData.CurHp / MonsterData.Data.MaxHp) * 10);
                     _isHpLower[i] = true;
                     Manager.Analytics.SendFunnelStep(FunnelStep._Boss, i + 3);
                 }
                 else
                     break;
             }
+        }
+    }
+
+    private void DebugBossDamage()
+    {
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            _head.TakeDamage(100, gameObject);
         }
     }
 }
