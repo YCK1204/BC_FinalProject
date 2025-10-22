@@ -11,6 +11,8 @@ public class CooldownUI : MonoBehaviour
 
     private Coroutine _cooldownCoroutine;
 
+    public bool CoolChk;
+
     private void Start()
     {
         if (_chk)
@@ -52,10 +54,12 @@ public class CooldownUI : MonoBehaviour
     public void ShowCooldown()
     {
         _cooldownImage.fillAmount = 1;
+        CoolChk = false;
     }
 
     public void HideCooldown()
     {
         _cooldownImage.fillAmount = 0;
+        CoolChk = true;
     }
 }

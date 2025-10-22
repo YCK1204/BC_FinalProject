@@ -35,6 +35,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 84afcf1272103d54285663e127fceb5b, type: 2}
     - {fileID: 11400000, guid: 4425b01322cb2f446bee7e5b4a09f5ae, type: 2}
     - {fileID: 11400000, guid: ba67a10a7e5cbb3448e7c760a5d99ccf, type: 2}
+    - {fileID: 11400000, guid: b98fa8f51762e4942a9fd749d770f0ce, type: 2}
+    - {fileID: 11400000, guid: 4e9949cd015e912469d5ffc38db1d8fc, type: 2}
     MonsterDieAudioDatas:
     - {fileID: 11400000, guid: 84199f75df79c14499b3c7511c30df54, type: 2}
     - {fileID: 11400000, guid: f3fc538243e1c6a46b09a2ee0d772930, type: 2}

@@ -25,6 +25,8 @@ public class Orb : MonoBehaviour
 
     public void VerticalBurst()
     {
+        Manager.Audio.Play(AudioKey.Monster.Attack.M_ATK_BOSS_ORB_PHASE1, transform);
+
         Collider2D target;
 
         // 공중 0, 0에서 좌우 0.5 상하 3 박스

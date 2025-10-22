@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Golem
   m_EditorClassIdentifier: Assembly-CSharp::MonsterAttackAudioData
   Clip: {fileID: 8300000, guid: db4c90eb6cf7e054693037c23fda1d57, type: 3}
-  Loop: 1
-  audioKey: 2
+  Loop: 0
+  audioKey: 3

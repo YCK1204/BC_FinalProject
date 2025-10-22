@@ -18,7 +18,10 @@ public abstract class BaseAttack : Game.Monster.IAttackable
         _mask = LayerMask.GetMask(Game.Monster.Layers.Player);
     }
 
-    public abstract void Attack();
+    public virtual void Attack()
+    {
+        Manager.Audio.Play(_monsterAttack.Owner.MonsterData.Data.AttackSfx, _tr);
+    }
 
     public virtual void StopAttack()
     {

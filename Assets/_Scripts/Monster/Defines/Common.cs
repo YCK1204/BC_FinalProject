@@ -55,6 +55,7 @@ namespace Game.Monster
         public const string Breath = "Breath";
         public const string Slam = "Slam";
         public const string SlamSwipe = "SlamSwipe";
+        public const string PhaseChange = "PhaseChange";
     }
 
 }

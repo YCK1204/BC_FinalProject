@@ -1,13 +1,12 @@
 using DG.Tweening;
 using Game.Monster;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Cinemachine;
-using Unity.VisualScripting;
-using UnityEditorInternal;
 using UnityEngine;
-using static UnityEditorInternal.ReorderableList;
 
 namespace Game.Player
 {
@@ -121,7 +120,33 @@ namespace Game.Player
             ShadowSlashSkill?.Initialize(this);
             DoubleStrikeSkill?.Initialize(this);
         }
+        public void SetData(PlayerData data)
+        {
+            _originalData = data;
+        }
+        public string GetPlayerJsonData()
+        {
+            var mapData = MapManager.Instance.GetSaveData();
+            var jsonData = new PlayerJsonData()
+            {
+                CurMap = mapData.CurrentMapIndex,
+                ClearedMaps = mapData.ClearedMapIndices,
+                Hp = currentHP,
+                Awaken = currentAwakening,
+                PlayTime = mapData.PlayTime,
+            };
 
+            return JsonConvert.SerializeObject(jsonData);
+        }
+        public void LoadPlayerFromJson(string jsonData)
+        {
+            var json = JObject.Parse(jsonData);
+            currentHP = json.Value<float>("hp");
+            currentAwakening = json.Value<float>("awaken");
+            HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
+            AwakeningEvent?.Invoke(currentAwakening, Data.awakening.MaxAwakeningGauge);
+            Debug.Log("플레이어 데이터 로드 완료");
+        }
         public void ApplyData(PlayerSaveData data)
         {
             this.currentHP = data.CurrentHP;
@@ -243,7 +268,7 @@ namespace Game.Player
 
             Debug.Log($"피해량체크- {damage} 남은체력- {currentHP}");
 
-            camShake.Shake(1f, 1f, 0.2f);
+            camShake.Shake(2f, 2f, 0.2f);
             _impulseSource.GenerateImpulse();
             if (currentHP <= 0f) Die(); else StartCoroutine(HitColor());
             ;
@@ -338,7 +363,7 @@ namespace Game.Player
 
         public void GainAwakeningGauge()
         {
-            if (IsAwakened || IsDead) return;
+            if (IsAwakened || IsDead || PlayerManager.Instance == null) return;
             var awakeningData = Data.awakening;
             currentAwakening = Mathf.Min(awakeningData.MaxAwakeningGauge, currentAwakening + awakeningData.AwakeningOnHit);
 
@@ -347,7 +372,6 @@ namespace Game.Player
             if (currentAwakening >= awakeningData.MaxAwakeningGauge)
             {
                 PlayerManager.Instance.CooldownD.HideCooldown();
-
             }
         }
 
