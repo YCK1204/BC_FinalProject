@@ -64,7 +64,6 @@ public abstract class StateMachineMonster : NormalMonster
             return;
 
         _dataHandler.TakeDamage(damage);
-        Manager.Audio.Play(MonsterData.Data.HitSfx, transform);
         OnHit?.Invoke();
 
         if (_dataHandler.CurHp <= 0)
@@ -75,9 +74,13 @@ public abstract class StateMachineMonster : NormalMonster
                 PlayerCharacter.Instance.Kill();
             _stateMachine.ChangeState(Game.Monster.StateType.Die);
         }
-        else if(!IsSuperArmor)
+        else
         {
-            _stateMachine.ChangeState(Game.Monster.StateType.Hit);
+            Manager.Audio.Play(MonsterData.Data.HitSfx, transform);
+            if(!IsSuperArmor)
+            {
+                _stateMachine.ChangeState(Game.Monster.StateType.Hit);
+            }
         }
     }
 

@@ -183,6 +183,10 @@ public class BoneReaper : BossMonster
         {
             Die();
         }
+        else
+        {
+            Manager.Audio.Play(AudioKey.Player.Hit.P_HIT_UNDEAD_BOSS, transform);
+        }
 
     }
 
