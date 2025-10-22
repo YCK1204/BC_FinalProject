@@ -435,12 +435,11 @@ public class BoneReaper : BossMonster
 
     #endregion
 
-    public void HitFlash(SpriteRenderer sr, Coroutine hitEffect)
+    public void HitFlash(SpriteRenderer sr, Coroutine hitEffect, Material originMat)
     {
         if (HitFlashMat == null)
             return;
 
-        Material originMat = sr.material;
         sr.material = HitFlashMat;
         HitFlashMat.SetFloat("_FlashAmount", 1f);
 
