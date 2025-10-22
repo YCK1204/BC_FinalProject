@@ -1,16 +1,14 @@
 using Game.Player;
 using Newtonsoft.Json;
-using NUnit.Framework.Interfaces;
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using UnityEngine;
 
 public class DataManager
 {
     public Item ItemsData = new Item();
+    public PlayerJsonData PlayerData = null;
     Dictionary<int, T1> MakeDict<T1, T2>(string fileName, Func<T2, Dictionary<int, T1>> factory) where T2 : class
     {
         try
@@ -89,8 +87,27 @@ public class DataManager
             ItemsData.Effect = reader.DataList.ToDictionary(data => data.Id, data => data);
         }
         #endregion
+        #region Player Data Load
+        var playerData = PlayerPrefs.GetString("PlayerData");
+        PlayerData data = new PlayerData();
+
+        var player = GameObject.FindObjectsByType<PlayerCharacter>(FindObjectsInactive.Include, FindObjectsSortMode.None).FirstOrDefault();
+        if (player == null)
+            return;
+        if (string.IsNullOrEmpty(playerData) == false)
+            PlayerData = JsonConvert.DeserializeObject<PlayerJsonData>(playerData);
+        #endregion
     }
     public void Save()
     {
+        var playerData = PlayerCharacter.Instance.GetPlayerJsonData();
+        PlayerPrefs.SetString("PlayerData", playerData);
+
+        if (PlayerCharacter.Instance.Inventory.IsDirty)
+        {
+            var itemJsonData = PlayerCharacter.Instance.Inventory.GetItemJsonData();
+            PlayerPrefs.SetString("ItemData", itemJsonData);
+            PlayerCharacter.Instance.Inventory.IsDirty = false;
+        }
     }
 }
