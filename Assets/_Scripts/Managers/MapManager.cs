@@ -105,6 +105,7 @@ public class MapManager : MonoBehaviour
             LoadMap(_itemRoomPrefab);
             //Manager.Game.MonsterCount = 0;
             StartCoroutine(ItemStageTrigger());
+            Manager.Analytics.SendFunnelStep(FunnelStep.None, 11);
             return;
         }
 
@@ -130,6 +131,7 @@ public class MapManager : MonoBehaviour
         {
             LoadMap(_bossroomPrefabs);
             Debug.Log("보스방 입장!");
+            Manager.Analytics.SendFunnelStep(FunnelStep._Boss, 1);
             return;
         }
 

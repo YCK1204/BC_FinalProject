@@ -21,6 +21,7 @@ public class BossIntroController : MonoBehaviour
 
     public void StartIntro()
     {
+        Manager.Analytics.SendFunnelStep(FunnelStep._Boss, 2);
         _director.Play();
     }
 
