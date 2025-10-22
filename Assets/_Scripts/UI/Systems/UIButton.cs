@@ -8,38 +8,79 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     public UnityEvent OnClicked;
 
-    private Vector3 btuScale;
+    private Vector3 initialScale;
     private Tween currentTweenA;
     private Tween currentTweenB;
+    private Tween textFadeTween;
 
     private bool on = false;
+    private Text buttonText;
 
-    void Start()
+    void Awake()
     {
-        btuScale = transform.localScale;
+        initialScale = transform.localScale;
+
+        Transform textChild = transform.Find("text");
+        if (textChild != null)
+        {
+            buttonText = textChild.GetComponent<Text>();
+            if (buttonText != null)
+            {
+                Color tempColor = buttonText.color;
+                tempColor.a = 0f;
+                buttonText.color = tempColor;
+            }
+        }
+    }
+
+    void OnEnable()
+    {
+        transform.localScale = initialScale;
+
+        if (buttonText != null)
+        {
+            Color tempColor = buttonText.color;
+            tempColor.a = 0f;
+            buttonText.color = tempColor;
+        }
+
+        KillTween();
+        KillTextFadeTween();
+        if (currentTweenB != null && currentTweenB.IsActive()) currentTweenB.Kill();
+        on = false;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         KillTween();
+        KillTextFadeTween();
 
-        Debug.Log("»£πˆ");
-        //transform.localScale = btuScale * 1.05f;
-        currentTweenA = transform.DOScale(0.8f, 0.2f);
+        Debug.Log("Ìò∏Î≤Ñ");
+        currentTweenA = transform.DOScale(initialScale * 1.05f, 0.2f);
+
+        if (buttonText != null)
+        {
+            textFadeTween = buttonText.DOColor(new Color(buttonText.color.r, buttonText.color.g, buttonText.color.b, 1f), 0.2f);
+        }
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         KillTween();
+        KillTextFadeTween();
 
-        Debug.Log("≥™∞®");
-        //transform.localScale = btuScale;
-        currentTweenA = transform.DOScale(0.7f, 0.2f);
+        Debug.Log("ÎÇòÍ∞ê");
+        currentTweenA = transform.DOScale(initialScale, 0.2f);
+
+        if (buttonText != null)
+        {
+            textFadeTween = buttonText.DOColor(new Color(buttonText.color.r, buttonText.color.g, buttonText.color.b, 0f), 0.2f);
+        }
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log($"¥©∏ß {on}");
+        Debug.Log($"ÎàÑÎ¶Ñ {on}");
         if (on) return;
         on = true;
 
@@ -48,25 +89,21 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
             currentTweenB.Kill();
         }
 
-        currentTweenB = transform.DOPunchScale(new Vector3(-0.1f, -0.1f, -0.1f), 0.3f, 10, 1)
+        currentTweenB = transform.DOPunchScale(initialScale * -0.05f, 0.3f, 10, 1)
             .OnComplete(() => {
-                 on = false;
+                on = false;
                 OnClicked?.Invoke();
             });
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Debug.Log("∂¿");
+        Debug.Log("Îóå");
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        
-
-        Debug.Log("¿Ã∫•∆Æ");
-        
-        // ¿Ã∫•∆Æ
+        Debug.Log("Ïù¥Î≤§Ìä∏");
     }
 
     private void KillTween()
@@ -74,6 +111,14 @@ public class UIButton : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (currentTweenA != null && currentTweenA.IsActive())
         {
             currentTweenA.Kill();
+        }
+    }
+
+    private void KillTextFadeTween()
+    {
+        if (textFadeTween != null && textFadeTween.IsActive())
+        {
+            textFadeTween.Kill();
         }
     }
 }

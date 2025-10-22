@@ -53,6 +53,7 @@ public class DoubleStrike : Skill
             IDamageable target = targetCol.GetComponentInParent<IDamageable>();
             if (target != null)
             {
+                owner.StateMachine.Player.GainAwakeningGauge();
                 hitted = true;
                 int damage = Mathf.RoundToInt(owner.Data.CombatData.AttackPower * damageMultiplier);
                 target.TakeDamage(damage);

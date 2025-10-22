@@ -8,7 +8,7 @@ using UnityEngine;
 public class DataManager
 {
     public Item ItemsData = new Item();
-    public PlayerJsonData PlayerData = null;
+    public PlayerSOData playerSOData = null;
     Dictionary<int, T1> MakeDict<T1, T2>(string fileName, Func<T2, Dictionary<int, T1>> factory) where T2 : class
     {
         try
@@ -88,25 +88,18 @@ public class DataManager
         }
         #endregion
         #region Player Data Load
-        var playerData = PlayerPrefs.GetString("PlayerData");
-        PlayerData data = new PlayerData();
-
-        var player = GameObject.FindObjectsByType<PlayerCharacter>(FindObjectsInactive.Include, FindObjectsSortMode.None).FirstOrDefault();
-        if (player == null)
-            return;
-        if (string.IsNullOrEmpty(playerData) == false)
-            PlayerData = JsonConvert.DeserializeObject<PlayerJsonData>(playerData);
+        playerSOData = Manager.Resource.LoadData<PlayerSOData>("PlayerSOData");
+        var inventoryData = JsonConvert.DeserializeObject<InventoryJsonData>(playerSOData.InventoryJsonData);
         #endregion
     }
     public void Save()
     {
         var playerData = PlayerCharacter.Instance.GetPlayerJsonData();
-        PlayerPrefs.SetString("PlayerData", playerData);
+        playerSOData.PlayerJsonData = playerData;
 
         if (PlayerCharacter.Instance.Inventory.IsDirty)
         {
-            var itemJsonData = PlayerCharacter.Instance.Inventory.GetItemJsonData();
-            PlayerPrefs.SetString("ItemData", itemJsonData);
+            playerSOData.InventoryJsonData = PlayerCharacter.Instance.Inventory.GetItemJsonData();
             PlayerCharacter.Instance.Inventory.IsDirty = false;
         }
     }

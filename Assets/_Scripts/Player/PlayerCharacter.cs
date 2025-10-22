@@ -271,7 +271,7 @@ namespace Game.Player
 
             Debug.Log($"피해량체크- {damage} 남은체력- {currentHP}");
 
-            camShake.Shake(1f, 1f, 0.2f);
+            camShake.Shake(2f, 2f, 0.2f);
             _impulseSource.GenerateImpulse();
             if (currentHP <= 0f) Die(); else StartCoroutine(HitColor());
             ;
@@ -338,6 +338,7 @@ namespace Game.Player
 
         public void Resurrection()
         {
+            // todo data reset
             Manager.Game.MonsterCount = 0;
 
             DataSerialized = _originalData.Clone();
@@ -366,7 +367,7 @@ namespace Game.Player
 
         public void GainAwakeningGauge()
         {
-            if (IsAwakened || IsDead) return;
+            if (IsAwakened || IsDead || PlayerManager.Instance == null) return;
             var awakeningData = Data.awakening;
             currentAwakening = Mathf.Min(awakeningData.MaxAwakeningGauge, currentAwakening + awakeningData.AwakeningOnHit);
 
@@ -375,7 +376,6 @@ namespace Game.Player
             if (currentAwakening >= awakeningData.MaxAwakeningGauge)
             {
                 PlayerManager.Instance.CooldownD.HideCooldown();
-
             }
         }
 

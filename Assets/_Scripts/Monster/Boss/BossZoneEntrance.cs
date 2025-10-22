@@ -14,6 +14,7 @@ public class BossZoneEntrance : MonoBehaviour
         {
             isTriggered = true;
             Instantiate(Boss, BossSpawnPosition.position, Quaternion.identity);
+            Manager.Audio.SetBgm(AudioKey.BGM.BGM_BOSS_PHASE1);
         }
     }
 

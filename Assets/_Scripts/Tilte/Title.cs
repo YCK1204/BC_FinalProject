@@ -1,6 +1,7 @@
 using Newtonsoft.Json;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Title : MonoBehaviour
 {
@@ -16,44 +17,46 @@ public class Title : MonoBehaviour
     [SerializeField] private Animator _titleAnimator;
     [SerializeField] private Animator _uiAnimator;
 
-
+    [SerializeField] Button ContinueBtn;
+    private void Start()
+    {
+        ContinueBtn.interactable = (JsonConvert.DeserializeObject<PlayerJsonData>
+            (Manager.Data.playerSOData.PlayerJsonData).ClearedMaps.Count > 0);
+    }
     public void OnStartButton()
     {
-        if (PlayerPrefs.GetInt("is_intro_completed") == 1)
+        // todo data reset
+        Manager.Data.playerSOData.ResetData();
+        StartCoroutine(StartGame());
+    }
+
+    public void OnContinueButton()
+    {
+        var playerData = Manager.Data.playerSOData;
+        PlayerJsonData playerJsonData = JsonConvert.DeserializeObject<PlayerJsonData>(Manager.Data.playerSOData.PlayerJsonData);
+        MapSaveData mapSaveData = new MapSaveData()
         {
-            var playerData = Manager.Data.PlayerData;
-            if (playerData == null)
-                StartCoroutine(StartGame());
-            else
-            {
-                MapSaveData mapSaveData = new MapSaveData()
-                {
-                    ClearedMapIndices = playerData.ClearedMaps,
-                    CurrentMapIndex = playerData.CurMap,
-                    PlayTime = playerData.PlayTime
-                };
-                MapManager.Instance.LoadFromData(mapSaveData);
-                PlayerSaveData playerSaveData = new PlayerSaveData()
-                {
-                    CurrentAwakening = playerData.Awaken,
-                    CurrentHP = playerData.Hp,
-                };
-                //PlayerManager.Instance.Player.LoadPlayerFromJson(JsonConvert.SerializeObject(playerSaveData));
-                PlayerManager.Instance.LoadFromData(playerSaveData);
-                var itemData = PlayerPrefs.GetString("ItemData");
-                if (string.IsNullOrEmpty(itemData) == false)
-                {
-                    var itemJsonData = JsonConvert.DeserializeObject<InventoryJsonData>(itemData);
-                    PlayerManager.Instance.Player.Inventory.LoadFromJson(itemJsonData);
-                }
-                StartCoroutine(StartGame());
-            }
-        }
+            ClearedMapIndices = playerJsonData.ClearedMaps,
+            CurrentMapIndex = playerJsonData.CurMap,
+            PlayTime = playerJsonData.PlayTime
+        };
+        MapManager.Instance.LoadFromData(mapSaveData);
+        PlayerSaveData playerSaveData = new PlayerSaveData()
+        {
+            CurrentAwakening = playerJsonData.Awaken,
+            CurrentHP = playerJsonData.Hp,
+        };
+        PlayerManager.Instance.LoadFromData(playerSaveData);
+        var itemData = JsonConvert.DeserializeObject<InventoryJsonData>(playerData.InventoryJsonData);
+        PlayerManager.Instance.Player.Inventory.LoadFromJson(itemData);
+        StartCoroutine(StartGame());
         PlayerManager.Instance.gameObject.SetActive(true);
     }
 
     private IEnumerator StartGame()
     {
+        Debug.Log("!!");
+
         _titleAnimator.Play("Tilte_Gamestart", 0, 0f);
 
         _camera.SetActive(false);

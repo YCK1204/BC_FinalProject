@@ -7,7 +7,7 @@ public class BaseScene : MonoBehaviour
     {
         StartCoroutine(Extension.LateStart(() =>
         {
-            if (PlayerPrefs.GetInt("is_intro_completed") == 1)
+            if (Manager.Data.playerSOData.IsIntroCompleted)
             {
                 SceneManager.LoadScene("Main");
             }

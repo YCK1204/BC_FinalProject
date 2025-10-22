@@ -45,6 +45,7 @@ public class BossIntroController : MonoBehaviour
         StopAllCoroutines();
         originalPos = CameraTr.localPosition;
         StartCoroutine(ShakeCoroutine());
+        Manager.Audio.Play(AudioKey.Direction.DIR_BOSS_START, _owner.transform);
     }
 
     private IEnumerator ShakeCoroutine()

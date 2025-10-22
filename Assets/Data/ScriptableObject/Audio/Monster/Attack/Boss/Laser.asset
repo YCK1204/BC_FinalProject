@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27d4510dc0e3c1e49b9a264647794d7e, type: 3}
   m_Name: Laser
   m_EditorClassIdentifier: Assembly-CSharp::MonsterAttackAudioData
-  Clip: {fileID: 8300000, guid: 270bf57b50ae1fe47b2f011cda7fabba, type: 3}
-  Loop: 0
-  audioKey: 4
+  Clip: {fileID: 8300000, guid: 767b59a0b6e1c0842b7262cc00a7946f, type: 3}
+  Loop: 1
+  audioKey: 6
