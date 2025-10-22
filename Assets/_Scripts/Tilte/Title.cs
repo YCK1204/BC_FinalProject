@@ -19,6 +19,11 @@ public class Title : MonoBehaviour
 
     public void OnStartButton()
     {
+        StartCoroutine(StartGame());
+    }
+
+    public void OnContinueButton()
+    {
         if (PlayerPrefs.GetInt("is_intro_completed") == 1)
         {
             Manager.Analytics.SendFunnelStep(FunnelStep.None, 10);
@@ -53,6 +58,8 @@ public class Title : MonoBehaviour
 
     private IEnumerator StartGame()
     {
+        Debug.Log("!!");
+
         _titleAnimator.Play("Tilte_Gamestart", 0, 0f);
 
         _camera.SetActive(false);

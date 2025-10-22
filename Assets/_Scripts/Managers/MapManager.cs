@@ -53,6 +53,8 @@ public class MapManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+
+        InitFloor();
     }
 
     private void Update()
@@ -61,12 +63,6 @@ public class MapManager : MonoBehaviour
         {
             _playTime += Time.deltaTime;
         }
-    }
-
-    private void Start()
-    {
-        //초기화
-        InitFloor();
     }
 
 

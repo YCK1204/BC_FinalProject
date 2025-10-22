@@ -6,9 +6,9 @@ public enum UiState
 {
     Hidden,
     Updating,
-    NormalView,
-    WideView,
-    FullScreen
+    Main,
+    Stats,
+    Setting
 }
 
 public abstract class UiStateBase

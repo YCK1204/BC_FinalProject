@@ -17,6 +17,7 @@ public class ShadowSlashProjectile : MonoBehaviour
 
     private EffectReturn _effectReturn;
 
+    private PlayerCharacter _owner;
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -26,6 +27,7 @@ public class ShadowSlashProjectile : MonoBehaviour
     private void OnEnable()
     {
         _hitTargets.Clear();
+        _owner = null;
 
         if (_effectReturn != null)
         {
@@ -35,6 +37,7 @@ public class ShadowSlashProjectile : MonoBehaviour
 
     public void Launch(PlayerCharacter owner)
     {
+        _owner = owner;
         _startPos = transform.position;
         _damage = owner.Data.CombatData.AttackPower * _damageMult;
         _rb.linearVelocity = transform.right * _speed;
@@ -58,8 +61,13 @@ public class ShadowSlashProjectile : MonoBehaviour
     {
         if (other.TryGetComponent(out IDamageable target))
         {
+            if (_owner != null && other.gameObject == _owner.gameObject)
+            {
+                return;
+            }
             if (!_hitTargets.Contains(target))
             {
+                _owner.StateMachine.Player.GainAwakeningGauge();
                 target.TakeDamage((int)_damage);
                 _hitTargets.Add(target);
             }
