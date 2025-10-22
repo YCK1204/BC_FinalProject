@@ -14,42 +14,45 @@ public class UIButtonOut : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     [SerializeField] private Color hoverColor = Color.red;
 
     private Vector3 originalPos;
-    private Material buttonMat;
-    private Material buttonOutMat;
-
-    private void Awake()
-    {
-        if (buttonImage)
-        {
-            buttonMat = Instantiate(buttonImage.material);
-            buttonImage.material = buttonMat;
-        }
-        else
-        {
-            Debug.Log($"buttonImage is null {gameObject.name}");
-        }
-    }
 
     private void Start()
     {
         originalPos = transform.localPosition;
-        SetMaterialColor(normalColor);
+
+        if (buttonImage == null)
+        {
+            buttonImage = GetComponent<Image>();
+            if (buttonImage == null)
+            {
+                buttonImage = GetComponentInChildren<Image>();
+            }
+        }
+
+        SetImageColor(normalColor);
+    }
+
+    private void OnEnable()
+    {
+        SetImageColor(normalColor);
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        SetMaterialColor(hoverColor);
+        SetImageColor(hoverColor);
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        SetMaterialColor(normalColor);
+        SetImageColor(normalColor);
     }
 
-    public void OnPointerDown(PointerEventData eventData) {
+    public void OnPointerDown(PointerEventData eventData)
+    {
         transform.localPosition = originalPos - new Vector3(0, 3f, 0);
     }
-    public void OnPointerUp(PointerEventData eventData) {
+
+    public void OnPointerUp(PointerEventData eventData)
+    {
         transform.localPosition = originalPos;
     }
 
@@ -58,11 +61,15 @@ public class UIButtonOut : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
         OnClicked?.Invoke();
     }
 
-    private void SetMaterialColor(Color color)
+    private void SetImageColor(Color color)
     {
-        if (buttonMat)
-            buttonMat.SetColor("_Color", color);
+        if (buttonImage != null)
+        {
+            buttonImage.color = color;
+        }
         else
-            Debug.Log($"buttonMat is null {gameObject.name}");
+        {
+            Debug.LogWarning("UIButtonOut 비었음");
+        }
     }
 }

@@ -33,9 +33,9 @@ public class UIController : MonoBehaviour
         _stateMap = new Dictionary<UiState, UiStateBase>
         {
             { UiState.Hidden, new HiddenState(this) },
-            { UiState.NormalView, new NormalViewState(this) },
-            { UiState.WideView, new WideViewState(this) },
-            { UiState.FullScreen, new FullScreenState(this) },
+            { UiState.Main, new MainState(this) },
+            { UiState.Stats, new CharacterStatsState(this) },
+            { UiState.Setting, new SettingsState(this) },
         };
 
         // 화면 등록
@@ -57,7 +57,7 @@ public class UIController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && !PlayerManager.Instance.Player.OnTrait && !PlayerManager.Instance.Player.IsDead)
         {
             Debug.Log($"esc - {CurrentState}");
-            if (CurrentState == UiState.NormalView)
+            if (CurrentState == UiState.Main)
             {
                 _uiFade.Play("off_UI", 0, 0f);
                 HideUI();
@@ -90,7 +90,11 @@ public class UIController : MonoBehaviour
         _activeState = _stateMap[newState];
         _activeState.Enter();
 
-        yield return new WaitForSecondsRealtime(0.5f);
+        if ((PreviousState == UiState.Hidden && newState == UiState.Main) ||
+            (PreviousState == UiState.Main && newState == UiState.Hidden))
+        {
+            yield return new WaitForSecondsRealtime(0.5f);
+        }
 
         _isState = false;
     }
@@ -129,41 +133,38 @@ public class UIController : MonoBehaviour
         }
     }
 
-    public void ShowNormalView() => ChangeState(UiState.NormalView);
-    public void ShowWideView() => ChangeState(UiState.WideView);
-    public void ShowFullScreen() => ChangeState(UiState.FullScreen);
+    public void ShowNormalView() => ChangeState(UiState.Main);
+    public void ShowStatsUI() => ChangeState(UiState.Stats);
     public void HideUI() => ChangeState(UiState.Hidden);
-
-    public void ShowSettingUI()
+    public void ShowSettingUI() => ChangeState(UiState.Setting);
+    public void ExitGame()
     {
-        Animator.SetBool("Setting", true);
+#if UNITY_WEBGL && !UNITY_EDITOR
+        CloseBrowserTab();
+#else
+        Application.Quit();
+#endif
     }
+
     public void BackUI()
     {
-        if (Animator.GetBool("Setting"))
+        switch (CurrentState)
         {
-            Animator.SetBool("Setting", false);
-        }
-        else
-        {
-            switch (CurrentState)
-            {
-                case UiState.WideView:
-                    ChangeState(UiState.NormalView);
-                    break;
+            case UiState.Main:
+                _uiFade.Play("off_UI", 0, 0f);
+                ChangeState(UiState.Hidden);
+                break;
 
-                case UiState.NormalView:
-                    _uiFade.Play("off_UI", 0, 0f);
-                    ChangeState(UiState.Hidden);
-                    break;
+            case UiState.Stats:
+                ChangeState(UiState.Main);
+                break;
 
-                case UiState.FullScreen:
-                    ChangeState(UiState.NormalView);
-                    break;
+            case UiState.Setting:
+                ChangeState(UiState.Main);
+                break;
 
-                case UiState.Hidden:
-                    break;
-            }
+            case UiState.Hidden:
+                break;
         }
     }
 }

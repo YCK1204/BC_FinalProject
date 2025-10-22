@@ -14,7 +14,7 @@ TagManager:
   - 
   - Player
   - Monster
-  - 
+  - Obstructors
   - minimapMonster
   - minimapPlayer
   - monster
@@ -24,9 +24,9 @@ TagManager:
   - Destructible
   - Gold
   - Item
-  - 
+  - Reflections
   - Player_die
-  - 
+  - WaterPostProcessing
   - 
   - 
   - 

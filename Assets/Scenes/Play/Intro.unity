@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SmallSlime
       objectReference: {fileID: 0}
+    - target: {fileID: 214553272594497168, guid: edc49433c60f6d64a98d31f56a0869e2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7436268963657580372, guid: edc49433c60f6d64a98d31f56a0869e2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 40.89
@@ -16254,6 +16258,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SmallSlime (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 214553272594497168, guid: edc49433c60f6d64a98d31f56a0869e2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7436268963657580372, guid: edc49433c60f6d64a98d31f56a0869e2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 44.82539
@@ -16722,6 +16730,10 @@ PrefabInstance:
     - target: {fileID: 214553272594497168, guid: edc49433c60f6d64a98d31f56a0869e2, type: 3}
       propertyPath: m_Name
       value: SmallSlime (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 214553272594497168, guid: edc49433c60f6d64a98d31f56a0869e2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7436268963657580372, guid: edc49433c60f6d64a98d31f56a0869e2, type: 3}
       propertyPath: m_LocalPosition.x
@@ -17541,7 +17553,6 @@ MonoBehaviour:
   Force: {fileID: 1333591361}
   normalAnimator: {fileID: 9100000, guid: 79ed20ba5a3e6474ba90a5da46e2e6e4, type: 2}
   awakenedAnimator: {fileID: 9100000, guid: be26a36d384a4274b9ab36d62ea5f066, type: 2}
-  IsIntroComplete: 0
   showRuntime: 1
   runtimeIsDashing: 0
   runtimeSpeedModifier: 1
