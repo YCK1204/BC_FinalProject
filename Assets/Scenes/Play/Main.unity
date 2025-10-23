@@ -9796,6 +9796,7 @@ MonoBehaviour:
   _playerAnimator: {fileID: 310275702}
   _titleAnimator: {fileID: 2072921761}
   _uiAnimator: {fileID: 359806901}
+  ContinueBtn: {fileID: 1800867210}
 --- !u!1 &1074106321
 GameObject:
   m_ObjectHideFlags: 0

@@ -185,6 +185,7 @@ public class BoneReaper : BossMonster
         if (_dataHandler.CurHp <= 0)
         {
             Die();
+            Manager.Data.playerSOData.ResetData();
         }
         else
         {
