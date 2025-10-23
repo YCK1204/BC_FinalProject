@@ -26,11 +26,14 @@ public class Title : MonoBehaviour
     public void OnStartButton()
     {
         Manager.Data.playerSOData.ResetData();
+        Manager.Analytics.SendFunnelStep(FunnelStep.None, 10);
         StartCoroutine(StartGame());
     }
 
     public void OnContinueButton()
     {
+        Manager.Analytics.SendFunnelStep(FunnelStep.None, 10);
+
         var playerData = Manager.Data.playerSOData;
         PlayerJsonData playerJsonData = JsonConvert.DeserializeObject<PlayerJsonData>(Manager.Data.playerSOData.PlayerJsonData);
         MapSaveData mapSaveData = new MapSaveData()
