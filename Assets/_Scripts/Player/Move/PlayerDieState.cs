@@ -12,6 +12,7 @@ namespace Game.Player
             _stateMachine.IsDashing = false;
             _stateMachine.MovementSpeedModifier = 0f;
 
+            Manager.Data.playerSOData.ResetData();
 #if UNITY_2022_3_OR_NEWER
             _stateMachine.Player.Rb.linearVelocity = Vector2.zero;
 #else

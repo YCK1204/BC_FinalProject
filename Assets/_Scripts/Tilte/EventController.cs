@@ -90,7 +90,7 @@ public class EventController : MonoBehaviour
         DOTween.Restart("phonshake2");
 
         yield return new WaitForSeconds(3f);
-        PlayerPrefs.SetInt("is_intro_completed", 1);
+        Manager.Data.playerSOData.IsIntroCompleted = true;
         SceneManager.LoadScene("Main");
     }
 
