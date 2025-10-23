@@ -490,9 +490,13 @@ public class BoneReaper : BossMonster
 
     private void DebugBossDamage()
     {
-        if(Input.GetKeyDown(KeyCode.K))
+        if(Input.GetKeyDown(KeyCode.Minus))
         {
             _head.TakeDamage(100, gameObject);
+        }
+        else if(Input.GetKeyDown(KeyCode.Equals))
+        {
+            _head.TakeDamage(2000, gameObject);
         }
     }
 }
