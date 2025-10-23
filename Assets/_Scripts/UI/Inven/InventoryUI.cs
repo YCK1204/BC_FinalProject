@@ -132,11 +132,11 @@ public class InventoryUI : MonoBehaviour
             stat.ItemExtraStatType == ItemExtraStatType.Attack ||
             stat.ItemExtraStatType == ItemExtraStatType.SkillAttack)
         {
-            return $"{statName}: +{stat.Value}%";
+            return $"{statName} +{stat.Value}%";
         }
         else
         {
-            return $"{statName}: +{stat.Value}";
+            return $"{statName} +{stat.Value}";
         }
     }
 
