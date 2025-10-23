@@ -10,6 +10,7 @@ public class Title : MonoBehaviour
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _camera;
     [SerializeField] private GameObject _mainCamera;
+    [SerializeField] private GameObject _canvas;
 
     [Header("Anim")]
     [SerializeField] private Animator _playerAnimator;
@@ -82,5 +83,7 @@ public class Title : MonoBehaviour
 
         yield return new WaitForSeconds(1f);
         _titleUI.SetActive(false);
+
+        _canvas.SetActive(false);
     }
 }

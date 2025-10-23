@@ -88,6 +88,8 @@ public class DeadControl : MonoBehaviour
     public void DieSet()
     {
         StartCoroutine(DeathSequence());
+
+        _bloom.scatter.value = 0f;
     }
 
     IEnumerator DeathSequence()
@@ -194,6 +196,7 @@ public class DeadControl : MonoBehaviour
         PlayerManager.Instance.Player.Animator.Play("Idle", 0, 0f);
         _deadAnimator.Play(_dieAnim_on, 0, 0f);
         PlayerManager.Instance.Player.SetPlayerInput(true);
+        _gameOverText.gameObject.SetActive(false);
     }
 
     IEnumerator FadeBloom(float bloom, float over)

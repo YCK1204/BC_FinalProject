@@ -8,6 +8,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Audio;
 using Object = UnityEngine.Object;
+using UnityEngine.UI;
 
 public enum AudioMixerType { MASTER, BGM, EFFECT }
 class LoopingAudio
@@ -48,6 +49,10 @@ public class AudioManager : MonoBehaviour
     Dictionary<Transform, Queue<LoopingAudio>> _loopingAudioDict = new Dictionary<Transform, Queue<LoopingAudio>>();
     AudioSource _bgmSource;
 
+    [Header("SetAudioSlider")]
+    [SerializeField] private Slider _bgmSlider;
+    [SerializeField] private Slider _sfxSlider;
+
     void Start()
     {
         if (Manager.Audio != null)
@@ -68,6 +73,28 @@ public class AudioManager : MonoBehaviour
             _loopingAudioPool.Push(loopingAudio);
         }
         StartCoroutine(CoCheckDisableLoop());
+
+        //볼륨세팅
+        SetupVolumeSliders();
+    }
+
+    void SetupVolumeSliders()
+    {
+        if (_bgmSlider != null)
+        {
+            _bgmSlider.minValue = 0.0001f;
+            _bgmSlider.maxValue = 1f;
+            _bgmSlider.onValueChanged.AddListener((value) => SetVolume(AudioMixerType.BGM, value));
+            _bgmSlider.value = GetVolume(AudioMixerType.BGM);
+        }
+
+        if (_sfxSlider != null)
+        {
+            _sfxSlider.minValue = 0.0001f;
+            _sfxSlider.maxValue = 1f;
+            _sfxSlider.onValueChanged.AddListener((value) => SetVolume(AudioMixerType.EFFECT, value));
+            _sfxSlider.value = GetVolume(AudioMixerType.EFFECT);
+        }
     }
     void LoopStopAction(LoopingAudio la)
     {
