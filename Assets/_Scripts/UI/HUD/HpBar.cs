@@ -15,7 +15,7 @@ public class HpBar : MonoBehaviour
         {
             slider.minValue = 0f;
             slider.maxValue = 1f;
-            slider.value = 1f;
+            //slider.value = 1f;
             player.HpEvent += UpdateHp;
         }
     }
