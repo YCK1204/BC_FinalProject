@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Game.Player
 {
@@ -119,6 +120,8 @@ namespace Game.Player
 
             ShadowSlashSkill?.Initialize(this);
             DoubleStrikeSkill?.Initialize(this);
+            if (SceneManager.GetActiveScene().name != "Intro")
+                gameObject.SetActive(false);
         }
         public void SetData(PlayerData data)
         {
@@ -335,6 +338,7 @@ namespace Game.Player
 
         public void Resurrection()
         {
+            // todo data reset
             Manager.Game.MonsterCount = 0;
 
             DataSerialized = _originalData.Clone();

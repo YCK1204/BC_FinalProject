@@ -182,10 +182,10 @@ public class BoneReaper : BossMonster
         _dataHandler.TakeDamage(damage);
         OnHealthchanged?.Invoke();
         CheckFunnel();
-
         if (_dataHandler.CurHp <= 0)
         {
             Die();
+            Manager.Data.playerSOData.ResetData();
         }
         else if(!hitSfxMute)
         {
