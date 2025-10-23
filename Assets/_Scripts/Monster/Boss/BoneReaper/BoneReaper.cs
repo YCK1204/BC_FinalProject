@@ -153,6 +153,10 @@ public class BoneReaper : BossMonster
         // 연출 중이 아닐때는 매 프레임마다 무적 해제
         if(!IsDirecting)
             IsInvincible = false;
+
+#if UNITY_EDITOR
+        DebugBossDamage();
+#endif
     }
 
     public NodeStatus FindTarget()
@@ -182,6 +186,10 @@ public class BoneReaper : BossMonster
         if (_dataHandler.CurHp <= 0)
         {
             Die();
+        }
+        else
+        {
+            Manager.Audio.Play(AudioKey.Player.Hit.P_HIT_UNDEAD_BOSS, transform);
         }
 
     }
@@ -431,12 +439,11 @@ public class BoneReaper : BossMonster
 
     #endregion
 
-    public void HitFlash(SpriteRenderer sr, Coroutine hitEffect)
+    public void HitFlash(SpriteRenderer sr, Coroutine hitEffect, Material originMat)
     {
         if (HitFlashMat == null)
             return;
 
-        Material originMat = sr.material;
         sr.material = HitFlashMat;
         HitFlashMat.SetFloat("_FlashAmount", 1f);
 
@@ -471,13 +478,25 @@ public class BoneReaper : BossMonster
             {
                 if ((MonsterData.CurHp / MonsterData.Data.MaxHp) * 100 <= 10f * (9-i))
                 {
-                    Debug.Log((MonsterData.CurHp / MonsterData.Data.MaxHp) * 10);
+                    //Debug.Log((MonsterData.CurHp / MonsterData.Data.MaxHp) * 10);
                     _isHpLower[i] = true;
                     Manager.Analytics.SendFunnelStep(FunnelStep._Boss, i + 3);
                 }
                 else
                     break;
             }
+        }
+    }
+
+    private void DebugBossDamage()
+    {
+        if(Input.GetKeyDown(KeyCode.Minus))
+        {
+            _head.TakeDamage(100, gameObject);
+        }
+        else if(Input.GetKeyDown(KeyCode.Equals))
+        {
+            _head.TakeDamage(2000, gameObject);
         }
     }
 }
