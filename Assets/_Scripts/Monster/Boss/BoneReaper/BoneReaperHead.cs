@@ -13,6 +13,7 @@ public class BoneReaperHead : MonoBehaviour, IDamageable
     private SpriteRenderer _sr;
 
     private Coroutine _hitEffect;
+    private Material _originMat;
 
     public Action OnDie;
 
@@ -26,6 +27,7 @@ public class BoneReaperHead : MonoBehaviour, IDamageable
         _sr = GetComponent<SpriteRenderer>();
 
         _mask = LayerMask.GetMask(Layers.Player);
+        _originMat = _sr.material;
     }
 
     public void Init(BoneReaper boneReaper)
@@ -180,7 +182,7 @@ public class BoneReaperHead : MonoBehaviour, IDamageable
             return;
 
         _owner.IsInvincible = true;
-        _owner.HitFlash(_sr, _hitEffect);
+        _owner.HitFlash(_sr, _hitEffect, _originMat);
         _owner.TakeDamage(damage, attacker);
     }
 
