@@ -43,6 +43,8 @@ public class BoneReaper : BossMonster
 
     private WaitForSeconds _waitForHitFlash;
 
+    [SerializeField] private bool[] _isHpLower;
+
     [Header("Summon Orb")]
     public Dictionary<string, Pool> OrbPool;
 
@@ -120,6 +122,8 @@ public class BoneReaper : BossMonster
         IsDirecting = true;
         IsInvincible = true;
 
+        _isHpLower = new bool[10];
+
         if(PlayerManager.Instance != null)
         {
             PlayerManager.Instance.Player.OnDied += _bossUI.DisableUI;
@@ -173,6 +177,7 @@ public class BoneReaper : BossMonster
 
         _dataHandler.TakeDamage(damage);
         OnHealthchanged?.Invoke();
+        CheckFunnel();
         if (_dataHandler.CurHp <= 0)
         {
             Die();
@@ -188,6 +193,7 @@ public class BoneReaper : BossMonster
         _rightHand.Die();
         _platformGenerator.StopGenerate();
         Manager.Audio.Play(AudioKey.Monster.Die.M_DIE_BOSS, transform);
+        Manager.Analytics.SendFunnelStep(FunnelStep._Boss, 12);
     }
 
     #region 페이즈 1
@@ -454,5 +460,23 @@ public class BoneReaper : BossMonster
     private void StopBoss()
     {
         IsDirecting = true;
+    }
+
+    private void CheckFunnel()
+    {
+        for(int i = 0; i < 9; i++)
+        {
+            if (!_isHpLower[i])
+            {
+                if ((MonsterData.CurHp / MonsterData.Data.MaxHp) * 100 <= 10f * (9-i))
+                {
+                    Debug.Log((MonsterData.CurHp / MonsterData.Data.MaxHp) * 10);
+                    _isHpLower[i] = true;
+                    Manager.Analytics.SendFunnelStep(FunnelStep._Boss, i + 3);
+                }
+                else
+                    break;
+            }
+        }
     }
 }

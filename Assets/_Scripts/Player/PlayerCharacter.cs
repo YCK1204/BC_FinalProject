@@ -506,6 +506,40 @@ namespace Game.Player
             {
                 Die();
             }
+
+            if (kb != null && kb.iKey.wasPressedThisFrame)
+            {
+                DebugInventoryContents();
+            }
+        }
+
+        public void DebugInventoryContents()
+        {
+
+            if (Inventory == null || Inventory.Items.Count == 0)
+            {
+                Debug.Log("아이템 빔");
+                return;
+            }
+
+            foreach (var itemEntry in Inventory.Items)
+            {
+                ItemData item = itemEntry.Value;
+                Debug.Log($"-Item ID: {item.Id}, Name: {item.ItemName}");
+                Debug.Log($"-Grade: {item.ItemGrade}");
+                // 스탯 1 정보
+                if (item.Stat1.ItemExtraStatType != ItemExtraStatType.None && item.Stat1.Value != 0)
+                {
+                    Debug.Log($"-Stat 1: {ItemData.ItemExtraStatTypes[item.Stat1.ItemExtraStatType]} ({item.Stat1.Value})");
+                }
+                // 스탯 2 정보
+                if (item.Stat2.ItemExtraStatType != ItemExtraStatType.None && item.Stat2.Value != 0)
+                {
+                    Debug.Log($"    Stat 2: {ItemData.ItemExtraStatTypes[item.Stat2.ItemExtraStatType]} ({item.Stat2.Value})");
+                }
+                Debug.Log($"-Icon URL: {item.IconURL}");
+                Debug.Log($"-Item Effect ID: {item.ItemEffectId}, Synergy ID: {item.SynergyId}");
+            }
         }
 
         private void FixedUpdate()

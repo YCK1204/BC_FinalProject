@@ -25,7 +25,6 @@ public class Title : MonoBehaviour
     }
     public void OnStartButton()
     {
-        // todo data reset
         Manager.Data.playerSOData.ResetData();
         StartCoroutine(StartGame());
     }
@@ -56,6 +55,8 @@ public class Title : MonoBehaviour
     private IEnumerator StartGame()
     {
         Debug.Log("!!");
+
+        Manager.Analytics.SendFunnelStep(FunnelStep.None, 10);
 
         _titleAnimator.Play("Tilte_Gamestart", 0, 0f);
 
