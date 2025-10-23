@@ -174,7 +174,7 @@ public class BoneReaper : BossMonster
         return NodeStatus.Failure;
     }
 
-    public void TakeDamage(float damage, GameObject attacker)
+    public void TakeDamage(float damage, bool hitSfxMute = false)
     {
         if (_dataHandler.CurHp <= 0)
             return;
@@ -187,7 +187,7 @@ public class BoneReaper : BossMonster
         {
             Die();
         }
-        else
+        else if(!hitSfxMute)
         {
             Manager.Audio.Play(AudioKey.Player.Hit.P_HIT_UNDEAD_BOSS, transform);
         }
