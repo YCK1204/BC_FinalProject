@@ -101,8 +101,17 @@ public class MapManager : MonoBehaviour
             LoadMap(_itemRoomPrefab);
             //Manager.Game.MonsterCount = 0;
             StartCoroutine(ItemStageTrigger());
+            // 아이템 스테이지 진입
             Manager.Analytics.SendFunnelStep(FunnelStep.None, 11);
+            Manager.Analytics.SendFunnelStep(FunnelStep._StageC, 3);
             return;
+        }
+
+        // 아이템 스테이지에서 벗어나면 퍼널 발생
+        if(_currentMapPrefab == _itemRoomPrefab)
+        {
+            Manager.Analytics.SendFunnelStep(FunnelStep._StageC, 4);
+            Manager.Analytics.SendFunnelStep(FunnelStep.None, 13);
         }
 
         if (_currentMapPrefab != null)
@@ -117,6 +126,9 @@ public class MapManager : MonoBehaviour
         UpdateRoomCount();
         OnPortal = false;
 
+        if (_currentMapPrefab != _itemRoomPrefab)
+            Manager.Analytics.SendFunnelStep((FunnelStep)(_mapPrefabs.IndexOf(_currentMapPrefab)), 6);
+
         if (_roomCount == 1 && !_isTimerOn)
         {
             _isTimerOn = true;
@@ -128,6 +140,7 @@ public class MapManager : MonoBehaviour
             LoadMap(_bossroomPrefabs);
             Debug.Log("보스방 입장!");
             Manager.Analytics.SendFunnelStep(FunnelStep._Boss, 1);
+            Manager.Analytics.SendFunnelStep(FunnelStep._StageC, 13);
             return;
         }
 
@@ -138,7 +151,9 @@ public class MapManager : MonoBehaviour
             _mapPool.RemoveAt(poolIndex);
 
             LoadMap(prefab);
-            Debug.Log(prefab.name + " 남은맵:" + _mapPool.Count);
+            Manager.Game.OnMonstersClear += SendFunnelOnStageClear;
+            Manager.Analytics.SendFunnelStep(FunnelStep._StageC, (_roomCount+1) * 2 + 3);
+            Debug.Log(prefab.name + " 남은맵:" + (_bossRoomTrigger - _roomCount));
         }
         else
         {
@@ -264,6 +279,15 @@ public class MapManager : MonoBehaviour
         {
             Debug.LogWarning("저장된 맵 없음");
             LoadMap(_mapPrefabs[0]);
+        }
+    }
+
+    private void SendFunnelOnStageClear()
+    {
+        if(_currentMapPrefab != _itemRoomPrefab &&  _currentMapPrefab != _bossroomPrefabs)
+        {
+            Manager.Analytics.SendFunnelStep(FunnelStep._StageC, _roomCount * 2 + 6);
+            Manager.Game.OnMonstersClear -= SendFunnelOnStageClear;
         }
     }
 }

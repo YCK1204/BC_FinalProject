@@ -45,6 +45,7 @@ public class AnalyticsManager
 
             // [PS] 초기화와 동시에 퍼널 0,1 수행
             SendFunnelStep(FunnelStep.None, 1);
+            SendFunnelStep(FunnelStep._StageC, 1);
         }
         catch (System.Exception e)
         {
