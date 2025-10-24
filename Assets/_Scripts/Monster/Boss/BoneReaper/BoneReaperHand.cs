@@ -329,14 +329,14 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
     }
     // 그 외 메서드
 
-    public void TakeDamage(float damage, GameObject attacker)
+    public void TakeDamage(float damage, bool hitSfxMute = false)
     {
         if (_owner.MonsterData.CurHp <= 0 || _owner.IsInvincible)
             return;
 
         _owner.IsInvincible = true;
         _owner.HitFlash(_sr, _hitEffect, _originMat);
-        _owner.TakeDamage(damage, attacker);
+        _owner.TakeDamage(damage, hitSfxMute);
     }
 
     public void Die()
