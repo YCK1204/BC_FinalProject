@@ -625,7 +625,7 @@ GameObject:
   - component: {fileID: 5291426505665121462}
   - component: {fileID: 1408108308388611431}
   - component: {fileID: 8679991141412934256}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: RightHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2106,9 +2106,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BoneReaper
   _dataHandler: {fileID: 0}
+  MonsterCount: 1
   IsAttacking: 0
-  IsIntro: 0
-  IsOneFrameInvincible: 0
+  IsDirecting: 0
+  CurPhase: 0
+  IsInvincible: 0
+  _isHpLower: 
   _curRunningHandsCount: 0
   PoolTr: {fileID: 7795219150386445029}
   VerticalOrb: {fileID: 3019393740764582530, guid: b7dee4d3c797760469b7c8a1fc6d815a, type: 3}
@@ -2316,7 +2319,7 @@ GameObject:
   - component: {fileID: 467201510439044685}
   - component: {fileID: 4427559565759048648}
   - component: {fileID: 6555586772555052755}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4977,7 +4980,7 @@ GameObject:
   - component: {fileID: 1014968069171079380}
   - component: {fileID: 6996872757677151916}
   - component: {fileID: 1936601175684998082}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: LeftHand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
