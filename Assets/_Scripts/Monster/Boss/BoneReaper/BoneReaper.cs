@@ -174,7 +174,7 @@ public class BoneReaper : BossMonster
         return NodeStatus.Failure;
     }
 
-    public void TakeDamage(float damage, GameObject attacker)
+    public void TakeDamage(float damage, bool hitSfxMute = false)
     {
         if (_dataHandler.CurHp <= 0)
             return;
@@ -187,7 +187,7 @@ public class BoneReaper : BossMonster
             Die();
             Manager.Data.playerSOData.ResetData();
         }
-        else
+        else if(!hitSfxMute)
         {
             Manager.Audio.Play(AudioKey.Player.Hit.P_HIT_UNDEAD_BOSS, transform);
         }
@@ -203,6 +203,7 @@ public class BoneReaper : BossMonster
         _platformGenerator.StopGenerate();
         Manager.Audio.Play(AudioKey.Monster.Die.M_DIE_BOSS, transform);
         Manager.Analytics.SendFunnelStep(FunnelStep._Boss, 12);
+        Manager.Analytics.SendFunnelStep(FunnelStep._StageC, 13);
     }
 
     #region 페이즈 1

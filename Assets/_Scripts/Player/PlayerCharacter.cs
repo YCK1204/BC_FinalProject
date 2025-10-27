@@ -249,7 +249,7 @@ namespace Game.Player
 
 
 
-        public void TakeDamage(float amount, GameObject attacker = null)
+        public void TakeDamage(float amount, bool hitSfxMute = false)
         {
             if (Invincible || IsDead) return;
             currentHP = Mathf.Max(0f, currentHP - Mathf.Max(0f, amount));
