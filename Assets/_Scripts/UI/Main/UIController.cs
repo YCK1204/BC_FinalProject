@@ -2,6 +2,7 @@ using DG.Tweening;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static AudioKey;
 
 public class UIController : MonoBehaviour
 {
@@ -62,10 +63,17 @@ public class UIController : MonoBehaviour
                 _uiFade.Play("off_UI", 0, 0f);
                 HideUI();
             }
-            else
+            else if (CurrentState == UiState.Hidden) 
             {
                 _uiFade.Play("on_UI", 0, 0f);
+                Animator.Play("show", 0, 0f);
+                Animator.SetInteger("State", 1);
+                PlayerManager.Instance.Player.Animator.Play("Phon");
                 ShowNormalView();
+            }
+            else
+            {
+                BackUI();
             }
                 
         }
@@ -109,7 +117,6 @@ public class UIController : MonoBehaviour
 
         if (!_screenMap.TryGetValue(screenName, out UIScreen screen))
         {
-            Debug.LogError($"!없는 스크린");
             return;
         }
 
