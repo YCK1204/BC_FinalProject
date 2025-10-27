@@ -1,4 +1,5 @@
 using GoogleSheetsToUnity;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -14,6 +15,7 @@ public class ItemAreaDataReader : DataReaderBase<ItemAreaData>
         float Radius = 0;
         float Damage = 0;
         int AnimId = 0;
+        AudioKey.Item.Effect audioKey = AudioKey.Item.Effect.ITEM_EFFECT_HOWLING;
         foreach (var item in list)
         {
             switch (item.columnId)
@@ -39,8 +41,11 @@ public class ItemAreaDataReader : DataReaderBase<ItemAreaData>
                 case "AnimID":
                     AnimId = int.Parse(item.value);
                     break;
+                case "AudioKey":
+                    audioKey = (AudioKey.Item.Effect)System.Enum.Parse(typeof(AudioKey.Item.Effect), item.value);
+                    break;
             }
         }
-        DataList.Add(new ItemAreaData(Id, CreateAreaPosType, detectionRange, detailPosition, Radius, Damage, AnimId));
+        DataList.Add(new ItemAreaData(Id, CreateAreaPosType, detectionRange, detailPosition, Radius, Damage, AnimId, audioKey));
     }
 }

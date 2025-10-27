@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3593123015b5fc047ac1dd056d626cf4, type: 3}
   m_Name: PlayerSOData
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSOData
-  PlayerJsonData: '{}'
-  InventoryJsonData: '{}'
-  IsIntroCompleted: 0
+  PlayerJsonData: '{"hp":100.0,"awaken":0.0,"cleared_maps":[],"cur_map":1,"play_time":0.0}'
+  InventoryJsonData: "{\r\n  \"gold\": 0,\r\n  \"items_id\": [\r\n    1101\r\n  ]\r\n}"
+  IsIntroCompleted: 1

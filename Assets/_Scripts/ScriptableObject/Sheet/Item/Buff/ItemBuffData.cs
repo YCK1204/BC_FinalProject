@@ -17,6 +17,7 @@ public class ItemBuffData : ItemAbilityEvent
     public string Name;
     public int DescriptionId;
     public Sprite Icon;
+    public string Desc;
     public ItemBuffData(int id, float duration, int maxCount, ItemExtraStatType ability1, float ability1Value, ItemExtraStatType ability2, float ability2Value, string iconURL, string name, int descriptionId, int imageId)
     {
         Id = id;
@@ -35,6 +36,11 @@ public class ItemBuffData : ItemAbilityEvent
     Coroutine _buffCoroutine;
     public void OnEvent(PlayerCharacter player)
     {
+        if (string.IsNullOrEmpty(Desc))
+        {
+            Manager.Data.ItemsData.Description.TryGetValue(DescriptionId, out var desc);
+            Desc = desc.Korean;
+        }
         Manager.Item.Buff.OnBuff(this, player);
     }
 }

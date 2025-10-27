@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEditor;
 using UnityEditor.AddressableAssets;
 using UnityEngine;
@@ -212,6 +213,35 @@ public static class Extension
         else
         {
             callback.Invoke(((DownloadHandlerTexture)www.downloadHandler).texture);
+        }
+    }
+    public static async Awaitable<Texture2D> LoadTextureByURLAsync(string url)
+    {
+        if (string.IsNullOrEmpty(url))
+        {
+            Debug.LogError($"[TextureLoader] 유효하지 않은 URL");
+            return null;
+        }
+
+        using (UnityWebRequest www = UnityWebRequestTexture.GetTexture(url))
+        {
+            await www.SendWebRequest();
+
+            if (www.result != UnityWebRequest.Result.Success)
+            {
+                Debug.LogError($"[TextureLoader] {url}에서 텍스처 로드 실패: {www.error}");
+                return null;
+            }
+
+            Texture2D texture = ((DownloadHandlerTexture)www.downloadHandler).texture;
+
+            if (texture == null)
+            {
+                Debug.LogError($"[TextureLoader] 텍스처 다운로드 성공했으나 texture가 null");
+                return null;
+            }
+
+            return texture;
         }
     }
     /// <summary>

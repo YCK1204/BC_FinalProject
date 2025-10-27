@@ -175,6 +175,7 @@ public class AudioManager : MonoBehaviour
         source.spatialBlend = is3D ? 1f : 0f;
         source.loop = audioData.IsLoop;
         source.clip = audioData.AudioClip;
+        source.volume = audioData.GetVolume;
 
         source.gameObject.SetActive(true);
         if (audioData.IsLoop)
@@ -252,6 +253,7 @@ public class AudioManager : MonoBehaviour
             return;
         }
         var bgmAudioData = audioData as BGMAudioData;
+        _bgmSource.volume = bgmAudioData.GetVolume;
         SetBgm(bgmAudioData.AudioClip, bgmAudioData.FadeInTime, onFadeInCompleted);
     }
     void SetBgm(AudioClip bgm, float fadeInDuration = 0f, Action onFadeInCompleted = null)
