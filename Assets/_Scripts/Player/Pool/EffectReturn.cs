@@ -3,23 +3,37 @@ using UnityEngine;
 
 public class EffectReturn : MonoBehaviour
 {
-    [HideInInspector]
-    public string OriginalPrefabName;
-
-    [Header("returnTime")]
     public float AutoReturnTime = 0f;
+
+    private PlayerPool _parentPool;
+    private GameObject _originalPrefab;
 
     private Coroutine _returnCoroutine;
 
+    public void SetPool(PlayerPool pool, GameObject originalPrefab)
+    {
+        _parentPool = pool;
+        _originalPrefab = originalPrefab;
+        TryReturnCoroutine();
+    }
+
     private void OnEnable()
     {
-        if (AutoReturnTime > 0)
-        {
-            if (_returnCoroutine != null)
-                StopCoroutine(_returnCoroutine);
+        TryReturnCoroutine();
+    }
 
-            _returnCoroutine = StartCoroutine(AutoReturnCoroutine());
+    private void TryReturnCoroutine()
+    {
+        if (_parentPool == null || _originalPrefab == null || AutoReturnTime <= 0)
+        {
+            return;
         }
+
+        if (_returnCoroutine != null)
+        {
+            StopCoroutine(_returnCoroutine);
+        }
+        _returnCoroutine = StartCoroutine(AutoReturnCoroutine());
     }
 
     private IEnumerator AutoReturnCoroutine()
@@ -30,13 +44,33 @@ public class EffectReturn : MonoBehaviour
 
     public void Return()
     {
-        if (!string.IsNullOrEmpty(OriginalPrefabName))
+        if (_parentPool != null && _originalPrefab != null)
         {
-            PlayerPool.Instance.ReturnPoolName(OriginalPrefabName, this.gameObject);
+            _parentPool.ReturnToPool(_originalPrefab, this.gameObject);
         }
         else
         {
-            gameObject.SetActive(false);
+            Destroy(this.gameObject);
+        }
+
+        _returnCoroutine = null;
+    }
+
+    private void OnDisable()
+    {
+        if (_returnCoroutine != null)
+        {
+            StopCoroutine(_returnCoroutine);
+            _returnCoroutine = null;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (_returnCoroutine != null)
+        {
+            StopCoroutine(_returnCoroutine);
+            _returnCoroutine = null;
         }
     }
 }
