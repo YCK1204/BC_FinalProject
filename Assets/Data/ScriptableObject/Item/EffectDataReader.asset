@@ -26,8 +26,6 @@ MonoBehaviour:
     AbilityType: 0
     Cooldown: 0
     DescId: 9001
-    Desc: "\uC77C\uBC18 \uACF5\uACA9 \uC2DC, 25% \uD655\uB960\uB85C \uBCBC\uB77D
-      \uC0DD\uC131"
   - Id: 2
     Condition: 0
     Nmae: "\uB291\uB300"
@@ -37,7 +35,6 @@ MonoBehaviour:
     AbilityType: 0
     Cooldown: 20
     DescId: 9002
-    Desc: 
   - Id: 3
     Condition: 0
     Nmae: "\uBC14\uB78C \uAE38"
@@ -47,18 +44,15 @@ MonoBehaviour:
     AbilityType: 2
     Cooldown: 0
     DescId: 9301
-    Desc: "\uC77C\uBC18 \uACF5\uACA9 \uC0AC\uC6A9 \uC2DC, 25% \uD655\uB960\uB85C
-      \uBC14\uB78C \uC0DD\uC131"
   - Id: 4
     Condition: 0
     Nmae: "\uC12C\uAD11"
-    ActionType: 6
+    ActionType: 5
     Chance: 100
     SpecialAbilityId: 1
     AbilityType: 0
     Cooldown: 0
     DescId: 9302
-    Desc: 
   - Id: 5
     Condition: 0
     Nmae: "\uB0A0\uCE74\uB85C\uC6C0"
@@ -68,4 +62,3 @@ MonoBehaviour:
     AbilityType: 1
     Cooldown: 0
     DescId: 9303
-    Desc: 

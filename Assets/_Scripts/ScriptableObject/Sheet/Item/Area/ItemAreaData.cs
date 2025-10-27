@@ -33,8 +33,9 @@ public class ItemAreaData : ItemAbilityEvent
     public float Radius;
     public float Damage;
     public RuntimeAnimatorController Animator;
+    public AudioKey.Item.Effect AudioKey;
 
-    public ItemAreaData(int id, ItemEffectCreatePosType createPosType, float detectionRange, DetailPosition detailPosition, float radius, float damage, int animId)
+    public ItemAreaData(int id, ItemEffectCreatePosType createPosType, float detectionRange, DetailPosition detailPosition, float radius, float damage, int animId, AudioKey.Item.Effect audioKey)
     {
         Id = id;
         CreatePosType = createPosType;
@@ -43,6 +44,7 @@ public class ItemAreaData : ItemAbilityEvent
         Radius = radius;
         Damage = damage;
         Animator = Extension.LoadWithAddresssableByGroup<RuntimeAnimatorController>($"{animId}", "Area");
+        AudioKey = audioKey;
     }
 
     public void OnEvent(PlayerCharacter player)

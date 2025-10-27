@@ -17,6 +17,7 @@ public class ItemProjectileDataReader : DataReaderBase<ItemProjectileData>
         float damage = 0;
         ImageType imageType = ImageType.Sprite;
         int imageId = 0;
+        AudioKey.Item.Effect audioKey = AudioKey.Item.Effect.ITEM_EFFECT_HOWLING;
 
         foreach (var item in list)
         {
@@ -52,8 +53,11 @@ public class ItemProjectileDataReader : DataReaderBase<ItemProjectileData>
                 case "ImageID":
                     imageId = int.Parse(item.value);
                     break;
+                case "AudioKey":
+                    audioKey = (AudioKey.Item.Effect)System.Enum.Parse(typeof(AudioKey.Item.Effect), item.value);
+                    break;
             }
         }
-        DataList.Add(new ItemProjectileData(id, duration, moveType, speed, width, height, collisionCount, damage, imageType, imageId));
+        DataList.Add(new ItemProjectileData(id, duration, moveType, speed, width, height, collisionCount, damage, imageType, imageId, audioKey));
     }
 }

@@ -2,6 +2,7 @@ using Game.Player;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
@@ -57,13 +58,13 @@ public class ItemSpawner : MonoBehaviour
         var common = list.Where(i => i.ItemGrade == ItemGradeType.Common).ToList();
         var uncommon = list.Where(i => i.ItemGrade == ItemGradeType.Uncommon).ToList();
         var rare = list.Where(i => i.ItemGrade == ItemGradeType.Rare).ToList();
-        //var legendary = list.Where(i => i.ItemGrade == ItemGradeType.legendary).ToList();
+        var legendary = list.Where(i => i.ItemGrade == ItemGradeType.Legendary).ToList();
         List<ItemData> itemsData = new List<ItemData>();
         for (int i = 0; i < 3; i++)
         {
             while (true)
             {
-                var type = GetRandomItemGrade(false);
+                var type = GetRandomItemGrade();
                 switch (type)
                 {
                     case ItemGradeType.Common:
@@ -94,7 +95,13 @@ public class ItemSpawner : MonoBehaviour
                         }
                         break;
                     case ItemGradeType.Legendary:
-                        //if (legendary.Count > 0)
+                        if(legendary.Count > 0)
+                        {
+                            var idx = Random.Range(0, legendary.Count);
+                            itemsData.Add(legendary[idx]);
+                            legendary.RemoveAt(idx);
+                            goto Next;
+                        }
                         break;
                 }
             }
@@ -108,29 +115,22 @@ public class ItemSpawner : MonoBehaviour
             item.transform.position = ItemSpawnInfos[i];
             item.gameObject.SetActive(false);
             _spawnedItems.Add(item);
-            StartCoroutine(Extension.LoadTextureByURL(itemsData[i].IconURL, (texture) =>
-            {
-                var sprite = texture.ToSprite();
-                item.SetSprite(sprite);
-            }));
+            Manager.Item.ItemIcons.TryGetValue(itemsData[i].Id, out var sprite);
+            item.SetSprite(sprite);
         }
     }
-    ItemGradeType GetRandomItemGrade(bool rareAward)
+    ItemGradeType GetRandomItemGrade()
     {
-        if (rareAward)
-        {
-            //var r = Random.Range(0, 100);
+        var r = Random.Range(0f, 100f);
 
-            //if (r < 50)
-            //    return ItemGradeType.common;
-            //else if (r < 80)
-            //    return ItemGradeType.uncommon;
-            //else if (r < 95)
-            //    return ItemGradeType.rare;
-            //else
-            //    return ItemGradeType.legendary;
-        }
-        return (ItemGradeType)Random.Range(0, 3);
+        if (r < 40f)
+            return ItemGradeType.Common;
+        else if (r < 70f)
+            return ItemGradeType.Uncommon;
+        else if (r < 90f)
+            return ItemGradeType.Rare;
+        else
+            return ItemGradeType.Legendary;
     }
     void ActiveItems()
     {

@@ -11,6 +11,7 @@ public class ItemManager
     public List<ItemData> MissingItems;
     public Dictionary<int, ItemSynergy> Synergies = new Dictionary<int, ItemSynergy>();
     Dictionary<int, ItemController> _originalItems = new Dictionary<int, ItemController>();
+    public Dictionary<int, Sprite> ItemIcons = new Dictionary<int, Sprite>();
     public void Reset()
     {
         MissingItems = Manager.Data.ItemsData.Base.Values.ToList();
@@ -23,7 +24,7 @@ public class ItemManager
         CreateItemPool();
         SetItems();
     }
-    void SetItems()
+    async void SetItems()
     {
         var item = Manager.Resource.Load<ItemController>("ItemController");
         GameObject go = new GameObject("ItemRoot");
@@ -34,6 +35,9 @@ public class ItemManager
             itemInstance.gameObject.SetActive(false);
             itemInstance.SetData(data);
             _originalItems.Add(data.Id, itemInstance);
+            var texture = await Extension.LoadTextureByURLAsync(data.IconURL);
+            if (texture != null)
+                ItemIcons.Add(data.Id, texture.ToSprite());
         }
     }
     void CreateItemPool()

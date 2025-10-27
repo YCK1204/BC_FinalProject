@@ -80,6 +80,7 @@ public class AreaController : MonoBehaviour
         }
 
         SetAnimEvent();
+        Manager.Audio.Play(data.AudioKey, transform);
     }
     void SetAnimEvent()
     {
@@ -137,5 +138,6 @@ public class AreaController : MonoBehaviour
         if (_isDestroyed) return;
         Manager.Pool.Push<AreaController>(gameObject);
         _isDestroyed = true;
+        Manager.Audio.StopLoop(transform);
     }
 }
