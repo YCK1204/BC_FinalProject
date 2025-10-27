@@ -5155,6 +5155,8 @@ MonoBehaviour:
   AudioMixer: {fileID: 24100000, guid: c49e9afbcdd1a9944830be2ddc9f9900, type: 2}
   Prefab: {fileID: 6722650377872159071, guid: 5bddb0ab0a7b77244a24447036c1cacf, type: 3}
   InitialPoolSize: 20
+  _bgmSlider: {fileID: 0}
+  _sfxSlider: {fileID: 0}
 --- !u!4 &624193595
 Transform:
   m_ObjectHideFlags: 0
@@ -17492,30 +17494,30 @@ MonoBehaviour:
       - ComboStateIndex: 1
         AttackDuration: 0.4
         HitTiming: 0.1
-        Force: 1
+        Force: 0.5
         ForceTime: 0.1
         DamageSet: 1
         ComboTime: 0.5
         KnockbackPower: 2
-        AnimName: 
+        AnimName: Attack_1
       - ComboStateIndex: 2
         AttackDuration: 0.4
         HitTiming: 0.1
-        Force: 8
+        Force: 2
         ForceTime: 0.1
         DamageSet: 1
         ComboTime: 0.5
         KnockbackPower: 6
-        AnimName: 
+        AnimName: Attack_2
       - ComboStateIndex: 0
         AttackDuration: 0.4
         HitTiming: 0.2
-        Force: 3
+        Force: 1
         ForceTime: 0.2
         DamageSet: 1.5
         ComboTime: 1
         KnockbackPower: 4
-        AnimName: 
+        AnimName: Attack_3
     awakening:
       MaxAwakeningGauge: 100
       AwakeningOnHit: 10

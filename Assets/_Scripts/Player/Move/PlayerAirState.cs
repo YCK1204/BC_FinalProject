@@ -65,7 +65,7 @@ namespace Game.Player
                 }
 #if UNITY_2022_3_OR_NEWER
 
-                if (_stateMachine.Player.IsGrounded() && _stateMachine.Player.Rb.linearVelocity.y <= 0f)
+                if (_stateMachine.Player.IsGrounded() && _stateMachine.Player.Rb.linearVelocity.y <= 1f)
                 {
                     if (_stateMachine.MovementInput == Vector2.zero)
                         _stateMachine.ChangeState(_stateMachine.IdleState);
@@ -77,6 +77,31 @@ namespace Game.Player
                     StopAnimation(_stateMachine.Player.AnimationData.JumpParameterHash);
                     StartAnimation(_stateMachine.Player.AnimationData.FallParameterHash);
                 }
+
+                //if (_stateMachine.Player.IsGrounded() && _stateMachine.Player.Rb.linearVelocity.y <= 0f)
+                //{
+                //    StopAnimation(_stateMachine.Player.AnimationData.FallParameterHash);
+                //    if (_stateMachine.MovementInput == Vector2.zero)
+                //        _stateMachine.ChangeState(_stateMachine.IdleState);
+                //    else
+                //        _stateMachine.ChangeState(_stateMachine.WalkState);
+                //}
+                //else if (_stateMachine.Player.Rb.linearVelocity.y <= 0f)
+                //{
+                //    if (!_stateMachine.Player.IsGrounded())
+                //    {
+                //        StopAnimation(_stateMachine.Player.AnimationData.JumpParameterHash);
+                //        StartAnimation(_stateMachine.Player.AnimationData.FallParameterHash);
+                //    }
+                //    else
+                //    {
+                //        StopAnimation(_stateMachine.Player.AnimationData.FallParameterHash);
+                //        if (_stateMachine.MovementInput == Vector2.zero)
+                //            _stateMachine.ChangeState(_stateMachine.IdleState);
+                //        else
+                //            _stateMachine.ChangeState(_stateMachine.WalkState);
+                //    }
+                //}
 #else
             if (_stateMachine.Player.Rb.velocity.y <= 0f)
             {

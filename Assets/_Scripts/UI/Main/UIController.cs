@@ -62,6 +62,7 @@ public class UIController : MonoBehaviour
             {
                 _uiFade.Play("off_UI", 0, 0f);
                 HideUI();
+                DisplayManager.Instance.SetPPC(true, 0.5f);
             }
             else if (CurrentState == UiState.Hidden) 
             {
@@ -70,6 +71,7 @@ public class UIController : MonoBehaviour
                 Animator.SetInteger("State", 1);
                 PlayerManager.Instance.Player.Animator.Play("Phon");
                 ShowNormalView();
+                DisplayManager.Instance.SetPPC(false);
             }
             else
             {
@@ -102,6 +104,7 @@ public class UIController : MonoBehaviour
             (PreviousState == UiState.Main && newState == UiState.Hidden))
         {
             yield return new WaitForSecondsRealtime(0.5f);
+            
         }
 
         _isState = false;

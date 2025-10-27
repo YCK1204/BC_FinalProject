@@ -177,10 +177,17 @@ namespace Game.Player
                     Rigidbody2D targetRb = col.attachedRigidbody;
                     if (targetRb != null)
                     {
-                        float power = _attackInfoData.KnockbackPower;
-                        Vector2 knockDir = new Vector2(_stateMachine.FacingSign, 0f).normalized;
-
-                        targetRb.linearVelocity = knockDir * power;
+                        NormalMonster normalMonsterTarget = target as NormalMonster;
+                        if (normalMonsterTarget != null && normalMonsterTarget.IsSuperArmor)
+                        {
+                            //넉백안함
+                        }
+                        else
+                        {
+                            float power = _attackInfoData.KnockbackPower;
+                            Vector2 knockDir = new Vector2(_stateMachine.FacingSign, 0f).normalized;
+                            targetRb.linearVelocity = knockDir * power;
+                        }
                     }
 
                     if (isCrit) Debug.Log("Critical!! " + target.ToString());

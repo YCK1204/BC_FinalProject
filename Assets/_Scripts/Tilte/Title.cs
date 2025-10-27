@@ -26,7 +26,7 @@ public class Title : MonoBehaviour
     }
     public void OnStartButton()
     {
-        Manager.Data.playerSOData.ResetData();
+        //Manager.Data.playerSOData.ResetData();
         StartCoroutine(StartGame());
     }
 

@@ -8439,7 +8439,7 @@ MonoBehaviour:
   _cam: {fileID: 138208468}
   CameraObj: {fileID: 138208467}
   _mapPrefabs:
-  - {fileID: 3278153624945427460, guid: c393b1fc5607fb845b578b005347193f, type: 3}
+  - {fileID: 7139269899618118531, guid: bafa5a2a2728cfe42b569587b33d6346, type: 3}
   - {fileID: 5104247365805502873, guid: a9ba7730081a3ce42a7bac27b7bb3e73, type: 3}
   - {fileID: 3278153624945427460, guid: c393b1fc5607fb845b578b005347193f, type: 3}
   - {fileID: 6555901067502335982, guid: 95cf48bb0e2b8ee4b889131b0cdcbe9f, type: 3}
@@ -17312,6 +17312,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd71877c35a69df4fad623e5fa949839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DisplayManager
+  _uiAnimator: {fileID: 359806901}
+  _fadeAnimator: {fileID: 729839154}
+  _pixelPerfectCamera: {fileID: 813669511}
 --- !u!1 &2110505667
 GameObject:
   m_ObjectHideFlags: 0
