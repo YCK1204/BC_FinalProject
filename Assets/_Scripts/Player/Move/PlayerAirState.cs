@@ -65,7 +65,7 @@ namespace Game.Player
                 }
 #if UNITY_2022_3_OR_NEWER
 
-                if (_stateMachine.Player.IsGrounded())
+                if (_stateMachine.Player.IsGrounded() && _stateMachine.Player.Rb.linearVelocity.y <= 0f)
                 {
                     if (_stateMachine.MovementInput == Vector2.zero)
                         _stateMachine.ChangeState(_stateMachine.IdleState);
