@@ -31,8 +31,9 @@ public class ItemProjectileData : ItemAbilityEvent
     public ImageType ImageType;
     public Sprite Sprite;
     public RuntimeAnimatorController Animator;
+    public AudioKey.Item.Effect AudioKey;
 
-    public ItemProjectileData(int id, float duration, ProjectileMoveType moveType, float speed, float width, float height, int collisionCount, float damage, ImageType imageType, int imageId)
+    public ItemProjectileData(int id, float duration, ProjectileMoveType moveType, float speed, float width, float height, int collisionCount, float damage, ImageType imageType, int imageId, AudioKey.Item.Effect audioKey)
     {
         Id = id;
         Duration = duration;
@@ -45,6 +46,8 @@ public class ItemProjectileData : ItemAbilityEvent
         ImageType = imageType;
         Animator = null;
         Sprite = null;
+        AudioKey = audioKey;
+
 
         switch (imageType)
         {

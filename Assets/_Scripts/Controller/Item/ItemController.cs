@@ -31,6 +31,7 @@ public class ItemController : InteractableController
         if (_spriteRenderer == null)
             _spriteRenderer = GetComponent<SpriteRenderer>();
         _spriteRenderer.sprite = sprite;
+        _spriteRenderer.material = ItemData.Material;
     }
     protected override void Init()
     {

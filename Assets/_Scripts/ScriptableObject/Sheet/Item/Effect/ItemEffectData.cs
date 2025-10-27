@@ -43,7 +43,6 @@ public class ItemEffectData
     public AbilityType AbilityType;
     public float Cooldown;
     public int DescId;
-    public string Desc;
     public ItemEffectData(int id, ConditionType condition, string name, ItemActionType actionType, float chance, int specialAbilityId, AbilityType abilityType, float cooldown, int descId)
     {
         Id = id;
@@ -55,14 +54,12 @@ public class ItemEffectData
         AbilityType = abilityType;
         Cooldown = cooldown;
         DescId = descId;
-        Desc = "";
         _lastEventTime = 0f;
     }
     ItemAbilityEvent _eventData;
     public void Set()
     {
         Manager.Data.ItemsData.Description.TryGetValue(DescId, out var desc);
-        Desc = desc.Korean;
 
         Dictionary<int, ItemAbilityEvent> dict = new Dictionary<int, ItemAbilityEvent>();
         switch (AbilityType)
