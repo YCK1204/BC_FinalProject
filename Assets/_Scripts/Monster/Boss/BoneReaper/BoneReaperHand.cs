@@ -26,10 +26,10 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
     private LayerMask _mask;
 
     [Header("레이저 공격 시작 및 종료 위치")]
-    private Vector3 _leftStartLocalPos = new Vector3(-5f, 0, 0); //Vector3(-8f, 0, 0)
-    private Vector3 _leftEndLocalPos = new Vector3(6f, 0, 0); //Vector3(10f, 0, 0)
-    private Vector3 _rightStartLocalPos = new Vector3(5f, 0, 0); //Vector3(8f, 0, 0)
-    private Vector3 _rightEndLocalPos = new Vector3(-6f, 0, 0); //Vector3(-10f, 0, 0)
+    private Vector3 _leftStartLocalPos = new Vector3(-8f, 0, 0); //Vector3(-5f, 0, 0)
+    private Vector3 _leftEndLocalPos = new Vector3(10f, 0, 0); //Vector3(6f, 0, 0)
+    private Vector3 _rightStartLocalPos = new Vector3(8f, 0, 0); //Vector3(5f, 0, 0)
+    private Vector3 _rightEndLocalPos = new Vector3(-10f, 0, 0); //Vector3(-6f, 0, 0)
 
     private void Awake()
     {
