@@ -25,7 +25,7 @@ public class DisplayManager : MonoBehaviour
     }
 
 
-    //픽셀 퍼펙트 카메라 키고 끄기 SetPPC(true) 카메라 연출 사용전에 켜주면 됩니다.
+    //픽셀 퍼펙트 카메라 키고 끄기 SetPPC(false) 카메라 연출 사용전에 켜주면 됩니다.
     public void SetPPC(bool a , float b = 0f)
     {
         StartCoroutine(SetPPCDelay(a, b));
