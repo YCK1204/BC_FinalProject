@@ -23,7 +23,7 @@ public class Buff : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         get { return _count; }
         set
         {
-            if (_count == value)
+            if (_count == value || _data.MaxCount < value)
                 return;
             _count = value;
             _countText.text = _count > 1 ? _count.ToString() : "";
@@ -99,8 +99,8 @@ public class Buff : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (last)
             transform.SetAsLastSibling();
         gameObject.SetActive(true);
-        ItemSetterUtil.ApplyStat(player, _data.Stat1.ItemExtraStatType, _data.Stat1.Value * Count);
-        ItemSetterUtil.ApplyStat(player, _data.Stat2.ItemExtraStatType, _data.Stat2.Value * Count);
+        ItemSetterUtil.ApplyStat(player, _data.Stat1.ItemExtraStatType, _data.Stat1.Value);
+        ItemSetterUtil.ApplyStat(player, _data.Stat2.ItemExtraStatType, _data.Stat2.Value);
         if (BuffCoroutine != null)
             ResetTime();
         else
