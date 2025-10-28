@@ -114,4 +114,7 @@ public class AudioData : ScriptableObject
     [SerializeField]
     bool Loop = false;
     public bool IsLoop { get { return Loop; } }
+    [SerializeField]
+    float Volume = 1.0f;
+    public float GetVolume { get { return Volume; } }
 }

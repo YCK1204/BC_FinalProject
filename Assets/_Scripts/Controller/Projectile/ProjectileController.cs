@@ -73,6 +73,7 @@ public class ProjectileController : MonoBehaviour
                 }
                 break;
         }
+        Manager.Audio.Play(data.AudioKey, transform);
 
         //if (data.ColliderType == ColliderType.Circle)
         //{
@@ -140,5 +141,6 @@ public class ProjectileController : MonoBehaviour
         if (_isDestroyed) return;
         Manager.Pool.Push<ProjectileController>(gameObject);
         _isDestroyed = true;
+        Manager.Audio.StopLoop(transform);
     }
 }

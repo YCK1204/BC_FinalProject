@@ -9,14 +9,7 @@ namespace Game.Player
         public override void Enter()
         {
             _stateMachine.JumpsRemaining = _stateMachine.MaxJumps;
-            //StartAnimation(_stateMachine.Player.AnimationData.GroundParameterHash);
         }
-
-        //public override void Exit()
-        //{
-        //    StopAnimation(_stateMachine.Player.AnimationData.GroundParameterHash);
-        //}
-
 
         public override void Update()
         {
@@ -31,7 +24,6 @@ namespace Game.Player
                 bool awaken = kb != null && kb.dKey.wasPressedThisFrame;
 
                 _stateMachine.DashPressed = dash;
-
 
                 if (awaken && _stateMachine.Player.CanAwaken() && PlayerManager.Instance != null)
                 {
@@ -48,11 +40,25 @@ namespace Game.Player
                     _stateMachine.ChangeState(_stateMachine.WSkillState);
                     return;
                 }
-                if (attack && !_stateMachine.IsAttacking && _stateMachine.Player.IsGrounded())
+
+                if (!_stateMachine.IsAttacking && _stateMachine.Player.IsGrounded())
                 {
-                    _stateMachine.ChangeState(_stateMachine.ComboAttackState);
-                    return;
+                    if (attack || _stateMachine.AttackInputBuffered)
+                    {
+                        if (_stateMachine.AttackInputBuffered)
+                        {
+                            _stateMachine.ComboIndex = 0;
+                            _stateMachine.AttackInputBuffered = false;
+                        }
+                        else
+                        {
+                            _stateMachine.ComboIndex = 0;
+                        }
+                        _stateMachine.ChangeState(_stateMachine.ComboAttackState);
+                        return;
+                    }
                 }
+
                 if (jump && _stateMachine.Player.IsGrounded() && _stateMachine.JumpsRemaining > 0)
                 {
                     _stateMachine.ChangeState(_stateMachine.JumpState);

@@ -3,14 +3,20 @@ using UnityEngine;
 
 public class PlayerPool : MonoBehaviour
 {
-    public static PlayerPool Instance;
+    public static PlayerPool Instance { get; private set; }
 
     private Dictionary<string, Queue<GameObject>> _poolDictionary = new Dictionary<string, Queue<GameObject>>();
-    private Dictionary<string, GameObject> _prefabReferences = new Dictionary<string, GameObject>();
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     public GameObject GetFromPool(GameObject prefab, Vector3 position, Quaternion rotation)
@@ -20,11 +26,9 @@ public class PlayerPool : MonoBehaviour
         if (!_poolDictionary.ContainsKey(prefabName))
         {
             _poolDictionary.Add(prefabName, new Queue<GameObject>());
-            _prefabReferences.Add(prefabName, prefab);
         }
 
         Queue<GameObject> pool = _poolDictionary[prefabName];
-
         GameObject obj;
 
         if (pool.Count > 0)
@@ -42,17 +46,20 @@ public class PlayerPool : MonoBehaviour
             EffectReturn effectReturn = obj.GetComponent<EffectReturn>();
             if (effectReturn != null)
             {
-                effectReturn.OriginalPrefabName = prefabName;
+                effectReturn.SetPool(this, prefab);
             }
             return obj;
         }
     }
 
-    public void ReturnPoolName(string prefabName, GameObject obj)
+    public void ReturnToPool(GameObject originalPrefab, GameObject obj)
     {
+        string prefabName = originalPrefab.name;
+
         if (_poolDictionary.ContainsKey(prefabName))
         {
             obj.SetActive(false);
+            obj.transform.SetParent(this.transform);
             _poolDictionary[prefabName].Enqueue(obj);
         }
         else
@@ -60,5 +67,4 @@ public class PlayerPool : MonoBehaviour
             Destroy(obj);
         }
     }
-
 }

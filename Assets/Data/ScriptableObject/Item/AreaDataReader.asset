@@ -24,6 +24,7 @@ MonoBehaviour:
     Radius: 0.85
     Damage: 1.5
     Animator: {fileID: 9100000, guid: 135ea94c38fac68479fbc28f9c02d4a2, type: 2}
+    AudioKey: 1
   - Id: 2
     CreatePosType: 0
     DetailPosition: 4
@@ -31,3 +32,4 @@ MonoBehaviour:
     Radius: 1.27
     Damage: 1.7
     Animator: {fileID: 9100000, guid: 487117d0b5a3d2844a1347b94d837284, type: 2}
+    AudioKey: 2

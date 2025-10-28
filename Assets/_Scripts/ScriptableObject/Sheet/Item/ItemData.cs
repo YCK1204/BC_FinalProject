@@ -2,6 +2,7 @@ using Game.Player;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public enum ItemTriggerType
@@ -83,10 +84,23 @@ public class ItemData
     public int SynergyId;
     public ItemGradeType ItemGrade;
     public ItemEffectData EffectData;
+    public string SynergyText;
+    public string EffectText;
+    public Material Material;
     public void Set(PlayerCharacter player)
     {
         ItemSetterUtil.ApplyStat(player, Stat1.ItemExtraStatType, Stat1.Value);
         ItemSetterUtil.ApplyStat(player, Stat2.ItemExtraStatType, Stat2.Value);
+
+        if (SynergyId != 0)
+        {
+            Manager.Data.ItemsData.Synergy.TryGetValue(SynergyId, out var synergyData);
+            Manager.Data.ItemsData.Effect.TryGetValue(synergyData.ItemEffectID, out var data);
+            Manager.Data.ItemsData.Description.TryGetValue(data.DescId, out var descData);
+            SynergyText = descData.Korean;
+            Debug.Log($"SynergyText: {SynergyText} ");
+        }
+
         if (ItemEffectId == 0)
             return;
         Manager.Data.ItemsData.Effect.TryGetValue(ItemEffectId, out var effectData);
@@ -97,6 +111,9 @@ public class ItemData
         }
         EffectData = effectData;
         EffectData.Set();
+        
+        Manager.Data.ItemsData.Description.TryGetValue(effectData.DescId, out var desc);
+        EffectText = desc.Korean;
     }
     public ItemData(int id, ItemGradeType itemGradeType, string _name, ItemExtraStatType ability_1Type, float ability_1Value, ItemExtraStatType ability_2Type, float ability_2Value, int itemEffectId, int synergyId, string iconURL)
     {
@@ -109,5 +126,19 @@ public class ItemData
         SynergyId = synergyId;
         IconURL = iconURL;
         EffectData = default(ItemEffectData);
+        string matName = "Material";
+        string toInsert = "";
+        switch (ItemGrade)
+        {
+            case ItemGradeType.Legendary:
+                toInsert = "Legendary";
+                break;
+            default:
+                toInsert = "Normal";
+                break;
+        }
+        matName = matName.Insert(0, toInsert);
+        Material = Extension.LoadWithAddresssableByGroup<Material>($"{matName}", "Item");
+        Debug.Log(matName);
     }
 }
