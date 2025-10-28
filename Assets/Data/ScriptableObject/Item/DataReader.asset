@@ -56,7 +56,7 @@ MonoBehaviour:
       Value: 0
     IconURL: https://velog.velcdn.com/images/rokid_/post/d594ad43-2eaf-48d4-968f-da208dd0a9c4/image.png
     ItemEffectId: 0
-    SynergyId: 3
+    SynergyId: 2
     ItemGrade: 0
     EffectData:
       Id: 0
@@ -110,7 +110,7 @@ MonoBehaviour:
       Value: 0
     IconURL: https://velog.velcdn.com/images/rokid_/post/bf214d5b-117b-4c24-8c67-c29dfe0b6c2f/image.png
     ItemEffectId: 0
-    SynergyId: 0
+    SynergyId: 2
     ItemGrade: 0
     EffectData:
       Id: 0
@@ -137,7 +137,7 @@ MonoBehaviour:
       Value: 0
     IconURL: https://velog.velcdn.com/images/rokid_/post/6c4c2705-a5bf-4dc2-bd7f-b4d60596520e/image.png
     ItemEffectId: 0
-    SynergyId: 3
+    SynergyId: 0
     ItemGrade: 1
     EffectData:
       Id: 0
@@ -149,8 +149,7 @@ MonoBehaviour:
       AbilityType: 0
       Cooldown: 0
       DescId: 0
-    SynergyText: "\uC77C\uBC18 \uACF5\uACA9 \uC801\uC911 \uC2DC, 3\uCD08 \uB3D9\uC548
-      \uC608\uB9AC\uD568 \uBC84\uD504 \uD68D\uB4DD"
+    SynergyText: 
     EffectText: 
     Material: {fileID: 2100000, guid: ef525ef8e1990b64cac98aa764f6fe88, type: 2}
   - Id: 1202
@@ -165,7 +164,7 @@ MonoBehaviour:
       Value: 0
     IconURL: https://velog.velcdn.com/images/rokid_/post/ed880794-8bda-45b9-8ecd-e917b24ec5ca/image.png
     ItemEffectId: 0
-    SynergyId: 2
+    SynergyId: 3
     ItemGrade: 1
     EffectData:
       Id: 0
@@ -192,7 +191,7 @@ MonoBehaviour:
       Value: 0
     IconURL: https://velog.velcdn.com/images/rokid_/post/1cb89670-1f15-4f81-b7de-366f77792e1a/image.png
     ItemEffectId: 0
-    SynergyId: 2
+    SynergyId: 3
     ItemGrade: 1
     EffectData:
       Id: 0
@@ -204,7 +203,8 @@ MonoBehaviour:
       AbilityType: 0
       Cooldown: 0
       DescId: 0
-    SynergyText: 
+    SynergyText: "\uC77C\uBC18 \uACF5\uACA9 \uC801\uC911 \uC2DC, 3\uCD08 \uB3D9\uC548
+      \uC608\uB9AC\uD568 \uBC84\uD504 \uD68D\uB4DD"
     EffectText: 
     Material: {fileID: 2100000, guid: ef525ef8e1990b64cac98aa764f6fe88, type: 2}
   - Id: 1301
@@ -218,7 +218,7 @@ MonoBehaviour:
       ItemTriggerType: 5
       Value: 5
     IconURL: https://velog.velcdn.com/images/rokid_/post/b610ad3e-634e-4a68-9bd1-3b7e3a96cff4/image.png
-    ItemEffectId: 1
+    ItemEffectId: 0
     SynergyId: 1
     ItemGrade: 2
     EffectData:
@@ -245,8 +245,8 @@ MonoBehaviour:
       ItemTriggerType: 5
       Value: 20
     IconURL: https://velog.velcdn.com/images/rokid_/post/6756bc50-ccfe-42d7-8eb4-e199ccaab9f0/image.png
-    ItemEffectId: 2
-    SynergyId: 3
+    ItemEffectId: 0
+    SynergyId: 2
     ItemGrade: 2
     EffectData:
       Id: 0
@@ -272,21 +272,20 @@ MonoBehaviour:
       ItemTriggerType: 5
       Value: 20
     IconURL: https://velog.velcdn.com/images/rokid_/post/d8305e37-8b4f-4ee5-b57d-1828a6ee029f/image.png
-    ItemEffectId: 3
-    SynergyId: 2
+    ItemEffectId: 0
+    SynergyId: 3
     ItemGrade: 2
     EffectData:
-      Id: 3
+      Id: 0
       Condition: 0
-      Nmae: "\uBC14\uB78C \uAE38"
-      ActionType: 1
-      Chance: 100
-      SpecialAbilityId: 1
-      AbilityType: 2
+      Nmae: 
+      ActionType: 0
+      Chance: 0
+      SpecialAbilityId: 0
+      AbilityType: 0
       Cooldown: 0
-      DescId: 9301
-    SynergyText: "\uB300\uC26C \uC885\uB8CC \uC2DC, \uB3C4\uCC29 \uC9C0\uC810\uC5D0
-      \uBCBC\uB77D \uC0DD\uC131"
+      DescId: 0
+    SynergyText: 
     EffectText: 
     Material: {fileID: 2100000, guid: ef525ef8e1990b64cac98aa764f6fe88, type: 2}
   - Id: 1401
@@ -300,7 +299,7 @@ MonoBehaviour:
       ItemTriggerType: 5
       Value: 40
     IconURL: https://velog.velcdn.com/images/rokid_/post/bd52a936-57bc-4447-a2c9-a762fdea6068/image.png
-    ItemEffectId: 4
+    ItemEffectId: 1
     SynergyId: 0
     ItemGrade: 3
     EffectData:
@@ -327,19 +326,20 @@ MonoBehaviour:
       ItemTriggerType: 5
       Value: 40
     IconURL: https://velog.velcdn.com/images/rokid_/post/84fd6981-2d75-4073-a385-698d2a97a5a4/image.png
-    ItemEffectId: 5
+    ItemEffectId: 2
     SynergyId: 0
     ItemGrade: 3
     EffectData:
-      Id: 0
+      Id: 2
       Condition: 0
-      Nmae: 
+      Nmae: "\uB291\uB300"
       ActionType: 0
-      Chance: 0
-      SpecialAbilityId: 0
+      Chance: 100
+      SpecialAbilityId: 2
       AbilityType: 0
-      Cooldown: 0
-      DescId: 0
+      Cooldown: 20
+      DescId: 9002
     SynergyText: 
-    EffectText: 
+    EffectText: "20\uCD08 \uB9C8\uB2E4 \uC6B8\uC74C\uC18C\uB9AC\uB97C \uC0DD\uC131\uD574
+      \uC8FC\uC704 \uC801\uC5D0\uAC8C \uD53C\uD574"
     Material: {fileID: 2100000, guid: 27a4590ae5c6ae04cb874da8d6e042bb, type: 2}

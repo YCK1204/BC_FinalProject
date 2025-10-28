@@ -19,10 +19,7 @@ public class ItemSpawner : MonoBehaviour
         StartCoroutine(Extension.LateStart(() =>
         {
             Manager.Game.OnMonstersClear += ActiveItems;
-            PlayerCharacter.Instance.Inventory.OnItemAdded += (item) =>
-            {
-                RemoveItems();
-            };
+            PlayerCharacter.Instance.Inventory.OnItemAdded += RemoveItems;
         }));
     }
     void OnDestroy()
@@ -118,6 +115,7 @@ public class ItemSpawner : MonoBehaviour
             Manager.Item.ItemIcons.TryGetValue(itemsData[i].Id, out var sprite);
             item.SetSprite(sprite);
         }
+        Manager.Analytics.SendFunnelStepForItem(false);
     }
     ItemGradeType GetRandomItemGrade()
     {
@@ -141,10 +139,7 @@ public class ItemSpawner : MonoBehaviour
     }
     public void RemoveItems()
     {
-        PlayerCharacter.Instance.Inventory.OnItemAdded -= (item) =>
-        {
-            RemoveItems();
-        };
+        PlayerCharacter.Instance.Inventory.OnItemAdded -= RemoveItems;
         foreach (var item in _spawnedItems)
         {
             if (item != null)

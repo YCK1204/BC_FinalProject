@@ -10,7 +10,7 @@ public class Inventory
 {
     ItemController _curItem;
     Dictionary<int, ItemData> _items = new Dictionary<int, ItemData>();
-    public Action<ItemController> OnItemAdded { get; set; }
+    public Action OnItemAdded { get; set; }
     public bool IsDirty { get; set; } = false;
 
     public IReadOnlyDictionary<int, ItemData> Items => _items;
@@ -48,9 +48,12 @@ public class Inventory
         _items.Add(data.Id, data);
         data.Set(player);
         Manager.Item.MissingItems.Remove(data);
-        OnItemAdded?.Invoke(item);
+        OnItemAdded?.Invoke();
         Manager.Item.AddSynergy(data.SynergyId);
-        MapManager.Instance.SetPortal();
+        if (MapManager.Instance != null && MapManager.Instance.CurrentMap.name.IndexOf("base_camp") == -1)
+            MapManager.Instance.SetPortal();
+        if (MapManager.Instance != null && MapManager.Instance.CurrentMap.name.IndexOf("Stage1") != -1)
+            Manager.Analytics.SendFunnelStepForItem(true);
     }
     public void LoadFromJson(InventoryJsonData inventoryJsonData)
     {

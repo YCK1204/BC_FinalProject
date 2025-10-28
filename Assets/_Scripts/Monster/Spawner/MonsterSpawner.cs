@@ -25,6 +25,7 @@ public abstract class MonsterSpawner : MonoBehaviour
     [SerializeField]
     List<ChainMonsterSpawner> NextSpawners;
     bool _isSpawned = false;
+    public static int FunnelSpawnNum = 1;
     public int SpawnedCount
     {
         get
@@ -105,5 +106,7 @@ public abstract class MonsterSpawner : MonoBehaviour
             // 몬스터 OnDestroy 시 SpawnedCount 감소
         }
         _isSpawned = true;
+        FunnelSpawnNum++;
+        Manager.Analytics.SendFunnelStepForMonsterSpawn();
     }
 }

@@ -190,6 +190,7 @@ public class MapManager : MonoBehaviour
             UpdateTimerUI();
             Debug.Log("맵 리셋");
         }
+        MonsterSpawner.FunnelSpawnNum = 1;
     }
 
     private void LoadMap(GameObject prefab)
