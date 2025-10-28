@@ -18,7 +18,7 @@ namespace Game.Player
         public Animator Animator { get; private set; }
         public static PlayerCharacter Instance { get; private set; }
 
-        public bool OnTrait;
+        public bool OnUI;
 
         public List<InteractableController> Interactables = new List<InteractableController>();
         public SpriteRenderer SpriteRenderer;
@@ -323,8 +323,6 @@ namespace Game.Player
         public void Die()
         {
             OnDied?.Invoke();
-
-            PlayerManager.Instance.CooldownD.ShowCooldown();
 
             currentHP = 0f;
             HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);

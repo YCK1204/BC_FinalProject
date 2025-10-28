@@ -16,7 +16,9 @@ public class DisplayManager : MonoBehaviour
     private const string _hubOut = "all_off";
     private const string _Clear = "clear";
     private const string _fadeIn = "on_UI";
+    private const string _fadeIn2 = "on_UI2";
     private const string _fadeOut = "off_UI";
+    private const string _fadeOut2 = "off_UI2";
 
 
     private void Awake()
@@ -42,14 +44,14 @@ public class DisplayManager : MonoBehaviour
     //보스 레이드 연출때 미니맵,hp바 안보이게 하기
     public void HubFadeOut()
     {
-        _uiAnimator.SetTrigger(_hubOut);
+        _uiAnimator.Play(_hubOut);
         Debug.Log("HUB 끄기");
     }
 
     //hub 키기
     public void HubFadeIn()
     {
-        _uiAnimator.SetTrigger(_hubIn);
+        _uiAnimator.Play(_hubIn);
         Debug.Log("HUB 켜기");
     }
 
@@ -59,19 +61,27 @@ public class DisplayManager : MonoBehaviour
     {
         StartCoroutine(SetPPCDelay(false, 0f));
         StartCoroutine(ClearCrt());
+
+        PlayerManager.Instance.Player.OnUI = false;
     }
 
     private IEnumerator ClearCrt()
     {
-        _uiAnimator.SetTrigger(_Clear);
+        _uiAnimator.Play(_Clear);
 
         yield return new WaitForSeconds(4f);
-
-        _fadeAnimator.SetTrigger(_fadeIn);
+        _fadeAnimator.Play(_fadeIn);
+        yield return new WaitForSeconds(3f);
+        _fadeAnimator.Play(_fadeIn2);
+        yield return new WaitForSeconds(2f);
+        MapManager.Instance.InitFloor();
+        _fadeAnimator.Play(_fadeOut2);
+        yield return new WaitForSeconds(1f);
+        PlayerManager.Instance.Player.OnUI = true;
     }
 
     public void EndClear()
     {
-        _fadeAnimator.SetTrigger(_fadeOut);
+        _fadeAnimator.Play(_fadeOut);
     }
 }

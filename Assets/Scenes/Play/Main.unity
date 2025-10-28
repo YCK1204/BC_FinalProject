@@ -671,10 +671,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 200529199}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 125, y: -36.5}
-  m_SizeDelta: {x: 450, y: 40}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &92443044
 MonoBehaviour:
@@ -1211,10 +1211,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 200529199}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 125, y: -63.5}
-  m_SizeDelta: {x: 450, y: 40}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &170951895
 MonoBehaviour:
@@ -2878,7 +2878,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &359806897
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4960,7 +4960,7 @@ RectTransform:
   m_Father: {fileID: 1916043729}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -8449,7 +8449,7 @@ MonoBehaviour:
   _bossroomPrefabs: {fileID: 9068971754435094937, guid: 9d6c2ce076308014d9373e5e1198207b, type: 3}
   _itemRoomPrefab: {fileID: 2230026743237444476, guid: be5168bf4955ca943a4dd3372226210d, type: 3}
   _timerText: {fileID: 800750431}
-  _bossRoomTrigger: 4
+  _bossRoomTrigger: 0
   OnPortal: 1
 --- !u!4 &922601901
 Transform:
@@ -10959,7 +10959,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 686abc175d3a27244a25b496aaf89c8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameSystem.Player
-  OnTrait: 0
+  OnUI: 0
   Interactables: []
   SpriteRenderer: {fileID: 310275703}
   PlayerMaterial: {fileID: 922601903}
@@ -14981,7 +14981,7 @@ RectTransform:
   m_Father: {fileID: 1250281792}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
