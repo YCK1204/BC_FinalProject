@@ -205,7 +205,7 @@ public class BoneReaper : BossMonster
         _platformGenerator.StopGenerate();
         Manager.Audio.Play(AudioKey.Monster.Die.M_DIE_BOSS, transform);
         Manager.Analytics.SendFunnelStep(FunnelStep._Boss, 12);
-        Manager.Analytics.SendFunnelStep(FunnelStep._StageC, 13);
+        Manager.Analytics.SendFunnelStep(FunnelStep._StageC, 14);
     }
 
     #region 페이즈 1
