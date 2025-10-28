@@ -25,7 +25,7 @@ namespace Game.Player
 
         public MaterialInitializer PlayerMaterial;
 
-        [SerializeField] private CameraShake camShake;
+        public CameraShake camShake;
 
         [SerializeField] private AnimationData AnimationDataSerialized;
         [SerializeField] private PlayerData DataSerialized;

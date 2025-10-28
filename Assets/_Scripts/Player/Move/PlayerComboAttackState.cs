@@ -163,24 +163,23 @@ namespace Game.Player
                 var target = col.GetComponentInParent<IDamageable>();
                 if (target != null && !_hitTargets.Contains(target))
                 {
+                    //체력 예외처리
+                    if (target is BaseMonster baseMonsterTarget && baseMonsterTarget.MonsterData.CurHp <= 0)
+                    {
+                        continue;
+                    }
+
                     hitted = true;
                     _hitTargets.Add(target);
 
-                    bool isCrit = Random.value < chance;
-                    float mult = isCrit ? 1f + Mathf.Max(0f, d.CriticalDamage) * 0.01f : 1f;
-                    int damage = Mathf.RoundToInt(baseDmg * mult * _attackInfoData.DamageSet);
-
-                    _stateMachine.Player.GainAwakeningGauge();
-                    target.TakeDamage(damage);
-                    _stateMachine.Player.MarkLastHitCritical(isCrit);
-
                     Rigidbody2D targetRb = col.attachedRigidbody;
+
                     if (targetRb != null)
                     {
-                        NormalMonster normalMonsterTarget = target as NormalMonster;
-                        if (normalMonsterTarget != null && normalMonsterTarget.IsSuperArmor)
+                        baseMonsterTarget = target as BaseMonster;
+                        if (baseMonsterTarget != null && baseMonsterTarget.IsSuperArmor)
                         {
-                            //넉백안함
+                            //예외
                         }
                         else
                         {
@@ -189,6 +188,14 @@ namespace Game.Player
                             targetRb.linearVelocity = knockDir * power;
                         }
                     }
+
+                    bool isCrit = Random.value < chance;
+                    float mult = isCrit ? 1f + Mathf.Max(0f, d.CriticalDamage) * 0.01f : 1f;
+                    int damage = Mathf.RoundToInt(baseDmg * mult * _attackInfoData.DamageSet);
+
+                    _stateMachine.Player.GainAwakeningGauge();
+                    target.TakeDamage(damage);
+                    _stateMachine.Player.MarkLastHitCritical(isCrit);
 
                     if (isCrit) Debug.Log("Critical!! " + target.ToString());
                 }
