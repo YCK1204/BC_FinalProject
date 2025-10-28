@@ -16,4 +16,330 @@ MonoBehaviour:
   associatedWorksheet: "\uC544\uC774\uD15C01"
   START_ROW_LENGTH: 2
   END_ROW_LENGTH: 13
-  DataList: []
+  DataList:
+  - Id: 1101
+    ItemName: "\uBB34\uB518 \uAC80"
+    Stat1:
+      ItemExtraStatType: 2
+      ItemTriggerType: 5
+      Value: 10
+    Stat2:
+      ItemExtraStatType: 0
+      ItemTriggerType: 5
+      Value: 0
+    IconURL: https://velog.velcdn.com/images/rokid_/post/bd52f005-735f-4a1d-aa13-07e274b4b0e0/image.png
+    ItemEffectId: 0
+    SynergyId: 1
+    ItemGrade: 0
+    EffectData:
+      Id: 0
+      Condition: 0
+      Nmae: 
+      ActionType: 0
+      Chance: 0
+      SpecialAbilityId: 0
+      AbilityType: 0
+      Cooldown: 0
+      DescId: 0
+    SynergyText: 
+    EffectText: 
+    Material: {fileID: 2100000, guid: ef525ef8e1990b64cac98aa764f6fe88, type: 2}
+  - Id: 1102
+    ItemName: "\uBE5B\uBC14\uB79C \uC624\uBE0C"
+    Stat1:
+      ItemExtraStatType: 4
+      ItemTriggerType: 5
+      Value: 10
+    Stat2:
+      ItemExtraStatType: 0
+      ItemTriggerType: 5
+      Value: 0
+    IconURL: https://velog.velcdn.com/images/rokid_/post/d594ad43-2eaf-48d4-968f-da208dd0a9c4/image.png
+    ItemEffectId: 0
+    SynergyId: 3
+    ItemGrade: 0
+    EffectData:
+      Id: 0
+      Condition: 0
+      Nmae: 
+      ActionType: 0
+      Chance: 0
+      SpecialAbilityId: 0
+      AbilityType: 0
+      Cooldown: 0
+      DescId: 0
+    SynergyText: 
+    EffectText: 
+    Material: {fileID: 2100000, guid: ef525ef8e1990b64cac98aa764f6fe88, type: 2}
+  - Id: 1103
+    ItemName: "\uB0A1\uC740 \uB048"
+    Stat1:
+      ItemExtraStatType: 5
+      ItemTriggerType: 5
+      Value: 10
+    Stat2:
+      ItemExtraStatType: 0
+      ItemTriggerType: 5
+      Value: 0
+    IconURL: https://velog.velcdn.com/images/rokid_/post/6bb457ac-3f11-4635-900e-a8ef3d37b289/image.png
+    ItemEffectId: 0
+    SynergyId: 1
+    ItemGrade: 0
+    EffectData:
+      Id: 0
+      Condition: 0
+      Nmae: 
+      ActionType: 0
+      Chance: 0
+      SpecialAbilityId: 0
+      AbilityType: 0
+      Cooldown: 0
+      DescId: 0
+    SynergyText: 
+    EffectText: 
+    Material: {fileID: 2100000, guid: ef525ef8e1990b64cac98aa764f6fe88, type: 2}
+  - Id: 1104
+    ItemName: "\uAC80\uC740 \uBB3C\uC9C8"
+    Stat1:
+      ItemExtraStatType: 6
+      ItemTriggerType: 5
+      Value: 40
+    Stat2:
+      ItemExtraStatType: 0
+      ItemTriggerType: 5
+      Value: 0
+    IconURL: https://velog.velcdn.com/images/rokid_/post/bf214d5b-117b-4c24-8c67-c29dfe0b6c2f/image.png
+    ItemEffectId: 0
+    SynergyId: 0
+    ItemGrade: 0
+    EffectData:
+      Id: 0
+      Condition: 0
+      Nmae: 
+      ActionType: 0
+      Chance: 0
+      SpecialAbilityId: 0
+      AbilityType: 0
+      Cooldown: 0
+      DescId: 0
+    SynergyText: 
+    EffectText: 
+    Material: {fileID: 2100000, guid: ef525ef8e1990b64cac98aa764f6fe88, type: 2}
+  - Id: 1201
+    ItemName: "\uBCF4\uD638 \uC7A5\uBE44"
+    Stat1:
+      ItemExtraStatType: 7
+      ItemTriggerType: 5
+      Value: 20
+    Stat2:
+      ItemExtraStatType: 0
+      ItemTriggerType: 5
+      Value: 0
+    IconURL: https://velog.velcdn.com/images/rokid_/post/6c4c2705-a5bf-4dc2-bd7f-b4d60596520e/image.png
+    ItemEffectId: 0
+    SynergyId: 3
+    ItemGrade: 1
+    EffectData:
+      Id: 0
+      Condition: 0
+      Nmae: 
+      ActionType: 0
+      Chance: 0
+      SpecialAbilityId: 0
+      AbilityType: 0
+      Cooldown: 0
+      DescId: 0
+    SynergyText: "\uC77C\uBC18 \uACF5\uACA9 \uC801\uC911 \uC2DC, 3\uCD08 \uB3D9\uC548
+      \uC608\uB9AC\uD568 \uBC84\uD504 \uD68D\uB4DD"
+    EffectText: 
+    Material: {fileID: 2100000, guid: ef525ef8e1990b64cac98aa764f6fe88, type: 2}
+  - Id: 1202
+    ItemName: "\uACE0\uAE09 \uC5F0\uB9C8\uC81C"
+    Stat1:
+      ItemExtraStatType: 8
+      ItemTriggerType: 5
+      Value: 20
+    Stat2:
+      ItemExtraStatType: 0
+      ItemTriggerType: 5
+      Value: 0
+    IconURL: https://velog.velcdn.com/images/rokid_/post/ed880794-8bda-45b9-8ecd-e917b24ec5ca/image.png
+    ItemEffectId: 0
+    SynergyId: 2
+    ItemGrade: 1
+    EffectData:
+      Id: 0
+      Condition: 0
+      Nmae: 
+      ActionType: 0
+      Chance: 0
+      SpecialAbilityId: 0
+      AbilityType: 0
+      Cooldown: 0
+      DescId: 0
+    SynergyText: 
+    EffectText: 
+    Material: {fileID: 2100000, guid: ef525ef8e1990b64cac98aa764f6fe88, type: 2}
+  - Id: 1203
+    ItemName: "\uC8FC\uC220 \uB2E8\uAC80"
+    Stat1:
+      ItemExtraStatType: 9
+      ItemTriggerType: 5
+      Value: 5
+    Stat2:
+      ItemExtraStatType: 0
+      ItemTriggerType: 5
+      Value: 0
+    IconURL: https://velog.velcdn.com/images/rokid_/post/1cb89670-1f15-4f81-b7de-366f77792e1a/image.png
+    ItemEffectId: 0
+    SynergyId: 2
+    ItemGrade: 1
+    EffectData:
+      Id: 0
+      Condition: 0
+      Nmae: 
+      ActionType: 0
+      Chance: 0
+      SpecialAbilityId: 0
+      AbilityType: 0
+      Cooldown: 0
+      DescId: 0
+    SynergyText: 
+    EffectText: 
+    Material: {fileID: 2100000, guid: ef525ef8e1990b64cac98aa764f6fe88, type: 2}
+  - Id: 1301
+    ItemName: "\uAC01\uC131\uC758 \uB3CC"
+    Stat1:
+      ItemExtraStatType: 5
+      ItemTriggerType: 5
+      Value: 10
+    Stat2:
+      ItemExtraStatType: 9
+      ItemTriggerType: 5
+      Value: 5
+    IconURL: https://velog.velcdn.com/images/rokid_/post/b610ad3e-634e-4a68-9bd1-3b7e3a96cff4/image.png
+    ItemEffectId: 1
+    SynergyId: 1
+    ItemGrade: 2
+    EffectData:
+      Id: 0
+      Condition: 0
+      Nmae: 
+      ActionType: 0
+      Chance: 0
+      SpecialAbilityId: 0
+      AbilityType: 0
+      Cooldown: 0
+      DescId: 0
+    SynergyText: 
+    EffectText: 
+    Material: {fileID: 2100000, guid: ef525ef8e1990b64cac98aa764f6fe88, type: 2}
+  - Id: 1302
+    ItemName: "\uB9C8\uBC95 \uC2A4\uD06C\uB864"
+    Stat1:
+      ItemExtraStatType: 4
+      ItemTriggerType: 5
+      Value: 10
+    Stat2:
+      ItemExtraStatType: 7
+      ItemTriggerType: 5
+      Value: 20
+    IconURL: https://velog.velcdn.com/images/rokid_/post/6756bc50-ccfe-42d7-8eb4-e199ccaab9f0/image.png
+    ItemEffectId: 2
+    SynergyId: 3
+    ItemGrade: 2
+    EffectData:
+      Id: 0
+      Condition: 0
+      Nmae: 
+      ActionType: 0
+      Chance: 0
+      SpecialAbilityId: 0
+      AbilityType: 0
+      Cooldown: 0
+      DescId: 0
+    SynergyText: 
+    EffectText: 
+    Material: {fileID: 2100000, guid: ef525ef8e1990b64cac98aa764f6fe88, type: 2}
+  - Id: 1303
+    ItemName: "\uACF5\uBA85\uD558\uB294 \uB8EC"
+    Stat1:
+      ItemExtraStatType: 2
+      ItemTriggerType: 5
+      Value: 10
+    Stat2:
+      ItemExtraStatType: 8
+      ItemTriggerType: 5
+      Value: 20
+    IconURL: https://velog.velcdn.com/images/rokid_/post/d8305e37-8b4f-4ee5-b57d-1828a6ee029f/image.png
+    ItemEffectId: 3
+    SynergyId: 2
+    ItemGrade: 2
+    EffectData:
+      Id: 3
+      Condition: 0
+      Nmae: "\uBC14\uB78C \uAE38"
+      ActionType: 1
+      Chance: 100
+      SpecialAbilityId: 1
+      AbilityType: 2
+      Cooldown: 0
+      DescId: 9301
+    SynergyText: "\uB300\uC26C \uC885\uB8CC \uC2DC, \uB3C4\uCC29 \uC9C0\uC810\uC5D0
+      \uBCBC\uB77D \uC0DD\uC131"
+    EffectText: 
+    Material: {fileID: 2100000, guid: ef525ef8e1990b64cac98aa764f6fe88, type: 2}
+  - Id: 1401
+    ItemName: "\uBCBC\uB77D \uAC80"
+    Stat1:
+      ItemExtraStatType: 2
+      ItemTriggerType: 5
+      Value: 30
+    Stat2:
+      ItemExtraStatType: 5
+      ItemTriggerType: 5
+      Value: 40
+    IconURL: https://velog.velcdn.com/images/rokid_/post/bd52a936-57bc-4447-a2c9-a762fdea6068/image.png
+    ItemEffectId: 4
+    SynergyId: 0
+    ItemGrade: 3
+    EffectData:
+      Id: 0
+      Condition: 0
+      Nmae: 
+      ActionType: 0
+      Chance: 0
+      SpecialAbilityId: 0
+      AbilityType: 0
+      Cooldown: 0
+      DescId: 0
+    SynergyText: 
+    EffectText: 
+    Material: {fileID: 2100000, guid: 27a4590ae5c6ae04cb874da8d6e042bb, type: 2}
+  - Id: 1402
+    ItemName: "\uB291\uB300 \uD32C\uB358\uD2B8"
+    Stat1:
+      ItemExtraStatType: 4
+      ItemTriggerType: 5
+      Value: 30
+    Stat2:
+      ItemExtraStatType: 6
+      ItemTriggerType: 5
+      Value: 40
+    IconURL: https://velog.velcdn.com/images/rokid_/post/84fd6981-2d75-4073-a385-698d2a97a5a4/image.png
+    ItemEffectId: 5
+    SynergyId: 0
+    ItemGrade: 3
+    EffectData:
+      Id: 0
+      Condition: 0
+      Nmae: 
+      ActionType: 0
+      Chance: 0
+      SpecialAbilityId: 0
+      AbilityType: 0
+      Cooldown: 0
+      DescId: 0
+    SynergyText: 
+    EffectText: 
+    Material: {fileID: 2100000, guid: 27a4590ae5c6ae04cb874da8d6e042bb, type: 2}
