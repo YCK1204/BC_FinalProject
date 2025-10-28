@@ -1,6 +1,7 @@
-using UnityEngine;
-using Unity.Services.Core;
+using System;
 using Unity.Services.Analytics;
+using Unity.Services.Core;
+using UnityEngine;
 using UnityEngine.UnityConsent;
 
 public enum FunnelStep
@@ -60,13 +61,13 @@ public class AnalyticsManager
     /// <param name="stepNumber">퍼널 진행 단계</param>
     public void SendFunnelStep(FunnelStep step, int stepNumber)
     {
-        if(!_isInitialized)
+        if (!_isInitialized)
         {
             Debug.LogError("Unity Services Not Initialized");
             return;
         }
 
-        string eventName =  step == FunnelStep.None ? "Funnel_Step" : "Funnel_Step" + step.ToString();
+        string eventName = step == FunnelStep.None ? "Funnel_Step" : "Funnel_Step" + step.ToString();
         string paramName = step == FunnelStep.None ? "Funnel_Step_Number" : "Funnel_Step_Number" + step.ToString();
 
         var funnelEvent = new CustomEvent(eventName); //event
@@ -74,5 +75,47 @@ public class AnalyticsManager
 
         AnalyticsService.Instance.RecordEvent(funnelEvent); //custom event
         Debug.Log($"Event Send {eventName} / {paramName} / {stepNumber}");
+    }
+    public void SendFunnelStepForItem(bool getItem = true)
+    {
+        string curMapName = MapManager.Instance.CurrentMap.name;
+        var lastUnderbarIdx = curMapName.LastIndexOf("_");
+        if (lastUnderbarIdx != -1)
+        {
+            string curMap = curMapName.Substring(lastUnderbarIdx);
+
+            FunnelStep step = FunnelStep.None;
+            int stepNum = 0;
+
+            switch (curMap)
+            {
+                case "_Item":
+                    if (getItem == false)
+                        return;
+                    step = FunnelStep.None;
+                    stepNum = 12;
+                    break;
+                default:
+                    step = Enum.Parse<FunnelStep>(curMap);
+                    stepNum = getItem ? 5 : 4;
+                    break;
+            }
+            SendFunnelStep(step, stepNum);
+        }
+    }
+    public void SendFunnelStepForMonsterSpawn()
+    {
+        string curMapName = MapManager.Instance.CurrentMap.name;
+        var lastUnderbarIdx = curMapName.LastIndexOf("_");
+        if (lastUnderbarIdx != -1)
+        {
+            string curMap = curMapName.Substring(lastUnderbarIdx);
+
+            FunnelStep step = FunnelStep.None;
+            int stepNum = MonsterSpawner.FunnelSpawnNum;
+
+            step = Enum.Parse<FunnelStep>(curMap);
+            SendFunnelStep(step, stepNum);
+        }
     }
 }
