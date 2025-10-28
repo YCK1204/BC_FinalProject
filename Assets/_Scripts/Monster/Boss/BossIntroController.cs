@@ -22,6 +22,8 @@ public class BossIntroController : MonoBehaviour
     public void StartIntro()
     {
         Manager.Analytics.SendFunnelStep(FunnelStep._Boss, 2);
+        DisplayManager.Instance.SetPPC(false);
+        DisplayManager.Instance.HubFadeOut();
         _director.Play();
     }
 
@@ -31,6 +33,7 @@ public class BossIntroController : MonoBehaviour
         BossTitle.SetActive(false);
         BossCam.SetActive(false);
 
+        DisplayManager.Instance.HubFadeIn();
         BossHealthBar.SetActive(true);
 
         _owner.IsDirecting = false;

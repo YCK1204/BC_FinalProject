@@ -35,6 +35,8 @@ public class MapManager : MonoBehaviour
     private GameObject _currentMap;
     private GameObject _currentMapPrefab;
 
+    public GameObject CurrentMap { get { return _currentMapPrefab; } }
+
     private int _roomCount = 0;
     [SerializeField] private int _bossRoomTrigger = 4;
 
