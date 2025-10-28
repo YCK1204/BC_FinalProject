@@ -111,11 +111,9 @@ namespace Game.Player
 
         public bool CanDash() => !IsDashing && (Time.time >= _lastDashTime + DashCooldown);
         public void MarkDashedNow() { _lastDashTime = Time.time; }
-
-        public bool CanUseQSkill() => Time.time >= _lastQSkillTime + Player.Data.SkillData.QSkillCooldown;
+        public bool CanUseQSkill() => Time.time >= _lastQSkillTime + Player.Data.SkillData.GetQSkillCooldown(Player.Data.CombatData.SkillHaste);
         public void MarkQSkillUsed() { _lastQSkillTime = Time.time; }
-
-        public bool CanUseWSkill() => Time.time >= _lastWSkillTime + Player.Data.SkillData.WSkillCooldown;
+        public bool CanUseWSkill() => Time.time >= _lastWSkillTime + Player.Data.SkillData.GetWSkillCooldown(Player.Data.CombatData.SkillHaste);
         public void MarkWSkillUsed() { _lastWSkillTime = Time.time; }
     }
 }

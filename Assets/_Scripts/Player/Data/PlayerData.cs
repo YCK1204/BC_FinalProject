@@ -75,6 +75,20 @@ namespace Game.Player
         public float QSkillCooldown = 1.0f;
         public float WSkillCastingDuration = 0.0f;
         public float WSkillCooldown = 1.0f;
+
+        public float GetQSkillCooldown(float skillHaste)
+        {
+            float hasteMultiplier = skillHaste / 100f;
+            if (hasteMultiplier <= 0) return QSkillCooldown;
+            return QSkillCooldown / hasteMultiplier;
+        }
+
+        public float GetWSkillCooldown(float skillHaste)
+        {
+            float hasteMultiplier = skillHaste / 100f;
+            if (hasteMultiplier <= 0) return WSkillCooldown;
+            return WSkillCooldown / hasteMultiplier;
+        }
     }
 
     [Serializable]
