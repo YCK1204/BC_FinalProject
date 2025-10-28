@@ -51040,7 +51040,7 @@ GameObject:
   - component: {fileID: 4295055726498219442}
   - component: {fileID: 8087393713823525158}
   - component: {fileID: 4325294973032876155}
-  m_Layer: 25
+  m_Layer: 26
   m_Name: ColliderN
   m_TagString: Untagged
   m_Icon: {fileID: 0}
