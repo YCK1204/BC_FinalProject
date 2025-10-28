@@ -14,6 +14,9 @@ public abstract class BaseMonster : MonoBehaviour
     public Action OnDied;
     public Action OnDiedEnter;
 
+    // 슈퍼아머 상태 확인 변수
+    public bool IsSuperArmor = false;
+
     public void SetTarget(Transform target)
     {
         _target = target;
