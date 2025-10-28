@@ -75,6 +75,6 @@ public class PlayerStatsUI : MonoBehaviour
         if (criticalChanceText != null) criticalChanceText.text = Mathf.RoundToInt(combatData.CriticalChance).ToString() + "%";
         if (skillAttackText != null) skillAttackText.text = Mathf.RoundToInt(combatData.SkillAttck).ToString();
         if (skillDamageText != null) skillDamageText.text = Mathf.RoundToInt(combatData.SkillAttckPercent * 100).ToString() + "%";
-        if (skillHasteText != null) skillHasteText.text = Mathf.RoundToInt(combatData.SkillHaste * 100).ToString() + "%";
+        if (skillHasteText != null) skillHasteText.text = Mathf.RoundToInt(combatData.SkillHaste).ToString();
     }
 }

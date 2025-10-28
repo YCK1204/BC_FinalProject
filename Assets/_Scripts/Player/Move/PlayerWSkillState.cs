@@ -10,7 +10,7 @@ namespace Game.Player
         public override void Enter()
         {
             base.Enter();
-            PlayerManager.Instance.CooldownW.StartCooldown(_stateMachine.Player.Data.SkillData.WSkillCooldown);
+            PlayerManager.Instance.CooldownW.StartCooldown(_stateMachine.Player.Data.SkillData.GetWSkillCooldown(_stateMachine.Player.Data.CombatData.SkillHaste));
             Debug.Log("W 스킬사용");
 
             _stateMachine.Player.DoubleStrikeSkill.Execute();

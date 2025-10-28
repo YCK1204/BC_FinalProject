@@ -10,7 +10,7 @@ namespace Game.Player
         public override void Enter()
         {
             base.Enter();
-            PlayerManager.Instance.CooldownQ.StartCooldown(_stateMachine.Player.Data.SkillData.QSkillCooldown);
+            PlayerManager.Instance.CooldownQ.StartCooldown(_stateMachine.Player.Data.SkillData.GetQSkillCooldown(_stateMachine.Player.Data.CombatData.SkillHaste));
             Debug.Log("Q 스킬사용");
 
             _stateMachine.Player.ShadowSlashSkill.Execute();
