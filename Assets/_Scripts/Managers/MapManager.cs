@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 
 [System.Serializable]
 public class MapSaveData
@@ -25,6 +27,9 @@ public class MapManager : MonoBehaviour
     [SerializeField] private List<GameObject> _mapPrefabs;
     [SerializeField] private GameObject _bossroomPrefabs;
     [SerializeField] private GameObject _itemRoomPrefab;
+
+    [Header("UI")]
+    [SerializeField] private Text _timerText;
 
     private List<GameObject> _mapPool = new List<GameObject>();
     private GameObject _currentMap;
@@ -62,6 +67,7 @@ public class MapManager : MonoBehaviour
         if (_isTimerOn)
         {
             _playTime += Time.deltaTime;
+            UpdateTimerUI();
         }
     }
 
@@ -75,6 +81,7 @@ public class MapManager : MonoBehaviour
         OnPortal = true;
         _playTime = 0f;
         _isTimerOn = false;
+        UpdateTimerUI();
     }
 
     private void ResetMaps()
@@ -96,19 +103,19 @@ public class MapManager : MonoBehaviour
 
     public void NextMap()
     {
-        if(_currentMapPrefab == _mapPrefabs[0])
+        if (_currentMapPrefab == _mapPrefabs[0])
         {
             LoadMap(_itemRoomPrefab);
-            //Manager.Game.MonsterCount = 0;
             StartCoroutine(ItemStageTrigger());
-            // 아이템 스테이지 진입
             Manager.Analytics.SendFunnelStep(FunnelStep.None, 11);
             Manager.Analytics.SendFunnelStep(FunnelStep._StageC, 3);
+
+            _isTimerOn = true;
+            Debug.Log("플레이타임기록 시작 (아이템 스테이지 진입)");
             return;
         }
 
-        // 아이템 스테이지에서 벗어나면 퍼널 발생
-        if(_currentMapPrefab == _itemRoomPrefab)
+        if (_currentMapPrefab == _itemRoomPrefab)
         {
             Manager.Analytics.SendFunnelStep(FunnelStep._StageC, 4);
             Manager.Analytics.SendFunnelStep(FunnelStep.None, 13);
@@ -152,7 +159,7 @@ public class MapManager : MonoBehaviour
 
             LoadMap(prefab);
             Manager.Game.OnMonstersClear += SendFunnelOnStageClear;
-            Manager.Analytics.SendFunnelStep(FunnelStep._StageC, (_roomCount+1) * 2 + 3);
+            Manager.Analytics.SendFunnelStep(FunnelStep._StageC, (_roomCount + 1) * 2 + 3);
             Debug.Log(prefab.name + " 남은맵:" + (_bossRoomTrigger - _roomCount));
         }
         else
@@ -161,7 +168,10 @@ public class MapManager : MonoBehaviour
             UpdateRoomCount();
             ResetMaps();
             LoadMap(_mapPrefabs[0]);
-            Debug.Log("리셋");
+            _playTime = 0f;
+            _isTimerOn = false;
+            UpdateTimerUI();
+            Debug.Log("맵 리셋");
         }
     }
 
@@ -173,7 +183,6 @@ public class MapManager : MonoBehaviour
         _currentMapPrefab = prefab;
         _currentMap = Instantiate(prefab, transform);
 
-        //콜라이더 초기화
         var colliderTransform = _currentMap.transform.Find("Collider");
         if (colliderTransform != null)
         {
@@ -183,7 +192,6 @@ public class MapManager : MonoBehaviour
 
         MovePlayerSpawn(_currentMap);
 
-        //포탈 off
         OnPortal = false;
     }
 
@@ -251,11 +259,6 @@ public class MapManager : MonoBehaviour
         UpdateRoomCount();
         _playTime = data.PlayTime;
 
-        if (_roomCount > 0)
-        {
-            _isTimerOn = true;
-        }
-
         ResetMaps();
 
         int mapIndex = data.CurrentMapIndex;
@@ -264,11 +267,27 @@ public class MapManager : MonoBehaviour
         if (mapIndex == -1)
         {
             mapToLoad = _bossroomPrefabs;
+            _isTimerOn = true;
         }
         else if (mapIndex >= 0 && mapIndex < _mapPrefabs.Count)
         {
             mapToLoad = _mapPrefabs[mapIndex];
+            if (mapIndex == 0)
+            {
+                _isTimerOn = false;
+                _playTime = 0f;
+            }
+            else
+            {
+                _isTimerOn = true;
+            }
         }
+        else if (data.CurrentMapIndex == _mapPrefabs.IndexOf(_itemRoomPrefab))
+        {
+            mapToLoad = _itemRoomPrefab;
+            _isTimerOn = true;
+        }
+
 
         if (mapToLoad != null)
         {
@@ -280,14 +299,25 @@ public class MapManager : MonoBehaviour
             Debug.LogWarning("저장된 맵 없음");
             LoadMap(_mapPrefabs[0]);
         }
+        UpdateTimerUI();
     }
 
     private void SendFunnelOnStageClear()
     {
-        if(_currentMapPrefab != _itemRoomPrefab &&  _currentMapPrefab != _bossroomPrefabs)
+        if (_currentMapPrefab != _itemRoomPrefab && _currentMapPrefab != _bossroomPrefabs)
         {
             Manager.Analytics.SendFunnelStep(FunnelStep._StageC, _roomCount * 2 + 6);
             Manager.Game.OnMonstersClear -= SendFunnelOnStageClear;
         }
+    }
+
+    private void UpdateTimerUI()
+    {
+        if (_timerText == null) return;
+
+        int minutes = Mathf.FloorToInt(_playTime / 60);
+        int seconds = Mathf.FloorToInt(_playTime % 60);
+
+        _timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
     }
 }

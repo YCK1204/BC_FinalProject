@@ -39,7 +39,7 @@ public class RushMonster : StateMachineMonster
             if (targetRb != null)
             {
                 targetRb.linearVelocity = Vector2.zero;
-                targetRb.AddForce(knockBackDir * 400);
+                targetRb.AddForce(knockBackDir * 300);
             }
 
             IDamageable damageable = collision.GetComponent<IDamageable>();
