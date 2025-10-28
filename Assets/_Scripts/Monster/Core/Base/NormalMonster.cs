@@ -39,10 +39,6 @@ public abstract class NormalMonster : BaseMonster, Game.Monster.IDamageable
     protected Material _originMat;
     [SerializeField] protected Material FlashMat;
 
-    // 슈퍼아머 상태 확인 변수
-    public bool IsSuperArmor = false;
-
-
     protected virtual void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
