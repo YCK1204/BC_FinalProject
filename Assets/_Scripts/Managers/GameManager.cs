@@ -15,7 +15,6 @@ public class GameManager
             if (_monsterCount == 0)
             {
                 OnMonstersClear?.Invoke();
-                MapManager.Instance.SetPortal();
                 Debug.Log("몬스터 전부 처치");
             }
         }

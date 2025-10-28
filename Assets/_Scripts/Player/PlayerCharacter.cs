@@ -18,14 +18,14 @@ namespace Game.Player
         public Animator Animator { get; private set; }
         public static PlayerCharacter Instance { get; private set; }
 
-        public bool OnTrait;
+        public bool OnUI;
 
         public List<InteractableController> Interactables = new List<InteractableController>();
         public SpriteRenderer SpriteRenderer;
 
         public MaterialInitializer PlayerMaterial;
 
-        [SerializeField] private CameraShake camShake;
+        public CameraShake camShake;
 
         [SerializeField] private AnimationData AnimationDataSerialized;
         [SerializeField] private PlayerData DataSerialized;
@@ -324,8 +324,6 @@ namespace Game.Player
         {
             OnDied?.Invoke();
 
-            PlayerManager.Instance.CooldownD.ShowCooldown();
-
             currentHP = 0f;
             HpEvent?.Invoke(currentHP, Data.Stats.MaxHP);
             StateMachine.ChangeState(StateMachine.DieState);
@@ -334,6 +332,7 @@ namespace Game.Player
 
             deadControl.DieSet();
 
+            MapManager.Instance.SetTimerActive(false);
             PlayerManager.Instance.CooldownD.ShowCooldown();
         }
 
@@ -365,6 +364,7 @@ namespace Game.Player
             gameObject.layer = LayerMask.NameToLayer("Player");
             PlayerMaterial.SetDefaultMaterial();
 
+            Inventory.Reset();
             //ShadowSlashSkill?.Initialize(this);
             //DoubleStrikeSkill?.Initialize(this);
         }

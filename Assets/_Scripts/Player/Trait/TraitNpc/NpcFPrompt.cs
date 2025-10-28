@@ -249,7 +249,7 @@ public class NpcFPrompt : MonoBehaviour
     {
         if (!traitWindowRoot) return;
         PlayerManager.Instance.HUBSet(false);
-        PlayerManager.Instance.Player.OnTrait = true;
+        PlayerManager.Instance.Player.OnUI = true;
         PlayerManager.Instance.Player.SetPlayerInput(false);
 
         var cg = traitWindowRoot.GetComponent<CanvasGroup>();
@@ -274,7 +274,7 @@ public class NpcFPrompt : MonoBehaviour
     void CloseWindow()
     {
         PlayerManager.Instance.HUBSet(true);
-        PlayerManager.Instance.Player.OnTrait = false;
+        PlayerManager.Instance.Player.OnUI = false;
         PlayerManager.Instance.Player.SetPlayerInput(true);
 
         if (traitWindowRoot)

@@ -177,7 +177,7 @@ public class DeadControl : MonoBehaviour
 
         yield return new WaitForSeconds(3);
 
-        SceneManager.LoadScene("Main");
+        MapManager.Instance.InitFloor();
         _setAnimator.Play(_againAnim2, 0, 0f);
 
         yield return new WaitForSeconds(1.5f);
