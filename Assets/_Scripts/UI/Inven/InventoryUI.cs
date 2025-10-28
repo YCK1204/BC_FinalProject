@@ -39,6 +39,12 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
+    void OnEnable()
+    {
+        RefreshAllSlots();
+    }
+
+
     public void SetInventory(Inventory inventory)
     {
         _playerInventory = inventory;

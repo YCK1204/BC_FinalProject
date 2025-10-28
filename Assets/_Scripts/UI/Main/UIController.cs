@@ -163,6 +163,7 @@ public class UIController : MonoBehaviour
             case UiState.Main:
                 _uiFade.Play("off_UI", 0, 0f);
                 ChangeState(UiState.Hidden);
+                DisplayManager.Instance.SetPPC(true, 0.5f);
                 break;
 
             case UiState.Stats:

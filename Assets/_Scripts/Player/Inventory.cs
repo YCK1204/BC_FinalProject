@@ -50,6 +50,7 @@ public class Inventory
         Manager.Item.MissingItems.Remove(data);
         OnItemAdded?.Invoke(item);
         Manager.Item.AddSynergy(data.SynergyId);
+        MapManager.Instance.SetPortal();
     }
     public void LoadFromJson(InventoryJsonData inventoryJsonData)
     {

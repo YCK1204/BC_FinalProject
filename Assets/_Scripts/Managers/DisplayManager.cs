@@ -1,7 +1,9 @@
+using Game.Player;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.U2D;
+using UnityEngine.UI;
 
 public class DisplayManager : MonoBehaviour
 {
@@ -11,6 +13,9 @@ public class DisplayManager : MonoBehaviour
     [SerializeField] private Animator _fadeAnimator;
 
     [SerializeField] private PixelPerfectCamera _pixelPerfectCamera;
+
+    [Header("Clear UI")]
+    [SerializeField] private Text _clearTimeText;
 
     private const string _hubIn = "all_on";
     private const string _hubOut = "all_off";
@@ -28,7 +33,7 @@ public class DisplayManager : MonoBehaviour
 
 
     //픽셀 퍼펙트 카메라 키고 끄기 SetPPC(false) 카메라 연출 사용전에 켜주면 됩니다.
-    public void SetPPC(bool a , float b = 0f)
+    public void SetPPC(bool a, float b = 0f)
     {
         StartCoroutine(SetPPCDelay(a, b));
     }
@@ -44,6 +49,7 @@ public class DisplayManager : MonoBehaviour
     //보스 레이드 연출때 미니맵,hp바 안보이게 하기
     public void HubFadeOut()
     {
+        PlayerManager.Instance.Player.OnUI = false;
         _uiAnimator.Play(_hubOut);
         Debug.Log("HUB 끄기");
     }
@@ -51,6 +57,7 @@ public class DisplayManager : MonoBehaviour
     //hub 키기
     public void HubFadeIn()
     {
+        PlayerManager.Instance.Player.OnUI = true;
         _uiAnimator.Play(_hubIn);
         Debug.Log("HUB 켜기");
     }
@@ -62,11 +69,25 @@ public class DisplayManager : MonoBehaviour
         StartCoroutine(SetPPCDelay(false, 0f));
         StartCoroutine(ClearCrt());
 
-        PlayerManager.Instance.Player.OnUI = false;
+        
     }
 
     private IEnumerator ClearCrt()
     {
+        PlayerManager.Instance.Player.OnUI = true;
+        PlayerCharacter.Instance.Inventory.Reset();
+
+        MapManager.Instance.SetTimerActive(false);
+        float finalPlayTime = MapManager.Instance.CurrentPlayTime;
+
+        if (_clearTimeText != null)
+        {
+            int minutes = Mathf.FloorToInt(finalPlayTime / 60);
+            int seconds = Mathf.FloorToInt(finalPlayTime % 60);
+            _clearTimeText.text = $"{minutes:00}:{seconds:00}";
+            _clearTimeText.gameObject.SetActive(true);
+        }
+
         _uiAnimator.Play(_Clear);
 
         yield return new WaitForSeconds(4f);
@@ -77,7 +98,12 @@ public class DisplayManager : MonoBehaviour
         MapManager.Instance.InitFloor();
         _fadeAnimator.Play(_fadeOut2);
         yield return new WaitForSeconds(1f);
-        PlayerManager.Instance.Player.OnUI = true;
+        PlayerManager.Instance.Player.OnUI = false;
+
+        if (_clearTimeText != null)
+        {
+            _clearTimeText.gameObject.SetActive(false);
+        }
     }
 
     public void EndClear()

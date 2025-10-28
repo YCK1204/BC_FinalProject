@@ -332,6 +332,7 @@ namespace Game.Player
 
             deadControl.DieSet();
 
+            MapManager.Instance.SetTimerActive(false);
             PlayerManager.Instance.CooldownD.ShowCooldown();
         }
 
@@ -363,6 +364,7 @@ namespace Game.Player
             gameObject.layer = LayerMask.NameToLayer("Player");
             PlayerMaterial.SetDefaultMaterial();
 
+            Inventory.Reset();
             //ShadowSlashSkill?.Initialize(this);
             //DoubleStrikeSkill?.Initialize(this);
         }
