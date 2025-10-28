@@ -42,6 +42,7 @@ public class MapManager : MonoBehaviour
     private List<int> _clearedMaps = new List<int>();
 
     public bool OnPortal = false;
+    public System.Action OnMapChanged;
 
     private float _playTime = 0f;
     private bool _isTimerOn = false;
@@ -209,6 +210,8 @@ public class MapManager : MonoBehaviour
         }
 
         MovePlayerSpawn(_currentMap);
+        if(OnMapChanged != null)
+            OnMapChanged();
 
         OnPortal = false;
     }

@@ -1131,8 +1131,8 @@ GameObject:
   - component: {fileID: 138208468}
   - component: {fileID: 138208471}
   - component: {fileID: 138208470}
-  - component: {fileID: 138208473}
   - component: {fileID: 138208472}
+  - component: {fileID: 138208473}
   m_Layer: 7
   m_Name: CameraControl
   m_TagString: Untagged
