@@ -82,6 +82,10 @@ public abstract class StateMachineMonster : NormalMonster
             {
                 _stateMachine.ChangeState(Game.Monster.StateType.Hit);
             }
+            else if(Target == null)
+            {
+                transform.localScale = new Vector3(-1 * transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            }
         }
     }
 

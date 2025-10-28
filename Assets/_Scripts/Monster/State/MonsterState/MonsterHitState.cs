@@ -30,6 +30,8 @@ public class MonsterHitState : MonsterBaseState
         base.Update();
         if(_curHitTime >= _maxHitTime)
         {
+            if (_stateMachine.Owner.Target == null)
+                _stateMachine.Owner.transform.localScale = new Vector3(_stateMachine.Owner.transform.localScale.x * -1, _stateMachine.Owner.transform.localScale.y, _stateMachine.Owner.transform.localScale.z);
             _stateMachine.ChangeState(Game.Monster.StateType.Idle);
             return;
         }
