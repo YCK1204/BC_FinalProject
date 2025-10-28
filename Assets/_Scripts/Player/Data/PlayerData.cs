@@ -150,7 +150,8 @@ namespace Game.Player
                     SpeedMultiplier = DashData.SpeedMultiplier,
                     Cooldown = DashData.Cooldown,
                     InvincibleDuringDash = DashData.InvincibleDuringDash,
-                    PassThroughLayers = DashData.PassThroughLayers
+                    PassThroughLayers = DashData.PassThroughLayers,
+                    DashEffectPrefab = DashData.DashEffectPrefab
                 },
                 CombatData = new PlayerCombatData
                 {

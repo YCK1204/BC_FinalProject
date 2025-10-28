@@ -27,8 +27,10 @@ namespace Game.Player
         float _lastDashTime = -999f;
         public int ComboIndex { get; set; }
         public bool ContinueCombo { get; set; }
+        public float LastAttackEndTime { get; set; } = -999f;
+        public bool AttackInputBuffered { get; set; } = false;
+        private const float ComboInputBufferTime = 0.5f;
 
-        // 스킬 쿨타임
         private float _lastQSkillTime = -999f;
         private float _lastWSkillTime = -999f;
 
@@ -79,12 +81,32 @@ namespace Game.Player
 
         public void ChangeState(IState next)
         {
+            if (_currentState is PlayerComboAttackState || _currentState is PlayerAirAttackState)
+            {
+                LastAttackEndTime = Time.time;
+            }
+
             _currentState?.Exit();
             _currentState = next;
             _currentState.Enter();
         }
 
-        public void Tick() { _currentState?.Update(); }
+        public void Tick()
+        {
+            _currentState?.Update();
+
+            if (!IsAttacking && !IsDashing)
+            {
+                var kb = UnityEngine.InputSystem.Keyboard.current;
+                bool attackInput = kb != null && kb.aKey.wasPressedThisFrame;
+
+                if (attackInput && Time.time < LastAttackEndTime + ComboInputBufferTime)
+                {
+                    AttackInputBuffered = true;
+                }
+            }
+        }
+
         public void FixedTick() { _currentState?.PhysicsUpdate(); }
 
         public bool CanDash() => !IsDashing && (Time.time >= _lastDashTime + DashCooldown);
