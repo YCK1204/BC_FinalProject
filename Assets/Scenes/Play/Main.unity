@@ -7164,7 +7164,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 324023
+    m_Bits: 8712631
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -7214,7 +7214,7 @@ MonoBehaviour:
     Enabled: 0
     DefaultMode: 2
   DefaultBlend:
-    Style: 0
+    Style: 1
     Time: 2
     CustomCurve:
       serializedVersion: 2

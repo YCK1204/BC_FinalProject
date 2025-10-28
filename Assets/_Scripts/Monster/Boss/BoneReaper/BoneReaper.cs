@@ -70,6 +70,8 @@ public class BoneReaper : BossMonster
 
         OrbPool = new Dictionary<string, Pool>();
 
+        IsSuperArmor = true;
+
         if (VerticalOrb != null)
         {
             Pool verticalOrbPool = new Pool();
