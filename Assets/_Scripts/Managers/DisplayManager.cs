@@ -99,6 +99,7 @@ public class DisplayManager : MonoBehaviour
         _fadeAnimator.Play(_fadeOut2);
         yield return new WaitForSeconds(1f);
         PlayerManager.Instance.Player.OnUI = false;
+        PlayerManager.Instance.Player.Resurrection();
 
         if (_clearTimeText != null)
         {

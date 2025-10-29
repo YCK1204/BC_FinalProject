@@ -55,7 +55,11 @@ public class DoubleStrike : Skill
             {
                 owner.StateMachine.Player.GainAwakeningGauge();
                 hitted = true;
-                int damage = Mathf.RoundToInt((owner.Data.CombatData.SkillAttck + owner.Data.CombatData.ExtraDamage) * 1+ owner.Data.CombatData.SkillAttckPercent * damageMultiplier);
+                int damage = Mathf.RoundToInt(
+                    (owner.Data.CombatData.SkillAttck)
+                    * (1f + owner.Data.CombatData.SkillAttckPercent)
+                    * damageMultiplier
+                );
                 target.TakeDamage(damage);
             }
         }

@@ -18,7 +18,6 @@ namespace Game.Player
             _stateMachine.Player.Rb.linearVelocity = Vector2.zero;
 
 
-            StartAnimation(_stateMachine.Player.AnimationData.AwakeningParameterHash);
             _stateMachine.Player.Animator.Play("Awaken", 0, 0f);
 
             _stateMachine.Player.SetInvincible(true);
