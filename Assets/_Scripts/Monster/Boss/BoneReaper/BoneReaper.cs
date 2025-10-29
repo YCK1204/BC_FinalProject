@@ -130,6 +130,7 @@ public class BoneReaper : BossMonster
         {
             PlayerManager.Instance.Player.OnDied += _bossUI.DisableUI;
             PlayerManager.Instance.Player.OnDied += StopBoss;
+            PlayerManager.Instance.Player.OnDied += DestroyBossOnPlayerDied;
         }
 
         _playerMask = LayerMask.GetMask(Game.Monster.Layers.Player);
@@ -468,6 +469,11 @@ public class BoneReaper : BossMonster
     private void DestroyOnDeath()
     {
         Destroy(gameObject);
+    }
+
+    private void DestroyBossOnPlayerDied()
+    {
+        Invoke("DestroyOnDeath", 2f);
     }
 
     private void StopBoss()
