@@ -101,12 +101,17 @@ public class Buff : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
         if (last)
             transform.SetAsLastSibling();
         gameObject.SetActive(true);
-        ItemSetterUtil.ApplyStat(player, _data.Stat1.ItemExtraStatType, _data.Stat1.Value);
-        ItemSetterUtil.ApplyStat(player, _data.Stat2.ItemExtraStatType, _data.Stat2.Value);
         if (BuffCoroutine != null)
+        {
             ResetTime();
+            CountBuff(player);
+        }
         else
+        {
+            ItemSetterUtil.ApplyStat(player, _data.Stat1.ItemExtraStatType, _data.Stat1.Value);
+            ItemSetterUtil.ApplyStat(player, _data.Stat2.ItemExtraStatType, _data.Stat2.Value);
             BuffCoroutine = player.StartCoroutine(CoBuff(last));
+        }
     }
     IEnumerator CoBuff(bool last)
     {

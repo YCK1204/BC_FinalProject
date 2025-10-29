@@ -11,6 +11,9 @@ public class BuffUI : MonoBehaviour
     public void SetUI(ItemBuffData data)
     {
         Title.text = data.Name;
+
+        if (string.IsNullOrEmpty(data.Desc))
+            data.Desc = Manager.Data.ItemsData.Description[data.DescriptionId].Korean;
         Description.text = data.Desc;
     }
 }
