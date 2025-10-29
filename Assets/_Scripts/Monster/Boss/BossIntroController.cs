@@ -69,4 +69,9 @@ public class BossIntroController : MonoBehaviour
 
         CameraTr.localPosition = originalPos;
     }
+
+    public void SetBossCam(bool b)
+    {
+        BossCam.SetActive(b);
+    }
 }
