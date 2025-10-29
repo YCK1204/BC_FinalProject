@@ -14,7 +14,7 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private RectTransform _tooltipPanelRect;
     [SerializeField] private RectTransform _tooltipPanel_msgbox;
     [SerializeField] private Text _itemNameText;
-    [SerializeField] private Text _itemGradeText;
+    //[SerializeField] private Text _itemGradeText;
     [SerializeField] private Text _itemStat1Text;
     [SerializeField] private Text _itemStat2Text;
     [SerializeField] private Text _itemEffectText;
@@ -104,8 +104,9 @@ public class InventoryUI : MonoBehaviour
     public void ShowTooltip(ItemData itemData)
     {
         _itemNameText.text = itemData.ItemName;
-        _itemGradeText.text = GetItemGradeString(itemData.ItemGrade);
-        _itemGradeText.color = itemData.TierColor;
+        _itemNameText.color = itemData.TierColor;
+
+        //_itemGradeText.gameObject.SetActive(false);
 
         float currentTooltipHeight = _baseH;
 
@@ -145,6 +146,12 @@ public class InventoryUI : MonoBehaviour
         }
 
         string synergyName = "";
+        string synergyCountString = "";
+        int currentSynergyCount = 0;
+        const int maxSynergyCount = 3;
+        Color activeColor = Color.HSVToRGB(49f / 360f, 34f / 100f, 84f / 100f);
+        Color beColor = new Color(0.5f, 0.5f, 0.5f, 1.0f);
+
         if (itemData.SynergyId != 0)
         {
             switch (itemData.SynergyId)
@@ -161,6 +168,12 @@ public class InventoryUI : MonoBehaviour
                 default:
                     break;
             }
+
+            if (Manager.Item.Synergies.TryGetValue(itemData.SynergyId, out var synergy))
+            {
+                currentSynergyCount = synergy.Count;
+                synergyCountString = $" ({currentSynergyCount}/{maxSynergyCount})";
+            }
         }
 
         string synergyDescription = itemData.SynergyText;
@@ -168,8 +181,20 @@ public class InventoryUI : MonoBehaviour
 
         if (!string.IsNullOrEmpty(synergyName) || !string.IsNullOrEmpty(synergyDescription))
         {
-            _synergyNameText.text = synergyName;
+            _synergyNameText.text = synergyName + synergyCountString;
             _synergyText.text = synergyDescription;
+
+            if (currentSynergyCount >= maxSynergyCount)
+            {
+                _synergyNameText.color = activeColor;
+                _synergyText.color = activeColor;
+            }
+            else
+            {
+                _synergyNameText.color = beColor;
+                _synergyText.color = beColor;
+            }
+
             _synergyPanel.gameObject.SetActive(true);
 
             RectTransform synergyPanelRect = _synergyPanel.GetComponent<RectTransform>();
@@ -181,7 +206,7 @@ public class InventoryUI : MonoBehaviour
         }
 
         _tooltipPanelRect.sizeDelta = new Vector2(_tooltipPanelRect.sizeDelta.x, currentTooltipHeight);
-        _tooltipPanel_msgbox.sizeDelta = new Vector2(_tooltipPanelRect.sizeDelta.x, currentTooltipHeight -10);
+        _tooltipPanel_msgbox.sizeDelta = new Vector2(_tooltipPanelRect.sizeDelta.x, currentTooltipHeight - 10);
 
         _tooltipPanelRect.gameObject.SetActive(true);
     }
