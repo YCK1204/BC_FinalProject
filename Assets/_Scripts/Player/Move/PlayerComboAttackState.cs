@@ -173,24 +173,26 @@ namespace Game.Player
                     _hitTargets.Add(target);
 
                     Rigidbody2D targetRb = col.attachedRigidbody;
+                    bool isCrit = Random.value < chance;
+                    float mult = isCrit ? 1f + Mathf.Max(0f, d.CriticalDamage) * 0.01f : 1f;
 
                     if (targetRb != null)
                     {
                         baseMonsterTarget = target as BaseMonster;
-                        if (baseMonsterTarget != null && baseMonsterTarget.IsSuperArmor)
+                        if (baseMonsterTarget == null || baseMonsterTarget.IsSuperArmor)
                         {
                             //예외
                         }
                         else
                         {
                             float power = _attackInfoData.KnockbackPower;
+                            power = isCrit ? power * 1.2f : power;
                             Vector2 knockDir = new Vector2(_stateMachine.FacingSign, 0f).normalized;
                             targetRb.linearVelocity = knockDir * power;
                         }
                     }
 
-                    bool isCrit = Random.value < chance;
-                    float mult = isCrit ? 1f + Mathf.Max(0f, d.CriticalDamage) * 0.01f : 1f;
+
                     int damage = Mathf.RoundToInt(baseDmg * mult * _attackInfoData.DamageSet);
 
                     _stateMachine.Player.GainAwakeningGauge();

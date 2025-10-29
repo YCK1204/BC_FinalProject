@@ -18,10 +18,14 @@ namespace Game.Player
             _stateMachine.Player.Rb.linearVelocity = Vector2.zero;
 
 
-            StartAnimation(_stateMachine.Player.AnimationData.AwakeningParameterHash);
             _stateMachine.Player.Animator.Play("Awaken", 0, 0f);
-
             _stateMachine.Player.SetInvincible(true);
+
+            DisplayManager.Instance.FadeIn();
+            PlayerManager.Instance.Player.camShake.Shake(0.15f, 0.15f, 1.6f);
+            PlayerManager.Instance.Player.camShake.ShakeAfterDelay(1.45f,5f, 3f, 0.2f);
+
+            PlayerManager.Instance.Player.StartCoroutine(PlayerManager.Instance.Player.OnAwken(1.55f));
         }
 
         public override void Update()
@@ -48,6 +52,9 @@ namespace Game.Player
             _stateMachine.MovementSpeedModifier = 1f;
 
             _stateMachine.Player.SetInvincible(false);
+            DisplayManager.Instance.FadeOut();
+
+            PlayerManager.Instance.Player.camShake.Shake(2f, 2f, 0.2f);
         }
 
         public override void PhysicsUpdate()
