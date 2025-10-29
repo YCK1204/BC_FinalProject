@@ -115,7 +115,6 @@ public class ItemSpawner : MonoBehaviour
             Manager.Item.ItemIcons.TryGetValue(itemsData[i].Id, out var sprite);
             item.SetSprite(sprite);
         }
-        Manager.Analytics.SendFunnelStepForItem(false);
     }
     ItemGradeType GetRandomItemGrade()
     {
@@ -136,6 +135,7 @@ public class ItemSpawner : MonoBehaviour
         {
             item.gameObject.SetActive(true);
         }
+        Manager.Analytics.SendFunnelStepForItem(false);
     }
     public void RemoveItems()
     {

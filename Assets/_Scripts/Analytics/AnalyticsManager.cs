@@ -84,15 +84,14 @@ public class AnalyticsManager
         {
             string curMap = curMapName.Substring(lastUnderbarIdx);
 
-            FunnelStep step = FunnelStep.None;
+            FunnelStep step = MapManager.Instance.GetCurrentFunnelStep();
             int stepNum = 0;
 
-            switch (curMap)
+            switch (step)
             {
-                case "_Item":
+                case FunnelStep.None:
                     if (getItem == false)
                         return;
-                    step = FunnelStep.None;
                     stepNum = 12;
                     break;
                 default:
@@ -100,21 +99,6 @@ public class AnalyticsManager
                     stepNum = getItem ? 5 : 4;
                     break;
             }
-            SendFunnelStep(step, stepNum);
-        }
-    }
-    public void SendFunnelStepForMonsterSpawn()
-    {
-        string curMapName = MapManager.Instance.CurrentMap.name;
-        var lastUnderbarIdx = curMapName.LastIndexOf("_");
-        if (lastUnderbarIdx != -1)
-        {
-            string curMap = curMapName.Substring(lastUnderbarIdx);
-
-            FunnelStep step = FunnelStep.None;
-            int stepNum = MonsterSpawner.FunnelSpawnNum;
-
-            step = Enum.Parse<FunnelStep>(curMap);
             SendFunnelStep(step, stepNum);
         }
     }
