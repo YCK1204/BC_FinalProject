@@ -66,6 +66,7 @@ namespace Game.Player
         public bool IsAwakened { get; private set; }
 
         [SerializeField] private GameObject awakeningEffect;
+        [SerializeField] private GameObject awakeningEffect_field;
 
         [Header("Combat Debug")]
         [SerializeField] private bool lastHitCritical;
@@ -399,8 +400,15 @@ namespace Game.Player
             Animator.runtimeAnimatorController = awakenedAnimator;
 
             awakeningEffect.SetActive(true);
+            
 
             StartCoroutine(AwakeningTimer(totalDuration));
+        }
+
+        public IEnumerator OnAwken(float a)
+        {
+            yield return new WaitForSeconds(a);
+            awakeningEffect_field.SetActive(true);
         }
 
         private IEnumerator AwakeningTimer(float duration)
@@ -427,6 +435,8 @@ namespace Game.Player
             awakeningEffect.SetActive(false);
 
             AwakeningEvent?.Invoke(currentAwakening, Data.awakening.MaxAwakeningGauge);
+            StartCoroutine(OnAwken(0f));
+
             Debug.Log("각성종료");
         }
 
