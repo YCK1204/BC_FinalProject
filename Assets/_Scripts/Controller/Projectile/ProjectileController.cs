@@ -73,7 +73,9 @@ public class ProjectileController : MonoBehaviour
                 }
                 break;
         }
+        _boxCollider2D.size = new Vector2(_data.Width, _data.Height);
         Manager.Audio.Play(data.AudioKey, transform);
+
 
         //if (data.ColliderType == ColliderType.Circle)
         //{
