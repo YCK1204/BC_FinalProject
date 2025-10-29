@@ -107,6 +107,7 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
     public void SlamAttack()
     {
         Manager.Audio.Play(AudioKey.Monster.Attack.M_ATK_BOSS_HAND_DOWN, transform);
+        PlayerManager.Instance.Player.camShake.Shake(2.0f, 1.2f, 0.25f);
 
         transform.position -= Vector3.up * _followYOffeset;
         // 공중 공격 판정 확인 이후 없으면 지면 판정도 확인
