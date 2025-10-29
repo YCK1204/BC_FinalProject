@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Cinemachine;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 [System.Serializable]
 public class MapSaveData
@@ -61,6 +64,35 @@ public class MapManager : MonoBehaviour
         {
             Debug.Log("플레이타임 시작");
         }
+    }
+    public FunnelStep GetCurrentFunnelStep()
+    {
+        string curMapName = CurrentMap.name;
+        var lastUnderbarIdx = curMapName.LastIndexOf("_");
+        FunnelStep step = FunnelStep.None;
+        if (lastUnderbarIdx != -1)
+        {
+            string curMap = curMapName.Substring(lastUnderbarIdx);
+
+            try
+            {
+                switch (curMap)
+                {
+                    case "_Item":
+                        step = FunnelStep.None;
+                        break;
+                    default:
+                        step = Enum.Parse<FunnelStep>(curMap);
+                        break;
+                }
+            }
+            catch (Exception e)
+            {
+                return FunnelStep._Boss;
+            }
+
+        }
+        return step;
     }
 
     private void Awake()
@@ -191,7 +223,6 @@ public class MapManager : MonoBehaviour
             UpdateTimerUI();
             Debug.Log("맵 리셋");
         }
-        MonsterSpawner.FunnelSpawnNum = 1;
     }
 
     private void LoadMap(GameObject prefab)
@@ -210,7 +241,7 @@ public class MapManager : MonoBehaviour
         }
 
         MovePlayerSpawn(_currentMap);
-        if(OnMapChanged != null)
+        if (OnMapChanged != null)
             OnMapChanged();
 
         OnPortal = false;

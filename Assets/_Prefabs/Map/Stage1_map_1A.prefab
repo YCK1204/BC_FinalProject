@@ -8549,6 +8549,7 @@ MonoBehaviour:
     Position: {x: 39, y: 9}
   Root: {fileID: 0}
   NextSpawners: []
+  FunnelStepNumber: 3
   GizmoColor: {r: 1, g: 0, b: 0.62804985, a: 1}
   GizmoSize: 1
 --- !u!1 &2136180952339908101
@@ -8602,6 +8603,7 @@ MonoBehaviour:
   Root: {fileID: 0}
   NextSpawners:
   - {fileID: 2175231108947344468}
+  FunnelStepNumber: 2
   GizmoColor: {r: 0, g: 0.97407985, b: 1, a: 1}
   GizmoSize: 1
 --- !u!61 &8546046140912295514
@@ -30225,7 +30227,7 @@ MonoBehaviour:
   - Prefab: {fileID: 213162892808832554, guid: 911cf179560f9b44fabca07333225250, type: 3}
     Position: {x: 24, y: 9}
   - Prefab: {fileID: 213162892808832554, guid: 911cf179560f9b44fabca07333225250, type: 3}
-    Position: {x: 21, y: 9}
+    Position: {x: 20.5, y: 9}
   - Prefab: {fileID: 3147132771611515457, guid: 8f1fd914d5d402545a1f8a28e7e28e93, type: 3}
     Position: {x: 18, y: 9}
   - Prefab: {fileID: 3147132771611515457, guid: 8f1fd914d5d402545a1f8a28e7e28e93, type: 3}
@@ -30234,6 +30236,7 @@ MonoBehaviour:
     Position: {x: 12, y: 9}
   Root: {fileID: 0}
   NextSpawners: []
+  FunnelStepNumber: 1
   GizmoColor: {r: 1, g: 0, b: 0, a: 1}
   GizmoSize: 1
 --- !u!1 &6538665877454486373
