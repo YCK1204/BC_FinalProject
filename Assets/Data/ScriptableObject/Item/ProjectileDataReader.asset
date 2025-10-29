@@ -21,8 +21,8 @@ MonoBehaviour:
     Duration: 1
     MoveType: 0
     Speed: 3
-    Width: 0.5
-    Height: 2
+    Width: 1
+    Height: 4
     CollisionCount: 8
     Damage: 0.3
     ImageType: 0
