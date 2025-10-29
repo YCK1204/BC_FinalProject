@@ -52,7 +52,7 @@ public class DisplayManager : MonoBehaviour
     //보스 레이드 연출때 미니맵,hp바 안보이게 하기
     public void HubFadeOut()
     {
-        PlayerManager.Instance.Player.OnUI = false;
+        PlayerManager.Instance.Player.OnUI = true;
         _uiAnimator.Play(_hubOut);
         Debug.Log("HUB 끄기");
     }
@@ -60,7 +60,7 @@ public class DisplayManager : MonoBehaviour
     //hub 키기
     public void HubFadeIn()
     {
-        PlayerManager.Instance.Player.OnUI = true;
+        PlayerManager.Instance.Player.OnUI = false;
         _uiAnimator.Play(_hubIn);
         Debug.Log("HUB 켜기");
     }
@@ -85,7 +85,7 @@ public class DisplayManager : MonoBehaviour
     }
     private IEnumerator ClearCrt()
     {
-        PlayerManager.Instance.Player.OnUI = true;
+        PlayerManager.Instance.Player.OnUI = false;
         PlayerCharacter.Instance.Inventory.Reset();
 
         MapManager.Instance.SetTimerActive(false);
@@ -109,13 +109,10 @@ public class DisplayManager : MonoBehaviour
         MapManager.Instance.InitFloor();
         _fadeAnimator.Play(_fadeOut2);
         yield return new WaitForSeconds(1f);
-        PlayerManager.Instance.Player.OnUI = false;
+        PlayerManager.Instance.Player.OnUI = true;
         PlayerManager.Instance.Player.Resurrection();
 
-        if (_clearTimeText != null)
-        {
-            _clearTimeText.gameObject.SetActive(false);
-        }
+        _clearTimeText.gameObject.SetActive(false);
     }
 
     public void EndClear()

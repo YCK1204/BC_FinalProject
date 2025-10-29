@@ -6390,6 +6390,54 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &821373597
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 821373598}
+  - component: {fileID: 821373599}
+  m_Layer: 0
+  m_Name: DisplayManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &821373598
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821373597}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -970.6253, y: -537.0097, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1522895670}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &821373599
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 821373597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd71877c35a69df4fad623e5fa949839, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DisplayManager
+  _uiAnimator: {fileID: 0}
+  _fadeAnimator: {fileID: 0}
+  _pixelPerfectCamera: {fileID: 0}
+  _clearTimeText: {fileID: 0}
 --- !u!1 &848531401
 GameObject:
   m_ObjectHideFlags: 0
@@ -17436,7 +17484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 686abc175d3a27244a25b496aaf89c8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameSystem.Player
-  OnTrait: 0
+  OnUI: 0
   Interactables: []
   SpriteRenderer: {fileID: 310275703}
   PlayerMaterial: {fileID: 0}
@@ -17544,6 +17592,7 @@ MonoBehaviour:
   currentHP: 100
   currentAwakening: 0
   awakeningEffect: {fileID: 0}
+  awakeningEffect_field: {fileID: 0}
   lastHitCritical: 0
   deadControl: {fileID: 0}
   <ShadowSlashSkill>k__BackingField: {fileID: 0}
@@ -18970,7 +19019,8 @@ Transform:
   m_LocalPosition: {x: 960, y: 540, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 821373598}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1540640203
