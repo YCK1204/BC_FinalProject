@@ -22,8 +22,11 @@ public class DisplayManager : MonoBehaviour
     private const string _Clear = "clear";
     private const string _fadeIn = "on_UI";
     private const string _fadeIn2 = "on_UI2";
+    private const string _fadeIn3 = "on_UI3";
+
     private const string _fadeOut = "off_UI";
     private const string _fadeOut2 = "off_UI2";
+    private const string _fadeOut3 = "off_UI3";
 
 
     private void Awake()
@@ -71,7 +74,15 @@ public class DisplayManager : MonoBehaviour
 
         
     }
+    public void FadeIn()
+    {
+        _fadeAnimator.Play(_fadeIn3);
+    }
 
+    public void FadeOut()
+    {
+        _fadeAnimator.Play(_fadeOut3);
+    }
     private IEnumerator ClearCrt()
     {
         PlayerManager.Instance.Player.OnUI = true;
@@ -99,6 +110,7 @@ public class DisplayManager : MonoBehaviour
         _fadeAnimator.Play(_fadeOut2);
         yield return new WaitForSeconds(1f);
         PlayerManager.Instance.Player.OnUI = false;
+        PlayerManager.Instance.Player.Resurrection();
 
         if (_clearTimeText != null)
         {

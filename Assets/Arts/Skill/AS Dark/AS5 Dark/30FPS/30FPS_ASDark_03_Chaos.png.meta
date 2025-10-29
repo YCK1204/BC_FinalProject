@@ -100,7 +100,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -114,7 +114,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 60
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -179,12 +179,12 @@ TextureImporter:
       name: 30FPS_ASDark_03_Chaos_0
       rect:
         serializedVersion: 2
-        x: 237
-        y: 467
-        width: 36
-        height: 30
+        x: 192
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -201,12 +201,12 @@ TextureImporter:
       name: 30FPS_ASDark_03_Chaos_1
       rect:
         serializedVersion: 2
-        x: 257
-        y: 446
-        width: 68
-        height: 85
+        x: 384
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -223,12 +223,12 @@ TextureImporter:
       name: 30FPS_ASDark_03_Chaos_2
       rect:
         serializedVersion: 2
-        x: 316
-        y: 481
-        width: 25
-        height: 19
+        x: 576
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -245,12 +245,12 @@ TextureImporter:
       name: 30FPS_ASDark_03_Chaos_3
       rect:
         serializedVersion: 2
-        x: 418
-        y: 423
-        width: 117
-        height: 121
+        x: 768
+        y: 384
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -267,12 +267,12 @@ TextureImporter:
       name: 30FPS_ASDark_03_Chaos_4
       rect:
         serializedVersion: 2
-        x: 608
-        y: 416
-        width: 135
-        height: 134
+        x: 0
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -289,12 +289,12 @@ TextureImporter:
       name: 30FPS_ASDark_03_Chaos_5
       rect:
         serializedVersion: 2
-        x: 796
-        y: 406
-        width: 138
-        height: 148
+        x: 192
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -311,12 +311,12 @@ TextureImporter:
       name: 30FPS_ASDark_03_Chaos_6
       rect:
         serializedVersion: 2
-        x: 282
-        y: 430
-        width: 31
-        height: 18
+        x: 384
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -333,12 +333,12 @@ TextureImporter:
       name: 30FPS_ASDark_03_Chaos_7
       rect:
         serializedVersion: 2
-        x: 22
-        y: 211
-        width: 152
-        height: 146
+        x: 576
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -355,12 +355,12 @@ TextureImporter:
       name: 30FPS_ASDark_03_Chaos_8
       rect:
         serializedVersion: 2
-        x: 217
-        y: 207
-        width: 145
-        height: 167
+        x: 768
+        y: 192
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -377,12 +377,12 @@ TextureImporter:
       name: 30FPS_ASDark_03_Chaos_9
       rect:
         serializedVersion: 2
-        x: 404
-        y: 206
-        width: 150
-        height: 167
+        x: 0
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -399,12 +399,12 @@ TextureImporter:
       name: 30FPS_ASDark_03_Chaos_10
       rect:
         serializedVersion: 2
-        x: 598
-        y: 201
-        width: 163
-        height: 169
+        x: 192
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -421,12 +421,12 @@ TextureImporter:
       name: 30FPS_ASDark_03_Chaos_11
       rect:
         serializedVersion: 2
-        x: 787
-        y: 204
-        width: 167
-        height: 171
+        x: 384
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -443,12 +443,12 @@ TextureImporter:
       name: 30FPS_ASDark_03_Chaos_12
       rect:
         serializedVersion: 2
-        x: 14
-        y: 7
-        width: 172
-        height: 179
+        x: 576
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -465,12 +465,12 @@ TextureImporter:
       name: 30FPS_ASDark_03_Chaos_13
       rect:
         serializedVersion: 2
-        x: 210
-        y: 7
-        width: 172
-        height: 177
+        x: 768
+        y: 0
+        width: 192
+        height: 192
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -483,187 +483,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: 30FPS_ASDark_03_Chaos_14
-      rect:
-        serializedVersion: 2
-        x: 401
-        y: 6
-        width: 169
-        height: 180
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 809995be730fb2fe0800000000000000
-      internalID: -1212611551683831544
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 30FPS_ASDark_03_Chaos_15
-      rect:
-        serializedVersion: 2
-        x: 591
-        y: 8
-        width: 161
-        height: 177
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b152df0c6920ffcd0800000000000000
-      internalID: -2522294419798022885
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 30FPS_ASDark_03_Chaos_16
-      rect:
-        serializedVersion: 2
-        x: 788
-        y: 12
-        width: 154
-        height: 168
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 97ba7e5d2b4f028c0800000000000000
-      internalID: -4025949017939137671
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 30FPS_ASDark_03_Chaos_17
-      rect:
-        serializedVersion: 2
-        x: 861
-        y: 172
-        width: 12
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 545178387e886aab0800000000000000
-      internalID: -4997156208595495611
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 30FPS_ASDark_03_Chaos_18
-      rect:
-        serializedVersion: 2
-        x: 749
-        y: 89
-        width: 9
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 26f6fe781f831cae0800000000000000
-      internalID: -1530879788310368414
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 30FPS_ASDark_03_Chaos_19
-      rect:
-        serializedVersion: 2
-        x: 938
-        y: 88
-        width: 18
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 1506c48b2917c8150800000000000000
-      internalID: 5876196488782831697
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 30FPS_ASDark_03_Chaos_20
-      rect:
-        serializedVersion: 2
-        x: 784
-        y: 76
-        width: 9
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 260c0ec578c5578b0800000000000000
-      internalID: -5155112462007091102
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 30FPS_ASDark_03_Chaos_21
-      rect:
-        serializedVersion: 2
-        x: 887
-        y: 11
-        width: 8
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8c352e2a4ce9b93d0800000000000000
-      internalID: -3198788542933085240
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 3a37dc8819f57f24da20641d457880b7
     internalID: 0
     vertices: []
     indices: 
@@ -671,7 +495,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":192.0,"y":192.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       30FPS_ASDark_03_Chaos_0: 7131459861870833165
       30FPS_ASDark_03_Chaos_1: 962284467406458971
@@ -679,15 +505,7 @@ TextureImporter:
       30FPS_ASDark_03_Chaos_11: 3295596554283645082
       30FPS_ASDark_03_Chaos_12: 2695961899446925972
       30FPS_ASDark_03_Chaos_13: -7311193440271825366
-      30FPS_ASDark_03_Chaos_14: -1212611551683831544
-      30FPS_ASDark_03_Chaos_15: -2522294419798022885
-      30FPS_ASDark_03_Chaos_16: -4025949017939137671
-      30FPS_ASDark_03_Chaos_17: -4997156208595495611
-      30FPS_ASDark_03_Chaos_18: -1530879788310368414
-      30FPS_ASDark_03_Chaos_19: 5876196488782831697
       30FPS_ASDark_03_Chaos_2: 697567832895845917
-      30FPS_ASDark_03_Chaos_20: -5155112462007091102
-      30FPS_ASDark_03_Chaos_21: -3198788542933085240
       30FPS_ASDark_03_Chaos_3: -8218345310800312705
       30FPS_ASDark_03_Chaos_4: 1751246149028533811
       30FPS_ASDark_03_Chaos_5: 223867983931588713

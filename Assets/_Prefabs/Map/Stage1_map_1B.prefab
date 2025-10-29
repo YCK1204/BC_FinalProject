@@ -58,6 +58,7 @@ MonoBehaviour:
   Root: {fileID: 0}
   NextSpawners:
   - {fileID: 2163198948338776339}
+  FunnelStepNumber: 1
   GizmoColor: {r: 1, g: 0, b: 0, a: 1}
   GizmoSize: 1
 --- !u!1 &141661518497150794
@@ -18757,6 +18758,7 @@ MonoBehaviour:
   Root: {fileID: 0}
   NextSpawners:
   - {fileID: 6034181278818714235}
+  FunnelStepNumber: 2
   GizmoColor: {r: 1, g: 0, b: 0.6652646, a: 1}
   GizmoSize: 1
 --- !u!1 &1719277842162496248
@@ -19040,6 +19042,7 @@ MonoBehaviour:
     Position: {x: -18, y: 10}
   Root: {fileID: 0}
   NextSpawners: []
+  FunnelStepNumber: 3
   GizmoColor: {r: 1, g: 0, b: 0.66871786, a: 1}
   GizmoSize: 1
 --- !u!1 &3278153624945427460
