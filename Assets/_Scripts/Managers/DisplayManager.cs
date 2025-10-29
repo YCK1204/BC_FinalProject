@@ -17,6 +17,11 @@ public class DisplayManager : MonoBehaviour
     [Header("Clear UI")]
     [SerializeField] private Text _clearTimeText;
 
+    public ItemFieldUI ItemFieldUI;
+
+    public GameObject ItemText;
+    public GameObject PotalText;
+
     private const string _hubIn = "all_on";
     private const string _hubOut = "all_off";
     private const string _Clear = "clear";
@@ -28,10 +33,19 @@ public class DisplayManager : MonoBehaviour
     private const string _fadeOut2 = "off_UI2";
     private const string _fadeOut3 = "off_UI3";
 
+    [SerializeField] private Text _clearTimeSet;
+
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
 
@@ -91,13 +105,11 @@ public class DisplayManager : MonoBehaviour
         MapManager.Instance.SetTimerActive(false);
         float finalPlayTime = MapManager.Instance.CurrentPlayTime;
 
-        if (_clearTimeText != null)
-        {
-            int minutes = Mathf.FloorToInt(finalPlayTime / 60);
-            int seconds = Mathf.FloorToInt(finalPlayTime % 60);
-            _clearTimeText.text = $"{minutes:00}:{seconds:00}";
-            _clearTimeText.gameObject.SetActive(true);
-        }
+        int minutes = Mathf.FloorToInt(finalPlayTime / 60);
+        int seconds = Mathf.FloorToInt(finalPlayTime % 60);
+        _clearTimeText.text = $"{minutes:00}:{seconds:00}";
+
+        _clearTimeText.gameObject.SetActive(true);
 
         _uiAnimator.Play(_Clear);
 
@@ -111,6 +123,8 @@ public class DisplayManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         PlayerManager.Instance.Player.OnUI = true;
         PlayerManager.Instance.Player.Resurrection();
+
+        _clearTimeSet.text = $"클리어타임: {minutes:00}'{seconds:00}";
 
         _clearTimeText.gameObject.SetActive(false);
     }
