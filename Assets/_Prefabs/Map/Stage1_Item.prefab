@@ -7095,7 +7095,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6290234756788499020}
   - component: {fileID: 7929709416434489000}
-  m_Layer: 14
+  m_Layer: 0
   m_Name: CamBorder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
