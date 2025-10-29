@@ -11,23 +11,30 @@ public class InventoryUI : MonoBehaviour
     [SerializeField] private Transform _itemSlotParent;
     [SerializeField] private GameObject _itemSlotPrefab;
 
-    [Header("Tooltip UI")]
-    [SerializeField] private GameObject _tooltipPanel;
+    [SerializeField] private RectTransform _tooltipPanelRect;
+    [SerializeField] private RectTransform _tooltipPanel_msgbox;
     [SerializeField] private Text _itemNameText;
     [SerializeField] private Text _itemGradeText;
     [SerializeField] private Text _itemStat1Text;
     [SerializeField] private Text _itemStat2Text;
     [SerializeField] private Text _itemEffectText;
 
+    [SerializeField] private GameObject _synergyPanel;
+    [SerializeField] private Text _synergyNameText;
+    [SerializeField] private Text _synergyText;
+
     private List<ItemSlotUI> _itemSlots = new List<ItemSlotUI>();
     private Inventory _playerInventory;
 
-    private const int INVENTORY_SIZE = 16;
+    private const float _baseH = 230f;
+    private const float _statH = 40f;
+    private const float _effH = 50f;
 
     void Awake()
     {
         InitializeInventory();
-        _tooltipPanel.SetActive(false);
+        _tooltipPanelRect.gameObject.SetActive(false);
+        _synergyPanel.SetActive(false);
     }
 
     void Start()
@@ -38,6 +45,12 @@ public class InventoryUI : MonoBehaviour
             RefreshAllSlots();
         }
     }
+
+    void OnEnable()
+    {
+        RefreshAllSlots();
+    }
+
 
     public void SetInventory(Inventory inventory)
     {
@@ -94,25 +107,89 @@ public class InventoryUI : MonoBehaviour
         _itemGradeText.text = GetItemGradeString(itemData.ItemGrade);
         _itemGradeText.color = itemData.TierColor;
 
-        _itemStat1Text.text = FormatStatText(itemData.Stat1);
-        _itemStat2Text.text = FormatStatText(itemData.Stat2);
+        float currentTooltipHeight = _baseH;
 
-        //if (itemData.EffectData != null && !string.IsNullOrEmpty(itemData.EffectData.Description))
-        //{
-        //    _itemEffectText.text = itemData.EffectData.Description;
-        //    _itemEffectText.gameObject.SetActive(true);
-        //}
-        //else
-        //{
-        //    _itemEffectText.gameObject.SetActive(false);
-        //}
+        // Stat1
+        if (itemData.Stat1 != null && itemData.Stat1.ItemExtraStatType != ItemExtraStatType.None && itemData.Stat1.Value != 0)
+        {
+            _itemStat1Text.text = FormatStatText(itemData.Stat1);
+            _itemStat1Text.gameObject.SetActive(true);
+        }
+        else
+        {
+            _itemStat1Text.gameObject.SetActive(false);
+            currentTooltipHeight -= _statH;
+        }
 
-        _tooltipPanel.SetActive(true);
+        // Stat2
+        if (itemData.Stat2 != null && itemData.Stat2.ItemExtraStatType != ItemExtraStatType.None && itemData.Stat2.Value != 0)
+        {
+            _itemStat2Text.text = FormatStatText(itemData.Stat2);
+            _itemStat2Text.gameObject.SetActive(true);
+        }
+        else
+        {
+            _itemStat2Text.gameObject.SetActive(false);
+            currentTooltipHeight -= _statH;
+        }
+
+        if (itemData.EffectData != null && !string.IsNullOrEmpty(itemData.EffectText))
+        {
+            _itemEffectText.text = itemData.EffectText;
+            _itemEffectText.gameObject.SetActive(true);
+        }
+        else
+        {
+            _itemEffectText.gameObject.SetActive(false);
+            currentTooltipHeight -= _effH;
+        }
+
+        string synergyName = "";
+        if (itemData.SynergyId != 0)
+        {
+            switch (itemData.SynergyId)
+            {
+                case 1:
+                    synergyName = "바람 길";
+                    break;
+                case 2:
+                    synergyName = "섬광";
+                    break;
+                case 3:
+                    synergyName = "날카로움";
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        string synergyDescription = itemData.SynergyText;
+
+
+        if (!string.IsNullOrEmpty(synergyName) || !string.IsNullOrEmpty(synergyDescription))
+        {
+            _synergyNameText.text = synergyName;
+            _synergyText.text = synergyDescription;
+            _synergyPanel.gameObject.SetActive(true);
+
+            RectTransform synergyPanelRect = _synergyPanel.GetComponent<RectTransform>();
+            synergyPanelRect.anchoredPosition = new Vector2(synergyPanelRect.anchoredPosition.x, -currentTooltipHeight);
+        }
+        else
+        {
+            _synergyPanel.gameObject.SetActive(false);
+        }
+
+        _tooltipPanelRect.sizeDelta = new Vector2(_tooltipPanelRect.sizeDelta.x, currentTooltipHeight);
+        _tooltipPanel_msgbox.sizeDelta = new Vector2(_tooltipPanelRect.sizeDelta.x, currentTooltipHeight -10);
+
+        _tooltipPanelRect.gameObject.SetActive(true);
     }
 
     public void HideTooltip()
     {
-        _tooltipPanel.SetActive(false);
+        _tooltipPanelRect.gameObject.SetActive(false);
+        _synergyPanel.SetActive(false);
     }
 
     private string FormatStatText(ItemStat stat)
@@ -128,7 +205,6 @@ public class InventoryUI : MonoBehaviour
         if (stat.ItemExtraStatType == ItemExtraStatType.CriticalChance ||
             stat.ItemExtraStatType == ItemExtraStatType.CriticalDamage ||
             stat.ItemExtraStatType == ItemExtraStatType.AttackSpeed ||
-            stat.ItemExtraStatType == ItemExtraStatType.SkillHaste ||
             stat.ItemExtraStatType == ItemExtraStatType.Attack ||
             stat.ItemExtraStatType == ItemExtraStatType.SkillAttack)
         {

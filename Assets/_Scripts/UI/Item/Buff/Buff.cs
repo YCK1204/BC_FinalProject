@@ -63,6 +63,8 @@ public class Buff : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
     }
     public void CountBuff(PlayerCharacter player)
     {
+        if (Count == _data.MaxCount)
+            return;
         Count++;
         ItemSetterUtil.ApplyStat(player, _data.Stat1.ItemExtraStatType, _data.Stat1.Value);
         ItemSetterUtil.ApplyStat(player, _data.Stat2.ItemExtraStatType, _data.Stat2.Value);

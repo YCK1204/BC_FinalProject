@@ -37,7 +37,7 @@ public class ItemSynergy
     void OnSynergy()
     {
         var player = PlayerCharacter.Instance;
-        Manager.Data.ItemsData.Effect.TryGetValue(Data.Id, out var effectData);
+        Manager.Data.ItemsData.Effect.TryGetValue(Data.ItemEffectID, out var effectData);
 
         if (effectData == null)
         {

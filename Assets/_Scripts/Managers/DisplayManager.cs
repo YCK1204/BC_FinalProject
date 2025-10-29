@@ -1,7 +1,9 @@
+using Game.Player;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 using UnityEngine.U2D;
+using UnityEngine.UI;
 
 public class DisplayManager : MonoBehaviour
 {
@@ -12,11 +14,16 @@ public class DisplayManager : MonoBehaviour
 
     [SerializeField] private PixelPerfectCamera _pixelPerfectCamera;
 
+    [Header("Clear UI")]
+    [SerializeField] private Text _clearTimeText;
+
     private const string _hubIn = "all_on";
     private const string _hubOut = "all_off";
     private const string _Clear = "clear";
     private const string _fadeIn = "on_UI";
+    private const string _fadeIn2 = "on_UI2";
     private const string _fadeOut = "off_UI";
+    private const string _fadeOut2 = "off_UI2";
 
 
     private void Awake()
@@ -25,8 +32,8 @@ public class DisplayManager : MonoBehaviour
     }
 
 
-    //픽셀 퍼펙트 카메라 키고 끄기 SetPPC(true) 카메라 연출 사용전에 켜주면 됩니다.
-    public void SetPPC(bool a , float b = 0f)
+    //픽셀 퍼펙트 카메라 키고 끄기 SetPPC(false) 카메라 연출 사용전에 켜주면 됩니다.
+    public void SetPPC(bool a, float b = 0f)
     {
         StartCoroutine(SetPPCDelay(a, b));
     }
@@ -42,14 +49,16 @@ public class DisplayManager : MonoBehaviour
     //보스 레이드 연출때 미니맵,hp바 안보이게 하기
     public void HubFadeOut()
     {
-        _uiAnimator.SetTrigger(_hubOut);
+        PlayerManager.Instance.Player.OnUI = false;
+        _uiAnimator.Play(_hubOut);
         Debug.Log("HUB 끄기");
     }
 
     //hub 키기
     public void HubFadeIn()
     {
-        _uiAnimator.SetTrigger(_hubIn);
+        PlayerManager.Instance.Player.OnUI = true;
+        _uiAnimator.Play(_hubIn);
         Debug.Log("HUB 켜기");
     }
 
@@ -59,19 +68,46 @@ public class DisplayManager : MonoBehaviour
     {
         StartCoroutine(SetPPCDelay(false, 0f));
         StartCoroutine(ClearCrt());
+
+        
     }
 
     private IEnumerator ClearCrt()
     {
-        _uiAnimator.SetTrigger(_Clear);
+        PlayerManager.Instance.Player.OnUI = true;
+        PlayerCharacter.Instance.Inventory.Reset();
+
+        MapManager.Instance.SetTimerActive(false);
+        float finalPlayTime = MapManager.Instance.CurrentPlayTime;
+
+        if (_clearTimeText != null)
+        {
+            int minutes = Mathf.FloorToInt(finalPlayTime / 60);
+            int seconds = Mathf.FloorToInt(finalPlayTime % 60);
+            _clearTimeText.text = $"{minutes:00}:{seconds:00}";
+            _clearTimeText.gameObject.SetActive(true);
+        }
+
+        _uiAnimator.Play(_Clear);
 
         yield return new WaitForSeconds(4f);
+        _fadeAnimator.Play(_fadeIn);
+        yield return new WaitForSeconds(3f);
+        _fadeAnimator.Play(_fadeIn2);
+        yield return new WaitForSeconds(2f);
+        MapManager.Instance.InitFloor();
+        _fadeAnimator.Play(_fadeOut2);
+        yield return new WaitForSeconds(1f);
+        PlayerManager.Instance.Player.OnUI = false;
 
-        _fadeAnimator.SetTrigger(_fadeIn);
+        if (_clearTimeText != null)
+        {
+            _clearTimeText.gameObject.SetActive(false);
+        }
     }
 
     public void EndClear()
     {
-        _fadeAnimator.SetTrigger(_fadeOut);
+        _fadeAnimator.Play(_fadeOut);
     }
 }

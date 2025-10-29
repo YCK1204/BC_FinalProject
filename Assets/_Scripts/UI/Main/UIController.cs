@@ -55,7 +55,7 @@ public class UIController : MonoBehaviour
         if (_isState) return;
 
         // Test
-        if (Input.GetKeyDown(KeyCode.Escape) && !PlayerManager.Instance.Player.OnTrait && !PlayerManager.Instance.Player.IsDead)
+        if (Input.GetKeyDown(KeyCode.Escape) && !PlayerManager.Instance.Player.OnUI && !PlayerManager.Instance.Player.IsDead)
         {
             Debug.Log($"esc - {CurrentState}");
             if (CurrentState == UiState.Main)
@@ -163,6 +163,7 @@ public class UIController : MonoBehaviour
             case UiState.Main:
                 _uiFade.Play("off_UI", 0, 0f);
                 ChangeState(UiState.Hidden);
+                DisplayManager.Instance.SetPPC(true, 0.5f);
                 break;
 
             case UiState.Stats:

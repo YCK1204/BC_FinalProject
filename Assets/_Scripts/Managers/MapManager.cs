@@ -5,7 +5,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-
 [System.Serializable]
 public class MapSaveData
 {
@@ -43,9 +42,26 @@ public class MapManager : MonoBehaviour
     private List<int> _clearedMaps = new List<int>();
 
     public bool OnPortal = false;
+    public System.Action OnMapChanged;
 
     private float _playTime = 0f;
     private bool _isTimerOn = false;
+
+    public float CurrentPlayTime => _playTime;
+    public bool IsTimerRunning => _isTimerOn;
+
+    public void SetTimerActive(bool active)
+    {
+        _isTimerOn = active;
+        if (!active)
+        {
+            Debug.Log($"플레이타임 중지: {_playTime}초");
+        }
+        else
+        {
+            Debug.Log("플레이타임 시작");
+        }
+    }
 
     private void Awake()
     {
@@ -82,7 +98,7 @@ public class MapManager : MonoBehaviour
         LoadMap(_mapPrefabs[0]);
         OnPortal = true;
         _playTime = 0f;
-        _isTimerOn = false;
+        SetTimerActive(false);
         UpdateTimerUI();
     }
 
@@ -112,7 +128,7 @@ public class MapManager : MonoBehaviour
             Manager.Analytics.SendFunnelStep(FunnelStep.None, 11);
             Manager.Analytics.SendFunnelStep(FunnelStep._StageC, 3);
 
-            _isTimerOn = true;
+            SetTimerActive(true);
             Debug.Log("플레이타임기록 시작 (아이템 스테이지 진입)");
             return;
         }
@@ -140,7 +156,7 @@ public class MapManager : MonoBehaviour
 
         if (_roomCount == 1 && !_isTimerOn)
         {
-            _isTimerOn = true;
+            SetTimerActive(true);
             Debug.Log("플레이타임기록");
         }
 
@@ -171,7 +187,7 @@ public class MapManager : MonoBehaviour
             ResetMaps();
             LoadMap(_mapPrefabs[0]);
             _playTime = 0f;
-            _isTimerOn = false;
+            SetTimerActive(false);
             UpdateTimerUI();
             Debug.Log("맵 리셋");
         }
@@ -194,6 +210,8 @@ public class MapManager : MonoBehaviour
         }
 
         MovePlayerSpawn(_currentMap);
+        if(OnMapChanged != null)
+            OnMapChanged();
 
         OnPortal = false;
     }
@@ -270,25 +288,25 @@ public class MapManager : MonoBehaviour
         if (mapIndex == -1)
         {
             mapToLoad = _bossroomPrefabs;
-            _isTimerOn = true;
+            SetTimerActive(true);
         }
         else if (mapIndex >= 0 && mapIndex < _mapPrefabs.Count)
         {
             mapToLoad = _mapPrefabs[mapIndex];
             if (mapIndex == 0)
             {
-                _isTimerOn = false;
+                SetTimerActive(false);
                 _playTime = 0f;
             }
             else
             {
-                _isTimerOn = true;
+                SetTimerActive(true);
             }
         }
         else if (data.CurrentMapIndex == _mapPrefabs.IndexOf(_itemRoomPrefab))
         {
             mapToLoad = _itemRoomPrefab;
-            _isTimerOn = true;
+            SetTimerActive(true);
         }
 
 

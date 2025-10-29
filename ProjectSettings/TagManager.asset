@@ -29,9 +29,9 @@ TagManager:
   - WaterPostProcessing
   - 
   - Boss
-  - 
-  - 
-  - 
+  - ItemUI
+  - MinimapItem
+  - N
   - 
   - 
   - 

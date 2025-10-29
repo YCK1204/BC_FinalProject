@@ -22,9 +22,9 @@ public class ItemSlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void SetItem(ItemData itemData)
     {
         _currentItemData = itemData;
-        if (_itemIcon != null && !string.IsNullOrEmpty(itemData.IconURL))
+        if (_itemIcon != null && itemData != null && Manager.Item.ItemIcons.TryGetValue(itemData.Id, out Sprite cachedSprite))
         {
-            _itemIcon.sprite = Resources.Load<Sprite>(itemData.IconURL);
+            _itemIcon.sprite = cachedSprite;
             _itemIcon.gameObject.SetActive(true);
         }
         else
@@ -55,5 +55,4 @@ public class ItemSlotUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     {
         _inventoryUI.HideTooltip();
     }
-
 }
