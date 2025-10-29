@@ -183,6 +183,9 @@ public class BoneReaper : BossMonster
             return;
 
         _dataHandler.TakeDamage(damage);
+#if UNITY_EDITOR
+        Debug.Log($"[Damage] {name}이 받은 피해: {damage}");
+#endif
         OnHealthchanged?.Invoke();
         CheckFunnel();
         if (_dataHandler.CurHp <= 0)
