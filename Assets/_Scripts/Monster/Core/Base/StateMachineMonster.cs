@@ -33,7 +33,8 @@ public abstract class StateMachineMonster : NormalMonster
         Rb.bodyType = RigidbodyType2D.Dynamic;
         Col.isTrigger = false;
 
-        PlayerManager.Instance.Player.OnDied += OnPlayerDied;
+        if(PlayerManager.Instance != null)
+            PlayerManager.Instance.Player.OnDied += OnPlayerDied;
     }
 
     protected virtual void Update()
