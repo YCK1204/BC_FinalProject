@@ -61,10 +61,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d5a69e91f634d84fa10184830f176e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShadowSlashProjectile
-  _speed: 20
+  _speed: 15
   _distance: 8
   _damageMult: 1
   _lifeTime: 1
+  _hitPrefab: {fileID: 2708598583397607911, guid: 183f2d51e76e8514ba92e2582b25c6af, type: 3}
 --- !u!50 &4826519798316082396
 Rigidbody2D:
   serializedVersion: 5

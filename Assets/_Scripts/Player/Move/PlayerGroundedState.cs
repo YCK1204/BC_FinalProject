@@ -30,12 +30,12 @@ namespace Game.Player
                     _stateMachine.ChangeState(_stateMachine.AwakeningState);
                     return;
                 }
-                if (qSkill && _stateMachine.CanUseQSkill() && PlayerManager.Instance != null)
+                if (qSkill && _stateMachine.CanUseQSkill() && PlayerManager.Instance != null && !_stateMachine.Player.IsAwakened)
                 {
                     _stateMachine.ChangeState(_stateMachine.QSkillState);
                     return;
                 }
-                if (wSkill && _stateMachine.CanUseWSkill() && PlayerManager.Instance != null)
+                if (wSkill && _stateMachine.CanUseWSkill() && PlayerManager.Instance != null && !_stateMachine.Player.IsAwakened)
                 {
                     _stateMachine.ChangeState(_stateMachine.WSkillState);
                     return;

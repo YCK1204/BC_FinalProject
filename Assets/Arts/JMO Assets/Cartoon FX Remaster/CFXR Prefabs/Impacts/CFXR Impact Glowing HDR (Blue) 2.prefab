@@ -287,7 +287,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 12
+      scalar: 10
       minScalar: 15
       maxCurve:
         serializedVersion: 2
@@ -1367,8 +1367,8 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 0.3726415, g: 0.7790608, b: 1, a: 0}
-        key2: {r: 0.23113209, g: 0.4368856, b: 1, a: 0.039215688}
+        key1: {r: 0.8721942, g: 0.37254906, b: 1, a: 0}
+        key2: {r: 0.44152614, g: 0.11854753, b: 0.6792453, a: 0.039215688}
         key3: {r: 0.4648342, g: 0, b: 1, a: 0.039215688}
         key4: {r: 1, g: 0.017601715, b: 0, a: 0.039215688}
         key5: {r: 1, g: 1, b: 1, a: 0.039215688}
@@ -1391,7 +1391,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_ColorSpace: -1
+        m_ColorSpace: 0
         m_NumColorKeys: 4
         m_NumAlphaKeys: 2
       minGradient:
@@ -4949,7 +4949,7 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 2
-  m_Color: {r: 0.5631094, g: 0.3254717, b: 1, a: 1}
+  m_Color: {r: 0.3570745, g: 0.13336597, b: 0.764151, a: 1}
   m_Intensity: 0
   m_Range: 4
   m_SpotAngle: 30
@@ -5046,7 +5046,7 @@ GameObject:
   - component: {fileID: 2708598583397607910}
   - component: {fileID: 8647321958557335498}
   m_Layer: 0
-  m_Name: CFXR Impact Glowing HDR (Blue) 1
+  m_Name: CFXR Impact Glowing HDR (Blue) 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6339,8 +6339,8 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 0.3726415, g: 0.7790608, b: 1, a: 0}
-        key2: {r: 0.23113209, g: 0.4368856, b: 1, a: 0.039215688}
+        key1: {r: 0.28088558, g: 0.08810965, b: 0.33962262, a: 0}
+        key2: {r: 0.39930582, g: 0.16731933, b: 0.754717, a: 0.039215688}
         key3: {r: 0.4648342, g: 0, b: 1, a: 0.039215688}
         key4: {r: 1, g: 0.017601715, b: 0, a: 0.039215688}
         key5: {r: 1, g: 1, b: 1, a: 0.039215688}
@@ -6363,7 +6363,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_ColorSpace: -1
+        m_ColorSpace: 0
         m_NumColorKeys: 4
         m_NumAlphaKeys: 2
       minGradient:

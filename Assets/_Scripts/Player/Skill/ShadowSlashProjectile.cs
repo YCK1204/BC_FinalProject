@@ -18,6 +18,8 @@ public class ShadowSlashProjectile : MonoBehaviour
     private EffectReturn _effectReturn;
     private PlayerCharacter _owner;
 
+    [SerializeField] private GameObject _hitPrefab;
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -66,9 +68,22 @@ public class ShadowSlashProjectile : MonoBehaviour
             }
             if (!_hitTargets.Contains(target))
             {
+                if (target is BaseMonster baseMonsterTarget && baseMonsterTarget.MonsterData.CurHp <= 0)
+                {
+                    return;
+                }
+
+                Transform targetTransform = ((MonoBehaviour)target).transform;
+
                 _owner.StateMachine.Player.GainAwakeningGauge();
                 target.TakeDamage((int)_damage);
                 _hitTargets.Add(target);
+
+                float randomZ = Random.Range(0f, 360f);
+                Quaternion randomRot = Quaternion.Euler(0f, 0f, randomZ);
+                Vector3 spawnPos = targetTransform.position;
+
+                PlayerPool.Instance.GetFromPool(_hitPrefab, spawnPos, randomRot);
             }
         }
     }

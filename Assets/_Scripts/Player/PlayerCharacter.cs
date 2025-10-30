@@ -404,6 +404,7 @@ namespace Game.Player
             currentAwakening = awakeningData.MaxAwakeningGauge;
             float totalDuration = Data.awakening.Duration;
             Data.CombatData.AttackRange = 1.6f;
+            Data.GroundData.BaseSpeed = Data.GroundData.BaseSpeed+1;
 
             Animator.runtimeAnimatorController = awakenedAnimator;
 
@@ -437,6 +438,7 @@ namespace Game.Player
             currentAwakening = 0f;
             IsAwakened = false;
             Data.CombatData.AttackRange = 1.1f;
+            Data.GroundData.BaseSpeed = Data.GroundData.BaseSpeed - 1f;
 
             Animator.runtimeAnimatorController = normalAnimator;
 
