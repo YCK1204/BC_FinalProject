@@ -1871,11 +1871,11 @@ Transform:
   m_GameObject: {fileID: 410548075}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -26.182735, y: 2.1967516, z: 0}
+  m_LocalPosition: {x: -984.0086, y: -537.1382, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 1
   m_Children: []
-  m_Father: {fileID: 1055006381}
+  m_Father: {fileID: 1510676062}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &410548077
 SpriteRenderer:
@@ -5212,8 +5212,6 @@ MonoBehaviour:
   AudioMixer: {fileID: 24100000, guid: c49e9afbcdd1a9944830be2ddc9f9900, type: 2}
   Prefab: {fileID: 6722650377872159071, guid: 5bddb0ab0a7b77244a24447036c1cacf, type: 3}
   InitialPoolSize: 20
-  _bgmSlider: {fileID: 0}
-  _sfxSlider: {fileID: 0}
 --- !u!4 &624193595
 Transform:
   m_ObjectHideFlags: 0
@@ -16840,7 +16838,6 @@ Transform:
   - {fileID: 324020891}
   - {fileID: 882996126}
   - {fileID: 510941670}
-  - {fileID: 410548076}
   - {fileID: 1510676062}
   - {fileID: 1100009590}
   - {fileID: 1957969326}
@@ -18889,6 +18886,7 @@ RectTransform:
   - {fileID: 266890073}
   - {fileID: 1687422182}
   - {fileID: 2051134146}
+  - {fileID: 410548076}
   m_Father: {fileID: 1055006381}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

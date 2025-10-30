@@ -239,7 +239,7 @@ namespace Game.Player
             {
                 _stateMachine.Player.AttackHit();
 
-                if (PlayerManager.Instance.Player != null)
+                if (PlayerManager.Instance != null)
                     PlayerManager.Instance.Player.camShake.Shake(1f, 0.3f, 0.04f);
             }
         }
