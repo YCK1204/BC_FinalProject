@@ -339,6 +339,8 @@ namespace Game.Player
 
         public void Resurrection()
         {
+            //OnDied?.Invoke();
+
             // todo data reset
             Manager.Game.MonsterCount = 0;
 
@@ -366,6 +368,8 @@ namespace Game.Player
             PlayerMaterial.SetDefaultMaterial();
 
             Inventory.Reset();
+
+            Debug.Log("리셋");
             //ShadowSlashSkill?.Initialize(this);
             //DoubleStrikeSkill?.Initialize(this);
         }

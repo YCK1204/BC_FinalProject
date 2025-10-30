@@ -12087,6 +12087,8 @@ MonoBehaviour:
     AirData:
       JumpForce: 14
       DoubleJumpForce: 12
+      JumpEffectPrefab1: {fileID: 4748125247279394270, guid: 8e32e210963d7454da77a63a31144a53, type: 3}
+      JumpEffectPrefab2: {fileID: 4748125247279394270, guid: 37b497c604ce4bc46b8653f98a6d1001, type: 3}
     DashData:
       Duration: 0.2
       SpeedMultiplier: 4
@@ -12104,7 +12106,7 @@ MonoBehaviour:
       CriticalChance: 5
       CriticalDamage: 200
       SkillAttck: 10
-      SkillHaste: 100
+      SkillHaste: 10000
       CorruptionDuration: 10
       AttackPowerPercent: 0
       SkillAttckPercent: 0
@@ -12150,7 +12152,7 @@ MonoBehaviour:
       Duration: 10
       AwakeningAnimDuration: 2
     SkillData:
-      QSkillCastingDuration: 0
+      QSkillCastingDuration: 0.4
       QSkillCooldown: 9
       WSkillCastingDuration: 0.5
       WSkillCooldown: 10
@@ -12280,8 +12282,8 @@ MonoBehaviour:
   _attackRange: 1.5
   _hitDelay: 0.1
   _hitDelay2: 0.18
-  _hitMultiplier: 2
-  _hitMultiplier2: 2
+  _hitMultiplier: 1.5
+  _hitMultiplier2: 1.5
   _slashPrefab: {fileID: 4748125247279394270, guid: 8e2dc9461b53ddb4c93697c1f45af5f4, type: 3}
   _spawnOffset: {x: 0.3, y: 0}
 --- !u!114 &1333591366
@@ -12296,10 +12298,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59e95ff72303609468cc86fdace9444c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShadowSlash
-  _projectilePrefab: {fileID: 4748125247279394270, guid: 5e67d5fd8c2fc9e40970392a0b5181c4, type: 3}
-  _spawnOffset: {x: 0.8, y: 0}
-  _count: 5
-  _delay: 0.1
+  _dashDist: 4.5
+  _dashDur: 0.2
+  _hitCnt: 3
+  _hitDelay: 0.15
+  _initial: 0.05
+  _hitRadius: 0.7
+  _hitLayer:
+    serializedVersion: 2
+    m_Bits: 8388864
+  _dmgMult: 0.7
+  _kbPower: 3
+  _duskPrefab: {fileID: 4748125247279394270, guid: eb1d15ce59e591541a4cb3631271ddab, type: 3}
+  _spawnOffset: {x: 0, y: -0.1}
 --- !u!1 &1337428465
 GameObject:
   m_ObjectHideFlags: 0
@@ -15208,6 +15219,7 @@ GameObject:
   - component: {fileID: 1624723107}
   - component: {fileID: 1624723106}
   - component: {fileID: 1624723105}
+  - component: {fileID: 1624723108}
   m_Layer: 5
   m_Name: PotalSet
   m_TagString: Untagged
@@ -15285,6 +15297,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1624723103}
   m_CullTransparentMesh: 1
+--- !u!95 &1624723108
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1624723103}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cd1d88af657c730419e0282c4c4dc23d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1642901642
 GameObject:
   m_ObjectHideFlags: 0
@@ -16654,6 +16688,7 @@ GameObject:
   - component: {fileID: 1853533268}
   - component: {fileID: 1853533267}
   - component: {fileID: 1853533269}
+  - component: {fileID: 1853533270}
   m_Layer: 5
   m_Name: ItemSet
   m_TagString: Untagged
@@ -16731,6 +16766,28 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!95 &1853533270
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1853533265}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: cd1d88af657c730419e0282c4c4dc23d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1857204009
 GameObject:
   m_ObjectHideFlags: 0
