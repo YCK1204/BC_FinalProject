@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3152892683290993190}
   - component: {fileID: 7652799856225328368}
   - component: {fileID: 7386220034610805976}
-  m_Layer: 0
+  m_Layer: 27
   m_Name: Damage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -500,7 +500,7 @@ GameObject:
   - component: {fileID: 8434524771310124690}
   - component: {fileID: 8698143394126382973}
   - component: {fileID: 1359837133657696460}
-  m_Layer: 0
+  m_Layer: 27
   m_Name: TMP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -679,7 +679,7 @@ GameObject:
   - component: {fileID: 7095912108708253339}
   - component: {fileID: 3017991081922357428}
   - component: {fileID: 784436044012876220}
-  m_Layer: 0
+  m_Layer: 27
   m_Name: MeshB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -768,7 +768,7 @@ GameObject:
   - component: {fileID: 3773110295931949725}
   - component: {fileID: 6698953496535217174}
   - component: {fileID: 3884228689347739954}
-  m_Layer: 0
+  m_Layer: 27
   m_Name: MeshA
   m_TagString: Untagged
   m_Icon: {fileID: 0}
