@@ -14,7 +14,7 @@ public class PatrolMove : Game.Monster.IMovable
     // 레이어 마스크 그라운드
     // 임시 레이어
     // Todo: 벽과 땅에 대한 레이어가 생기면 이를 변경할 필요가 있음 -> 해결?
-    LayerMask _mask = LayerMask.GetMask(Game.Monster.Layers.Ground);
+    LayerMask _mask = LayerMask.GetMask(Game.Monster.Layers.Ground) | LayerMask.GetMask(Game.Monster.Layers.N);
 
     public PatrolMove(StateMachineMonster owner)
     {
