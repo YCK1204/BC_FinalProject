@@ -229,6 +229,12 @@ namespace Game.Player
                 }
             }
 
+            PlayerManager.Instance.Player.Awkanim = "Awk" + _stateMachine.ComboIndex;
+            if (_stateMachine.Player.IsAwakened)
+            {
+                _stateMachine.Player.ShootShadow();
+            }
+
             if (hitted)
             {
                 _stateMachine.Player.AttackHit();

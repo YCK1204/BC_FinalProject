@@ -68,6 +68,10 @@ namespace Game.Player
         [SerializeField] private GameObject awakeningEffect;
         [SerializeField] private GameObject awakeningEffect_field;
 
+        [SerializeField] private GameObject _ShadowSlashProjectilePrefab;
+
+        [SerializeField] public string Awkanim;
+
         [Header("Combat Debug")]
         [SerializeField] private bool lastHitCritical;
         public bool LastHitCritical => lastHitCritical;
@@ -400,6 +404,7 @@ namespace Game.Player
             currentAwakening = awakeningData.MaxAwakeningGauge;
             float totalDuration = Data.awakening.Duration;
             Data.CombatData.AttackRange = 1.6f;
+            Data.GroundData.BaseSpeed = Data.GroundData.BaseSpeed+1;
 
             Animator.runtimeAnimatorController = awakenedAnimator;
 
@@ -433,6 +438,7 @@ namespace Game.Player
             currentAwakening = 0f;
             IsAwakened = false;
             Data.CombatData.AttackRange = 1.1f;
+            Data.GroundData.BaseSpeed = Data.GroundData.BaseSpeed - 1f;
 
             Animator.runtimeAnimatorController = normalAnimator;
 
@@ -442,6 +448,36 @@ namespace Game.Player
             StartCoroutine(OnAwken(0f));
 
             Debug.Log("각성종료");
+        }
+
+        public void ShootShadow()
+        {
+            Debug.Log("추가공격");
+
+            if (_ShadowSlashProjectilePrefab == null)
+            {
+                Debug.LogError("ShadowSlashProjectile Prefab is null! Assign it in the Inspector.");
+                return;
+            }
+
+            Vector3 spawnPos = transform.position;
+            float projectileOffset = 0.5f;
+            spawnPos.x += StateMachine.FacingSign * projectileOffset;
+            Quaternion rotation = StateMachine.FacingSign > 0 ? Quaternion.identity : Quaternion.Euler(0, 180, 0);
+
+            GameObject projectileGO = PlayerPool.Instance.GetFromPool(_ShadowSlashProjectilePrefab, spawnPos, rotation);
+
+            if (projectileGO == null)
+            {
+                Debug.LogError("Failed to get ShadowSlashProjectile from pool.");
+                return;
+            }
+
+            ShadowSlashProjectile projectile = projectileGO.GetComponent<ShadowSlashProjectile>();
+            if (projectile != null)
+            {
+                projectile.Launch(this);
+            }
         }
 
         public void SetLayerCollisionIgnore(LayerMask mask, bool ignore)

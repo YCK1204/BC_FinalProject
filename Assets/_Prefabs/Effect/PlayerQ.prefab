@@ -48,8 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1b9ca9f06eb60a40a2994339deabcfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EffectReturn
-  OriginalPrefabName: 
-  AutoReturnTime: 0.5
+  AutoReturnTime: 1
 --- !u!114 &1004217959658826262
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,10 +61,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d5a69e91f634d84fa10184830f176e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShadowSlashProjectile
-  _speed: 20
+  _speed: 15
   _distance: 8
-  _damageMult: 0.2
-  _lifeTime: 0.5
+  _damageMult: 1
+  _lifeTime: 1
+  _hitPrefab: {fileID: 2708598583397607911, guid: 183f2d51e76e8514ba92e2582b25c6af, type: 3}
 --- !u!50 &4826519798316082396
 Rigidbody2D:
   serializedVersion: 5
@@ -149,8 +149,9 @@ GameObject:
   m_Component:
   - component: {fileID: 22883248477922842}
   - component: {fileID: 7087522768175067416}
+  - component: {fileID: 266815686059665895}
   m_Layer: 0
-  m_Name: Sp
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -219,7 +220,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 50
   m_Sprite: {fileID: -5263595170607226857, guid: 8dc8dbf69d320cc408b0726d8a3dee90, type: 3}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.39215687, b: 0.60784316, a: 0.98039216}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -229,3 +230,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &266815686059665895
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5132878605226013576}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 35d0fe5fb11ccef4b8180ee600f7ad6f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

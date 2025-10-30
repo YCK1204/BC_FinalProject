@@ -139,6 +139,7 @@ namespace Game.Player
                 target.TakeDamage(dmgToApply);
                 owner.MarkLastHitCritical(isCrit);
                 owner.GainAwakeningGauge();
+                owner.GainAwakeningGauge();
 
                 if (targetRb != null)
                 {

@@ -22,6 +22,8 @@ public class DisplayManager : MonoBehaviour
     public GameObject ItemText;
     public GameObject PotalText;
 
+    public GameObject PotalFade;
+
     private const string _hubIn = "all_on";
     private const string _hubOut = "all_off";
     private const string _Clear = "clear";
