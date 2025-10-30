@@ -22,6 +22,11 @@ namespace Game.Player
         private Tween _dashTween;
         private bool _isDashing = false;
 
+        [SerializeField] private GameObject _duskPrefab;
+        [SerializeField] private Vector2 _spawnOffset = new Vector2(1.0f, 0.0f);
+
+        [SerializeField] private GameObject _hitPrefab;
+
         public override void Execute()
         {
             if (_isDashing) return;
@@ -30,6 +35,13 @@ namespace Game.Player
             PlayerManager.Instance.Player.camShake.Shake(0.5f, 0.2f, 0.04f);
             owner.Animator.Play("Attack_1_skill");
             Manager.Audio.Play(AudioKey.Player.Skill.P_SKILL_SWORD3, transform);
+
+            float facingSign = owner.StateMachine.FacingSign;
+            Vector2 offset = new Vector2(_spawnOffset.x * facingSign, _spawnOffset.y);
+            Vector2 spawnPosition = (Vector2)owner.transform.position + offset;
+            Quaternion rotation = facingSign > 0 ? Quaternion.identity : Quaternion.Euler(0, 180, 0);
+
+            PlayerPool.Instance.GetFromPool(_duskPrefab, spawnPosition, rotation);
         }
 
         private IEnumerator DashRoutine()
@@ -79,12 +91,25 @@ namespace Game.Player
                 IDamageable target = collider.GetComponentInParent<IDamageable>();
                 if (target != null)
                 {
+                    if (target is BaseMonster baseMonsterTarget && baseMonsterTarget.MonsterData.CurHp <= 0)
+                    {
+                        continue;
+                    }
+
+                    Transform targetTransform = ((MonoBehaviour)target).transform;
+
                     if (collider.transform.IsChildOf(owner.transform)) continue;
 
                     if (!detectedTargets.Contains(target))
                     {
                         detectedTargets.Add(target);
                         owner.StartCoroutine(HitTarget(target, facingSign, collider.attachedRigidbody));
+
+                        float randomZ = Random.Range(0f, 360f);
+                        Quaternion randomRot = Quaternion.Euler(0f, 0f, randomZ);
+                        Vector3 spawnPos = targetTransform.position;
+
+                        PlayerPool.Instance.GetFromPool(_hitPrefab, spawnPos, randomRot);
                     }
                 }
             }

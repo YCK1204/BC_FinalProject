@@ -54,7 +54,8 @@ namespace Game.Player
         public float AttackPowerPercent = 0f;
         public float SkillAttckPercent = 0f;
 
-
+        public GameObject HitEffectPrefab;
+        public GameObject HitCriEffectPrefab;
     }
 
     [Serializable]
