@@ -36,8 +36,11 @@ namespace Game.Player
             StartAnimation(_stateMachine.Player.AnimationData.JumpParameterHash);
             _stateMachine.Player.Animator.Play("jump", 0, 0f);
 
-            PlayerPool.Instance.GetFromPool(_JumpEffectPrefab, pos, Quaternion.Euler(0f, 0f, 0f));
-        }
+            if (_JumpEffectPrefab != null)
+                PlayerPool.Instance.GetFromPool(_JumpEffectPrefab, pos, Quaternion.Euler(0f, 0f, 0f));
+
+
+            }
 
         public override void Exit()
         {
