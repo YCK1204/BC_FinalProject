@@ -34,6 +34,7 @@ namespace Game.Player
             StartAnimation(_stateMachine.Player.AnimationData.AttackParameterHash);
             _stateMachine.Player.Animator.Play("Attack_3", 0, 0f);
 
+            Manager.Audio.Play(AudioKey.Player.Skill.P_SKILL_SWORD3, _stateMachine.Player.transform);
             _hitTargets = new List<IDamageable>();
 
             _damageTimer = 0f;

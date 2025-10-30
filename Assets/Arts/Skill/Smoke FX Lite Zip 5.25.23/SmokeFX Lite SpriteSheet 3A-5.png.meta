@@ -85,7 +85,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -99,7 +99,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 60
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -164,12 +164,12 @@ TextureImporter:
       name: SmokeFX Lite SpriteSheet 3A-5_0
       rect:
         serializedVersion: 2
-        x: 23
-        y: 22
-        width: 10
-        height: 10
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -186,12 +186,12 @@ TextureImporter:
       name: SmokeFX Lite SpriteSheet 3A-5_1
       rect:
         serializedVersion: 2
-        x: 30
-        y: 26
-        width: 7
-        height: 8
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -208,12 +208,12 @@ TextureImporter:
       name: SmokeFX Lite SpriteSheet 3A-5_2
       rect:
         serializedVersion: 2
-        x: 36
-        y: 26
-        width: 6
-        height: 6
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -230,12 +230,12 @@ TextureImporter:
       name: SmokeFX Lite SpriteSheet 3A-5_3
       rect:
         serializedVersion: 2
-        x: 40
-        y: 22
-        width: 10
-        height: 10
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -252,12 +252,12 @@ TextureImporter:
       name: SmokeFX Lite SpriteSheet 3A-5_4
       rect:
         serializedVersion: 2
-        x: 85
-        y: 22
-        width: 9
-        height: 12
+        x: 256
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -274,12 +274,12 @@ TextureImporter:
       name: SmokeFX Lite SpriteSheet 3A-5_5
       rect:
         serializedVersion: 2
-        x: 92
-        y: 30
-        width: 6
-        height: 6
+        x: 320
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -292,253 +292,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: SmokeFX Lite SpriteSheet 3A-5_6
-      rect:
-        serializedVersion: 2
-        x: 102
-        y: 22
-        width: 15
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 29bfc72f752c24750800000000000000
-      internalID: 6287801712748854162
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SmokeFX Lite SpriteSheet 3A-5_7
-      rect:
-        serializedVersion: 2
-        x: 147
-        y: 29
-        width: 13
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 64f97e6d51f61bce0800000000000000
-      internalID: -1391208670290272442
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SmokeFX Lite SpriteSheet 3A-5_8
-      rect:
-        serializedVersion: 2
-        x: 167
-        y: 23
-        width: 16
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e00456bff5fba40f0800000000000000
-      internalID: -1131881937369743346
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SmokeFX Lite SpriteSheet 3A-5_9
-      rect:
-        serializedVersion: 2
-        x: 210
-        y: 10
-        width: 38
-        height: 26
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7204ab633affbc9c0800000000000000
-      internalID: -3905747175350845401
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SmokeFX Lite SpriteSheet 3A-5_10
-      rect:
-        serializedVersion: 2
-        x: 274
-        y: 9
-        width: 103
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8f6a0622081d5c190800000000000000
-      internalID: -7942712019535223048
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SmokeFX Lite SpriteSheet 3A-5_11
-      rect:
-        serializedVersion: 2
-        x: 30
-        y: 15
-        width: 14
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: bc2ba912c128642e0800000000000000
-      internalID: -2141881515433610549
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SmokeFX Lite SpriteSheet 3A-5_12
-      rect:
-        serializedVersion: 2
-        x: 147
-        y: 22
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: e9353ffa33c5de160800000000000000
-      internalID: 7056397568224482206
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SmokeFX Lite SpriteSheet 3A-5_13
-      rect:
-        serializedVersion: 2
-        x: 92
-        y: 14
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d35da6c29a01a66e0800000000000000
-      internalID: -1843642778674080451
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SmokeFX Lite SpriteSheet 3A-5_14
-      rect:
-        serializedVersion: 2
-        x: 99
-        y: 13
-        width: 10
-        height: 8
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3f9cea3479283eae0800000000000000
-      internalID: -1521228662933894669
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SmokeFX Lite SpriteSheet 3A-5_15
-      rect:
-        serializedVersion: 2
-        x: 155
-        y: 11
-        width: 15
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c35ce62d3790bb2f0800000000000000
-      internalID: -956160102829734596
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: SmokeFX Lite SpriteSheet 3A-5_16
-      rect:
-        serializedVersion: 2
-        x: 169
-        y: 14
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 426ddbeef7961a030800000000000000
-      internalID: 3504197983258138148
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 25dce4d86d26773488c0ed9f1335e6f9
     internalID: 0
     vertices: []
     indices: 
@@ -546,25 +304,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceOnImport
+        value: False
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       SmokeFX Lite SpriteSheet 3A-5_0: 8072894572267420682
       SmokeFX Lite SpriteSheet 3A-5_1: 94218419679248463
-      SmokeFX Lite SpriteSheet 3A-5_10: -7942712019535223048
-      SmokeFX Lite SpriteSheet 3A-5_11: -2141881515433610549
-      SmokeFX Lite SpriteSheet 3A-5_12: 7056397568224482206
-      SmokeFX Lite SpriteSheet 3A-5_13: -1843642778674080451
-      SmokeFX Lite SpriteSheet 3A-5_14: -1521228662933894669
-      SmokeFX Lite SpriteSheet 3A-5_15: -956160102829734596
-      SmokeFX Lite SpriteSheet 3A-5_16: 3504197983258138148
       SmokeFX Lite SpriteSheet 3A-5_2: 8375601958998828799
       SmokeFX Lite SpriteSheet 3A-5_3: 3927398210498090742
       SmokeFX Lite SpriteSheet 3A-5_4: 5545250877894084939
       SmokeFX Lite SpriteSheet 3A-5_5: 1068074650589460549
-      SmokeFX Lite SpriteSheet 3A-5_6: 6287801712748854162
-      SmokeFX Lite SpriteSheet 3A-5_7: -1391208670290272442
-      SmokeFX Lite SpriteSheet 3A-5_8: -1131881937369743346
-      SmokeFX Lite SpriteSheet 3A-5_9: -3905747175350845401
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

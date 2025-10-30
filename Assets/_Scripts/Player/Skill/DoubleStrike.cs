@@ -20,6 +20,7 @@ public class DoubleStrike : Skill
 
         Debug.Log("발동!");
         owner.Animator.Play("SkillW");
+        Manager.Audio.Play(AudioKey.Player.Skill.P_SKILL_SWORD2, transform);
     }
 
     private IEnumerator DoubleStrikeCoroutine()
@@ -34,9 +35,11 @@ public class DoubleStrike : Skill
         PlayerPool.Instance.GetFromPool(_slashPrefab, spawnPosition, rotation);
 
         yield return new WaitForSeconds(_hitDelay);
+        PlayerManager.Instance.Player.camShake.Shake(2f, 0.4f, 0.03f);
         DealAreaDamage(_hitMultiplier);
 
         yield return new WaitForSeconds(_hitDelay2);
+        PlayerManager.Instance.Player.camShake.Shake(1f, 0.2f, 0.04f);
         DealAreaDamage(_hitMultiplier2);
     }
 
@@ -61,6 +64,11 @@ public class DoubleStrike : Skill
                     * damageMultiplier
                 );
                 target.TakeDamage(damage);
+
+                if (target is BaseMonster baseMonsterTarget && baseMonsterTarget.MonsterData.CurHp <= 0)
+                {
+                    continue;
+                }
             }
         }
 

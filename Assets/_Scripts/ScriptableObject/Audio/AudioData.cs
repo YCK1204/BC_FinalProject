@@ -26,6 +26,10 @@ public static class AudioKey
             P_SKILL_SHADOW_HIT,
             P_SKILL_WIND_SWING,
             P_SKILL_HIT_EXTRA_AWAKEN,
+            P_SKILL_SWORD1,
+            P_SKILL_SWORD2,
+            P_SKILL_SWORD3,
+            P_SKILL_SWORD4,
         }
     }
     public static class Monster

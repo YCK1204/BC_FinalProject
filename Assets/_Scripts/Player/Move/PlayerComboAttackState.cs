@@ -3,6 +3,7 @@ using DG.Tweening;
 using Game.Monster;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 namespace Game.Player
 {
@@ -70,6 +71,15 @@ namespace Game.Player
             _hasBufferedInput = false;
 
             _stateMachine.AttackInputBuffered = false;
+
+            if (comboIndex == 0 || comboIndex == 1)
+            {
+                Manager.Audio.Play(AudioKey.Player.Skill.P_SKILL_SWORD1, _stateMachine.Player.transform);
+            }
+            else
+            {
+                Manager.Audio.Play(AudioKey.Player.Skill.P_SKILL_SWORD3, _stateMachine.Player.transform);
+            }
         }
 
         public override void Exit()
@@ -160,6 +170,7 @@ namespace Game.Player
             float chance = Mathf.Max(0f, d.CriticalChance) * 0.01f;
             bool hitted = false;
 
+
             foreach (var col in cols)
             {
                 if (col == null) continue;
@@ -219,7 +230,10 @@ namespace Game.Player
             }
 
             if (hitted)
+            {
                 _stateMachine.Player.AttackHit();
+                PlayerManager.Instance.Player.camShake.Shake(1f, 0.3f, 0.04f);
+            }
         }
     }
 }

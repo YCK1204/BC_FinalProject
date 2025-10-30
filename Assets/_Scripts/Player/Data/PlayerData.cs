@@ -16,6 +16,9 @@ namespace Game.Player
     {
         public float JumpForce = 5f;
         public float DoubleJumpForce = 3f;
+
+        public GameObject JumpEffectPrefab1;
+        public GameObject JumpEffectPrefab2;
     }
 
     [System.Serializable]
@@ -50,6 +53,8 @@ namespace Game.Player
         public float CorruptionDuration = 10f;
         public float AttackPowerPercent = 0f;
         public float SkillAttckPercent = 0f;
+
+
     }
 
     [Serializable]
@@ -156,7 +161,10 @@ namespace Game.Player
                 AirData = new PlayerAirData
                 {
                     JumpForce = AirData.JumpForce,
-                    DoubleJumpForce = AirData.DoubleJumpForce
+                    DoubleJumpForce = AirData.DoubleJumpForce,
+
+                    JumpEffectPrefab1 = AirData.JumpEffectPrefab1,
+                    JumpEffectPrefab2 = AirData.JumpEffectPrefab2
                 },
                 DashData = new PlayerDashData
                 {
