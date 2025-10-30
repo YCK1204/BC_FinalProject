@@ -18,7 +18,7 @@ MonoBehaviour:
   END_ROW_LENGTH: 7
   DataList:
   - Id: 9001
-    Korean: "\uC77C\uBC18 \uACF5\uACA9 \uC2DC, 25% \uD655\uB960\uB85C \uBCBC\uB77D
+    Korean: "\uC77C\uBC18 \uACF5\uACA9 \uC2DC, 15% \uD655\uB960\uB85C \uBCBC\uB77D
       \uC0DD\uC131"
   - Id: 9002
     Korean: "20\uCD08 \uB9C8\uB2E4 \uC6B8\uC74C\uC18C\uB9AC\uB97C \uC0DD\uC131\uD574
@@ -27,8 +27,7 @@ MonoBehaviour:
     Korean: "\uCD94\uAC00 \uCE58\uBA85\uD0C0 \uD53C\uD574 20%\n\uCD94\uAC00 \uCE58\uBA85\uD0C0
       \uD655\uB960 10%"
   - Id: 9301
-    Korean: "\uC77C\uBC18 \uACF5\uACA9 \uC0AC\uC6A9 \uC2DC, 25% \uD655\uB960\uB85C
-      \uBC14\uB78C \uC0DD\uC131"
+    Korean: "\uC801 \uCC98\uCE58\uC2DC \uBC14\uB78C \uD22C\uC0AC\uCCB4 \uC0DD\uC131"
   - Id: 9302
     Korean: "\uB300\uC26C \uC885\uB8CC \uC2DC, \uB3C4\uCC29 \uC9C0\uC810\uC5D0 \uBCBC\uB77D
       \uC0DD\uC131"

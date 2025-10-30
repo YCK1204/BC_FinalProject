@@ -1,12 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.AddressableAssets;
+#endif
 using UnityEngine;
 using UnityEngine.Networking;
-using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
 public static class Extension
@@ -267,6 +267,7 @@ public static class Extension
         newTexture.anisoLevel = 0;
         return newTexture;
     }
+#if UNITY_EDITOR
     public static T LoadWithAddresssableByGroup<T>(string sourceName, string groupName) where T : UnityEngine.Object
     {
         var settings = AddressableAssetSettingsDefaultObject.Settings;
@@ -285,6 +286,7 @@ public static class Extension
         }
         return null;
     }
+#endif
     public static T FindNearestObject<T>(this Transform from, float range, LayerMask layer) where T : Component
     {
         return from.position.FindNearestObject<T>(range, layer);

@@ -1,7 +1,5 @@
 using Game.Player;
 using System;
-using UnityEditor;
-using UnityEditor.AddressableAssets;
 using UnityEngine;
 public enum ItemEffectCreatePosType
 {
@@ -43,7 +41,9 @@ public class ItemAreaData : ItemAbilityEvent
         DetectionRange = detectionRange;
         Radius = radius;
         Damage = damage;
+#if UNITY_EDITOR
         Animator = Extension.LoadWithAddresssableByGroup<RuntimeAnimatorController>($"{animId}", "Area");
+#endif
         AudioKey = audioKey;
     }
 

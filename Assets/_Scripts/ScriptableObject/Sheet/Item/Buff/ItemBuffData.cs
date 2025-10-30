@@ -1,8 +1,5 @@
 using Game.Player;
 using System;
-using System.Collections;
-using UnityEditor;
-using UnityEditor.AddressableAssets;
 using UnityEngine;
 
 [Serializable]
@@ -30,7 +27,9 @@ public class ItemBuffData : ItemAbilityEvent
         DescriptionId = descriptionId;
         _lastBuffTime = 0f;
         _buffCoroutine = null;
+#if UNITY_EDITOR
         Icon = Extension.LoadWithAddresssableByGroup<Sprite>($"{imageId}", "Buff");
+#endif
     }
     float _lastBuffTime;
     Coroutine _buffCoroutine;

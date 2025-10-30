@@ -130,7 +130,7 @@ public class AreaController : MonoBehaviour
         foreach (var hit in hits)
         {
             var monster = hit.GetComponent<NormalMonster>();
-            monster.TakeDamage(data.SkillAttck * (1 + data.AttackPowerPercent) * _data.Damage);
+            monster.TakeDamage(data.SkillAttck * (1 + data.SkillAttckPercent) * _data.Damage);
         }
     }
     public void End()

@@ -1,4 +1,5 @@
 using Game.Player;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -34,6 +35,7 @@ public class DisplayManager : MonoBehaviour
     private const string _fadeOut = "off_UI";
     private const string _fadeOut2 = "off_UI2";
     private const string _fadeOut3 = "off_UI3";
+    public Action OnEnded;
 
     [SerializeField] private Text _clearTimeSet;
 
@@ -134,5 +136,6 @@ public class DisplayManager : MonoBehaviour
     public void EndClear()
     {
         _fadeAnimator.Play(_fadeOut);
+        OnEnded?.Invoke();
     }
 }

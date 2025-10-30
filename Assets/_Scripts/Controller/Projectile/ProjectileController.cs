@@ -134,7 +134,7 @@ public class ProjectileController : MonoBehaviour
         _collisionCount--;
         var data = PlayerCharacter.Instance.Data.CombatData;
         collision.GetComponent<IDamageable>()?.TakeDamage(
-            data.SkillAttck * (1 + data.AttackPowerPercent) * _data.Damage);
+            data.SkillAttck * (1 + data.SkillAttckPercent) * _data.Damage);
         if (_collisionCount <= 0)
             End();
     }

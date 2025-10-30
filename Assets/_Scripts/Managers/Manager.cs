@@ -21,6 +21,7 @@ public class Manager : MonoBehaviour
     {
         if (Instance._isInit)
             return;
+        Screen.SetResolution(1920, 1080, false);
         Data.Load();
         Pool.Init();
         Item.Init();

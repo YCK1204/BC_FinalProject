@@ -95,6 +95,7 @@ public class ItemEffectData
                 break;
             case ItemActionType.Always:
                 PlayerCharacter.Instance.OnDied += Clear;
+                DisplayManager.Instance.OnEnded += Clear;
                 _coAlwaysEffect = PlayerCharacter.Instance.StartCoroutine(CoAlwaysEffect());
                 break;
         }
