@@ -52,6 +52,8 @@ public class MapManager : MonoBehaviour
     private float _playTime = 0f;
     private bool _isTimerOn = false;
 
+    private GameObject _currentPortal;
+
     public float CurrentPlayTime => _playTime;
     public bool IsTimerRunning => _isTimerOn;
 
@@ -120,6 +122,17 @@ public class MapManager : MonoBehaviour
         {
             _playTime += Time.deltaTime;
             UpdateTimerUI();
+        }
+
+        if (OnPortal && _currentPortal != null && !_currentPortal.activeSelf)
+        {
+            _currentPortal.SetActive(true);
+            Debug.Log("포탈 활성화!");
+        }
+        else if (!OnPortal && _currentPortal != null && _currentPortal.activeSelf)
+        {
+            _currentPortal.SetActive(false);
+            Debug.Log("포탈 비활성화!");
         }
     }
 
@@ -235,17 +248,6 @@ public class MapManager : MonoBehaviour
         _currentMapPrefab = prefab;
         _currentMap = Instantiate(prefab, transform);
 
-        //var colliderTransform = _currentMap.transform.Find("Collider");
-        //if (colliderTransform != null)
-        //{
-        //    TilemapCollider2D tilemapCollider = colliderTransform.GetComponent<TilemapCollider2D>();
-        //    if (tilemapCollider != null)
-        //    {
-        //        tilemapCollider.compositeOperation = CompositeCollider2D.CompositeOperation.Intersect;
-
-        //    }
-        //}
-
         var colliderTransform = _currentMap.transform.Find("Collider");
         if (colliderTransform != null)
         {
@@ -254,6 +256,8 @@ public class MapManager : MonoBehaviour
         }
 
         MovePlayerSpawn(_currentMap);
+        FindAndRegisterPortal(_currentMap);
+
         if (OnMapChanged != null)
             OnMapChanged();
 
@@ -273,6 +277,22 @@ public class MapManager : MonoBehaviour
             );
         }
         else Debug.LogError(map.name + "!! 스폰포인트 없음");
+    }
+
+    private void FindAndRegisterPortal(GameObject map)
+    {
+        Transform portalTransform = map.transform.Find("Portal");
+        if (portalTransform != null)
+        {
+            _currentPortal = portalTransform.gameObject;
+            _currentPortal.SetActive(OnPortal);
+            Debug.Log($"포탈확인 {OnPortal}");
+        }
+        else
+        {
+            _currentPortal = null;
+            Debug.LogWarning(map.name + "에서 포탈을 찾을 수 없습니다.");
+        }
     }
 
     private void UpdateRoomCount()
