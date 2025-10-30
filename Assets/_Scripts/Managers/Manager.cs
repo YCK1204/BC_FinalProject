@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Manager : MonoBehaviour
 {
-    static Manager Instance;
+    public static Manager Instance;
     private void Awake()
     {
         if (Instance == null)
