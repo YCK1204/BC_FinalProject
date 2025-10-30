@@ -5,7 +5,9 @@ using Unity.Cinemachine;
 using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
+using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
 [System.Serializable]
@@ -232,6 +234,17 @@ public class MapManager : MonoBehaviour
 
         _currentMapPrefab = prefab;
         _currentMap = Instantiate(prefab, transform);
+
+        //var colliderTransform = _currentMap.transform.Find("Collider");
+        //if (colliderTransform != null)
+        //{
+        //    TilemapCollider2D tilemapCollider = colliderTransform.GetComponent<TilemapCollider2D>();
+        //    if (tilemapCollider != null)
+        //    {
+        //        tilemapCollider.compositeOperation = CompositeCollider2D.CompositeOperation.Intersect;
+
+        //    }
+        //}
 
         var colliderTransform = _currentMap.transform.Find("Collider");
         if (colliderTransform != null)

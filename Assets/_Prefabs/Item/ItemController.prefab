@@ -155,7 +155,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemController
   ContainerOffset: {x: 0, y: 1}
   ColliderScale: {x: 1, y: 1}
-  _itemContainer: {fileID: 6621140317720789341}
 --- !u!114 &3843835248922920582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,22 +405,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemContainer
       objectReference: {fileID: 0}
+    - target: {fileID: 6576472405729483580, guid: c5539bf491fbe19408f6f7454e28d733, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c5539bf491fbe19408f6f7454e28d733, type: 3}
---- !u!114 &6621140317720789341 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: -5834041776916537043, guid: c5539bf491fbe19408f6f7454e28d733, type: 3}
-  m_PrefabInstance: {fileID: 8424640474045358192}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5298c1a78f80f1f41b38899e164486bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ItemContainer
 --- !u!4 &8286159602281657349 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 437992250105566325, guid: c5539bf491fbe19408f6f7454e28d733, type: 3}

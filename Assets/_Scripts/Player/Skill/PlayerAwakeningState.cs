@@ -53,6 +53,7 @@ namespace Game.Player
 
             _stateMachine.Player.SetInvincible(false);
             DisplayManager.Instance.FadeOut();
+            Debug.Log("페이드아웃");
 
             PlayerManager.Instance.Player.camShake.Shake(2f, 2f, 0.2f);
         }
