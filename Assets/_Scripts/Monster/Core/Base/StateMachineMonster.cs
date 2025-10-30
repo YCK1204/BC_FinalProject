@@ -32,6 +32,8 @@ public abstract class StateMachineMonster : NormalMonster
         _stateMachine?.Init();
         Rb.bodyType = RigidbodyType2D.Dynamic;
         Col.isTrigger = false;
+
+        PlayerManager.Instance.Player.OnDied += OnPlayerDied;
     }
 
     protected virtual void Update()
@@ -100,5 +102,21 @@ public abstract class StateMachineMonster : NormalMonster
         {
             particle.gameObject.SetActive(false);
         }
+    }
+
+    private void OnPlayerDied()
+    {
+        UnregisterDieEvent();
+        Invoke("DestroyMonster", 2f);
+    }
+
+    private void DestroyMonster()
+    {
+        Destroy(gameObject);
+    }
+
+    public void UnregisterDieEvent()
+    {
+        PlayerManager.Instance.Player.OnDied -= OnPlayerDied;
     }
 }
