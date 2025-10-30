@@ -70,6 +70,7 @@ public abstract class StateMachineMonster : NormalMonster
         Debug.Log($"[Damage] {name}이 받은 피해: {damage}");
 #endif
         OnHit?.Invoke();
+        DamageIndicator.Instance.GetDamage(transform.position + Vector3.up * 0.5f, damage);
 
         if (_dataHandler.CurHp <= 0)
         {
