@@ -7,7 +7,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
-using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
 [System.Serializable]
@@ -34,6 +33,7 @@ public class MapManager : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private Text _timerText;
+    [SerializeField] private Text _portalStatusText;
 
     private List<GameObject> _mapPool = new List<GameObject>();
     private GameObject _currentMap;
@@ -147,6 +147,7 @@ public class MapManager : MonoBehaviour
         _playTime = 0f;
         SetTimerActive(false);
         UpdateTimerUI();
+        UpdatePortalStatusUI();
     }
 
     private void ResetMaps()
@@ -236,6 +237,7 @@ public class MapManager : MonoBehaviour
             _playTime = 0f;
             SetTimerActive(false);
             UpdateTimerUI();
+            UpdatePortalStatusUI();
             Debug.Log("맵 리셋");
         }
     }
@@ -262,6 +264,7 @@ public class MapManager : MonoBehaviour
             OnMapChanged();
 
         OnPortal = false;
+        UpdatePortalStatusUI();
     }
 
     private void MovePlayerSpawn(GameObject map)
@@ -286,12 +289,10 @@ public class MapManager : MonoBehaviour
         {
             _currentPortal = portalTransform.gameObject;
             _currentPortal.SetActive(OnPortal);
-            Debug.Log($"포탈확인 {OnPortal}");
         }
         else
         {
             _currentPortal = null;
-            Debug.LogWarning(map.name + "에서 포탈을 찾을 수 없습니다.");
         }
     }
 
@@ -304,6 +305,14 @@ public class MapManager : MonoBehaviour
     {
         OnPortal = true;
         Debug.Log("포탈 열림");
+        UpdatePortalStatusUI();
+    }
+
+    public void DisablePortal()
+    {
+        OnPortal = false;
+        Debug.Log("포탈 닫힘");
+        UpdatePortalStatusUI();
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -385,6 +394,7 @@ public class MapManager : MonoBehaviour
             LoadMap(_mapPrefabs[0]);
         }
         UpdateTimerUI();
+        UpdatePortalStatusUI();
     }
 
     private void SendFunnelOnStageClear()
@@ -404,5 +414,20 @@ public class MapManager : MonoBehaviour
         int seconds = Mathf.FloorToInt(_playTime % 60);
 
         _timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    private void UpdatePortalStatusUI()
+    {
+        if (_portalStatusText == null) return;
+
+        Color currentColor = _portalStatusText.color;
+        if (OnPortal)
+        {
+            _portalStatusText.color = new Color(currentColor.r, currentColor.g, currentColor.b, 1f);
+        }
+        else
+        {
+            _portalStatusText.color = new Color(currentColor.r, currentColor.g, currentColor.b, 0.3f);
+        }
     }
 }
