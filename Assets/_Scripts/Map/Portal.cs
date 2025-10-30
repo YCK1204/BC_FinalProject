@@ -9,7 +9,8 @@ public class Portal : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             _isPlayer = true;
-            Debug.Log("포탈!");
+            DisplayManager.Instance.PotalText.SetActive(true);
+            //Debug.Log("포탈!");
         }
     }
 
@@ -18,7 +19,8 @@ public class Portal : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             _isPlayer = false;
-            Debug.Log("포탈나감");
+            DisplayManager.Instance.PotalText.SetActive(false);
+            //Debug.Log("포탈나감");
         }
     }
 

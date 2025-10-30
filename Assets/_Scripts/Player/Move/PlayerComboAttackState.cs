@@ -43,12 +43,16 @@ namespace Game.Player
             _stateMachine.Player.Animator.speed = _attackcombatData.AttackSpeed;
 
             _movementTween?.Kill();
+
             float initialForce = _stateMachine.FacingSign * _attackInfoData.Force;
             float forceDuration = _attackInfoData.AttackDuration / _attackcombatData.AttackSpeed * 0.75f;
-            _movementTween = _stateMachine.Player.Rb.DOMoveX(
-                _stateMachine.Player.Rb.position.x + initialForce * forceDuration,
-                forceDuration
-            ).SetEase(Ease.OutQuad);
+            if (forceDuration > 0)
+            {
+                _movementTween = _stateMachine.Player.Rb.DOMoveX(
+                    _stateMachine.Player.Rb.position.x + initialForce * forceDuration,
+                    forceDuration
+                ).SetEase(Ease.OutQuad);
+            }
 
             _timer = _attackInfoData.AttackDuration / _attackcombatData.AttackSpeed;
 
@@ -81,7 +85,18 @@ namespace Game.Player
             _stateMachine.Player.Rb.linearVelocity = new Vector2(0, _stateMachine.Player.Rb.linearVelocity.y);
         }
 
-        public override void PhysicsUpdate() { }
+        public override void PhysicsUpdate()
+        {
+            if (_movementTween != null && _movementTween.IsActive() && _stateMachine.Player.Rb != null)
+            {
+                float checkDistance = 0.5f;
+                if (!_stateMachine.Player.IsGroundInFront(checkDistance))
+                {
+                    _movementTween.Kill();
+                    _stateMachine.Player.Rb.linearVelocity = new Vector2(0, _stateMachine.Player.Rb.linearVelocity.y);
+                }
+            }
+        }
 
         public override void Update()
         {
