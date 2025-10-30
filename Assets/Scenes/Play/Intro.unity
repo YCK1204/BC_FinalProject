@@ -1067,6 +1067,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 696215325928542329, guid: 33247953a6778cb43b3bb10af9d0aa5b, type: 3}
   m_PrefabInstance: {fileID: 128899857}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &174272245
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5832374159153857277, guid: 7cd04aa01a67e784a95267e1a68e8d92, type: 3}
+      propertyPath: m_Name
+      value: DamageIndicator
+      objectReference: {fileID: 0}
+    - target: {fileID: 8148515163591403803, guid: 7cd04aa01a67e784a95267e1a68e8d92, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 38.02212
+      objectReference: {fileID: 0}
+    - target: {fileID: 8148515163591403803, guid: 7cd04aa01a67e784a95267e1a68e8d92, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.53395
+      objectReference: {fileID: 0}
+    - target: {fileID: 8148515163591403803, guid: 7cd04aa01a67e784a95267e1a68e8d92, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8148515163591403803, guid: 7cd04aa01a67e784a95267e1a68e8d92, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8148515163591403803, guid: 7cd04aa01a67e784a95267e1a68e8d92, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8148515163591403803, guid: 7cd04aa01a67e784a95267e1a68e8d92, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8148515163591403803, guid: 7cd04aa01a67e784a95267e1a68e8d92, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8148515163591403803, guid: 7cd04aa01a67e784a95267e1a68e8d92, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8148515163591403803, guid: 7cd04aa01a67e784a95267e1a68e8d92, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8148515163591403803, guid: 7cd04aa01a67e784a95267e1a68e8d92, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7cd04aa01a67e784a95267e1a68e8d92, type: 3}
 --- !u!1 &266890070
 GameObject:
   m_ObjectHideFlags: 0
@@ -4967,10 +5024,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1510676062}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 1}
-  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 100}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &585821310
 MonoBehaviour:
@@ -5155,8 +5212,6 @@ MonoBehaviour:
   AudioMixer: {fileID: 24100000, guid: c49e9afbcdd1a9944830be2ddc9f9900, type: 2}
   Prefab: {fileID: 6722650377872159071, guid: 5bddb0ab0a7b77244a24447036c1cacf, type: 3}
   InitialPoolSize: 20
-  _bgmSlider: {fileID: 0}
-  _sfxSlider: {fileID: 0}
 --- !u!4 &624193595
 Transform:
   m_ObjectHideFlags: 0
@@ -5477,10 +5532,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1510676062}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.000015258789, y: -0.000015258789}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &705512357
 MonoBehaviour:
@@ -17461,6 +17516,8 @@ MonoBehaviour:
     AirData:
       JumpForce: 14
       DoubleJumpForce: 12
+      JumpEffectPrefab1: {fileID: 0}
+      JumpEffectPrefab2: {fileID: 0}
     DashData:
       Duration: 0.2
       SpeedMultiplier: 4
@@ -17482,6 +17539,8 @@ MonoBehaviour:
       CorruptionDuration: 10
       AttackPowerPercent: 0
       SkillAttckPercent: 0
+      HitEffectPrefab: {fileID: 0}
+      HitCriEffectPrefab: {fileID: 0}
     HurtData:
       Duration: 0.25
       KnockbackX: 6
@@ -17545,6 +17604,8 @@ MonoBehaviour:
   currentAwakening: 0
   awakeningEffect: {fileID: 0}
   awakeningEffect_field: {fileID: 0}
+  _ShadowSlashProjectilePrefab: {fileID: 0}
+  Awkanim: 
   lastHitCritical: 0
   deadControl: {fileID: 0}
   <ShadowSlashSkill>k__BackingField: {fileID: 0}
@@ -18824,8 +18885,8 @@ RectTransform:
   - {fileID: 705512356}
   - {fileID: 266890073}
   - {fileID: 1687422182}
-  - {fileID: 410548076}
   - {fileID: 2051134146}
+  - {fileID: 410548076}
   m_Father: {fileID: 1055006381}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -18887,10 +18948,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1510676062}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 100}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &1522802586
 MonoBehaviour:
@@ -36010,3 +36071,4 @@ SceneRoots:
   - {fileID: 624193595}
   - {fileID: 693103510}
   - {fileID: 855692914}
+  - {fileID: 174272245}

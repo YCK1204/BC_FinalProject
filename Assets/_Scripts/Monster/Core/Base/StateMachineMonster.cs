@@ -32,6 +32,9 @@ public abstract class StateMachineMonster : NormalMonster
         _stateMachine?.Init();
         Rb.bodyType = RigidbodyType2D.Dynamic;
         Col.isTrigger = false;
+
+        if(PlayerManager.Instance != null)
+            PlayerManager.Instance.Player.OnDied += OnPlayerDied;
     }
 
     protected virtual void Update()
@@ -68,6 +71,7 @@ public abstract class StateMachineMonster : NormalMonster
         Debug.Log($"[Damage] {name}이 받은 피해: {damage}");
 #endif
         OnHit?.Invoke();
+        DamageIndicator.Instance.GetDamage(transform.position + Vector3.up * 0.5f, damage);
 
         if (_dataHandler.CurHp <= 0)
         {
@@ -100,5 +104,21 @@ public abstract class StateMachineMonster : NormalMonster
         {
             particle.gameObject.SetActive(false);
         }
+    }
+
+    private void OnPlayerDied()
+    {
+        UnregisterDieEvent();
+        Invoke("DestroyMonster", 2f);
+    }
+
+    private void DestroyMonster()
+    {
+        Destroy(gameObject);
+    }
+
+    public void UnregisterDieEvent()
+    {
+        PlayerManager.Instance.Player.OnDied -= OnPlayerDied;
     }
 }

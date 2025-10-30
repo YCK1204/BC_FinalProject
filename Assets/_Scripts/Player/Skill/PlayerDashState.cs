@@ -42,6 +42,8 @@ namespace Game.Player
 
             _dashEffectPrefab = _stateMachine.Player.Data.DashData.DashEffectPrefab;
             _spawnTimer = 0f;
+
+            Manager.Audio.Play(AudioKey.Player.Move.P_MOVE_JUMP_START, _stateMachine.Player.transform);
         }
 
         public override void Exit()

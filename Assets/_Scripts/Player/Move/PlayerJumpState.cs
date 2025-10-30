@@ -6,11 +6,25 @@ namespace Game.Player
     {
         public PlayerJumpState(PlayerStateMachine stateMachine) : base(stateMachine) { }
 
+        GameObject _JumpEffectPrefab;
+
         public override void Enter()
         {
-            float jumpForce = _stateMachine.JumpsRemaining == _stateMachine.MaxJumps
-                ? _stateMachine.Player.Data.AirData.JumpForce
-                : _stateMachine.Player.Data.AirData.DoubleJumpForce;
+            float jumpForce;
+            Vector3 pos = _stateMachine.Player.transform.position;
+
+            if (_stateMachine.JumpsRemaining == _stateMachine.MaxJumps)
+            {
+                jumpForce = _stateMachine.Player.Data.AirData.JumpForce;
+                _JumpEffectPrefab = _stateMachine.Player.Data.AirData.JumpEffectPrefab1;
+                pos.y -= 0.45f;
+            }
+            else
+            {
+                jumpForce = _stateMachine.Player.Data.AirData.DoubleJumpForce;
+                _JumpEffectPrefab = _stateMachine.Player.Data.AirData.JumpEffectPrefab2;
+                pos.y -= 0.5f;
+            }
 
             _stateMachine.Player.ForceReceiver.Jump(jumpForce);
             _stateMachine.JumpsRemaining = Mathf.Max(0, _stateMachine.JumpsRemaining - 1);
@@ -21,7 +35,12 @@ namespace Game.Player
             StopAnimation(_stateMachine.Player.AnimationData.FallParameterHash);
             StartAnimation(_stateMachine.Player.AnimationData.JumpParameterHash);
             _stateMachine.Player.Animator.Play("jump", 0, 0f);
-        }
+
+            if (_JumpEffectPrefab != null)
+                PlayerPool.Instance.GetFromPool(_JumpEffectPrefab, pos, Quaternion.Euler(0f, 0f, 0f));
+
+
+            }
 
         public override void Exit()
         {

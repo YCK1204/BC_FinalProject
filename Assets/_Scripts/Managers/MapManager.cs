@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
 
@@ -31,6 +32,7 @@ public class MapManager : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private Text _timerText;
+    [SerializeField] private Text _portalStatusText;
 
     private List<GameObject> _mapPool = new List<GameObject>();
     private GameObject _currentMap;
@@ -48,6 +50,8 @@ public class MapManager : MonoBehaviour
 
     private float _playTime = 0f;
     private bool _isTimerOn = false;
+
+    private GameObject _currentPortal;
 
     public float CurrentPlayTime => _playTime;
     public bool IsTimerRunning => _isTimerOn;
@@ -118,6 +122,17 @@ public class MapManager : MonoBehaviour
             _playTime += Time.deltaTime;
             UpdateTimerUI();
         }
+
+        if (OnPortal && _currentPortal != null && !_currentPortal.activeSelf)
+        {
+            _currentPortal.SetActive(true);
+            Debug.Log("포탈 활성화!");
+        }
+        else if (!OnPortal && _currentPortal != null && _currentPortal.activeSelf)
+        {
+            _currentPortal.SetActive(false);
+            Debug.Log("포탈 비활성화!");
+        }
     }
 
 
@@ -131,6 +146,7 @@ public class MapManager : MonoBehaviour
         _playTime = 0f;
         SetTimerActive(false);
         UpdateTimerUI();
+        UpdatePortalStatusUI();
     }
 
     private void ResetMaps()
@@ -220,6 +236,7 @@ public class MapManager : MonoBehaviour
             _playTime = 0f;
             SetTimerActive(false);
             UpdateTimerUI();
+            UpdatePortalStatusUI();
             Debug.Log("맵 리셋");
         }
     }
@@ -240,10 +257,13 @@ public class MapManager : MonoBehaviour
         }
 
         MovePlayerSpawn(_currentMap);
+        FindAndRegisterPortal(_currentMap);
+
         if (OnMapChanged != null)
             OnMapChanged();
 
         OnPortal = false;
+        UpdatePortalStatusUI();
     }
 
     private void MovePlayerSpawn(GameObject map)
@@ -261,6 +281,20 @@ public class MapManager : MonoBehaviour
         else Debug.LogError(map.name + "!! 스폰포인트 없음");
     }
 
+    private void FindAndRegisterPortal(GameObject map)
+    {
+        Transform portalTransform = map.transform.Find("Portal");
+        if (portalTransform != null)
+        {
+            _currentPortal = portalTransform.gameObject;
+            _currentPortal.SetActive(OnPortal);
+        }
+        else
+        {
+            _currentPortal = null;
+        }
+    }
+
     private void UpdateRoomCount()
     {
         _roomCount = _clearedMaps.Count;
@@ -270,6 +304,14 @@ public class MapManager : MonoBehaviour
     {
         OnPortal = true;
         Debug.Log("포탈 열림");
+        UpdatePortalStatusUI();
+    }
+
+    public void DisablePortal()
+    {
+        OnPortal = false;
+        Debug.Log("포탈 닫힘");
+        UpdatePortalStatusUI();
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -351,6 +393,7 @@ public class MapManager : MonoBehaviour
             LoadMap(_mapPrefabs[0]);
         }
         UpdateTimerUI();
+        UpdatePortalStatusUI();
     }
 
     private void SendFunnelOnStageClear()
@@ -370,5 +413,20 @@ public class MapManager : MonoBehaviour
         int seconds = Mathf.FloorToInt(_playTime % 60);
 
         _timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+    }
+
+    private void UpdatePortalStatusUI()
+    {
+        if (_portalStatusText == null) return;
+
+        Color currentColor = _portalStatusText.color;
+        if (OnPortal)
+        {
+            _portalStatusText.color = new Color(currentColor.r, currentColor.g, currentColor.b, 1f);
+        }
+        else
+        {
+            _portalStatusText.color = new Color(currentColor.r, currentColor.g, currentColor.b, 0.3f);
+        }
     }
 }

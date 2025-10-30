@@ -34,6 +34,7 @@ namespace Game.Monster
         public const string Player = "Player";
         public const string Monster = "Monster";
         public const string Ground = "Ground";
+        public const string N = "N";
     }
 
     // 적 애니메이션 패러미터 문자열

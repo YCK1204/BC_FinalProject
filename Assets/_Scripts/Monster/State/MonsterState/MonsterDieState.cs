@@ -24,6 +24,7 @@ public class MonsterDieState : MonsterBaseState
         _stateMachine.Owner.Rb.linearVelocityY = 0f;
 
         Manager.Audio.Play(_stateMachine.Owner.MonsterData.Data.DieSfx, _stateMachine.Owner.transform);
+        _stateMachine.Owner.UnregisterDieEvent();
 
         if(_stateMachine.Owner.OnDiedEnter != null)
             _stateMachine.Owner.OnDiedEnter();

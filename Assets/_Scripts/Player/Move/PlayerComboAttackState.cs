@@ -3,6 +3,7 @@ using DG.Tweening;
 using Game.Monster;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 namespace Game.Player
 {
@@ -43,12 +44,16 @@ namespace Game.Player
             _stateMachine.Player.Animator.speed = _attackcombatData.AttackSpeed;
 
             _movementTween?.Kill();
+
             float initialForce = _stateMachine.FacingSign * _attackInfoData.Force;
             float forceDuration = _attackInfoData.AttackDuration / _attackcombatData.AttackSpeed * 0.75f;
-            _movementTween = _stateMachine.Player.Rb.DOMoveX(
-                _stateMachine.Player.Rb.position.x + initialForce * forceDuration,
-                forceDuration
-            ).SetEase(Ease.OutQuad);
+            if (forceDuration > 0)
+            {
+                _movementTween = _stateMachine.Player.Rb.DOMoveX(
+                    _stateMachine.Player.Rb.position.x + initialForce * forceDuration,
+                    forceDuration
+                ).SetEase(Ease.OutQuad);
+            }
 
             _timer = _attackInfoData.AttackDuration / _attackcombatData.AttackSpeed;
 
@@ -66,6 +71,15 @@ namespace Game.Player
             _hasBufferedInput = false;
 
             _stateMachine.AttackInputBuffered = false;
+
+            if (comboIndex == 0 || comboIndex == 1)
+            {
+                Manager.Audio.Play(AudioKey.Player.Skill.P_SKILL_SWORD1, _stateMachine.Player.transform);
+            }
+            else
+            {
+                Manager.Audio.Play(AudioKey.Player.Skill.P_SKILL_SWORD3, _stateMachine.Player.transform);
+            }
         }
 
         public override void Exit()
@@ -81,7 +95,18 @@ namespace Game.Player
             _stateMachine.Player.Rb.linearVelocity = new Vector2(0, _stateMachine.Player.Rb.linearVelocity.y);
         }
 
-        public override void PhysicsUpdate() { }
+        public override void PhysicsUpdate()
+        {
+            if (_movementTween != null && _movementTween.IsActive() && _stateMachine.Player.Rb != null)
+            {
+                float checkDistance = 0.5f;
+                if (!_stateMachine.Player.IsGroundInFront(checkDistance))
+                {
+                    _movementTween.Kill();
+                    _stateMachine.Player.Rb.linearVelocity = new Vector2(0, _stateMachine.Player.Rb.linearVelocity.y);
+                }
+            }
+        }
 
         public override void Update()
         {
@@ -145,6 +170,7 @@ namespace Game.Player
             float chance = Mathf.Max(0f, d.CriticalChance) * 0.01f;
             bool hitted = false;
 
+
             foreach (var col in cols)
             {
                 if (col == null) continue;
@@ -203,8 +229,19 @@ namespace Game.Player
                 }
             }
 
+            //PlayerManager.Instance.Player.Awkanim = "Awk" + _stateMachine.ComboIndex;
+            if (_stateMachine.Player.IsAwakened)
+            {
+                _stateMachine.Player.ShootShadow();
+            }
+
             if (hitted)
+            {
                 _stateMachine.Player.AttackHit();
+
+                if (PlayerManager.Instance != null)
+                    PlayerManager.Instance.Player.camShake.Shake(1f, 0.3f, 0.04f);
+            }
         }
     }
 }

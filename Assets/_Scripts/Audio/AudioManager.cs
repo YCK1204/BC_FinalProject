@@ -50,8 +50,34 @@ public class AudioManager : MonoBehaviour
     AudioSource _bgmSource;
 
     [Header("SetAudioSlider")]
-    [SerializeField] private Slider _bgmSlider;
-    [SerializeField] private Slider _sfxSlider;
+    private Slider _bgmSliderInternal;
+    public Slider BgmSlider
+    {
+        get { return _bgmSliderInternal; }
+        set
+        {
+            _bgmSliderInternal = value;
+            if (_bgmSliderInternal != null)
+            {
+                Debug.Log("BGM Slider assigned. Setting up.");
+                SetupSingleSlider(AudioMixerType.BGM, _bgmSliderInternal);
+            }
+        }
+    }
+    private Slider _sfxSliderInternal;
+    public Slider SfxSlider
+    {
+        get { return _sfxSliderInternal; }
+        set
+        {
+            _sfxSliderInternal = value;
+            if (_sfxSliderInternal != null)
+            {
+                Debug.Log("SFX Slider assigned. Setting up.");
+                SetupSingleSlider(AudioMixerType.EFFECT, _sfxSliderInternal);
+            }
+        }
+    }
 
     void Start()
     {
@@ -74,28 +100,18 @@ public class AudioManager : MonoBehaviour
         }
         _originalBgmVolume = GetVolume(AudioMixerType.BGM);
         StartCoroutine(CoCheckDisableLoop());
-
-        //볼륨세팅
-        SetupVolumeSliders();
     }
 
-    void SetupVolumeSliders()
+    void SetupSingleSlider(AudioMixerType type, Slider slider)
     {
-        if (_bgmSlider != null)
-        {
-            _bgmSlider.minValue = 0.0001f;
-            _bgmSlider.maxValue = 1f;
-            _bgmSlider.onValueChanged.AddListener((value) => SetVolume(AudioMixerType.BGM, value));
-            _bgmSlider.value = GetVolume(AudioMixerType.BGM);
-        }
+        if (slider == null) return;
 
-        if (_sfxSlider != null)
-        {
-            _sfxSlider.minValue = 0.0001f;
-            _sfxSlider.maxValue = 1f;
-            _sfxSlider.onValueChanged.AddListener((value) => SetVolume(AudioMixerType.EFFECT, value));
-            _sfxSlider.value = GetVolume(AudioMixerType.EFFECT);
-        }
+        slider.minValue = 0.0001f;
+        slider.maxValue = 1f;
+        slider.onValueChanged.RemoveAllListeners();
+        slider.onValueChanged.AddListener((value) => SetVolume(type, value));
+        slider.value = GetVolume(type);
+        Debug.Log($"Slider for {type.ToString()} initialized with value: {slider.value}");
     }
     void LoopStopAction(LoopingAudio la)
     {

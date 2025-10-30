@@ -18,6 +18,13 @@ public class DisplayManager : MonoBehaviour
     [Header("Clear UI")]
     [SerializeField] private Text _clearTimeText;
 
+    public ItemFieldUI ItemFieldUI;
+
+    public GameObject ItemText;
+    public GameObject PotalText;
+
+    public GameObject PotalFade;
+
     private const string _hubIn = "all_on";
     private const string _hubOut = "all_off";
     private const string _Clear = "clear";
@@ -30,9 +37,19 @@ public class DisplayManager : MonoBehaviour
     private const string _fadeOut3 = "off_UI3";
     public Action OnEnded;
 
+    [SerializeField] private Text _clearTimeSet;
+
+
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
 
@@ -53,7 +70,7 @@ public class DisplayManager : MonoBehaviour
     //보스 레이드 연출때 미니맵,hp바 안보이게 하기
     public void HubFadeOut()
     {
-        PlayerManager.Instance.Player.OnUI = false;
+        PlayerManager.Instance.Player.OnUI = true;
         _uiAnimator.Play(_hubOut);
         Debug.Log("HUB 끄기");
     }
@@ -61,7 +78,7 @@ public class DisplayManager : MonoBehaviour
     //hub 키기
     public void HubFadeIn()
     {
-        PlayerManager.Instance.Player.OnUI = true;
+        PlayerManager.Instance.Player.OnUI = false;
         _uiAnimator.Play(_hubIn);
         Debug.Log("HUB 켜기");
     }
@@ -86,19 +103,17 @@ public class DisplayManager : MonoBehaviour
     }
     private IEnumerator ClearCrt()
     {
-        PlayerManager.Instance.Player.OnUI = true;
+        PlayerManager.Instance.Player.OnUI = false;
         PlayerCharacter.Instance.Inventory.Reset();
 
         MapManager.Instance.SetTimerActive(false);
         float finalPlayTime = MapManager.Instance.CurrentPlayTime;
 
-        if (_clearTimeText != null)
-        {
-            int minutes = Mathf.FloorToInt(finalPlayTime / 60);
-            int seconds = Mathf.FloorToInt(finalPlayTime % 60);
-            _clearTimeText.text = $"{minutes:00}:{seconds:00}";
-            _clearTimeText.gameObject.SetActive(true);
-        }
+        int minutes = Mathf.FloorToInt(finalPlayTime / 60);
+        int seconds = Mathf.FloorToInt(finalPlayTime % 60);
+        _clearTimeText.text = $"{minutes:00}:{seconds:00}";
+
+        _clearTimeText.gameObject.SetActive(true);
 
         _uiAnimator.Play(_Clear);
 
@@ -110,13 +125,12 @@ public class DisplayManager : MonoBehaviour
         MapManager.Instance.InitFloor();
         _fadeAnimator.Play(_fadeOut2);
         yield return new WaitForSeconds(1f);
-        PlayerManager.Instance.Player.OnUI = false;
+        PlayerManager.Instance.Player.OnUI = true;
         PlayerManager.Instance.Player.Resurrection();
 
-        if (_clearTimeText != null)
-        {
-            _clearTimeText.gameObject.SetActive(false);
-        }
+        _clearTimeSet.text = $"클리어타임: {minutes:00}'{seconds:00}";
+
+        _clearTimeText.gameObject.SetActive(false);
     }
 
     public void EndClear()

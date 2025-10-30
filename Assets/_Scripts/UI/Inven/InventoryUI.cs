@@ -206,7 +206,7 @@ public class InventoryUI : MonoBehaviour
         }
 
         _tooltipPanelRect.sizeDelta = new Vector2(_tooltipPanelRect.sizeDelta.x, currentTooltipHeight);
-        _tooltipPanel_msgbox.sizeDelta = new Vector2(_tooltipPanelRect.sizeDelta.x, currentTooltipHeight - 10);
+        _tooltipPanel_msgbox.sizeDelta = new Vector2(_tooltipPanelRect.sizeDelta.x - 10, currentTooltipHeight - 10);
 
         _tooltipPanelRect.gameObject.SetActive(true);
     }
