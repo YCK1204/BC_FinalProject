@@ -12106,10 +12106,12 @@ MonoBehaviour:
       CriticalChance: 5
       CriticalDamage: 200
       SkillAttck: 10
-      SkillHaste: 10000
+      SkillHaste: 100
       CorruptionDuration: 10
       AttackPowerPercent: 0
       SkillAttckPercent: 0
+      HitEffectPrefab: {fileID: 4021103657954561961, guid: 5c755f9bc5253ea418e919994537dcc7, type: 3}
+      HitCriEffectPrefab: {fileID: 5880797563127281583, guid: 265d3a5ba69981a4698ceabcedf368b0, type: 3}
     HurtData:
       Duration: 0.15
       KnockbackX: 6
@@ -12286,6 +12288,7 @@ MonoBehaviour:
   _hitMultiplier2: 1.5
   _slashPrefab: {fileID: 4748125247279394270, guid: 8e2dc9461b53ddb4c93697c1f45af5f4, type: 3}
   _spawnOffset: {x: 0.3, y: 0}
+  _hitPrefab: {fileID: 2708598583397607911, guid: 132fb7e7ad879404dbfa5536ad51bfb8, type: 3}
 --- !u!114 &1333591366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12311,6 +12314,7 @@ MonoBehaviour:
   _kbPower: 3
   _duskPrefab: {fileID: 4748125247279394270, guid: eb1d15ce59e591541a4cb3631271ddab, type: 3}
   _spawnOffset: {x: 0, y: -0.1}
+  _hitPrefab: {fileID: 2708598583397607911, guid: 6398d43fe79ea0140913dc5530c646af, type: 3}
 --- !u!1 &1337428465
 GameObject:
   m_ObjectHideFlags: 0
