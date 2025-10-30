@@ -12155,9 +12155,9 @@ MonoBehaviour:
       AwakeningAnimDuration: 2
     SkillData:
       QSkillCastingDuration: 0.4
-      QSkillCooldown: 9
+      QSkillCooldown: 6
       WSkillCastingDuration: 0.5
-      WSkillCooldown: 10
+      WSkillCooldown: 8
   GroundCheck: {fileID: 1410422797}
   GroundRadius: 0.15
   GroundLayer:
@@ -12175,6 +12175,8 @@ MonoBehaviour:
   currentAwakening: 0
   awakeningEffect: {fileID: 1958834722}
   awakeningEffect_field: {fileID: 3616397566432808136}
+  _ShadowSlashProjectilePrefab: {fileID: 4748125247279394270, guid: 5e67d5fd8c2fc9e40970392a0b5181c4, type: 3}
+  Awkanim: 
   lastHitCritical: 0
   deadControl: {fileID: 1513123945}
   <ShadowSlashSkill>k__BackingField: {fileID: 0}

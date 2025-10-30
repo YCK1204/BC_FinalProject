@@ -16,8 +16,8 @@ public class ShadowSlashProjectile : MonoBehaviour
     private readonly List<IDamageable> _hitTargets = new List<IDamageable>();
 
     private EffectReturn _effectReturn;
-
     private PlayerCharacter _owner;
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -34,7 +34,6 @@ public class ShadowSlashProjectile : MonoBehaviour
             _effectReturn.AutoReturnTime = _lifeTime;
         }
     }
-
     public void Launch(PlayerCharacter owner)
     {
         _owner = owner;
