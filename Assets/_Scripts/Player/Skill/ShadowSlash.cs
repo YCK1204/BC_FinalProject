@@ -141,19 +141,19 @@ namespace Game.Player
                 owner.GainAwakeningGauge();
                 owner.GainAwakeningGauge();
 
-                if (targetRb != null)
-                {
-                    BaseMonster baseMonsterTarget = target as BaseMonster;
-                    if (baseMonsterTarget == null || baseMonsterTarget.IsSuperArmor)
-                    {
-                        // ss
-                    }
-                    else
-                    {
-                        Vector2 kbDir = new Vector2(facingSign, 0f).normalized;
-                        targetRb.AddForce(kbDir * _kbPower, ForceMode2D.Impulse);
-                    }
-                }
+                //if (targetRb != null)
+                //{
+                //    BaseMonster baseMonsterTarget = target as BaseMonster;
+                //    if (baseMonsterTarget == null || baseMonsterTarget.IsSuperArmor)
+                //    {
+                //        // ss
+                //    }
+                //    else
+                //    {
+                //        Vector2 kbDir = new Vector2(facingSign, 0f).normalized;
+                //        targetRb.AddForce(kbDir * _kbPower, ForceMode2D.Impulse);
+                //    }
+                //}
 
                 if (i < _hitCnt - 1)
                 {

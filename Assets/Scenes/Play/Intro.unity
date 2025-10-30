@@ -17607,6 +17607,8 @@ MonoBehaviour:
   currentAwakening: 0
   awakeningEffect: {fileID: 0}
   awakeningEffect_field: {fileID: 0}
+  _ShadowSlashProjectilePrefab: {fileID: 0}
+  Awkanim: 
   lastHitCritical: 0
   deadControl: {fileID: 0}
   <ShadowSlashSkill>k__BackingField: {fileID: 0}
