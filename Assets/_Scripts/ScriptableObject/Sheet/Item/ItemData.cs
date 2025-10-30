@@ -126,6 +126,7 @@ public class ItemData
         SynergyId = synergyId;
         IconURL = iconURL;
         EffectData = default(ItemEffectData);
+#if UNITY_EDITOR
         string matName = "Material";
         string toInsert = "";
         switch (ItemGrade)
@@ -139,6 +140,6 @@ public class ItemData
         }
         matName = matName.Insert(0, toInsert);
         Material = Extension.LoadWithAddresssableByGroup<Material>($"{matName}", "Item");
-        Debug.Log(matName);
+#endif
     }
 }

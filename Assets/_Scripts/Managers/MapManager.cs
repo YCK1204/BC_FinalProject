@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Cinemachine;
-using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -156,7 +155,7 @@ public class MapManager : MonoBehaviour
         if (_currentMapPrefab == _mapPrefabs[0])
         {
             LoadMap(_itemRoomPrefab);
-            StartCoroutine(ItemStageTrigger());
+            //StartCoroutine(ItemStageTrigger());
             Manager.Analytics.SendFunnelStep(FunnelStep.None, 11);
             Manager.Analytics.SendFunnelStep(FunnelStep._StageC, 3);
 

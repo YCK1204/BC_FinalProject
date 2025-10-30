@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b3c8c81ae4fc4349a4759e255acfd2d, type: 3}
   m_Name: Wind
   m_EditorClassIdentifier: Assembly-CSharp::ItemEffectAudioData
-  Clip: {fileID: 8300000, guid: 1f094d67a1a4f5f47bfbca4b25d88c7b, type: 3}
+  Clip: {fileID: 8300000, guid: 2e7c77ab0ec286842aed6b108600c320, type: 3}
   Loop: 1
+  Volume: 0.5
   audioKey: 0

@@ -2107,6 +2107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BoneReaper
   _dataHandler: {fileID: 0}
   MonsterCount: 1
+  IsSuperArmor: 0
   IsAttacking: 0
   IsDirecting: 0
   CurPhase: 0

@@ -1,3 +1,4 @@
+#if UNITY_EDITOR
 using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
@@ -154,3 +155,4 @@ public class AnimationKeyframeRespacer : EditorWindow
             "확인");
     }
 }
+#endif

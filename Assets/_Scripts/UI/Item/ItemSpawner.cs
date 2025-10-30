@@ -106,14 +106,19 @@ public class ItemSpawner : MonoBehaviour
             continue;
         }
 
+        var step = MapManager.Instance.GetCurrentFunnelStep();
+
         for (int i = 0; i < ItemSpawnInfos.Count; i++)
         {
             var item = Manager.Item.InstantiateItem(itemsData[i].Id);
             item.transform.position = ItemSpawnInfos[i];
-            item.gameObject.SetActive(false);
-            _spawnedItems.Add(item);
             Manager.Item.ItemIcons.TryGetValue(itemsData[i].Id, out var sprite);
             item.SetSprite(sprite);
+            if (step != FunnelStep.None)
+                item.gameObject.SetActive(false);
+            else
+                item.gameObject.SetActive(true);
+            _spawnedItems.Add(item);
         }
     }
     ItemGradeType GetRandomItemGrade()
