@@ -15,11 +15,6 @@ MonoBehaviour:
   m_GroupName: Buff
   m_GUID: 3307c85ef65d9cb4b837b6231db4c071
   m_SerializeEntries:
-  - m_GUID: 6c040a4e0c2cf5143b753cf2156c289a
-    m_Address: 2
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e2802fa57d0ea084cbd43620a555f555
     m_Address: 1
     m_ReadOnly: 0
