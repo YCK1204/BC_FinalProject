@@ -16,11 +16,8 @@ public class ItemSpawner : MonoBehaviour
     private void Start()
     {
         SpawnItems();
-        StartCoroutine(Extension.LateStart(() =>
-        {
-            Manager.Game.OnMonstersClear += ActiveItems;
-            PlayerCharacter.Instance.Inventory.OnItemAdded += RemoveItems;
-        }));
+        Manager.Game.OnMonstersClear += ActiveItems;
+        PlayerCharacter.Instance.Inventory.OnItemAdded += RemoveItems;
     }
     void OnDestroy()
     {
@@ -92,7 +89,7 @@ public class ItemSpawner : MonoBehaviour
                         }
                         break;
                     case ItemGradeType.Legendary:
-                        if(legendary.Count > 0)
+                        if (legendary.Count > 0)
                         {
                             var idx = Random.Range(0, legendary.Count);
                             itemsData.Add(legendary[idx]);
@@ -114,10 +111,10 @@ public class ItemSpawner : MonoBehaviour
             item.transform.position = ItemSpawnInfos[i];
             Manager.Item.ItemIcons.TryGetValue(itemsData[i].Id, out var sprite);
             item.SetSprite(sprite);
-            if (step != FunnelStep.None)
-                item.gameObject.SetActive(false);
-            else
-                item.gameObject.SetActive(true);
+            //if (step != FunnelStep.None)
+            //    item.gameObject.SetActive(false);
+            //else
+            item.gameObject.SetActive(true);
             _spawnedItems.Add(item);
         }
     }

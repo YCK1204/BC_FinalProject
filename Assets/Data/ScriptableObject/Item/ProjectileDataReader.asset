@@ -18,11 +18,11 @@ MonoBehaviour:
   END_ROW_LENGTH: 2
   DataList:
   - Id: 1
-    Duration: 2
+    Duration: 1
     MoveType: 0
     Speed: 3
-    Width: 1.5
-    Height: 2.1
+    Width: 1
+    Height: 4
     CollisionCount: 8
     Damage: 0.3
     ImageType: 0

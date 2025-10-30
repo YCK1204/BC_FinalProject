@@ -130,6 +130,7 @@ public class BoneReaper : BossMonster
         {
             PlayerManager.Instance.Player.OnDied += _bossUI.DisableUI;
             PlayerManager.Instance.Player.OnDied += StopBoss;
+            PlayerManager.Instance.Player.OnDied += DestroyBossOnPlayerDied;
         }
 
         _playerMask = LayerMask.GetMask(Game.Monster.Layers.Player);
@@ -182,6 +183,9 @@ public class BoneReaper : BossMonster
             return;
 
         _dataHandler.TakeDamage(damage);
+#if UNITY_EDITOR
+        Debug.Log($"[Damage] {name}이 받은 피해: {damage}");
+#endif
         OnHealthchanged?.Invoke();
         CheckFunnel();
         if (_dataHandler.CurHp <= 0)
@@ -468,6 +472,11 @@ public class BoneReaper : BossMonster
     private void DestroyOnDeath()
     {
         Destroy(gameObject);
+    }
+
+    private void DestroyBossOnPlayerDied()
+    {
+        Invoke("DestroyOnDeath", 2f);
     }
 
     private void StopBoss()

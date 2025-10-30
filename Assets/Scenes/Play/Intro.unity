@@ -17436,7 +17436,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 686abc175d3a27244a25b496aaf89c8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameSystem.Player
-  OnTrait: 0
+  OnUI: 0
   Interactables: []
   SpriteRenderer: {fileID: 310275703}
   PlayerMaterial: {fileID: 0}
@@ -17544,6 +17544,7 @@ MonoBehaviour:
   currentHP: 100
   currentAwakening: 0
   awakeningEffect: {fileID: 0}
+  awakeningEffect_field: {fileID: 0}
   lastHitCritical: 0
   deadControl: {fileID: 0}
   <ShadowSlashSkill>k__BackingField: {fileID: 0}
