@@ -1,7 +1,5 @@
 using Game.Player;
 using System;
-using UnityEditor;
-using UnityEditor.AddressableAssets;
 using UnityEngine;
 
 public enum ImageType
@@ -48,7 +46,7 @@ public class ItemProjectileData : ItemAbilityEvent
         Sprite = null;
         AudioKey = audioKey;
 
-
+#if UNITY_EDITOR
         switch (imageType)
         {
             case ImageType.Animation:
@@ -62,6 +60,7 @@ public class ItemProjectileData : ItemAbilityEvent
                     Debug.LogError($"Sprite with ID {imageId} not found in Addressables group 'Projectile'");
                 break;
         }
+#endif
     }
     public void OnEvent(PlayerCharacter player)
     {

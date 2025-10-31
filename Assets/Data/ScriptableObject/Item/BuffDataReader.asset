@@ -16,4 +16,20 @@ MonoBehaviour:
   associatedWorksheet: "\uBC84\uD50403"
   START_ROW_LENGTH: 2
   END_ROW_LENGTH: 2
-  DataList: []
+  DataList:
+  - Id: 1
+    Duration: 3
+    MaxCount: 1
+    Stat1:
+      ItemExtraStatType: 8
+      ItemTriggerType: 5
+      Value: 20
+    Stat2:
+      ItemExtraStatType: 9
+      ItemTriggerType: 5
+      Value: 10
+    IconURL: '-'
+    Name: "\uC608\uB9AC\uD568"
+    DescriptionId: 9101
+    Icon: {fileID: 7674013346276338986, guid: e2802fa57d0ea084cbd43620a555f555, type: 3}
+    Desc: 

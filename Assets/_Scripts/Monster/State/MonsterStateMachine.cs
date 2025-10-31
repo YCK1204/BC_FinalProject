@@ -67,11 +67,13 @@ public class MonsterStateMachine : Game.Monster.IStateMachine<StateMachineMonste
 
     public void Update()
     {
+#if UNITY_EDITOR
         if (Input.GetKeyDown(KeyCode.P))
         {
             ChangeState(Game.Monster.StateType.Die);
             return;
         }
+#endif
         curState?.Update();
     }
 

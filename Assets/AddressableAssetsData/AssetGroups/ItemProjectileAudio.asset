@@ -15,7 +15,7 @@ MonoBehaviour:
   m_GroupName: ItemProjectileAudio
   m_GUID: 67831c5dfe3d4994eb0538bcb07e34d1
   m_SerializeEntries:
-  - m_GUID: 1f094d67a1a4f5f47bfbca4b25d88c7b
+  - m_GUID: 2e7c77ab0ec286842aed6b108600c320
     m_Address: 1
     m_ReadOnly: 0
     m_SerializedLabels: []

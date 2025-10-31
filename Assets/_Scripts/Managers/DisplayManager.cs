@@ -1,4 +1,5 @@
 using Game.Player;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -34,6 +35,7 @@ public class DisplayManager : MonoBehaviour
     private const string _fadeOut = "off_UI";
     private const string _fadeOut2 = "off_UI2";
     private const string _fadeOut3 = "off_UI3";
+    public Action OnEnded;
 
     [SerializeField] private Text _clearTimeSet;
 
@@ -127,6 +129,7 @@ public class DisplayManager : MonoBehaviour
         PlayerManager.Instance.Player.Resurrection();
 
         _clearTimeSet.text = $"클리어타임: {minutes:00}'{seconds:00}";
+        OnEnded?.Invoke();
 
         _clearTimeText.gameObject.SetActive(false);
     }

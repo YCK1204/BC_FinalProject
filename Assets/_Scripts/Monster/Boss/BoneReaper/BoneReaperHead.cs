@@ -184,7 +184,7 @@ public class BoneReaperHead : MonoBehaviour, IDamageable
         _owner.IsInvincible = true;
         _owner.HitFlash(_sr, _hitEffect, _originMat);
         _owner.TakeDamage(damage, hitSfxMute);
-        DamageIndicator.Instance.GetDamage(transform.position + Vector3.up * 0.5f, damage);
+        DamageIndicator.Instance.GetDamage(transform.position + Vector3.up * 4f + Vector3.left * 0.2f, damage);
     }
 
     public void Die()

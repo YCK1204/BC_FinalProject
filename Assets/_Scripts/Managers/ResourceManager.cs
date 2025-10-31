@@ -4,8 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Unity.VisualScripting;
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.AddressableAssets;
+#endif
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -199,6 +201,7 @@ public class ResourceManager
         Debug.LogError($"Failed to load asset: {name}");
         return null;
     }
+#if UNITY_EDITOR
     /// <summary>
     /// 그룹 및 이름으로 에셋 동기 로드
     /// </summary>
@@ -247,6 +250,7 @@ public class ResourceManager
         }
         return null;
     }
+#endif
     /// <summary>
     /// Component 타입 라벨에 해당하는 모든 에셋 동기 로드
     /// </summary>

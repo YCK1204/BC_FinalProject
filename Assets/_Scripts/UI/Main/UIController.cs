@@ -164,11 +164,7 @@ public class UIController : MonoBehaviour
     public void ShowSettingUI() => ChangeState(UiState.Setting);
     public void ExitGame()
     {
-#if UNITY_WEBGL && !UNITY_EDITOR
-        CloseBrowserTab();
-#else
         Application.Quit();
-#endif
     }
 
     public void BackUI()

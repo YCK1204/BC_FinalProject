@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Manager : MonoBehaviour
 {
-    static Manager Instance;
+    public static Manager Instance;
     private void Awake()
     {
         if (Instance == null)
@@ -21,6 +21,7 @@ public class Manager : MonoBehaviour
     {
         if (Instance._isInit)
             return;
+        Screen.SetResolution(1920, 1080, false);
         Data.Load();
         Pool.Init();
         Item.Init();
