@@ -40,7 +40,7 @@ public class ShadowSlashProjectile : MonoBehaviour
     {
         _owner = owner;
         _startPos = transform.position;
-        _damage = owner.Data.CombatData.SkillAttck * _damageMult;
+        _damage = (owner.Data.CombatData.SkillAttck * ( 1 + owner.Data.CombatData.SkillAttckPercent)) * _damageMult;
         _rb.linearVelocity = transform.right * _speed;
     }
 
