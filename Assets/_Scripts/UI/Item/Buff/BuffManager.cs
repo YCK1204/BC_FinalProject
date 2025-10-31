@@ -1,7 +1,4 @@
-using DG.Tweening;
 using Game.Player;
-using Game.Traits.UI;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
