@@ -111,10 +111,8 @@ public class ItemSpawner : MonoBehaviour
             item.transform.position = ItemSpawnInfos[i];
             Manager.Item.ItemIcons.TryGetValue(itemsData[i].Id, out var sprite);
             item.SetSprite(sprite);
-            //if (step != FunnelStep.None)
-            //    item.gameObject.SetActive(false);
-            //else
-            item.gameObject.SetActive(true);
+            if (step != FunnelStep.None)
+                item.gameObject.SetActive(false);
             _spawnedItems.Add(item);
         }
     }

@@ -129,6 +129,7 @@ public class DisplayManager : MonoBehaviour
         PlayerManager.Instance.Player.Resurrection();
 
         _clearTimeSet.text = $"클리어타임: {minutes:00}'{seconds:00}";
+        OnEnded?.Invoke();
 
         _clearTimeText.gameObject.SetActive(false);
     }
@@ -136,6 +137,5 @@ public class DisplayManager : MonoBehaviour
     public void EndClear()
     {
         _fadeAnimator.Play(_fadeOut);
-        OnEnded?.Invoke();
     }
 }

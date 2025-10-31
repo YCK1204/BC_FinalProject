@@ -44,7 +44,11 @@ public class AreaController : MonoBehaviour
                     bounds = owner.transform.FindChild<SpriteRenderer>().bounds;
                 break;
             case ItemEffectCreatePosType.WithInRangeEnemy:
-                bounds = GetInRangeEnemyPosition(owner).FindChild<SpriteRenderer>().bounds;
+                var ranPos = GetInRangeEnemyPosition(owner);
+                var renderer = ranPos.GetComponent<SpriteRenderer>();
+                if (renderer == null)
+                    renderer = ranPos.FindChild<SpriteRenderer>(true);
+                bounds = renderer.bounds;
                 break;
         }
 
@@ -129,7 +133,7 @@ public class AreaController : MonoBehaviour
         var data = PlayerCharacter.Instance.Data.CombatData;
         foreach (var hit in hits)
         {
-            var monster = hit.GetComponent<NormalMonster>();
+            var monster = hit.GetComponent<IDamageable>();
             monster.TakeDamage(data.SkillAttck * (1 + data.SkillAttckPercent) * _data.Damage);
         }
     }

@@ -15,12 +15,6 @@ MonoBehaviour:
   m_GroupName: Projectile
   m_GUID: adff99db7c143044394834594fffdb1c
   m_SerializeEntries:
-  - m_GUID: 00e71d7ccb578c3458fb6e016c786638
-    m_Address: 1
-    m_ReadOnly: 0
-    m_SerializedLabels:
-    - ProjectileSprite
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 566d7d2e1648a3547aaad57e2f347496
     m_Address: 2
     m_ReadOnly: 0
