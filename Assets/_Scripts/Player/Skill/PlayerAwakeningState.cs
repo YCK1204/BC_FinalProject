@@ -26,6 +26,8 @@ namespace Game.Player
             PlayerManager.Instance.Player.camShake.ShakeAfterDelay(1.45f,5f, 3f, 0.2f);
 
             PlayerManager.Instance.Player.StartCoroutine(PlayerManager.Instance.Player.OnAwken(1.55f));
+
+            _stateMachine.InputActive = false;
         }
 
         public override void Update()
@@ -56,6 +58,7 @@ namespace Game.Player
             Debug.Log("페이드아웃");
 
             PlayerManager.Instance.Player.camShake.Shake(2f, 2f, 0.2f);
+            _stateMachine.InputActive = true;
         }
 
         public override void PhysicsUpdate()
