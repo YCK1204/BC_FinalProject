@@ -69,7 +69,7 @@ public class PlayerStatsUI : MonoBehaviour
         PlayerCombatData combatData = playerCharacter.Data.CombatData;
 
         if (attackPowerText != null) attackPowerText.text = Mathf.RoundToInt(combatData.AttackPower).ToString();
-        if (extraDamageText != null) extraDamageText.text = Mathf.RoundToInt(combatData.ExtraDamage).ToString();
+        if (extraDamageText != null) extraDamageText.text = Mathf.RoundToInt(combatData.AttackPowerPercent * 100).ToString() + "%";
         if (attackSpeedText != null) attackSpeedText.text = combatData.AttackSpeed.ToString("F1");
         if (criticalDamageText != null) criticalDamageText.text = Mathf.RoundToInt(combatData.CriticalDamage).ToString() + "%";
         if (criticalChanceText != null) criticalChanceText.text = Mathf.RoundToInt(combatData.CriticalChance).ToString() + "%";
