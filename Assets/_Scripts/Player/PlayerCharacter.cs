@@ -556,10 +556,10 @@ namespace Game.Player
                 Interactables[Interactables.Count - 1].OnInteract();
             }
 
-            //if (kb != null && kb.rKey.wasPressedThisFrame)
-            //{
-            //    Die();
-            //}
+            if (kb != null && kb.rKey.wasPressedThisFrame)
+            {
+                Die();
+            }
 
             if (kb != null && kb.iKey.wasPressedThisFrame)
             {
