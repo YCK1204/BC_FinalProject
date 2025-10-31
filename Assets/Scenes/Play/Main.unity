@@ -5740,7 +5740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &618567832
 Transform:
   m_ObjectHideFlags: 0
@@ -13719,7 +13719,7 @@ MonoBehaviour:
   _bloomMax: 5
   _bloomSpeed: 3
   _pickObject: {fileID: 596154814}
-  _choiceDumy: {fileID: 1613450755}
+  _choiceDumy: {fileID: 618567831}
   _camShake: {fileID: 138208472}
 --- !u!1 &1513150352
 GameObject:
@@ -14456,7 +14456,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1613450756
 Transform:
   m_ObjectHideFlags: 0
@@ -14466,7 +14466,7 @@ Transform:
   m_GameObject: {fileID: 1613450755}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.994334, y: -0.046097822, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.8000001, y: 0.8000001, z: 0.79999995}
   m_ConstrainProportionsScale: 1
   m_Children:
