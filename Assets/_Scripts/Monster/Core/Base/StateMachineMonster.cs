@@ -119,6 +119,7 @@ public abstract class StateMachineMonster : NormalMonster
 
     public void UnregisterDieEvent()
     {
-        PlayerManager.Instance.Player.OnDied -= OnPlayerDied;
+        if(PlayerManager.Instance != null)
+            PlayerManager.Instance.Player.OnDied -= OnPlayerDied;
     }
 }
