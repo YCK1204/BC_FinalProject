@@ -338,7 +338,11 @@ public class BoneReaperHand : MonoBehaviour, IDamageable
         _owner.IsInvincible = true;
         _owner.HitFlash(_sr, _hitEffect, _originMat);
         _owner.TakeDamage(damage, hitSfxMute);
-        DamageIndicator.Instance.GetDamage(transform.position + Vector3.up * 0.5f, damage);
+
+        float xMargin = 2f;
+        if (transform.localScale.x < 0)
+            xMargin = -3f;
+        DamageIndicator.Instance.GetDamage(transform.position + Vector3.up * 3f + Vector3.left * xMargin, damage);
     }
 
     public void Die()
