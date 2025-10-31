@@ -21,7 +21,7 @@ MonoBehaviour:
     Condition: 0
     Nmae: "\uBC88\uAC1C"
     ActionType: 3
-    Chance: 25
+    Chance: 15
     SpecialAbilityId: 1
     AbilityType: 0
     Cooldown: 0
@@ -57,7 +57,7 @@ MonoBehaviour:
     Condition: 0
     Nmae: "\uC608\uB9AC\uD568"
     ActionType: 4
-    Chance: 50
+    Chance: 100
     SpecialAbilityId: 1
     AbilityType: 1
     Cooldown: 0

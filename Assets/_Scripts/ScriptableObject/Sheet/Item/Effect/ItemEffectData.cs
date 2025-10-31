@@ -96,14 +96,14 @@ public class ItemEffectData
             case ItemActionType.Always:
                 PlayerCharacter.Instance.OnDied += Clear;
                 DisplayManager.Instance.OnEnded += Clear;
-                _coAlwaysEffect = PlayerCharacter.Instance.StartCoroutine(CoAlwaysEffect());
+                _coAlwaysEffect = Manager.Instance.StartCoroutine(CoAlwaysEffect());
                 break;
         }
     }
     void Clear()
     {
         if (_coAlwaysEffect != null)
-            PlayerCharacter.Instance.StopCoroutine(_coAlwaysEffect);
+            Manager.Instance.StopCoroutine(_coAlwaysEffect);
     }
     float _lastEventTime;
     Coroutine _coAlwaysEffect = null;

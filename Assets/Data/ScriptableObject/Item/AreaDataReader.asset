@@ -21,15 +21,15 @@ MonoBehaviour:
     CreatePosType: 2
     DetailPosition: 7
     DetectionRange: 5
-    Radius: 0.85
-    Damage: 1.5
+    Radius: 1.7
+    Damage: 3
     Animator: {fileID: 9100000, guid: 135ea94c38fac68479fbc28f9c02d4a2, type: 2}
     AudioKey: 1
   - Id: 2
     CreatePosType: 0
     DetailPosition: 4
     DetectionRange: 10
-    Radius: 1.27
-    Damage: 1.7
+    Radius: 3.5
+    Damage: 6
     Animator: {fileID: 9100000, guid: 487117d0b5a3d2844a1347b94d837284, type: 2}
     AudioKey: 2

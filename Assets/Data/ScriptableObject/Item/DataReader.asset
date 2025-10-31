@@ -203,8 +203,7 @@ MonoBehaviour:
       AbilityType: 0
       Cooldown: 0
       DescId: 0
-    SynergyText: "\uC77C\uBC18 \uACF5\uACA9 \uC801\uC911 \uC2DC, 3\uCD08 \uB3D9\uC548
-      \uC608\uB9AC\uD568 \uBC84\uD504 \uD68D\uB4DD"
+    SynergyText: 
     EffectText: 
     Material: {fileID: 2100000, guid: ef525ef8e1990b64cac98aa764f6fe88, type: 2}
   - Id: 1301
@@ -330,16 +329,15 @@ MonoBehaviour:
     SynergyId: 0
     ItemGrade: 3
     EffectData:
-      Id: 2
+      Id: 0
       Condition: 0
-      Nmae: "\uB291\uB300"
+      Nmae: 
       ActionType: 0
-      Chance: 100
-      SpecialAbilityId: 2
+      Chance: 0
+      SpecialAbilityId: 0
       AbilityType: 0
-      Cooldown: 20
-      DescId: 9002
+      Cooldown: 0
+      DescId: 0
     SynergyText: 
-    EffectText: "20\uCD08 \uB9C8\uB2E4 \uC6B8\uC74C\uC18C\uB9AC\uB97C \uC0DD\uC131\uD574
-      \uC8FC\uC704 \uC801\uC5D0\uAC8C \uD53C\uD574"
+    EffectText: 
     Material: {fileID: 2100000, guid: 27a4590ae5c6ae04cb874da8d6e042bb, type: 2}
