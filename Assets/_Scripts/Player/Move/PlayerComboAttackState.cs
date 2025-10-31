@@ -229,7 +229,6 @@ namespace Game.Player
                 }
             }
 
-            //PlayerManager.Instance.Player.Awkanim = "Awk" + _stateMachine.ComboIndex;
             if (_stateMachine.Player.IsAwakened)
             {
                 _stateMachine.Player.ShootShadow();
@@ -238,7 +237,6 @@ namespace Game.Player
             if (hitted)
             {
                 _stateMachine.Player.AttackHit();
-
                 if (PlayerManager.Instance != null)
                     PlayerManager.Instance.Player.camShake.Shake(1f, 0.3f, 0.04f);
             }

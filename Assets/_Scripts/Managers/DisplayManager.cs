@@ -103,7 +103,7 @@ public class DisplayManager : MonoBehaviour
     }
     private IEnumerator ClearCrt()
     {
-        PlayerManager.Instance.Player.OnUI = false;
+        PlayerManager.Instance.Player.OnUI = true;
         PlayerCharacter.Instance.Inventory.Reset();
 
         MapManager.Instance.SetTimerActive(false);
@@ -125,7 +125,7 @@ public class DisplayManager : MonoBehaviour
         MapManager.Instance.InitFloor();
         _fadeAnimator.Play(_fadeOut2);
         yield return new WaitForSeconds(1f);
-        PlayerManager.Instance.Player.OnUI = true;
+        PlayerManager.Instance.Player.OnUI = false;
         PlayerManager.Instance.Player.Resurrection();
 
         _clearTimeSet.text = $"클리어타임: {minutes:00}'{seconds:00}";

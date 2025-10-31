@@ -30,6 +30,7 @@ public class DeadControl : MonoBehaviour
 
     [Header("Interaction")]
     [SerializeField] private GameObject _pickObject;
+    [SerializeField] private GameObject _choiceDumy;
 
     [SerializeField] private CameraShake _camShake;
 
@@ -111,6 +112,8 @@ public class DeadControl : MonoBehaviour
 
         _gameOverText.gameObject.SetActive(true);
         yield return StartCoroutine(AgainText(_message));
+
+        _choiceDumy.SetActive(true);
     }
 
     IEnumerator AgainText(string text)
@@ -161,6 +164,7 @@ public class DeadControl : MonoBehaviour
         _canInteract = false;
         _isMouseOver = false;
         _pickObject.SetActive(false);
+        _choiceDumy.SetActive(false);
 
         PlayerManager.Instance.Player.SetPlayerInput(false);
 

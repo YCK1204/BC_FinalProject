@@ -17601,7 +17601,7 @@ MonoBehaviour:
   runtimeMoveSpeed: 5
   runtimeVelocity: {x: 0, y: 0}
   currentHP: 100
-  currentAwakening: 0
+  currentAwakening: 100
   awakeningEffect: {fileID: 0}
   awakeningEffect_field: {fileID: 0}
   _ShadowSlashProjectilePrefab: {fileID: 0}

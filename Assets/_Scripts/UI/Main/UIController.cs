@@ -54,18 +54,34 @@ public class UIController : MonoBehaviour
     {
         if (_isState) return;
 
-        // Test
-        if (Input.GetKeyDown(KeyCode.Escape) && !PlayerManager.Instance.Player.OnUI && !PlayerManager.Instance.Player.IsDead)
+        if (!PlayerManager.Instance.Player.OnUI && !PlayerManager.Instance.Player.IsDead)
         {
-            Debug.Log($"esc - {CurrentState}");
-            if (CurrentState == UiState.Main)
+            if (Input.GetKeyDown(KeyCode.Escape))
             {
-                _uiFade.Play("off_UI", 0, 0f);
-                HideUI();
-                DisplayManager.Instance.SetPPC(true, 0.5f);
+                Debug.Log($"esc - {CurrentState}");
+                if (CurrentState == UiState.Main)
+                {
+                    _uiFade.Play("off_UI", 0, 0f);
+                    HideUI();
+                    DisplayManager.Instance.SetPPC(true, 0.5f);
+                }
+                else if (CurrentState == UiState.Hidden)
+                {
+                    _uiFade.Play("on_UI", 0, 0f);
+                    Animator.Play("show", 0, 0f);
+                    Animator.SetInteger("State", 1);
+                    PlayerManager.Instance.Player.Animator.Play("Phon");
+                    ShowNormalView();
+                    DisplayManager.Instance.SetPPC(false);
+                }
+                else
+                {
+                    BackUI();
+                }
             }
-            else if (CurrentState == UiState.Hidden) 
+            else if (Input.GetMouseButtonDown(0) && CurrentState == UiState.Hidden)
             {
+                Debug.Log($"mouse click to open - {CurrentState}");
                 _uiFade.Play("on_UI", 0, 0f);
                 Animator.Play("show", 0, 0f);
                 Animator.SetInteger("State", 1);
@@ -73,11 +89,10 @@ public class UIController : MonoBehaviour
                 ShowNormalView();
                 DisplayManager.Instance.SetPPC(false);
             }
-            else
+            else if (CurrentState != UiState.Main && CurrentState != UiState.Hidden)
             {
-                BackUI();
+                // BackUI();
             }
-                
         }
     }
 
