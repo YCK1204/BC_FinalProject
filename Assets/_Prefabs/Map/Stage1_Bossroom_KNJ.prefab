@@ -3858,6 +3858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e3fc225ad0b64d47bceb8dea6a4e076, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Portal
+  _portalFade: {fileID: 0}
 --- !u!1 &5209432599613297391
 GameObject:
   m_ObjectHideFlags: 0

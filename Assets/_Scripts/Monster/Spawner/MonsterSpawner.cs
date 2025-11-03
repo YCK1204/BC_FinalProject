@@ -91,11 +91,13 @@ public abstract class MonsterSpawner : MonoBehaviour
     {
         if (_isSpawned) return;
 
+        int numForSort = 1;
         foreach (var info in SpawnInfos)
         {
             if (info.Prefab == null) continue;
             var monster = Manager.Resource.Instantiate<BaseMonster>(info.Prefab);
             SpawnedCount += monster.MonsterCount;
+            monster.transform.FindChild<SpriteRenderer>(true).sortingOrder += numForSort;
             monster.OnDied += () =>
             {
                 SpawnedCount--;
