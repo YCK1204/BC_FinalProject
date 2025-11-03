@@ -54,7 +54,7 @@ public class BoneReaperHead : MonoBehaviour, IDamageable
 
     public void BreathAttack(float size)
     {
-        Manager.Audio.Play(AudioKey.Monster.Attack.M_ATK_BOSS_BREATH, transform);
+        //Manager.Audio.Play(AudioKey.Monster.Attack.M_ATK_BOSS_BREATH, transform);
 
         Collider2D target;
 
@@ -211,5 +211,17 @@ public class BoneReaperHead : MonoBehaviour, IDamageable
     public void EndLaser()
     {
         Manager.Audio.StopLoop(transform);
+    }
+
+    public void PlayBossSfx(AudioKey.Monster.Attack sfx)
+    {
+        Manager.Audio.Play(sfx, transform);
+    }
+
+    public IEnumerator DelayAnimation(float delay)
+    {
+        _anim.speed = 0;
+        yield return new WaitForSeconds(delay);
+        _anim.speed = 1;
     }
 }
