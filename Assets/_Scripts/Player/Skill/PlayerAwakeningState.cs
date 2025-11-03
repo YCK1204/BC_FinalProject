@@ -23,9 +23,9 @@ namespace Game.Player
 
             DisplayManager.Instance.FadeIn();
             PlayerManager.Instance.Player.camShake.Shake(0.15f, 0.15f, 1.6f);
-            PlayerManager.Instance.Player.camShake.ShakeAfterDelay(1.45f,5f, 3f, 0.2f);
+            PlayerManager.Instance.Player.camShake.ShakeAfterDelay(1.1f,5f, 3f, 0.2f);
 
-            PlayerManager.Instance.Player.StartCoroutine(PlayerManager.Instance.Player.OnAwken(1.55f));
+            PlayerManager.Instance.Player.StartCoroutine(PlayerManager.Instance.Player.OnAwken(1.15f));
         }
 
         public override void Update()

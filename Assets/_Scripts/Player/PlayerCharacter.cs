@@ -404,12 +404,15 @@ namespace Game.Player
             currentAwakening = awakeningData.MaxAwakeningGauge;
             float totalDuration = Data.awakening.Duration;
             Data.CombatData.AttackRange = 1.6f;
+            Data.DashData.Cooldown = 0.5f;
             Data.GroundData.BaseSpeed = Data.GroundData.BaseSpeed+1;
 
             Animator.runtimeAnimatorController = awakenedAnimator;
 
             awakeningEffect.SetActive(true);
-            
+
+            PlayerManager.Instance.CooldownQ.ShowCooldown();
+            PlayerManager.Instance.CooldownW.ShowCooldown();
 
             StartCoroutine(AwakeningTimer(totalDuration));
         }
@@ -439,10 +442,13 @@ namespace Game.Player
             IsAwakened = false;
             Data.CombatData.AttackRange = 1.1f;
             Data.GroundData.BaseSpeed = Data.GroundData.BaseSpeed - 1f;
+            Data.DashData.Cooldown = 2f;
 
             Animator.runtimeAnimatorController = normalAnimator;
 
             awakeningEffect.SetActive(false);
+            PlayerManager.Instance.CooldownQ.HideCooldown();
+            PlayerManager.Instance.CooldownW.HideCooldown();
 
             AwakeningEvent?.Invoke(currentAwakening, Data.awakening.MaxAwakeningGauge);
             StartCoroutine(OnAwken(0f));
@@ -456,7 +462,6 @@ namespace Game.Player
 
             if (_ShadowSlashProjectilePrefab == null)
             {
-                Debug.LogError("ShadowSlashProjectile Prefab is null! Assign it in the Inspector.");
                 return;
             }
 
@@ -469,7 +474,6 @@ namespace Game.Player
 
             if (projectileGO == null)
             {
-                Debug.LogError("Failed to get ShadowSlashProjectile from pool.");
                 return;
             }
 
