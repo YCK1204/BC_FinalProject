@@ -11970,8 +11970,8 @@ MonoBehaviour:
     awakening:
       MaxAwakeningGauge: 100
       AwakeningOnHit: 1
-      Duration: 10
-      AwakeningAnimDuration: 2
+      Duration: 15
+      AwakeningAnimDuration: 1
     SkillData:
       QSkillCastingDuration: 0.4
       QSkillCooldown: 6

@@ -16,7 +16,7 @@ namespace Game.Player
 
         public override void Enter()
         {
-            PlayerManager.Instance?.CooldownS?.StartCooldown(_stateMachine.DashCooldown);
+            PlayerManager.Instance?.CooldownS?.StartCooldown(PlayerManager.Instance.Player.Data.DashData.Cooldown);
 
             _stateMachine.IsDashing = true;
             _timer = _stateMachine.DashDuration;

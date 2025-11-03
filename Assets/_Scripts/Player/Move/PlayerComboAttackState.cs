@@ -171,69 +171,76 @@ namespace Game.Player
             bool hitted = false;
 
 
-
-            foreach (var col in cols)
-            {
-                if (col == null) continue;
-                if (col.transform.IsChildOf(_stateMachine.Player.transform)) continue;
-
-                if (col.gameObject.layer == LayerMask.NameToLayer("Destructible"))
-                {
-                    var d2dDmg = col.gameObject.transform.parent.GetComponent<D2dDamage>();
-                    if (d2dDmg != null)
-                    {
-                        d2dDmg.Damage++;
-                    }
-                    continue;
-                }
-
-                var target = col.GetComponentInParent<IDamageable>();
-                if (target != null && !_hitTargets.Contains(target))
-                {
-                    //체력 예외처리
-                    if (target is BaseMonster baseMonsterTarget && baseMonsterTarget.MonsterData.CurHp <= 0)
-                    {
-                        continue;
-                    }
-
-                    hitted = true;
-                    _hitTargets.Add(target);
-
-                    Rigidbody2D targetRb = col.attachedRigidbody;
-                    bool isCrit = Random.value < chance;
-                    float mult = isCrit ? Mathf.Max(1f, d.CriticalDamage * 0.01f) : 1f;
-
-                    if (targetRb != null)
-                    {
-                        baseMonsterTarget = target as BaseMonster;
-                        if (baseMonsterTarget == null || baseMonsterTarget.IsSuperArmor)
-                        {
-                            //예외
-                        }
-                        else
-                        {
-                            float power = _attackInfoData.KnockbackPower;
-                            power = isCrit ? power * 1.2f : power;
-                            Vector2 knockDir = new Vector2(_stateMachine.FacingSign, 0f).normalized;
-                            targetRb.linearVelocity = knockDir * power;
-                        }
-                    }
-
-
-                    int damage = Mathf.RoundToInt(baseDmg * mult * _attackInfoData.DamageSet);
-
-                    _stateMachine.Player.GainAwakeningGauge();
-                    target.TakeDamage(damage);
-                    _stateMachine.Player.MarkLastHitCritical(isCrit);
-
-                    if (isCrit) Debug.Log("Critical!! " + target.ToString());
-                }
-            }
-
             if (_stateMachine.Player.IsAwakened)
             {
                 _stateMachine.Player.ShootShadow();
+
+                if (PlayerManager.Instance != null)
+                    PlayerManager.Instance.Player.camShake.Shake(1f, 0.4f, 0.04f);
             }
+            else
+            {
+                foreach (var col in cols)
+                {
+                    if (col == null) continue;
+                    if (col.transform.IsChildOf(_stateMachine.Player.transform)) continue;
+
+                    if (col.gameObject.layer == LayerMask.NameToLayer("Destructible"))
+                    {
+                        var d2dDmg = col.gameObject.transform.parent.GetComponent<D2dDamage>();
+                        if (d2dDmg != null)
+                        {
+                            d2dDmg.Damage++;
+                        }
+                        continue;
+                    }
+
+                    var target = col.GetComponentInParent<IDamageable>();
+                    if (target != null && !_hitTargets.Contains(target))
+                    {
+                        //체력 예외처리
+                        if (target is BaseMonster baseMonsterTarget && baseMonsterTarget.MonsterData.CurHp <= 0)
+                        {
+                            continue;
+                        }
+
+                        hitted = true;
+                        _hitTargets.Add(target);
+
+                        Rigidbody2D targetRb = col.attachedRigidbody;
+                        bool isCrit = Random.value < chance;
+                        float mult = isCrit ? Mathf.Max(1f, d.CriticalDamage * 0.01f) : 1f;
+
+                        if (targetRb != null)
+                        {
+                            baseMonsterTarget = target as BaseMonster;
+                            if (baseMonsterTarget == null || baseMonsterTarget.IsSuperArmor)
+                            {
+                                //예외
+                            }
+                            else
+                            {
+                                float power = _attackInfoData.KnockbackPower;
+                                power = isCrit ? power * 1.2f : power;
+                                Vector2 knockDir = new Vector2(_stateMachine.FacingSign, 0f).normalized;
+                                targetRb.linearVelocity = knockDir * power;
+                            }
+                        }
+
+
+                        int damage = Mathf.RoundToInt(baseDmg * mult * _attackInfoData.DamageSet);
+
+                        _stateMachine.Player.GainAwakeningGauge();
+                        target.TakeDamage(damage);
+                        _stateMachine.Player.MarkLastHitCritical(isCrit);
+
+                        if (isCrit) Debug.Log("Critical!! " + target.ToString());
+                    }
+                }
+            }
+
+
+
 
             if (hitted)
             {

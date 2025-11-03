@@ -63,7 +63,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ShadowSlashProjectile
   _speed: 15
   _distance: 8
-  _damageMult: 1
+  _damageMult: 1.5
   _lifeTime: 1
   _hitPrefab: {fileID: 2708598583397607911, guid: 183f2d51e76e8514ba92e2582b25c6af, type: 3}
 --- !u!50 &4826519798316082396
