@@ -46,7 +46,7 @@ public class PlayerStatsUI : MonoBehaviour
         }
     }
 
-    private void UpdateHPUI(float currentHP, float maxHP)
+    public void UpdateHPUI(float currentHP, float maxHP)
     {
         if (hpText != null)
         {
@@ -54,7 +54,7 @@ public class PlayerStatsUI : MonoBehaviour
         }
     }
 
-    private void UpdateAPUI(float currentAwakening, float maxAwakening)
+    public void UpdateAPUI(float currentAwakening, float maxAwakening)
     {
         if (apText != null)
         {

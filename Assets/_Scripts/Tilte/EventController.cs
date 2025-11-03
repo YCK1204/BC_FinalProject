@@ -91,6 +91,7 @@ public class EventController : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
         Manager.Data.playerSOData.IsIntroCompleted = true;
+        PlayerPrefs.SetInt("IsIntroCompleted", 1);
         Manager.Analytics.SendFunnelStep(FunnelStep._StageC, 2);
         SceneManager.LoadScene("Main");
     }
