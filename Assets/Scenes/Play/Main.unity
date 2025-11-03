@@ -5527,7 +5527,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &596154815
 Transform:
   m_ObjectHideFlags: 0
@@ -11971,7 +11971,7 @@ MonoBehaviour:
       MaxAwakeningGauge: 100
       AwakeningOnHit: 1
       Duration: 15
-      AwakeningAnimDuration: 1
+      AwakeningAnimDuration: 1.2
     SkillData:
       QSkillCastingDuration: 0.4
       QSkillCooldown: 6

@@ -49,7 +49,7 @@ public class DeadControl : MonoBehaviour
         _pickCol = _pickObject.GetComponent<Collider2D>();
 
         _canInteract = false;
-        _bloom.scatter.value = 0f;
+        _bloom.scatter.value = 0.5f;
     }
 
     void Update()
@@ -63,12 +63,12 @@ public class DeadControl : MonoBehaviour
         if (onPick && !_isMouseOver)
         {
             _isMouseOver = true;
-            _bloom.scatter.value = 0.2f;
+            _bloom.scatter.value = 0.4f;
         }
         else if (!onPick && _isMouseOver)
         {
             _isMouseOver = false;
-            _bloom.scatter.value = 0f;
+            _bloom.scatter.value = 0.2f;
         }
 
         if (onPick && Input.GetMouseButtonDown(0))
@@ -90,7 +90,7 @@ public class DeadControl : MonoBehaviour
     {
         StartCoroutine(DeathSequence());
 
-        _bloom.scatter.value = 0f;
+        _bloom.scatter.value = 0.2f;
     }
 
     IEnumerator DeathSequence()
@@ -170,7 +170,7 @@ public class DeadControl : MonoBehaviour
 
         StopCoroutine(_pulseLoop);
         _pulseLoop = null;
-        _bloom.scatter.value = 0.2f;
+        _bloom.scatter.value = 0.4f;
         _gameOverText.text = "";
         _setAnimator.Play(_againAnim, 0, 0f);
 
@@ -190,6 +190,7 @@ public class DeadControl : MonoBehaviour
         PlayerManager.Instance.Player.Resurrection();
         PlayerManager.Instance.Player.Animator.Play("Landing", 0, 0f);
         _deadEffect.SetActive(false);
+        _bloom.scatter.value = 0.5f;
 
         _camShake.Shake(1f, 3f, 0.2f);
 
