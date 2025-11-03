@@ -57,7 +57,7 @@ namespace Game.Player
             }
 
 #if UNITY_2022_3_OR_NEWER
-            if (_stateMachine.Player.Rb.linearVelocity.y <= 8f)
+            if (_stateMachine.Player.Rb.linearVelocity.y <= 13f)
             {
                 _stateMachine.ChangeState(_stateMachine.AirState);
                 return;

@@ -171,6 +171,7 @@ namespace Game.Player
             bool hitted = false;
 
 
+
             foreach (var col in cols)
             {
                 if (col == null) continue;
@@ -200,7 +201,7 @@ namespace Game.Player
 
                     Rigidbody2D targetRb = col.attachedRigidbody;
                     bool isCrit = Random.value < chance;
-                    float mult = isCrit ? 1f + Mathf.Max(0f, d.CriticalDamage) * 0.01f : 1f;
+                    float mult = isCrit ? Mathf.Max(1f, d.CriticalDamage * 0.01f) : 1f;
 
                     if (targetRb != null)
                     {
