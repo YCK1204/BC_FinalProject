@@ -59,10 +59,10 @@ public class BoneReaperHead : MonoBehaviour, IDamageable
         Collider2D target;
 
         float t = Mathf.InverseLerp(2f, 5f, size);
-        float ySize = (Mathf.Lerp(2f, 1f, t) / 2) * _owner.BossScale;
+        float ySize = (Mathf.Lerp(1.5f, 0.75f, t) / 2) * _owner.BossScale;
 
 
-        // 지상 0, 0.5 에서 좌우 size 상하 0.5 박스
+        // 지상 0, 0.375 에서 좌우 size 상하 0.375 박스
         Vector3 AttackPos = new Vector3(0, ySize, 0);
         float lr = size * _owner.BossScale;
         float ud = ySize;
