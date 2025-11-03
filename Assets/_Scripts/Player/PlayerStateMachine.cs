@@ -109,7 +109,7 @@ namespace Game.Player
 
         public void FixedTick() { _currentState?.PhysicsUpdate(); }
 
-        public bool CanDash() => !IsDashing && (Time.time >= _lastDashTime + DashCooldown);
+        public bool CanDash() => !IsDashing && (Time.time >= _lastDashTime + Player.Data.DashData.Cooldown);
         public void MarkDashedNow() { _lastDashTime = Time.time; }
         public bool CanUseQSkill() => Time.time >= _lastQSkillTime + Player.Data.SkillData.GetQSkillCooldown(Player.Data.CombatData.SkillHaste);
         public void MarkQSkillUsed() { _lastQSkillTime = Time.time; }

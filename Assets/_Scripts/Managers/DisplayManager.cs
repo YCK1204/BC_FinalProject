@@ -138,4 +138,14 @@ public class DisplayManager : MonoBehaviour
     {
         _fadeAnimator.Play(_fadeOut);
     }
+
+    public void ActivatePortal()
+    {
+        PotalText.SetActive(true);
+    }
+
+    public void DeactivatePortal()
+    {
+        PotalText.SetActive(false);
+    }
 }

@@ -74,7 +74,7 @@ namespace Game.Player
             var pos = (Vector2)_stateMachine.Player.transform.position + new Vector2(_stateMachine.FacingSign * r * 0.5f, 0f);
             var cols = Physics2D.OverlapCircleAll(pos, r);
 
-            float baseDmg = d.AttackPower + d.ExtraDamage;
+            float baseDmg = (d.AttackPower + d.ExtraDamage) * (1 + d.AttackPowerPercent);
             float chance = Mathf.Max(0f, d.CriticalChance) * 0.01f;
 
             bool hitted = false;
@@ -99,7 +99,7 @@ namespace Game.Player
                     float mult;
 
                     if (isCrit)
-                        mult = 1f + Mathf.Max(0f, d.CriticalDamage) * 0.01f;
+                        mult = Mathf.Max(0f, d.CriticalDamage) * 0.01f;
                     else
                         mult = 1f;
 

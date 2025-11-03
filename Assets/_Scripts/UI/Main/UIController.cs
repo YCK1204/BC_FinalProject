@@ -63,6 +63,7 @@ public class UIController : MonoBehaviour
                 {
                     _uiFade.Play("off_UI", 0, 0f);
                     HideUI();
+                    Time.timeScale = 1f;
                     DisplayManager.Instance.SetPPC(true, 0.5f);
                 }
                 else if (CurrentState == UiState.Hidden)
@@ -174,6 +175,7 @@ public class UIController : MonoBehaviour
             case UiState.Main:
                 _uiFade.Play("off_UI", 0, 0f);
                 ChangeState(UiState.Hidden);
+                Time.timeScale = 1f;
                 DisplayManager.Instance.SetPPC(true, 0.5f);
                 break;
 
@@ -188,5 +190,10 @@ public class UIController : MonoBehaviour
             case UiState.Hidden:
                 break;
         }
+    }
+
+    public void TimeStop()
+    {
+        Time.timeScale = 0f;
     }
 }

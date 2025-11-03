@@ -16,12 +16,14 @@ namespace Game.Player
         {
             _castingTimer = _skillDuration;
             _stateMachine.MovementSpeedModifier = 0f;
+           
             // StartAnimation(_stateMachine.Player.AnimationData.SkillParameterHash); 
         }
 
         public override void Exit()
         {
             _stateMachine.MovementSpeedModifier = 1f;
+            
             // StopAnimation(_stateMachine.Player.AnimationData.SkillParameterHash);
         }
 

@@ -53,12 +53,20 @@ public class CooldownUI : MonoBehaviour
 
     public void ShowCooldown()
     {
+        if (_cooldownCoroutine != null)
+        {
+            StopCoroutine(_cooldownCoroutine);
+        }
         _cooldownImage.fillAmount = 1;
         CoolChk = false;
     }
 
     public void HideCooldown()
     {
+        if (_cooldownCoroutine != null)
+        {
+            StopCoroutine(_cooldownCoroutine);
+        }
         _cooldownImage.fillAmount = 0;
         CoolChk = true;
     }
