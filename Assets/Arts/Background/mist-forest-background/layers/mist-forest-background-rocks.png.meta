@@ -1,16 +1,10 @@
 fileFormatVersion: 2
-guid: e84faefaf8e9f044898bba868fa2db7c
+guid: dc0c6e7b9ca7edd44b98f5dbf9a690de
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1552557813796668408
-    second: mist-forest-background-tiles_0
-  - first:
-      213: 795280809902852585
-    second: mist-forest-background-tiles_1
-  - first:
-      213: 3628872048853256837
-    second: mist-forest-background-tiles_2
+      213: 6415659859874193048
+    second: mist-forest-background-rocks_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -43,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -57,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 224
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -81,7 +75,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -106,13 +100,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mist-forest-background-tiles_0
+      name: mist-forest-background-rocks_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 17
-        height: 80
+        width: 208
+        height: 84
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -121,52 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 80c7467e4e4347ae0800000000000000
-      internalID: -1552557813796668408
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mist-forest-background-tiles_1
-      rect:
-        serializedVersion: 2
-        x: 47
-        y: 15
-        width: 130
-        height: 39
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9e9c1fadea7690b00800000000000000
-      internalID: 795280809902852585
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mist-forest-background-tiles_2
-      rect:
-        serializedVersion: 2
-        x: 194
-        y: 15
-        width: 92
-        height: 55
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 58a0e3fd6e75c5230800000000000000
-      internalID: 3628872048853256837
+      spriteID: 89e9883a6a0090950800000000000000
+      internalID: 6415659859874193048
       vertices: []
       indices: 
       edges: []
@@ -185,9 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      mist-forest-background-tiles_0: -1552557813796668408
-      mist-forest-background-tiles_1: 795280809902852585
-      mist-forest-background-tiles_2: 3628872048853256837
+      mist-forest-background-rocks_0: 6415659859874193048
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
