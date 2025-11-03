@@ -89,18 +89,22 @@ public class DataManager
         #endregion
         #region Player Data Load
         playerSOData = Manager.Resource.LoadData<PlayerSOData>("PlayerSOData");
-        var inventoryData = JsonConvert.DeserializeObject<InventoryJsonData>(playerSOData.InventoryJsonData);
+        playerSOData.InventoryJsonData = PlayerPrefs.GetString("InventoryJsonData", playerSOData.InventoryJsonData);
+        playerSOData.PlayerJsonData = PlayerPrefs.GetString("PlayerJsonData", playerSOData.PlayerJsonData);
+        playerSOData.IsIntroCompleted = PlayerPrefs.GetInt("IsIntroCompleted", playerSOData.IsIntroCompleted ? 1 : 0) == 1;
         #endregion
     }
     public void Save()
     {
         var playerData = PlayerCharacter.Instance.GetPlayerJsonData();
         playerSOData.PlayerJsonData = playerData;
+        PlayerPrefs.SetString("PlayerJsonData", playerSOData.PlayerJsonData);
 
         if (PlayerCharacter.Instance.Inventory.IsDirty)
         {
             playerSOData.InventoryJsonData = PlayerCharacter.Instance.Inventory.GetItemJsonData();
             PlayerCharacter.Instance.Inventory.IsDirty = false;
+            PlayerPrefs.SetString("InventoryJsonData", playerSOData.InventoryJsonData);
         }
     }
 }

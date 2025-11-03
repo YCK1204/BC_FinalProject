@@ -163,6 +163,9 @@ namespace Game.Player
 
             HpEvent?.Invoke(this.currentHP, Data.Stats.MaxHP);
             AwakeningEvent?.Invoke(this.currentAwakening, Data.awakening.MaxAwakeningGauge);
+            var statui = GetComponent<PlayerStatsUI>();
+            statui.UpdateHPUI(currentHP, Data.Stats.MaxHP);
+            statui.UpdateAPUI(currentAwakening, Data.awakening.MaxAwakeningGauge);
 
             Debug.Log("데이터 저장 동기화");
         }
