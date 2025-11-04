@@ -28,7 +28,7 @@ public class DisplayManager : MonoBehaviour
     private const string _hubIn = "all_on";
     private const string _hubOut = "all_off";
     private const string _Clear = "clear";
-    private const string _fadeIn = "on_UI";
+    private const string _fadeIn = "on_UI_c";
     private const string _fadeIn2 = "on_UI2";
     private const string _fadeIn3 = "on_UI3";
 
