@@ -66,7 +66,6 @@ MonoBehaviour:
   BGMAudioDataContext:
     bgmAudioDatas:
     - {fileID: 11400000, guid: 48515b7644a90cc4cb217f23bccf97c3, type: 2}
-    - {fileID: 11400000, guid: afe290f18e7aca94890e36f940ee217b, type: 2}
   DirecitonAudioDataContext:
     directionalAudioDatas:
     - {fileID: 11400000, guid: 56fc2831c24b6854bb140df5ab5c8696, type: 2}
