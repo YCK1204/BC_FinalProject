@@ -7,7 +7,7 @@ public class ShadowSlashProjectile : MonoBehaviour
 {
     [SerializeField] private float _speed = 15f;
     [SerializeField] private float _distance = 8f;
-    private float _damageMult = 1.2f;
+    private float _damageMult = 0.8f;
     [SerializeField] private float _lifeTime = 5f;
 
     private Rigidbody2D _rb;
