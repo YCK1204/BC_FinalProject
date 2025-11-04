@@ -54,15 +54,15 @@ public class BoneReaperHead : MonoBehaviour, IDamageable
 
     public void BreathAttack(float size)
     {
-        Manager.Audio.Play(AudioKey.Monster.Attack.M_ATK_BOSS_BREATH, transform);
+        //Manager.Audio.Play(AudioKey.Monster.Attack.M_ATK_BOSS_BREATH, transform);
 
         Collider2D target;
 
         float t = Mathf.InverseLerp(2f, 5f, size);
-        float ySize = (Mathf.Lerp(2f, 1f, t) / 2) * _owner.BossScale;
+        float ySize = (Mathf.Lerp(1.5f, 0.75f, t) / 2) * _owner.BossScale;
 
 
-        // 지상 0, 0.5 에서 좌우 size 상하 0.5 박스
+        // 지상 0, 0.375 에서 좌우 size 상하 0.375 박스
         Vector3 AttackPos = new Vector3(0, ySize, 0);
         float lr = size * _owner.BossScale;
         float ud = ySize;
@@ -211,5 +211,17 @@ public class BoneReaperHead : MonoBehaviour, IDamageable
     public void EndLaser()
     {
         Manager.Audio.StopLoop(transform);
+    }
+
+    public void PlayBossSfx(AudioKey.Monster.Attack sfx)
+    {
+        Manager.Audio.Play(sfx, transform);
+    }
+
+    public IEnumerator DelayAnimation(float delay)
+    {
+        _anim.speed = 0;
+        yield return new WaitForSeconds(delay);
+        _anim.speed = 1;
     }
 }
