@@ -290,14 +290,14 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.17
+  - time: 0.22
     functionName: LaserAttack
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.51
+  - time: 0.48
     functionName: LaserAttack
     data: 
     objectReferenceParameter: {fileID: 0}

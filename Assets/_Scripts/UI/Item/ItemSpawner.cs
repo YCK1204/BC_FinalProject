@@ -120,11 +120,11 @@ public class ItemSpawner : MonoBehaviour
     {
         var r = Random.Range(0f, 100f);
 
-        if (r < 40f)
+        if (r < 45f)
             return ItemGradeType.Common;
-        else if (r < 70f)
+        else if (r < 77f)
             return ItemGradeType.Uncommon;
-        else if (r < 90f)
+        else if (r < 97f)
             return ItemGradeType.Rare;
         else
             return ItemGradeType.Legendary;

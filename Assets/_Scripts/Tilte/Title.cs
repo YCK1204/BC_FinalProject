@@ -1,3 +1,4 @@
+using Game.Player;
 using Newtonsoft.Json;
 using System.Collections;
 using UnityEngine;
@@ -41,12 +42,7 @@ public class Title : MonoBehaviour
             PlayTime = playerJsonData.PlayTime
         };
         MapManager.Instance.LoadFromData(mapSaveData);
-        PlayerSaveData playerSaveData = new PlayerSaveData()
-        {
-            CurrentAwakening = playerJsonData.Awaken,
-            CurrentHP = playerJsonData.Hp,
-        };
-        PlayerManager.Instance.LoadFromData(playerSaveData);
+        PlayerCharacter.Instance.LoadPlayerFromJson(playerData.PlayerJsonData);
         var itemData = JsonConvert.DeserializeObject<InventoryJsonData>(playerData.InventoryJsonData);
         PlayerManager.Instance.Player.Inventory.LoadFromJson(itemData);
         StartCoroutine(StartGame());
