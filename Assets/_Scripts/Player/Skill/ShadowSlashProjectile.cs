@@ -7,7 +7,7 @@ public class ShadowSlashProjectile : MonoBehaviour
 {
     [SerializeField] private float _speed = 15f;
     [SerializeField] private float _distance = 8f;
-    [SerializeField] private float _damageMult = 1.5f;
+    private float _damageMult = 1.2f;
     [SerializeField] private float _lifeTime = 5f;
 
     private Rigidbody2D _rb;
@@ -40,7 +40,8 @@ public class ShadowSlashProjectile : MonoBehaviour
     {
         _owner = owner;
         _startPos = transform.position;
-        _damage = (owner.Data.CombatData.SkillAttck * ( 1 + owner.Data.CombatData.SkillAttckPercent)) * _damageMult;
+        _damage = ((owner.Data.CombatData.SkillAttck * ( 1 + owner.Data.CombatData.SkillAttckPercent)) + 
+            ((owner.Data.CombatData.AttackPower * (1 + owner.Data.CombatData.AttackPower)) * 0.5f)) * _damageMult;
         _rb.linearVelocity = transform.right * _speed;
     }
 
