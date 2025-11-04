@@ -7,6 +7,7 @@ public class RushAttack : MeleeAttack
     private Rigidbody2D _rb;
 
     private float _rushSpeed = 5f;
+    private bool _wasSuperArmor;
 
     public RushAttack(Transform tr, MonsterAttack monsterAttack) : base(tr, monsterAttack)
     {
@@ -32,6 +33,9 @@ public class RushAttack : MeleeAttack
         _rb.bodyType = RigidbodyType2D.Kinematic;
         _hitBox.isTrigger = true;
 
+        _wasSuperArmor = _monsterAttack.Owner.IsSuperArmor;
+        _monsterAttack.Owner.IsSuperArmor = true;
+
         float dir = _tr.localScale.x < 0 ? -1 : 1;
         _rb.linearVelocityX = dir * _rushSpeed;
     }
@@ -46,6 +50,7 @@ public class RushAttack : MeleeAttack
         if(_target != null)
             _monsterAttack.Owner.RegisterIgnoreCollider(_target);
 
+        _monsterAttack.Owner.IsSuperArmor = _wasSuperArmor;
         _rb.linearVelocityX = 0;
         _rb.bodyType = RigidbodyType2D.Dynamic;
         _hitBox.isTrigger = false;
