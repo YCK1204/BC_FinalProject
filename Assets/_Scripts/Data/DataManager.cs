@@ -1,3 +1,4 @@
+using _Scripts.ScriptableObject;
 using Game.Player;
 using Newtonsoft.Json;
 using System;
@@ -88,6 +89,14 @@ public class DataManager
         }
         #endregion
         #region Player Data Load
+        var cleaner = Manager.Resource.LoadData<DataCleaner>("DataCleaner");
+        if (cleaner.Inventory)
+            PlayerPrefs.SetString("InventoryJsonData", "{}");
+        if (cleaner.Intro)
+            PlayerPrefs.SetInt("IsIntroCompleted", 0);
+        if (cleaner.Player)
+            PlayerPrefs.SetString("PlayerJsonData", "{}");
+        
         playerSOData = Manager.Resource.LoadData<PlayerSOData>("PlayerSOData");
         playerSOData.InventoryJsonData = PlayerPrefs.GetString("InventoryJsonData", playerSOData.InventoryJsonData);
         playerSOData.PlayerJsonData = PlayerPrefs.GetString("PlayerJsonData", playerSOData.PlayerJsonData);
