@@ -7,60 +7,47 @@ public class HpBar : MonoBehaviour
 {
     public Slider slider;
     public float lerpSpeed = 2f;
-    public PlayerCharacter player;
 
-    void Start()
+    void OnEnable()
     {
+        PlayerCharacter player = PlayerCharacter.Instance;
         if (player != null)
         {
+            player.HpEvent += HpUpdate;
+
             slider.minValue = 0f;
             slider.maxValue = 1f;
-            //slider.value = 1f;
-            player.HpEvent += UpdateHp;
+
+            float initialHpRatio = player.Data.Stats.MaxHP > 0 ? player.CurrentHP / player.Data.Stats.MaxHP : 0f;
+            slider.value = initialHpRatio;
         }
     }
 
-    void OnDestroy()
+    void OnDisable()
     {
+        PlayerCharacter player = PlayerCharacter.Instance;
         if (player != null)
-            player.HpEvent -= UpdateHp;
+        {
+            player.HpEvent -= HpUpdate;
+        }
     }
 
-    void UpdateHp(float currentHp, float maxHp)
+    void HpUpdate(float currentHp, float maxHp)
     {
-        float hp = currentHp / maxHp;
+        float targetHpRatio = maxHp > 0 ? currentHp / maxHp : 0f;
 
         if (gameObject.activeInHierarchy)
         {
             StopAllCoroutines();
-            StartCoroutine(UpdateHpBar(hp));
+            StartCoroutine(UpdateHpBarCoroutine(targetHpRatio));
         }
         else
         {
-            slider.value = hp;
+            slider.value = targetHpRatio;
         }
     }
 
-    public void SetMaxHp(float maxHp)
-    {
-        slider.maxValue = maxHp;
-        slider.value = maxHp;
-    }
-
-    public void SetHp(float hp)
-    {
-        if (gameObject.activeInHierarchy)
-        {
-            StopAllCoroutines();
-            StartCoroutine(UpdateHpBar(hp));
-        }
-        else
-        {
-            slider.value = hp;
-        }
-    }
-
-    private IEnumerator UpdateHpBar(float targetHp)
+    private IEnumerator UpdateHpBarCoroutine(float targetHp)
     {
         float elapsedTime = 0f;
         float startingValue = slider.value;

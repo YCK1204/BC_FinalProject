@@ -7,33 +7,43 @@ public class AwakeningBar : MonoBehaviour
 {
     public Slider slider;
     public float lerpSpeed = 2f;
-    public PlayerCharacter player;
 
-    private void Start()
+    void OnEnable()
     {
+        PlayerCharacter player = PlayerCharacter.Instance;
         if (player != null)
         {
+            player.AwakeningEvent += AwakeningUpdate;
+
             slider.minValue = 0f;
             slider.maxValue = player.Data.awakening.MaxAwakeningGauge;
-            slider.value = 0f;
-
-            player.AwakeningEvent += UpdateAwakening;
+            slider.value = player.CurrentAwakening;
         }
     }
 
-    private void OnDestroy()
+    void OnDisable()
     {
+        PlayerCharacter player = PlayerCharacter.Instance;
         if (player != null)
-            player.AwakeningEvent -= UpdateAwakening;
+        {
+            player.AwakeningEvent -= AwakeningUpdate;
+        }
     }
 
-    private void UpdateAwakening(float current, float max)
+    private void AwakeningUpdate(float current, float max)
     {
-        StopAllCoroutines();
-        StartCoroutine(UpdateAwakeningBar(current));
+        if (gameObject.activeInHierarchy)
+        {
+            StopAllCoroutines();
+            StartCoroutine(UpdateAwakeningBarCoroutine(current));
+        }
+        else
+        {
+            slider.value = current;
+        }
     }
 
-    private IEnumerator UpdateAwakeningBar(float target)
+    private IEnumerator UpdateAwakeningBarCoroutine(float target)
     {
         float elapsedTime = 0f;
         float startValue = slider.value;

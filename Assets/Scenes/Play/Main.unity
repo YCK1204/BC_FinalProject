@@ -1643,7 +1643,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1, y: -3.6999893}
+  m_AnchoredPosition: {x: -1, y: -15.4}
   m_SizeDelta: {x: 250, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &200529200
@@ -2343,8 +2343,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -178, y: 1}
-  m_SizeDelta: {x: 456, y: 100}
+  m_AnchoredPosition: {x: -178, y: -4}
+  m_SizeDelta: {x: 454, y: 100}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &299703075
 MonoBehaviour:
@@ -2411,7 +2411,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AwakeningBar
   slider: {fileID: 299703075}
   lerpSpeed: 2
-  player: {fileID: 1333591359}
 --- !u!1 &304190708
 GameObject:
   m_ObjectHideFlags: 0
@@ -5239,15 +5238,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Material: {fileID: 2100000, guid: d44c40e4ad49ab54899b439d9d7ac689, type: 2}
+  m_Color: {r: 1, g: 0.5882353, b: 0.5882353, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 701580339318033094, guid: d3a0d7a75d2c1344280a7e23cd7ea6a3, type: 3}
+  m_Sprite: {fileID: -8466629868714491950, guid: 3ac5757a17065d64aa19c63919a69985, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -6396,7 +6395,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 047c702bf5e5117478d8668f09394341, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -7182,7 +7181,7 @@ RectTransform:
   m_GameObject: {fileID: 755953215}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.01, y: 1.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 973845203}
@@ -7212,7 +7211,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 701580339318033094, guid: d3a0d7a75d2c1344280a7e23cd7ea6a3, type: 3}
+  m_Sprite: {fileID: 1151354795402679830, guid: 3ac5757a17065d64aa19c63919a69985, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8465,7 +8464,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HpBar
   slider: {fileID: 850820109}
   lerpSpeed: 5
-  player: {fileID: 1333591359}
 --- !u!1 &864363700
 GameObject:
   m_ObjectHideFlags: 0
@@ -15984,7 +15982,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -3.699997}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1825831319
@@ -16036,15 +16034,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.5686275, g: 0.011764706, b: 0.69803923, a: 1}
+  m_Material: {fileID: 2100000, guid: ee38de9603066cc489d1c2f8dfd4e215, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2840630975241494435, guid: 0f14c95d98b29d44cb749376c1eae56b, type: 3}
+  m_Sprite: {fileID: -1474354676213560918, guid: 3ac5757a17065d64aa19c63919a69985, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -16861,7 +16859,7 @@ RectTransform:
   m_GameObject: {fileID: 1919248897}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.02, y: 1.3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 299703074}
@@ -16891,7 +16889,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -2840630975241494435, guid: 0f14c95d98b29d44cb749376c1eae56b, type: 3}
+  m_Sprite: {fileID: 2248857460188138555, guid: 3ac5757a17065d64aa19c63919a69985, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -18181,7 +18179,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 047c702bf5e5117478d8668f09394341, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 2
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0

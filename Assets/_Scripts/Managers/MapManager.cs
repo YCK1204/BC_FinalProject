@@ -168,7 +168,6 @@ public class MapManager : MonoBehaviour
 
     public void NextMap()
     {
-        PlayerManager.Instance.Player.Heal(20);
 
         if (_currentMapPrefab == _mapPrefabs[0])
         {

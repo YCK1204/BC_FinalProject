@@ -92,6 +92,7 @@ public static class AudioKey
         BGM_BASE,
         BGM_BOSS_PHASE1,
         BGM_BOSS_PHASE2,
+        BGM_Intro,
     }
     public enum UI
     {

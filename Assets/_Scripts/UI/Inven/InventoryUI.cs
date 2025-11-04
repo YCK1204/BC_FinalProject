@@ -48,7 +48,11 @@ public class InventoryUI : MonoBehaviour
 
     void OnEnable()
     {
-        RefreshAllSlots();
+        if (PlayerCharacter.Instance != null)
+        {
+            SetInventory(PlayerCharacter.Instance.Inventory);
+            RefreshAllSlots();
+        }
     }
 
 
@@ -241,15 +245,15 @@ public class InventoryUI : MonoBehaviour
         }
     }
 
-    private string GetItemGradeString(ItemGradeType grade)
-    {
-        switch (grade)
-        {
-            case ItemGradeType.Common: return "일반";
-            case ItemGradeType.Uncommon: return "고급";
-            case ItemGradeType.Rare: return "희귀";
-            case ItemGradeType.Legendary: return "전설";
-            default: return "";
-        }
-    }
+    //private string GetItemGradeString(ItemGradeType grade)
+    //{
+    //    switch (grade)
+    //    {
+    //        case ItemGradeType.Common: return "일반";
+    //        case ItemGradeType.Uncommon: return "고급";
+    //        case ItemGradeType.Rare: return "희귀";
+    //        case ItemGradeType.Legendary: return "전설";
+    //        default: return "";
+    //    }
+    //}
 }

@@ -37,6 +37,7 @@ public class EventController : MonoBehaviour
 
     private IEnumerator Start()
     {
+
         _player.AutoMove(_duration, _direction.normalized);
         _glitchMaterial.SetFloat(_glitchProperty, 0f);
         _glitchMaterial.SetFloat(_glitchJump, 0f);
@@ -44,6 +45,9 @@ public class EventController : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
         OnTriggerActive(0);
+
+        Manager.Audio.SetBgm(AudioKey.BGM.BGM_Intro);
+
     }
 
     public void OnTriggerActive(int triggerIndex)
