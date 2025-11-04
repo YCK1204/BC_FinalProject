@@ -41,6 +41,7 @@ public class DeadControl : MonoBehaviour
     private bool _canInteract = false;
     private bool _isMouseOver = false;
     private bool _isPress = false;
+    private bool _onChoice = false;
 
     void Start()
     {
@@ -76,7 +77,7 @@ public class DeadControl : MonoBehaviour
             _isPress = true;
         }
 
-        if (Input.GetMouseButtonUp(0))
+        if (_onChoice && ( Input.GetMouseButtonUp(0) || Input.GetKeyDown(KeyCode.Z)))
         {
             if (onPick && _isPress)
             {
@@ -96,6 +97,7 @@ public class DeadControl : MonoBehaviour
     IEnumerator DeathSequence()
     {
         PlayerManager.Instance.Player.Animator.Play("Idle", 0, 0f);
+        _onChoice = false;
 
         yield return new WaitForSeconds(1f);
 
@@ -114,6 +116,7 @@ public class DeadControl : MonoBehaviour
         yield return StartCoroutine(AgainText(_message));
 
         _choiceDumy.SetActive(true);
+        _onChoice = true;
     }
 
     IEnumerator AgainText(string text)
