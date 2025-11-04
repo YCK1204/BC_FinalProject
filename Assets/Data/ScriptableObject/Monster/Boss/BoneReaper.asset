@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97e65d2e36f92104e90d76fa5f85823d, type: 3}
   m_Name: BoneReaper
   m_EditorClassIdentifier: Assembly-CSharp::MonsterData
-  MaxHp: 1600
+  MaxHp: 2000
   Speed: 0
   AttackPower: 20
   AttackDelay: 0
