@@ -299,7 +299,7 @@ Material:
     - _FlameSmooth: 2
     - _ForceAlpha: 0
     - _FrozenContrast: 2
-    - _FrozenFade: 1
+    - _FrozenFade: 0.6
     - _FrozenHighlightContrast: 2
     - _FrozenHighlightDensity: 1
     - _FrozenSnowContrast: 1
