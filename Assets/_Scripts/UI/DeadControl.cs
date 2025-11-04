@@ -72,14 +72,18 @@ public class DeadControl : MonoBehaviour
             _bloom.scatter.value = 0.2f;
         }
 
-        if (onPick && Input.GetMouseButtonDown(0))
+        if (onPick && Input.GetMouseButtonUp(0))
         {
             _isPress = true;
         }
 
-        if (_onChoice && ( Input.GetMouseButtonUp(0) || Input.GetKeyDown(KeyCode.Z)))
+        if (_onChoice && ( Input.GetMouseButtonUp(0) || Input.GetKeyDown(KeyCode.A)))
         {
             if (onPick && _isPress)
+            {
+                StartCoroutine(OnPickClicked());
+            }
+            if (Input.GetKeyDown(KeyCode.A))
             {
                 StartCoroutine(OnPickClicked());
             }
