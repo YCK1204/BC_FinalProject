@@ -46,6 +46,7 @@ MonoBehaviour:
   BGMAudioDataContext:
     bgmAudioDatas:
     - {fileID: 11400000, guid: 48515b7644a90cc4cb217f23bccf97c3, type: 2}
+    - {fileID: 11400000, guid: 48515b7644a90cc4cb217f23bccf97c3, type: 2}
   DirecitonAudioDataContext:
     directionalAudioDatas: []
   UIAudioDataContext:

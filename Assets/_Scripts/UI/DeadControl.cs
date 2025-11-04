@@ -89,6 +89,7 @@ public class DeadControl : MonoBehaviour
 
     public void DieSet()
     {
+        Manager.Audio.StopBgm();
         StartCoroutine(DeathSequence());
 
         _bloom.scatter.value = 0.2f;
@@ -205,6 +206,8 @@ public class DeadControl : MonoBehaviour
         _deadAnimator.Play(_dieAnim_on, 0, 0f);
         PlayerManager.Instance.Player.SetPlayerInput(true);
         _gameOverText.gameObject.SetActive(false);
+
+        Manager.Audio.SetBgm(AudioKey.BGM.BGM_BASE);
     }
 
     IEnumerator FadeBloom(float bloom, float over)
