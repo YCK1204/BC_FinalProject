@@ -31,6 +31,8 @@ public class Portal : MonoBehaviour
         //테스트
         if (_isPlayer && Input.GetKeyDown(KeyCode.F) && MapManager.Instance.OnPortal)
         {
+            PlayerManager.Instance.Player.Heal(20);
+
             Debug.Log("이동!");
             DisplayManager.Instance.PotalFade.SetActive(true);
             MapManager.Instance.NextMap();
