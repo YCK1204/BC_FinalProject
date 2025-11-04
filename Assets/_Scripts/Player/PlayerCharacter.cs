@@ -405,6 +405,7 @@ namespace Game.Player
             Data.CombatData.AttackRange = 1.6f;
             Data.DashData.Cooldown = 0.5f;
             Data.GroundData.BaseSpeed = Data.GroundData.BaseSpeed+1;
+            Data.CombatData.AttackSpeed = Data.CombatData.AttackSpeed + 0.2f;
 
             Animator.runtimeAnimatorController = awakenedAnimator;
 
@@ -441,6 +442,7 @@ namespace Game.Player
             IsAwakened = false;
             Data.CombatData.AttackRange = 1.1f;
             Data.GroundData.BaseSpeed = Data.GroundData.BaseSpeed - 1f;
+            Data.CombatData.AttackSpeed = Data.CombatData.AttackSpeed - 0.2f;
             Data.DashData.Cooldown = 2f;
 
             Animator.runtimeAnimatorController = normalAnimator;
