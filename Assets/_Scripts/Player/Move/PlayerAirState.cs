@@ -41,17 +41,23 @@ namespace Game.Player
                 bool jump = kb != null && kb.spaceKey.wasPressedThisFrame;
                 bool dash = kb != null && kb.sKey.wasPressedThisFrame;
                 bool attack = kb != null && kb.aKey.wasPressedThisFrame;
+                //bool wSkill = kb != null && kb.wKey.wasPressedThisFrame;
 #else
             bool jump = Input.GetKeyDown(KeyCode.Space);
             bool dash = Input.GetKeyDown(KeyCode.S);
             bool attack = Input.GetKeyDown(KeyCode.A);
 #endif
-                if (attack && !_stateMachine.IsAttacking)
+                if (attack && !_stateMachine.IsAttacking && _stateMachine.Player.Rb.linearVelocity.y <= 6f)
                 {
                     _stateMachine.ComboIndex = 2;
                     _stateMachine.ChangeState(_stateMachine.AirAttackState);
                     return;
                 }
+                //if (wSkill && _stateMachine.CanUseWSkill() && PlayerManager.Instance != null && !_stateMachine.Player.IsAwakened)
+                //{
+                //    _stateMachine.ChangeState(_stateMachine.WSkillState);
+                //    return;
+                //}
                 if (jump && _stateMachine.JumpsRemaining > 0)
                 {
                     _stateMachine.ChangeState(_stateMachine.JumpState);
