@@ -121,6 +121,7 @@ public class AudioData : ScriptableObject
     bool Loop = false;
     public bool IsLoop { get { return Loop; } }
     [SerializeField]
+    [Range(0f, 1f)]
     float Volume = 1.0f;
     public float GetVolume { get { return Volume; } }
 }

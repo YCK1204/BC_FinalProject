@@ -14,5 +14,8 @@ public class PlayerSOData : ScriptableObject
         InventoryJsonData = "{}";
         if (force)
             IsIntroCompleted = false;
+        PlayerPrefs.SetString("InventoryJsonData", "{}");
+        PlayerPrefs.SetInt("IsIntroCompleted", 0);
+        PlayerPrefs.SetString("PlayerJsonData", "{}");
     }
 }

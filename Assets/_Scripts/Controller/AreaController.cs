@@ -20,6 +20,7 @@ public class AreaController : MonoBehaviour
         _animator = GetComponent<Animator>();
         _isSetComponent = true;
     }
+    // ReSharper disable Unity.PerformanceAnalysis
     public void Init(ItemAreaData data, PlayerCharacter owner)
     {
         if (!_isSetComponent)
