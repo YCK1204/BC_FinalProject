@@ -46,17 +46,10 @@ namespace Game.Player
 
         public override void PhysicsUpdate()
         {
-#if UNITY_2022_3_OR_NEWER
             if (_stateMachine.Player.Rb.linearVelocity.x != 0f)
             {
                 _stateMachine.Player.Rb.linearVelocity = new Vector2(0f, _stateMachine.Player.Rb.linearVelocity.y);
             }
-#else
-            if (_stateMachine.Player.Rb.velocity.x != 0f)
-            {
-                _stateMachine.Player.Rb.velocity = new Vector2(0f, _stateMachine.Player.Rb.velocity.y);
-            }
-#endif
         }
     }
 }

@@ -13,11 +13,8 @@ namespace Game.Player
             _stateMachine.MovementSpeedModifier = 0f;
 
             Manager.Data.playerSOData.ResetData();
-#if UNITY_2022_3_OR_NEWER
             _stateMachine.Player.Rb.linearVelocity = Vector2.zero;
-#else
-            _stateMachine.Player.Rb.velocity = Vector2.zero;
-#endif
+
             StopAnimation(_stateMachine.Player.AnimationData.IdleParameterHash);
             StopAnimation(_stateMachine.Player.AnimationData.WalkParameterHash);
             StopAnimation(_stateMachine.Player.AnimationData.AirParameterHash);
@@ -38,17 +35,10 @@ namespace Game.Player
         public override void Update() { }
         public override void PhysicsUpdate() 
         {
-#if UNITY_2022_3_OR_NEWER
             if (_stateMachine.Player.Rb.linearVelocity != Vector2.zero)
             {
                 _stateMachine.Player.Rb.linearVelocity = Vector2.zero;
             }
-#else
-            if (_stateMachine.Player.Rb.velocity != Vector2.zero)
-            {
-                _stateMachine.Player.Rb.velocity = Vector2.zero;
-            }
-#endif
         }
     }
 }

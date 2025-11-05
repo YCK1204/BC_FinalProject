@@ -10,17 +10,11 @@ namespace Game.Player
         {
             StartAnimation(_stateMachine.Player.AnimationData.AirParameterHash);
             StopAnimation(_stateMachine.Player.AnimationData.IdleParameterHash);
-#if UNITY_2022_3_OR_NEWER
+
             if (_stateMachine.Player.Rb.linearVelocity.y > 0f)
                 StartAnimation(_stateMachine.Player.AnimationData.JumpParameterHash);
             else
                 StartAnimation(_stateMachine.Player.AnimationData.FallParameterHash);
-#else
-            if (_stateMachine.Player.Rb.velocity.y > 0f)
-                StartAnimation(_stateMachine.Player.AnimationData.JumpParameterHash);
-            else
-                StartAnimation(_stateMachine.Player.AnimationData.FallParameterHash);
-#endif
         }
 
         public override void Exit()
@@ -69,8 +63,6 @@ namespace Game.Player
                     _stateMachine.ChangeState(_stateMachine.DashState);
                     return;
                 }
-#if UNITY_2022_3_OR_NEWER
-
                 if (_stateMachine.Player.IsGrounded() && _stateMachine.Player.Rb.linearVelocity.y <= 1f)
                 {
                     if (_stateMachine.MovementInput == Vector2.zero)
@@ -108,20 +100,6 @@ namespace Game.Player
                 //            _stateMachine.ChangeState(_stateMachine.WalkState);
                 //    }
                 //}
-#else
-            if (_stateMachine.Player.Rb.velocity.y <= 0f)
-            {
-                StopAnimation(_stateMachine.Player.AnimationData.JumpParameterHash);
-                StartAnimation(_stateMachine.Player.AnimationData.FallParameterHash);
-            }
-            if (_stateMachine.Player.Rb.velocity.y <= 0f && _stateMachine.Player.IsGrounded())
-            {
-                if (_stateMachine.MovementInput == Vector2.zero)
-                    _stateMachine.ChangeState(_stateMachine.IdleState);
-                else
-                    _stateMachine.ChangeState(_stateMachine.WalkState);
-            }
-#endif
             }
         }
 

@@ -613,11 +613,7 @@ namespace Game.Player
             runtimeIsDashing = StateMachine.IsDashing;
             runtimeSpeedModifier = StateMachine.MovementSpeedModifier;
             runtimeMoveSpeed = StateMachine.MovementSpeed * StateMachine.MovementSpeedModifier;
-#if UNITY_2022_3_OR_NEWER
             runtimeVelocity = Rb.linearVelocity;
-#else
-            runtimeVelocity = Rb.velocity;
-#endif
         }
     }
 }
