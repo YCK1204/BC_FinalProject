@@ -77,6 +77,8 @@ namespace Game.Player
         public bool LastHitCritical => lastHitCritical;
         public void MarkLastHitCritical(bool on) { lastHitCritical = on; }
 
+        private Coroutine _hitColorCoroutine;
+
         //현재 체력
         public float CurrentHP
         {
@@ -264,8 +266,18 @@ namespace Game.Player
 
             camShake.Shake(2f, 2f, 0.15f);
             _impulseSource.GenerateImpulse();
-            if (currentHP <= 0f) Die(); else StartCoroutine(HitColor());
-            ;
+            if (currentHP <= 0f)
+            {
+                Die();
+            }
+            else
+            {
+                if (_hitColorCoroutine != null)
+                {
+                    StopCoroutine(_hitColorCoroutine);
+                }
+                _hitColorCoroutine = StartCoroutine(HitColor());
+            }
         }
 
         public void TakeDamage(int damage)
@@ -278,8 +290,18 @@ namespace Game.Player
 
             camShake.Shake(2f, 2f, 0.15f);
             _impulseSource.GenerateImpulse();
-            if (currentHP <= 0f) Die(); else StartCoroutine(HitColor());
-            ;
+            if (currentHP <= 0f)
+            {
+                Die();
+            }
+            else
+            {
+                if (_hitColorCoroutine != null)
+                {
+                    StopCoroutine(_hitColorCoroutine);
+                }
+                _hitColorCoroutine = StartCoroutine(HitColor());
+            }
         }
 
         private IEnumerator HitColor()
