@@ -20,7 +20,7 @@ MonoBehaviour:
   - Id: 1
     Condition: 0
     Nmae: "\uBC88\uAC1C"
-    ActionType: 3
+    ActionType: 4
     Chance: 15
     SpecialAbilityId: 1
     AbilityType: 0
@@ -33,16 +33,16 @@ MonoBehaviour:
     Chance: 100
     SpecialAbilityId: 2
     AbilityType: 0
-    Cooldown: 20
+    Cooldown: 5
     DescId: 9002
   - Id: 3
     Condition: 0
     Nmae: "\uBC14\uB78C \uAE38"
-    ActionType: 1
+    ActionType: 3
     Chance: 100
     SpecialAbilityId: 1
     AbilityType: 2
-    Cooldown: 0
+    Cooldown: 3
     DescId: 9301
   - Id: 4
     Condition: 0
@@ -57,7 +57,7 @@ MonoBehaviour:
     Condition: 0
     Nmae: "\uC608\uB9AC\uD568"
     ActionType: 4
-    Chance: 100
+    Chance: 25
     SpecialAbilityId: 1
     AbilityType: 1
     Cooldown: 0

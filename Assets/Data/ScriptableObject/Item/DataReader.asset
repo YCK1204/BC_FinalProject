@@ -41,7 +41,8 @@ MonoBehaviour:
       AbilityType: 0
       Cooldown: 0
       DescId: 0
-    SynergyText: 
+    SynergyText: "3\uCD08 \uB9C8\uB2E4 \uC77C\uBC18 \uACF5\uACA9 \uC0AC\uC6A9 \uC2DC,
+      \uBC14\uB78C \uD22C\uC0AC\uCCB4 \uC0DD\uC131"
     EffectText: 
     Material: {fileID: 2100000, guid: ef525ef8e1990b64cac98aa764f6fe88, type: 2}
   - Id: 1102
@@ -68,7 +69,7 @@ MonoBehaviour:
       AbilityType: 0
       Cooldown: 0
       DescId: 0
-    SynergyText: 
+    SynergyText: "\uB300\uC26C \uC885\uB8CC \uC2DC, \uBCBC\uB77D \uC0DD\uC131"
     EffectText: 
     Material: {fileID: 2100000, guid: ef525ef8e1990b64cac98aa764f6fe88, type: 2}
   - Id: 1103
@@ -95,7 +96,8 @@ MonoBehaviour:
       AbilityType: 0
       Cooldown: 0
       DescId: 0
-    SynergyText: 
+    SynergyText: "3\uCD08 \uB9C8\uB2E4 \uC77C\uBC18 \uACF5\uACA9 \uC0AC\uC6A9 \uC2DC,
+      \uBC14\uB78C \uD22C\uC0AC\uCCB4 \uC0DD\uC131"
     EffectText: 
     Material: {fileID: 2100000, guid: ef525ef8e1990b64cac98aa764f6fe88, type: 2}
   - Id: 1104
@@ -176,7 +178,8 @@ MonoBehaviour:
       AbilityType: 0
       Cooldown: 0
       DescId: 0
-    SynergyText: 
+    SynergyText: "\uC77C\uBC18 \uACF5\uACA9 \uC801\uC911 \uC2DC, 25% \uD655\uB960\uB85C
+      5\uCD08 \uB3D9\uC548 \uC608\uB9AC\uD568 \uBC84\uD504 \uD68D\uB4DD"
     EffectText: 
     Material: {fileID: 2100000, guid: ef525ef8e1990b64cac98aa764f6fe88, type: 2}
   - Id: 1203
@@ -203,7 +206,8 @@ MonoBehaviour:
       AbilityType: 0
       Cooldown: 0
       DescId: 0
-    SynergyText: 
+    SynergyText: "\uC77C\uBC18 \uACF5\uACA9 \uC801\uC911 \uC2DC, 25% \uD655\uB960\uB85C
+      5\uCD08 \uB3D9\uC548 \uC608\uB9AC\uD568 \uBC84\uD504 \uD68D\uB4DD"
     EffectText: 
     Material: {fileID: 2100000, guid: ef525ef8e1990b64cac98aa764f6fe88, type: 2}
   - Id: 1301
@@ -211,7 +215,7 @@ MonoBehaviour:
     Stat1:
       ItemExtraStatType: 5
       ItemTriggerType: 5
-      Value: 10
+      Value: 20
     Stat2:
       ItemExtraStatType: 9
       ItemTriggerType: 5
@@ -230,7 +234,8 @@ MonoBehaviour:
       AbilityType: 0
       Cooldown: 0
       DescId: 0
-    SynergyText: 
+    SynergyText: "3\uCD08 \uB9C8\uB2E4 \uC77C\uBC18 \uACF5\uACA9 \uC0AC\uC6A9 \uC2DC,
+      \uBC14\uB78C \uD22C\uC0AC\uCCB4 \uC0DD\uC131"
     EffectText: 
     Material: {fileID: 2100000, guid: ef525ef8e1990b64cac98aa764f6fe88, type: 2}
   - Id: 1302
@@ -238,7 +243,7 @@ MonoBehaviour:
     Stat1:
       ItemExtraStatType: 4
       ItemTriggerType: 5
-      Value: 10
+      Value: 20
     Stat2:
       ItemExtraStatType: 7
       ItemTriggerType: 5
@@ -257,7 +262,7 @@ MonoBehaviour:
       AbilityType: 0
       Cooldown: 0
       DescId: 0
-    SynergyText: 
+    SynergyText: "\uB300\uC26C \uC885\uB8CC \uC2DC, \uBCBC\uB77D \uC0DD\uC131"
     EffectText: 
     Material: {fileID: 2100000, guid: ef525ef8e1990b64cac98aa764f6fe88, type: 2}
   - Id: 1303
@@ -265,7 +270,7 @@ MonoBehaviour:
     Stat1:
       ItemExtraStatType: 2
       ItemTriggerType: 5
-      Value: 10
+      Value: 20
     Stat2:
       ItemExtraStatType: 8
       ItemTriggerType: 5
@@ -284,7 +289,8 @@ MonoBehaviour:
       AbilityType: 0
       Cooldown: 0
       DescId: 0
-    SynergyText: 
+    SynergyText: "\uC77C\uBC18 \uACF5\uACA9 \uC801\uC911 \uC2DC, 25% \uD655\uB960\uB85C
+      5\uCD08 \uB3D9\uC548 \uC608\uB9AC\uD568 \uBC84\uD504 \uD68D\uB4DD"
     EffectText: 
     Material: {fileID: 2100000, guid: ef525ef8e1990b64cac98aa764f6fe88, type: 2}
   - Id: 1401
@@ -296,23 +302,24 @@ MonoBehaviour:
     Stat2:
       ItemExtraStatType: 5
       ItemTriggerType: 5
-      Value: 40
+      Value: 10
     IconURL: https://velog.velcdn.com/images/rokid_/post/bd52a936-57bc-4447-a2c9-a762fdea6068/image.png
     ItemEffectId: 1
     SynergyId: 0
     ItemGrade: 3
     EffectData:
-      Id: 0
+      Id: 1
       Condition: 0
-      Nmae: 
-      ActionType: 0
-      Chance: 0
-      SpecialAbilityId: 0
+      Nmae: "\uBC88\uAC1C"
+      ActionType: 4
+      Chance: 15
+      SpecialAbilityId: 1
       AbilityType: 0
       Cooldown: 0
-      DescId: 0
+      DescId: 9001
     SynergyText: 
-    EffectText: 
+    EffectText: "\uC77C\uBC18 \uACF5\uACA9 \uC801\uC911 \uC2DC, 15% \uD655\uB960\uB85C
+      \uBCBC\uB77D \uC0DD\uC131"
     Material: {fileID: 2100000, guid: 27a4590ae5c6ae04cb874da8d6e042bb, type: 2}
   - Id: 1402
     ItemName: "\uB291\uB300 \uD32C\uB358\uD2B8"

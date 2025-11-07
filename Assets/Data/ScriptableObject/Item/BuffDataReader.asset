@@ -18,18 +18,19 @@ MonoBehaviour:
   END_ROW_LENGTH: 2
   DataList:
   - Id: 1
-    Duration: 3
+    Duration: 5
     MaxCount: 1
     Stat1:
       ItemExtraStatType: 8
       ItemTriggerType: 5
-      Value: 20
+      Value: 50
     Stat2:
       ItemExtraStatType: 9
       ItemTriggerType: 5
-      Value: 10
+      Value: 20
     IconURL: '-'
     Name: "\uC608\uB9AC\uD568"
     DescriptionId: 9101
     Icon: {fileID: 7674013346276338986, guid: e2802fa57d0ea084cbd43620a555f555, type: 3}
-    Desc: 
+    Desc: "\uCD94\uAC00 \uCE58\uBA85\uD0C0 \uD53C\uD574 50%\n\uCD94\uAC00 \uCE58\uBA85\uD0C0
+      \uD655\uB960 20%"
